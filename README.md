@@ -1,56 +1,24 @@
-# Kotlin Project Starters
+[![Travis CI](https://img.shields.io/travis/com/hendraanggrian/ktlint-rules)](https://travis-ci.com/github/hendraanggrian/ktlint-rules/)
+[![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/ktlint-rules)](https://codecov.io/gh/hendraanggrian/ktlint-rules/)
+[![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian/ktlint-rules)](https://search.maven.org/artifact/com.hendraanggrian/ktlint-rules/)
+[![Nexus Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian/ktlint-rules?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/ktlint-rules/)
+[![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/)
 
-Personal Gradle project templates with emphasis on Kotlin, separated by target platform and kind of
-distribution.
+# Ktlint Rules
 
-Components included in each template:
+Personal code conventions.
 
-- GitHub project layout:
-  - [README](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes/)
-    and [LICENSE](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository/)
-    file in root directory.
-- Gradle build tool:
-  - [Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) scripts with `buildSrc`
-    containing project helpers.
-  - Apply plugin using [plugins DSL](https://docs.gradle.org/current/userguide/plugins.html).
-  - [Version catalogs](https://docs.gradle.org/current/userguide/platforms.html) to avoid typing
-    unsafe dependencies.
-- Kotlin framework:
-  - Plugin for each platform
-    and [Coroutines Support Library](https://github.com/Kotlin/kotlinx.coroutines/).
-  - [Kover](https://github.com/Kotlin/kotlinx-kover/) code coverage.
-- Test dependencies:
-  - [Kotlin Test Library](https://kotlinlang.org/api/latest/kotlin.test/) with JUnit dependencies.
-  - [Google Truth](https://github.com/google/truth/) assertion.
-- [ktlint](https://github.com/pinterest/ktlint/) code style,
-  imported using [Spotless](https://github.com/diffplug/spotless/) plugin.
-- Website module:
-  - [Pages Gradle Plugin](https://github.com/hendraanggrian/pages-gradle-plugin/) for generating
-    webpage
-    displaying README's content and documentation links (except for apps).
-  - [gradle-git-publish](https://github.com/ajoberstar/gradle-git-publish/) plugin,
-    necessary for uploading to [GitHub Pages](https://pages.github.com/).
-- Third-party services:
-  - [Travis CI](https://travis-ci.com/) configuration file.
-  - [Codecov](https://about.codecov.io/) integration within Travis CI, except for Gradle plugin.
+## Download
 
-Situational components differ by target:
+```gradle
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation "com.hendraanggrian:ktlint-rules:$version"
+}
+```
 
-| | Plugins | Publications | Others |
-| --- | --- | --- | --- |
-| android-app | [Android], [kapt] | | [Robolectric] unit test |
-| android-library | [Android], [Dokka] | [Maven Central] | [Robolectric] unit test |
-| gradle-plugin | [Gradle Plugin Development], [Dokka] | [Gradle Plugin Portal] | [Gradle TestKit] |
-| jvm-app | [Application], [kapt] | | |
-| jvm-library | [Dokka] | [Maven Central] | |
-| multi-module | [Dokka] | [Maven Central] | |
+## Usage
 
-[Dokka]: https://github.com/Kotlin/dokka/
-[kapt]: https://kotlinlang.org/docs/kapt.html
-[Application]: https://docs.gradle.org/current/userguide/application_plugin.html
-[Android]: https://developer.android.com/studio/build/
-[Gradle Plugin Development]: https://docs.gradle.org/current/userguide/java_gradle_plugin.html
-[Gradle Plugin Portal]: https://plugins.gradle.org/
-[Gradle TestKit]: https://docs.gradle.org/current/userguide/test_kit.html
-[Maven Central]: https://search.maven.org/
-[Robolectric]: http://robolectric.org/
+Work in progress.
