@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>ktlint</title>
+        <meta content="width=device-width" name="viewport">
+        <meta content="chrome=1" http-equiv="X-UA-Compatible">
+        <link href="styles/main.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+        <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
+        <!--Primary meta tags-->
+        <meta content="ktlint" name="title">
+        <meta content="Personal kotlin code convention enforced by ktlint" name="description">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <h1>ktlint</h1>
+                <p>Personal kotlin code convention enforced by ktlint</p>
+                <p class="view">
+                    <a href="https://github.com/hendraanggrian/codestyle-ktlint/">View the Project on GitHub <small>hendraanggrian/codestyle-ktlin</small></a>
+                </p>
+                <ul>
+                    <li>
+                        <a href="dokka">View<strong>Documentation</strong></a>
+                    </li>
+                </ul>
+            </header>
+            <section>
+                <p>
+                    <a href="https://travis-ci.com/github/hendraanggrian/codestyle-ktlint/"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/codestyle-ktlint"></a>
+<a href="https://codecov.io/gh/hendraanggrian/codestyle-ktlint/"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/hendraanggrian/codestyle-ktlint"></a>
+<a href="https://search.maven.org/artifact/com.hendraanggrian.codestyle/ktlint/"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.hendraanggrian.codestyle/ktlint"></a>
+<a href="https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/codestyle/ktlint/"><img alt="Nexus Snapshot" src="https://img.shields.io/nexus/s/com.hendraanggrian.codestyle/ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org"></a>
+<a href="https://openjdk.java.net/projects/jdk8/"><img alt="OpenJDK" src="https://img.shields.io/badge/jdk-1.8%2B-informational"></a>
+                </p>
+                
+                <h1>Ktlint Codestyle</h1>
+                
+                <p>Personal kotlin code convention enforced by ktlint.</p>
+                
+                <h2>Download</h2>
+                
+                <pre><code class="language-gradle">repositories {
+    mavenCentral()
+}
+
+configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint "com.hendraanggrian:codestyle:ktlint:$version"
+}
+</code></pre>
+                
+                <h2>Usage</h2>
+                
+                <p>
+                    <a href="https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration">Integrate ktlint</a>
+to Gradle project. Add this custom ruleset using configuration <code>ktlint</code> and it's done!
+                </p>
+                
+                <pre><code class="language-gradle">repositories {
+    mavenCentral()
+}
+
+configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint("com.pinterest:ktlint:0.47.1") {
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, getObjects().named(Bundling, Bundling.EXTERNAL))
+        }
+    }
+    ktlint "com.hendraanggrian:codestyle:ktlint:$version"
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    classpath = configurations.ktlint
+    mainClass.set("com.pinterest.ktlint.Main")
+    args "src/**/*.kt"
+    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
+}
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    classpath = configurations.ktlint
+    mainClass.set("com.pinterest.ktlint.Main")
+    args "-F", "src/**/*.kt"
+    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
+}
+</code></pre>
+                
+            </section>
+            <footer>
+                <p>
+                    <button class="material-symbols-sharp" id="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode"></button>
+                </p>
+                <p>
+                    This project is maintained by <a href="https://github.com/hendraanggrian/">Hendra Anggrian</a>
+                </p>
+                <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist/">orderedlist</a></small>
+            </footer>
+        </div>
+        <script src="scripts/scale.fix.js"></script>
+    </body>
+</html>
