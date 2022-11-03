@@ -1,6 +1,6 @@
-package com.hendraanggrian.convention.ktlint
+package com.hendraanggrian.codestyle.ktlint
 
-import com.hendraanggrian.convention.ktlint.DeclarationReturnTypeRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.codestyle.ktlint.DeclarationReturnTypeRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test

@@ -8,5 +8,5 @@ application.mainClass.set("com.example.MyApp")
 
 dependencies {
     ktlint(libs.ktlint, ::ktlintAttributes)
-    ktlint(project(":ktlint-rules"))
+    ktlint(project(":ktlint"))
 }

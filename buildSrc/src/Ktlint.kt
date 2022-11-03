@@ -42,7 +42,7 @@ val Project.ktlint: Configuration
                 }
             }
         }
-        return ktlint!!
+        return ktlint
     }
 
 fun Project.ktlintAttributes(moduleDependency: ModuleDependency) {
