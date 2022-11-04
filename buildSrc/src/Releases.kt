@@ -8,7 +8,7 @@ const val DEVELOPER_URL = "https://github.com/$DEVELOPER_ID/"
 const val RELEASE_GROUP = "com.hendraanggrian.codestyle"
 const val RELEASE_ARTIFACT = "ktlint"
 const val RELEASE_VERSION = "0.1-SNAPSHOT"
-const val RELEASE_DESCRIPTION = "Personal kotlin code convention enforced by ktlint"
+const val RELEASE_DESCRIPTION = "Personal Kotlin code convention enforced by ktlint"
 const val RELEASE_URL = "https://github.com/$DEVELOPER_ID/codestyle-ktlint/"
 
 fun Project.pom(pom: MavenPom) {

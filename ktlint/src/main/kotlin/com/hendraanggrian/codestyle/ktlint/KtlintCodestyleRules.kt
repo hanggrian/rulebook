@@ -3,7 +3,7 @@ package com.hendraanggrian.codestyle.ktlint
 import com.pinterest.ktlint.core.RuleProvider
 import com.pinterest.ktlint.core.RuleSetProviderV2
 
-class KtlintRules : RuleSetProviderV2(
+class KtlintCodestyleRules : RuleSetProviderV2(
     "ktlint-rules",
     About(
         "Hendra Anggrian",

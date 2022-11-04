@@ -51,11 +51,11 @@ class DocumentationRuleTest {
                 }
             """.trimIndent()
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(6, 13, ERROR_MESSAGE_TAG.format("Param")),
-            LintViolation(7, 19, ERROR_MESSAGE_TAG.format("Property")),
-            LintViolation(8, 17, ERROR_MESSAGE_TAG.format("Constructor")),
-            LintViolation(13, 18, ERROR_MESSAGE_TAG.format("Receiver")),
-            LintViolation(14, 16, ERROR_MESSAGE_TAG.format("Return"))
+            LintViolation(6, 13, ERROR_MESSAGE_TAG.format("@param")),
+            LintViolation(7, 19, ERROR_MESSAGE_TAG.format("@property")),
+            LintViolation(8, 17, ERROR_MESSAGE_TAG.format("@constructor")),
+            LintViolation(13, 18, ERROR_MESSAGE_TAG.format("@receiver")),
+            LintViolation(14, 16, ERROR_MESSAGE_TAG.format("@return"))
         )
     }
 }

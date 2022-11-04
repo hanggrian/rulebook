@@ -6,7 +6,7 @@
 
 # Ktlint Codestyle
 
-Personal kotlin code convention enforced by ktlint.
+Personal Kotlin code convention enforced by ktlint.
 
 ## Download
 

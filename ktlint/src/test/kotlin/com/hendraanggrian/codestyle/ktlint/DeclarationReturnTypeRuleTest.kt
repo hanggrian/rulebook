@@ -30,12 +30,16 @@ class DeclarationReturnTypeRuleTest {
     fun `Property`() {
         assertCode(
             """
-                var property = "Hello"
-                var propertyAccessor get() = "World"
+                val property = "Hello"
+                val propertyAccessor get() = "World"
 
                 class MyClass {
-                    var property = "Hello"
-                    var propertyAccessor get() = "World"
+                    val property = "Hello"
+                    val propertyAccessor get() = "World"
+
+                    fun doSomething() {
+                        val i = 0
+                    }
                 }
             """.trimIndent()
         ).hasLintViolationsWithoutAutoCorrect(
