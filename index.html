@@ -3,7 +3,7 @@
     <head>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>ktlint</title>
+        <title>codestyle</title>
         <meta content="width=device-width" name="viewport">
         <meta content="chrome=1" http-equiv="X-UA-Compatible">
         <link href="styles/main.css" rel="stylesheet">
@@ -11,16 +11,16 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
         <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
         <!--Primary meta tags-->
-        <meta content="ktlint" name="title">
-        <meta content="Personal kotlin code convention enforced by ktlint" name="description">
+        <meta content="codestyle" name="title">
+        <meta content="Personal Java/Kotlin code convention and rules" name="description">
     </head>
     <body>
         <div class="wrapper">
             <header>
-                <h1>ktlint</h1>
-                <p>Personal kotlin code convention enforced by ktlint</p>
+                <h1>codestyle</h1>
+                <p>Personal Java/Kotlin code convention and rules</p>
                 <p class="view">
-                    <a href="https://github.com/hendraanggrian/codestyle-ktlint/">View the Project on GitHub <small>hendraanggrian/codestyle-ktlin</small></a>
+                    <a href="https://github.com/hendraanggrian/codestyle/">View the Project on GitHub <small>hendraanggrian/codestyl</small></a>
                 </p>
                 <ul>
                     <li>
@@ -30,37 +30,24 @@
             </header>
             <section>
                 <p>
-                    <a href="https://travis-ci.com/github/hendraanggrian/codestyle-ktlint/"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/codestyle-ktlint"></a>
-<a href="https://codecov.io/gh/hendraanggrian/codestyle-ktlint/"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/hendraanggrian/codestyle-ktlint"></a>
+                    <a href="https://travis-ci.com/github/hendraanggrian/codestyle/"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/codestyle"></a>
+<a href="https://codecov.io/gh/hendraanggrian/codestyle/"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/hendraanggrian/codestyle"></a>
 <a href="https://search.maven.org/artifact/com.hendraanggrian.codestyle/ktlint/"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.hendraanggrian.codestyle/ktlint"></a>
 <a href="https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/codestyle/ktlint/"><img alt="Nexus Snapshot" src="https://img.shields.io/nexus/s/com.hendraanggrian.codestyle/ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org"></a>
 <a href="https://openjdk.java.net/projects/jdk8/"><img alt="OpenJDK" src="https://img.shields.io/badge/jdk-1.8%2B-informational"></a>
                 </p>
                 
-                <h1>Ktlint Codestyle</h1>
+                <h1>Codestyle</h1>
                 
-                <p>Personal kotlin code convention enforced by ktlint.</p>
+                <p>Personal Java/Kotlin code convention and rules.</p>
                 
                 <h2>Download</h2>
                 
-                <pre><code class="language-gradle">repositories {
-    mavenCentral()
-}
-
-configurations {
-    ktlint
-}
-
-dependencies {
-    ktlint "com.hendraanggrian:codestyle:ktlint:$version"
-}
-</code></pre>
-                
-                <h2>Usage</h2>
+                <h3>Ktlint</h3>
                 
                 <p>
                     <a href="https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration">Integrate ktlint</a>
-to Gradle project. Add this custom ruleset using configuration <code>ktlint</code> and it's done!
+to Gradle project. Using configuration <code>ktlint</code>, add this project as dependency.
                 </p>
                 
                 <pre><code class="language-gradle">repositories {
@@ -72,31 +59,72 @@ configurations {
 }
 
 dependencies {
-    ktlint("com.pinterest:ktlint:0.47.1") {
-        attributes {
-            attribute(Bundling.BUNDLING_ATTRIBUTE, getObjects().named(Bundling, Bundling.EXTERNAL))
-        }
-    }
-    ktlint "com.hendraanggrian:codestyle:ktlint:$version"
-}
-
-task ktlint(type: JavaExec, group: "verification") {
-    description = "Check Kotlin code style."
-    classpath = configurations.ktlint
-    mainClass.set("com.pinterest.ktlint.Main")
-    args "src/**/*.kt"
-    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
-}
-check.dependsOn ktlint
-
-task ktlintFormat(type: JavaExec, group: "formatting") {
-    description = "Fix Kotlin code style deviations."
-    classpath = configurations.ktlint
-    mainClass.set("com.pinterest.ktlint.Main")
-    args "-F", "src/**/*.kt"
-    // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
+    ktlint "com.hendraanggrian.codestyle:ktlint:$version"
 }
 </code></pre>
+                
+                <h3>Checkstyle</h3>
+                
+                <p>
+                    Copy the directory of <code>config</code> in this repository.
+Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Plugin</a>. Using
+configuration <code>checkstyle</code>, add this project as dependency.
+                </p>
+                
+                <pre><code class="language-gradle">plugins {
+    checkstyle
+}
+
+dependencies {
+    checkstyle "com.hendraanggrian.codestyle:checkstyle:$version"
+}
+</code></pre>
+                
+                <h2>Usage</h2>
+                
+                <table>
+                    
+                    <thead>
+                        
+                        <tr>
+                            
+                            <th>Rules</th>
+<th align="center">Checkstyle</th>
+<th align="center">Ktlint</th>
+
+                        </tr>
+                        
+                    </thead>
+                    
+                    <tbody>
+                        
+                        <tr>
+                            
+                            <td><a href="guides/declaration-return-type.md">Declaration Return Type</a></td>
+<td align="center">✗</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td><a href="guides/documentation-content.md">Documentation Content</a></td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td><a href="guides/documentation-tag-description.md">Documentation Tag Description</a></td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                    </tbody>
+                    
+                </table>
                 
             </section>
             <footer>

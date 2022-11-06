@@ -1,5 +1,7 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 
-module:ktlint
+module:codestyle-checkstyle
+com.hendraanggrian.codestyle.checkstyle
+module:codestyle-ktlint
 com.hendraanggrian.codestyle.ktlint
