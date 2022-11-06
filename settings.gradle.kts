@@ -4,7 +4,9 @@ pluginManagement.repositories {
 }
 dependencyResolutionManagement.repositories.mavenCentral()
 
-rootProject.name = "codestyle-ktlint"
-include("ktlint")
-include("sample")
+rootProject.name = "codestyle"
+include("codestyle-checkstyle")
+include("codestyle-ktlint")
+include("sample-checkstyle")
+include("sample-ktlint")
 include("website")

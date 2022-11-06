@@ -6,10 +6,10 @@ const val DEVELOPER_NAME = "Hendra Anggrian"
 const val DEVELOPER_URL = "https://github.com/$DEVELOPER_ID/"
 
 const val RELEASE_GROUP = "com.hendraanggrian.codestyle"
-const val RELEASE_ARTIFACT = "ktlint"
+const val RELEASE_ARTIFACT = "codestyle"
 const val RELEASE_VERSION = "0.1-SNAPSHOT"
-const val RELEASE_DESCRIPTION = "Personal Kotlin code convention enforced by ktlint"
-const val RELEASE_URL = "https://github.com/$DEVELOPER_ID/codestyle-ktlint/"
+const val RELEASE_DESCRIPTION = "Personal Java/Kotlin code convention and rules"
+const val RELEASE_URL = "https://github.com/$DEVELOPER_ID/$RELEASE_ARTIFACT/"
 
 fun Project.pom(pom: MavenPom) {
     pom.name.set(name)
@@ -23,8 +23,8 @@ fun Project.pom(pom: MavenPom) {
         }
     }
     pom.scm {
-        connection.set("scm:git:https://github.com/$DEVELOPER_ID/codestyle-ktlint.git")
-        developerConnection.set("scm:git:ssh://git@github.com/$DEVELOPER_ID/codestyle-ktlint.git")
+        connection.set("scm:git:https://github.com/$DEVELOPER_ID/$RELEASE_ARTIFACT.git")
+        developerConnection.set("scm:git:ssh://git@github.com/$DEVELOPER_ID/$RELEASE_ARTIFACT.git")
         url.set(RELEASE_URL)
     }
     pom.developers {

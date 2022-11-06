@@ -22,7 +22,7 @@ pages {
 }
 
 gitPublish {
-    repoUri.set("git@github.com:$DEVELOPER_ID/codestyle-ktlint.git")
+    repoUri.set("git@github.com:$DEVELOPER_ID/$RELEASE_ARTIFACT.git")
     branch.set("gh-pages")
     contents.from(pages.outputDirectory)
 }
@@ -32,6 +32,6 @@ tasks {
         delete(buildDir)
     }
     deployPages {
-        dependsOn(":$RELEASE_ARTIFACT:dokkaHtml")
+        dependsOn(":dokkaHtmlMultiModule")
     }
 }
