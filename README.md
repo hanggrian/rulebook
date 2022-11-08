@@ -6,7 +6,10 @@
 
 # Codestyle
 
-Personal Java/Kotlin code convention and rules.
+Personal Java/Kotlin code convention and rules. These are additional rules that are meant to be
+paired with base rules
+([Checkstyle Google Checks](https://checkstyle.sourceforge.io/google_style.html)
+and [Ktlint Standard Rules](https://pinterest.github.io/ktlint/rules/standard/)).
 
 ## Download
 
@@ -25,7 +28,7 @@ configurations {
 }
 
 dependencies {
-    ktlint "com.hendraanggrian.codestyle:ktlint:$version"
+    ktlint "com.hendraanggrian.codestyle:codestyle-ktlint:$version"
 }
 ```
 
@@ -41,14 +44,15 @@ plugins {
 }
 
 dependencies {
-    checkstyle "com.hendraanggrian.codestyle:checkstyle:$version"
+    checkstyle "com.hendraanggrian.codestyle:codestyle-checkstyle:$version"
 }
 ```
 
-## Usage
+## Rules
 
 | Rules | Checkstyle | Ktlint |
 | --- | :---: | :---: |
-| [Declaration Return Type](guides/declaration-return-type.md) | &cross; | &check; |
-| [Documentation Content](guides/documentation-content.md) | &check; | &check; |
+| [Declaration Return Type](guides/specify-return-type.md) | &cross; | &check; |
+| [Documentation Content](guides/documentation-paragraph.md) | &check; | &check; |
 | [Documentation Tag Description](guides/documentation-tag-description.md) | &check; | &check; |
+| [Specify Return Type](guides/specify-return-type.md) | &cross; | &check; |

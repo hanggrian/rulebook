@@ -3,12 +3,12 @@ package com.hendraanggrian.codestyle.checkstyle
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class DocumentationContentCheckTest {
+class JavadocParagraphCheckTest {
 
     @Test
     fun test() {
-        val checker = prepareCheckStyleChecker<DocumentationContentCheck>()
-        val files = prepareFilesToBeChecked<DocumentationContentCheckTest>()
+        val checker = prepareCheckStyleChecker<JavadocParagraphCheck>()
+        val files = prepareFilesToBeChecked<JavadocParagraphCheckTest>()
         val numberOfErrors = checker.process(files)
         assertEquals(2, numberOfErrors)
     }

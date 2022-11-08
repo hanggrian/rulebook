@@ -1,12 +1,12 @@
 package com.hendraanggrian.codestyle.ktlint
 
-import com.hendraanggrian.codestyle.ktlint.DeclarationReturnTypeRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.codestyle.ktlint.SpecifyReturnTypeRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class DeclarationReturnTypeRuleTest {
-    private val assertCode = assertThatRule { DeclarationReturnTypeRule() }
+class SpecifyReturnTypeRuleTest {
+    private val assertCode = assertThatRule { SpecifyReturnTypeRule() }
 
     @Test
     fun `Expression function`() {

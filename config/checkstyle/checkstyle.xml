@@ -45,8 +45,8 @@
 
   <module name="TreeWalker">
     <!--region codestyle-->
-    <module name="com.hendraanggrian.codestyle.checkstyle.DocumentationContentCheck"/>
-    <module name="com.hendraanggrian.codestyle.checkstyle.DocumentationTagDescriptionCheck"/>
+    <module name="com.hendraanggrian.codestyle.checkstyle.JavadocParagraphCheck"/>
+    <module name="com.hendraanggrian.codestyle.checkstyle.JavadocTagDescriptionCheck"/>
     <!--endregion-->
 
     <module name="OuterTypeFilename"/>

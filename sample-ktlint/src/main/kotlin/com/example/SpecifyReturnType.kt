@@ -1,6 +1,6 @@
 package com.example
 
-class DeclarationReturnType {
+class SpecifyReturnType {
     private companion object {
         val name = 0
     }

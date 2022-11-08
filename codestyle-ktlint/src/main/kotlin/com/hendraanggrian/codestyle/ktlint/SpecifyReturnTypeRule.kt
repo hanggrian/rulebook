@@ -5,18 +5,17 @@ import com.pinterest.ktlint.core.ast.ElementType.CLASS_BODY
 import com.pinterest.ktlint.core.ast.ElementType.EQ
 import com.pinterest.ktlint.core.ast.ElementType.FILE
 import com.pinterest.ktlint.core.ast.ElementType.FUN
-import com.pinterest.ktlint.core.ast.ElementType.INTERNAL_KEYWORD
 import com.pinterest.ktlint.core.ast.ElementType.MODIFIER_LIST
-import com.pinterest.ktlint.core.ast.ElementType.PRIVATE_KEYWORD
 import com.pinterest.ktlint.core.ast.ElementType.PROPERTY
+import com.pinterest.ktlint.core.ast.ElementType.PUBLIC_KEYWORD
 import com.pinterest.ktlint.core.ast.ElementType.TYPE_REFERENCE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 
 /**
- * **Guide**: [Declaration Return Type](https://github.com/hendraanggrian/codestyle/blob/main/guides/declaration-return-type.md).
+ * **Guide**: [Specify Return Type](https://github.com/hendraanggrian/codestyle/blob/main/guides/specify-return-type.md).
  */
-class DeclarationReturnTypeRule : Rule("declaration-return-type-rule") {
+class SpecifyReturnTypeRule : Rule("declaration-return-type-rule") {
     internal companion object {
         const val ERROR_MESSAGE = "%s need return type"
     }
@@ -50,18 +49,18 @@ class DeclarationReturnTypeRule : Rule("declaration-return-type-rule") {
         // return true if this node or its parents recursively are private
         var node: ASTNode? = this
         while (node != null) {
-            if (node.isPrivate()) {
+            if (!node.isPublic()) {
                 return true
             }
             node = node.treeParent
         }
         // in case of public node, declare violation if node doesn't have a type reference
-        return hasType(TYPE_REFERENCE)
+        return this.hasType(TYPE_REFERENCE)
     }
 
-    private fun ASTNode.isPrivate(): Boolean {
-        val modifiers = findChildByType(MODIFIER_LIST) ?: return false
-        return modifiers.hasType(PRIVATE_KEYWORD) || modifiers.hasType(INTERNAL_KEYWORD)
+    private fun ASTNode.isPublic(): Boolean {
+        val modifiers = findChildByType(MODIFIER_LIST) ?: return true
+        return modifiers.hasType(PUBLIC_KEYWORD)
     }
 
     private fun ASTNode.hasType(type: IElementType): Boolean = findChildByType(type) != null

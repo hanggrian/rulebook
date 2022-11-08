@@ -5,9 +5,9 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
- * **Guide**: [Document Tag Description](https://github.com/hendraanggrian/codestyle/blob/main/guides/documentation-tag-description.md).
+ * **Guide**: [Documentation Tag Description](https://github.com/hendraanggrian/codestyle/blob/main/guides/documentation-tag-description.md).
  */
-class DocumentationTagDescriptionCheck : AbstractJavadocCheck() {
+class JavadocTagDescriptionCheck : AbstractJavadocCheck() {
     private companion object {
         const val ERROR_MESSAGE = "%s description is not a sentence."
     }

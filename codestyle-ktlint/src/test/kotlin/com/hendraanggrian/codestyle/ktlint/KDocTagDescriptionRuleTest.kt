@@ -1,12 +1,12 @@
 package com.hendraanggrian.codestyle.ktlint
 
-import com.hendraanggrian.codestyle.ktlint.DocumentationTagDescriptionRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.codestyle.ktlint.KDocTagDescriptionRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class DocumentationTagDescriptionRuleTest {
-    private val assertCode = assertThatRule { DocumentationTagDescriptionRule() }
+class KDocTagDescriptionRuleTest {
+    private val assertCode = assertThatRule { KDocTagDescriptionRule() }
 
     @Test
     fun `Tag description is not a sentence`() {

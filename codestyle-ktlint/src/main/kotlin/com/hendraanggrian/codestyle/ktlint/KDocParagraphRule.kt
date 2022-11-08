@@ -2,12 +2,13 @@ package com.hendraanggrian.codestyle.ktlint
 
 import com.pinterest.ktlint.core.Rule
 import com.pinterest.ktlint.core.ast.ElementType.KDOC_LEADING_ASTERISK
+import com.pinterest.ktlint.core.ast.ElementType.KDOC_TAG
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * **Guide**: [Documentation Content](https://github.com/hendraanggrian/codestyle/blob/main/guides/documentation-content.md).
+ * **Guide**: [Documentation Paragraph](https://github.com/hendraanggrian/codestyle/blob/main/guides/documentation-paragraph.md).
  */
-class DocumentationContentRule : Rule("documentation-content") {
+class KDocParagraphRule : Rule("documentation-content") {
     internal companion object {
         const val ERROR_MESSAGE = "First word of a line cannot be a %s."
     }
@@ -20,6 +21,16 @@ class DocumentationContentRule : Rule("documentation-content") {
         if (node.elementType != KDOC_LEADING_ASTERISK) {
             return
         }
+        // skip tags
+        var next = node.treeNext
+        while (next != null) {
+            when (next.elementType) {
+                KDOC_LEADING_ASTERISK -> break
+                KDOC_TAG -> return
+            }
+            next = next.treeNext
+        }
+        // check the first word of paragraph continuation
         val line = node.lineAfterAsterisk.trimStart()
         if (line.startsWith('`') && !line.startsWith("```")) {
             emit(node.treeNext.startOffset, ERROR_MESSAGE.format("code"), false)
@@ -31,13 +42,13 @@ class DocumentationContentRule : Rule("documentation-content") {
     /** While loop until next leading asterisk. */
     private val ASTNode.lineAfterAsterisk: String
         get() {
-            var node = treeNext
+            var next = treeNext
             val sb = StringBuilder()
-            while (node != null &&
-                node.elementType != KDOC_LEADING_ASTERISK /* reached new line */
+            while (next != null &&
+                next.elementType != KDOC_LEADING_ASTERISK /* reached new line */
             ) {
-                sb.append(node.text)
-                node = node.treeNext
+                sb.append(next.text)
+                next = next.treeNext
             }
             return sb.toString()
         }

@@ -1,15 +1,15 @@
 package com.hendraanggrian.codestyle.ktlint
 
-import com.hendraanggrian.codestyle.ktlint.DocumentationContentRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.codestyle.ktlint.KDocParagraphRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class DocumentationContentRuleTest {
-    private val assertCode = assertThatRule { DocumentationContentRule() }
+class KDocParagraphRuleTest {
+    private val assertCode = assertThatRule { KDocParagraphRule() }
 
     @Test
-    fun `First word of a line is code`() {
+    fun `First word of paragraph continuation is code`() {
         assertCode(
             """
                 /**
@@ -24,7 +24,7 @@ class DocumentationContentRuleTest {
     }
 
     @Test
-    fun `First word of a line is link`() {
+    fun `First word of paragraph continuation is link`() {
         assertCode(
             """
                 /**

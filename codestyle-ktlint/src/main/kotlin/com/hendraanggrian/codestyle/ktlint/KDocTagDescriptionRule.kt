@@ -6,9 +6,9 @@ import com.pinterest.ktlint.core.ast.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * **Guide**: [Document Tag Description](https://github.com/hendraanggrian/codestyle/blob/main/guides/documentation-tag-description.md).
+ * **Guide**: [Documentation Tag Description](https://github.com/hendraanggrian/codestyle/blob/main/guides/documentation-tag-description.md).
  */
-class DocumentationTagDescriptionRule : Rule("documentation-tag-description") {
+class KDocTagDescriptionRule : Rule("documentation-tag-description") {
     internal companion object {
         const val ERROR_MESSAGE = "%s description is not a sentence."
     }
