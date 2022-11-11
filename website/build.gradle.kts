@@ -11,6 +11,20 @@ pages {
         "https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js",
         "https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"
     )
+    contents {
+        add(
+            "$rootDir/guides/docs/paragraph-continuation-first-word.md",
+            "paragraph-continuation-first-word.html"
+        )
+        add(
+            "$rootDir/guides/docs/tag-description-punctuation.md",
+            "tag-description-punctuation.html"
+        )
+        add(
+            "$rootDir/guides/function-specify-return-type.md",
+            "function-specify-return-type.html"
+        )
+    }
     minimal {
         authorName = DEVELOPER_NAME
         authorUrl = DEVELOPER_URL

@@ -1,14 +1,16 @@
-[![Travis CI](https://img.shields.io/travis/com/hendraanggrian/codestyle)](https://travis-ci.com/github/hendraanggrian/codestyle/)
-[![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/codestyle)](https://codecov.io/gh/hendraanggrian/codestyle/)
-[![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian.codestyle/ktlint)](https://search.maven.org/artifact/com.hendraanggrian.codestyle/ktlint/)
-[![Nexus Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian.codestyle/ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/codestyle/ktlint/)
+[![Travis CI](https://img.shields.io/travis/com/hendraanggrian/lints)](https://travis-ci.com/github/hendraanggrian/lints/)
+[![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/lints)](https://codecov.io/gh/hendraanggrian/lints/)
+[![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian.lints/lints-ktlint)](https://search.maven.org/artifact/com.hendraanggrian.lints/lints-ktlint/)
+[![Nexus Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian.lints/lints-ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/lints/lints-ktlint/)
 [![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/)
 
-# Codestyle
+# Lints
 
-Personal Java/Kotlin code convention and rules. These are additional rules that are meant to be
-paired with base rules
-([Checkstyle Google Checks](https://checkstyle.sourceforge.io/google_style.html)
+Personal Java/Kotlin linter rules. A highly opinionated additional code convention on top
+of [official coding conventions](https://kotlinlang.org/docs/coding-conventions.html).
+
+These rules are meant to be paired with base
+rules ([Checkstyle Google Checks](https://checkstyle.sourceforge.io/google_style.html)
 and [Ktlint Standard Rules](https://pinterest.github.io/ktlint/rules/standard/)).
 
 ## Download
@@ -28,7 +30,7 @@ configurations {
 }
 
 dependencies {
-    ktlint "com.hendraanggrian.codestyle:codestyle-ktlint:$version"
+    ktlint "com.hendraanggrian.lints:lints-ktlint:$version"
 }
 ```
 
@@ -44,7 +46,7 @@ plugins {
 }
 
 dependencies {
-    checkstyle "com.hendraanggrian.codestyle:codestyle-checkstyle:$version"
+    checkstyle "com.hendraanggrian.lints:lints-checkstyle:$version"
 }
 ```
 
@@ -52,7 +54,11 @@ dependencies {
 
 | Rules | Checkstyle | Ktlint |
 | --- | :---: | :---: |
-| [Declaration Return Type](guides/specify-return-type.md) | &cross; | &check; |
-| [Documentation Content](guides/documentation-paragraph.md) | &check; | &check; |
-| [Documentation Tag Description](guides/documentation-tag-description.md) | &check; | &check; |
-| [Specify Return Type](guides/specify-return-type.md) | &cross; | &check; |
+| [Function Specify Return Type](guides/function-specify-return-type.md) | &cross; | &check; |
+
+### Documentation Rules
+
+| Rules | Checkstyle | Ktlint |
+| --- | :---: | :---: |
+| [Paragraph Continuation First Word](guides/docs/paragraph-continuation-first-word.md) | &check; | &check; |
+| [Tag Description Punctuation](guides/docs/tag-description-punctuation.md) | &check; | &check; |
