@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>lints</title>
+        <meta content="width=device-width" name="viewport">
+        <meta content="chrome=1" http-equiv="X-UA-Compatible">
+        <link href="styles/main.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+        <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
+        <!--Primary meta tags-->
+        <meta content="lints" name="title">
+        <meta content="Personal Java/Kotlin linter rules" name="description">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <h1>lints</h1>
+                <p>Personal Java/Kotlin linter rules</p>
+                <p class="view">
+                    <a href="https://github.com/hendraanggrian/lints/">View the Project on GitHub <small>hendraanggrian/lint</small></a>
+                </p>
+                <ul>
+                    <li>
+                        <a href="dokka">View<strong>Documentation</strong></a>
+                    </li>
+                </ul>
+            </header>
+            <section>
+                <h1>Function Specify Return Type</h1>
+                
+                <p>
+                    Kotlin supports <code>expression function</code> and <code>property</code> declaration without a return type. This return
+type is pre-calculated during compile time. To avoid ambiguity, this rule forces them to specify
+return type.
+                </p>
+                
+                <p>This rule doesn't affect:</p>
+                
+                <ul>
+                    
+                    <li>Functions without declaration.</li>
+                    
+                    <li>Properties in function block.</li>
+                    
+                    <li>Properties without getter.</li>
+                    
+                    <li>Non-public functions/properties.</li>
+                    
+                </ul>
+                
+                <pre><code class="language-kotlin">fun topLevelFunction() = "Hello" // violation
+fun anotherTopLevelFunction(): String = "World" // success
+
+interface Vehicle {
+
+    fun start() // success: declaration without block
+}
+
+class Car : Vehicle {
+    val brand = "Toyota" // success
+    val wheel get() = 4 // violation
+
+    fun start() {
+        var isStarted = false // success: declaration within block
+    }
+}
+
+private class Bike : Vehicle {
+    val brand = "Honda" // success: declaration within non-public body
+}
+</code></pre>
+                
+            </section>
+            <footer>
+                <p>
+                    <button class="material-symbols-sharp" id="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode"></button>
+                </p>
+                <p>
+                    This project is maintained by <a href="https://github.com/hendraanggrian/">Hendra Anggrian</a>
+                </p>
+                <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist/">orderedlist</a></small>
+            </footer>
+        </div>
+        <script src="scripts/scale.fix.js"></script>
+    </body>
+</html>

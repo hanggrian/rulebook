@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-us">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>lints</title>
+        <meta content="width=device-width" name="viewport">
+        <meta content="chrome=1" http-equiv="X-UA-Compatible">
+        <link href="styles/main.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+        <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
+        <!--Primary meta tags-->
+        <meta content="lints" name="title">
+        <meta content="Personal Java/Kotlin linter rules" name="description">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <h1>lints</h1>
+                <p>Personal Java/Kotlin linter rules</p>
+                <p class="view">
+                    <a href="https://github.com/hendraanggrian/lints/">View the Project on GitHub <small>hendraanggrian/lint</small></a>
+                </p>
+                <ul>
+                    <li>
+                        <a href="dokka">View<strong>Documentation</strong></a>
+                    </li>
+                </ul>
+            </header>
+            <section>
+                <h1>Paragraph Continuation First Word</h1>
+                
+                <p>
+                    Main content of documentation uses markdown style and formatting. A first word of every new markdown
+line (continuation of paragraph) cannot be a <strong>link</strong> or <strong>code</strong>. However, a fenced code block is
+allowed.
+                </p>
+                
+                <pre><code class="language-markdown">Lorem Ipsum is simply dummy text of the
+[printing] and
+`typesetting` industry. (violation)
+
+Lorem Ipsum is simply dummy text of
+the [printing]
+and `typesetting` industry. (success)
+</code></pre>
+                
+                <p>
+                    This is a default behavior of markdown editor on <em>IntelliJ</em> IDEs.
+                </p>
+                
+            </section>
+            <footer>
+                <p>
+                    <button class="material-symbols-sharp" id="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode"></button>
+                </p>
+                <p>
+                    This project is maintained by <a href="https://github.com/hendraanggrian/">Hendra Anggrian</a>
+                </p>
+                <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist/">orderedlist</a></small>
+            </footer>
+        </div>
+        <script src="scripts/scale.fix.js"></script>
+    </body>
+</html>
