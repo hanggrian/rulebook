@@ -5,6 +5,7 @@ import com.vanniktech.maven.publish.MavenPublishBasePlugin
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
+import org.jetbrains.kotlin.gradle.plugin.kotlinToolingVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm) apply false
@@ -20,9 +21,7 @@ allprojects {
 
 subprojects {
     plugins.withType<KotlinPluginWrapper> {
-        kotlinExtension.jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(libs.versions.jdk.get()))
-        }
+        kotlinExtension.jvmToolchain(libs.versions.jdk.get().toInt())
     }
     plugins.withType<MavenPublishBasePlugin> {
         configure<MavenPublishBaseExtension> {
@@ -39,6 +38,6 @@ tasks {
         delete(buildDir)
     }
     dokkaHtmlMultiModule {
-        outputDirectory.set(buildDir.resolve("dokka/dokka"))
+        outputDirectory.set(buildDir.resolve("dokka/dokka/"))
     }
 }

@@ -12,18 +12,13 @@ pages {
         "https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"
     )
     contents {
+        add("$rootDir/guides/exception-ambiguity.md", "exception-ambiguity.html")
+        add("$rootDir/guides/function-specify-return-type.md", "function-specify-return-type.html")
         add(
-            "$rootDir/guides/docs/paragraph-continuation-first-word.md",
-            "paragraph-continuation-first-word.html"
+            "$rootDir/guides/docs/summary-continuation-first-word.md",
+            "summary-continuation-first-word.html"
         )
-        add(
-            "$rootDir/guides/docs/tag-description-punctuation.md",
-            "tag-description-punctuation.html"
-        )
-        add(
-            "$rootDir/guides/function-specify-return-type.md",
-            "function-specify-return-type.html"
-        )
+        add("$rootDir/guides/docs/tag-description-sentence.md", "tag-description-sentence.html")
     }
     minimal {
         authorName = DEVELOPER_NAME

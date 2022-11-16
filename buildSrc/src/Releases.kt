@@ -8,7 +8,7 @@ const val DEVELOPER_URL = "https://github.com/$DEVELOPER_ID/"
 const val RELEASE_GROUP = "com.hendraanggrian.lints"
 const val RELEASE_ARTIFACT = "lints"
 const val RELEASE_VERSION = "0.1-SNAPSHOT"
-const val RELEASE_DESCRIPTION = "Personal Java/Kotlin linter rules"
+const val RELEASE_DESCRIPTION = "Personal linter rules and code convention"
 const val RELEASE_URL = "https://github.com/$DEVELOPER_ID/$RELEASE_ARTIFACT/"
 
 fun Project.pom(pom: MavenPom) {

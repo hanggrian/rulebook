@@ -1,16 +1,16 @@
 package com.hendraanggrian.lints.ktlint.kdoc
 
-import com.hendraanggrian.lints.ktlint.kdoc.TagDescriptionPunctuationRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.lints.ktlint.kdoc.TagDescriptionSentenceRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class TagDescriptionPunctuationRuleTest {
-    private val assertCode = assertThatRule { TagDescriptionPunctuationRule() }
+class TagDescriptionSentenceRuleTest {
+    private val assertThatCode = assertThatRule { TagDescriptionSentenceRule() }
 
     @Test
     fun `No description`() {
-        assertCode(
+        assertThatCode(
             """
                 /**
                  * @param input
@@ -22,7 +22,7 @@ class TagDescriptionPunctuationRuleTest {
 
     @Test
     fun `Tag description ends with punctuation`() {
-        assertCode(
+        assertThatCode(
             """
                 /**
                  * @param input a number.
@@ -42,7 +42,7 @@ class TagDescriptionPunctuationRuleTest {
 
     @Test
     fun `Tag description has no end punctuation`() {
-        assertCode(
+        assertThatCode(
             """
                 /**
                  * @param input a number
@@ -52,14 +52,14 @@ class TagDescriptionPunctuationRuleTest {
                 fun add(input: Int) { }
             """.trimIndent()
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 4, ERROR_MESSAGE.format("@param")),
-            LintViolation(3, 4, ERROR_MESSAGE.format("@param"))
+            LintViolation(2, 16, ERROR_MESSAGE.format("@param")),
+            LintViolation(3, 16, ERROR_MESSAGE.format("@param"))
         )
     }
 
     @Test
     fun `Tag description ends with comments`() {
-        assertCode(
+        assertThatCode(
             """
                 /**
                  * @param input a number // some comment
@@ -69,8 +69,8 @@ class TagDescriptionPunctuationRuleTest {
                 fun add(input: Int) { }
             """.trimIndent()
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 4, ERROR_MESSAGE.format("@param")),
-            LintViolation(4, 4, ERROR_MESSAGE.format("@param"))
+            LintViolation(2, 16, ERROR_MESSAGE.format("@param")),
+            LintViolation(4, 16, ERROR_MESSAGE.format("@param"))
         )
     }
 }

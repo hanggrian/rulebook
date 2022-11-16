@@ -1,18 +1,21 @@
 package com.hendraanggrian.lints.ktlint.kdoc
 
 import com.hendraanggrian.lints.ktlint.contains
+import com.hendraanggrian.lints.ktlint.endOffset
+import com.hendraanggrian.lints.ktlint.get
 import com.pinterest.ktlint.core.Rule
+import com.pinterest.ktlint.core.ast.ElementType.KDOC_MARKDOWN_LINK
 import com.pinterest.ktlint.core.ast.ElementType.KDOC_TAG
 import com.pinterest.ktlint.core.ast.ElementType.KDOC_TEXT
 import com.pinterest.ktlint.core.ast.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/docs/tag-description-punctuation.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/docs/tag-description-sentence.md).
  */
-class TagDescriptionPunctuationRule : Rule("tag-description-punctuation") {
+class TagDescriptionSentenceRule : Rule("tag-description-sentence") {
     internal companion object {
-        const val ERROR_MESSAGE = "%s description is not a sentence."
+        const val ERROR_MESSAGE = "Tag '%s' description is not a sentence."
     }
 
     override fun beforeVisitChildNodes(
@@ -20,13 +23,16 @@ class TagDescriptionPunctuationRule : Rule("tag-description-punctuation") {
         autoCorrect: Boolean,
         emit: (Int, String, Boolean) -> Unit
     ) {
+        // first line of filter
         if (node.elementType != KDOC_TAG) {
             return
         }
+
         // skips no description
         if (KDOC_TEXT !in node) {
             return
         }
+
         // only enforce certain tags
         val tagName = node.children().first().text
         if (tagName != "@param" && tagName != "@return" &&
@@ -34,12 +40,13 @@ class TagDescriptionPunctuationRule : Rule("tag-description-punctuation") {
         ) {
             return
         }
+
         // check the suffix
         val tagDescription = node.text.trimComment().trimEnd()
         if (!tagDescription.endsWith('.') && !tagDescription.endsWith('?') &&
             !tagDescription.endsWith('!')
         ) {
-            emit(node.startOffset, ERROR_MESSAGE.format(tagName), false)
+            emit(node[KDOC_MARKDOWN_LINK].endOffset, ERROR_MESSAGE.format(tagName), false)
         }
     }
 

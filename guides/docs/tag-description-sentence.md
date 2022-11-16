@@ -1,6 +1,9 @@
-# Tag Description Punctuation
+# Tag Description Sentence
 
-Description of certain tags is a sentence, therefore, must end with `.`, `?` or `!`.
+Description of certain tags is a sentence. Therefore, must have end punctuation such as:
+- Period (`.`).
+- Question mark (`?`).
+- Exclamation mark (`!`).
 
 ```kotlin
 /**

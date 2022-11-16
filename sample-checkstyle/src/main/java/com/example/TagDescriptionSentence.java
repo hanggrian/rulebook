@@ -1,6 +1,6 @@
 package com.example;
 
-public class TagDescriptionPunctuation {
+public class TagDescriptionSentence {
 
   /**
    * @param x desc1.

@@ -5,13 +5,13 @@ import com.hendraanggrian.lints.checkstyle.prepareFiles
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class TagDescriptionPunctuationCheckTest {
+class SummaryContinuationFirstWordCheckTest {
 
     @Test
     fun test() {
-        val checker = prepareChecker<TagDescriptionPunctuationCheck>()
-        val files = prepareFiles<TagDescriptionPunctuationCheckTest>()
+        val checker = prepareChecker<SummaryContinuationFirstWordCheck>()
+        val files = prepareFiles<SummaryContinuationFirstWordCheckTest>()
         val numberOfErrors = checker.process(files)
-        assertEquals(1, numberOfErrors)
+        assertEquals(2, numberOfErrors)
     }
 }

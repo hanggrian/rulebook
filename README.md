@@ -6,59 +6,79 @@
 
 # Lints
 
-Personal Java/Kotlin linter rules. A highly opinionated additional code convention on top
-of [official coding conventions](https://kotlinlang.org/docs/coding-conventions.html).
-
-These rules are meant to be paired with base
-rules ([Checkstyle Google Checks](https://checkstyle.sourceforge.io/google_style.html)
-and [Ktlint Standard Rules](https://pinterest.github.io/ktlint/rules/standard/)).
+Personal linter rules and code convention. A highly opinionated additional code styles on top of
+official ones:
+- [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
+  via [Checkstyle Google Checks](https://checkstyle.sourceforge.io/google_style.html).
+- [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html)
+  via [KtLint Standard Rules](https://pinterest.github.io/ktlint/rules/standard/).
 
 ## Download
-
-### Ktlint
-
-[Integrate ktlint](https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration)
-to Gradle project. Using configuration `ktlint`, add this project as dependency.
 
 ```gradle
 repositories {
     mavenCentral()
 }
 
-configurations {
-    ktlint
-}
-
 dependencies {
+    checkstyle "com.hendraanggrian.lints:lints-checkstyle:$version"
     ktlint "com.hendraanggrian.lints:lints-ktlint:$version"
 }
 ```
 
+## Usage
+
 ### Checkstyle
 
-Copy the directory of `config` in this repository.
 Apply [Checkstyle Plugin](https://docs.gradle.org/current/userguide/checkstyle_plugin.html). Using
-configuration `checkstyle`, add this project as dependency.
+configuration `checkstyle`, add this project as dependency. Then use `lints_checks.xml` provided
+in [sample-checkstyle](sample-checkstyle) or within [lints-checkstyle](lints-checkstyle) jar.
 
 ```gradle
 plugins {
     checkstyle
 }
 
-dependencies {
-    checkstyle "com.hendraanggrian.lints:lints-checkstyle:$version"
+checkstyle {
+    toolVersion = "$checkstyleVersion"
+    configFile "path/to/lints_checks.xml"
+    // the rest of checkstyle plugin configurations
 }
+
+dependencies {
+    checkstyle "com.puppycrawl.tools:checkstyle:$checkstyleVersion"
+    checkstyle "com.hendraanggrian.lints:lints-checkstyle:libraryVersion"
+}
+```
+
+### KtLint
+
+[Integrate ktlint](https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration)
+to Gradle project. Using configuration `ktlint`, add this project as dependency.
+
+```gradle
+configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint "com.pinterest:ktlint:$ktlintVersion"
+    ktlint "com.hendraanggrian.lints:lints-ktlint:libraryVersion"
+}
+
+// the rest of ktlint tasks' configuration
 ```
 
 ## Rules
 
-| Rules | Checkstyle | Ktlint |
+| Rules | Checkstyle | KtLint |
 | --- | :---: | :---: |
+| [Exception Ambiguity](guides/exception-ambiguity.md) | &check; | &check; |
 | [Function Specify Return Type](guides/function-specify-return-type.md) | &cross; | &check; |
 
 ### Documentation Rules
 
-| Rules | Checkstyle | Ktlint |
+| Rules | Checkstyle | KtLint |
 | --- | :---: | :---: |
-| [Paragraph Continuation First Word](guides/docs/paragraph-continuation-first-word.md) | &check; | &check; |
-| [Tag Description Punctuation](guides/docs/tag-description-punctuation.md) | &check; | &check; |
+| [Summary Continuation First Word](guides/docs/summary-continuation-first-word.md) | &check; | &check; |
+| [Tag Description Sentence](guides/docs/tag-description-sentence.md) | &check; | &check; |

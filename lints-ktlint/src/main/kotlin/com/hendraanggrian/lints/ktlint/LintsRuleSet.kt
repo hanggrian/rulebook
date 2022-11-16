@@ -1,23 +1,24 @@
 package com.hendraanggrian.lints.ktlint
 
-import com.hendraanggrian.lints.ktlint.kdoc.ParagraphContinuationFirstWordRule
-import com.hendraanggrian.lints.ktlint.kdoc.TagDescriptionPunctuationRule
+import com.hendraanggrian.lints.ktlint.kdoc.SummaryContinuationFirstWordRule
+import com.hendraanggrian.lints.ktlint.kdoc.TagDescriptionSentenceRule
 import com.pinterest.ktlint.core.RuleProvider
 import com.pinterest.ktlint.core.RuleSetProviderV2
 
-class LintsRules : RuleSetProviderV2(
-    id = "lints-ktlint",
+class LintsRuleSet : RuleSetProviderV2(
+    id = "lints",
     about = About(
         maintainer = "Hendra Anggrian",
-        description = "Personal Java/Kotlin linter rules",
+        description = "Personal linter rules and code convention",
         license = "The Apache License, Version 2.0",
         repositoryUrl = "https://github.com/hendraanggrian/lints/",
         issueTrackerUrl = "https://github.com/hendraanggrian/lints/issues/"
     )
 ) {
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
+        RuleProvider { ExceptionAmbiguityRule() },
         RuleProvider { FunctionSpecifyReturnTypeRule() },
-        RuleProvider { ParagraphContinuationFirstWordRule() },
-        RuleProvider { TagDescriptionPunctuationRule() }
+        RuleProvider { SummaryContinuationFirstWordRule() },
+        RuleProvider { TagDescriptionSentenceRule() }
     )
 }

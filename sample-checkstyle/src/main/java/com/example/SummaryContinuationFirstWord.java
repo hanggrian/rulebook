@@ -1,6 +1,6 @@
 package com.example;
 
-public class ParagraphContinuationFirstWord {
+public class SummaryContinuationFirstWord {
 
   /** Lorem Ipsum is simply dummy. */
   public class ShortJavadoc {

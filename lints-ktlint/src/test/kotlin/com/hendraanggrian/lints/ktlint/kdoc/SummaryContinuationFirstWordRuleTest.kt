@@ -1,16 +1,16 @@
 package com.hendraanggrian.lints.ktlint.kdoc
 
-import com.hendraanggrian.lints.ktlint.kdoc.ParagraphContinuationFirstWordRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.lints.ktlint.kdoc.SummaryContinuationFirstWordRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class ParagraphContinuationFirstWordRuleTest {
-    private val assertCode = assertThatRule { ParagraphContinuationFirstWordRule() }
+class SummaryContinuationFirstWordRuleTest {
+    private val assertThatCode = assertThatRule { SummaryContinuationFirstWordRule() }
 
     @Test
     fun `Single line paragraph`() {
-        assertCode(
+        assertThatCode(
             """
                 /** `typesetting` */
                 class MyClass
@@ -25,7 +25,7 @@ class ParagraphContinuationFirstWordRuleTest {
 
     @Test
     fun `First word of paragraph continuation is code`() {
-        assertCode(
+        assertThatCode(
             """
                 /**
                  * What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and
@@ -40,7 +40,7 @@ class ParagraphContinuationFirstWordRuleTest {
 
     @Test
     fun `First word of paragraph continuation is link`() {
-        assertCode(
+        assertThatCode(
             """
                 /**
                  * What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and

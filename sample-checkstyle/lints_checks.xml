@@ -1,18 +1,18 @@
-<?xml version="1.0"?>
-<!--
-    Combination of Google Java Style that can be found
-    at https://google.github.io/styleguide/javaguide.html and additional personal code conventions
-    at https://github.com/hendraanggrian/lints/
-
-    Most of the checks here are obtained
-    from https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml
-    of the same checkstyle version used in this library.
- -->
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module PUBLIC
   "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
   "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
-<module name = "Checker">
+<!--
+  Derived from https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml
+  version 8.45.1
+
+  Combination of Google Java Style that can be found
+  at https://google.github.io/styleguide/javaguide.html and additional personal rules
+  at https://github.com/hendraanggrian/lints/
+ -->
+
+<module name="Checker">
   <property name="charset" value="UTF-8"/>
 
   <property name="severity" value="warning"/>
@@ -30,7 +30,7 @@
     <property name="optional" value="true"/>
   </module>
 
-  <!-- Checks for whitespace                               -->
+  <!-- Checks for whitespace -->
   <!-- See http://checkstyle.org/config_whitespace.html -->
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
@@ -43,8 +43,10 @@
   </module>
 
   <module name="TreeWalker">
-    <module name="com.hendraanggrian.lints.checkstyle.javadoc.ParagraphContinuationFirstWordCheck"/>
-    <module name="com.hendraanggrian.lints.checkstyle.javadoc.TagDescriptionPunctuationCheck"/>
+    <!-- https://github.com/hendraanggrian/lints/ -->
+    <module name="ExceptionAmbiguity"/>
+    <module name="SummaryContinuationFirstWord"/>
+    <module name="TagDescriptionSentence"/>
 
     <module name="OuterTypeFilename"/>
     <module name="IllegalTokenText">

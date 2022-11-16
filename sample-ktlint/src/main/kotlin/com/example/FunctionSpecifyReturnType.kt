@@ -1,4 +1,5 @@
 package com.example
 
-val name = "Hendra"
-val age: Int get() = 4
+fun getAge1(): Int = 4
+
+val age2: Int get() = 4

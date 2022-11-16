@@ -14,12 +14,11 @@ git-publish = "org.ajoberstar.git-publish:3.0.1"
 pages = "com.hendraanggrian.pages:0.1"
 
 [libraries]
-# ktlint
+# main
 ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
 ktlint-core = { module = "com.pinterest.ktlint:ktlint-core", version.ref = "ktlint" }
-ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
-# checkstyle
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 # test
+ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 truth = "com.google.truth:truth:1.1.3"

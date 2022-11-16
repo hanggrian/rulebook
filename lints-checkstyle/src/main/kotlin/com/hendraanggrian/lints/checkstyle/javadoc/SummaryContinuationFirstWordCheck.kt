@@ -7,11 +7,11 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.LEADING_ASTERISK
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/docs/paragraph-continuation-first-word.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/docs/summary-continuation-first-word.md).
  */
-class ParagraphContinuationFirstWordCheck : AbstractJavadocCheck() {
+class SummaryContinuationFirstWordCheck : AbstractJavadocCheck() {
     private companion object {
-        const val ERROR_MESSAGE = "First word of paragraph continuation cannot be a %s."
+        const val ERROR_MESSAGE = "First word of paragraph continuation cannot be a '%s'."
     }
 
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(LEADING_ASTERISK)
@@ -19,10 +19,12 @@ class ParagraphContinuationFirstWordCheck : AbstractJavadocCheck() {
     override fun visitJavadocToken(node: DetailNode) {
         val siblings = node.parent.children
         val index = siblings.indexOf(node)
+
         // skips first line of paragraph
         if (siblings.getOrNull(index - 1) == null || siblings.getOrNull(index - 2) == null) {
             return
         }
+
         // while loop until line ends or has tags
         val sb = StringBuilder()
         for (i in index + 1 until siblings.size) {
@@ -33,6 +35,7 @@ class ParagraphContinuationFirstWordCheck : AbstractJavadocCheck() {
             }
             sb.append(next.actualText)
         }
+
         // check the first word of paragraph continuation
         val line = sb.trimStart()
         if (line.startsWith("{@code")) {

@@ -6,11 +6,13 @@ import com.pinterest.ktlint.core.ast.ElementType.CLASS_BODY
 import com.pinterest.ktlint.core.ast.ElementType.EQ
 import com.pinterest.ktlint.core.ast.ElementType.FILE
 import com.pinterest.ktlint.core.ast.ElementType.FUN
+import com.pinterest.ktlint.core.ast.ElementType.IDENTIFIER
 import com.pinterest.ktlint.core.ast.ElementType.MODIFIER_LIST
 import com.pinterest.ktlint.core.ast.ElementType.PROPERTY
 import com.pinterest.ktlint.core.ast.ElementType.PROPERTY_ACCESSOR
 import com.pinterest.ktlint.core.ast.ElementType.PUBLIC_KEYWORD
 import com.pinterest.ktlint.core.ast.ElementType.TYPE_REFERENCE
+import com.pinterest.ktlint.core.ast.ElementType.VALUE_PARAMETER_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
@@ -18,7 +20,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  */
 class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
     internal companion object {
-        const val ERROR_MESSAGE = "%s function need a return type."
+        const val ERROR_MESSAGE = "Function '%s' need a return type."
     }
 
     override fun beforeVisitChildNodes(
@@ -26,18 +28,25 @@ class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
         autoCorrect: Boolean,
         emit: (Int, String, Boolean) -> Unit
     ) {
+        // first line of filter
         when (node.elementType) {
             FUN -> {
                 // skips regular function
                 if (EQ !in node && BLOCK in node) {
                     return
                 }
+
                 // skips function without declaration, possibly abstract
                 if (EQ !in node && BLOCK !in node) {
                     return
                 }
+
                 if (!node.isValid()) {
-                    emit(node.startOffset, ERROR_MESSAGE.format("Expression"), false)
+                    emit(
+                        node[VALUE_PARAMETER_LIST].endOffset,
+                        ERROR_MESSAGE.format("Expression"),
+                        false
+                    )
                 }
             }
             PROPERTY -> {
@@ -45,13 +54,15 @@ class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
                 if (PROPERTY_ACCESSOR !in node) {
                     return
                 }
+
                 // skips properties in code block
                 val parentType = node.treeParent?.elementType ?: return
                 if (parentType != FILE && parentType != CLASS_BODY) {
                     return
                 }
+
                 if (!node.isValid()) {
-                    emit(node.startOffset, ERROR_MESSAGE.format("Getter"), false)
+                    emit(node[IDENTIFIER].endOffset, ERROR_MESSAGE.format("Getter"), false)
                 }
             }
         }

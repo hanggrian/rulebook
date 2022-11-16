@@ -6,11 +6,11 @@ import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class FunctionSpecifyReturnTypeRuleTest {
-    private val assertCode = assertThatRule { FunctionSpecifyReturnTypeRule() }
+    private val assertThatCode = assertThatRule { FunctionSpecifyReturnTypeRule() }
 
     @Test
     fun `Regular function`() {
-        assertCode(
+        assertThatCode(
             """
                 fun function() { }
             """.trimIndent()
@@ -19,7 +19,7 @@ class FunctionSpecifyReturnTypeRuleTest {
 
     @Test
     fun `Expression function`() {
-        assertCode(
+        assertThatCode(
             """
                 fun expressionFunction() = "Hello world"
                 class MyClass {
@@ -27,14 +27,14 @@ class FunctionSpecifyReturnTypeRuleTest {
                 }
             """.trimIndent()
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 1, ERROR_MESSAGE.format("Expression")),
-            LintViolation(3, 5, ERROR_MESSAGE.format("Expression"))
+            LintViolation(1, 25, ERROR_MESSAGE.format("Expression")),
+            LintViolation(3, 29, ERROR_MESSAGE.format("Expression"))
         )
     }
 
     @Test
     fun `Private expression function`() {
-        assertCode(
+        assertThatCode(
             """
                 private fun expressionFunction() = "Hello world"
                 private class MyClass {
@@ -46,7 +46,7 @@ class FunctionSpecifyReturnTypeRuleTest {
 
     @Test
     fun `Regular Property`() {
-        assertCode(
+        assertThatCode(
             """
                 val property = "Hello world"
             """.trimIndent()
@@ -55,7 +55,7 @@ class FunctionSpecifyReturnTypeRuleTest {
 
     @Test
     fun `Getter function`() {
-        assertCode(
+        assertThatCode(
             """
                 val property get() = "Hello world"
                 class Class {
@@ -63,14 +63,14 @@ class FunctionSpecifyReturnTypeRuleTest {
                 }
             """.trimIndent()
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 1, ERROR_MESSAGE.format("Getter")),
-            LintViolation(3, 5, ERROR_MESSAGE.format("Getter"))
+            LintViolation(1, 13, ERROR_MESSAGE.format("Getter")),
+            LintViolation(3, 17, ERROR_MESSAGE.format("Getter"))
         )
     }
 
     @Test
     fun `Private getter function`() {
-        assertCode(
+        assertThatCode(
             """
                 private val property get() = "Hello world"
                 private class MyClass {
@@ -82,7 +82,7 @@ class FunctionSpecifyReturnTypeRuleTest {
 
     @Test
     fun `Property within code block`() {
-        assertCode(
+        assertThatCode(
             """
                 fun codeBlock() {
                     val property = "Hello world"
