@@ -12,13 +12,13 @@
         <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
         <!--Primary meta tags-->
         <meta content="lints" name="title">
-        <meta content="Personal Java/Kotlin linter rules" name="description">
+        <meta content="Personal linter rules and code convention" name="description">
     </head>
     <body>
         <div class="wrapper">
             <header>
                 <h1>lints</h1>
-                <p>Personal Java/Kotlin linter rules</p>
+                <p>Personal linter rules and code convention</p>
                 <p class="view">
                     <a href="https://github.com/hendraanggrian/lints/">View the Project on GitHub <small>hendraanggrian/lint</small></a>
                 </p>
@@ -29,83 +29,28 @@
                 </ul>
             </header>
             <section>
-                <h1>Tag Description Punctuation</h1>
+                <h1>Exception Ambiguity</h1>
                 
-                <p>
-                    Description of certain tags is a sentence, therefore, must end with <code>.</code>, <code>?</code> or <code>!</code>.
-                </p>
+                <p>Throwing an exception requires one of two things:</p>
                 
-                <pre><code class="language-kotlin">/**
- * Add to something.
- *
- * @param x a non-negative number (violation)
- * @param y a non-negative number. (success)
- * @param z (success: no description)
- */
-fun add(x: Number, y: Number, z: Number)
+                <ul>
+                    
+                    <li>
+                        Supertype <code>Exception</code>, <code>Error</code>, and <code>Throwable</code> need a message. Preferably in form of sentence,
+although not enforced.
+                    </li>
+                    
+                    <li>
+                        Subtype such as <code>IllegalStateExeption</code>, <code>StackOverflowError</code>, etc. are explicit enough. Therefore,
+can have no message.
+                    </li>
+                    
+                </ul>
+                
+                <pre><code class="language-kotlin">throw Exception() // violation
+error("No data") // success
+throw StackOverflowError() // success
 </code></pre>
-                
-                <h2>Affected Tags</h2>
-                
-                <table>
-                    
-                    <thead>
-                        
-                        <tr>
-                            
-                            <th>Tag</th>
-<th align="center">Checkstyle</th>
-<th align="center">Ktlint</th>
-
-                        </tr>
-                        
-                    </thead>
-                    
-                    <tbody>
-                        
-                        <tr>
-                            
-                            <td>@param</td>
-<td align="center">✓</td>
-<td align="center">✓</td>
-
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>@return</td>
-<td align="center">✓</td>
-<td align="center">✓</td>
-
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>@constructor</td>
-<td align="center">✗</td>
-<td align="center">✓</td>
-
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>@property</td>
-<td align="center">✗</td>
-<td align="center">✓</td>
-
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>@receiver</td>
-<td align="center">✗</td>
-<td align="center">✓</td>
-
-                        </tr>
-                        
-                    </tbody>
-                    
-                </table>
                 
             </section>
             <footer>

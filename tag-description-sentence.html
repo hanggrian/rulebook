@@ -29,49 +29,97 @@
                 </ul>
             </header>
             <section>
-                <h1>Function Specify Return Type</h1>
+                <h1>Tag Description Sentence</h1>
                 
-                <p>
-                    Kotlin supports <code>expression function</code> and <code>property</code> declaration without a return type. This return
-type is pre-calculated during compile time. To avoid ambiguity, this rule forces them to specify
-return type.
-                </p>
-                
-                <p>This rule doesn't affect:</p>
+                <p>Description of certain tags is a sentence. Therefore, must have end punctuation such as:</p>
                 
                 <ul>
                     
-                    <li>Functions without declaration.</li>
+                    <li>
+                        Period (<code>.</code>).
+                    </li>
                     
-                    <li>Properties in function block.</li>
+                    <li>
+                        Question mark (<code>?</code>).
+                    </li>
                     
-                    <li>Properties without getter.</li>
-                    
-                    <li>Non-public functions/properties.</li>
+                    <li>
+                        Exclamation mark (<code>!</code>).
+                    </li>
                     
                 </ul>
                 
-                <pre><code class="language-kotlin">fun topLevelFunction() = "Hello" // violation
-fun anotherTopLevelFunction(): String = "World" // success
-
-interface Vehicle {
-
-    fun start() // success: declaration without block
-}
-
-class Car : Vehicle {
-    val brand = "Toyota" // success
-    val wheel get() = 4 // violation
-
-    fun start() {
-        var isStarted = false // success: declaration within block
-    }
-}
-
-private class Bike : Vehicle {
-    val brand = "Honda" // success: declaration within non-public body
-}
+                <pre><code class="language-kotlin">/**
+ * Add to something.
+ *
+ * @param x a non-negative number (violation)
+ * @param y a non-negative number. (success)
+ * @param z (success: no description)
+ */
+fun add(x: Number, y: Number, z: Number)
 </code></pre>
+                
+                <h2>Affected Tags</h2>
+                
+                <table>
+                    
+                    <thead>
+                        
+                        <tr>
+                            
+                            <th>Tag</th>
+<th align="center">Checkstyle</th>
+<th align="center">Ktlint</th>
+
+                        </tr>
+                        
+                    </thead>
+                    
+                    <tbody>
+                        
+                        <tr>
+                            
+                            <td>@param</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td>@return</td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td>@constructor</td>
+<td align="center">✗</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td>@property</td>
+<td align="center">✗</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td>@receiver</td>
+<td align="center">✗</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                    </tbody>
+                    
+                </table>
                 
             </section>
             <footer>
