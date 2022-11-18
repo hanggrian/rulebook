@@ -11,11 +11,11 @@ import com.pinterest.ktlint.core.ast.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/docs/tag-description-sentence.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#tag-description-sentence).
  */
 class TagDescriptionSentenceRule : Rule("tag-description-sentence") {
     internal companion object {
-        const val ERROR_MESSAGE = "Tag '%s' description is not a sentence."
+        const val ERROR_MESSAGE = "Description of tag '%s' is not a sentence."
     }
 
     override fun beforeVisitChildNodes(

@@ -7,9 +7,9 @@ import com.pinterest.ktlint.core.ast.ElementType.KDOC_TAG
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/docs/paragraph-continuation-first-word.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#summary-continuation-first-word).
  */
-class SummaryContinuationFirstWordRule : Rule("paragraph-continuation-first-word") {
+class SummaryContinuationFirstWordRule : Rule("summary-continuation-first-word") {
     internal companion object {
         const val ERROR_MESSAGE = "First word of paragraph continuation cannot be a '%s'."
     }

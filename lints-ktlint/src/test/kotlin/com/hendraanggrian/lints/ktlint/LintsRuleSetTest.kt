@@ -3,6 +3,7 @@ package com.hendraanggrian.lints.ktlint
 import com.google.common.truth.Truth.assertThat
 import com.hendraanggrian.lints.ktlint.kdoc.SummaryContinuationFirstWordRule
 import com.hendraanggrian.lints.ktlint.kdoc.TagDescriptionSentenceRule
+import com.hendraanggrian.lints.ktlint.kdoc.TagGroupStartingEmptyLineRule
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
@@ -31,7 +32,8 @@ class LintsRuleSetTest {
             ExceptionAmbiguityRule::class,
             FunctionSpecifyReturnTypeRule::class,
             SummaryContinuationFirstWordRule::class,
-            TagDescriptionSentenceRule::class
+            TagDescriptionSentenceRule::class,
+            TagGroupStartingEmptyLineRule::class
         )
     }
 }

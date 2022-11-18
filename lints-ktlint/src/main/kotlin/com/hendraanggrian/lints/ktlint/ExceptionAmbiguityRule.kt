@@ -10,11 +10,11 @@ import com.pinterest.ktlint.core.ast.ElementType.VALUE_ARGUMENT_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/exception-ambiguity.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#exception-ambiguity).
  */
 class ExceptionAmbiguityRule : Rule("exception-ambiguity") {
     internal companion object {
-        const val ERROR_MESSAGE = "Exception '%s' is ambiguous."
+        const val ERROR_MESSAGE = "Ambiguous exception '%s'."
     }
 
     override fun beforeVisitChildNodes(

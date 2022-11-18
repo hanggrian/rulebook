@@ -2,6 +2,7 @@ package com.hendraanggrian.lints.ktlint
 
 import com.hendraanggrian.lints.ktlint.kdoc.SummaryContinuationFirstWordRule
 import com.hendraanggrian.lints.ktlint.kdoc.TagDescriptionSentenceRule
+import com.hendraanggrian.lints.ktlint.kdoc.TagGroupStartingEmptyLineRule
 import com.pinterest.ktlint.core.RuleProvider
 import com.pinterest.ktlint.core.RuleSetProviderV2
 
@@ -19,6 +20,7 @@ class LintsRuleSet : RuleSetProviderV2(
         RuleProvider { ExceptionAmbiguityRule() },
         RuleProvider { FunctionSpecifyReturnTypeRule() },
         RuleProvider { SummaryContinuationFirstWordRule() },
-        RuleProvider { TagDescriptionSentenceRule() }
+        RuleProvider { TagDescriptionSentenceRule() },
+        RuleProvider { TagGroupStartingEmptyLineRule() }
     )
 }

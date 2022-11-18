@@ -16,11 +16,11 @@ import com.pinterest.ktlint.core.ast.ElementType.VALUE_PARAMETER_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/function-specify-return-type.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#function-specify-return-type).
  */
 class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
     internal companion object {
-        const val ERROR_MESSAGE = "Function '%s' need a return type."
+        const val ERROR_MESSAGE = "'%s' missing return type."
     }
 
     override fun beforeVisitChildNodes(
@@ -44,7 +44,7 @@ class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
                 if (!node.isValid()) {
                     emit(
                         node[VALUE_PARAMETER_LIST].endOffset,
-                        ERROR_MESSAGE.format("Expression"),
+                        ERROR_MESSAGE.format("Expression function"),
                         false
                     )
                 }
@@ -62,7 +62,11 @@ class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
                 }
 
                 if (!node.isValid()) {
-                    emit(node[IDENTIFIER].endOffset, ERROR_MESSAGE.format("Getter"), false)
+                    emit(
+                        node[IDENTIFIER].endOffset,
+                        ERROR_MESSAGE.format("Property accessor"),
+                        false
+                    )
                 }
             }
         }

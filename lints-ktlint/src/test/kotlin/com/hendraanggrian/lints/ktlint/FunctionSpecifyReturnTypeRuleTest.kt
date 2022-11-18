@@ -27,8 +27,8 @@ class FunctionSpecifyReturnTypeRuleTest {
                 }
             """.trimIndent()
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 25, ERROR_MESSAGE.format("Expression")),
-            LintViolation(3, 29, ERROR_MESSAGE.format("Expression"))
+            LintViolation(1, 25, ERROR_MESSAGE.format("Expression function")),
+            LintViolation(3, 29, ERROR_MESSAGE.format("Expression function"))
         )
     }
 
@@ -63,8 +63,8 @@ class FunctionSpecifyReturnTypeRuleTest {
                 }
             """.trimIndent()
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 13, ERROR_MESSAGE.format("Getter")),
-            LintViolation(3, 17, ERROR_MESSAGE.format("Getter"))
+            LintViolation(1, 13, ERROR_MESSAGE.format("Property accessor")),
+            LintViolation(3, 17, ERROR_MESSAGE.format("Property accessor"))
         )
     }
 

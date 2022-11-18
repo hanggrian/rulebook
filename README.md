@@ -6,12 +6,14 @@
 
 # Lints
 
-Personal linter rules and code convention. A highly opinionated additional code styles on top of
-official ones:
-- [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
-  via [Checkstyle Google Checks](https://checkstyle.sourceforge.io/google_style.html).
-- [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html)
-  via [KtLint Standard Rules](https://pinterest.github.io/ktlint/rules/standard/).
+Additional third-party [rules](rules.md) for lint tools, meant to be used in conjunction with official ones.
+Most of the rules are opinionated personal code style mandate. However, some already exists in other
+linters, providing the same experience across languages.
+
+| Language | Linter | Main Rules |
+| --- | --- | --- |
+| Java | Checkstyle | [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) via [Checkstyle Google Checks](https://checkstyle.sourceforge.io/google_style.html) |
+| Kotlin | KtLint | [Kotlin coding conventions](https://kotlinlang.org/docs/coding-conventions.html) via [KtLint standard rules](https://pinterest.github.io/ktlint/rules/standard/) |
 
 ## Download
 
@@ -40,7 +42,7 @@ plugins {
 }
 
 checkstyle {
-    toolVersion = "$checkstyleVersion"
+    toolVersion "$checkstyleVersion"
     configFile "path/to/lints_checks.xml"
     // the rest of checkstyle plugin configurations
 }
@@ -68,17 +70,3 @@ dependencies {
 
 // the rest of ktlint tasks' configuration
 ```
-
-## Rules
-
-| Rules | Checkstyle | KtLint |
-| --- | :---: | :---: |
-| [Exception Ambiguity](guides/exception-ambiguity.md) | &check; | &check; |
-| [Function Specify Return Type](guides/function-specify-return-type.md) | &cross; | &check; |
-
-### Documentation Rules
-
-| Rules | Checkstyle | KtLint |
-| --- | :---: | :---: |
-| [Summary Continuation First Word](guides/docs/summary-continuation-first-word.md) | &check; | &check; |
-| [Tag Description Sentence](guides/docs/tag-description-sentence.md) | &check; | &check; |

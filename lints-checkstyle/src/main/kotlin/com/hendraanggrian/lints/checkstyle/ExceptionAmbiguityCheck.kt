@@ -9,11 +9,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NEW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/exception-ambiguity.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#exception-ambiguity).
  */
 class ExceptionAmbiguityCheck : AbstractCheck() {
     private companion object {
-        const val ERROR_MESSAGE = "Exception '%s' is ambiguous."
+        const val ERROR_MESSAGE = "Ambiguous exception '%s'."
     }
 
     override fun getDefaultTokens(): IntArray = requiredTokens
@@ -22,8 +22,8 @@ class ExceptionAmbiguityCheck : AbstractCheck() {
 
     override fun visitToken(node: DetailAST) {
         // only target supertype
-        val literalNew = node[EXPR][LITERAL_NEW]
-        val ident = literalNew[IDENT]
+        val literalNew = node first EXPR first LITERAL_NEW
+        val ident = literalNew first IDENT
         if (ident.text != "Exception" && ident.text != "Error" &&
             ident.text != "Throwable"
         ) {
@@ -31,7 +31,7 @@ class ExceptionAmbiguityCheck : AbstractCheck() {
         }
 
         // report error if there is no message
-        if (EXPR !in literalNew[ELIST]) {
+        if (EXPR !in literalNew first ELIST) {
             log(ident.lineNo, ERROR_MESSAGE.format(ident.text))
         }
     }

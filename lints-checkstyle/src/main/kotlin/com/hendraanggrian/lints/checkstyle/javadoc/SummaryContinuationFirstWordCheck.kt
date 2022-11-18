@@ -7,7 +7,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.LEADING_ASTERISK
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/docs/summary-continuation-first-word.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#summary-continuation-first-word).
  */
 class SummaryContinuationFirstWordCheck : AbstractJavadocCheck() {
     private companion object {

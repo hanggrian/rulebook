@@ -2,7 +2,7 @@ package com.hendraanggrian.lints.checkstyle.javadoc
 
 import com.hendraanggrian.lints.checkstyle.actualText
 import com.hendraanggrian.lints.checkstyle.contains
-import com.hendraanggrian.lints.checkstyle.get
+import com.hendraanggrian.lints.checkstyle.first
 import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
@@ -10,11 +10,11 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.PARAMETER_NAME
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/guides/docs/tag-description-sentence.md).
+ * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#tag-description-sentence).
  */
 class TagDescriptionSentenceCheck : AbstractJavadocCheck() {
     private companion object {
-        const val ERROR_MESSAGE = "Tag '%s' description is not a sentence."
+        const val ERROR_MESSAGE = "Description of tag '%s' is not a sentence."
     }
 
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
@@ -36,7 +36,7 @@ class TagDescriptionSentenceCheck : AbstractJavadocCheck() {
         if (!tagDescription.endsWith('.') && !tagDescription.endsWith('?') &&
             !tagDescription.endsWith('!')
         ) {
-            log(node[PARAMETER_NAME].lineNumber, ERROR_MESSAGE.format(tagName))
+            log((node first PARAMETER_NAME).lineNumber, ERROR_MESSAGE.format(tagName))
         }
     }
 
