@@ -20,7 +20,7 @@
                 <h1>lints</h1>
                 <p>Personal linter rules and code convention</p>
                 <p class="view">
-                    <a href="https://github.com/hendraanggrian/lints/">View the Project on GitHub <small>hendraanggrian/lints</small></a>
+                    <a href="https://github.com/hendraanggrian/lints/">View the Project on GitHub <small>hendraanggrian/lint</small></a>
                 </p>
                 <ul>
                     <li>
@@ -39,22 +39,47 @@
 
                 <h1>Lints</h1>
 
-                <p>Personal linter rules and code convention. A highly opinionated additional code styles on top of
-official ones:</p>
+                <p>
+                    Additional third-party <a href="rules.html">rules</a> for lint tools, meant to be used in conjunction with official ones.
+Most of the rules are opinionated personal code style mandate. However, some already exists in other
+linters, providing the same experience across languages.
+                </p>
 
-                <ul>
+                <table>
 
-                    <li>
-                        <a href="https://google.github.io/styleguide/javaguide.html">Google Java Style Guide</a>
-via <a href="https://checkstyle.sourceforge.io/google_style.html">Checkstyle Google Checks</a>.
-                    </li>
+                    <thead>
 
-                    <li>
-                        <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin Coding Conventions</a>
-via <a href="https://pinterest.github.io/ktlint/rules/standard/">Ktlint Standard Rules</a>.
-                    </li>
+                        <tr>
 
-                </ul>
+                            <th>Language</th>
+<th>Linter</th>
+<th>Main Rules</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Java</td>
+<td>Checkstyle</td>
+<td><a href="https://google.github.io/styleguide/javaguide.html">Google Java Style Guide</a> via <a href="https://checkstyle.sourceforge.io/google_style.html">Checkstyle Google Checks</a></td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Kotlin</td>
+<td>KtLint</td>
+<td><a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> via <a href="https://pinterest.github.io/ktlint/rules/standard/">KtLint standard rules</a></td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
 
                 <h2>Download</h2>
 
@@ -83,7 +108,7 @@ in <a href="sample-checkstyle">sample-checkstyle</a> or within <a href="lints-ch
 }
 
 checkstyle {
-    toolVersion = "$checkstyleVersion"
+    toolVersion "$checkstyleVersion"
     configFile "path/to/lints_checks.xml"
     // the rest of checkstyle plugin configurations
 }
@@ -112,82 +137,6 @@ dependencies {
 
 // the rest of ktlint tasks' configuration
 </code></pre>
-
-                <h2>Rules</h2>
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Rules</th>
-<th align="center">Checkstyle</th>
-<th align="center">KtLint</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-
-                            <td><a href="exception-ambiguity.html">Exception Ambiguity</a></td>
-<td align="center">✓</td>
-<td align="center">✓</td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td><a href="function-specify-return-type.html">Function Specify Return Type</a></td>
-<td align="center">✗</td>
-<td align="center">✓</td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-                <h3>Documentation Rules</h3>
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Rules</th>
-<th align="center">Checkstyle</th>
-<th align="center">KtLint</th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-
-                            <td><a href="summary-continuation-first-word.html">Summary Continuation First Word</a></td>
-<td align="center">✓</td>
-<td align="center">✓</td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td><a href="tag-description-sentence.html">Tag Description Sentence</a></td>
-<td align="center">✓</td>
-<td align="center">✓</td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
 
             </section>
             <footer>

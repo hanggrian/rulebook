@@ -29,37 +29,7 @@
                 </ul>
             </header>
             <section>
-                <h1>Tag Description Sentence</h1>
-                
-                <p>Description of certain tags is a sentence. Therefore, must have end punctuation such as:</p>
-                
-                <ul>
-                    
-                    <li>
-                        Period (<code>.</code>).
-                    </li>
-                    
-                    <li>
-                        Question mark (<code>?</code>).
-                    </li>
-                    
-                    <li>
-                        Exclamation mark (<code>!</code>).
-                    </li>
-                    
-                </ul>
-                
-                <pre><code class="language-kotlin">/**
- * Add to something.
- *
- * @param x a non-negative number (violation)
- * @param y a non-negative number. (success)
- * @param z (success: no description)
- */
-fun add(x: Number, y: Number, z: Number)
-</code></pre>
-                
-                <h2>Affected Tags</h2>
+                <h1>Rules</h1>
                 
                 <table>
                     
@@ -67,9 +37,9 @@ fun add(x: Number, y: Number, z: Number)
                         
                         <tr>
                             
-                            <th>Tag</th>
+                            <th>Rules</th>
 <th align="center">Checkstyle</th>
-<th align="center">Ktlint</th>
+<th align="center">KtLint</th>
 
                         </tr>
                         
@@ -79,7 +49,7 @@ fun add(x: Number, y: Number, z: Number)
                         
                         <tr>
                             
-                            <td>@param</td>
+                            <td><a href="#exception-ambiguity">Exception ambiguity</a></td>
 <td align="center">✓</td>
 <td align="center">✓</td>
 
@@ -87,31 +57,7 @@ fun add(x: Number, y: Number, z: Number)
                         
                         <tr>
                             
-                            <td>@return</td>
-<td align="center">✓</td>
-<td align="center">✓</td>
-
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>@constructor</td>
-<td align="center">✗</td>
-<td align="center">✓</td>
-
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>@property</td>
-<td align="center">✗</td>
-<td align="center">✓</td>
-
-                        </tr>
-                        
-                        <tr>
-                            
-                            <td>@receiver</td>
+                            <td><a href="#function-specify-return-type">Function specify return type</a></td>
 <td align="center">✗</td>
 <td align="center">✓</td>
 
@@ -120,6 +66,95 @@ fun add(x: Number, y: Number, z: Number)
                     </tbody>
                     
                 </table>
+                
+                <h3>Documentation Rules</h3>
+                
+                <table>
+                    
+                    <thead>
+                        
+                        <tr>
+                            
+                            <th>Rules</th>
+<th align="center">Checkstyle</th>
+<th align="center">KtLint</th>
+
+                        </tr>
+                        
+                    </thead>
+                    
+                    <tbody>
+                        
+                        <tr>
+                            
+                            <td><a href="#summary-continuation-first-word">Summary continuation first word</a></td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td><a href="#tag-description-sentence">Tag Description Sentence</a></td>
+<td align="center">✓</td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                        <tr>
+                            
+                            <td><a href="#tag-group-starting-empty-line">Tag Group Starting Empty Line</a></td>
+<td align="center"><code>RequireEmptyLineBeforeBlockTagGroup</code></td>
+<td align="center">✓</td>
+
+                        </tr>
+                        
+                    </tbody>
+                    
+                </table>
+                
+                <h2>Exception ambiguity</h2>
+                
+                <p>
+                    Throwing <code>Exception</code>, <code>Error</code>, and <code>Throwable</code> require a detail message. Does not apply to their
+subtypes (<code>IllegalStateExeption</code>, <code>StackOverflowError</code>, etc.) as they are explicit enough.
+                </p>
+                
+                <h2>Function specify return type</h2>
+                
+                <p>
+                    Prohibits declaration of public <strong>expression function</strong> and <strong>property accessor</strong> without return
+type.
+                </p>
+                
+                <h2>Summary continuation first word</h2>
+                
+                <p>
+                    Every new line of continuation paragraph cannot start with <strong>link</strong> or <strong>code</strong>.
+                </p>
+                
+                <blockquote>
+                    
+                    <p>
+                        This is a default behavior of markdown editor on <em>IntelliJ</em> IDEs.
+                    </p>
+                    
+                </blockquote>
+                
+                <h2>Tag description sentence</h2>
+                
+                <p>
+                    Description of certain tags, if present, is in form of a sentence. Therefore, must have one of end
+punctuations <code>.</code>, <code>!</code>, or <code>?</code>.
+                </p>
+                
+                <h2>Tag group starting empty line</h2>
+                
+                <p>
+                    Both <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">Javadoc</a>
+and <a href="https://kotlinlang.org/docs/kotlin-doc.html">Kdoc</a> recommend putting an empty space separating
+summary and tag group.
+                </p>
                 
             </section>
             <footer>
