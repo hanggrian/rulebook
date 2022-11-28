@@ -3,7 +3,7 @@
     <head>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>lints</title>
+        <title>rulebook</title>
         <meta content="width=device-width" name="viewport">
         <meta content="chrome=1" http-equiv="X-UA-Compatible">
         <link href="styles/main.css" rel="stylesheet">
@@ -11,16 +11,16 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
         <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
         <!--Primary meta tags-->
-        <meta content="lints" name="title">
-        <meta content="Personal linter rules and code convention" name="description">
+        <meta content="rulebook" name="title">
+        <meta content="Personal lint rules and code convention" name="description">
     </head>
     <body>
         <div class="wrapper">
             <header>
-                <h1>lints</h1>
-                <p>Personal linter rules and code convention</p>
+                <h1>rulebook</h1>
+                <p>Personal lint rules and code convention</p>
                 <p class="view">
-                    <a href="https://github.com/hendraanggrian/lints/">View the Project on GitHub <small>hendraanggrian/lint</small></a>
+                    <a href="https://github.com/hendraanggrian/rulebook/">View the Project on GitHub <small>hendraanggrian/rulebook</small></a>
                 </p>
                 <ul>
                     <li>
@@ -30,14 +30,14 @@
             </header>
             <section>
                 <p>
-                    <a href="https://travis-ci.com/github/hendraanggrian/lints/"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/lints"></a>
-<a href="https://codecov.io/gh/hendraanggrian/lints/"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/hendraanggrian/lints"></a>
-<a href="https://search.maven.org/artifact/com.hendraanggrian.lints/lints-ktlint/"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.hendraanggrian.lints/lints-ktlint"></a>
-<a href="https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/lints/lints-ktlint/"><img alt="Nexus Snapshot" src="https://img.shields.io/nexus/s/com.hendraanggrian.lints/lints-ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org"></a>
+                    <a href="https://travis-ci.com/github/hendraanggrian/rulebook/"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/rulebook"></a>
+<a href="https://codecov.io/gh/hendraanggrian/rulebook/"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/hendraanggrian/rulebook"></a>
+<a href="https://search.maven.org/artifact/com.hendraanggrian.rulebook/rulebook-ktlint/"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.hendraanggrian.rulebook/rulebook-ktlint"></a>
+<a href="https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/rulebook/rulebook-ktlint/"><img alt="Nexus Snapshot" src="https://img.shields.io/nexus/s/com.hendraanggrian.rulebook/rulebook-ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org"></a>
 <a href="https://openjdk.java.net/projects/jdk8/"><img alt="OpenJDK" src="https://img.shields.io/badge/jdk-1.8%2B-informational"></a>
                 </p>
 
-                <h1>Lints</h1>
+                <h1>Rulebook</h1>
 
                 <p>
                     Additional third-party <a href="rules.html">rules</a> for lint tools, meant to be used in conjunction with official ones.
@@ -88,8 +88,8 @@ linters, providing the same experience across languages.
 }
 
 dependencies {
-    checkstyle "com.hendraanggrian.lints:lints-checkstyle:$version"
-    ktlint "com.hendraanggrian.lints:lints-ktlint:$version"
+    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$version"
+    ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:$version"
 }
 </code></pre>
 
@@ -99,8 +99,8 @@ dependencies {
 
                 <p>
                     Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Plugin</a>. Using
-configuration <code>checkstyle</code>, add this project as dependency. Then use <code>lints_checks.xml</code> provided
-in <a href="sample-checkstyle">sample-checkstyle</a> or within <a href="lints-checkstyle">lints-checkstyle</a> jar.
+configuration <code>checkstyle</code>, add this project as dependency. Then use <code>rulebook_checks.xml</code> provided
+in <a href="sample-checkstyle">sample-checkstyle</a> or within <a href="rulebook-checkstyle">rulebook-checkstyle</a> jar.
                 </p>
 
                 <pre><code class="language-gradle">plugins {
@@ -109,13 +109,13 @@ in <a href="sample-checkstyle">sample-checkstyle</a> or within <a href="lints-ch
 
 checkstyle {
     toolVersion "$checkstyleVersion"
-    configFile "path/to/lints_checks.xml"
+    configFile "path/to/rulebook_checks.xml"
     // the rest of checkstyle plugin configurations
 }
 
 dependencies {
     checkstyle "com.puppycrawl.tools:checkstyle:$checkstyleVersion"
-    checkstyle "com.hendraanggrian.lints:lints-checkstyle:libraryVersion"
+    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:libraryVersion"
 }
 </code></pre>
 
@@ -132,7 +132,7 @@ to Gradle project. Using configuration <code>ktlint</code>, add this project as 
 
 dependencies {
     ktlint "com.pinterest:ktlint:$ktlintVersion"
-    ktlint "com.hendraanggrian.lints:lints-ktlint:libraryVersion"
+    ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:libraryVersion"
 }
 
 // the rest of ktlint tasks' configuration

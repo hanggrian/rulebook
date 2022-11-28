@@ -3,7 +3,7 @@
     <head>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>lints</title>
+        <title>rulebook</title>
         <meta content="width=device-width" name="viewport">
         <meta content="chrome=1" http-equiv="X-UA-Compatible">
         <link href="styles/main.css" rel="stylesheet">
@@ -11,16 +11,16 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
         <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
         <!--Primary meta tags-->
-        <meta content="lints" name="title">
-        <meta content="Personal linter rules and code convention" name="description">
+        <meta content="rulebook" name="title">
+        <meta content="Personal lint rules and code convention" name="description">
     </head>
     <body>
         <div class="wrapper">
             <header>
-                <h1>lints</h1>
-                <p>Personal linter rules and code convention</p>
+                <h1>rulebook</h1>
+                <p>Personal lint rules and code convention</p>
                 <p class="view">
-                    <a href="https://github.com/hendraanggrian/lints/">View the Project on GitHub <small>hendraanggrian/lint</small></a>
+                    <a href="https://github.com/hendraanggrian/rulebook/">View the Project on GitHub <small>hendraanggrian/rulebook</small></a>
                 </p>
                 <ul>
                     <li>
@@ -30,132 +30,195 @@
             </header>
             <section>
                 <h1>Rules</h1>
-                
+
                 <table>
-                    
+
                     <thead>
-                        
+
                         <tr>
-                            
+
                             <th>Rules</th>
 <th align="center">Checkstyle</th>
 <th align="center">KtLint</th>
 
                         </tr>
-                        
+
                     </thead>
-                    
+
                     <tbody>
-                        
+
                         <tr>
-                            
+
                             <td><a href="#exception-ambiguity">Exception ambiguity</a></td>
 <td align="center">✓</td>
 <td align="center">✓</td>
 
                         </tr>
-                        
+
                         <tr>
-                            
-                            <td><a href="#function-specify-return-type">Function specify return type</a></td>
+
+                            <td><a href="#filename-acronym">Filename acronym</a></td>
+<td align="center"><code>AbbreviationAsWordInName</code></td>
+<td align="center">✓</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><a href="#function-return-type">Function return type</a></td>
 <td align="center">✗</td>
 <td align="center">✓</td>
 
                         </tr>
-                        
-                    </tbody>
-                    
-                </table>
-                
-                <h3>Documentation Rules</h3>
-                
-                <table>
-                    
-                    <thead>
-                        
+
                         <tr>
-                            
+
+                            <td><a href="#type-kotlin-api">Type Kotlin API</a></td>
+<td align="center">✗</td>
+<td align="center">✓</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+                <h3>Documentation Rules</h3>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
                             <th>Rules</th>
 <th align="center">Checkstyle</th>
 <th align="center">KtLint</th>
 
                         </tr>
-                        
+
                     </thead>
-                    
+
                     <tbody>
-                        
+
                         <tr>
-                            
-                            <td><a href="#summary-continuation-first-word">Summary continuation first word</a></td>
+
+                            <td><a href="#summary-continuation">Summary continuation</a></td>
 <td align="center">✓</td>
 <td align="center">✓</td>
 
                         </tr>
-                        
+
                         <tr>
-                            
-                            <td><a href="#tag-description-sentence">Tag Description Sentence</a></td>
+
+                            <td><a href="#tag-description-sentence">Tag description sentence</a></td>
 <td align="center">✓</td>
 <td align="center">✓</td>
 
                         </tr>
-                        
+
                         <tr>
-                            
-                            <td><a href="#tag-group-starting-empty-line">Tag Group Starting Empty Line</a></td>
+
+                            <td><a href="#tags-starting-empty-line">Tags starting empty line</a></td>
 <td align="center"><code>RequireEmptyLineBeforeBlockTagGroup</code></td>
 <td align="center">✓</td>
 
                         </tr>
-                        
+
                     </tbody>
-                    
+
                 </table>
-                
+
                 <h2>Exception ambiguity</h2>
-                
+
                 <p>
                     Throwing <code>Exception</code>, <code>Error</code>, and <code>Throwable</code> require a detail message. Does not apply to their
 subtypes (<code>IllegalStateExeption</code>, <code>StackOverflowError</code>, etc.) as they are explicit enough.
                 </p>
-                
-                <h2>Function specify return type</h2>
-                
+
+                <pre><code class="language-kotlin">throw Exception()
+</code></pre>
+
+                <h2>Filename acronym</h2>
+
+                <p>While uppercase acronym does comply with pascal-case naming standards, lowercase acronym is easier
+to read.</p>
+
+                <pre><code>RestAPI.kt
+</code></pre>
+
+                <h2>Function return type</h2>
+
                 <p>
                     Prohibits declaration of public <strong>expression function</strong> and <strong>property accessor</strong> without return
 type.
                 </p>
-                
-                <h2>Summary continuation first word</h2>
-                
+
+                <pre><code class="language-kotlin">fun getMessage() = "Hello World"
+val message get() = "Hello World"
+</code></pre>
+
+                <h2>Type Kotlin API</h2>
+
+                <p>
+                    Avoid using API from <code>java.*</code> and <code>org.junit.*</code> where there are Kotlin equivalents.
+                </p>
+
+                <pre><code class="language-kotlin">import java.lang.String
+val images = java.util.ArrayList&lt;Image&gt;()
+</code></pre>
+
+                <h2>Summary continuation</h2>
+
                 <p>
                     Every new line of continuation paragraph cannot start with <strong>link</strong> or <strong>code</strong>.
                 </p>
-                
+
+                <pre><code class="language-kotlin">/**
+ * This is a superclass of all
+ * [cars] and
+ * `bikes`.
+ */
+interface Vehicle
+</code></pre>
+
                 <blockquote>
-                    
+
                     <p>
                         This is a default behavior of markdown editor on <em>IntelliJ</em> IDEs.
                     </p>
-                    
+
                 </blockquote>
-                
+
                 <h2>Tag description sentence</h2>
-                
+
                 <p>
                     Description of certain tags, if present, is in form of a sentence. Therefore, must have one of end
 punctuations <code>.</code>, <code>!</code>, or <code>?</code>.
                 </p>
-                
-                <h2>Tag group starting empty line</h2>
-                
+
+                <pre><code class="language-kotlin">/**
+ * @param message a simple text
+ */
+fun send(message: String)
+</code></pre>
+
+                <h2>Tags starting empty line</h2>
+
                 <p>
                     Both <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">Javadoc</a>
 and <a href="https://kotlinlang.org/docs/kotlin-doc.html">Kdoc</a> recommend putting an empty space separating
 summary and tag group.
                 </p>
-                
+
+                <pre><code class="language-kotlin">/**
+ * Insert an item to this collection.
+ * @param element item to add.
+ * @return true if element is successfully added.
+ */
+fun add(element: E): Boolean
+</code></pre>
+
             </section>
             <footer>
                 <p>
