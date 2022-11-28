@@ -11,7 +11,7 @@ import com.pinterest.ktlint.core.ast.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#tag-description-sentence).
+ * [See guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#tag-description-sentence).
  */
 class TagDescriptionSentenceRule : Rule("tag-description-sentence") {
     internal companion object {
@@ -21,7 +21,7 @@ class TagDescriptionSentenceRule : Rule("tag-description-sentence") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
-        emit: (Int, String, Boolean) -> Unit
+        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit
     ) {
         // first line of filter
         if (node.elementType != KDOC_TAG) {

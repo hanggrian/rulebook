@@ -1,26 +1,28 @@
 package com.hendraanggrian.lints.ktlint
 
-import com.hendraanggrian.lints.ktlint.kdoc.SummaryContinuationFirstWordRule
+import com.hendraanggrian.lints.ktlint.kdoc.SummaryContinuationRule
 import com.hendraanggrian.lints.ktlint.kdoc.TagDescriptionSentenceRule
-import com.hendraanggrian.lints.ktlint.kdoc.TagGroupStartingEmptyLineRule
+import com.hendraanggrian.lints.ktlint.kdoc.TagsStartingEmptyLineRule
 import com.pinterest.ktlint.core.RuleProvider
 import com.pinterest.ktlint.core.RuleSetProviderV2
 
 class LintsRuleSet : RuleSetProviderV2(
-    id = "lints",
+    id = "lints-ktlint",
     about = About(
         maintainer = "Hendra Anggrian",
         description = "Personal linter rules and code convention",
-        license = "The Apache License, Version 2.0",
+        license = "https://github.com/hendraanggrian/lints/blob/master/LICENSE",
         repositoryUrl = "https://github.com/hendraanggrian/lints/",
         issueTrackerUrl = "https://github.com/hendraanggrian/lints/issues/"
     )
 ) {
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
-        RuleProvider { ExceptionAmbiguityRule() },
-        RuleProvider { FunctionSpecifyReturnTypeRule() },
-        RuleProvider { SummaryContinuationFirstWordRule() },
+        RuleProvider { SummaryContinuationRule() },
         RuleProvider { TagDescriptionSentenceRule() },
-        RuleProvider { TagGroupStartingEmptyLineRule() }
+        RuleProvider { TagsStartingEmptyLineRule() },
+        RuleProvider { ExceptionAmbiguityRule() },
+        RuleProvider { FilenameAcronymRule() },
+        RuleProvider { FunctionReturnTypeRule() },
+        RuleProvider { TypeKotlinApiRule() }
     )
 }

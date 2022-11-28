@@ -10,7 +10,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.PARAMETER_NAME
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#tag-description-sentence).
+ * [See guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#tag-description-sentence).
  */
 class TagDescriptionSentenceCheck : AbstractJavadocCheck() {
     private companion object {

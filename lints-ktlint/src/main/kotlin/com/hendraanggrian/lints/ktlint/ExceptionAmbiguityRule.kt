@@ -10,7 +10,7 @@ import com.pinterest.ktlint.core.ast.ElementType.VALUE_ARGUMENT_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#exception-ambiguity).
+ * [See guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#exception-ambiguity).
  */
 class ExceptionAmbiguityRule : Rule("exception-ambiguity") {
     internal companion object {
@@ -20,7 +20,7 @@ class ExceptionAmbiguityRule : Rule("exception-ambiguity") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
-        emit: (Int, String, Boolean) -> Unit
+        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit
     ) {
         // first line of filter
         if (node.elementType != THROW) {

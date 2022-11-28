@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NEW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#exception-ambiguity).
+ * [See guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#exception-ambiguity).
  */
 class ExceptionAmbiguityCheck : AbstractCheck() {
     private companion object {
@@ -32,7 +32,7 @@ class ExceptionAmbiguityCheck : AbstractCheck() {
 
         // report error if there is no message
         if (EXPR !in literalNew first ELIST) {
-            log(ident.lineNo, ERROR_MESSAGE.format(ident.text))
+            log(ident, ERROR_MESSAGE.format(ident.text))
         }
     }
 }

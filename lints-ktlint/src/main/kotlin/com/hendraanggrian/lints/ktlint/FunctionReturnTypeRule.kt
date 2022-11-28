@@ -16,17 +16,17 @@ import com.pinterest.ktlint.core.ast.ElementType.VALUE_PARAMETER_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See Guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#function-specify-return-type).
+ * [See guide](https://github.com/hendraanggrian/lints/blob/main/rules.md#function-return-type).
  */
-class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
+class FunctionReturnTypeRule : Rule("function-return-type") {
     internal companion object {
-        const val ERROR_MESSAGE = "'%s' missing return type."
+        const val ERROR_MESSAGE = "Missing return type in function '%s'."
     }
 
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
-        emit: (Int, String, Boolean) -> Unit
+        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit
     ) {
         // first line of filter
         when (node.elementType) {
@@ -41,7 +41,8 @@ class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
                     return
                 }
 
-                if (!node.isValid()) {
+                // checks for violation
+                if (node.isViolation()) {
                     emit(
                         node[VALUE_PARAMETER_LIST].endOffset,
                         ERROR_MESSAGE.format("Expression function"),
@@ -61,7 +62,8 @@ class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
                     return
                 }
 
-                if (!node.isValid()) {
+                // checks for violation
+                if (node.isViolation()) {
                     emit(
                         node[IDENTIFIER].endOffset,
                         ERROR_MESSAGE.format("Property accessor"),
@@ -72,17 +74,17 @@ class FunctionSpecifyReturnTypeRule : Rule("function-specify-return-type") {
         }
     }
 
-    private fun ASTNode.isValid(): Boolean {
+    private fun ASTNode.isViolation(): Boolean {
         // return true if this node or its parents recursively are private
         var node: ASTNode? = this
         while (node != null) {
             if (!node.isPublic()) {
-                return true
+                return false
             }
             node = node.treeParent
         }
         // in case of public node, declare violation if node doesn't have a type reference
-        return TYPE_REFERENCE in this
+        return TYPE_REFERENCE !in this
     }
 
     private fun ASTNode.isPublic(): Boolean {

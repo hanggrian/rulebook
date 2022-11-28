@@ -1,9 +1,9 @@
 package com.hendraanggrian.lints.ktlint
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.lints.ktlint.kdoc.SummaryContinuationFirstWordRule
+import com.hendraanggrian.lints.ktlint.kdoc.SummaryContinuationRule
 import com.hendraanggrian.lints.ktlint.kdoc.TagDescriptionSentenceRule
-import com.hendraanggrian.lints.ktlint.kdoc.TagGroupStartingEmptyLineRule
+import com.hendraanggrian.lints.ktlint.kdoc.TagsStartingEmptyLineRule
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
@@ -17,7 +17,7 @@ class LintsRuleSetTest {
         assertFalse(ruleSet.id.isBlank())
         assertNotNull(ruleSet.about.maintainer)
         assertNotNull(ruleSet.about.description)
-        assertTrue("Apache" in ruleSet.about.license!!)
+        assertTrue("github.com" in ruleSet.about.license!!)
         assertTrue("github.com" in ruleSet.about.repositoryUrl!!)
         assertTrue("github.com" in ruleSet.about.issueTrackerUrl!!)
     }
@@ -29,11 +29,13 @@ class LintsRuleSetTest {
                 .getRuleProviders()
                 .map { it.createNewRuleInstance().javaClass.kotlin }
         ).containsExactly(
-            ExceptionAmbiguityRule::class,
-            FunctionSpecifyReturnTypeRule::class,
-            SummaryContinuationFirstWordRule::class,
+            SummaryContinuationRule::class,
             TagDescriptionSentenceRule::class,
-            TagGroupStartingEmptyLineRule::class
+            TagsStartingEmptyLineRule::class,
+            ExceptionAmbiguityRule::class,
+            FilenameAcronymRule::class,
+            FunctionReturnTypeRule::class,
+            TypeKotlinApiRule::class
         )
     }
 }

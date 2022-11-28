@@ -44,9 +44,9 @@
 
   <module name="TreeWalker">
     <!-- https://github.com/hendraanggrian/lints/ -->
-    <module name="ExceptionAmbiguity"/>
-    <module name="SummaryContinuationFirstWord"/>
+    <module name="SummaryContinuation"/>
     <module name="TagDescriptionSentence"/>
+    <module name="ExceptionAmbiguity"/>
 
     <module name="OuterTypeFilename"/>
     <module name="IllegalTokenText">

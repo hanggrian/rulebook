@@ -3,29 +3,67 @@
 | Rules | Checkstyle | KtLint |
 | --- | :---: | :---: |
 | [Exception ambiguity](#exception-ambiguity) | &check; | &check; |
-| [Function specify return type](#function-specify-return-type) | &cross; | &check; |
+| [Filename acronym](#filename-acronym) | `AbbreviationAsWordInName` | &check; |
+| [Function return type](#function-return-type) | &cross; | &check; |
+| [Type Kotlin API](#type-kotlin-api) | &cross; | &check; |
 
 ### Documentation Rules
 
 | Rules | Checkstyle | KtLint |
 | --- | :---: | :---: |
-| [Summary continuation first word](#summary-continuation-first-word) | &check; | &check; |
-| [Tag Description Sentence](#tag-description-sentence) | &check; | &check; |
-| [Tag Group Starting Empty Line](#tag-group-starting-empty-line) | `RequireEmptyLineBeforeBlockTagGroup` | &check; |
+| [Summary continuation](#summary-continuation) | &check; | &check; |
+| [Tag description sentence](#tag-description-sentence) | &check; | &check; |
+| [Tags starting empty line](#tags-starting-empty-line) | `RequireEmptyLineBeforeBlockTagGroup` | &check; |
 
 ## Exception ambiguity
 
 Throwing `Exception`, `Error`, and `Throwable` require a detail message. Does not apply to their
 subtypes (`IllegalStateExeption`, `StackOverflowError`, etc.) as they are explicit enough.
 
-## Function specify return type
+```kotlin
+throw Exception()
+```
+
+## Filename acronym
+
+While uppercase acronym does comply with pascal-case naming standards, lowercase acronym is easier
+to read.
+
+```
+RestAPI.kt
+```
+
+## Function return type
 
 Prohibits declaration of public **expression function** and **property accessor** without return
 type.
 
-## Summary continuation first word
+```kotlin
+fun getMessage() = "Hello World"
+val message get() = "Hello World"
+```
+
+## Type Kotlin API
+
+Avoid using API from `java.*` and `org.junit.*` where there are Kotlin equivalents.
+
+```kotlin
+import java.lang.String
+val images = java.util.ArrayList<Image>()
+```
+
+## Summary continuation
 
 Every new line of continuation paragraph cannot start with **link** or **code**.
+
+```kotlin
+/**
+ * This is a superclass of all
+ * [cars] and
+ * `bikes`.
+ */
+interface Vehicle
+```
 
 > This is a default behavior of markdown editor on *IntelliJ* IDEs.
 
@@ -34,8 +72,24 @@ Every new line of continuation paragraph cannot start with **link** or **code**.
 Description of certain tags, if present, is in form of a sentence. Therefore, must have one of end
 punctuations `.`, `!`, or `?`.
 
-## Tag group starting empty line
+```kotlin
+/**
+ * @param message a simple text
+ */
+fun send(message: String)
+```
+
+## Tags starting empty line
 
 Both [Javadoc](https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html)
 and [Kdoc](https://kotlinlang.org/docs/kotlin-doc.html) recommend putting an empty space separating
 summary and tag group.
+
+```kotlin
+/**
+ * Insert an item to this collection.
+ * @param element item to add.
+ * @return true if element is successfully added.
+ */
+fun add(element: E): Boolean
+```

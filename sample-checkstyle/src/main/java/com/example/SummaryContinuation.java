@@ -1,6 +1,7 @@
 package com.example;
 
-public class SummaryContinuationFirstWord {
+/** Some comment. */
+public class SummaryContinuation {
 
   /** Lorem Ipsum is simply dummy. */
   public class ShortJavadoc {
@@ -8,8 +9,8 @@ public class SummaryContinuationFirstWord {
 
   /**
    * Lorem Ipsum is simply dummy
-   * text of the printing and
-   * typesetting industry.
+   * {@code text} of the printing and
+   * {@link typesetting} industry.
    */
   public class LongJavadoc {
   }

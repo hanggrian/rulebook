@@ -5,12 +5,12 @@ import com.hendraanggrian.lints.checkstyle.prepareFiles
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class SummaryContinuationFirstWordCheckTest {
+class SummaryContinuationCheckTest {
 
     @Test
     fun test() {
-        val checker = prepareChecker<SummaryContinuationFirstWordCheck>()
-        val files = prepareFiles<SummaryContinuationFirstWordCheckTest>()
+        val checker = prepareChecker<SummaryContinuationCheck>()
+        val files = prepareFiles<SummaryContinuationCheckTest>()
         val numberOfErrors = checker.process(files)
         assertEquals(2, numberOfErrors)
     }
