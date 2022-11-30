@@ -40,9 +40,9 @@
                 <h1>Rulebook</h1>
 
                 <p>
-                    Additional third-party <a href="rules.html">rules</a> for lint tools, meant to be used in conjunction with official ones.
-Most of the rules are opinionated personal code style mandate. However, some already exists in other
-linters, providing the same experience across languages.
+                    Additional third-party <a href="rules.html">rules</a> for lint tools, meant to be used in conjunction with
+official ones. Most of the rules are opinionated personal code style mandate. However, some already
+exists in other linters, providing the same experience across languages.
                 </p>
 
                 <table>
@@ -64,7 +64,7 @@ linters, providing the same experience across languages.
                         <tr>
 
                             <td>Java</td>
-<td>Checkstyle</td>
+<td><a href="https://checkstyle.org/">Checkstyle</a></td>
 <td><a href="https://google.github.io/styleguide/javaguide.html">Google Java Style Guide</a> via <a href="https://checkstyle.sourceforge.io/google_style.html">Checkstyle Google Checks</a></td>
 
                         </tr>
@@ -72,7 +72,7 @@ linters, providing the same experience across languages.
                         <tr>
 
                             <td>Kotlin</td>
-<td>KtLint</td>
+<td><a href="https://pinterest.github.io/ktlint/">KtLint</a></td>
 <td><a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> via <a href="https://pinterest.github.io/ktlint/rules/standard/">KtLint standard rules</a></td>
 
                         </tr>
@@ -98,9 +98,10 @@ dependencies {
                 <h3>Checkstyle</h3>
 
                 <p>
-                    Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Plugin</a>. Using
-configuration <code>checkstyle</code>, add this project as dependency. Then use <code>rulebook_checks.xml</code> provided
-in <a href="sample-checkstyle">sample-checkstyle</a> or within <a href="rulebook-checkstyle">rulebook-checkstyle</a> jar.
+                    Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Gradle Plugin</a>.
+Using configuration <code>checkstyle</code>, add this project as dependency. Then use <code>rulebook_checks.xml</code>
+provided in <a href="sample-checkstyle">sample-checkstyle</a> or within <a href="rulebook-checkstyle">rulebook-checkstyle</a>
+jar.
                 </p>
 
                 <pre><code class="language-gradle">plugins {
@@ -122,7 +123,7 @@ dependencies {
                 <h3>KtLint</h3>
 
                 <p>
-                    <a href="https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration">Integrate ktlint</a>
+                    Apply <a href="https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration">KtLint Integration</a>
 to Gradle project. Using configuration <code>ktlint</code>, add this project as dependency.
                 </p>
 
@@ -137,6 +138,45 @@ dependencies {
 
 // the rest of ktlint tasks' configuration
 </code></pre>
+
+                <blockquote>
+
+                    <p>
+                        Do not use KtLint with <a href="https://github.com/diffplug/spotless/">Spotless</a>, as there is yet no way
+to add custom rules.
+                    </p>
+
+                </blockquote>
+
+                <h2>First time installation</h2>
+
+                <p>Presuming the IDE is IntelliJ IDEA, consider applying the linter style to it.</p>
+
+                <h3>Checkstyle</h3>
+
+                <p>
+                    In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Java</code>, import <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml">IntelliJ Java Google Style file</a>
+. The whole process are better explained in <a href="https://github.com/google/google-java-format/">Google Java Format</a>.
+                </p>
+
+                <h3>KtLint</h3>
+
+                <p>
+                    Explained in <a href="https://pinterest.github.io/ktlint/rules/configuration-intellij-idea/">KtLint IntelliJ IDEA Configuration</a>
+, using standard <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> is enough:
+                </p>
+
+                <ul>
+
+                    <li>
+                        In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Kotlin</code>, set from <code>Kotlin style guide</code>.
+                    </li>
+
+                    <li>
+                        Append <code>kotlin.code.style=official</code> to root <code>gradle.properties</code>.
+                    </li>
+
+                </ul>
 
             </section>
             <footer>
