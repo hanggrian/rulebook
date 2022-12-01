@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.kotlin.kapt)
+    kotlin("jvm") version libs.versions.kotlin
+    kotlin("kapt") version libs.versions.kotlin
 }
 
 dependencies {

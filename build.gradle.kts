@@ -5,11 +5,10 @@ import com.vanniktech.maven.publish.MavenPublishBasePlugin
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
-import org.jetbrains.kotlin.gradle.plugin.kotlinToolingVersion
 
 plugins {
-    alias(libs.plugins.kotlin.jvm) apply false
-    alias(libs.plugins.kotlin.kapt) apply false
+    kotlin("jvm") version libs.versions.kotlin apply false
+    kotlin("kapt") version libs.versions.kotlin apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.maven.publish) apply false
 }

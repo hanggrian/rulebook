@@ -4,9 +4,8 @@ pluginManagement.repositories {
 }
 dependencyResolutionManagement.repositories.mavenCentral()
 
-rootProject.name = "lints"
-include("lints-checkstyle")
-include("lints-ktlint")
-include("sample-checkstyle")
-include("sample-ktlint")
+rootProject.name = "rulebook"
+
+include("rulebook-checkstyle", "rulebook-ktlint")
+include("sample-checkstyle", "sample-ktlint")
 include("website")

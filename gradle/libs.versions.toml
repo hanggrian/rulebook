@@ -5,20 +5,18 @@ ktlint = "0.47.1"
 checkstyle = "8.45.1"
 
 [plugins]
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.6.1"
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.6.1"
 maven-publish = "com.vanniktech.maven.publish.base:0.21.0"
 git-publish = "org.ajoberstar.git-publish:3.0.1"
 pages = "com.hendraanggrian.pages:0.1"
 
 [libraries]
-# main
+# lint
 ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
+# main
 ktlint-core = { module = "com.pinterest.ktlint:ktlint-core", version.ref = "ktlint" }
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
-kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 truth = "com.google.truth:truth:1.1.3"

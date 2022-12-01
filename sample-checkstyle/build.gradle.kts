@@ -5,7 +5,7 @@ plugins {
 
 checkstyle {
     toolVersion = libs.versions.checkstyle.get()
-    configFile = projectDir.resolve("lints_checks.xml")
+    configFile = projectDir.resolve("rulebook_checks.xml")
 }
 
 dependencies {

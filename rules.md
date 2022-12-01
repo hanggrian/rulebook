@@ -27,7 +27,7 @@ throw Exception()
 ## Filename acronym
 
 While uppercase acronym does comply with pascal-case naming standards, lowercase acronym is easier
-to read.
+to read. However, only 3 connecting uppercase letters are flagged.
 
 ```
 RestAPI.kt

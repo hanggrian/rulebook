@@ -1,6 +1,5 @@
 package com.example;
 
-/** Some comment. */
 public class SummaryContinuation {
 
   /** Lorem Ipsum is simply dummy. */
