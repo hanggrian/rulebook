@@ -6,9 +6,10 @@
 
 # Rulebook
 
-Additional third-party [rules](rules.md) for lint tools, meant to be used in conjunction with
-official ones. Most of the rules are opinionated personal code style mandate. However, some already
-exists in other linters, providing the same experience across languages.
+Additional third-party [rules](rules.md) for lint tools, meant to be used in
+conjunction with official ones. Most of the rules are opinionated personal code
+style mandate. However, some already exists in other linters, providing the same
+experience across languages.
 
 | Language | Linter | Main Rules |
 | --- | --- | --- |
@@ -33,9 +34,9 @@ dependencies {
 ### Checkstyle
 
 Apply [Checkstyle Gradle Plugin](https://docs.gradle.org/current/userguide/checkstyle_plugin.html).
-Using configuration `checkstyle`, add this project as dependency. Then use `rulebook_checks.xml`
-provided in [sample-checkstyle](sample-checkstyle) or within [rulebook-checkstyle](rulebook-checkstyle)
-jar.
+Using configuration `checkstyle`, add this project as dependency. Then
+use `rulebook_checks.xml` provided in [sample-checkstyle](sample-checkstyle) or
+within [rulebook-checkstyle](rulebook-checkstyle) jar.
 
 ```gradle
 plugins {
@@ -72,24 +73,26 @@ dependencies {
 // the rest of ktlint tasks' configuration
 ```
 
-> Do not use KtLint with [Spotless](https://github.com/diffplug/spotless/), as there is yet no way
-  to add custom rules.
+> Do not use KtLint with [Spotless](https://github.com/diffplug/spotless/), as
+  there is yet no way to add custom rules.
 
 ## First time installation
 
-Presuming the IDE is IntelliJ IDEA, consider applying the linter style to it.
+Presuming the IDE is *IntelliJ IDEA*, consider applying the linter style to it.
 
 ### Checkstyle
 
-In `File > Settings > Editor > Code Style > Java`, import [IntelliJ Java Google Style file](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml)
-. The whole process are better explained in [Google Java Format](https://github.com/google/google-java-format/).
+In `File > Settings > Editor > Code Style > Java`,
+import [IntelliJ Java Google Style file](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml).
+The whole process are better explained in [Google Java Format](https://github.com/google/google-java-format/).
 
 ### KtLint
 
-Explained in [KtLint IntelliJ IDEA Configuration](https://pinterest.github.io/ktlint/rules/configuration-intellij-idea/)
-, using standard [Kotlin coding conventions] is enough:
+Explained in [KtLint IntelliJ IDEA Configuration](https://pinterest.github.io/ktlint/rules/configuration-intellij-idea/),
+using standard [Kotlin coding conventions] is enough:
 
-- In `File > Settings > Editor > Code Style > Kotlin`, set from `Kotlin style guide`.
+- In `File > Settings > Editor > Code Style > Kotlin`, set
+  from `Kotlin style guide`.
 - Append `kotlin.code.style=official` to root `gradle.properties`.
 
 [Kotlin coding conventions]: https://kotlinlang.org/docs/coding-conventions.html
