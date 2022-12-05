@@ -31,8 +31,8 @@ class RulebookRuleSetTest {
             TagDescriptionSentenceRule::class,
             TagsStartingEmptyLineRule::class,
             ExceptionAmbiguityRule::class,
-            FilenameAcronymRule::class,
             FunctionReturnTypeRule::class,
+            NamesAcronymRule::class,
             TypeKotlinApiRule::class
         )
     }

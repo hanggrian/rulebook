@@ -43,4 +43,20 @@ class ExceptionAmbiguityRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
+
+    @Test
+    fun `Throw reference instead of call expression`() = assertThatCode(
+        """
+        fun main() {
+            val exception = Exception()
+            throw exception
+
+            val error = Error()
+            throw error
+
+            val throwable = Throwable()
+            throw throwable
+        }
+        """.trimIndent()
+    ).hasNoLintViolations()
 }

@@ -21,9 +21,11 @@ class ExceptionAmbiguityCheck : AbstractCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_THROW)
 
     override fun visitToken(node: DetailAST) {
+        // only target declaration, reference such as `Exception error = new Exception()` is ignored
+        val literalNew = node[EXPR].findFirstToken(LITERAL_NEW) ?: return
+
         // only target supertype
-        val literalNew = node first EXPR first LITERAL_NEW
-        val ident = literalNew first IDENT
+        val ident = literalNew[IDENT]
         if (ident.text != "Exception" && ident.text != "Error" &&
             ident.text != "Throwable"
         ) {
@@ -31,7 +33,7 @@ class ExceptionAmbiguityCheck : AbstractCheck() {
         }
 
         // report error if there is no message
-        if (EXPR !in literalNew first ELIST) {
+        if (EXPR !in literalNew[ELIST]) {
             log(ident, ERROR_MESSAGE.format(ident.text))
         }
     }

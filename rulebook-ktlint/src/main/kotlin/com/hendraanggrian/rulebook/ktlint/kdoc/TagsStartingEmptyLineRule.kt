@@ -1,6 +1,5 @@
 package com.hendraanggrian.rulebook.ktlint.kdoc
 
-import com.hendraanggrian.rulebook.ktlint.firstOrNull
 import com.hendraanggrian.rulebook.ktlint.siblingsUntil
 import com.pinterest.ktlint.core.Rule
 import com.pinterest.ktlint.core.ast.ElementType.KDOC_LEADING_ASTERISK
@@ -30,7 +29,7 @@ class TagsStartingEmptyLineRule : Rule("tags-starting-empty-line") {
         }
 
         // only allow first tag
-        val kdocTag = (node firstOrNull KDOC_TAG) ?: return
+        val kdocTag = (node.findChildByType(KDOC_TAG)) ?: return
         if (kdocTag.prevSibling { it.elementType == KDOC_TAG } != null) {
             return
         }

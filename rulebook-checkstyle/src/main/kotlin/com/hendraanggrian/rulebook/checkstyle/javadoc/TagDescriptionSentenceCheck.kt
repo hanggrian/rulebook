@@ -2,7 +2,7 @@ package com.hendraanggrian.rulebook.checkstyle.javadoc
 
 import com.hendraanggrian.rulebook.checkstyle.actualText
 import com.hendraanggrian.rulebook.checkstyle.contains
-import com.hendraanggrian.rulebook.checkstyle.first
+import com.hendraanggrian.rulebook.checkstyle.get
 import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
@@ -21,15 +21,15 @@ class TagDescriptionSentenceCheck : AbstractJavadocCheck() {
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 
     override fun visitJavadocToken(node: DetailNode) {
-        // skips no description
+        // skip no description
         if (DESCRIPTION !in node) {
             return
         }
 
         // only enforce certain tags
         val anyLiteral = when {
-            PARAM_LITERAL in node -> node.first(PARAM_LITERAL)
-            RETURN_LITERAL in node -> node.first(RETURN_LITERAL)
+            PARAM_LITERAL in node -> node[PARAM_LITERAL]
+            RETURN_LITERAL in node -> node[RETURN_LITERAL]
             else -> return
         }
 

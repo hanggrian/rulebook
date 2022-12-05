@@ -26,12 +26,12 @@ class SummaryContinuationRule : Rule("summary-continuation") {
             return
         }
 
-        // skips first line of paragraph
+        // skip first line of paragraph
         if (node.treeParent[KDOC_LEADING_ASTERISK] == node) {
             return
         }
 
-        // skips if tag is found
+        // skip if tag is found
         val kdocLeadingAsteriskLine = node.siblingsUntil(KDOC_LEADING_ASTERISK)
         if (KDOC_TAG in kdocLeadingAsteriskLine.map { it.elementType }) {
             return

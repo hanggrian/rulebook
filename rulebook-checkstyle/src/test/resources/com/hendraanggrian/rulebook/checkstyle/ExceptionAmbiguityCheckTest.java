@@ -1,15 +1,12 @@
 package com.hendraanggrian.rulebook.checkstyle;
 
 public class ExceptionAmbiguity {
-  public void throwException() throws Exception {
+  public void throwCallException() throws Exception {
     throw new Exception();
   }
 
-  public void throwExceptionWithMessage() throws Exception {
-    throw new Exception("Some message");
-  }
-
-  public void throwIllegalStateException() throws Exception {
-    throw new IllegalStateException();
+  public void throwReferenceException() throws Exception {
+    Exception error = new Exception();
+    throw error;
   }
 }

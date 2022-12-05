@@ -15,9 +15,9 @@ internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(ty
 
 internal operator fun DetailNode.contains(type: Int): Boolean = children.any { it.type == type }
 
-internal infix fun DetailAST.first(type: Int): DetailAST = findFirstToken(type)!!
+internal operator fun DetailAST.get(type: Int): DetailAST = findFirstToken(type)!!
 
-internal infix fun DetailNode.first(type: Int): DetailNode = children.first { it.type == type }
+internal operator fun DetailNode.get(type: Int): DetailNode = children.first { it.type == type }
 
 internal fun DetailNode.siblingsUntil(type: Int): List<DetailNode> {
     val siblings = parent.children

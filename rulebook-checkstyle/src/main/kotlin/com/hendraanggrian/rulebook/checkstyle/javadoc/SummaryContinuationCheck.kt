@@ -1,7 +1,7 @@
 package com.hendraanggrian.rulebook.checkstyle.javadoc
 
 import com.hendraanggrian.rulebook.checkstyle.actualText
-import com.hendraanggrian.rulebook.checkstyle.first
+import com.hendraanggrian.rulebook.checkstyle.get
 import com.hendraanggrian.rulebook.checkstyle.siblingsUntil
 import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
@@ -19,12 +19,12 @@ class SummaryContinuationCheck : AbstractJavadocCheck() {
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(LEADING_ASTERISK)
 
     override fun visitJavadocToken(node: DetailNode) {
-        // skips first line of paragraph
-        if (node.parent.first(LEADING_ASTERISK) == node) {
+        // skip first line of paragraph
+        if (node.parent[LEADING_ASTERISK] == node) {
             return
         }
 
-        // skips if tag is found
+        // skip if tag is found
         val leadingAsteriskLine = node.siblingsUntil(LEADING_ASTERISK)
         if (JAVADOC_TAG in leadingAsteriskLine.map { it.type }) {
             return

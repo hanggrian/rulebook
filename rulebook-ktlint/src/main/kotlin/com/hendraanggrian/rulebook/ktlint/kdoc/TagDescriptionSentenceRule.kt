@@ -27,7 +27,7 @@ class TagDescriptionSentenceRule : Rule("tag-description-sentence") {
             return
         }
 
-        // skips no description
+        // skip no description
         if (KDOC_TEXT !in node) {
             return
         }

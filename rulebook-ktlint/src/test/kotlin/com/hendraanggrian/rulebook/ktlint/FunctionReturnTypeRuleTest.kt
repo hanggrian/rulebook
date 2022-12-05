@@ -75,4 +75,14 @@ class FunctionReturnTypeRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
+
+    @Test
+    fun `Allow test function`() = assertThatCode(
+        """
+        class Tester {
+            @Test
+            fun test() = assertThat("Hello world").isNotEmpty()
+        }
+        """.trimIndent()
+    ).hasNoLintViolations()
 }

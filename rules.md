@@ -3,8 +3,8 @@
 | Rules | Checkstyle | KtLint |
 | --- | :---: | :---: |
 | [Exception ambiguity](#exception-ambiguity) | &check; | &check; |
-| [Filename acronym](#filename-acronym) | `AbbreviationAsWordInName` | &check; |
 | [Function return type](#function-return-type) | &cross; | &check; |
+| [Names acronym](#names-acronym) | `AbbreviationAsWordInName` | &check; |
 | [Type Kotlin API](#type-kotlin-api) | &cross; | &check; |
 
 ### Documentation Rules
@@ -25,16 +25,6 @@ as they are explicit enough.
 throw Exception()
 ```
 
-## Filename acronym
-
-While uppercase acronym does comply with pascal-case naming standards, lowercase
-acronym is easier to read. However, only 3 connecting uppercase letters are
-flagged.
-
-```
-RestAPI.kt
-```
-
 ## Function return type
 
 Prohibits declaration of public **expression function** and
@@ -43,6 +33,19 @@ Prohibits declaration of public **expression function** and
 ```kotlin
 fun getMessage() = "Hello World"
 val message get() = "Hello World"
+```
+
+## Names acronym
+
+While uppercase acronym does comply with pascal-case naming standards, lowercase
+acronym is easier to read. However, only 3 connecting uppercase letters are
+flagged. This rule affects property, function, class-alike and even file.
+
+```
+val userJSON = "{ user: \"Hendra Anggrian\" }"
+fun blendARGB()
+class RestAPI
+SQLUtility.kt
 ```
 
 ## Type Kotlin API

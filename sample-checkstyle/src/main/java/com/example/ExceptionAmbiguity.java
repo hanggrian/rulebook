@@ -1,15 +1,12 @@
 package com.example;
 
 public class ExceptionAmbiguity {
-  public void throwException() throws Exception {
+  public void throwCallExpression() throws Exception {
     throw new Exception();
   }
 
-  public void throwExceptionWithMessage() throws Exception {
-    throw new Exception("Some message.");
-  }
-
-  public void throwIllegalStateException() throws Exception {
-    throw new IllegalStateException();
+  public void throwReferenceExpression() throws Exception {
+    Exception error = new Exception();
+    throw error;
   }
 }

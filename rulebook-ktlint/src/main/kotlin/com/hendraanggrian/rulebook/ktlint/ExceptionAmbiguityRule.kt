@@ -27,8 +27,10 @@ class ExceptionAmbiguityRule : Rule("exception-ambiguity") {
             return
         }
 
+        // only target declaration, reference such as `val error = Exception()` is ignored
+        val callExpression = node.findChildByType(CALL_EXPRESSION) ?: return
+
         // only target supertype
-        val callExpression = node[CALL_EXPRESSION]
         val identifier = callExpression[REFERENCE_EXPRESSION][IDENTIFIER]
         if (identifier.text != "Exception" && identifier.text != "Error" &&
             identifier.text != "Throwable"

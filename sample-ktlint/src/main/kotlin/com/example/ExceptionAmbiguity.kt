@@ -1,7 +1,12 @@
 package com.example
 
-fun throwSomeErrors() {
+fun throwCallReference() {
     // throw Exception()
-    error("No data")
     throw StackOverflowError()
+}
+
+fun throwReferenceExpression() {
+    // val error = Exception()
+    val error = StackOverflowError()
+    throw error
 }

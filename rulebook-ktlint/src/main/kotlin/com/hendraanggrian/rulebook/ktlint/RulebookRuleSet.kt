@@ -21,8 +21,8 @@ class RulebookRuleSet : RuleSetProviderV2(
         RuleProvider { TagDescriptionSentenceRule() },
         RuleProvider { TagsStartingEmptyLineRule() },
         RuleProvider { ExceptionAmbiguityRule() },
-        RuleProvider { FilenameAcronymRule() },
         RuleProvider { FunctionReturnTypeRule() },
+        RuleProvider { NamesAcronymRule() },
         RuleProvider { TypeKotlinApiRule() }
     )
 }
