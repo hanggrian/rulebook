@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    ktlint(libs.ktlint, ::ktlintConfig)
+    ktlint(libs.ktlint, ::configureKtlint)
     ktlint(project(":$RELEASE_ARTIFACT-ktlint"))
     implementation(libs.checkstyle)
     testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))

@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    ktlint(libs.ktlint, ::ktlintConfig)
+    ktlint(libs.ktlint, ::configureKtlint)
     ktlint(project(":$RELEASE_ARTIFACT-ktlint"))
 }

@@ -1,7 +1,7 @@
 # Rules
 
 | Rules | Checkstyle | KtLint |
-| --- | :---: | :---: |
+| --- | :-: | :-: |
 | [Exception ambiguity](#exception-ambiguity) | &check; | &check; |
 | [Function return type](#function-return-type) | &cross; | &check; |
 | [Names acronym](#names-acronym) | `AbbreviationAsWordInName` | &check; |
@@ -10,7 +10,7 @@
 ### Documentation Rules
 
 | Rules | Checkstyle | KtLint |
-| --- | :---: | :---: |
+| --- | :-: | :-: |
 | [Summary continuation](#summary-continuation) | &check; | &check; |
 | [Tag description sentence](#tag-description-sentence) | &check; | &check; |
 | [Tags starting empty line](#tags-starting-empty-line) | `RequireEmptyLineBeforeBlockTagGroup` | &check; |

@@ -35,8 +35,8 @@ class TagDescriptionSentenceRule : Rule("tag-description-sentence") {
         // only enforce certain tags
         val kdocTagName = node[KDOC_TAG_NAME]
         if (kdocTagName.text != "@param" && kdocTagName.text != "@return" &&
-            kdocTagName.text != "@constructor" && kdocTagName.text != "@property" &&
-            kdocTagName.text != "@receiver"
+            kdocTagName.text != "@throws" && kdocTagName.text != "@property" &&
+            kdocTagName.text != "@receiver" && kdocTagName.text != "@constructor"
         ) {
             return
         }

@@ -8,6 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.PARAM_LITERAL
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.RETURN_LITERAL
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.THROWS_LITERAL
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
@@ -30,6 +31,7 @@ class TagDescriptionSentenceCheck : AbstractJavadocCheck() {
         val anyLiteral = when {
             PARAM_LITERAL in node -> node[PARAM_LITERAL]
             RETURN_LITERAL in node -> node[RETURN_LITERAL]
+            THROWS_LITERAL in node -> node[THROWS_LITERAL]
             else -> return
         }
 
