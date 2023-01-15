@@ -8,8 +8,8 @@
         <meta content="chrome=1" http-equiv="X-UA-Compatible">
         <link href="styles/main.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-        <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-kotlin.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+        <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-kotlin.min.js"></script>
         <!--Primary meta tags-->
         <meta content="rulebook" name="title">
         <meta content="Personal lint rules and code convention" name="description">
@@ -20,7 +20,7 @@
                 <h1>rulebook</h1>
                 <p>Personal lint rules and code convention</p>
                 <p class="view">
-                    <a href="https://github.com/hendraanggrian/rulebook/">View the Project on GitHub <small>hendraanggrian/rulebook</small></a>
+                    <a href="https://github.com/hendraanggrian/rulebook/">View the Project on GitHub <small>hendraanggrian/ruleboo</small></a>
                 </p>
                 <ul>
                     <li>
@@ -40,9 +40,10 @@
                 <h1>Rulebook</h1>
 
                 <p>
-                    Additional third-party <a href="rules.html">rules</a> for lint tools, meant to be used in conjunction with
-official ones. Most of the rules are opinionated personal code style mandate. However, some already
-exists in other linters, providing the same experience across languages.
+                    Additional third-party <a href="rules.html">rules</a> for lint tools, meant to be used in
+conjunction with official ones. Most of the rules are opinionated personal code
+style mandate. However, some already exists in other linters, providing the same
+experience across languages.
                 </p>
 
                 <table>
@@ -83,7 +84,7 @@ exists in other linters, providing the same experience across languages.
 
                 <h2>Download</h2>
 
-                <pre><code class="language-gradle">repositories {
+                <pre><code class="language-groovy">repositories {
     mavenCentral()
 }
 
@@ -99,12 +100,12 @@ dependencies {
 
                 <p>
                     Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Gradle Plugin</a>.
-Using configuration <code>checkstyle</code>, add this project as dependency. Then use <code>rulebook_checks.xml</code>
-provided in <a href="sample-checkstyle">sample-checkstyle</a> or within <a href="rulebook-checkstyle">rulebook-checkstyle</a>
-jar.
+Using configuration <code>checkstyle</code>, add this project as dependency. Then
+use <code>rulebook_checks.xml</code> provided in <a href="sample-checkstyle">sample-checkstyle</a> or
+within <a href="rulebook-checkstyle">rulebook-checkstyle</a> jar.
                 </p>
 
-                <pre><code class="language-gradle">plugins {
+                <pre><code class="language-groovy">plugins {
     checkstyle
 }
 
@@ -127,7 +128,7 @@ dependencies {
 to Gradle project. Using configuration <code>ktlint</code>, add this project as dependency.
                 </p>
 
-                <pre><code class="language-gradle">configurations {
+                <pre><code class="language-groovy">configurations {
     ktlint
 }
 
@@ -142,34 +143,38 @@ dependencies {
                 <blockquote>
 
                     <p>
-                        Do not use KtLint with <a href="https://github.com/diffplug/spotless/">Spotless</a>, as there is yet no way
-to add custom rules.
+                        Do not use KtLint with <a href="https://github.com/diffplug/spotless/">Spotless</a>, as
+there is yet no way to add custom rules.
                     </p>
 
                 </blockquote>
 
                 <h2>First time installation</h2>
 
-                <p>Presuming the IDE is IntelliJ IDEA, consider applying the linter style to it.</p>
+                <p>
+                    Presuming the IDE is <em>IntelliJ IDEA</em>, consider applying the linter style to it.
+                </p>
 
                 <h3>Checkstyle</h3>
 
                 <p>
-                    In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Java</code>, import <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml">IntelliJ Java Google Style file</a>
-. The whole process are better explained in <a href="https://github.com/google/google-java-format/">Google Java Format</a>.
+                    In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Java</code>,
+import <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml">IntelliJ Java Google Style file</a>.
+The whole process are better explained in <a href="https://github.com/google/google-java-format/">Google Java Format</a>.
                 </p>
 
                 <h3>KtLint</h3>
 
                 <p>
-                    Explained in <a href="https://pinterest.github.io/ktlint/rules/configuration-intellij-idea/">KtLint IntelliJ IDEA Configuration</a>
-, using standard <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> is enough:
+                    Explained in <a href="https://pinterest.github.io/ktlint/rules/configuration-intellij-idea/">KtLint IntelliJ IDEA Configuration</a>,
+using standard <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> is enough:
                 </p>
 
                 <ul>
 
                     <li>
-                        In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Kotlin</code>, set from <code>Kotlin style guide</code>.
+                        In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Kotlin</code>, set
+from <code>Kotlin style guide</code>.
                     </li>
 
                     <li>
