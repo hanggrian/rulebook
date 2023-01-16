@@ -49,7 +49,7 @@
     <!-- Additional rules -->
     <module name="SummaryContinuation"/>
     <module name="TagDescriptionSentence"/>
-    <module name="ExceptionAmbiguity"/>
+    <module name="ThrowExceptionAmbiguity"/>
 
     <module name="OuterTypeFilename"/>
     <module name="IllegalTokenText">

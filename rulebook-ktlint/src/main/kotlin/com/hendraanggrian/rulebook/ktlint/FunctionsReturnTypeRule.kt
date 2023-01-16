@@ -19,9 +19,9 @@ import com.pinterest.ktlint.core.ast.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#function-return-type).
+ * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#functions-return-type).
  */
-class FunctionReturnTypeRule : Rule("function-return-type") {
+class FunctionsReturnTypeRule : Rule("functions-return-type") {
     internal companion object {
         const val ERROR_MESSAGE = "Missing return type in function '%s'."
     }

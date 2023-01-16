@@ -1,12 +1,12 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.FunctionReturnTypeRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.rulebook.ktlint.FunctionsReturnTypeRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class FunctionReturnTypeRuleTest {
-    private val assertThatCode = assertThatRule { FunctionReturnTypeRule() }
+class FunctionsReturnTypeRuleTest {
+    private val assertThatCode = assertThatRule { FunctionsReturnTypeRule() }
 
     @Test
     fun `Regular function`() = assertThatCode("fun function() { }").hasNoLintViolations()

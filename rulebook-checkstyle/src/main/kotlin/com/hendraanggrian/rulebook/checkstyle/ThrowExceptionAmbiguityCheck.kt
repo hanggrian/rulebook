@@ -9,9 +9,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NEW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#exception-ambiguity).
+ * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#throw-exception-ambiguity).
  */
-class ExceptionAmbiguityCheck : AbstractCheck() {
+class ThrowExceptionAmbiguityCheck : AbstractCheck() {
     private companion object {
         const val ERROR_MESSAGE = "Ambiguous exception '%s'."
     }

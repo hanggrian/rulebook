@@ -6,7 +6,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class TagDescriptionSentenceCheckTest {
-
     @Test
     fun test() {
         val checker = prepareChecker<TagDescriptionSentenceCheck>()

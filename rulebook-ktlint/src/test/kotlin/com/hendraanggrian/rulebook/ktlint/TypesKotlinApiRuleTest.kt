@@ -1,12 +1,12 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.TypeKotlinApiRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.rulebook.ktlint.TypesKotlinApiRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class TypeKotlinApiRuleTest {
-    private val assertThatCode = assertThatRule { TypeKotlinApiRule() }
+class TypesKotlinApiRuleTest {
+    private val assertThatCode = assertThatRule { TypesKotlinApiRule() }
 
     @Test
     fun `Java API in imports`() = assertThatCode("import java.lang.String")

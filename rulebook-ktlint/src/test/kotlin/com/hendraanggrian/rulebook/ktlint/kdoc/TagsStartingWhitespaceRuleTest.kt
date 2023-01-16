@@ -1,12 +1,12 @@
 package com.hendraanggrian.rulebook.ktlint.kdoc
 
-import com.hendraanggrian.rulebook.ktlint.kdoc.TagsStartingEmptyLineRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.rulebook.ktlint.kdoc.TagsStartingWhitespaceRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class TagsStartingEmptyLineRuleTest {
-    private val assertThatCode = assertThatRule { TagsStartingEmptyLineRule() }
+class TagsStartingWhitespaceRuleTest {
+    private val assertThatCode = assertThatRule { TagsStartingWhitespaceRule() }
 
     @Test
     fun `No summary`() = assertThatCode(

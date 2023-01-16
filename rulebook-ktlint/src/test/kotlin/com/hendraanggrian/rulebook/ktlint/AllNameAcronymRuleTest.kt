@@ -1,11 +1,11 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.NamesAcronymRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.rulebook.ktlint.AllNameAcronymRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class NamesAcronymRuleTest {
-    private val assertThatCode = assertThatRule { NamesAcronymRule() }
+class AllNameAcronymRuleTest {
+    private val assertThatCode = assertThatRule { AllNameAcronymRule() }
 
     @Test
     fun `Acronym found in a property`() = assertThatCode("val userJSON = {}")
@@ -23,6 +23,21 @@ class NamesAcronymRuleTest {
         .hasLintViolationWithoutAutoCorrect(1, 7, ERROR_MESSAGE.format("class"))
 
     @Test
+    fun `Acronym found in an annotation class`() = assertThatCode("annotation class RestAPI")
+        .asFileWithPath("/some/path/RestApi.kt")
+        .hasLintViolationWithoutAutoCorrect(1, 18, ERROR_MESSAGE.format("class"))
+
+    @Test
+    fun `Acronym found in a data class`() = assertThatCode("data class RestAPI")
+        .asFileWithPath("/some/path/RestApi.kt")
+        .hasLintViolationWithoutAutoCorrect(1, 12, ERROR_MESSAGE.format("class"))
+
+    @Test
+    fun `Acronym found in a sealed class`() = assertThatCode("sealed class RestAPI")
+        .asFileWithPath("/some/path/RestApi.kt")
+        .hasLintViolationWithoutAutoCorrect(1, 14, ERROR_MESSAGE.format("class"))
+
+    @Test
     fun `Acronym found in a interface`() = assertThatCode("interface RestAPI")
         .asFileWithPath("/some/path/RestApi.kt")
         .hasLintViolationWithoutAutoCorrect(1, 11, ERROR_MESSAGE.format("interface"))
@@ -31,11 +46,6 @@ class NamesAcronymRuleTest {
     fun `Acronym found in a object`() = assertThatCode("object RestAPI")
         .asFileWithPath("/some/path/RestApi.kt")
         .hasLintViolationWithoutAutoCorrect(1, 8, ERROR_MESSAGE.format("object"))
-
-    @Test
-    fun `Acronym found in an annotation`() = assertThatCode("annotation class RestAPI")
-        .asFileWithPath("/some/path/RestApi.kt")
-        .hasLintViolationWithoutAutoCorrect(1, 18, ERROR_MESSAGE.format("annotation"))
 
     @Test
     fun `Acronym found in file`() = assertThatCode("")

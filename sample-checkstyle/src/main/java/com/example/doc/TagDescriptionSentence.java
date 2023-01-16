@@ -1,4 +1,4 @@
-package com.example;
+package com.example.doc;
 
 public class TagDescriptionSentence {
 

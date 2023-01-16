@@ -1,11 +1,12 @@
 # Rules
 
 | Rules | Checkstyle | KtLint |
-| --- | :-: | :-: |
-| [Exception ambiguity](#exception-ambiguity) | &check; | &check; |
-| [Function return type](#function-return-type) | &cross; | &check; |
-| [Names acronym](#names-acronym) | `AbbreviationAsWordInName` | &check; |
-| [Type Kotlin API](#type-kotlin-api) | &cross; | &check; |
+| --- | :--: | :--: |
+| [All name acronym](#all-name-acronym) | `AbbreviationAsWordInName` | &check; |
+| [Class body starting whitespace](#class-body-starting-whitespace) | &cross; | &check; |
+| [Functions return type](#functions-return-type) | &cross; | &check; |
+| [Throw exception ambiguity](#throw-exception-ambiguity) | &check; | &check; |
+| [Types Kotlin API](#types-kotlin-api) | &cross; | &check; |
 
 ### Documentation Rules
 
@@ -13,19 +14,39 @@
 | --- | :-: | :-: |
 | [Summary continuation](#summary-continuation) | &check; | &check; |
 | [Tag description sentence](#tag-description-sentence) | &check; | &check; |
-| [Tags starting empty line](#tags-starting-empty-line) | `RequireEmptyLineBeforeBlockTagGroup` | &check; |
+| [Tags starting whitespace](#tags-starting-whitespace) | `RequireEmptyLineBeforeBlockTagGroup` | &check; |
 
-## Exception ambiguity
+## All name acronym
 
-Throwing `Exception`, `Error`, and `Throwable` require a detail message. Does
-not apply to their subtypes (`IllegalStateExeption`, `StackOverflowError`, etc.)
-as they are explicit enough.
+While uppercase acronym does comply with pascal-case naming standards, lowercase
+acronym is easier to read. However, only 3 connecting uppercase letters are
+flagged. This rule affects **property**, **function**, **class-alike** and
+even **file**.
 
-```kotlin
-throw Exception()
+```
+val userJSON = "{ user: \"Hendra Anggrian\" }"
+fun blendARGB()
+class RestAPI
+SQLUtility.kt
 ```
 
-## Function return type
+## Class body starting whitespace
+
+If a class has a content and its declaration is multiline, the first line of the
+content should be an empty line. Otherwise, do not put empty line on single line
+class declaration. This rule affects all class-like objects
+(`class`, `interface`, etc.).
+
+```kotlin
+class User(
+    username: String,
+    password: String
+) {
+    override fun toString(): String = username
+}
+```
+
+## Functions return type
 
 Prohibits declaration of public **expression function** and
 **property accessor** without return type.
@@ -35,20 +56,17 @@ fun getMessage() = "Hello World"
 val message get() = "Hello World"
 ```
 
-## Names acronym
+## Throw exception ambiguity
 
-While uppercase acronym does comply with pascal-case naming standards, lowercase
-acronym is easier to read. However, only 3 connecting uppercase letters are
-flagged. This rule affects property, function, class-alike and even file.
+Throwing `Exception`, `Error`, and `Throwable` require a detail message. Does
+not apply to their subtypes (`IllegalStateExeption`, `StackOverflowError`, etc.)
+as they are explicit enough.
 
-```
-val userJSON = "{ user: \"Hendra Anggrian\" }"
-fun blendARGB()
-class RestAPI
-SQLUtility.kt
+```kotlin
+throw Exception()
 ```
 
-## Type Kotlin API
+## Types Kotlin API
 
 Avoid using API from `java.*` and `org.junit.*` where there are Kotlin
 equivalents.
@@ -85,7 +103,7 @@ must have one of end punctuations `.`, `!`, or `?`.
 fun send(message: String)
 ```
 
-## Tags starting empty line
+## Tags starting whitespace
 
 Both [Javadoc](https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html)
 and [Kdoc](https://kotlinlang.org/docs/kotlin-doc.html) recommend putting an

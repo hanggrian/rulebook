@@ -1,4 +1,4 @@
-package com.example
+package com.example.doc
 
 /**
  * Just a box.

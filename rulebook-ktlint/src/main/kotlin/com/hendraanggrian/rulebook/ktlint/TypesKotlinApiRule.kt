@@ -9,9 +9,9 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#type-kotlin-api).
+ * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#types-kotlin-api).
  */
-class TypeKotlinApiRule : Rule("type-kotlin-api") {
+class TypesKotlinApiRule : Rule("types-kotlin-api") {
     internal companion object {
         const val ERROR_MESSAGE = "Replace '%s' with '%s'."
     }

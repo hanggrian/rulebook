@@ -11,9 +11,9 @@ import com.pinterest.ktlint.core.ast.prevSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#tags-starting-empty-line).
+ * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#tags-starting-whitespace).
  */
-class TagsStartingEmptyLineRule : Rule("tags-starting-empty-line") {
+class TagsStartingWhitespaceRule : Rule("tags-starting-whitespace") {
     internal companion object {
         const val ERROR_MESSAGE = "Missing empty line before '%s'."
     }

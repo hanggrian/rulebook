@@ -1,4 +1,4 @@
-package com.example
+package com.example.doc
 
 /** Lorem Ipsum is simply dummy. */
 class ShortKDoc

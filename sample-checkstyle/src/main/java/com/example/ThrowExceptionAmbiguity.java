@@ -1,6 +1,6 @@
 package com.example;
 
-public class ExceptionAmbiguity {
+public class ThrowExceptionAmbiguity {
   public void throwCallExpression() throws Exception {
     throw new Exception();
   }

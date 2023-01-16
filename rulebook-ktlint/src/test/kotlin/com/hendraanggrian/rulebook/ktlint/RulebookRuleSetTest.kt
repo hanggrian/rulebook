@@ -3,7 +3,7 @@ package com.hendraanggrian.rulebook.ktlint
 import com.google.common.truth.Truth.assertThat
 import com.hendraanggrian.rulebook.ktlint.kdoc.SummaryContinuationRule
 import com.hendraanggrian.rulebook.ktlint.kdoc.TagDescriptionSentenceRule
-import com.hendraanggrian.rulebook.ktlint.kdoc.TagsStartingEmptyLineRule
+import com.hendraanggrian.rulebook.ktlint.kdoc.TagsStartingWhitespaceRule
 import kotlin.test.Test
 import kotlin.test.assertFalse
 
@@ -29,11 +29,12 @@ class RulebookRuleSetTest {
         ).containsExactly(
             SummaryContinuationRule::class,
             TagDescriptionSentenceRule::class,
-            TagsStartingEmptyLineRule::class,
-            ExceptionAmbiguityRule::class,
-            FunctionReturnTypeRule::class,
-            NamesAcronymRule::class,
-            TypeKotlinApiRule::class
+            TagsStartingWhitespaceRule::class,
+            ClassBodyStartingWhitespaceRule::class,
+            ThrowExceptionAmbiguityRule::class,
+            FunctionsReturnTypeRule::class,
+            AllNameAcronymRule::class,
+            TypesKotlinApiRule::class
         )
     }
 }

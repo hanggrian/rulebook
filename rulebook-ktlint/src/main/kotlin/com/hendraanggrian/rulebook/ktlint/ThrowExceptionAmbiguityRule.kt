@@ -10,9 +10,9 @@ import com.pinterest.ktlint.core.ast.ElementType.VALUE_ARGUMENT_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#exception-ambiguity).
+ * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#throw-exception-ambiguity).
  */
-class ExceptionAmbiguityRule : Rule("exception-ambiguity") {
+class ThrowExceptionAmbiguityRule : Rule("throw-exception-ambiguity") {
     internal companion object {
         const val ERROR_MESSAGE = "Ambiguous exception '%s'."
     }

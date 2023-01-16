@@ -2,7 +2,7 @@ package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.kdoc.SummaryContinuationRule
 import com.hendraanggrian.rulebook.ktlint.kdoc.TagDescriptionSentenceRule
-import com.hendraanggrian.rulebook.ktlint.kdoc.TagsStartingEmptyLineRule
+import com.hendraanggrian.rulebook.ktlint.kdoc.TagsStartingWhitespaceRule
 import com.pinterest.ktlint.core.RuleProvider
 import com.pinterest.ktlint.core.RuleSetProviderV2
 
@@ -19,10 +19,11 @@ class RulebookRuleSet : RuleSetProviderV2(
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
         RuleProvider { SummaryContinuationRule() },
         RuleProvider { TagDescriptionSentenceRule() },
-        RuleProvider { TagsStartingEmptyLineRule() },
-        RuleProvider { ExceptionAmbiguityRule() },
-        RuleProvider { FunctionReturnTypeRule() },
-        RuleProvider { NamesAcronymRule() },
-        RuleProvider { TypeKotlinApiRule() }
+        RuleProvider { TagsStartingWhitespaceRule() },
+        RuleProvider { ClassBodyStartingWhitespaceRule() },
+        RuleProvider { ThrowExceptionAmbiguityRule() },
+        RuleProvider { FunctionsReturnTypeRule() },
+        RuleProvider { AllNameAcronymRule() },
+        RuleProvider { TypesKotlinApiRule() }
     )
 }

@@ -6,16 +6,20 @@ import com.pinterest.ktlint.core.ast.ElementType.CLASS
 import com.pinterest.ktlint.core.ast.ElementType.FILE
 import com.pinterest.ktlint.core.ast.ElementType.FUN
 import com.pinterest.ktlint.core.ast.ElementType.IDENTIFIER
+import com.pinterest.ktlint.core.ast.ElementType.KDOC
+import com.pinterest.ktlint.core.ast.ElementType.MODIFIER_LIST
 import com.pinterest.ktlint.core.ast.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.core.ast.ElementType.PROPERTY
+import com.pinterest.ktlint.core.ast.ElementType.WHITE_SPACE
+import com.pinterest.ktlint.core.ast.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.lang.FileASTNode
 import java.nio.file.Paths
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#names-acronym).
+ * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#all-name-acronym).
  */
-class NamesAcronymRule : Rule("names-acronym") {
+class AllNameAcronymRule : Rule("all-name-acronym") {
     internal companion object {
         const val ERROR_MESSAGE = "Acronym of '%s' should be lowercase."
     }
@@ -41,7 +45,11 @@ class NamesAcronymRule : Rule("names-acronym") {
             }
             FUN, CLASS, OBJECT_DECLARATION -> {
                 // may be property, fun, class, interface, object or annotation
-                val typeName = node.firstChildNode.text
+                val typeName = node.children().first {
+                    it.elementType != KDOC &&
+                        it.elementType != WHITE_SPACE &&
+                        it.elementType != MODIFIER_LIST // may be function's annotations
+                }.text
 
                 // skip companion object
                 val identifier = node.findChildByType(IDENTIFIER) ?: return

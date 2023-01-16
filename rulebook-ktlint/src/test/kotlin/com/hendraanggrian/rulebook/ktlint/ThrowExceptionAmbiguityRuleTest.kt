@@ -1,12 +1,12 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.ExceptionAmbiguityRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.rulebook.ktlint.ThrowExceptionAmbiguityRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class ExceptionAmbiguityRuleTest {
-    private val assertThatCode = assertThatRule { ExceptionAmbiguityRule() }
+class ThrowExceptionAmbiguityRuleTest {
+    private val assertThatCode = assertThatRule { ThrowExceptionAmbiguityRule() }
 
     @Test
     fun `Throw supertype without messages`() = assertThatCode(

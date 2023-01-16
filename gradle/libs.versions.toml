@@ -1,13 +1,13 @@
 [versions]
 jdk = "8"
 kotlin = "1.7.20"
-ktlint = "0.47.1"
+ktlint = "0.48.1"
 checkstyle = "8.45.1"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
 kotlinx-kover = "org.jetbrains.kotlinx.kover:0.6.1"
-maven-publish = "com.vanniktech.maven.publish.base:0.22.0"
+maven-publish = "com.vanniktech.maven.publish.base:0.23.1"
 git-publish = "org.ajoberstar.git-publish:3.0.1"
 pages = "com.hendraanggrian.pages:0.1"
 
