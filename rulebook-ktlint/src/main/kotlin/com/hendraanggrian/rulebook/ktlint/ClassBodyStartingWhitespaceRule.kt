@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  */
 class ClassBodyStartingWhitespaceRule : Rule("class-body-starting-whitespace") {
     internal companion object {
-        const val ERROR_MESSAGE = "%s empty line at the start of '%s'."
+        const val ERROR_MESSAGE = "%s first empty line."
     }
 
     override fun beforeVisitChildNodes(
@@ -28,12 +28,12 @@ class ClassBodyStartingWhitespaceRule : Rule("class-body-starting-whitespace") {
         }
 
         // iterate through class declaration to find class keyword
-        val `class` = node.treeParent // can be CLASS or OBJECT_DECLARATION
-        val classKeyword = `class`.children().first {
+        val `class` = node.treeParent // can be CLASS, OBJECT_DECLARATION
+        val classKeyword = `class`.children().firstOrNull {
             it.elementType == CLASS_KEYWORD ||
                 it.elementType == INTERFACE_KEYWORD ||
                 it.elementType == OBJECT_KEYWORD
-        }
+        } ?: return // can be null if this is ENUM_ENTRY
 
         // skip if class body is single line (e.g.: `class MyClass { val property = "" }`)
         val lbrace = node.firstChildNode
@@ -47,19 +47,11 @@ class ClassBodyStartingWhitespaceRule : Rule("class-body-starting-whitespace") {
         when {
             // single, report error if first line is empty line
             "\n" !in classDeclaration -> if ("\n\n" in whitespace.text) {
-                emit(
-                    whitespace.endOffset,
-                    ERROR_MESSAGE.format("Unexpected", classKeyword.text),
-                    false
-                )
+                emit(whitespace.endOffset, ERROR_MESSAGE.format("Unexpected"), false)
             }
             // multiple, report error if first line is not empty line
             else -> if ("\n\n" !in whitespace.text) {
-                emit(
-                    whitespace.endOffset,
-                    ERROR_MESSAGE.format("Missing", classKeyword.text),
-                    false
-                )
+                emit(whitespace.endOffset, ERROR_MESSAGE.format("Missing"), false)
             }
         }
     }

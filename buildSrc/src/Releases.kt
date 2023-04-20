@@ -7,7 +7,7 @@ const val DEVELOPER_URL = "https://github.com/$DEVELOPER_ID/"
 
 const val RELEASE_GROUP = "com.hendraanggrian.rulebook"
 const val RELEASE_ARTIFACT = "rulebook"
-const val RELEASE_VERSION = "0.2-SNAPSHOT"
+const val RELEASE_VERSION = "0.2"
 const val RELEASE_DESCRIPTION = "Personal lint rules and code convention"
 const val RELEASE_URL = "https://github.com/$DEVELOPER_ID/$RELEASE_ARTIFACT/"
 

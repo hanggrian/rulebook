@@ -1,46 +1,15 @@
 package com.example
 
-class NoClass
 class ShortClass {
-    val property: String = ""
+    val property = ""
 }
 class LongClass(
     parameter: String
 ) {
 
-    val property: String = ""
+    val property = ""
 }
 
-interface NoInterface
-interface ShortInterface {
-    val property: String
-}
-interface LongInterface :
-    StubInterface1,
-    StubInterface2,
-    StubInterface3,
-    StubInterface4,
-    StubInterface5 {
-
-    val property: String
-}
-
-object NoObject
-object ShortObject {
-    val property: String = ""
-}
-object LongObject :
-    StubInterface1,
-    StubInterface2,
-    StubInterface3,
-    StubInterface4,
-    StubInterface5,
-    StubInterface6 {
-
-    val property: String = ""
-}
-
-annotation class NoAnnotationClass
 annotation class ShortAnnotationClass {
     // stub
 }
@@ -51,17 +20,16 @@ annotation class LongAnnotationClass(
     // stub
 }
 
-data class ShortDataClass(val input: String) {
-    val property: String = ""
+data class ShortDataClass(val parameter: String) {
+    val property = ""
 }
 data class LongDataClass(
     val parameter: String
 ) {
 
-    val property: String = ""
+    val property = ""
 }
 
-enum class NoEnumClass
 enum class ShortEnumClass {
     ENTRY
 }
@@ -72,20 +40,46 @@ enum class LongEnumClass(
     ENTRY("")
 }
 
-sealed class NoSealedClass
 sealed class ShortSealedClass {
-    val property: String = ""
+    val property = ""
 }
 sealed class LongSealedClass(
     parameter: String
 ) {
 
-    val property: String = ""
+    val property = ""
 }
 
-interface StubInterface1
-interface StubInterface2
-interface StubInterface3
-interface StubInterface4
-interface StubInterface5
-interface StubInterface6
+interface ShortInterface {
+    val property: String
+}
+interface LongInterface :
+    StubInterface {
+
+    val property: String
+}
+
+object ShortObject {
+    val property = ""
+}
+object LongObject :
+    StubInterface {
+
+    val property = ""
+}
+
+class MyShortCompanionObject {
+    companion object {
+        val property = ""
+    }
+}
+
+class MyLongCompanionObject {
+    companion object :
+        StubInterface {
+
+        val property = ""
+    }
+}
+
+interface StubInterface

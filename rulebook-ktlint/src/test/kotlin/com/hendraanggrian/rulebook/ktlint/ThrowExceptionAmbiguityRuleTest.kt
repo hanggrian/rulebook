@@ -8,6 +8,7 @@ import kotlin.test.Test
 class ThrowExceptionAmbiguityRuleTest {
     private val assertThatCode = assertThatRule { ThrowExceptionAmbiguityRule() }
 
+    //region Supertype
     @Test
     fun `Throw supertype without messages`() = assertThatCode(
         """
@@ -33,7 +34,9 @@ class ThrowExceptionAmbiguityRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
+    //endregion
 
+    //region Subtype
     @Test
     fun `Throw subtype without messages`() = assertThatCode(
         """
@@ -44,6 +47,18 @@ class ThrowExceptionAmbiguityRuleTest {
         """.trimIndent()
     ).hasNoLintViolations()
 
+    @Test
+    fun `Throw subtype with messages`() = assertThatCode(
+        """
+        fun main() {
+            throw IllegalStateException("Some message")
+            throw StackOverflowError("Some message")
+        }
+        """.trimIndent()
+    ).hasNoLintViolations()
+    //endregion
+
+    //region Reference
     @Test
     fun `Throw reference instead of call expression`() = assertThatCode(
         """
@@ -59,4 +74,5 @@ class ThrowExceptionAmbiguityRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
+    //endregion
 }

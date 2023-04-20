@@ -8,6 +8,7 @@ import kotlin.test.Test
 class TypesKotlinApiRuleTest {
     private val assertThatCode = assertThatRule { TypesKotlinApiRule() }
 
+    //region Java
     @Test
     fun `Java API in imports`() = assertThatCode("import java.lang.String")
         .hasLintViolationWithoutAutoCorrect(
@@ -32,7 +33,9 @@ class TypesKotlinApiRuleTest {
         ),
         LintViolation(3, 24, ERROR_MESSAGE.format("java.util.List", "kotlin.collections.List"))
     )
+    //endregion
 
+    //region Junit
     @Test
     fun `JUnit API in imports`() = assertThatCode("import org.junit.Test")
         .hasLintViolationWithoutAutoCorrect(
@@ -52,4 +55,5 @@ class TypesKotlinApiRuleTest {
         2,
         ERROR_MESSAGE.format("org.junit.Before", "kotlin.test.BeforeTest")
     )
+    //endregion
 }

@@ -8,6 +8,7 @@ import kotlin.test.Test
 class FunctionsReturnTypeRuleTest {
     private val assertThatCode = assertThatRule { FunctionsReturnTypeRule() }
 
+    //region Function
     @Test
     fun `Regular function`() = assertThatCode("fun function() { }").hasNoLintViolations()
 
@@ -37,6 +38,18 @@ class FunctionsReturnTypeRuleTest {
         """.trimIndent()
     ).hasNoLintViolations()
 
+    @Test
+    fun `Allow test function`() = assertThatCode(
+        """
+        class Tester {
+            @Test
+            fun test() = assertThat("Hello world").isNotEmpty()
+        }
+        """.trimIndent()
+    ).hasNoLintViolations()
+    //endregion
+
+    //region Property
     @Test
     fun `Regular property`() =
         assertThatCode("val property = \"Hello world\"").hasNoLintViolations()
@@ -75,14 +88,5 @@ class FunctionsReturnTypeRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-
-    @Test
-    fun `Allow test function`() = assertThatCode(
-        """
-        class Tester {
-            @Test
-            fun test() = assertThat("Hello world").isNotEmpty()
-        }
-        """.trimIndent()
-    ).hasNoLintViolations()
+    //endregion
 }
