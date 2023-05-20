@@ -1,19 +1,19 @@
 package com.hendraanggrian.rulebook.ktlint.kdoc
 
+import com.hendraanggrian.rulebook.ktlint.RulebookRule
 import com.hendraanggrian.rulebook.ktlint.siblingsUntil
-import com.pinterest.ktlint.core.Rule
-import com.pinterest.ktlint.core.ast.ElementType.KDOC_LEADING_ASTERISK
-import com.pinterest.ktlint.core.ast.ElementType.KDOC_SECTION
-import com.pinterest.ktlint.core.ast.ElementType.KDOC_TAG
-import com.pinterest.ktlint.core.ast.children
-import com.pinterest.ktlint.core.ast.isWhiteSpaceWithNewline
-import com.pinterest.ktlint.core.ast.prevSibling
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
+import com.pinterest.ktlint.rule.engine.core.api.prevSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
  * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#tags-starting-whitespace).
  */
-class TagsStartingWhitespaceRule : Rule("tags-starting-whitespace") {
+class TagsStartingWhitespaceRule : RulebookRule("tags-starting-whitespace") {
     internal companion object {
         const val ERROR_MESSAGE = "Missing empty line before '%s'."
     }

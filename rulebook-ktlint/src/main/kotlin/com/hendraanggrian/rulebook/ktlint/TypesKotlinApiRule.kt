@@ -1,17 +1,16 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.pinterest.ktlint.core.Rule
-import com.pinterest.ktlint.core.ast.ElementType.DOT_QUALIFIED_EXPRESSION
-import com.pinterest.ktlint.core.ast.ElementType.IMPORT_DIRECTIVE
-import com.pinterest.ktlint.core.ast.ElementType.TYPE_REFERENCE
-import com.pinterest.ktlint.core.ast.ElementType.WHITE_SPACE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_DIRECTIVE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /**
  * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#types-kotlin-api).
  */
-class TypesKotlinApiRule : Rule("types-kotlin-api") {
+class TypesKotlinApiRule : RulebookRule("types-kotlin-api") {
     internal companion object {
         const val ERROR_MESSAGE = "Replace '%s' with '%s'."
     }

@@ -1,11 +1,11 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.AllNameAcronymRule.Companion.ERROR_MESSAGE
+import com.hendraanggrian.rulebook.ktlint.NamesAcronymRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class AllNameAcronymRuleTest {
-    private val assertThatCode = assertThatRule { AllNameAcronymRule() }
+class NamesAcronymRuleTest {
+    private val assertThatCode = assertThatRule { NamesAcronymRule() }
 
     //region Property
     @Test

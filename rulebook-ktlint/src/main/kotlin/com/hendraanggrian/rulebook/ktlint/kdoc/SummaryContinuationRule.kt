@@ -1,17 +1,17 @@
 package com.hendraanggrian.rulebook.ktlint.kdoc
 
+import com.hendraanggrian.rulebook.ktlint.RulebookRule
 import com.hendraanggrian.rulebook.ktlint.endOffset
 import com.hendraanggrian.rulebook.ktlint.get
 import com.hendraanggrian.rulebook.ktlint.siblingsUntil
-import com.pinterest.ktlint.core.Rule
-import com.pinterest.ktlint.core.ast.ElementType.KDOC_LEADING_ASTERISK
-import com.pinterest.ktlint.core.ast.ElementType.KDOC_TAG
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
  * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#summary-continuation).
  */
-class SummaryContinuationRule : Rule("summary-continuation") {
+class SummaryContinuationRule : RulebookRule("summary-continuation") {
     internal companion object {
         const val ERROR_MESSAGE = "First word of paragraph continuation cannot be a '%s'."
     }

@@ -1,18 +1,17 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.pinterest.ktlint.core.Rule
-import com.pinterest.ktlint.core.ast.ElementType.CLASS_BODY
-import com.pinterest.ktlint.core.ast.ElementType.CLASS_KEYWORD
-import com.pinterest.ktlint.core.ast.ElementType.INTERFACE_KEYWORD
-import com.pinterest.ktlint.core.ast.ElementType.OBJECT_KEYWORD
-import com.pinterest.ktlint.core.ast.ElementType.WHITE_SPACE
-import com.pinterest.ktlint.core.ast.children
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_BODY
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.INTERFACE_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
  * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#class-body-starting-whitespace).
  */
-class ClassBodyStartingWhitespaceRule : Rule("class-body-starting-whitespace") {
+class ClassBodyStartingWhitespaceRule : RulebookRule("class-body-starting-whitespace") {
     internal companion object {
         const val ERROR_MESSAGE = "%s first empty line."
     }

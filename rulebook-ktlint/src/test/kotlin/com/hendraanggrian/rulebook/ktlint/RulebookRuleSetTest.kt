@@ -8,16 +8,12 @@ import kotlin.test.Test
 import kotlin.test.assertFalse
 
 class RulebookRuleSetTest {
-
     @Test
-    fun `Constructor parameters`() {
-        val ruleSet = RulebookRuleSet()
-        assertFalse(ruleSet.id.isBlank())
-        assertFalse(ruleSet.about.maintainer!!.isBlank())
-        assertFalse(ruleSet.about.description!!.isBlank())
-        assertFalse(ruleSet.about.license!!.isBlank())
-        assertFalse(ruleSet.about.repositoryUrl!!.isBlank())
-        assertFalse(ruleSet.about.issueTrackerUrl!!.isBlank())
+    fun `Rule set setup`() {
+        assertFalse(RULEBOOK_ID.value.isBlank())
+        assertFalse(RULEBOOK_ABOUT.maintainer.isBlank())
+        assertFalse(RULEBOOK_ABOUT.repositoryUrl.isBlank())
+        assertFalse(RULEBOOK_ABOUT.issueTrackerUrl.isBlank())
     }
 
     @Test
@@ -31,9 +27,10 @@ class RulebookRuleSetTest {
             TagDescriptionSentenceRule::class,
             TagsStartingWhitespaceRule::class,
             ClassBodyStartingWhitespaceRule::class,
-            ThrowExceptionAmbiguityRule::class,
             FunctionsReturnTypeRule::class,
-            AllNameAcronymRule::class,
+            NamesAcronymRule::class,
+            SwitchEntryWhitespaceRule::class,
+            ThrowExceptionAmbiguityRule::class,
             TypesKotlinApiRule::class
         )
     }

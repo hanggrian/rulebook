@@ -1,18 +1,17 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.pinterest.ktlint.core.Rule
-import com.pinterest.ktlint.core.ast.ElementType.CALL_EXPRESSION
-import com.pinterest.ktlint.core.ast.ElementType.IDENTIFIER
-import com.pinterest.ktlint.core.ast.ElementType.REFERENCE_EXPRESSION
-import com.pinterest.ktlint.core.ast.ElementType.THROW
-import com.pinterest.ktlint.core.ast.ElementType.VALUE_ARGUMENT
-import com.pinterest.ktlint.core.ast.ElementType.VALUE_ARGUMENT_LIST
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CALL_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.REFERENCE_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_ARGUMENT
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_ARGUMENT_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
  * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#throw-exception-ambiguity).
  */
-class ThrowExceptionAmbiguityRule : Rule("throw-exception-ambiguity") {
+class ThrowExceptionAmbiguityRule : RulebookRule("throw-exception-ambiguity") {
     internal companion object {
         const val ERROR_MESSAGE = "Ambiguous exception '%s'."
     }

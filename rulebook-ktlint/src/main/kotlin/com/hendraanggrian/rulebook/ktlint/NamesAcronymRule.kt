@@ -1,25 +1,24 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.pinterest.ktlint.core.KtLint.FILE_PATH_USER_DATA_KEY
-import com.pinterest.ktlint.core.Rule
-import com.pinterest.ktlint.core.ast.ElementType.CLASS
-import com.pinterest.ktlint.core.ast.ElementType.FILE
-import com.pinterest.ktlint.core.ast.ElementType.FUN
-import com.pinterest.ktlint.core.ast.ElementType.IDENTIFIER
-import com.pinterest.ktlint.core.ast.ElementType.KDOC
-import com.pinterest.ktlint.core.ast.ElementType.MODIFIER_LIST
-import com.pinterest.ktlint.core.ast.ElementType.OBJECT_DECLARATION
-import com.pinterest.ktlint.core.ast.ElementType.PROPERTY
-import com.pinterest.ktlint.core.ast.ElementType.WHITE_SPACE
-import com.pinterest.ktlint.core.ast.children
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.MODIFIER_LIST
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.lang.FileASTNode
+import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.psi.psiUtil.children
 import java.nio.file.Paths
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#all-name-acronym).
+ * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#names-acronym).
  */
-class AllNameAcronymRule : Rule("all-name-acronym") {
+class NamesAcronymRule : RulebookRule("names-acronym") {
     internal companion object {
         const val ERROR_MESSAGE = "Acronym of '%s' should be lowercase."
     }
@@ -63,7 +62,7 @@ class AllNameAcronymRule : Rule("all-name-acronym") {
                 // get filename, obtained from `com.pinterest.ktlint.ruleset.standard.FilenameRule`
                 node as FileASTNode?
                     ?: error("node is not ${FileASTNode::class} but ${node::class}")
-                val filePath = node.getUserData(FILE_PATH_USER_DATA_KEY)
+                val filePath = (node.psi as? KtFile)?.virtualFilePath
                 if (filePath?.endsWith(".kt") != true) {
                     stopTraversalOfAST() // ignore all non ".kt" files (including ".kts")
                     return

@@ -1,27 +1,26 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.pinterest.ktlint.core.Rule
-import com.pinterest.ktlint.core.ast.ElementType.ANNOTATION_ENTRY
-import com.pinterest.ktlint.core.ast.ElementType.BLOCK
-import com.pinterest.ktlint.core.ast.ElementType.CLASS_BODY
-import com.pinterest.ktlint.core.ast.ElementType.EQ
-import com.pinterest.ktlint.core.ast.ElementType.FILE
-import com.pinterest.ktlint.core.ast.ElementType.FUN
-import com.pinterest.ktlint.core.ast.ElementType.IDENTIFIER
-import com.pinterest.ktlint.core.ast.ElementType.INTERNAL_KEYWORD
-import com.pinterest.ktlint.core.ast.ElementType.MODIFIER_LIST
-import com.pinterest.ktlint.core.ast.ElementType.PRIVATE_KEYWORD
-import com.pinterest.ktlint.core.ast.ElementType.PROPERTY
-import com.pinterest.ktlint.core.ast.ElementType.PROPERTY_ACCESSOR
-import com.pinterest.ktlint.core.ast.ElementType.TYPE_REFERENCE
-import com.pinterest.ktlint.core.ast.ElementType.VALUE_PARAMETER_LIST
-import com.pinterest.ktlint.core.ast.children
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.ANNOTATION_ENTRY
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_BODY
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.EQ
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.INTERNAL_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.MODIFIER_LIST
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.PRIVATE_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY_ACCESSOR
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
  * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#functions-return-type).
  */
-class FunctionsReturnTypeRule : Rule("functions-return-type") {
+class FunctionsReturnTypeRule : RulebookRule("functions-return-type") {
     internal companion object {
         const val ERROR_MESSAGE = "Missing return type in function '%s'."
     }

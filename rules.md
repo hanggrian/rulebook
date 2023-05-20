@@ -2,9 +2,10 @@
 
 | Rules | Checkstyle | KtLint |
 | --- | :--: | :--: |
-| [All name acronym](#all-name-acronym) | `AbbreviationAsWordInName` | &check; |
 | [Class body starting whitespace](#class-body-starting-whitespace) | &cross; | &check; |
 | [Functions return type](#functions-return-type) | &cross; | &check; |
+| [Names acronym](#names-acronym) | `AbbreviationAsWordInName` | &check; |
+| [Switch entry whitespace](#switch-entry-whitespace) | &cross; | &check; |
 | [Throw exception ambiguity](#throw-exception-ambiguity) | &check; | &check; |
 | [Types Kotlin API](#types-kotlin-api) | &cross; | &check; |
 
@@ -15,20 +16,6 @@
 | [Summary continuation](#summary-continuation) | &check; | &check; |
 | [Tag description sentence](#tag-description-sentence) | &check; | &check; |
 | [Tags starting whitespace](#tags-starting-whitespace) | `RequireEmptyLineBeforeBlockTagGroup` | &check; |
-
-## All name acronym
-
-While uppercase acronym does comply with pascal-case naming standards, lowercase
-acronym is easier to read. However, only 3 connecting uppercase letters are
-flagged. This rule affects **property**, **function**, **class-alike** and
-even **file**.
-
-```
-val userJSON = "{ user: \"Hendra Anggrian\" }"
-fun blendARGB()
-class RestAPI
-SQLUtility.kt
-```
 
 ## Class body starting whitespace
 
@@ -54,6 +41,32 @@ Prohibits declaration of public **expression function** and
 ```kotlin
 fun getMessage() = "Hello World"
 val message get() = "Hello World"
+```
+
+## Names acronym
+
+While uppercase acronym does comply with pascal-case naming standards, lowercase
+acronym is easier to read. However, only 3 connecting uppercase letters are
+flagged. This rule affects **property**, **function**, **class-alike** and
+even **file**.
+
+```
+val userJSON = "{ user: \"Hendra Anggrian\" }"
+fun blendARGB()
+class RestAPI
+SQLUtility.kt
+```
+
+## Switch entry whitespace
+
+Prohibits empty line in switch statement.
+
+```kotlin
+when (oldPassword) {
+    newPassword -> resetPassword()
+
+    else -> close()
+}
 ```
 
 ## Throw exception ambiguity
