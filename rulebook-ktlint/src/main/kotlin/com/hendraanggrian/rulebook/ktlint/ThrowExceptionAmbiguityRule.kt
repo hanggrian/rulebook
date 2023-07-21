@@ -14,6 +14,8 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 class ThrowExceptionAmbiguityRule : RulebookRule("throw-exception-ambiguity") {
     internal companion object {
         const val ERROR_MESSAGE = "Ambiguous exception '%s'."
+
+        private val IDENTIFIER_TARGETS = setOf("Exception", "Error", "Throwable")
     }
 
     override fun beforeVisitChildNodes(
@@ -31,9 +33,7 @@ class ThrowExceptionAmbiguityRule : RulebookRule("throw-exception-ambiguity") {
 
         // only target supertype
         val identifier = callExpression[REFERENCE_EXPRESSION][IDENTIFIER]
-        if (identifier.text != "Exception" && identifier.text != "Error" &&
-            identifier.text != "Throwable"
-        ) {
+        if (identifier.text !in IDENTIFIER_TARGETS) {
             return
         }
 

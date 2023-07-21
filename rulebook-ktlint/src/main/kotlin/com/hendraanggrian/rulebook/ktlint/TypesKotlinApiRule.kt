@@ -13,6 +13,13 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
 class TypesKotlinApiRule : RulebookRule("types-kotlin-api") {
     internal companion object {
         const val ERROR_MESSAGE = "Replace '%s' with '%s'."
+
+        private val JUNIT_REPLACEMENTS = mapOf(
+            "org.junit.Test" to "kotlin.test.Test",
+            "org.junit.Ignore" to "kotlin.test.Ignore",
+            "org.junit.Before" to "kotlin.test.BeforeTest",
+            "org.junit.After" to "kotlin.test.AfterTest"
+        )
     }
 
     override fun beforeVisitChildNodes(
@@ -34,6 +41,7 @@ class TypesKotlinApiRule : RulebookRule("types-kotlin-api") {
                     )
                 }
             }
+
             TYPE_REFERENCE -> {
                 // get text without argument and nullability
                 val text = node.text.substringBefore('<').substringBefore('?')
@@ -59,11 +67,9 @@ class TypesKotlinApiRule : RulebookRule("types-kotlin-api") {
                     return null
                 }
             } else if (startsWith("org.junit.")) {
-                when (this) {
-                    "org.junit.Test" -> return "kotlin.test.Test"
-                    "org.junit.Ignore" -> return "kotlin.test.Ignore"
-                    "org.junit.Before" -> return "kotlin.test.BeforeTest"
-                    "org.junit.After" -> return "kotlin.test.AfterTest"
+                val replacement = JUNIT_REPLACEMENTS[this]
+                if (replacement != null) {
+                    return replacement
                 }
             }
             return null

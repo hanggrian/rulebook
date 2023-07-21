@@ -6,9 +6,9 @@
 
 # Rulebook
 
-Additional third-party [rules](rules.md) for lint tools, meant to be used in
-conjunction with official ones. Most of the rules are opinionated personal code
-style mandate. However, some already exists in other linters, providing the same
+[Third-party rules](rules.md) for lint tools, meant to be used in  conjunction
+with official ones. Most of the rules are opinionated personal code style
+mandate. However, some already exists in other linters, providing the same
 experience across languages.
 
 | Language | Linter | Main Rules |

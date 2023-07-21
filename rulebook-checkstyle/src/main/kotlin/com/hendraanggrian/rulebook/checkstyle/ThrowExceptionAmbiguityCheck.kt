@@ -14,6 +14,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 class ThrowExceptionAmbiguityCheck : AbstractCheck() {
     private companion object {
         const val ERROR_MESSAGE = "Ambiguous exception '%s'."
+
+        private val IDENT_TARGETS = setOf("Exception", "Error", "Throwable")
     }
 
     override fun getDefaultTokens(): IntArray = requiredTokens
@@ -26,9 +28,7 @@ class ThrowExceptionAmbiguityCheck : AbstractCheck() {
 
         // only target supertype
         val ident = literalNew[IDENT]
-        if (ident.text != "Exception" && ident.text != "Error" &&
-            ident.text != "Throwable"
-        ) {
+        if (ident.text !in IDENT_TARGETS) {
             return
         }
 

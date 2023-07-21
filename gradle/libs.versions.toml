@@ -1,12 +1,12 @@
 [versions]
 jdk = "8"
-kotlin = "1.8.10"
+kotlin = "1.8.20"
 ktlint = "0.49.1"
 checkstyle = "8.45.1"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.6.1"
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.7.2"
 maven-publish = "com.vanniktech.maven.publish.base:0.22.0" # max for jdk8
 git-publish = "org.ajoberstar.git-publish:3.0.1" # max for jdk8
 pages = "com.hendraanggrian.pages:0.1"
@@ -21,4 +21,4 @@ ktlint-cli-ruleset-core = { module = "com.pinterest.ktlint:ktlint-cli-ruleset-co
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
-truth = "com.google.truth:truth:1.1.3"
+truth = "com.google.truth:truth:1.1.5"

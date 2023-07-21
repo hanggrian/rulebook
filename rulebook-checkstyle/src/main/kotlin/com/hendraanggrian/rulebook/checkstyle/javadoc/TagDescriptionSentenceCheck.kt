@@ -17,6 +17,8 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 class TagDescriptionSentenceCheck : AbstractJavadocCheck() {
     private companion object {
         const val ERROR_MESSAGE = "Description of tag '%s' is not a sentence."
+
+        private val END_PUNCTUATIONS = setOf('.', '?', '!')
     }
 
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
@@ -36,10 +38,8 @@ class TagDescriptionSentenceCheck : AbstractJavadocCheck() {
         }
 
         // check the suffix
-        val tagDescription = node.actualText.trimComment().trimEnd()
-        if (!tagDescription.endsWith('.') && !tagDescription.endsWith('?') &&
-            !tagDescription.endsWith('!')
-        ) {
+        val endPunctuation = node.actualText.trimComment().trimEnd().lastOrNull() ?: return
+        if (endPunctuation !in END_PUNCTUATIONS) {
             log(anyLiteral.lineNumber, ERROR_MESSAGE.format(anyLiteral.text))
         }
     }

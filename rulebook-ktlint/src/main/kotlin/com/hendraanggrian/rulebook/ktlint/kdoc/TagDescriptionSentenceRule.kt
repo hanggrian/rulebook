@@ -15,6 +15,10 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 class TagDescriptionSentenceRule : RulebookRule("tag-description-sentence") {
     internal companion object {
         const val ERROR_MESSAGE = "Description of tag '%s' is not a sentence."
+
+        private val KDOC_TAG_NAME_TARGETS =
+            setOf("@param", "@return", "@throws", "@property", "@receiver", "@constructor")
+        private val END_PUNCTUATIONS = setOf('.', '?', '!')
     }
 
     override fun beforeVisitChildNodes(
@@ -34,18 +38,13 @@ class TagDescriptionSentenceRule : RulebookRule("tag-description-sentence") {
 
         // only enforce certain tags
         val kdocTagName = node[KDOC_TAG_NAME]
-        if (kdocTagName.text != "@param" && kdocTagName.text != "@return" &&
-            kdocTagName.text != "@throws" && kdocTagName.text != "@property" &&
-            kdocTagName.text != "@receiver" && kdocTagName.text != "@constructor"
-        ) {
+        if (kdocTagName.text !in KDOC_TAG_NAME_TARGETS) {
             return
         }
 
         // check the suffix
-        val tagDescription = node.text.trimComment().trimEnd()
-        if (!tagDescription.endsWith('.') && !tagDescription.endsWith('?') &&
-            !tagDescription.endsWith('!')
-        ) {
+        val endPunctuation = node.text.trimComment().trimEnd().lastOrNull() ?: return
+        if (endPunctuation !in END_PUNCTUATIONS) {
             emit(kdocTagName.endOffset, ERROR_MESSAGE.format(kdocTagName.text), false)
         }
     }
