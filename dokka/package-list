@@ -1,9 +1,0 @@
-$dokka.format:html-v1
-$dokka.linkExtension:html
-
-module:rulebook-checkstyle
-com.hendraanggrian.rulebook.checkstyle
-com.hendraanggrian.rulebook.checkstyle.javadoc
-module:rulebook-ktlint
-com.hendraanggrian.rulebook.ktlint
-com.hendraanggrian.rulebook.ktlint.kdoc
