@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":rulebook-checkstyle:dokkaHtmlPartial/main":[],":rulebook-ktlint:dokkaHtmlPartial/main":[]}'
