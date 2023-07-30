@@ -6,10 +6,10 @@
 
 # Rulebook
 
-[Third-party rules](rules.md) for lint tools, meant to be used in  conjunction
-with official ones. Most of the rules are opinionated personal code style
-mandate. However, some already exists in other linters, providing the same
-experience across languages.
+[Third-party rules](https://github.com/hendraanggrian/rulebook/wiki/) for lint
+tools, meant to be used in  conjunction with official ones. Most of the rules
+are opinionated personal code styles. However, some already exists in other
+linters, providing the same experience across languages.
 
 | Language | Linter | Main Rules |
 | --- | --- | --- |
@@ -73,8 +73,8 @@ dependencies {
 // the rest of ktlint tasks' configuration
 ```
 
-> Do not use KtLint with [Spotless](https://github.com/diffplug/spotless/), as
-  there is yet no way to add custom rules.
+> [Spotless](https://github.com/diffplug/spotless/) is not supported as because
+  you can't add custom rules.
 
 ## First time installation
 

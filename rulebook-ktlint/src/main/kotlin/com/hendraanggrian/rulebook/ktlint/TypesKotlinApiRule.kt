@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#types-kotlin-api).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/TypesKotlinApi).
  */
 class TypesKotlinApiRule : RulebookRule("types-kotlin-api") {
     internal companion object {

@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#class-body-starting-whitespace).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/ClassBodyStartingWhitespace).
  */
 class ClassBodyStartingWhitespaceRule : RulebookRule("class-body-starting-whitespace") {
     internal companion object {

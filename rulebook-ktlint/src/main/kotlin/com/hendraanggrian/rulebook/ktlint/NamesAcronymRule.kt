@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.psi.psiUtil.children
 import java.nio.file.Paths
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#names-acronym).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/NamesAcronym).
  */
 class NamesAcronymRule : RulebookRule("names-acronym") {
     internal companion object {

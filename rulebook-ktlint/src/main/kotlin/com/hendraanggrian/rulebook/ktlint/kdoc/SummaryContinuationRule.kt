@@ -9,7 +9,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#summary-continuation).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/SummaryContinuation).
  */
 class SummaryContinuationRule : RulebookRule("summary-continuation") {
     internal companion object {

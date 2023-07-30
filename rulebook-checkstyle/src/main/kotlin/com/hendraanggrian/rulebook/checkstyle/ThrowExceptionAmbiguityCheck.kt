@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NEW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#throw-exception-ambiguity).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/ThrowExceptionAmbiguity).
  */
 class ThrowExceptionAmbiguityCheck : AbstractCheck() {
     private companion object {

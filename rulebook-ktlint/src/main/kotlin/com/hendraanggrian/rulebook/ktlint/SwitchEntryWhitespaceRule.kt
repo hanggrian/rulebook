@@ -7,7 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#switch-entry-whitespace).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/SwitchEntryWhitespace).
  */
 class SwitchEntryWhitespaceRule : RulebookRule("switch-entry-whitespace") {
     internal companion object {

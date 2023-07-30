@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#functions-return-type).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/FunctionsReturnType).
  */
 class FunctionsReturnTypeRule : RulebookRule("functions-return-type") {
     internal companion object {

@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#tags-starting-whitespace).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/TagsStartingWhitespace).
  */
 class TagsStartingWhitespaceRule : RulebookRule("tags-starting-whitespace") {
     internal companion object {

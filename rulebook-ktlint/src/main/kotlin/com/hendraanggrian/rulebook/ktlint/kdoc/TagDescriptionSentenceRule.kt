@@ -10,7 +10,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#tag-description-sentence).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/TagDescriptionSentence).
  */
 class TagDescriptionSentenceRule : RulebookRule("tag-description-sentence") {
     internal companion object {

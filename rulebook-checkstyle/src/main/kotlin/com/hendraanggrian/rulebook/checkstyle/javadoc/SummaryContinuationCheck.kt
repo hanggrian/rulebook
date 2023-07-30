@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.LEADING_ASTERISK
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#summary-continuation).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/SummaryContinuation).
  */
 class SummaryContinuationCheck : AbstractJavadocCheck() {
     private companion object {

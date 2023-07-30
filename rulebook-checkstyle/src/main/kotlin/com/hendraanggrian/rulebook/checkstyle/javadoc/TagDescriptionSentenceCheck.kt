@@ -12,7 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.THROWS_LITERAL
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#tag-description-sentence).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/TagDescriptionSentence).
  */
 class TagDescriptionSentenceCheck : AbstractJavadocCheck() {
     private companion object {

@@ -9,7 +9,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_ARGUMENT_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See guide](https://github.com/hendraanggrian/rulebook/blob/main/rules.md#throw-exception-ambiguity).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/ThrowExceptionAmbiguity).
  */
 class ThrowExceptionAmbiguityRule : RulebookRule("throw-exception-ambiguity") {
     internal companion object {
