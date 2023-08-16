@@ -1,9 +1,9 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.rulebook.ktlint.kdoc.SummaryContinuationRule
-import com.hendraanggrian.rulebook.ktlint.kdoc.TagDescriptionSentenceRule
-import com.hendraanggrian.rulebook.ktlint.kdoc.TagsStartingWhitespaceRule
+import com.hendraanggrian.rulebook.ktlint.docs.SummaryContinuationRule
+import com.hendraanggrian.rulebook.ktlint.docs.TagDescriptionSentenceRule
+import com.hendraanggrian.rulebook.ktlint.docs.TagsStartingWhitespaceRule
 import kotlin.test.Test
 import kotlin.test.assertFalse
 
@@ -30,8 +30,8 @@ class RulebookRuleSetTest {
             FunctionsReturnTypeRule::class,
             NamesAcronymRule::class,
             SwitchEntryWhitespaceRule::class,
-            ThrowExceptionAmbiguityRule::class,
-            TypesKotlinApiRule::class
+            ThrowAmbiguityRule::class,
+            UseKotlinApiRule::class
         )
     }
 }

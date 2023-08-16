@@ -22,7 +22,8 @@ import org.jetbrains.kotlin.psi.psiUtil.children
  */
 class FunctionsReturnTypeRule : RulebookRule("functions-return-type") {
     internal companion object {
-        const val ERROR_MESSAGE = "Missing return type in function '%s'."
+        const val MSG_EXPR = "functions.return.type.expr"
+        const val MSG_PROP = "functions.return.type.prop"
     }
 
     override fun beforeVisitChildNodes(
@@ -54,9 +55,10 @@ class FunctionsReturnTypeRule : RulebookRule("functions-return-type") {
 
                 // check for violation
                 if (node.isViolation()) {
+                    val identifier = node.findChildByType(IDENTIFIER)!!
                     emit(
                         node[VALUE_PARAMETER_LIST].endOffset,
-                        ERROR_MESSAGE.format("Expression function"),
+                        Messages.get(MSG_EXPR, identifier.text),
                         false
                     )
                 }
@@ -75,9 +77,10 @@ class FunctionsReturnTypeRule : RulebookRule("functions-return-type") {
 
                 // check for violation
                 if (node.isViolation()) {
+                    val identifier = node.findChildByType(IDENTIFIER)!!
                     emit(
                         node[IDENTIFIER].endOffset,
-                        ERROR_MESSAGE.format("Property accessor"),
+                        Messages.get(MSG_PROP, identifier.text),
                         false
                     )
                 }

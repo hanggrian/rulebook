@@ -1,6 +1,5 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.SwitchEntryWhitespaceRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -18,5 +17,5 @@ class SwitchEntryWhitespaceRuleTest {
             }
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(5, 9, ERROR_MESSAGE)
+    ).hasLintViolationWithoutAutoCorrect(5, 9, Messages[SwitchEntryWhitespaceRule.MSG])
 }

@@ -1,6 +1,5 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.ClassBodyStartingWhitespaceRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -16,7 +15,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Unexpected"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_SINGLE, "MyClass")
+    )
 
     @Test
     fun `Class multiple-line declaration`() = assertThatCode(
@@ -27,7 +30,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(4, 5, ERROR_MESSAGE.format("Missing"))
+    ).hasLintViolationWithoutAutoCorrect(
+        4,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_MULTIPLE, "MyClass")
+    )
 
     @Test
     fun `Class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -57,7 +64,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             // stub
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Unexpected"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_SINGLE, "MyAnnotation")
+    )
 
     @Test
     fun `Annotation class multiple-line declaration`() = assertThatCode(
@@ -68,7 +79,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             // stub
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(4, 5, ERROR_MESSAGE.format("Missing"))
+    ).hasLintViolationWithoutAutoCorrect(
+        4,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_MULTIPLE, "MyAnnotation")
+    )
 
     @Test
     fun `Annotation class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -98,7 +113,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Unexpected"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_SINGLE, "MyData")
+    )
 
     @Test
     fun `Data class multiple-line declaration`() = assertThatCode(
@@ -109,7 +128,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(4, 5, ERROR_MESSAGE.format("Missing"))
+    ).hasLintViolationWithoutAutoCorrect(
+        4,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_MULTIPLE, "MyData")
+    )
 
     @Test
     fun `Data class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -139,7 +162,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             ENTRY
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Unexpected"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_SINGLE, "MyEnum")
+    )
 
     @Test
     fun `Enum class multiple-line declaration`() = assertThatCode(
@@ -150,7 +177,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             ENTRY("")
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(4, 5, ERROR_MESSAGE.format("Missing"))
+    ).hasLintViolationWithoutAutoCorrect(
+        4,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_MULTIPLE, "MyEnum")
+    )
 
     @Test
     fun `Enum class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -180,7 +211,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Unexpected"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_SINGLE, "MySealed")
+    )
 
     @Test
     fun `Sealed class multiple-line declaration`() = assertThatCode(
@@ -191,7 +226,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(4, 5, ERROR_MESSAGE.format("Missing"))
+    ).hasLintViolationWithoutAutoCorrect(
+        4,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_MULTIPLE, "MySealed")
+    )
 
     @Test
     fun `Sealed class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -221,7 +260,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property: String
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Unexpected"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_SINGLE, "MyInterface")
+    )
 
     @Test
     fun `Interface multiple-line declaration`() = assertThatCode(
@@ -231,7 +274,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property: String
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Missing"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_MULTIPLE, "MyInterface")
+    )
 
     @Test
     fun `Interface declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -261,7 +308,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Unexpected"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_SINGLE, "MyObject")
+    )
 
     @Test
     fun `Object multiple-line declaration`() = assertThatCode(
@@ -271,7 +322,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(3, 5, ERROR_MESSAGE.format("Missing"))
+    ).hasLintViolationWithoutAutoCorrect(
+        3,
+        5,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_MULTIPLE, "MyObject")
+    )
 
     @Test
     fun `Object declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -303,7 +358,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             }
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(4, 9, ERROR_MESSAGE.format("Unexpected"))
+    ).hasLintViolationWithoutAutoCorrect(
+        4,
+        9,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_SINGLE, "Companion object")
+    )
 
     @Test
     fun `Companion object multiple-line declaration`() = assertThatCode(
@@ -315,7 +374,11 @@ class ClassBodyStartingWhitespaceRuleTest {
             }
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(4, 9, ERROR_MESSAGE.format("Missing"))
+    ).hasLintViolationWithoutAutoCorrect(
+        4,
+        9,
+        Messages.get(ClassBodyStartingWhitespaceRule.MSG_MULTIPLE, "Companion object")
+    )
 
     @Test
     fun `Companion object declarations ignore kdoc, comment, and annotation`() = assertThatCode(

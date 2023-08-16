@@ -20,7 +20,8 @@ import java.nio.file.Paths
  */
 class NamesAcronymRule : RulebookRule("names-acronym") {
     internal companion object {
-        const val ERROR_MESSAGE = "Acronym of '%s' should be lowercase."
+        const val MSG_FILE = "names.acronym.file"
+        const val MSG_OTHERS = "names.acronym.others"
     }
 
     override fun beforeVisitChildNodes(
@@ -39,11 +40,15 @@ class NamesAcronymRule : RulebookRule("names-acronym") {
 
                 // check for violation
                 if (identifier.text.isViolation()) {
-                    emit(identifier.startOffset, ERROR_MESSAGE.format("property"), false)
+                    emit(
+                        identifier.startOffset,
+                        Messages.get(MSG_OTHERS, "property", identifier.text),
+                        false
+                    )
                 }
             }
             FUN, CLASS, OBJECT_DECLARATION -> {
-                // may be property, fun, class, interface, object or annotation
+                // may be property getter/setter, fun, class, interface, object or annotation
                 val typeName = node.children().first {
                     it.elementType != KDOC &&
                         it.elementType != WHITE_SPACE &&
@@ -55,7 +60,11 @@ class NamesAcronymRule : RulebookRule("names-acronym") {
 
                 // check for violation
                 if (identifier.text.isViolation()) {
-                    emit(identifier.startOffset, ERROR_MESSAGE.format(typeName), false)
+                    emit(
+                        identifier.startOffset,
+                        Messages.get(MSG_OTHERS, typeName, identifier.text),
+                        false
+                    )
                 }
             }
             FILE -> {
@@ -75,7 +84,7 @@ class NamesAcronymRule : RulebookRule("names-acronym") {
 
                 // check for violation
                 if (fileName.isViolation()) {
-                    emit(node.startOffset, ERROR_MESSAGE.format("file"), false)
+                    emit(node.startOffset, Messages[MSG_FILE], false)
                 }
             }
         }

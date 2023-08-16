@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  */
 class SwitchEntryWhitespaceRule : RulebookRule("switch-entry-whitespace") {
     internal companion object {
-        const val ERROR_MESSAGE = "Unexpected empty line."
+        const val MSG = "switch.entry.whitespace"
     }
 
     override fun beforeVisitChildNodes(
@@ -37,7 +37,7 @@ class SwitchEntryWhitespaceRule : RulebookRule("switch-entry-whitespace") {
                 return
             }
             if ("\n\n" in whitespace.text) {
-                emit(whitespace.endOffset, ERROR_MESSAGE, false)
+                emit(whitespace.endOffset, Messages[MSG], false)
             }
         }
     }

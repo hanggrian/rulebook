@@ -1,8 +1,8 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.kdoc.SummaryContinuationRule
-import com.hendraanggrian.rulebook.ktlint.kdoc.TagDescriptionSentenceRule
-import com.hendraanggrian.rulebook.ktlint.kdoc.TagsStartingWhitespaceRule
+import com.hendraanggrian.rulebook.ktlint.docs.SummaryContinuationRule
+import com.hendraanggrian.rulebook.ktlint.docs.TagDescriptionSentenceRule
+import com.hendraanggrian.rulebook.ktlint.docs.TagsStartingWhitespaceRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.Rule
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -37,7 +37,7 @@ class RulebookRuleSet : RuleSetProviderV3(RULEBOOK_ID) {
         RuleProvider { FunctionsReturnTypeRule() },
         RuleProvider { NamesAcronymRule() },
         RuleProvider { SwitchEntryWhitespaceRule() },
-        RuleProvider { ThrowExceptionAmbiguityRule() },
-        RuleProvider { TypesKotlinApiRule() }
+        RuleProvider { ThrowAmbiguityRule() },
+        RuleProvider { UseKotlinApiRule() }
     )
 }

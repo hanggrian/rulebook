@@ -2,6 +2,9 @@ package com.hendraanggrian.rulebook.checkstyle
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.DetailNode
+import java.lang.ref.WeakReference
+import java.text.MessageFormat
+import java.util.*
 
 /**
  * Returns the whole text of this node. Calling `getText()` on Java node with children returns its
@@ -34,4 +37,16 @@ internal fun DetailNode.siblingsUntil(type: Int): List<DetailNode> {
         list += next
     }
     return list
+}
+
+internal object Messages {
+    private const val FILENAME = "messages"
+    private lateinit var bundleRef: WeakReference<ResourceBundle>
+
+    operator fun get(key: String): String = when {
+        ::bundleRef.isInitialized && bundleRef.get() != null -> bundleRef.get()!!
+        else -> ResourceBundle.getBundle(FILENAME).also { bundleRef = WeakReference(it) }
+    }.getString(key)
+
+    fun get(key: String, vararg args: String): String = MessageFormat(get(key)).format(args)
 }

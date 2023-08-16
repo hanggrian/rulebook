@@ -1,6 +1,5 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.FunctionsReturnTypeRule.Companion.ERROR_MESSAGE
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -24,8 +23,8 @@ class FunctionsReturnTypeRuleTest {
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(1, 25, ERROR_MESSAGE.format("Expression function")),
-        LintViolation(3, 29, ERROR_MESSAGE.format("Expression function"))
+        LintViolation(1, 25, Messages.get(FunctionsReturnTypeRule.MSG_EXPR, "expressionFunction")),
+        LintViolation(3, 29, Messages.get(FunctionsReturnTypeRule.MSG_EXPR, "expressionFunction"))
     )
 
     @Test
@@ -57,22 +56,22 @@ class FunctionsReturnTypeRuleTest {
     @Test
     fun `Getter function`() = assertThatCode(
         """
-        val property get() = "Hello world"
+        val propertyAccessor get() = "Hello world"
         class Class {
-            val property get() = "Hello world"
+            val propertyAccessor get() = "Hello world"
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(1, 13, ERROR_MESSAGE.format("Property accessor")),
-        LintViolation(3, 17, ERROR_MESSAGE.format("Property accessor"))
+        LintViolation(1, 21, Messages.get(FunctionsReturnTypeRule.MSG_PROP, "propertyAccessor")),
+        LintViolation(3, 25, Messages.get(FunctionsReturnTypeRule.MSG_PROP, "propertyAccessor"))
     )
 
     @Test
     fun `Private getter function`() = assertThatCode(
         """
-        private val property get() = "Hello world"
+        private val propertyAccessor get() = "Hello world"
         private class MyClass {
-            val property get() = "Hello world"
+            val propertyAccessor get() = "Hello world"
         }
         """.trimIndent()
     ).hasNoLintViolations()
@@ -81,7 +80,7 @@ class FunctionsReturnTypeRuleTest {
     fun `Property within code block`() = assertThatCode(
         """
         fun codeBlock() {
-            val property = "Hello world"
+            val propertyAccessor = "Hello world"
             listOf(1, 2, 3).forEach() {
                 val num = it
             }

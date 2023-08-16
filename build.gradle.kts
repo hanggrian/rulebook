@@ -8,7 +8,6 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin apply false
-    kotlin("kapt") version libs.versions.kotlin apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.maven.publish) apply false
 }
