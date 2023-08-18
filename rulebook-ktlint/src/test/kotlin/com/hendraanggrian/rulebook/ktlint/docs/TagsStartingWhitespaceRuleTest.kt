@@ -9,9 +9,11 @@ class TagsStartingWhitespaceRuleTest {
     private val assertThatCode = assertThatRule { TagsStartingWhitespaceRule() }
 
     @Test
-    fun `No summary`() = assertThatCode(
+    fun `Correct format`() = assertThatCode(
         """
         /**
+         * Just a box.
+         *
          * @param width
          * @param height
          */
@@ -20,11 +22,9 @@ class TagsStartingWhitespaceRuleTest {
     ).hasNoLintViolations()
 
     @Test
-    fun `Correct formats`() = assertThatCode(
+    fun `No summary are fine`() = assertThatCode(
         """
         /**
-         * Just a box.
-         *
          * @param width
          * @param height
          */

@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.rulebook.ktlint.docs.SummaryContinuationRule
 import com.hendraanggrian.rulebook.ktlint.docs.TagDescriptionSentenceRule
 import com.hendraanggrian.rulebook.ktlint.docs.TagsStartingWhitespaceRule
 import kotlin.test.Test
@@ -23,7 +22,6 @@ class RulebookRuleSetTest {
                 .getRuleProviders()
                 .map { it.createNewRuleInstance().javaClass.kotlin }
         ).containsExactly(
-            SummaryContinuationRule::class,
             TagDescriptionSentenceRule::class,
             TagsStartingWhitespaceRule::class,
             ClassBodyStartingWhitespaceRule::class,

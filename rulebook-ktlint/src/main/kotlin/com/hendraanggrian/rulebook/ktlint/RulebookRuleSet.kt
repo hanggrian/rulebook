@@ -1,6 +1,5 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.docs.SummaryContinuationRule
 import com.hendraanggrian.rulebook.ktlint.docs.TagDescriptionSentenceRule
 import com.hendraanggrian.rulebook.ktlint.docs.TagsStartingWhitespaceRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
@@ -30,7 +29,6 @@ open class RulebookRule internal constructor(
 
 class RulebookRuleSet : RuleSetProviderV3(RULEBOOK_ID) {
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
-        RuleProvider { SummaryContinuationRule() },
         RuleProvider { TagDescriptionSentenceRule() },
         RuleProvider { TagsStartingWhitespaceRule() },
         RuleProvider { ClassBodyStartingWhitespaceRule() },

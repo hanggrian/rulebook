@@ -4,14 +4,14 @@
   "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <!--
-    Checkstyle configuration file for Rulebook, find out more at https://github.com/hendraanggrian/rulebook/.
+  Checkstyle configuration file for Rulebook, find out more at https://github.com/hendraanggrian/rulebook/.
 
-    Derived from https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml
-    version 8.45.1 with few changes:
+  Derived from https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml
+  version 8.45.1 with few changes:
 
-    - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
-    - Lenient javadoc by removing `SummaryJavadoc`, `MissingJavadocMethod`, and `MissingJavadocType`.
-    - Change property `AbbreviationAsWordInName#allowedAbbreviationLength` from `0` to `1`.
+  - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
+  - Lenient javadoc by removing `SummaryJavadoc`, `MissingJavadocMethod`, and `MissingJavadocType`.
+  - Change property `AbbreviationAsWordInName#allowedAbbreviationLength` from 0 to 1.
  -->
 
 <module name="Checker">
@@ -45,8 +45,7 @@
   </module>
 
   <module name="TreeWalker">
-    <!-- Additional rules -->
-    <module name="SummaryContinuation"/>
+    <!-- Third-party rules -->
     <module name="TagDescriptionSentence"/>
     <module name="ThrowAmbiguity"/>
 
