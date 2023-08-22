@@ -1,3 +1,5 @@
+val RELEASE_ARTIFACT: String by project
+
 plugins {
     java
     checkstyle
@@ -5,7 +7,7 @@ plugins {
 
 checkstyle {
     toolVersion = libs.versions.checkstyle.get()
-    configFile = rootDir.resolve("rulebook_checks.xml")
+    configFile = rootDir.resolve("rulebook_checkstyle.xml")
 }
 
 dependencies {

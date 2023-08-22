@@ -10,10 +10,10 @@ plugins {
 
 dependencies {
     ktlintRuleset(libs.ktlint)
+    ktlintRuleset(project(":$RELEASE_ARTIFACT-ktlint"))
 
-    implementation(libs.ktlint.core)
-    implementation(libs.ktlint.rule.engine.core)
-    implementation(libs.ktlint.cli.ruleset.core)
+    implementation(libs.groovy)
+    implementation(libs.codenarc)
 
     testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
     testImplementation(libs.ktlint.test)

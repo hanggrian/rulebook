@@ -1,7 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.docs.TagDescriptionSentenceRule
-import com.hendraanggrian.rulebook.ktlint.docs.TagsStartingWhitespaceRule
+import com.hendraanggrian.rulebook.ktlint.docs.TagDescriptionPunctuationRule
+import com.hendraanggrian.rulebook.ktlint.docs.TagGroupAfterNewlineRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.Rule
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -29,13 +29,13 @@ open class RulebookRule internal constructor(
 
 class RulebookRuleSet : RuleSetProviderV3(RULEBOOK_ID) {
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
-        RuleProvider { TagDescriptionSentenceRule() },
-        RuleProvider { TagsStartingWhitespaceRule() },
-        RuleProvider { ClassBodyStartingWhitespaceRule() },
-        RuleProvider { FunctionsReturnTypeRule() },
-        RuleProvider { NamesAcronymRule() },
-        RuleProvider { SwitchEntryWhitespaceRule() },
+        RuleProvider { TagDescriptionPunctuationRule() },
+        RuleProvider { TagGroupAfterNewlineRule() },
+        RuleProvider { ClassBodyStartingNewlineRule() },
+        RuleProvider { FunctionReturnTypeRule() },
+        RuleProvider { AllNameAcronymRule() },
+        RuleProvider { SwitchEntryNoNewlineRule() },
         RuleProvider { ThrowAmbiguityRule() },
-        RuleProvider { UseKotlinApiRule() }
+        RuleProvider { AllKotlinApiRule() }
     )
 }
