@@ -38,6 +38,7 @@ subprojects {
     }
     plugins.withType<MavenPublishBasePlugin> {
         configure<MavenPublishBaseExtension> {
+            configure(KotlinJvm(JavadocJar.Dokka("dokkaJavadoc")))
             publishToMavenCentral(SonatypeHost.S01)
             signAllPublications()
             pom {
@@ -64,7 +65,6 @@ subprojects {
                     developerConnection.set("scm:git:ssh://git@github.com/$DEVELOPER_ID/$RELEASE_ARTIFACT.git")
                 }
             }
-            configure(KotlinJvm(JavadocJar.Dokka("dokkaJavadoc")))
         }
     }
 }

@@ -77,7 +77,6 @@
   </ruleset-ref>
 
   <!-- Third-party rules -->
-  <rule class="com.hendraanggrian.rulebook.codenarc.docs.TagDescriptionPunctuationRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.docs.TagGroupAfterNewlineRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.AllNameAcronym"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.LowercaseAcronymNameNarc"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.UseAbstractCollectionNarc"/>
 </ruleset>

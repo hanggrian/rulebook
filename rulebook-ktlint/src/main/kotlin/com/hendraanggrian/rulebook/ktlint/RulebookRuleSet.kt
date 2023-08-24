@@ -1,7 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.docs.TagDescriptionPunctuationRule
-import com.hendraanggrian.rulebook.ktlint.docs.TagGroupAfterNewlineRule
+import com.hendraanggrian.rulebook.ktlint.docs.AddEmptyLineBeforeTagsRule
+import com.hendraanggrian.rulebook.ktlint.docs.PunctuateTagRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.Rule
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -29,13 +29,15 @@ open class RulebookRule internal constructor(
 
 class RulebookRuleSet : RuleSetProviderV3(RULEBOOK_ID) {
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
-        RuleProvider { TagDescriptionPunctuationRule() },
-        RuleProvider { TagGroupAfterNewlineRule() },
-        RuleProvider { ClassBodyStartingNewlineRule() },
-        RuleProvider { FunctionReturnTypeRule() },
-        RuleProvider { AllNameAcronymRule() },
-        RuleProvider { SwitchEntryNoNewlineRule() },
-        RuleProvider { ThrowAmbiguityRule() },
-        RuleProvider { AllKotlinApiRule() }
+        RuleProvider { AddEmptyLineBeforeTagsRule() },
+        RuleProvider { PunctuateTagRule() },
+        RuleProvider { AddEmptyLineInClassRule() },
+        RuleProvider { DescribeThrowRule() },
+        RuleProvider { LowercaseAcronymNameRule() },
+        RuleProvider { RemoveEmptyLineInSwitchRule() },
+        RuleProvider { SpecifyReturnTypeRule() },
+        RuleProvider { UncommonStringLiteralRule() },
+        RuleProvider { UseAbstractCollectionRule() },
+        RuleProvider { UseKotlinApiRule() }
     )
 }

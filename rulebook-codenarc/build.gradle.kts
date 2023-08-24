@@ -1,6 +1,7 @@
 val RELEASE_ARTIFACT: String by project
 
 plugins {
+    groovy
     kotlin("jvm") version libs.versions.kotlin
     alias(libs.plugins.kotlinx.kover)
     alias(libs.plugins.dokka)

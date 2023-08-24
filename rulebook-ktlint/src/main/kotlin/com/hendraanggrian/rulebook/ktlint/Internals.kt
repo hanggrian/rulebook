@@ -8,9 +8,9 @@ import java.util.*
 
 internal inline val ASTNode.endOffset: Int get() = startOffset + textLength
 
-internal operator fun ASTNode.contains(type: IElementType): Boolean = findChildByType(type) != null
-
-internal operator fun ASTNode.get(type: IElementType): ASTNode = findChildByType(type)!!
+internal inline fun ASTNode.getOrNull(type: IElementType): ASTNode? = findChildByType(type)
+internal inline operator fun ASTNode.contains(type: IElementType): Boolean =
+    findChildByType(type) != null
 
 internal fun ASTNode.siblingsUntil(type: IElementType): List<ASTNode> {
     val list = mutableListOf<ASTNode>()

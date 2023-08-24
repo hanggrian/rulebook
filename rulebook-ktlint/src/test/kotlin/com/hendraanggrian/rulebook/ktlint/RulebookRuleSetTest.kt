@@ -1,8 +1,8 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.rulebook.ktlint.docs.TagDescriptionPunctuationRule
-import com.hendraanggrian.rulebook.ktlint.docs.TagGroupAfterNewlineRule
+import com.hendraanggrian.rulebook.ktlint.docs.AddEmptyLineBeforeTagsRule
+import com.hendraanggrian.rulebook.ktlint.docs.PunctuateTagRule
 import kotlin.test.Test
 import kotlin.test.assertFalse
 
@@ -22,14 +22,16 @@ class RulebookRuleSetTest {
                 .getRuleProviders()
                 .map { it.createNewRuleInstance().javaClass.kotlin }
         ).containsExactly(
-            TagDescriptionPunctuationRule::class,
-            TagGroupAfterNewlineRule::class,
-            ClassBodyStartingNewlineRule::class,
-            FunctionReturnTypeRule::class,
-            AllNameAcronymRule::class,
-            SwitchEntryNoNewlineRule::class,
-            ThrowAmbiguityRule::class,
-            AllKotlinApiRule::class
+            AddEmptyLineBeforeTagsRule::class,
+            PunctuateTagRule::class,
+            AddEmptyLineInClassRule::class,
+            DescribeThrowRule::class,
+            LowercaseAcronymNameRule::class,
+            RemoveEmptyLineInSwitchRule::class,
+            SpecifyReturnTypeRule::class,
+            UncommonStringLiteralRule::class,
+            UseAbstractCollectionRule::class,
+            UseKotlinApiRule::class
         )
     }
 }
