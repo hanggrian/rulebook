@@ -23,7 +23,6 @@ in other linters, providing the same experience across languages.
 repositories {
     mavenCentral()
 }
-
 dependencies {
     ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:$version"
     checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$version"
@@ -45,12 +44,10 @@ to Gradle project. Using configuration `ktlint`, add this project as dependency.
 configurations {
     ktlint
 }
-
 dependencies {
     ktlint "com.pinterest:ktlint:$ktlintVersion"
-    ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:libraryVersion"
+    ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:$libraryVersion"
 }
-
 // the rest of ktlint tasks' configuration
 ```
 
@@ -64,15 +61,13 @@ config file to `rulebook_checkstyle.xml`.
 plugins {
     checkstyle
 }
-
 checkstyle {
     toolVersion "$checkstyleVersion"
     configFile "path/to/rulebook_checkstyle.xml"
 }
-
 dependencies {
     checkstyle "com.puppycrawl.tools:checkstyle:$checkstyleVersion"
-    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:libraryVersion"
+    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$libraryVersion"
 }
 ```
 
@@ -86,15 +81,13 @@ config file to `rulebook_codenarc.xml`.
 plugins {
     codenarc
 }
-
 codenarc {
     toolVersion "$codenarcVersion"
     configFile "path/to/rulebook_codenarc.xml"
 }
-
 dependencies {
     codenarc "org.codenarc:CodeNarc:$codenarcVersion"
-    codenarc "com.hendraanggrian.rulebook:rulebook-codenarc:libraryVersion"
+    codenarc "com.hendraanggrian.rulebook:rulebook-codenarc:$libraryVersion"
 }
 ```
 
@@ -104,16 +97,17 @@ Presuming the IDE is *IntelliJ IDEA*, consider applying the linter style to it.
 
 ### Ktlint
 
-Explained in [Ktlint IntelliJ IDEA Configuration](https://pinterest.github.io/ktlint/rules/configuration-intellij-idea/),
+Explained in [Ktlint IntelliJ IDEA Configuration](https://pinterest.github.io/ktlint/0.49.1/rules/configuration-intellij-idea/),
 using standard [Kotlin coding conventions] is enough:
 
-- In `File > Settings > Editor > Code Style > Kotlin`, set
-  from `Kotlin style guide`.
+- In `File > Settings > Editor > Code Style > Kotlin`, set from
+  `Kotlin style guide`.
 - Append `kotlin.code.style=official` to root `gradle.properties`.
 
 [Kotlin coding conventions]: https://kotlinlang.org/docs/coding-conventions.html
 
 ### Checkstyle
 
-In `File > Settings > Editor > Code Style > Java`, import [IntelliJ Java Google Style file](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml).
+In `File > Settings > Editor > Code Style > Java`, import
+[IntelliJ Java Google Style file](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml).
 The whole process are better explained in [Google Java Format](https://github.com/google/google-java-format/).

@@ -33,10 +33,12 @@ class RulebookRuleSet : RuleSetProviderV3(RULEBOOK_ID) {
         RuleProvider { PunctuateTagRule() },
         RuleProvider { AddEmptyLineInClassRule() },
         RuleProvider { DescribeThrowRule() },
+        RuleProvider { InvertIfConditionRule() },
         RuleProvider { LowercaseAcronymNameRule() },
+        RuleProvider { NoUnderscoreNameRule() },
         RuleProvider { RemoveEmptyLineInSwitchRule() },
         RuleProvider { SpecifyReturnTypeRule() },
-        RuleProvider { UncommonStringLiteralRule() },
+        RuleProvider { StandardizeStringLiteralRule() },
         RuleProvider { UseAbstractCollectionRule() },
         RuleProvider { UseKotlinApiRule() }
     )

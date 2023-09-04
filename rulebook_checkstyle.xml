@@ -346,7 +346,7 @@
     <!-- Third-party rules -->
     <module name="PunctuateTag"/>
     <module name="DescribeThrow"/>
-    <module name="UncommonStringLiteral"/>
+    <module name="StandardizeStringLiteral"/>
     <module name="UseAbstractCollection"/>
   </module>
 </module>

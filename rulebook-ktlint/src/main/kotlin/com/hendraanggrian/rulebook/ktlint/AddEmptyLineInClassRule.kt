@@ -2,7 +2,6 @@ package com.hendraanggrian.rulebook.ktlint
 
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_BODY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_KEYWORD
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.INTERFACE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
@@ -35,7 +34,7 @@ class AddEmptyLineInClassRule : RulebookRule("add-empty-line-in-class") {
                 it.elementType == OBJECT_KEYWORD
         } ?: return // can be null if this is ENUM_ENTRY
 
-        // skip if class body is single line (e.g.: `class MyClass { val property = "" }`)
+        // get sibling whitespace
         val lbrace = node.firstChildNode
         val whitespace = lbrace.treeNext
         if (whitespace.elementType != WHITE_SPACE) {
@@ -49,9 +48,8 @@ class AddEmptyLineInClassRule : RulebookRule("add-empty-line-in-class") {
         }
 
         // report error if first line is not empty line
-        val classType = `class`.getOrNull(IDENTIFIER)?.text ?: "Companion object"
         if ("\n\n" !in whitespace.text) {
-            emit(whitespace.endOffset, Messages.get(MSG, classType), false)
+            emit(whitespace.endOffset, Messages[MSG], false)
         }
     }
 }

@@ -18,9 +18,9 @@ class DescribeThrowRuleTest {
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(2, 11, Messages.get(DescribeThrowRule.MSG, "Exception")),
-        LintViolation(3, 11, Messages.get(DescribeThrowRule.MSG, "Error")),
-        LintViolation(4, 11, Messages.get(DescribeThrowRule.MSG, "Throwable"))
+        LintViolation(2, 11, Messages[DescribeThrowRule.MSG]),
+        LintViolation(3, 11, Messages[DescribeThrowRule.MSG]),
+        LintViolation(4, 11, Messages[DescribeThrowRule.MSG])
     )
 
     @Test

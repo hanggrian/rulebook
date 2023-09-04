@@ -35,7 +35,7 @@ class DescribeThrowCheck : AbstractCheck() {
         // report error if there is no message
         val elist = literalNew.findFirstToken(ELIST) ?: return
         if (EXPR !in elist) {
-            log(ident, Messages.get(MSG, ident.text))
+            log(ident, Messages[MSG])
         }
     }
 }

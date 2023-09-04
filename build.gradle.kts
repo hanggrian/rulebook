@@ -1,13 +1,3 @@
-import com.vanniktech.maven.publish.JavadocJar
-import com.vanniktech.maven.publish.KotlinJvm
-import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.MavenPublishBasePlugin
-import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
-import org.jlleitschuh.gradle.ktlint.KtlintExtension
-import org.jlleitschuh.gradle.ktlint.KtlintPlugin
-
 val DEVELOPER_ID: String by project
 val DEVELOPER_NAME: String by project
 val DEVELOPER_URL: String by project
@@ -30,16 +20,22 @@ allprojects {
 }
 
 subprojects {
-    plugins.withType<KotlinPluginWrapper> {
-        kotlinExtension.jvmToolchain(libs.versions.jdk.get().toInt())
+    plugins.withType<org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper> {
+        the<org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension>()
+            .jvmToolchain(libs.versions.jdk.get().toInt())
     }
-    plugins.withType<KtlintPlugin> {
-        the<KtlintExtension>().version.set(libs.versions.ktlint.get())
+    plugins.withType<org.jlleitschuh.gradle.ktlint.KtlintPlugin> {
+        the<org.jlleitschuh.gradle.ktlint.KtlintExtension>()
+            .version.set(libs.versions.ktlint.get())
     }
-    plugins.withType<MavenPublishBasePlugin> {
-        configure<MavenPublishBaseExtension> {
-            configure(KotlinJvm(JavadocJar.Dokka("dokkaJavadoc")))
-            publishToMavenCentral(SonatypeHost.S01)
+    plugins.withType<com.vanniktech.maven.publish.MavenPublishBasePlugin> {
+        configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
+            configure(
+                com.vanniktech.maven.publish.KotlinJvm(
+                    com.vanniktech.maven.publish.JavadocJar.Dokka("dokkaJavadoc")
+                )
+            )
+            publishToMavenCentral(com.vanniktech.maven.publish.SonatypeHost.S01)
             signAllPublications()
             pom {
                 name.set(project.name)

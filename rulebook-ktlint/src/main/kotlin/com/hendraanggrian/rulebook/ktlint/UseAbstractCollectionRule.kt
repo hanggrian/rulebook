@@ -41,12 +41,9 @@ class UseAbstractCollectionRule : RulebookRule("use-abstract-collection") {
 
         // report if explicit collection is found
         when (identifier.text) {
-            "ArrayList" ->
-                emit(identifier.startOffset, Messages.get(MSG_LIST, identifier.text), false)
-            "HashSet", "TreeSet" ->
-                emit(identifier.startOffset, Messages.get(MSG_SET, identifier.text), false)
-            "HashMap", "TreeMap" ->
-                emit(identifier.startOffset, Messages.get(MSG_MAP, identifier.text), false)
+            "ArrayList" -> emit(identifier.startOffset, Messages[MSG_LIST], false)
+            "HashSet", "TreeSet" -> emit(identifier.startOffset, Messages[MSG_SET], false)
+            "HashMap", "TreeMap" -> emit(identifier.startOffset, Messages[MSG_MAP], false)
         }
     }
 }

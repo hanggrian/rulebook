@@ -41,7 +41,7 @@ class DescribeThrowRule : RulebookRule("describe-throw") {
         // report error if there is no message
         val valueArgumentList = callExpression.getOrNull(VALUE_ARGUMENT_LIST) ?: return
         if (VALUE_ARGUMENT !in valueArgumentList) {
-            emit(identifier.startOffset, Messages.get(MSG, identifier.text), false)
+            emit(identifier.startOffset, Messages[MSG], false)
         }
     }
 }

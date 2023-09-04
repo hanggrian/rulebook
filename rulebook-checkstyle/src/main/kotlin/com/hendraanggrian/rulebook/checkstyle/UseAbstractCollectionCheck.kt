@@ -26,9 +26,9 @@ class UseAbstractCollectionCheck : AbstractCheck() {
 
         // report if explicit collection is found
         when (ident.text) {
-            "ArrayList" -> log(ident, Messages.get(MSG_LIST, ident.text), false)
-            "HashSet", "TreeSet" -> log(ident, Messages.get(MSG_SET, ident.text), false)
-            "HashMap", "TreeMap" -> log(ident, Messages.get(MSG_MAP, ident.text), false)
+            "ArrayList" -> log(ident, Messages[MSG_LIST], false)
+            "HashSet", "TreeSet" -> log(ident, Messages[MSG_SET], false)
+            "HashMap", "TreeMap" -> log(ident, Messages[MSG_MAP], false)
         }
     }
 }

@@ -57,12 +57,7 @@ class SpecifyReturnTypeRule : RulebookRule("specify-return-type") {
                 // check for violation
                 if (node.isViolation()) {
                     val valueParameterList = node.getOrNull(VALUE_PARAMETER_LIST)!!
-                    val identifier = node.getOrNull(IDENTIFIER)!!
-                    emit(
-                        valueParameterList.endOffset,
-                        Messages.get(MSG_EXPR, identifier.text),
-                        false
-                    )
+                    emit(valueParameterList.endOffset, Messages[MSG_EXPR], false)
                 }
             }
             PROPERTY -> {
@@ -80,7 +75,7 @@ class SpecifyReturnTypeRule : RulebookRule("specify-return-type") {
                 // check for violation
                 if (node.isViolation()) {
                     val identifier = node.getOrNull(IDENTIFIER)!!
-                    emit(identifier.endOffset, Messages.get(MSG_PROP, identifier.text), false)
+                    emit(identifier.endOffset, Messages[MSG_PROP], false)
                 }
             }
         }

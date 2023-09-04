@@ -77,6 +77,7 @@
   </ruleset-ref>
 
   <!-- Third-party rules -->
+  <rule class="com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.LowercaseAcronymNameNarc"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.UseAbstractCollectionNarc"/>
 </ruleset>

@@ -21,13 +21,16 @@ class LowercaseAcronymNameVisitor : AbstractAstVisitor() {
     override fun visitField(node: FieldNode) {
         // allow all uppercase, which usually is static property
         val fieldName = node.name
-        if (fieldName.all { it.isUpperCase() || it.isDigit() || it == '_' }) {
+        if (fieldName.isStaticPropertyName()) {
             return
         }
 
         // check for violation
         if (fieldName.isViolation()) {
-            addViolation(node, Messages.get(LowercaseAcronymNameNarc.MSG, "field", fieldName))
+            addViolation(
+                node,
+                Messages.get(LowercaseAcronymNameNarc.MSG, "Field", fieldName.transform())
+            )
         }
         super.visitField(node)
     }
@@ -36,7 +39,10 @@ class LowercaseAcronymNameVisitor : AbstractAstVisitor() {
         // check for violation
         val methodName = node.name
         if (methodName.isViolation()) {
-            addViolation(node, Messages.get(LowercaseAcronymNameNarc.MSG, "method", methodName))
+            addViolation(
+                node,
+                Messages.get(LowercaseAcronymNameNarc.MSG, "Method", methodName.transform())
+            )
         }
         super.visitMethodEx(node)
     }
@@ -49,5 +55,20 @@ class LowercaseAcronymNameVisitor : AbstractAstVisitor() {
             }
         }
         return false
+    }
+
+    private fun String.transform(): String {
+        val reversed = reversed()
+        val sb = StringBuilder()
+        reversed.forEachIndexed { index, c ->
+            sb.append(
+                when {
+                    c.isUpperCase() && reversed.getOrNull(index + 1)?.isUpperCase() == true ->
+                        c.lowercase()
+                    else -> c
+                }
+            )
+        }
+        return sb.reverse().toString()
     }
 }

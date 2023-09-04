@@ -34,7 +34,7 @@ class LowercaseAcronymNameRule : RulebookRule("lowercase-acronym-name") {
             PROPERTY -> {
                 // allow all uppercase, which usually is static property
                 val identifier = node.getOrNull(IDENTIFIER) ?: return
-                if (identifier.text.all { it.isUpperCase() || it.isDigit() || it == '_' }) {
+                if (identifier.text.isStaticPropertyName()) {
                     return
                 }
 
@@ -42,7 +42,7 @@ class LowercaseAcronymNameRule : RulebookRule("lowercase-acronym-name") {
                 if (identifier.text.isViolation()) {
                     emit(
                         identifier.startOffset,
-                        Messages.get(MSG_OTHERS, "property", identifier.text),
+                        Messages.get(MSG_OTHERS, "Property", identifier.text.transform()),
                         false
                     )
                 }
@@ -62,7 +62,11 @@ class LowercaseAcronymNameRule : RulebookRule("lowercase-acronym-name") {
                 if (identifier.text.isViolation()) {
                     emit(
                         identifier.startOffset,
-                        Messages.get(MSG_OTHERS, typeName, identifier.text),
+                        Messages.get(
+                            MSG_OTHERS,
+                            typeName.replaceFirstChar { it.uppercase() },
+                            identifier.text.transform()
+                        ),
                         false
                     )
                 }
@@ -98,5 +102,20 @@ class LowercaseAcronymNameRule : RulebookRule("lowercase-acronym-name") {
             }
         }
         return false
+    }
+
+    private fun String.transform(): String {
+        val reversed = reversed()
+        val sb = StringBuilder()
+        reversed.forEachIndexed { index, c ->
+            sb.append(
+                when {
+                    c.isUpperCase() && reversed.getOrNull(index + 1)?.isUpperCase() == true ->
+                        c.lowercase()
+                    else -> c
+                }
+            )
+        }
+        return sb.reverse().toString()
     }
 }

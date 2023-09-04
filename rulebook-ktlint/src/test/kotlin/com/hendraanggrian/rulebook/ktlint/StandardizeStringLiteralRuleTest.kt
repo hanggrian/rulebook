@@ -4,8 +4,8 @@ import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class UncommonStringLiteralRuleTest {
-    private val assertThatCode = assertThatRule { UncommonStringLiteralRule() }
+class StandardizeStringLiteralRuleTest {
+    private val assertThatCode = assertThatRule { StandardizeStringLiteralRule() }
 
     @Test
     fun `Common literals`() = assertThatCode(
@@ -27,10 +27,10 @@ class UncommonStringLiteralRuleTest {
         val color3 = "#FFFFff"
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(1, 17, Messages.get(UncommonStringLiteralRule.MSG_ENCODING, "utf-8")),
-        LintViolation(2, 17, Messages.get(UncommonStringLiteralRule.MSG_ENCODING, "ascii")),
-        LintViolation(3, 14, Messages.get(UncommonStringLiteralRule.MSG_COLOR, "#FFF")),
-        LintViolation(4, 14, Messages.get(UncommonStringLiteralRule.MSG_COLOR, "#0000FF")),
-        LintViolation(5, 14, Messages.get(UncommonStringLiteralRule.MSG_COLOR, "#FFFFff"))
+        LintViolation(1, 17, Messages.get(StandardizeStringLiteralRule.MSG_ENCODING, "UTF-8")),
+        LintViolation(2, 17, Messages.get(StandardizeStringLiteralRule.MSG_ENCODING, "ASCII")),
+        LintViolation(3, 14, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#fff")),
+        LintViolation(4, 14, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#0000ff")),
+        LintViolation(5, 14, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#ffffff"))
     )
 }

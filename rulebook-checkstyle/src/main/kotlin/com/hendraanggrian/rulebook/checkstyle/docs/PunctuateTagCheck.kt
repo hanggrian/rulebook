@@ -31,7 +31,7 @@ class PunctuateTagCheck : AbstractJavadocCheck() {
         }
 
         // only enforce certain tags
-        val anyLiteral = when {
+        val tagLiteral = when {
             PARAM_LITERAL in node -> node.getOrNull(PARAM_LITERAL) ?: return
             RETURN_LITERAL in node -> node.getOrNull(RETURN_LITERAL) ?: return
             THROWS_LITERAL in node -> node.getOrNull(THROWS_LITERAL) ?: return
@@ -41,7 +41,7 @@ class PunctuateTagCheck : AbstractJavadocCheck() {
         // check the suffix
         val punctuation = node.actualText.trimComment().trimEnd().lastOrNull() ?: return
         if (punctuation !in END_PUNCTUATIONS) {
-            log(anyLiteral.lineNumber, Messages.get(MSG, anyLiteral.text))
+            log(tagLiteral.lineNumber, Messages[MSG])
         }
     }
 

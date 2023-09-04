@@ -26,10 +26,12 @@ class RulebookRuleSetTest {
             PunctuateTagRule::class,
             AddEmptyLineInClassRule::class,
             DescribeThrowRule::class,
+            InvertIfConditionRule::class,
             LowercaseAcronymNameRule::class,
+            NoUnderscoreNameRule::class,
             RemoveEmptyLineInSwitchRule::class,
             SpecifyReturnTypeRule::class,
-            UncommonStringLiteralRule::class,
+            StandardizeStringLiteralRule::class,
             UseAbstractCollectionRule::class,
             UseKotlinApiRule::class
         )

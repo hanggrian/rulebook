@@ -22,15 +22,15 @@ class UseAbstractCollectionNarc : RulebookNarc() {
 
 class UseAbstractCollectionVisitor : AbstractAstVisitor() {
     override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        super.visitConstructorOrMethod(node, isConstructor)
+        // report if explicit collection is found
         node.parameters.forEach { parameter ->
-            // report if explicit collection is found
             val type = parameter.type
             when (type.name) {
-                "ArrayList" -> addViolation(parameter, Messages.get(MSG_LIST, type.name))
-                "HashSet", "TreeSet" -> addViolation(parameter, Messages.get(MSG_SET, type.name))
-                "HashMap", "TreeMap" -> addViolation(parameter, Messages.get(MSG_MAP, type.name))
+                "ArrayList" -> addViolation(parameter, Messages[MSG_LIST])
+                "HashSet", "TreeSet" -> addViolation(parameter, Messages[MSG_SET])
+                "HashMap", "TreeMap" -> addViolation(parameter, Messages[MSG_MAP])
             }
         }
+        super.visitConstructorOrMethod(node, isConstructor)
     }
 }

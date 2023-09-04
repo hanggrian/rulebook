@@ -46,7 +46,7 @@ class PunctuateTagRule : RulebookRule("punctuate-tag") {
         // check the suffix
         val punctuation = node.text.trimComment().trimEnd().lastOrNull() ?: return
         if (punctuation !in END_PUNCTUATIONS) {
-            emit(kdocTagName.endOffset, Messages.get(MSG, kdocTagName.text), false)
+            emit(kdocTagName.endOffset, Messages[MSG], false)
         }
     }
 

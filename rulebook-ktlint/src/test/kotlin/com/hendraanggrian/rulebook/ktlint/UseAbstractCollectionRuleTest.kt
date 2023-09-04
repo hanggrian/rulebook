@@ -40,11 +40,11 @@ class UseAbstractCollectionRuleTest {
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(1, 27, Messages.get(UseAbstractCollectionRule.MSG_LIST, "ArrayList")),
-        LintViolation(3, 25, Messages.get(UseAbstractCollectionRule.MSG_SET, "HashSet")),
-        LintViolation(5, 25, Messages.get(UseAbstractCollectionRule.MSG_SET, "TreeSet")),
-        LintViolation(7, 25, Messages.get(UseAbstractCollectionRule.MSG_MAP, "HashMap")),
-        LintViolation(9, 25, Messages.get(UseAbstractCollectionRule.MSG_MAP, "TreeMap"))
+        LintViolation(1, 27, Messages[UseAbstractCollectionRule.MSG_LIST]),
+        LintViolation(3, 25, Messages[UseAbstractCollectionRule.MSG_SET]),
+        LintViolation(5, 25, Messages[UseAbstractCollectionRule.MSG_SET]),
+        LintViolation(7, 25, Messages[UseAbstractCollectionRule.MSG_MAP]),
+        LintViolation(9, 25, Messages[UseAbstractCollectionRule.MSG_MAP])
     )
 
     @Test
@@ -56,8 +56,8 @@ class UseAbstractCollectionRuleTest {
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(1, 27, Messages.get(UseAbstractCollectionRule.MSG_SET, "HashSet")),
-        LintViolation(3, 39, Messages.get(UseAbstractCollectionRule.MSG_MAP, "TreeMap"))
+        LintViolation(1, 27, Messages[UseAbstractCollectionRule.MSG_SET]),
+        LintViolation(3, 39, Messages[UseAbstractCollectionRule.MSG_MAP])
     )
 
     @Test

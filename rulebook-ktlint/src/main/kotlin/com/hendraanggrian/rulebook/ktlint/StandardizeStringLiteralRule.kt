@@ -6,12 +6,12 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/UncommonStringLiteral).
  */
-class UncommonStringLiteralRule : RulebookRule("uncommon-string-literal") {
+class StandardizeStringLiteralRule : RulebookRule("uncommon-string-literal") {
     internal companion object {
-        const val MSG_ENCODING = "uncommon.string.literal.encoding"
-        const val MSG_COLOR = "uncommon.string.literal.color"
+        const val MSG_ENCODING = "standardize.string.literal.encoding"
+        const val MSG_COLOR = "standardize.string.literal.color"
 
-        val PROHIBITED_ENCODINGS = setOf("\"utf-8\"", "\"utf-16\"", "\"utf-32\"", "\"ascii\"")
+        val PROHIBITED_ENCODINGS = setOf("\"ascii\"", "\"utf-8\"", "\"utf-16\"", "\"utf-32\"")
         val COLOR_REGEX = "^\"#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\"$"
     }
 
@@ -35,13 +35,20 @@ class UncommonStringLiteralRule : RulebookRule("uncommon-string-literal") {
         val literal = node.text
         when {
             // encoding must be all uppercase
-            literal in PROHIBITED_ENCODINGS ->
-                emit(node.startOffset, Messages.get(MSG_ENCODING, literal.trimQuotes()), false)
+            literal in PROHIBITED_ENCODINGS -> emit(
+                node.startOffset,
+                Messages.get(MSG_ENCODING, literal.trimQuotes().uppercase()),
+                false
+            )
             // color must be all lowercase
             colorRegex!!.matches(literal) -> {
                 // skip '"#'
                 if (literal.drop(2).any { it.isUpperCase() }) {
-                    emit(node.startOffset, Messages.get(MSG_COLOR, literal.trimQuotes()), false)
+                    emit(
+                        node.startOffset,
+                        Messages.get(MSG_COLOR, literal.trimQuotes().lowercase()),
+                        false
+                    )
                 }
             }
         }

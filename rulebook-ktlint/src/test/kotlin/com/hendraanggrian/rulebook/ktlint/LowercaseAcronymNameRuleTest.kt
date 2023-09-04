@@ -13,7 +13,7 @@ class LowercaseAcronymNameRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             5,
-            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "property", "userJSON")
+            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Property", "userJson")
         )
     //endregion
 
@@ -24,7 +24,7 @@ class LowercaseAcronymNameRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             5,
-            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "fun", "blendARGB")
+            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Fun", "blendArgb")
         )
 
     @Test
@@ -33,7 +33,7 @@ class LowercaseAcronymNameRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             7,
-            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "class", "RestAPI")
+            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Class", "RestApi")
         )
 
     @Test
@@ -42,7 +42,7 @@ class LowercaseAcronymNameRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             18,
-            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "class", "RestAPI")
+            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Class", "RestApi")
         )
 
     @Test
@@ -51,7 +51,7 @@ class LowercaseAcronymNameRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             12,
-            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "class", "RestAPI")
+            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Class", "RestApi")
         )
 
     @Test
@@ -60,7 +60,7 @@ class LowercaseAcronymNameRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             14,
-            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "class", "RestAPI")
+            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Class", "RestApi")
         )
 
     @Test
@@ -69,7 +69,7 @@ class LowercaseAcronymNameRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             11,
-            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "interface", "RestAPI")
+            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Interface", "RestApi")
         )
 
     @Test
@@ -78,7 +78,7 @@ class LowercaseAcronymNameRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             8,
-            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "object", "RestAPI")
+            Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Object", "RestApi")
         )
     //endregion
 

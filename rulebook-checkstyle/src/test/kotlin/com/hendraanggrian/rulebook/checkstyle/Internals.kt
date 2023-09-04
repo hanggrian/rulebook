@@ -45,10 +45,21 @@ internal object Messages {
     private const val FILENAME = "messages"
     private lateinit var bundleRef: WeakReference<ResourceBundle>
 
-    operator fun get(key: String): String = when {
-        ::bundleRef.isInitialized && bundleRef.get() != null -> bundleRef.get()!!
-        else -> ResourceBundle.getBundle(FILENAME).also { bundleRef = WeakReference(it) }
-    }.getString(key)
+    operator fun get(key: String): String = bundle.getString(key)
 
-    fun get(key: String, vararg args: String): String = MessageFormat(get(key)).format(args)
+    fun get(key: String, vararg args: String): String =
+        MessageFormat(bundle.getString(key)).format(args)
+
+    private val bundle: ResourceBundle
+        get() {
+            var bundle: ResourceBundle?
+            if (::bundleRef.isInitialized) {
+                bundle = bundleRef.get()
+                if (bundle != null) {
+                    return bundle
+                }
+            }
+            bundle = ResourceBundle.getBundle(FILENAME)
+            return bundle
+        }
 }

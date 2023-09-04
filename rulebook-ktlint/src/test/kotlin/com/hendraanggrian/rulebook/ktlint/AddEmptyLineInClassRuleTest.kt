@@ -11,7 +11,6 @@ class AddEmptyLineInClassRuleTest {
     fun `Class single-line declaration`() = assertThatCode(
         """
         class MyClass {
-
             val property = ""
         }
         """.trimIndent()
@@ -56,7 +55,6 @@ class AddEmptyLineInClassRuleTest {
     fun `Annotation class single-line declaration`() = assertThatCode(
         """
         annotation class MyAnnotation {
-
             // stub
         }
         """.trimIndent()
@@ -101,7 +99,6 @@ class AddEmptyLineInClassRuleTest {
     fun `Data class single-line declaration`() = assertThatCode(
         """
         data class MyData(val parameter: String) {
-
             val property = ""
         }
         """.trimIndent()
@@ -146,7 +143,6 @@ class AddEmptyLineInClassRuleTest {
     fun `Enum class single-line declaration`() = assertThatCode(
         """
         enum class MyEnum {
-
             ENTRY
         }
         """.trimIndent()
@@ -191,7 +187,6 @@ class AddEmptyLineInClassRuleTest {
     fun `Sealed class single-line declaration`() = assertThatCode(
         """
         sealed class MySealed {
-
             val property = ""
         }
         """.trimIndent()
@@ -236,7 +231,6 @@ class AddEmptyLineInClassRuleTest {
     fun `Interface single-line declaration`() = assertThatCode(
         """
         interface MyInterface {
-
             val property: String
         }
         """.trimIndent()
@@ -280,7 +274,6 @@ class AddEmptyLineInClassRuleTest {
     fun `Object single-line declaration`() = assertThatCode(
         """
         object MyObject {
-
             val property = ""
         }
         """.trimIndent()
@@ -325,7 +318,6 @@ class AddEmptyLineInClassRuleTest {
         """
         class MyClass {
             companion object {
-
                 val property = ""
             }
         }

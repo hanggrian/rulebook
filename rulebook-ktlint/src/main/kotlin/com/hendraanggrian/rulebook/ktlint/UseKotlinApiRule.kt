@@ -39,7 +39,7 @@ class UseKotlinApiRule : RulebookRule("use-kotlin-api") {
                     val dotQualifiedExpression = node.getOrNull(DOT_QUALIFIED_EXPRESSION)!!
                     emit(
                         dotQualifiedExpression.startOffset,
-                        Messages.get(MSG_CALL, importLine, kotlinClassReplacement),
+                        Messages.get(MSG_CALL, kotlinClassReplacement),
                         false
                     )
                 }
@@ -49,11 +49,7 @@ class UseKotlinApiRule : RulebookRule("use-kotlin-api") {
                 val text = node.text.substringBefore('<').substringBefore('?')
                 val kotlinClassReplacement = text.kotlinClassReplacement
                 if (kotlinClassReplacement != null) {
-                    emit(
-                        node.startOffset,
-                        Messages.get(MSG_TYPE, text, kotlinClassReplacement),
-                        false
-                    )
+                    emit(node.startOffset, Messages.get(MSG_TYPE, kotlinClassReplacement), false)
                 }
             }
         }

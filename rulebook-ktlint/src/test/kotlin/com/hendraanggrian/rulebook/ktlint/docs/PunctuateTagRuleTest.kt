@@ -47,8 +47,8 @@ class PunctuateTagRuleTest {
         fun add(input: Int) {}
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(2, 10, Messages.get(PunctuateTagRule.MSG, "@param")),
-        LintViolation(3, 10, Messages.get(PunctuateTagRule.MSG, "@param"))
+        LintViolation(2, 10, Messages[PunctuateTagRule.MSG]),
+        LintViolation(3, 10, Messages[PunctuateTagRule.MSG])
     )
 
     @Test
@@ -62,7 +62,7 @@ class PunctuateTagRuleTest {
         fun add(input: Int) {}
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(2, 10, Messages.get(PunctuateTagRule.MSG, "@param")),
-        LintViolation(4, 10, Messages.get(PunctuateTagRule.MSG, "@param"))
+        LintViolation(2, 10, Messages[PunctuateTagRule.MSG]),
+        LintViolation(4, 10, Messages[PunctuateTagRule.MSG])
     )
 }

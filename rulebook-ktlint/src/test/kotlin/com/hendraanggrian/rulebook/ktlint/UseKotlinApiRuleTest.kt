@@ -13,7 +13,7 @@ class UseKotlinApiRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             8,
-            Messages.get(UseKotlinApiRule.MSG_CALL, "java.lang.String", "kotlin.String")
+            Messages.get(UseKotlinApiRule.MSG_CALL, "kotlin.String")
         )
 
     @Test
@@ -27,17 +27,17 @@ class UseKotlinApiRuleTest {
         LintViolation(
             1,
             11,
-            Messages.get(UseKotlinApiRule.MSG_TYPE, "java.lang.String", "kotlin.String")
+            Messages.get(UseKotlinApiRule.MSG_TYPE, "kotlin.String")
         ),
         LintViolation(
             2,
             19,
-            Messages.get(UseKotlinApiRule.MSG_TYPE, "java.lang.Comparable", "kotlin.Comparable")
+            Messages.get(UseKotlinApiRule.MSG_TYPE, "kotlin.Comparable")
         ),
         LintViolation(
             3,
             24,
-            Messages.get(UseKotlinApiRule.MSG_TYPE, "java.util.List", "kotlin.collections.List")
+            Messages.get(UseKotlinApiRule.MSG_TYPE, "kotlin.collections.List")
         )
     )
     //endregion
@@ -48,7 +48,7 @@ class UseKotlinApiRuleTest {
         .hasLintViolationWithoutAutoCorrect(
             1,
             8,
-            Messages.get(UseKotlinApiRule.MSG_CALL, "org.junit.Test", "kotlin.test.Test")
+            Messages.get(UseKotlinApiRule.MSG_CALL, "kotlin.test.Test")
         )
 
     @Test
@@ -60,7 +60,7 @@ class UseKotlinApiRuleTest {
     ).hasLintViolationWithoutAutoCorrect(
         1,
         2,
-        Messages.get(UseKotlinApiRule.MSG_TYPE, "org.junit.Before", "kotlin.test.BeforeTest")
+        Messages.get(UseKotlinApiRule.MSG_TYPE, "kotlin.test.BeforeTest")
     )
     //endregion
 }
