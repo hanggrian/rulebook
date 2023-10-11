@@ -6,9 +6,8 @@ import kotlin.test.Test
 class NoUnderscoreNameRuleTest {
     private val assertThatCode = assertThatRule { NoUnderscoreNameRule() }
 
-    //region Property
     @Test
-    fun `Correct properties`() = assertThatCode(
+    fun `Correct property`() = assertThatCode(
         """
         val myProperty = 1
         const val MY_PROPERTY = 2
@@ -21,9 +20,7 @@ class NoUnderscoreNameRuleTest {
         val my_property = 1
         """.trimIndent()
     ).hasLintViolationWithoutAutoCorrect(1, 5, Messages.get(NoUnderscoreNameRule.MSG, "myProperty"))
-    //endregion
 
-    //region Function
     @Test
     fun `Correct function`() = assertThatCode(
         """
@@ -39,9 +36,7 @@ class NoUnderscoreNameRuleTest {
         }
         """.trimIndent()
     ).hasLintViolationWithoutAutoCorrect(1, 5, Messages.get(NoUnderscoreNameRule.MSG, "myFunction"))
-    //endregion
 
-    //region Parameter
     @Test
     fun `Correct parameter`() = assertThatCode(
         """
@@ -61,5 +56,4 @@ class NoUnderscoreNameRuleTest {
         15,
         Messages.get(NoUnderscoreNameRule.MSG, "myParameter")
     )
-    //endregion
 }

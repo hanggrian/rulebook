@@ -6,7 +6,6 @@ import kotlin.test.Test
 class AddEmptyLineInClassRuleTest {
     private val assertThatCode = assertThatRule { AddEmptyLineInClassRule() }
 
-    //region Class
     @Test
     fun `Class single-line declaration`() = assertThatCode(
         """
@@ -48,9 +47,7 @@ class AddEmptyLineInClassRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 
-    //region Annotation Class
     @Test
     fun `Annotation class single-line declaration`() = assertThatCode(
         """
@@ -92,9 +89,7 @@ class AddEmptyLineInClassRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 
-    //region Data Class
     @Test
     fun `Data class single-line declaration`() = assertThatCode(
         """
@@ -136,9 +131,7 @@ class AddEmptyLineInClassRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 
-    //region Enum Class
     @Test
     fun `Enum class single-line declaration`() = assertThatCode(
         """
@@ -180,9 +173,7 @@ class AddEmptyLineInClassRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 
-    //region Sealed Class
     @Test
     fun `Sealed class single-line declaration`() = assertThatCode(
         """
@@ -224,9 +215,7 @@ class AddEmptyLineInClassRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 
-    //region Interface
     @Test
     fun `Interface single-line declaration`() = assertThatCode(
         """
@@ -267,9 +256,7 @@ class AddEmptyLineInClassRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 
-    //region Object
     @Test
     fun `Object single-line declaration`() = assertThatCode(
         """
@@ -310,9 +297,7 @@ class AddEmptyLineInClassRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 
-    //region Companion Object
     @Test
     fun `Companion object single-line declaration`() = assertThatCode(
         """
@@ -363,5 +348,4 @@ class AddEmptyLineInClassRuleTest {
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 }

@@ -16,7 +16,7 @@ dependencies {
     implementation(libs.groovy)
     implementation(libs.codenarc)
 
-    testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
+    testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
     testImplementation(libs.ktlint.test)
     testImplementation(libs.truth)
 }

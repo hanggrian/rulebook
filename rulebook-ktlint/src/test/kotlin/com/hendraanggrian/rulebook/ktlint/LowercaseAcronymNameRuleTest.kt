@@ -6,7 +6,6 @@ import kotlin.test.Test
 class LowercaseAcronymNameRuleTest {
     private val assertThatCode = assertThatRule { LowercaseAcronymNameRule() }
 
-    //region Property
     @Test
     fun `Property acronym`() = assertThatCode("val userJSON = {}")
         .asFileWithPath("/some/path/UserJson.kt")
@@ -15,11 +14,9 @@ class LowercaseAcronymNameRuleTest {
             5,
             Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Property", "userJson")
         )
-    //endregion
 
-    //region Function and Class
     @Test
-    fun `Function acronym`() = assertThatCode("fun blendARGB()")
+    fun `Function acronym`() = assertThatCode("fun blendARGB() {}")
         .asFileWithPath("/some/path/ArgbBlender.kt")
         .hasLintViolationWithoutAutoCorrect(
             1,
@@ -80,9 +77,7 @@ class LowercaseAcronymNameRuleTest {
             8,
             Messages.get(LowercaseAcronymNameRule.MSG_OTHERS, "Object", "RestApi")
         )
-    //endregion
 
-    //region File
     @Test
     fun `File acronym`() = assertThatCode("")
         .asFileWithPath("/some/path/RestAPI.kt")
@@ -92,5 +87,4 @@ class LowercaseAcronymNameRuleTest {
     fun `Skip a KTS file`() = assertThatCode("class RestAPI")
         .asFileWithPath("/some/path/RestAPI.kts")
         .hasNoLintViolations()
-    //endregion
 }

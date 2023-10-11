@@ -7,71 +7,79 @@ import kotlin.test.Test
 class DescribeThrowRuleTest {
     private val assertThatCode = assertThatRule { DescribeThrowRule() }
 
-    //region Supertype
     @Test
-    fun `Throw supertype without messages`() = assertThatCode(
+    fun `Throw exceptions with messages`() = assertThatCode(
         """
-        fun main() {
-            throw Exception()
-            throw Error()
+        fun throwable() {
+            throw Throwable("Hello World")
+        }
+        fun exception() {
+            throw Exception("Hello World")
+        }
+        fun error() {
+            throw Error("Hello World")
+        }
+        """.trimIndent()
+    ).hasNoLintViolations()
+
+    @Test
+    fun `Throw exceptions without messages`() = assertThatCode(
+        """
+        fun throwable() {
             throw Throwable()
+        }
+        fun exception() {
+            throw Exception()
+        }
+        fun error() {
+            throw Error()
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
         LintViolation(2, 11, Messages[DescribeThrowRule.MSG]),
-        LintViolation(3, 11, Messages[DescribeThrowRule.MSG]),
-        LintViolation(4, 11, Messages[DescribeThrowRule.MSG])
+        LintViolation(5, 11, Messages[DescribeThrowRule.MSG]),
+        LintViolation(8, 11, Messages[DescribeThrowRule.MSG])
     )
 
     @Test
-    fun `Throw supertype with messages`() = assertThatCode(
+    fun `Throw explicit exceptions with messages`() = assertThatCode(
         """
-        fun main() {
-            throw Exception("Some message")
-            throw Error("Some message")
-            throw Throwable("Some message")
+        fun exception() {
+            throw IllegalStateException("Hello World")
+        }
+        fun error() {
+            throw StackOverflowError("Hello World")
         }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 
-    //region Subtype
     @Test
-    fun `Throw subtype without messages`() = assertThatCode(
+    fun `Throw explicit exceptions without messages`() = assertThatCode(
         """
-        fun main() {
+        fun exception() {
             throw IllegalStateException()
+        }
+        fun error() {
             throw StackOverflowError()
         }
         """.trimIndent()
     ).hasNoLintViolations()
 
     @Test
-    fun `Throw subtype with messages`() = assertThatCode(
+    fun `Throwing exceptions by reference`() = assertThatCode(
         """
-        fun main() {
-            throw IllegalStateException("Some message")
-            throw StackOverflowError("Some message")
-        }
-        """.trimIndent()
-    ).hasNoLintViolations()
-    //endregion
-
-    //region Reference
-    @Test
-    fun `Throw reference instead of call expression`() = assertThatCode(
-        """
-        fun main() {
-            val exception = Exception()
-            throw exception
-
-            val error = Error()
-            throw error
-
+        fun throwable() {
             val throwable = Throwable()
             throw throwable
         }
+        fun exception() {
+            val error = Error()
+            throw error
+        }
+        fun error() {
+            val exception = Exception()
+            throw exception
+        }
         """.trimIndent()
     ).hasNoLintViolations()
-    //endregion
 }

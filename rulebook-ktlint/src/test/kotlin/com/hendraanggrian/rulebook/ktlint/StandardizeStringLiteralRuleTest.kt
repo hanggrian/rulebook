@@ -8,29 +8,46 @@ class StandardizeStringLiteralRuleTest {
     private val assertThatCode = assertThatRule { StandardizeStringLiteralRule() }
 
     @Test
-    fun `Common literals`() = assertThatCode(
+    fun `Common color literals`() = assertThatCode(
         """
-        val encoding1 = "UTF-8"
-        val encoding2 = "ASCII"
-        val color1 = "#fff"
-        val color2 = "#0000ff"
+        val white = "#fff"
+        val red = "#ff0000"
+        val green = "#00ff00"
+        val blue = "#0000ff"
         """.trimIndent()
     ).hasNoLintViolations()
 
     @Test
-    fun `Uncommon literals`() = assertThatCode(
+    fun `Uncommon color literals`() = assertThatCode(
         """
-        val encoding1 = "utf-8"
-        val encoding2 = "ascii"
-        val color1 = "#FFF"
-        val color2 = "#0000FF"
-        val color3 = "#FFFFff"
+        val white = "#FFF"
+        val red = "#FF0000"
+        val green = "#00Ff00"
+        val blue = "#0000fF"
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(1, 17, Messages.get(StandardizeStringLiteralRule.MSG_ENCODING, "UTF-8")),
-        LintViolation(2, 17, Messages.get(StandardizeStringLiteralRule.MSG_ENCODING, "ASCII")),
-        LintViolation(3, 14, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#fff")),
-        LintViolation(4, 14, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#0000ff")),
-        LintViolation(5, 14, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#ffffff"))
+        LintViolation(1, 13, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#fff")),
+        LintViolation(2, 11, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#ff0000")),
+        LintViolation(3, 13, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#00ff00")),
+        LintViolation(4, 12, Messages.get(StandardizeStringLiteralRule.MSG_COLOR, "#0000ff"))
+    )
+
+    @Test
+    fun `Common encoding literals`() = assertThatCode(
+        """
+        val utf = "UTF-8"
+        val ascii = "ASCII"
+        """.trimIndent()
+    ).hasNoLintViolations()
+
+    @Test
+    fun `Uncommon encoding literals`() = assertThatCode(
+        """
+        val utf = "utf-8"
+        val ascii = "ascii"
+        """.trimIndent()
+    ).hasLintViolationsWithoutAutoCorrect(
+        LintViolation(1, 11, Messages.get(StandardizeStringLiteralRule.MSG_ENCODING, "UTF-8")),
+        LintViolation(2, 13, Messages.get(StandardizeStringLiteralRule.MSG_ENCODING, "ASCII"))
     )
 }

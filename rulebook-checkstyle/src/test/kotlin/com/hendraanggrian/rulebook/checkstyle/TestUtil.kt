@@ -9,23 +9,20 @@ import java.io.File
 inline fun <reified T> prepareChecker(): Checker {
     val checker = Checker()
     checker.setModuleClassLoader(Thread.currentThread().contextClassLoader)
-    checker.configure(prepareConfiguration<T>())
+    checker.configure(
+        DefaultConfiguration("Checks").apply {
+            addChild(
+                DefaultConfiguration("TreeWalker").apply {
+                    addChild(DefaultConfiguration(T::class.java.canonicalName))
+                }
+            )
+        }
+    )
     return checker
 }
 
-inline fun <reified T> prepareConfiguration(): DefaultConfiguration {
-    val checks = DefaultConfiguration("Checks")
-    val treeWalker = DefaultConfiguration("TreeWalker")
-    val checkToTest = DefaultConfiguration(T::class.java.canonicalName)
-    checks.addChild(treeWalker)
-    treeWalker.addChild(checkToTest)
-    return checks
-}
-
-inline fun <reified T> prepareFiles(
-    testClassName: String = "${T::class.java.simpleName}.java"
-): List<File> {
-    val testFileUrl = T::class.java.getResource(testClassName)!!
+fun prepareFiles(fileName: String): List<File> {
+    val testFileUrl = object {}.javaClass.getResource("$fileName.java")!!
     val testFile = File(testFileUrl.file)
-    return mutableListOf(testFile)
+    return listOf(testFile)
 }

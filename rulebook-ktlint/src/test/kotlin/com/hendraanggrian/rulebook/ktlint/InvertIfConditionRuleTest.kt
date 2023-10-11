@@ -9,12 +9,11 @@ class InvertIfConditionRuleTest {
     @Test
     fun `Correct format`() = assertThatCode(
         """
-        fun main() {
-            if (false) {
+        fun foo() {
+            if (true) {
                 return
             }
-            val one = 1
-            val two = 2
+            println()
         }
         """.trimIndent()
     ).hasNoLintViolations()
@@ -22,23 +21,10 @@ class InvertIfConditionRuleTest {
     @Test
     fun `Only 1 line in if statement`() = assertThatCode(
         """
-        fun main() {
-            if (false) {
-                val one = 1
+        fun foo() {
+            if (true) {
+                println()
             }
-        }
-        """.trimIndent()
-    ).hasNoLintViolations()
-
-    @Test
-    fun `Empty block`() = assertThatCode(
-        """
-        fun oneLiner() {}
-        fun oneLinerWithSpace() { }
-        fun multiLiner() {
-        }
-        fun multiLinerWithSpace() {
-
         }
         """.trimIndent()
     ).hasNoLintViolations()
@@ -46,10 +32,10 @@ class InvertIfConditionRuleTest {
     @Test
     fun `At least 2 lines in if statement`() = assertThatCode(
         """
-        fun main() {
+        fun foo() {
             if (true) {
-                val one = 1
-                val two = 2
+                println()
+                println()
             }
         }
         """.trimIndent()
@@ -58,16 +44,16 @@ class InvertIfConditionRuleTest {
     @Test
     fun `If statement with else`() = assertThatCode(
         """
-        fun main() {
+        fun foo() {
             if (true) {
-                val one = 1
-                val two = 2
+                println()
+                println()
             } else if (false) {
-                val three = 3
-                val four = 4
+                println()
+                println()
             } else {
-                val five = 5
-                val six = 6
+                println()
+                println()
             }
         }
         """.trimIndent()

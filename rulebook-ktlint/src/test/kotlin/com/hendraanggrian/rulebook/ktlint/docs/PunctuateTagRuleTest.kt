@@ -19,7 +19,7 @@ class PunctuateTagRuleTest {
     ).hasNoLintViolations()
 
     @Test
-    fun `Description ends with punctuation`() = assertThatCode(
+    fun `Descriptions end with punctuations`() = assertThatCode(
         """
         /**
          * @param input a number.
@@ -37,7 +37,7 @@ class PunctuateTagRuleTest {
     ).hasNoLintViolations()
 
     @Test
-    fun `Tag description has no end punctuation`() = assertThatCode(
+    fun `Descriptions have no end punctuation`() = assertThatCode(
         """
         /**
          * @param input a number
@@ -52,7 +52,7 @@ class PunctuateTagRuleTest {
     )
 
     @Test
-    fun `Tag description ends with comments`() = assertThatCode(
+    fun `Description end with comments`() = assertThatCode(
         """
         /**
          * @param input a number // some comment
