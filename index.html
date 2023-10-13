@@ -1,199 +1,211 @@
 <!doctype html>
 <html lang="en-us">
-    <head>
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <title>rulebook</title>
-        <meta content="width=device-width" name="viewport">
-        <meta content="chrome=1" http-equiv="X-UA-Compatible">
-        <link href="styles/main.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-        <script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-kotlin.min.js"></script>
-        <!--Primary meta tags-->
-        <meta content="rulebook" name="title">
-        <meta content="Personal lint rules and code convention" name="description">
-    </head>
-    <body>
-        <div class="wrapper">
-            <header>
-                <h1>rulebook</h1>
-                <p>Personal lint rules and code convention</p>
-                <p class="view">
-                    <a href="https://github.com/hendraanggrian/rulebook/">View the Project on GitHub <small>hendraanggrian/rulebook</small></a>
-                </p>
-                <ul>
-                    <li>
-                        <a href="dokka">View<strong>Documentation</strong></a>
-                    </li>
-                </ul>
-            </header>
-            <section>
-                <p>
-                    <a href="https://travis-ci.com/github/hendraanggrian/rulebook/"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/rulebook"></a>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>rulebook</title>
+<meta content="width=device-width" name="viewport">
+<meta content="chrome=1" http-equiv="X-UA-Compatible">
+<link href="styles/main.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="scripts/theme.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-groovy.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-kotlin.min.js"></script>
+<!--Primary meta tags-->
+<meta content="rulebook" name="title">
+<meta content="Personal lint rules and code convention" name="description">
+</head>
+<body>
+<div class="wrapper">
+<header>
+<h1>rulebook</h1>
+<p>Personal lint rules and code convention</p>
+<p class="view">
+<a href="https://github.com/hendraanggrian/rulebook/">View the Project on GitHub <small>hendraanggrian/rulebook</small></a>
+</p>
+<ul>
+<li>
+<a href="dokka">View<strong>Documentation</strong></a>
+</li>
+</ul>
+</header>
+<section>
+<p>
+<a href="https://travis-ci.com/github/hendraanggrian/rulebook/"><img alt="Travis CI" src="https://img.shields.io/travis/com/hendraanggrian/rulebook"></a>
 <a href="https://codecov.io/gh/hendraanggrian/rulebook/"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/hendraanggrian/rulebook"></a>
-<a href="https://search.maven.org/artifact/com.hendraanggrian.rulebook/rulebook-ktlint/"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.hendraanggrian.rulebook/rulebook-ktlint"></a>
+<a href="https://repo1.maven.org/maven2/com/hendraanggrian/rulebook/rulebook-ktlint/"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/com.hendraanggrian.rulebook/rulebook-ktlint"></a>
 <a href="https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/rulebook/rulebook-ktlint/"><img alt="Nexus Snapshot" src="https://img.shields.io/nexus/s/com.hendraanggrian.rulebook/rulebook-ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org"></a>
 <a href="https://openjdk.java.net/projects/jdk8/"><img alt="OpenJDK" src="https://img.shields.io/badge/jdk-1.8%2B-informational"></a>
-                </p>
+</p>
 
-                <h1>Rulebook</h1>
+<h1>Rulebook</h1>
 
-                <p>
-                    <a href="https://github.com/hendraanggrian/rulebook/wiki/">Third-party rules</a> for lint
-tools, meant to be used in  conjunction with official ones. Most of the rules
-are opinionated personal code styles. However, some already exists in other
-linters, providing the same experience across languages.
-                </p>
+<p>
+<a href="https://github.com/hendraanggrian/rulebook/wiki/">Third-party rules</a> for
+JVM-based lint tools, meant to be used in  conjunction with official ones. Most
+of the rules are opinionated personal code styles. However, some already exists
+in other linters, providing the same experience across languages.</p>
 
-                <table>
+<table>
 
-                    <thead>
+<thead>
 
-                        <tr>
+<tr>
 
-                            <th>Language</th>
+<th>Language</th>
 <th>Linter</th>
 <th>Main Rules</th>
 
-                        </tr>
+</tr>
 
-                    </thead>
+</thead>
 
-                    <tbody>
+<tbody>
 
-                        <tr>
+<tr>
 
-                            <td>Java</td>
+<td>Kotlin</td>
+<td><a href="https://pinterest.github.io/ktlint/">Ktlint</a></td>
+<td><a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> via <a href="https://pinterest.github.io/ktlint/0.49.1/rules/standard/">Ktlint Standard Rules</a></td>
+
+</tr>
+
+<tr>
+
+<td>Java</td>
 <td><a href="https://checkstyle.org/">Checkstyle</a></td>
 <td><a href="https://google.github.io/styleguide/javaguide.html">Google Java Style Guide</a> via <a href="https://checkstyle.sourceforge.io/google_style.html">Checkstyle Google Checks</a></td>
 
-                        </tr>
+</tr>
 
-                        <tr>
+<tr>
 
-                            <td>Kotlin</td>
-<td><a href="https://pinterest.github.io/ktlint/">KtLint</a></td>
-<td><a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> via <a href="https://pinterest.github.io/ktlint/rules/standard/">KtLint standard rules</a></td>
+<td>Groovy</td>
+<td><a href="https://codenarc.org/">CodeNarc</a></td>
+<td><a href="https://groovy-lang.org/style-guide.html">Groovy Style Guide</a></td>
 
-                        </tr>
+</tr>
 
-                    </tbody>
+</tbody>
 
-                </table>
+</table>
 
-                <h2>Download</h2>
+<h2>Download</h2>
 
-                <pre><code class="language-groovy">repositories {
+<pre>
+<code class="language-groovy">repositories {
     mavenCentral()
 }
-
 dependencies {
-    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$version"
     ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:$version"
+    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$version"
+    codenarc "com.hendraanggrian.rulebook:rulebook-codenarc:$version"
 }
-</code></pre>
+</code>
+</pre>
 
-                <h2>Usage</h2>
+<h2>Usage</h2>
 
-                <h3>Checkstyle</h3>
+<h3>Ktlint</h3>
 
-                <p>
-                    Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Gradle Plugin</a>.
-Using configuration <code>checkstyle</code>, add this project as dependency. Then
-use <code>rulebook_checks.xml</code> provided in <a href="sample-checkstyle">sample-checkstyle</a> or
-within <a href="rulebook-checkstyle">rulebook-checkstyle</a> jar.
-                </p>
+<blockquote>
 
-                <pre><code class="language-groovy">plugins {
-    checkstyle
-}
+<p>
+<a href="https://github.com/diffplug/spotless/">Spotless</a> is not supported as because
+you can't add custom rules.</p>
 
-checkstyle {
-    toolVersion "$checkstyleVersion"
-    configFile "path/to/rulebook_checks.xml"
-    // the rest of checkstyle plugin configurations
-}
+</blockquote>
 
-dependencies {
-    checkstyle "com.puppycrawl.tools:checkstyle:$checkstyleVersion"
-    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:libraryVersion"
-}
-</code></pre>
+<p>Apply <a href="https://pinterest.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration">Ktlint Integration</a>
+to Gradle project. Using configuration <code>ktlint</code>, add this project as dependency.</p>
 
-                <h3>KtLint</h3>
-
-                <p>
-                    Apply <a href="https://pinterest.github.io/ktlint/install/integrations/#custom-gradle-integration">KtLint Integration</a>
-to Gradle project. Using configuration <code>ktlint</code>, add this project as dependency.
-                </p>
-
-                <pre><code class="language-groovy">configurations {
+<pre>
+<code class="language-groovy">configurations {
     ktlint
 }
-
 dependencies {
     ktlint "com.pinterest:ktlint:$ktlintVersion"
-    ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:libraryVersion"
+    ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:$libraryVersion"
 }
-
 // the rest of ktlint tasks' configuration
-</code></pre>
+</code>
+</pre>
 
-                <blockquote>
+<h3>Checkstyle</h3>
 
-                    <p>
-                        <a href="https://github.com/diffplug/spotless/">Spotless</a> is not supported as because
-you can't add custom rules.
-                    </p>
+<p>Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Gradle Plugin</a>.
+Using configuration <code>checkstyle</code>, add this project as dependency. Then, point
+config file to <code>rulebook_checkstyle.xml</code>.</p>
 
-                </blockquote>
+<pre>
+<code class="language-groovy">plugins {
+    checkstyle
+}
+checkstyle {
+    toolVersion "$checkstyleVersion"
+    configFile "path/to/rulebook_checkstyle.xml"
+}
+dependencies {
+    checkstyle "com.puppycrawl.tools:checkstyle:$checkstyleVersion"
+    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$libraryVersion"
+}
+</code>
+</pre>
 
-                <h2>First time installation</h2>
+<h3>CodeNarc</h3>
 
-                <p>
-                    Presuming the IDE is <em>IntelliJ IDEA</em>, consider applying the linter style to it.
-                </p>
+<p>Apply <a href="https://docs.gradle.org/current/userguide/codenarc_plugin.html">CodeNarc Gradle Plugin</a>.
+Using configuration <code>codenarc</code>, add this project as dependency. Then, point
+config file to <code>rulebook_codenarc.xml</code>.</p>
 
-                <h3>Checkstyle</h3>
+<pre>
+<code class="language-groovy">plugins {
+    codenarc
+}
+codenarc {
+    toolVersion "$codenarcVersion"
+    configFile "path/to/rulebook_codenarc.xml"
+}
+dependencies {
+    codenarc "org.codenarc:CodeNarc:$codenarcVersion"
+    codenarc "com.hendraanggrian.rulebook:rulebook-codenarc:$libraryVersion"
+}
+</code>
+</pre>
 
-                <p>
-                    In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Java</code>,
-import <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml">IntelliJ Java Google Style file</a>.
-The whole process are better explained in <a href="https://github.com/google/google-java-format/">Google Java Format</a>.
-                </p>
+<h2>First time installation</h2>
 
-                <h3>KtLint</h3>
+<p>Presuming the IDE is <em>IntelliJ IDEA</em>, consider applying the linter style to it.</p>
 
-                <p>
-                    Explained in <a href="https://pinterest.github.io/ktlint/rules/configuration-intellij-idea/">KtLint IntelliJ IDEA Configuration</a>,
-using standard <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> is enough:
-                </p>
+<h3>Ktlint</h3>
 
-                <ul>
+<p>Explained in <a href="https://pinterest.github.io/ktlint/0.49.1/rules/configuration-intellij-idea/">Ktlint IntelliJ IDEA Configuration</a>,
+using standard <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a> is enough:</p>
 
-                    <li>
-                        In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Kotlin</code>, set
-from <code>Kotlin style guide</code>.
-                    </li>
+<ul>
 
-                    <li>
-                        Append <code>kotlin.code.style=official</code> to root <code>gradle.properties</code>.
-                    </li>
+<li>In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Kotlin</code>, set from
+<code>Kotlin style guide</code>.</li>
 
-                </ul>
+<li>Append <code>kotlin.code.style=official</code> to root <code>gradle.properties</code>.</li>
 
-            </section>
-            <footer>
-                <p>
-                    <button class="material-symbols-sharp" id="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode"></button>
-                </p>
-                <p>
-                    This project is maintained by <a href="https://github.com/hendraanggrian/">Hendra Anggrian</a>
-                </p>
-                <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist/">orderedlist</a></small>
-            </footer>
-        </div>
-        <script src="scripts/scale.fix.js"></script>
-    </body>
+</ul>
+
+<h3>Checkstyle</h3>
+
+<p>In <code>File &gt; Settings &gt; Editor &gt; Code Style &gt; Java</code>, import
+<a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml">IntelliJ Java Google Style file</a>.
+The whole process are better explained in <a href="https://github.com/google/google-java-format/">Google Java Format</a>.</p>
+
+</section>
+<footer>
+<p>
+<button class="material-symbols-sharp" id="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode"></button>
+</p>
+<p>This project is maintained by <a href="https://github.com/hendraanggrian/">Hendra Anggrian</a>
+</p>
+<small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist/">orderedlist</a></small>
+</footer>
+</div>
+<script src="scripts/scale.fix.js"></script>
+</body>
 </html>
