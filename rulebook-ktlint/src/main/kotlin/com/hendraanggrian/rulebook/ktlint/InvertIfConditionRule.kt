@@ -40,7 +40,7 @@ class InvertIfConditionRule : RulebookRule("invert-if-condition") {
         }
 
         // obtain the inner block
-        val block = `if`.getOrNull(THEN)?.getOrNull(BLOCK) ?: return
+        val block = `if`.findChildByType(THEN)?.findChildByType(BLOCK) ?: return
 
         // collect whitespaces with newline
         val newLines = block.children()

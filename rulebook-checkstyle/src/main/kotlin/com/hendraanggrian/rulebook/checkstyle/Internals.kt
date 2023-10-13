@@ -16,14 +16,13 @@ internal val DetailNode.actualText: String
         else -> buildString { children.forEach { append(it.actualText) } }
     }
 
-internal inline fun DetailAST.getOrNull(type: Int): DetailAST? = findFirstToken(type)
-internal inline operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
-
-internal inline fun DetailNode.getOrNull(type: Int): DetailNode? =
-    children.first { it.type == type }
+internal inline fun DetailNode.find(type: Int): DetailNode? =
+    children.firstOrNull { it.type == type }
 
 internal inline operator fun DetailNode.contains(type: Int): Boolean =
     children.any { it.type == type }
+
+internal inline operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 
 internal fun DetailNode.siblingsUntil(type: Int): List<DetailNode> {
     val siblings = parent.children

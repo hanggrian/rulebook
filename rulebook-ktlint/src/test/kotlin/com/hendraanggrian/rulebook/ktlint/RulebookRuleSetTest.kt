@@ -1,8 +1,8 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.google.common.truth.Truth.assertThat
-import com.hendraanggrian.rulebook.ktlint.docs.AddEmptyLineBeforeTagsRule
-import com.hendraanggrian.rulebook.ktlint.docs.PunctuateTagRule
+import com.hendraanggrian.rulebook.ktlint.docs.AddBlankLineInDocumentationRule
+import com.hendraanggrian.rulebook.ktlint.docs.PunctuateDocumentationTagRule
 import kotlin.test.Test
 import kotlin.test.assertFalse
 
@@ -22,18 +22,18 @@ class RulebookRuleSetTest {
                 .getRuleProviders()
                 .map { it.createNewRuleInstance().javaClass.kotlin }
         ).containsExactly(
-            AddEmptyLineBeforeTagsRule::class,
-            PunctuateTagRule::class,
-            AddEmptyLineInClassRule::class,
-            DescribeThrowRule::class,
+            AddBlankLineInDocumentationRule::class,
+            PunctuateDocumentationTagRule::class,
+            AddBlankLineInClassRule::class,
             InvertIfConditionRule::class,
-            LowercaseAcronymNameRule::class,
-            NoUnderscoreNameRule::class,
-            RemoveEmptyLineInSwitchRule::class,
-            SpecifyReturnTypeRule::class,
-            StandardizeStringLiteralRule::class,
-            UseAbstractCollectionRule::class,
-            UseKotlinApiRule::class
+            RemoveBlankLineInSwitchRule::class,
+            RenameAbbreviationRule::class,
+            RenameGenericsRule::class,
+            RenameUnderscoreRule::class,
+            ReplaceWithAbstractCollectionRule::class,
+            ReplaceWithKotlinApiRule::class,
+            SpecifyTypeExplicitlyRule::class,
+            ThrowSubclassRule::class
         )
     }
 }

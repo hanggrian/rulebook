@@ -8,7 +8,6 @@ import java.util.*
 
 internal inline val ASTNode.endOffset: Int get() = startOffset + textLength
 
-internal inline fun ASTNode.getOrNull(type: IElementType): ASTNode? = findChildByType(type)
 internal inline operator fun ASTNode.contains(type: IElementType): Boolean =
     findChildByType(type) != null
 
@@ -22,7 +21,8 @@ internal fun ASTNode.siblingsUntil(type: IElementType): List<ASTNode> {
     return list
 }
 
-fun String.isStaticPropertyName(): Boolean = all { it.isUpperCase() || it.isDigit() || it == '_' }
+internal fun String.isStaticPropertyName(): Boolean =
+    all { it.isUpperCase() || it.isDigit() || it == '_' }
 
 internal object Messages {
     private const val FILENAME = "messages"

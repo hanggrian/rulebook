@@ -1,7 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.docs.AddEmptyLineBeforeTagsRule
-import com.hendraanggrian.rulebook.ktlint.docs.PunctuateTagRule
+import com.hendraanggrian.rulebook.ktlint.docs.AddBlankLineInDocumentationRule
+import com.hendraanggrian.rulebook.ktlint.docs.PunctuateDocumentationTagRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.Rule
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -29,17 +29,17 @@ open class RulebookRule internal constructor(
 
 class RulebookRuleSet : RuleSetProviderV3(RULEBOOK_ID) {
     override fun getRuleProviders(): Set<RuleProvider> = setOf(
-        RuleProvider { AddEmptyLineBeforeTagsRule() },
-        RuleProvider { PunctuateTagRule() },
-        RuleProvider { AddEmptyLineInClassRule() },
-        RuleProvider { DescribeThrowRule() },
+        RuleProvider { AddBlankLineInDocumentationRule() },
+        RuleProvider { PunctuateDocumentationTagRule() },
+        RuleProvider { AddBlankLineInClassRule() },
         RuleProvider { InvertIfConditionRule() },
-        RuleProvider { LowercaseAcronymNameRule() },
-        RuleProvider { NoUnderscoreNameRule() },
-        RuleProvider { RemoveEmptyLineInSwitchRule() },
-        RuleProvider { SpecifyReturnTypeRule() },
-        RuleProvider { StandardizeStringLiteralRule() },
-        RuleProvider { UseAbstractCollectionRule() },
-        RuleProvider { UseKotlinApiRule() }
+        RuleProvider { RemoveBlankLineInSwitchRule() },
+        RuleProvider { RenameAbbreviationRule() },
+        RuleProvider { RenameGenericsRule() },
+        RuleProvider { RenameUnderscoreRule() },
+        RuleProvider { ReplaceWithAbstractCollectionRule() },
+        RuleProvider { ReplaceWithKotlinApiRule() },
+        RuleProvider { SpecifyTypeExplicitlyRule() },
+        RuleProvider { ThrowSubclassRule() }
     )
 }

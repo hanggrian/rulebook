@@ -20,3 +20,9 @@ dependencies {
     testImplementation(libs.ktlint.test)
     testImplementation(libs.truth)
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+    maxParallelForks = 2
+    jvmArgs("-Duser.language=en -Duser.country=US")
+}

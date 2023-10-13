@@ -4,7 +4,8 @@ import java.lang.ref.WeakReference
 import java.text.MessageFormat
 import java.util.*
 
-fun String.isStaticPropertyName(): Boolean = all { it.isUpperCase() || it.isDigit() || it == '_' }
+internal fun String.isStaticPropertyName(): Boolean =
+    all { it.isUpperCase() || it.isDigit() || it == '_' }
 
 internal object Messages {
     private const val FILENAME = "messages"

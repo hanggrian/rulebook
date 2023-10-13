@@ -344,9 +344,9 @@
     </module>
 
     <!-- Third-party rules -->
-    <module name="PunctuateTag"/>
-    <module name="DescribeThrow"/>
-    <module name="StandardizeStringLiteral"/>
-    <module name="UseAbstractCollection"/>
+    <module name="PunctuateDocumentationTag"/>
+    <module name="RenameGenerics"/>
+    <module name="ReplaceWithAbstractCollection"/>
+    <module name="ThrowSubclass"/>
   </module>
 </module>

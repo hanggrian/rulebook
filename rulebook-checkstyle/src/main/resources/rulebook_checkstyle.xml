@@ -47,10 +47,6 @@
   </module>
 
   <module name="TreeWalker">
-    <!-- Third-party rules -->
-    <module name="TagDescriptionPunctuation"/>
-    <module name="ThrowAmbiguity"/>
-
     <module name="OuterTypeFilename"/>
     <module name="IllegalTokenText">
       <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
@@ -346,5 +342,11 @@
                 default="checkstyle-xpath-suppressions.xml" />
       <property name="optional" value="true"/>
     </module>
+
+    <!-- Third-party rules -->
+    <module name="PunctuateDocumentationTag"/>
+    <module name="RenameGenerics"/>
+    <module name="ReplaceWithAbstractCollection"/>
+    <module name="ThrowSubclass"/>
   </module>
 </module>
