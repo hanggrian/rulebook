@@ -1,5 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.RenameGenericsRule.Companion.MSG
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -28,11 +29,11 @@ class RenameGenericsRuleTest {
         interface MyInterface<X>
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(1, 15, Messages[RenameGenericsRule.MSG]),
-        LintViolation(2, 36, Messages[RenameGenericsRule.MSG]),
-        LintViolation(3, 24, Messages[RenameGenericsRule.MSG]),
-        LintViolation(4, 28, Messages[RenameGenericsRule.MSG]),
-        LintViolation(5, 23, Messages[RenameGenericsRule.MSG])
+        LintViolation(1, 15, Messages[MSG]),
+        LintViolation(2, 36, Messages[MSG]),
+        LintViolation(3, 24, Messages[MSG]),
+        LintViolation(4, 28, Messages[MSG]),
+        LintViolation(5, 23, Messages[MSG])
     )
 
     @Test
@@ -47,12 +48,12 @@ class RenameGenericsRuleTest {
         """
         fun <X> execute(list: List<X>) {}
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(1, 6, Messages[RenameGenericsRule.MSG])
+    ).hasLintViolationWithoutAutoCorrect(1, 6, Messages[MSG])
 
     @Test
     fun `Reified generic type`() = assertThatCode(
         """
         fun <reified X> execute(list: List<X>) {}
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(1, 14, Messages[RenameGenericsRule.MSG])
+    ).hasLintViolationWithoutAutoCorrect(1, 14, Messages[MSG])
 }

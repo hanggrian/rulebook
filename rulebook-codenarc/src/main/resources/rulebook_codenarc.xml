@@ -78,7 +78,7 @@
 
   <!-- Third-party rules -->
   <rule class="com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.RenameAbbreviationNarc"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.RenameAbbreviationInIdentifierNarc"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.RenameGenericsNarc"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.ReplaceWithAbstractCollectionNarc"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.ReplaceWithAbstractTypeNarc"/>
 </ruleset>

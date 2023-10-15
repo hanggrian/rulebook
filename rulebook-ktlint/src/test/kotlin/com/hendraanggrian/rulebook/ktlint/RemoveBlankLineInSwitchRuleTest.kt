@@ -1,5 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.RemoveBlankLineInSwitchRule.Companion.MSG
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -35,9 +36,9 @@ class RemoveBlankLineInSwitchRuleTest {
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(4, 9, Messages[RemoveBlankLineInSwitchRule.MSG]),
-        LintViolation(6, 9, Messages[RemoveBlankLineInSwitchRule.MSG]),
-        LintViolation(8, 9, Messages[RemoveBlankLineInSwitchRule.MSG])
+        LintViolation(4, 9, Messages[MSG]),
+        LintViolation(6, 9, Messages[MSG]),
+        LintViolation(8, 9, Messages[MSG])
     )
 
     @Test

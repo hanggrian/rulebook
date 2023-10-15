@@ -1,5 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.AddBlankLineInClassRule.Companion.MSG
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -24,11 +25,7 @@ class AddBlankLineInClassRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(
-        4,
-        5,
-        Messages.get(AddBlankLineInClassRule.MSG, "MyClass")
-    )
+    ).hasLintViolationWithoutAutoCorrect(4, 5, Messages.get(MSG, "MyClass"))
 
     @Test
     fun `Class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -66,11 +63,7 @@ class AddBlankLineInClassRuleTest {
             // stub
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(
-        4,
-        5,
-        Messages.get(AddBlankLineInClassRule.MSG, "MyAnnotation")
-    )
+    ).hasLintViolationWithoutAutoCorrect(4, 5, Messages.get(MSG, "MyAnnotation"))
 
     @Test
     fun `Annotation class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -108,11 +101,7 @@ class AddBlankLineInClassRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(
-        4,
-        5,
-        Messages.get(AddBlankLineInClassRule.MSG, "MyData")
-    )
+    ).hasLintViolationWithoutAutoCorrect(4, 5, Messages.get(MSG, "MyData"))
 
     @Test
     fun `Data class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -150,11 +139,7 @@ class AddBlankLineInClassRuleTest {
             ENTRY("")
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(
-        4,
-        5,
-        Messages.get(AddBlankLineInClassRule.MSG, "MyEnum")
-    )
+    ).hasLintViolationWithoutAutoCorrect(4, 5, Messages.get(MSG, "MyEnum"))
 
     @Test
     fun `Enum class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -192,11 +177,7 @@ class AddBlankLineInClassRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(
-        4,
-        5,
-        Messages.get(AddBlankLineInClassRule.MSG, "MySealed")
-    )
+    ).hasLintViolationWithoutAutoCorrect(4, 5, Messages.get(MSG, "MySealed"))
 
     @Test
     fun `Sealed class declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -233,11 +214,7 @@ class AddBlankLineInClassRuleTest {
             val property: String
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(
-        3,
-        5,
-        Messages.get(AddBlankLineInClassRule.MSG, "MyInterface")
-    )
+    ).hasLintViolationWithoutAutoCorrect(3, 5, Messages.get(MSG, "MyInterface"))
 
     @Test
     fun `Interface declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -274,11 +251,7 @@ class AddBlankLineInClassRuleTest {
             val property = ""
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(
-        3,
-        5,
-        Messages.get(AddBlankLineInClassRule.MSG, "MyObject")
-    )
+    ).hasLintViolationWithoutAutoCorrect(3, 5, Messages.get(MSG, "MyObject"))
 
     @Test
     fun `Object declarations ignore kdoc, comment, and annotation`() = assertThatCode(
@@ -319,11 +292,7 @@ class AddBlankLineInClassRuleTest {
             }
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(
-        4,
-        9,
-        Messages.get(AddBlankLineInClassRule.MSG, "Companion object")
-    )
+    ).hasLintViolationWithoutAutoCorrect(4, 9, Messages.get(MSG, "Companion object"))
 
     @Test
     fun `Companion object declarations ignore kdoc, comment, and annotation`() = assertThatCode(

@@ -12,8 +12,8 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
  */
 class ReplaceWithKotlinApiRule : RulebookRule("replace-with-kotlin-api") {
     internal companion object {
-        const val MSG_CALL = "replace.with.kotlin.api.call"
-        const val MSG_TYPE = "replace.with.kotlin.api.type"
+        const val MSG_IMPORT = "replace.with.kotlin.api.import"
+        const val MSG_REFERENCE = "replace.with.kotlin.api.reference"
     }
 
     override fun beforeVisitChildNodes(
@@ -32,7 +32,7 @@ class ReplaceWithKotlinApiRule : RulebookRule("replace-with-kotlin-api") {
                     val dotQualifiedExpression = node.findChildByType(DOT_QUALIFIED_EXPRESSION)!!
                     emit(
                         dotQualifiedExpression.startOffset,
-                        Messages.get(MSG_CALL, kotlinClassReplacement),
+                        Messages.get(MSG_IMPORT, kotlinClassReplacement),
                         false
                     )
                 }
@@ -42,7 +42,11 @@ class ReplaceWithKotlinApiRule : RulebookRule("replace-with-kotlin-api") {
                 val text = node.text.substringBefore('<').substringBefore('?')
                 val kotlinClassReplacement = text.kotlinClassReplacement
                 if (kotlinClassReplacement != null) {
-                    emit(node.startOffset, Messages.get(MSG_TYPE, kotlinClassReplacement), false)
+                    emit(
+                        node.startOffset,
+                        Messages.get(MSG_REFERENCE, kotlinClassReplacement),
+                        false
+                    )
                 }
             }
         }
@@ -53,11 +57,14 @@ class ReplaceWithKotlinApiRule : RulebookRule("replace-with-kotlin-api") {
             if (!startsWith("java.lang.") && !startsWith("java.util.")) {
                 return null
             }
-            return try {
-                val kotlinClassName = Class.forName(this).kotlin.qualifiedName ?: return null
-                if (kotlinClassName.startsWith("kotlin.")) kotlinClassName else null
+            val kotlinClassName = try {
+                Class.forName(this).kotlin.qualifiedName ?: return null
             } catch (e: ClassNotFoundException) {
-                null
+                return null
+            }
+            return when {
+                kotlinClassName.startsWith("kotlin.") -> kotlinClassName
+                else -> null
             }
         }
 }

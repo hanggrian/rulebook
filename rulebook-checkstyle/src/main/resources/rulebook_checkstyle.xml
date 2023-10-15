@@ -346,7 +346,7 @@
     <!-- Third-party rules -->
     <module name="PunctuateDocumentationTag"/>
     <module name="RenameGenerics"/>
-    <module name="ReplaceWithAbstractCollection"/>
-    <module name="ThrowSubclass"/>
+    <module name="ReplaceWithAbstractType"/>
+    <module name="ThrowExceptionSubclass"/>
   </module>
 </module>

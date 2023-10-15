@@ -1,5 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.SpecifyTypeExplicitlyRule.Companion.MSG_FUNCTION
+import com.hendraanggrian.rulebook.ktlint.SpecifyTypeExplicitlyRule.Companion.MSG_PROPERTY
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -22,12 +24,8 @@ class SpecifyTypeExplicitlyRuleTest {
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(
-            1,
-            25,
-            Messages.get(SpecifyTypeExplicitlyRule.MSG_EXPR, "expressionFunction")
-        ),
-        LintViolation(3, 29, Messages.get(SpecifyTypeExplicitlyRule.MSG_EXPR, "expressionFunction"))
+        LintViolation(1, 25, Messages[MSG_FUNCTION]),
+        LintViolation(3, 29, Messages[MSG_FUNCTION])
     )
 
     @Test
@@ -63,8 +61,8 @@ class SpecifyTypeExplicitlyRuleTest {
         }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(1, 21, Messages.get(SpecifyTypeExplicitlyRule.MSG_PROP, "propertyAccessor")),
-        LintViolation(3, 25, Messages.get(SpecifyTypeExplicitlyRule.MSG_PROP, "propertyAccessor"))
+        LintViolation(1, 21, Messages[MSG_PROPERTY]),
+        LintViolation(3, 25, Messages[MSG_PROPERTY])
     )
 
     @Test

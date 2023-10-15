@@ -1,6 +1,8 @@
 package com.hendraanggrian.rulebook
 
 import com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc
+import com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc.Companion.MSG
+import com.hendraanggrian.rulebook.codenarc.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -47,7 +49,9 @@ class InvertIfConditionNarcTest : AbstractRuleTestCase<InvertIfConditionNarc>() 
             }
         }
         """.trimIndent(),
-        2
+        2,
+        "if (true) {",
+        Messages[MSG]
     )
 
     @Test

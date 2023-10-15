@@ -2,6 +2,7 @@ package com.hendraanggrian.rulebook
 
 import com.hendraanggrian.rulebook.codenarc.Messages
 import com.hendraanggrian.rulebook.codenarc.RenameGenericsNarc
+import com.hendraanggrian.rulebook.codenarc.RenameGenericsNarc.Companion.MSG
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -24,21 +25,17 @@ class RenameGenericsNarcTest : AbstractRuleTestCase<RenameGenericsNarc>() {
     )
 
     @Test
-    fun `Uncommon generic type in class`() = assertViolations(
+    fun `Uncommon generic type in class`() = assertTwoViolations(
         """
         class MyClass<X> {}
         interface MyInterface<X> {}
         """.trimIndent(),
-        mutableMapOf(
-            "line" to 1,
-            "source" to "class MyClass<X> {}",
-            "message" to Messages[RenameGenericsNarc.MSG]
-        ),
-        mutableMapOf(
-            "line" to 2,
-            "source" to "interface MyInterface<X> {}",
-            "message" to Messages[RenameGenericsNarc.MSG]
-        )
+        1,
+        "class MyClass<X> {}",
+        Messages[MSG],
+        2,
+        "interface MyInterface<X> {}",
+        Messages[MSG]
     )
 
     @Test

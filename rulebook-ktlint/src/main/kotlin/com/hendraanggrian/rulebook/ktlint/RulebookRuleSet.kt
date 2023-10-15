@@ -34,12 +34,12 @@ class RulebookRuleSet : RuleSetProviderV3(RULEBOOK_ID) {
         RuleProvider { AddBlankLineInClassRule() },
         RuleProvider { InvertIfConditionRule() },
         RuleProvider { RemoveBlankLineInSwitchRule() },
-        RuleProvider { RenameAbbreviationRule() },
+        RuleProvider { RenameAbbreviationInIdentifierRule() },
         RuleProvider { RenameGenericsRule() },
-        RuleProvider { RenameUnderscoreRule() },
-        RuleProvider { ReplaceWithAbstractCollectionRule() },
+        RuleProvider { RenameUnderscoreInIdentifierRule() },
+        RuleProvider { ReplaceWithAbstractTypeRule() },
         RuleProvider { ReplaceWithKotlinApiRule() },
         RuleProvider { SpecifyTypeExplicitlyRule() },
-        RuleProvider { ThrowSubclassRule() }
+        RuleProvider { ThrowExceptionSubclassRule() }
     )
 }

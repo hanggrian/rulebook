@@ -16,27 +16,11 @@ internal val DetailNode.actualText: String
         else -> buildString { children.forEach { append(it.actualText) } }
     }
 
-internal inline fun DetailNode.find(type: Int): DetailNode? =
-    children.firstOrNull { it.type == type }
+internal fun DetailNode.find(type: Int): DetailNode? = children.firstOrNull { it.type == type }
 
-internal inline operator fun DetailNode.contains(type: Int): Boolean =
-    children.any { it.type == type }
+internal operator fun DetailNode.contains(type: Int): Boolean = children.any { it.type == type }
 
-internal inline operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
-
-internal fun DetailNode.siblingsUntil(type: Int): List<DetailNode> {
-    val siblings = parent.children
-    val index = siblings.indexOf(this)
-    val list = mutableListOf<DetailNode>()
-    for (i in index + 1 until siblings.size) {
-        val next = siblings[i]
-        if (next.type == type) {
-            return list
-        }
-        list += next
-    }
-    return list
-}
+internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 
 internal object Messages {
     private const val FILENAME = "messages"

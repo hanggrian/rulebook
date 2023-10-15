@@ -1,6 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint.docs
 
 import com.hendraanggrian.rulebook.ktlint.Messages
+import com.hendraanggrian.rulebook.ktlint.docs.PunctuateDocumentationTagRule.Companion.MSG
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -13,8 +14,10 @@ class PunctuateDocumentationTagRuleTest {
         """
         /**
          * @param input
+         * @throws NumberFormatException
+         * @return
          */
-        fun add(input: Int) {}
+        fun add(input: Int): Int = input
         """.trimIndent()
     ).hasNoLintViolations()
 
@@ -31,8 +34,10 @@ class PunctuateDocumentationTagRuleTest {
          *   long number?
          * @param input some
          *   long number!
+         * @throws NumberFormatException some error.
+         * @return a number.
          */
-        fun add(input: Int) {}
+        fun add(input: Int): Int = input
         """.trimIndent()
     ).hasNoLintViolations()
 
@@ -43,12 +48,16 @@ class PunctuateDocumentationTagRuleTest {
          * @param input a number
          * @param input some
          *   long number
+         * @throws NumberFormatException some error
+         * @return a number
          */
-        fun add(input: Int) {}
+        fun add(input: Int): Int = input
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(2, 10, Messages[PunctuateDocumentationTagRule.MSG]),
-        LintViolation(3, 10, Messages[PunctuateDocumentationTagRule.MSG])
+        LintViolation(2, 10, Messages[MSG]),
+        LintViolation(3, 10, Messages[MSG]),
+        LintViolation(5, 11, Messages[MSG]),
+        LintViolation(6, 11, Messages[MSG])
     )
 
     @Test
@@ -57,12 +66,13 @@ class PunctuateDocumentationTagRuleTest {
         /**
          * @param input a number // some comment
          * @param input a. // some comment
-         * @param input // some comment
+         * @throws NumberFormatException some error // some comment
+         * @return a number. // some comment
          */
-        fun add(input: Int) {}
+        fun add(input: Int): Int = input
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(2, 10, Messages[PunctuateDocumentationTagRule.MSG]),
-        LintViolation(4, 10, Messages[PunctuateDocumentationTagRule.MSG])
+        LintViolation(2, 10, Messages[MSG]),
+        LintViolation(4, 11, Messages[MSG])
     )
 }

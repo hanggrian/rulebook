@@ -27,13 +27,13 @@ class RulebookRuleSetTest {
             AddBlankLineInClassRule::class,
             InvertIfConditionRule::class,
             RemoveBlankLineInSwitchRule::class,
-            RenameAbbreviationRule::class,
+            RenameAbbreviationInIdentifierRule::class,
             RenameGenericsRule::class,
-            RenameUnderscoreRule::class,
-            ReplaceWithAbstractCollectionRule::class,
+            RenameUnderscoreInIdentifierRule::class,
+            ReplaceWithAbstractTypeRule::class,
             ReplaceWithKotlinApiRule::class,
             SpecifyTypeExplicitlyRule::class,
-            ThrowSubclassRule::class
+            ThrowExceptionSubclassRule::class
         )
     }
 }

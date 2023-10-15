@@ -1,5 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.InvertIfConditionRule.Companion.MSG
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -39,7 +40,7 @@ class InvertIfConditionRuleTest {
             }
         }
         """.trimIndent()
-    ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[InvertIfConditionRule.MSG])
+    ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG])
 
     @Test
     fun `If statement with else`() = assertThatCode(

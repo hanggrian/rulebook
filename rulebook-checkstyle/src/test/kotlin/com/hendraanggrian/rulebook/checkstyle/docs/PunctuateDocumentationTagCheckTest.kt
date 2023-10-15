@@ -10,17 +10,17 @@ class PunctuateDocumentationTagCheckTest {
 
     @Test
     fun `No description`() =
-        assertEquals(0, checker.process(prepareFiles("docs/PunctuateTag1")))
+        assertEquals(0, checker.process(prepareFiles("docs/PunctuateDocumentationTag1")))
 
     @Test
     fun `Descriptions end with punctuations`() =
-        assertEquals(0, checker.process(prepareFiles("docs/PunctuateTag2")))
+        assertEquals(0, checker.process(prepareFiles("docs/PunctuateDocumentationTag2")))
 
     @Test
     fun `Descriptions have no end punctuation`() =
-        assertEquals(2, checker.process(prepareFiles("docs/PunctuateTag3")))
+        assertEquals(4, checker.process(prepareFiles("docs/PunctuateDocumentationTag3")))
 
     @Test
     fun `Description end with comments`() =
-        assertEquals(2, checker.process(prepareFiles("docs/PunctuateTag4")))
+        assertEquals(2, checker.process(prepareFiles("docs/PunctuateDocumentationTag4")))
 }

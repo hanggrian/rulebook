@@ -22,8 +22,8 @@ import org.jetbrains.kotlin.psi.psiUtil.children
  */
 class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
     internal companion object {
-        const val MSG_EXPR = "specify.type.explicitly.expression"
-        const val MSG_PROP = "specify.type.explicitly.property"
+        const val MSG_FUNCTION = "specify.type.explicitly.function"
+        const val MSG_PROPERTY = "specify.type.explicitly.property"
     }
 
     override fun beforeVisitChildNodes(
@@ -57,7 +57,7 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
                 // check for violation
                 if (node.isViolation()) {
                     val valueParameterList = node.findChildByType(VALUE_PARAMETER_LIST)!!
-                    emit(valueParameterList.endOffset, Messages[MSG_EXPR], false)
+                    emit(valueParameterList.endOffset, Messages[MSG_FUNCTION], false)
                 }
             }
             PROPERTY -> {
@@ -75,7 +75,7 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
                 // check for violation
                 if (node.isViolation()) {
                     val identifier = node.findChildByType(IDENTIFIER)!!
-                    emit(identifier.endOffset, Messages[MSG_PROP], false)
+                    emit(identifier.endOffset, Messages[MSG_PROPERTY], false)
                 }
             }
         }

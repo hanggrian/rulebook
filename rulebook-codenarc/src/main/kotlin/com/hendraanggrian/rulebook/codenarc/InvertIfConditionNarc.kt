@@ -1,5 +1,6 @@
 package com.hendraanggrian.rulebook.codenarc
 
+import com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc.Companion.MSG
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codenarc.rule.AbstractAstVisitor
@@ -31,7 +32,7 @@ class InvertIfConditionVisitor : AbstractAstVisitor() {
 
         // report 2 lines content
         if (';' in `if`.ifBlock.text) {
-            addViolation(`if`, Messages[InvertIfConditionNarc.MSG])
+            addViolation(`if`, Messages[MSG])
         }
         super.visitBlockStatement(statement)
     }

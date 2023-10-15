@@ -1,6 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint.docs
 
 import com.hendraanggrian.rulebook.ktlint.Messages
+import com.hendraanggrian.rulebook.ktlint.docs.AddBlankLineInDocumentationRule.Companion.MSG
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -64,8 +65,8 @@ class AddBlankLineInDocumentationRuleTest {
         fun justCode(width: Int, height: Int) { }
         """.trimIndent()
     ).hasLintViolationsWithoutAutoCorrect(
-        LintViolation(3, 4, Messages[AddBlankLineInDocumentationRule.MSG]),
-        LintViolation(10, 4, Messages[AddBlankLineInDocumentationRule.MSG]),
-        LintViolation(17, 4, Messages[AddBlankLineInDocumentationRule.MSG])
+        LintViolation(3, 4, Messages[MSG]),
+        LintViolation(10, 4, Messages[MSG]),
+        LintViolation(17, 4, Messages[MSG])
     )
 }
