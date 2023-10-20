@@ -1,4 +1,4 @@
-val RELEASE_ARTIFACT: String by project
+val releaseArtifact: String by project
 
 plugins {
     groovy
@@ -11,7 +11,7 @@ codenarc {
 }
 
 dependencies {
-    codenarc(libs.codenarc)
-    codenarc(project(":$RELEASE_ARTIFACT-codenarc"))
+    codenarc(project(":$releaseArtifact-codenarc"))
+
     implementation(libs.groovy.all)
 }

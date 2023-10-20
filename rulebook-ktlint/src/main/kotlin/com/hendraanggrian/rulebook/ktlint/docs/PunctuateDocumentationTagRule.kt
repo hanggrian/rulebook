@@ -1,9 +1,9 @@
 package com.hendraanggrian.rulebook.ktlint.docs
 
-import com.hendraanggrian.rulebook.ktlint.Messages
-import com.hendraanggrian.rulebook.ktlint.RulebookRule
-import com.hendraanggrian.rulebook.ktlint.contains
-import com.hendraanggrian.rulebook.ktlint.endOffset
+import com.hendraanggrian.rulebook.ktlint.internals.Messages
+import com.hendraanggrian.rulebook.ktlint.internals.RulebookRule
+import com.hendraanggrian.rulebook.ktlint.internals.contains
+import com.hendraanggrian.rulebook.ktlint.internals.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG_NAME
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
@@ -13,18 +13,10 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/PunctuateDocumentationTag).
  */
 class PunctuateDocumentationTagRule : RulebookRule("punctuate-documentation-tag") {
-    internal companion object {
-        const val MSG = "punctuate.documentation.tag"
-
-        val DESCRIBABLE_TAGS =
-            setOf("@param", "@return", "@throws", "@property", "@receiver", "@constructor")
-        val END_PUNCTUATIONS = setOf('.', '?', '!')
-    }
-
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit
+        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
         if (node.elementType != KDOC_TAG) {
@@ -49,11 +41,19 @@ class PunctuateDocumentationTagRule : RulebookRule("punctuate-documentation-tag"
         }
     }
 
-    private fun String.trimComment(): String {
-        val index = indexOf("//")
-        if (index == -1) {
-            return this
+    internal companion object {
+        const val MSG = "punctuate.documentation.tag"
+
+        private val DESCRIBABLE_TAGS =
+            setOf("@param", "@return", "@throws", "@property", "@receiver", "@constructor")
+        private val END_PUNCTUATIONS = setOf('.', '?', '!')
+
+        private fun String.trimComment(): String {
+            val index = indexOf("//")
+            if (index == -1) {
+                return this
+            }
+            return substring(0, index).trimEnd()
         }
-        return substring(0, index).trimEnd()
     }
 }

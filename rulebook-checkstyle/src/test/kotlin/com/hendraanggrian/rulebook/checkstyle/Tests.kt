@@ -14,9 +14,9 @@ inline fun <reified T> prepareChecker(): Checker {
             addChild(
                 DefaultConfiguration("TreeWalker").apply {
                     addChild(DefaultConfiguration(T::class.java.canonicalName))
-                }
+                },
             )
-        }
+        },
     )
     return checker
 }

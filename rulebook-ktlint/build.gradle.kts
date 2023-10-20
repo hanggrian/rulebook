@@ -1,4 +1,4 @@
-val RELEASE_ARTIFACT: String by project
+val releaseArtifact: String by project
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin
@@ -9,13 +9,12 @@ plugins {
 }
 
 dependencies {
-    ktlintRuleset(libs.ktlint)
-
-    implementation(libs.ktlint.core)
     implementation(libs.ktlint.rule.engine.core)
     implementation(libs.ktlint.cli.ruleset.core)
 
     testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
     testImplementation(libs.ktlint.test)
     testImplementation(libs.truth)
+
+    testRuntimeOnly(libs.logback)
 }

@@ -1,8 +1,8 @@
 package com.hendraanggrian.rulebook.ktlint.docs
 
-import com.hendraanggrian.rulebook.ktlint.Messages
-import com.hendraanggrian.rulebook.ktlint.RulebookRule
-import com.hendraanggrian.rulebook.ktlint.siblingsUntil
+import com.hendraanggrian.rulebook.ktlint.internals.Messages
+import com.hendraanggrian.rulebook.ktlint.internals.RulebookRule
+import com.hendraanggrian.rulebook.ktlint.internals.siblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
@@ -14,14 +14,10 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/AddBlankLineInDocumentation).
  */
 class AddBlankLineInDocumentationRule : RulebookRule("add-blank-lines-in-documentation") {
-    internal companion object {
-        const val MSG = "add.blank.line.in.documentation"
-    }
-
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit
+        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
         if (node.elementType != KDOC_SECTION) {
@@ -46,6 +42,10 @@ class AddBlankLineInDocumentationRule : RulebookRule("add-blank-lines-in-documen
         }
     }
 
-    private val ASTNode.prevKdocLeadingAsterisk: ASTNode?
-        get() = prevSibling { it.elementType == KDOC_LEADING_ASTERISK }
+    internal companion object {
+        const val MSG = "add.blank.line.in.documentation"
+
+        private val ASTNode.prevKdocLeadingAsterisk: ASTNode?
+            get() = prevSibling { it.elementType == KDOC_LEADING_ASTERISK }
+    }
 }

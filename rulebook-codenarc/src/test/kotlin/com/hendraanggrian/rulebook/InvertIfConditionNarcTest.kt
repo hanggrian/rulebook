@@ -1,8 +1,8 @@
 package com.hendraanggrian.rulebook
 
 import com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc
-import com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc.Companion.MSG
-import com.hendraanggrian.rulebook.codenarc.Messages
+import com.hendraanggrian.rulebook.codenarc.InvertIfConditionVisitor.Companion.MSG
+import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -17,58 +17,75 @@ class InvertIfConditionNarcTest : AbstractRuleTestCase<InvertIfConditionNarc>() 
     }
 
     @Test
-    fun `Correct format`() = assertNoViolations(
-        """
-        void foo() {
-            if (true) {
-                return
+    fun `Empty then statement`() =
+        assertNoViolations(
+            """
+            void foo() {
+                if (true) {}
+                if (true) { }
+                if (true) {
+                }
             }
-            println()
-        }
-        """.trimIndent()
-    )
+            """.trimIndent(),
+        )
 
     @Test
-    fun `Only 1 line in if statement`() = assertNoViolations(
-        """
-        void foo() {
-            if (true) {
+    fun `Correct format`() =
+        assertNoViolations(
+            """
+            void foo() {
+                if (true) {
+                    return
+                }
                 println()
             }
-        }
-        """.trimIndent()
-    )
+            """.trimIndent(),
+        )
 
     @Test
-    fun `At least 2 lines in if statement`() = assertSingleViolation(
-        """
-        void foo() {
-            if (true) {
-                println()
-                println()
+    fun `Only 1 line in if statement`() =
+        assertNoViolations(
+            """
+            void foo() {
+                if (true) {
+                    println()
+                }
             }
-        }
-        """.trimIndent(),
-        2,
-        "if (true) {",
-        Messages[MSG]
-    )
+            """.trimIndent(),
+        )
 
     @Test
-    fun `If statement with else`() = assertNoViolations(
-        """
-        void foo() {
-            if (true) {
-                println()
-                println()
-            } else if (false) {
-                println()
-                println()
-            } else {
-                println()
-                println()
+    fun `At least 2 lines in if statement`() =
+        assertSingleViolation(
+            """
+            void foo() {
+                if (true) {
+                    println()
+                    println()
+                }
             }
-        }
-        """.trimIndent()
-    )
+            """.trimIndent(),
+            2,
+            "if (true) {",
+            Messages[MSG],
+        )
+
+    @Test
+    fun `If statement with else`() =
+        assertNoViolations(
+            """
+            void foo() {
+                if (true) {
+                    println()
+                    println()
+                } else if (false) {
+                    println()
+                    println()
+                } else {
+                    println()
+                    println()
+                }
+            }
+            """.trimIndent(),
+        )
 }

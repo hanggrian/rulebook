@@ -1,4 +1,4 @@
-val RELEASE_ARTIFACT: String by project
+val releaseArtifact: String by project
 
 plugins {
     groovy
@@ -10,8 +10,7 @@ plugins {
 }
 
 dependencies {
-    ktlintRuleset(libs.ktlint)
-    ktlintRuleset(project(":$RELEASE_ARTIFACT-ktlint"))
+    ktlintRuleset(project(":$releaseArtifact-ktlint"))
 
     implementation(libs.groovy)
     implementation(libs.codenarc)

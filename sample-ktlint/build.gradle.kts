@@ -1,4 +1,4 @@
-val RELEASE_ARTIFACT: String by project
+val releaseArtifact: String by project
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin
@@ -6,6 +6,5 @@ plugins {
 }
 
 dependencies {
-    ktlintRuleset(libs.ktlint)
-    ktlintRuleset(project(":$RELEASE_ARTIFACT-ktlint"))
+    ktlintRuleset(project(":$releaseArtifact-ktlint"))
 }

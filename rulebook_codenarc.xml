@@ -6,6 +6,21 @@
   with few changes:
 
   - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
+  - Lenient basics by excluding in `unused.xml`:
+    - `EmptyCatchBlock`
+    - `EmptyClass`
+    - `EmptyElseBlock`
+    - `EmptyFinallyBlock`
+    - `EmptyForStatement`
+    - `EmptyIfStatement`
+    - `EmptyInstanceInitializer`
+    - `EmptyMethod`
+    - `EmptyStaticInitializer`
+    - `EmptySwitchStatement`
+    - `EmptySynchronizedStatement`
+    - `EmptyTryBlock`
+    - `EmptyWhileStatement`
+  - Exclude `EmptyMethod` from `basics.xml`
  -->
 <ruleset xmlns="http://codenarc.org/ruleset/1.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -14,7 +29,21 @@
 
   <description>Rulebook third-party rules</description>
 
-  <ruleset-ref path="rulesets/basic.xml"/>
+  <ruleset-ref path="rulesets/basic.xml">
+    <exclude name="EmptyCatchBlock"/>
+    <exclude name="EmptyClass"/>
+    <exclude name="EmptyElseBlock"/>
+    <exclude name="EmptyFinallyBlock"/>
+    <exclude name="EmptyForStatement"/>
+    <exclude name="EmptyIfStatement"/>
+    <exclude name="EmptyInstanceInitializer"/>
+    <exclude name="EmptyMethod"/>
+    <exclude name="EmptyStaticInitializer"/>
+    <exclude name="EmptySwitchStatement"/>
+    <exclude name="EmptySynchronizedStatement"/>
+    <exclude name="EmptyTryBlock"/>
+    <exclude name="EmptyWhileStatement"/>
+  </ruleset-ref>
   <ruleset-ref path="rulesets/braces.xml"/>
   <ruleset-ref path="rulesets/concurrency.xml"/>
   <ruleset-ref path="rulesets/convention.xml">
@@ -62,7 +91,6 @@
     <exclude name="NestedBlockDepth"/>
     <exclude name="MethodCount"/>
   </ruleset-ref>
-  <ruleset-ref path="rulesets/unused.xml"/>
   <ruleset-ref path="rulesets/unnecessary.xml">
     <exclude name="UnnecessaryCollectCall"/>
     <exclude name="UnnecessaryGetter"/>
@@ -78,7 +106,7 @@
 
   <!-- Third-party rules -->
   <rule class="com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.RenameAbbreviationInIdentifierNarc"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.RenameGenericsNarc"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.ReplaceWithAbstractTypeNarc"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.RenameAbbreviationWordNarc"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.RenameMeaninglessWordNarc"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsNarc"/>
 </ruleset>

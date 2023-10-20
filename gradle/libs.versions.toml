@@ -2,7 +2,7 @@
 jdk = "8"
 # kotlin
 kotlin = "1.8.20"
-ktlint = "0.49.1"
+ktlint = "1.0.0"
 # java
 checkstyle = "8.45.1"
 # groovy
@@ -11,19 +11,16 @@ codenarc = "3.3.0"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.7.3"
-ktlint = "org.jlleitschuh.gradle.ktlint:11.5.1"
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.7.4"
+ktlint = "org.jlleitschuh.gradle.ktlint:11.6.1"
 maven-publish = "com.vanniktech.maven.publish.base:0.22.0" # max for jdk8
 git-publish = "org.ajoberstar.git-publish:3.0.1" # max for jdk8
 pages = "com.hendraanggrian.pages:0.1"
 
 [libraries]
-# lint
-ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
 # main
 groovy = { module = "org.codehaus.groovy:groovy", version.ref = "groovy" }
 groovy-all = { module = "org.codehaus.groovy:groovy-all", version.ref = "groovy" }
-ktlint-core = { module = "com.pinterest.ktlint:ktlint-core", version.ref = "ktlint" }
 ktlint-rule-engine-core = { module = "com.pinterest.ktlint:ktlint-rule-engine-core", version.ref = "ktlint" }
 ktlint-cli-ruleset-core = { module = "com.pinterest.ktlint:ktlint-cli-ruleset-core", version.ref = "ktlint" }
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
@@ -31,3 +28,4 @@ codenarc = { module = "org.codenarc:CodeNarc", version.ref = "codenarc" }
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
 truth = "com.google.truth:truth:1.1.5"
+logback = "ch.qos.logback:logback-classic:1.3.5"
