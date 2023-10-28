@@ -3,9 +3,7 @@ $dokka.linkExtension:html
 
 module:rulebook-checkstyle
 com.hendraanggrian.rulebook.checkstyle
-com.hendraanggrian.rulebook.checkstyle.docs
 module:rulebook-codenarc
 com.hendraanggrian.rulebook.codenarc
 module:rulebook-ktlint
 com.hendraanggrian.rulebook.ktlint
-com.hendraanggrian.rulebook.ktlint.docs
