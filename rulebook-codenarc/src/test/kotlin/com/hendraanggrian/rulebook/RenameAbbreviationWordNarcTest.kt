@@ -1,14 +1,14 @@
 package com.hendraanggrian.rulebook
 
-import com.hendraanggrian.rulebook.codenarc.RenameAbbreviationWordNarc
+import com.hendraanggrian.rulebook.codenarc.RenameAbbreviationWordRule
 import com.hendraanggrian.rulebook.codenarc.RenameAbbreviationWordVisitor.Companion.MSG
 import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class RenameAbbreviationWordNarcTest : AbstractRuleTestCase<RenameAbbreviationWordNarc>() {
-    override fun createRule(): RenameAbbreviationWordNarc = RenameAbbreviationWordNarc()
+class RenameAbbreviationWordNarcTest : AbstractRuleTestCase<RenameAbbreviationWordRule>() {
+    override fun createRule(): RenameAbbreviationWordRule = RenameAbbreviationWordRule()
 
     @Test
     fun `Rule properties`() {

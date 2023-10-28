@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
-import com.hendraanggrian.rulebook.ktlint.internals.RulebookRule
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_DIRECTIVE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
@@ -10,7 +9,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/ReplaceWithKotlinApi).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#replace-with-kotlin-api).
  */
 class ReplaceWithKotlinApiRule : RulebookRule("replace-with-kotlin-api") {
     override fun beforeVisitChildNodes(

@@ -1,33 +1,40 @@
 package com.hendraanggrian.rulebook.checkstyle
 
 import com.hendraanggrian.rulebook.checkstyle.internals.Messages
-import com.hendraanggrian.rulebook.checkstyle.internals.RulebookCheck
+import com.hendraanggrian.rulebook.checkstyle.internals.children
+import com.hendraanggrian.rulebook.checkstyle.internals.contains
 import com.puppycrawl.tools.checkstyle.api.DetailAST
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION_DEF
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.CLASS_DEF
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.ENUM_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETER
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETERS
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/RenameUncommonGenerics).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#rename-uncommon-generics).
  */
 class RenameUncommonGenericsCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray = intArrayOf(TYPE_PARAMETERS)
+    override fun getRequiredTokens(): IntArray =
+        intArrayOf(
+            CLASS_DEF,
+            INTERFACE_DEF,
+            ENUM_DEF,
+            ANNOTATION_DEF,
+            METHOD_DEF,
+        )
 
     override fun visitToken(node: DetailAST) {
         // filter out multiple generics
-        val typeParameterList = mutableListOf<DetailAST>()
-        var next = node.firstChild
-        while (next != null) {
-            if (next.type == TYPE_PARAMETER) {
-                typeParameterList += next
-            }
-            next = next.nextSibling
-        }
-        val typeParameter = typeParameterList.singleOrNull { it.type == TYPE_PARAMETER } ?: return
+        val typeParameters = node.findFirstToken(TYPE_PARAMETERS) ?: return
+        val typeParameter =
+            typeParameters.children().singleOrNull { it.type == TYPE_PARAMETER } ?: return
 
         // check for a match
         val ident = typeParameter.findFirstToken(IDENT) ?: return
-        if (ident.text !in COMMON_GENERICS) {
+        if (!node.hasParentWithGenerics() && ident.text !in COMMON_GENERICS) {
             log(node, Messages[MSG])
         }
     }
@@ -36,5 +43,16 @@ class RenameUncommonGenericsCheck : RulebookCheck() {
         const val MSG = "rename.uncommon.generics"
 
         private val COMMON_GENERICS = setOf("E", "K", "N", "T", "V")
+
+        private fun DetailAST.hasParentWithGenerics(): Boolean {
+            var next: DetailAST? = parent
+            while (next != null) {
+                if (TYPE_PARAMETERS in next) {
+                    return true
+                }
+                next = next.parent
+            }
+            return false
+        }
     }
 }

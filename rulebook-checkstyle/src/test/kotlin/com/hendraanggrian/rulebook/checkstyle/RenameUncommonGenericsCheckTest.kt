@@ -21,4 +21,8 @@ class RenameUncommonGenericsCheckTest {
     @Test
     fun `Uncommon generic type in function`() =
         assertEquals(1, checker.process(prepareFiles("RenameUncommonGenerics4")))
+
+    @Test
+    fun `Skip inner generics`() =
+        assertEquals(0, checker.process(prepareFiles("RenameUncommonGenerics5")))
 }

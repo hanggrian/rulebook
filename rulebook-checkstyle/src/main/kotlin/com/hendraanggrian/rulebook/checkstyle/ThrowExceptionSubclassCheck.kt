@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.checkstyle
 
 import com.hendraanggrian.rulebook.checkstyle.internals.Messages
-import com.hendraanggrian.rulebook.checkstyle.internals.RulebookCheck
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.EXPR
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
@@ -9,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NEW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/ThrowExceptionSubclass).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#throw-exception-subclass).
  */
 class ThrowExceptionSubclassCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_THROW)

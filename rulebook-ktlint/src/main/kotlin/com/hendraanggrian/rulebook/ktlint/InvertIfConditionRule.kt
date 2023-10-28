@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
-import com.hendraanggrian.rulebook.ktlint.internals.RulebookRule
 import com.hendraanggrian.rulebook.ktlint.internals.contains
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
@@ -14,7 +13,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/InvertIfCondition).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#invert-if-condition).
  */
 class InvertIfConditionRule : RulebookRule("invert-if-condition") {
     override fun beforeVisitChildNodes(

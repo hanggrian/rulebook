@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
-import com.hendraanggrian.rulebook.ktlint.internals.RulebookRule
 import com.hendraanggrian.rulebook.ktlint.internals.contains
 import com.hendraanggrian.rulebook.ktlint.internals.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ANNOTATION_ENTRY
@@ -22,7 +21,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/SpecifyTypeExplicitly).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#specify-type-explicitly).
  */
 class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
     override fun beforeVisitChildNodes(
@@ -54,7 +53,7 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
                 }
 
                 // check for violation
-                if (node.isViolation()) {
+                if (!node.hasNonPublicParent() && TYPE_REFERENCE !in node) {
                     val valueParameterList = node.findChildByType(VALUE_PARAMETER_LIST)!!
                     emit(valueParameterList.endOffset, Messages[MSG_FUNCTION], false)
                 }
@@ -72,7 +71,7 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
                 }
 
                 // check for violation
-                if (node.isViolation()) {
+                if (!node.hasNonPublicParent() && TYPE_REFERENCE !in node) {
                     val identifier = node.findChildByType(IDENTIFIER)!!
                     emit(identifier.endOffset, Messages[MSG_PROPERTY], false)
                 }
@@ -84,20 +83,18 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
         const val MSG_FUNCTION = "specify.type.explicitly.function"
         const val MSG_PROPERTY = "specify.type.explicitly.property"
 
-        private fun ASTNode.isViolation(): Boolean {
-            // return true if this node or its parents recursively are private
-            var node: ASTNode? = this
-            while (node != null) {
-                if (node.isPrivateOrInternal()) {
-                    return false
+        private fun ASTNode.hasNonPublicParent(): Boolean {
+            var next: ASTNode? = this
+            while (next != null) {
+                if (next.isNonPublic()) {
+                    return true
                 }
-                node = node.treeParent
+                next = next.treeParent
             }
-            // in case of public node, declare violation if node doesn't have a type reference
-            return TYPE_REFERENCE !in this
+            return false
         }
 
-        private fun ASTNode.isPrivateOrInternal(): Boolean {
+        private fun ASTNode.isNonPublic(): Boolean {
             val modifiers = findChildByType(MODIFIER_LIST) ?: return false
             return PRIVATE_KEYWORD in modifiers || INTERNAL_KEYWORD in modifiers
         }

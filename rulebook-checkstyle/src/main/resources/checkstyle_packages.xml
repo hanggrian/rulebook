@@ -5,5 +5,4 @@
 
 <checkstyle-packages>
   <package name="com.hendraanggrian.rulebook.checkstyle"/>
-  <package name="com.hendraanggrian.rulebook.checkstyle.docs"/>
 </checkstyle-packages>

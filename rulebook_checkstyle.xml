@@ -345,7 +345,7 @@
 
     <!-- Third-party rules -->
     <module name="PunctuateDocumentationTag"/>
-    <module name="RenameMeaninglessWord"/>
+    <module name="RemoveMeaninglessWord"/>
     <module name="RenameUncommonGenerics"/>
     <module name="ThrowExceptionSubclass"/>
   </module>

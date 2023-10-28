@@ -1,14 +1,14 @@
 package com.hendraanggrian.rulebook
 
-import com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsNarc
+import com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsRule
 import com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsVisitor.Companion.MSG
 import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class RenameUncommonGenericsNarcTest : AbstractRuleTestCase<RenameUncommonGenericsNarc>() {
-    override fun createRule(): RenameUncommonGenericsNarc = RenameUncommonGenericsNarc()
+class RenameUncommonGenericsNarcTest : AbstractRuleTestCase<RenameUncommonGenericsRule>() {
+    override fun createRule(): RenameUncommonGenericsRule = RenameUncommonGenericsRule()
 
     @Test
     fun `Rule properties`() {
@@ -55,5 +55,18 @@ class RenameUncommonGenericsNarcTest : AbstractRuleTestCase<RenameUncommonGeneri
             <X> void execute(List<X> list) {}
             """.trimIndent(),
             1,
+        )
+
+    @Test
+    fun `Skip inner generics`() =
+        assertNoViolations(
+            """
+            class Foo<T> {
+                class Bar<X> {
+                }
+                <Y> void bar() {
+                }
+            }
+            """.trimIndent(),
         )
 }

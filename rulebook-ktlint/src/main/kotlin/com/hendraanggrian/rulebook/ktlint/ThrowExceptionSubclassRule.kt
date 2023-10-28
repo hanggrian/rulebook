@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
-import com.hendraanggrian.rulebook.ktlint.internals.RulebookRule
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CALL_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.REFERENCE_EXPRESSION
@@ -9,7 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/ThrowExceptionSubclass).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#throw-exception-subclass).
  */
 class ThrowExceptionSubclassRule : RulebookRule("throw-exception-subclass") {
     override fun beforeVisitChildNodes(

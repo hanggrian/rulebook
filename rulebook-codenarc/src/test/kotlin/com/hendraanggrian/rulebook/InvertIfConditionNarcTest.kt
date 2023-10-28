@@ -1,14 +1,14 @@
 package com.hendraanggrian.rulebook
 
-import com.hendraanggrian.rulebook.codenarc.InvertIfConditionNarc
+import com.hendraanggrian.rulebook.codenarc.InvertIfConditionRule
 import com.hendraanggrian.rulebook.codenarc.InvertIfConditionVisitor.Companion.MSG
 import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class InvertIfConditionNarcTest : AbstractRuleTestCase<InvertIfConditionNarc>() {
-    override fun createRule(): InvertIfConditionNarc = InvertIfConditionNarc()
+class InvertIfConditionNarcTest : AbstractRuleTestCase<InvertIfConditionRule>() {
+    override fun createRule(): InvertIfConditionRule = InvertIfConditionRule()
 
     @Test
     fun `Rule properties`() {

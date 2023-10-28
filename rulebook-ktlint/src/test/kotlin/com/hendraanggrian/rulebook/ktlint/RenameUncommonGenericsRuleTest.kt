@@ -56,6 +56,19 @@ class RenameUncommonGenericsRuleTest {
         ).hasLintViolationWithoutAutoCorrect(1, 6, Messages[MSG])
 
     @Test
+    fun `Skip inner generics`() =
+        assertThatCode(
+            """
+            class Foo<T> {
+                class Bar<X> {
+                }
+                fun <Y> bar() {
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
     fun `Reified generic type`() =
         assertThatCode(
             """
