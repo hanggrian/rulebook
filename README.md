@@ -6,7 +6,7 @@
 
 # Rulebook
 
-[Third-party rules](https://github.com/hendraanggrian/rulebook/wiki/) for
+[Third-party rules](https://github.com/hendraanggrian/rulebook/wiki/rules) for
 JVM-based lint tools, meant to be used in  conjunction with official ones. Most
 of the rules are opinionated personal code styles. However, some already exists
 in other linters, providing the same experience across languages.

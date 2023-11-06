@@ -6,16 +6,16 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
     override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
-            RuleProvider { AddBlankLineInDocumentationRule() },
+            RuleProvider { AddBlankLineBeforeTagsRule() },
+            RuleProvider { AvoidMeaninglessWordRule() },
+            RuleProvider { CapitalizeFirstAcronymLetterRule() },
+            RuleProvider { EndTagWithPeriodRule() },
             RuleProvider { InvertIfConditionRule() },
-            RuleProvider { PunctuateDocumentationTagRule() },
-            RuleProvider { RemoveBlankLineInSwitchRule() },
-            RuleProvider { RemoveMeaninglessWordRule() },
-            RuleProvider { RenameAbbreviationWordRule() },
-            RuleProvider { RenameUncommonGenericsRule() },
-            RuleProvider { ReplaceWithKotlinApiRule() },
-            RuleProvider { ReplaceWithStructuralEqualityRule() },
+            RuleProvider { RemoveBlankLineBetweenCasesRule() },
             RuleProvider { SpecifyTypeExplicitlyRule() },
             RuleProvider { ThrowExceptionSubclassRule() },
+            RuleProvider { UseCommonGenericsRule() },
+            RuleProvider { UseKotlinApiRule() },
+            RuleProvider { UseStructuralEqualityRule() },
         )
 }

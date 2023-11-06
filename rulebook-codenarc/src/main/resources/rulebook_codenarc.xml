@@ -105,8 +105,8 @@
   </ruleset-ref>
 
   <!-- Third-party rules -->
+  <rule class="com.hendraanggrian.rulebook.codenarc.AvoidMeaninglessWordRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.CapitalizeFirstAcronymLetterRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.InvertIfConditionRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.RemoveMeaninglessWordRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.RenameAbbreviationWordRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.UseCommonGenericsRule"/>
 </ruleset>

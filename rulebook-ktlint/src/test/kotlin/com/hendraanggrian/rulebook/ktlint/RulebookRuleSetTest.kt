@@ -11,17 +11,17 @@ class RulebookRuleSetTest {
                 .getRuleProviders()
                 .map { it.createNewRuleInstance().javaClass.kotlin },
         ).containsExactly(
-            AddBlankLineInDocumentationRule::class,
+            AddBlankLineBeforeTagsRule::class,
+            AvoidMeaninglessWordRule::class,
+            CapitalizeFirstAcronymLetterRule::class,
+            EndTagWithPeriodRule::class,
             InvertIfConditionRule::class,
-            PunctuateDocumentationTagRule::class,
-            RemoveBlankLineInSwitchRule::class,
-            RemoveMeaninglessWordRule::class,
-            RenameAbbreviationWordRule::class,
-            RenameUncommonGenericsRule::class,
-            ReplaceWithKotlinApiRule::class,
-            ReplaceWithStructuralEqualityRule::class,
+            RemoveBlankLineBetweenCasesRule::class,
             SpecifyTypeExplicitlyRule::class,
             ThrowExceptionSubclassRule::class,
+            UseCommonGenericsRule::class,
+            UseKotlinApiRule::class,
+            UseStructuralEqualityRule::class,
         )
     }
 }

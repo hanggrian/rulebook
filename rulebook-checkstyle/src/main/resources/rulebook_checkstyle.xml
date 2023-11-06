@@ -344,9 +344,9 @@
     </module>
 
     <!-- Third-party rules -->
-    <module name="PunctuateDocumentationTag"/>
-    <module name="RemoveMeaninglessWord"/>
-    <module name="RenameUncommonGenerics"/>
+    <module name="AvoidMeaninglessWord"/>
+    <module name="EndTagWithPeriod"/>
     <module name="ThrowExceptionSubclass"/>
+    <module name="UseCommonGenerics"/>
   </module>
 </module>
