@@ -4,16 +4,17 @@ import com.puppycrawl.tools.checkstyle.Checker
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException
 import java.io.File
+import kotlin.reflect.KClass
 
 @Throws(CheckstyleException::class)
-inline fun <reified T> prepareChecker(): Checker {
+fun prepareChecker(vararg types: KClass<*>): Checker {
     val checker = Checker()
     checker.setModuleClassLoader(Thread.currentThread().contextClassLoader)
     checker.configure(
         DefaultConfiguration("Checks").apply {
             addChild(
                 DefaultConfiguration("TreeWalker").apply {
-                    addChild(DefaultConfiguration(T::class.java.canonicalName))
+                    types.forEach { addChild(DefaultConfiguration(it.java.canonicalName)) }
                 },
             )
         },

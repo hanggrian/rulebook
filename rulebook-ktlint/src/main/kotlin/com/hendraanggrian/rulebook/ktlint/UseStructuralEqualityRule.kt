@@ -14,7 +14,7 @@ class UseStructuralEqualityRule : RulebookRule("use-structural-equality") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // checks for violation
+        // Checks for violation.
         when (node.elementType) {
             EQEQEQ -> emit(node.startOffset, Messages.get(MSG, "=="), false)
             EXCLEQEQEQ -> emit(node.startOffset, Messages.get(MSG, "!="), false)

@@ -19,17 +19,17 @@ class UseCommonGenericsRule : RulebookRule("use-common-generics") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         if (node.elementType != CLASS && node.elementType != FUN) {
             return
         }
 
-        // filter out multiple generics
+        // Filter out multiple generics.
         val typeParameterList = node.findChildByType(TYPE_PARAMETER_LIST) ?: return
         val typeParameter =
             typeParameterList.children().singleOrNull { it.elementType == TYPE_PARAMETER } ?: return
 
-        // check for a match
+        // Checks for a match.
         val identifier = typeParameter.findChildByType(IDENTIFIER) ?: return
         if (!node.hasParentWithGenerics() && identifier.text !in COMMON_GENERICS) {
             emit(identifier.startOffset, Messages[MSG], false)

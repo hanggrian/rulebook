@@ -17,14 +17,15 @@ class UseKotlinApiRule : RulebookRule("use-kotlin-api") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         when (node.elementType) {
             IMPORT_DIRECTIVE -> {
-                // get text after `import `
+                // Get text after `import`.
                 val importLine =
                     node.findChildByType(WHITE_SPACE)
                         ?.siblings()
-                        ?.joinToString("") { it.text } ?: return
+                        ?.joinToString("") { it.text }
+                        ?: return
                 val kotlinClassReplacement = importLine.kotlinClassReplacement
                 if (kotlinClassReplacement != null) {
                     val dotQualifiedExpression = node.findChildByType(DOT_QUALIFIED_EXPRESSION)!!
@@ -36,7 +37,7 @@ class UseKotlinApiRule : RulebookRule("use-kotlin-api") {
                 }
             }
             TYPE_REFERENCE -> {
-                // get text without argument and nullability
+                // Get text without argument and nullability.
                 val text = node.text.substringBefore('<').substringBefore('?')
                 val kotlinClassReplacement = text.kotlinClassReplacement
                 if (kotlinClassReplacement != null) {

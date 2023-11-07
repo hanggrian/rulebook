@@ -11,73 +11,39 @@ class SpecifyTypeExplicitlyRuleTest {
     private val assertThatCode = assertThatRule { SpecifyTypeExplicitlyRule() }
 
     @Test
-    fun `Regular function`() = assertThatCode("fun function() {}").hasNoLintViolations()
-
-    @Test
-    fun `Abstract function`() = assertThatCode("fun function()").hasNoLintViolations()
-
-    @Test
-    fun `Expression function`() =
+    fun `Property & function with types`() =
         assertThatCode(
             """
-            fun expressionFunction() = "Hello world"
-            class MyClass {
-                fun expressionFunction() = "Hello world"
-            }
-            """.trimIndent(),
-        ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 25, Messages[MSG_FUNCTION]),
-            LintViolation(3, 29, Messages[MSG_FUNCTION]),
-        )
-
-    @Test
-    fun `Private expression function`() =
-        assertThatCode(
-            """
-            private fun expressionFunction() = "Hello world"
-            private class MyClass {
-                fun expressionFunction() = "Hello world"
-            }
+            var length: Int = 0
+            fun size(): Int = length
+            var lastIndex: Int
+                get() = length - 1
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `Allow test function`() =
+    fun `Property & function without types`() =
         assertThatCode(
             """
-            class Tester {
-                @Test
-                fun test() = assertThat("Hello world").isNotEmpty()
-            }
-            """.trimIndent(),
-        ).hasNoLintViolations()
-
-    @Test
-    fun `Regular property`() =
-        assertThatCode("val property = \"Hello world\"").hasNoLintViolations()
-
-    @Test
-    fun `Getter function`() =
-        assertThatCode(
-            """
-            val propertyAccessor get() = "Hello world"
-            class Class {
-                val propertyAccessor get() = "Hello world"
-            }
+            var length = 0
+            fun size() = length
+            var lastIndex
+                get() = length - 1
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 21, Messages[MSG_PROPERTY]),
-            LintViolation(3, 25, Messages[MSG_PROPERTY]),
+            LintViolation(1, 11, Messages[MSG_PROPERTY]),
+            LintViolation(2, 11, Messages[MSG_FUNCTION]),
+            LintViolation(3, 14, Messages[MSG_PROPERTY]),
         )
 
     @Test
-    fun `Private getter function`() =
+    fun `Non-public modifiers are skipped`() =
         assertThatCode(
             """
-            private val propertyAccessor get() = "Hello world"
-            private class MyClass {
-                val propertyAccessor get() = "Hello world"
-            }
+            private var length = 0
+            private fun size() = length
+            private var lastIndex
+                get() = length - 1
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -90,6 +56,27 @@ class SpecifyTypeExplicitlyRuleTest {
                 listOf(1, 2, 3).forEach() {
                     val num = it
                 }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Empty functions`() =
+        assertThatCode(
+            """
+            fun empty() {
+            }
+            abstract fun init()
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Allow test function`() =
+        assertThatCode(
+            """
+            class Tester {
+                @Test
+                fun test() = assertThat("Hello world").isNotEmpty()
             }
             """.trimIndent(),
         ).hasNoLintViolations()

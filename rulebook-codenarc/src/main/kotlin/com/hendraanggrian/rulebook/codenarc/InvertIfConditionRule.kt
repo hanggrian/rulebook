@@ -16,18 +16,18 @@ class InvertIfConditionRule : RulebookRule() {
 
 class InvertIfConditionVisitor : AbstractAstVisitor() {
     override fun visitBlockStatement(statement: BlockStatement) {
-        // only proceed on one if
+        // Only proceed on one if.
         val if2 = statement.statements.singleOrNull() ?: return
         if (if2 !is IfStatement) {
             return
         }
 
-        // skip if statement with else
+        // Skip if statement with else.
         if (!if2.elseBlock.isEmpty) {
             return
         }
 
-        // report 2 lines content
+        // Report 2 lines content.
         if (';' in if2.ifBlock.text) {
             addViolation(if2, Messages[MSG])
         }

@@ -345,7 +345,8 @@
 
     <!-- Third-party rules -->
     <module name="AvoidMeaninglessWord"/>
-    <module name="EndTagWithPeriod"/>
+    <module name="EndTagSentenceWithPeriod"/>
+    <module name="EndCommentSentenceWithPeriod"/>
     <module name="ThrowExceptionSubclass"/>
     <module name="UseCommonGenerics"/>
   </module>

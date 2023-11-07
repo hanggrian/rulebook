@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ThrowExceptionSubclassCheckTest {
-    private val checker = prepareChecker<ThrowExceptionSubclassCheck>()
+    private val checker = prepareChecker(ThrowExceptionSubclassCheck::class)
 
     @Test
     fun `Throw subclass exceptions`() =

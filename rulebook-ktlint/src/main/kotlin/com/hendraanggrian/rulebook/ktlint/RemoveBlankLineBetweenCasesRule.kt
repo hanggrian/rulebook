@@ -15,18 +15,18 @@ class RemoveBlankLineBetweenCasesRule : RulebookRule("remove-blank-line-between-
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         if (node.elementType != WHEN_ENTRY) {
             return
         }
 
-        // get previous whitespace
+        // Get previous whitespace.
         val whitespace = node.treePrev
         if (whitespace.elementType != WHITE_SPACE) {
             return
         }
 
-        // report missing empty line
+        // Report missing empty line.
         if ("\n\n" in whitespace.text) {
             emit(whitespace.endOffset, Messages[MSG], false)
         }

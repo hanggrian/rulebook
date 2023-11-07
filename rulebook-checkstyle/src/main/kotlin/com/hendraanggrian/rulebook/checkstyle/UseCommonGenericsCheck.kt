@@ -27,12 +27,12 @@ class UseCommonGenericsCheck : RulebookCheck() {
         )
 
     override fun visitToken(node: DetailAST) {
-        // filter out multiple generics
+        // Filter out multiple generics.
         val typeParameters = node.findFirstToken(TYPE_PARAMETERS) ?: return
         val typeParameter =
             typeParameters.children().singleOrNull { it.type == TYPE_PARAMETER } ?: return
 
-        // check for a match
+        // Checks for a match.
         val ident = typeParameter.findFirstToken(IDENT) ?: return
         if (!node.hasParentWithGenerics() && ident.text !in COMMON_GENERICS) {
             log(node, Messages[MSG])

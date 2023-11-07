@@ -14,7 +14,7 @@ class RulebookRuleSetTest {
             AddBlankLineBeforeTagsRule::class,
             AvoidMeaninglessWordRule::class,
             CapitalizeFirstAcronymLetterRule::class,
-            EndTagWithPeriodRule::class,
+            EndSentenceWithPeriodRule::class,
             InvertIfConditionRule::class,
             RemoveBlankLineBetweenCasesRule::class,
             SpecifyTypeExplicitlyRule::class,

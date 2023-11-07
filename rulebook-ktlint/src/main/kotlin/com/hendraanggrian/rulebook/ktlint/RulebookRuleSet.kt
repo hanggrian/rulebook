@@ -9,7 +9,7 @@ class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
             RuleProvider { AddBlankLineBeforeTagsRule() },
             RuleProvider { AvoidMeaninglessWordRule() },
             RuleProvider { CapitalizeFirstAcronymLetterRule() },
-            RuleProvider { EndTagWithPeriodRule() },
+            RuleProvider { EndSentenceWithPeriodRule() },
             RuleProvider { InvertIfConditionRule() },
             RuleProvider { RemoveBlankLineBetweenCasesRule() },
             RuleProvider { SpecifyTypeExplicitlyRule() },

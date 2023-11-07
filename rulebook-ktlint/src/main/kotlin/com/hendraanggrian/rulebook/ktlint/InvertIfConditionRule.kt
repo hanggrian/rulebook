@@ -21,32 +21,32 @@ class InvertIfConditionRule : RulebookRule("invert-if-condition") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         if (node.elementType != BLOCK) {
             return
         }
 
-        // only proceed on one if
+        // Only proceed on one if.
         val if2 = node.blockContent.singleOrNull() ?: return
         if (if2.elementType != IF) {
             return
         }
 
-        // skip if statement with else
+        // Skip if statement with else.
         if (ELSE in if2) {
             return
         }
 
-        // obtain the inner block
+        // Obtain the inner block.
         val block = if2.findChildByType(THEN)?.findChildByType(BLOCK) ?: return
 
-        // collect whitespaces with newline
+        // Collect whitespaces with newline.
         val newLines =
             block.children()
                 .filter { it.elementType == WHITE_SPACE && "\n" in it.text }
                 .toList()
 
-        // report 2 lines content
+        // Report 2 lines content.
         if (newLines.size > 2) {
             emit(if2.startOffset, Messages[MSG], false)
         }
@@ -58,11 +58,11 @@ class InvertIfConditionRule : RulebookRule("invert-if-condition") {
         private val ASTNode.blockContent
             get(): List<ASTNode> {
                 val content = children().toList()
-                // empty block is at least 2 node '{}'
+                // Empty block is at least 2 node '{}'.
                 if (content.size < 3) {
                     return emptyList()
                 }
-                // iterate forward & backward
+                // Iterate forward & backward.
                 var i = 0
                 var j = content.lastIndex
                 var next = content[i]
@@ -73,7 +73,7 @@ class InvertIfConditionRule : RulebookRule("invert-if-condition") {
                 while (next.elementType == RBRACE || next.elementType == WHITE_SPACE) {
                     next = content[--j]
                 }
-                // return only valid range
+                // Return only valid range.
                 return when {
                     i > j -> emptyList()
                     else -> content.subList(i, j + 1)

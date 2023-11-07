@@ -15,12 +15,12 @@ class AvoidMeaninglessWordRule : RulebookRule() {
 
 class AvoidMeaninglessWordVisitor : AbstractAstVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        // retrieve name
+        // Retrieve name.
         val matches = TITLE_CASE_REGEX.findAll(node.name)
         val prefix = matches.first().value
         val suffix = matches.last().value
 
-        // find meaningless words
+        // Find meaningless words.
         if (prefix in RESTRICTED_PREFIXES) {
             addViolation(node, Messages.get(MSG_PREFIX, prefix))
         }

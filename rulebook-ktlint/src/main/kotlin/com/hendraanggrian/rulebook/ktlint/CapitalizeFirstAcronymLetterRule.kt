@@ -21,18 +21,18 @@ class CapitalizeFirstAcronymLetterRule : RulebookRule("capitalize-first-acronym-
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         when (node.elementType) {
             CLASS, OBJECT_DECLARATION, PROPERTY, FUN, VALUE_PARAMETER -> {
-                // retrieve name
+                // Retrieve name.
                 val identifier = node.findChildByType(IDENTIFIER) ?: return
 
-                // allow all uppercase, which usually is static property
+                // Allow all uppercase, which usually is static property.
                 if (node.elementType == PROPERTY && identifier.text.isStaticPropertyName()) {
                     return
                 }
 
-                // check for violation
+                // Checks for violation.
                 if (ABBREVIATION_REGEX.containsMatchIn(identifier.text)) {
                     emit(
                         identifier.startOffset,
@@ -42,22 +42,22 @@ class CapitalizeFirstAcronymLetterRule : RulebookRule("capitalize-first-acronym-
                 }
             }
             FILE -> {
-                // get filename, obtained from `com.pinterest.ktlint.ruleset.standard.FilenameRule`
+                // Get filename, obtained from `com.pinterest.ktlint.ruleset.standard.FilenameRule`.
                 node as FileASTNode?
                     ?: error("node is not ${FileASTNode::class} but ${node::class}")
                 val filePath = (node.psi as? KtFile)?.virtualFilePath
                 if (filePath?.endsWith(".kt") != true || filePath.endsWith("package.kt")) {
-                    // ignore all non ".kt" files (including ".kts")
+                    // Ignore all non ".kt" files (including ".kts").
                     stopTraversalOfAST()
                     return
                 }
                 val fileName =
                     filePath
-                        .replace('\\', '/') // Ensure compatibility with Windows OS
+                        .replace('\\', '/') // Ensure compatibility with Windows OS.
                         .substringAfterLast("/")
                         .substringBefore(".")
 
-                // check for violation
+                // Checks for violation.
                 if (ABBREVIATION_REGEX.containsMatchIn(fileName)) {
                     emit(node.startOffset, Messages.get(MSG, fileName.transform()), false)
                 }

@@ -28,10 +28,10 @@ class UseCommonGenericsVisitor : AbstractAstVisitor() {
     }
 
     private fun process(node: ASTNode, genericTypes: Array<GenericsType>?) {
-        // filter out multiple generics
+        // Filter out multiple generics.
         val genericType = genericTypes?.singleOrNull() ?: return
 
-        // check for a match
+        // Checks for a match.
         if (!node.hasParentWithGenerics() && genericType.name !in COMMON_GENERICS) {
             addViolation(genericType, Messages[MSG])
         }

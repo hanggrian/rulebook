@@ -16,20 +16,21 @@ class ThrowExceptionSubclassRule : RulebookRule("throw-exception-subclass") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         if (node.elementType != THROW) {
             return
         }
 
-        // only target declaration, reference such as `val error = Exception()` is ignored
+        // Only target declaration, reference such as `val error = Exception()` is ignored.
         val callExpression = node.findChildByType(CALL_EXPRESSION) ?: return
 
-        // only target supertype
+        // Only target supertype.
         val identifier =
             callExpression.findChildByType(REFERENCE_EXPRESSION)
-                ?.findChildByType(IDENTIFIER) ?: return
+                ?.findChildByType(IDENTIFIER)
+                ?: return
 
-        // report error if superclass exception is found
+        // Report error if superclass exception is found.
         if (identifier.text in AMBIGUOUS_ERRORS) {
             emit(identifier.startOffset, Messages[MSG], false)
         }

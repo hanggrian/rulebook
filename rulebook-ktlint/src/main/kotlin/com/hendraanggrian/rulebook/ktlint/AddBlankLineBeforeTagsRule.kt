@@ -18,22 +18,22 @@ class AddBlankLineBeforeTagsRule : RulebookRule("add-blank-line-before-tags") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         if (node.elementType != KDOC_SECTION) {
             return
         }
 
-        // only allow first tag
+        // Only allow first tag.
         val kdocTag = node.findChildByType(KDOC_TAG) ?: return
         if (kdocTag.prevSibling { it.elementType == KDOC_TAG } != null) {
             return
         }
 
-        // find previous leading asterisk
+        // Find previous leading asterisk.
         val kdocTagAsterisk = kdocTag.prevKdocLeadingAsterisk ?: return
         val prevKdocTagLeadingAsterisk = kdocTagAsterisk.prevKdocLeadingAsterisk ?: return
 
-        // check if last line is newline
+        // Checks if last line is newline.
         val siblings = prevKdocTagLeadingAsterisk.siblingsUntil(KDOC_LEADING_ASTERISK)
         val hasEmptyLine = siblings.size == 1 && siblings.single().isWhiteSpaceWithNewline()
         if (!hasEmptyLine) {

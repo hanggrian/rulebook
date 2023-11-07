@@ -15,18 +15,18 @@ class AvoidMeaninglessWordRule : RulebookRule("avoid-meaningless-word") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         if (node.elementType != CLASS && node.elementType != OBJECT_DECLARATION) {
             return
         }
 
-        // retrieve name
+        // Retrieve name.
         val identifier = node.findChildByType(IDENTIFIER) ?: return
         val matches = TITLE_CASE_REGEX.findAll(identifier.text)
         val prefix = matches.first().value
         val suffix = matches.last().value
 
-        // find meaningless words
+        // Find meaningless words.
         if (prefix in RESTRICTED_PREFIXES) {
             emit(identifier.startOffset, Messages.get(MSG_PREFIX, prefix), false)
         }

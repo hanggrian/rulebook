@@ -21,13 +21,13 @@ class AvoidMeaninglessWordCheck : RulebookCheck() {
         )
 
     override fun visitToken(node: DetailAST) {
-        // retrieve name
+        // Retrieve name.
         val ident = node.findFirstToken(IDENT) ?: return
         val matches = TITLE_CASE_REGEX.findAll(ident.text)
         val prefix = matches.first().value
         val suffix = matches.last().value
 
-        // find meaningless words
+        // Find meaningless words.
         if (prefix in RESTRICTED_PREFIXES) {
             log(ident, Messages.get(MSG_PREFIX, prefix))
         }

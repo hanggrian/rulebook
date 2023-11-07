@@ -14,7 +14,6 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.INTERNAL_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.MODIFIER_LIST
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PRIVATE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY_ACCESSOR
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER_LIST
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
@@ -29,20 +28,20 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // first line of filter
+        // First line of filter.
         when (node.elementType) {
             FUN -> {
-                // skip function without declaration, likely abstract
+                // Skip function without declaration, likely abstract.
                 if (EQ !in node && BLOCK !in node) {
                     return
                 }
 
-                // skip regular function
+                // Skip regular function.
                 if (BLOCK in node) {
                     return
                 }
 
-                // skip test function
+                // Skip test function.
                 val modifierList = node.findChildByType(MODIFIER_LIST)
                 if (modifierList != null) {
                     for (modifier in modifierList.children()) {
@@ -52,25 +51,20 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
                     }
                 }
 
-                // check for violation
+                // Checks for violation.
                 if (!node.hasNonPublicParent() && TYPE_REFERENCE !in node) {
                     val valueParameterList = node.findChildByType(VALUE_PARAMETER_LIST)!!
                     emit(valueParameterList.endOffset, Messages[MSG_FUNCTION], false)
                 }
             }
             PROPERTY -> {
-                // skip properties without getter
-                if (PROPERTY_ACCESSOR !in node) {
-                    return
-                }
-
-                // skip properties in code block
+                // Skip properties in code block.
                 val parentType = node.treeParent?.elementType ?: return
                 if (parentType != FILE && parentType != CLASS_BODY) {
                     return
                 }
 
-                // check for violation
+                // Checks for violation.
                 if (!node.hasNonPublicParent() && TYPE_REFERENCE !in node) {
                     val identifier = node.findChildByType(IDENTIFIER)!!
                     emit(identifier.endOffset, Messages[MSG_PROPERTY], false)
