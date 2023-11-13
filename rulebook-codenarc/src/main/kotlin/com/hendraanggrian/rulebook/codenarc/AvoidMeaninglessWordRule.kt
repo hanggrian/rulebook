@@ -7,14 +7,14 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#avoid-meaningless-word).
  */
-class AvoidMeaninglessWordRule : RulebookRule() {
-    override fun getName(): String = "AvoidMeaninglessWord"
+public class AvoidMeaninglessWordRule : RulebookRule() {
+    public override fun getName(): String = "AvoidMeaninglessWord"
 
-    override fun getAstVisitorClass(): Class<*> = AvoidMeaninglessWordVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = AvoidMeaninglessWordVisitor::class.java
 }
 
-class AvoidMeaninglessWordVisitor : AbstractAstVisitor() {
-    override fun visitClassEx(node: ClassNode) {
+public class AvoidMeaninglessWordVisitor : AbstractAstVisitor() {
+    public override fun visitClassEx(node: ClassNode) {
         // Retrieve name.
         val matches = TITLE_CASE_REGEX.findAll(node.name)
         val prefix = matches.first().value

@@ -3,15 +3,21 @@ package com.hendraanggrian.rulebook.ktlint
 import com.hendraanggrian.rulebook.ktlint.SpecifyTypeExplicitlyRule.Companion.MSG_FUNCTION
 import com.hendraanggrian.rulebook.ktlint.SpecifyTypeExplicitlyRule.Companion.MSG_PROPERTY
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
+import com.hendraanggrian.rulebook.ktlint.internals.VARIANT_PROPERTY
+import com.hendraanggrian.rulebook.ktlint.internals.VariantValue
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class SpecifyTypeExplicitlyRuleTest {
-    private val assertThatCode = assertThatRule { SpecifyTypeExplicitlyRule() }
+    private val assertThatCode =
+        assertThatRule(
+            { SpecifyTypeExplicitlyRule() },
+            editorConfigProperties = setOf(VARIANT_PROPERTY to VariantValue.library),
+        )
 
     @Test
-    fun `Property & function with types`() =
+    fun `Property & function with type`() =
         assertThatCode(
             """
             var length: Int = 0
@@ -22,7 +28,7 @@ class SpecifyTypeExplicitlyRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Property & function without types`() =
+    fun `Property & function without type`() =
         assertThatCode(
             """
             var length = 0
@@ -74,7 +80,7 @@ class SpecifyTypeExplicitlyRuleTest {
     fun `Allow test function`() =
         assertThatCode(
             """
-            class Tester {
+            class AppTest {
                 @Test
                 fun test() = assertThat("Hello world").isNotEmpty()
             }

@@ -1,0 +1,2 @@
+[*.kt]
+ktlint_rulebook_variant = application

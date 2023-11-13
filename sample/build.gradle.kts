@@ -9,14 +9,14 @@ plugins {
     codenarc
 }
 
-codenarc {
-    toolVersion = libs.versions.codenarc.get()
-    configFile = rootDir.resolve("rulebook_codenarc.xml")
-}
-
 checkstyle {
     toolVersion = libs.versions.checkstyle.get()
-    configFile = rootDir.resolve("rulebook_checkstyle.xml")
+    configFile = rootDir.resolve("rulebook_checks.xml")
+}
+
+codenarc {
+    toolVersion = libs.versions.codenarc.get()
+    configFile = rootDir.resolve("rulebook_rules.xml")
 }
 
 dependencies {

@@ -34,9 +34,6 @@ dependencies {
 
 ### Ktlint
 
-> [Spotless](https://github.com/diffplug/spotless/) is not supported because you
-  can't add custom rules.
-
 Apply [Ktlint Integration](https://pinterest.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration)
 to Gradle project. Using configuration `ktlint`, add this project as dependency.
 

@@ -1,10 +1,10 @@
 package com.example
 
-fun getAge1(): Int = 4
+public val age2: Int = 4
 
-val age2: Int get() = 4
+public fun getAge(): Int = 4
 
-class Tester {
+public class MyTest {
     @SomeTest
     fun test() {
     }

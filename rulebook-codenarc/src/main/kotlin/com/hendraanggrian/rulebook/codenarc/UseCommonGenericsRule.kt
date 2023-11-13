@@ -10,19 +10,19 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-common-generics).
  */
-class UseCommonGenericsRule : RulebookRule() {
-    override fun getName(): String = "UseCommonGenerics"
+public class UseCommonGenericsRule : RulebookRule() {
+    public override fun getName(): String = "UseCommonGenerics"
 
-    override fun getAstVisitorClass(): Class<*> = UseCommonGenericsVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = UseCommonGenericsVisitor::class.java
 }
 
-class UseCommonGenericsVisitor : AbstractAstVisitor() {
-    override fun visitClassEx(node: ClassNode) {
+public class UseCommonGenericsVisitor : AbstractAstVisitor() {
+    public override fun visitClassEx(node: ClassNode) {
         process(node, node.genericsTypes)
         super.visitClassEx(node)
     }
 
-    override fun visitMethodEx(node: MethodNode) {
+    public override fun visitMethodEx(node: MethodNode) {
         process(node, node.genericsTypes)
         super.visitMethodEx(node)
     }

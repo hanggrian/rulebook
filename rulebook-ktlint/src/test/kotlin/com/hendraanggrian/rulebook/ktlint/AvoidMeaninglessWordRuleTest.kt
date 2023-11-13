@@ -53,4 +53,10 @@ class AvoidMeaninglessWordRuleTest {
             LintViolation(1, 7, Messages.get(MSG_PREFIX, "Base")),
             LintViolation(1, 7, Messages.get(MSG_SUFFIX, "Manager")),
         )
+
+    @Test
+    fun `Utility file`() =
+        assertThatCode("")
+            .asFileWithPath("/some/path/Util.kt")
+            .hasLintViolationWithoutAutoCorrect(1, 1, Messages.get(MSG_SUFFIX, "Util"))
 }

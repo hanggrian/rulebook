@@ -5,8 +5,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck
 /**
  * A Checkstyle rule with single configuration of tokens.
  */
-sealed class RulebookCheck : AbstractCheck() {
-    override fun getDefaultTokens(): IntArray = requiredTokens
+public sealed class RulebookCheck : AbstractCheck() {
+    public override fun getDefaultTokens(): IntArray = requiredTokens
 
-    override fun getAcceptableTokens(): IntArray = requiredTokens
+    public override fun getAcceptableTokens(): IntArray = requiredTokens
 }

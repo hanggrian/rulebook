@@ -7,7 +7,7 @@ import java.io.File
 import kotlin.reflect.KClass
 
 @Throws(CheckstyleException::class)
-fun prepareChecker(vararg types: KClass<*>): Checker {
+public fun prepareChecker(vararg types: KClass<*>): Checker {
     val checker = Checker()
     checker.setModuleClassLoader(Thread.currentThread().contextClassLoader)
     checker.configure(
@@ -22,7 +22,7 @@ fun prepareChecker(vararg types: KClass<*>): Checker {
     return checker
 }
 
-fun prepareFiles(fileName: String): List<File> {
+public fun prepareFiles(fileName: String): List<File> {
     val testFileUrl = object {}.javaClass.getResource("$fileName.java")!!
     val testFile = File(testFileUrl.file)
     return listOf(testFile)

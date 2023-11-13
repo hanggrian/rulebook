@@ -17,6 +17,8 @@ class RulebookRuleSetTest {
             EndSentenceWithPeriodRule::class,
             InvertIfConditionRule::class,
             RemoveBlankLineBetweenCasesRule::class,
+            RemoveRedundantQualifierRule::class,
+            SpecifyAccessExplicitlyRule::class,
             SpecifyTypeExplicitlyRule::class,
             ThrowExceptionSubclassRule::class,
             UseCommonGenericsRule::class,

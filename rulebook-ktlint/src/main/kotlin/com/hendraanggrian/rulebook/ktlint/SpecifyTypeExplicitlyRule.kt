@@ -1,33 +1,46 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
+import com.hendraanggrian.rulebook.ktlint.internals.VARIANT_PROPERTY
+import com.hendraanggrian.rulebook.ktlint.internals.VariantValue
 import com.hendraanggrian.rulebook.ktlint.internals.contains
 import com.hendraanggrian.rulebook.ktlint.internals.endOffset
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.ANNOTATION_ENTRY
+import com.hendraanggrian.rulebook.ktlint.internals.hasNonPublicOrTestParent
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_BODY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EQ
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.INTERNAL_KEYWORD
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.MODIFIER_LIST
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.PRIVATE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER_LIST
+import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
-import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#specify-type-explicitly).
  */
-class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
+class SpecifyTypeExplicitlyRule : RulebookRule(
+    "specify-type-explicitly",
+    setOf(VARIANT_PROPERTY),
+) {
+    private var variant = VARIANT_PROPERTY.defaultValue
+
+    override fun beforeFirstNode(editorConfig: EditorConfig) {
+        variant = editorConfig[VARIANT_PROPERTY]
+    }
+
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
+        // Only applies to library variant.
+        if (variant != VariantValue.library) {
+            return
+        }
+
         // First line of filter.
         when (node.elementType) {
             FUN -> {
@@ -41,20 +54,13 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
                     return
                 }
 
-                // Skip test function.
-                val modifierList = node.findChildByType(MODIFIER_LIST)
-                if (modifierList != null) {
-                    for (modifier in modifierList.children()) {
-                        if (modifier.elementType == ANNOTATION_ENTRY && "Test" in modifier.text) {
-                            return
-                        }
-                    }
-                }
-
                 // Checks for violation.
-                if (!node.hasNonPublicParent() && TYPE_REFERENCE !in node) {
-                    val valueParameterList = node.findChildByType(VALUE_PARAMETER_LIST)!!
-                    emit(valueParameterList.endOffset, Messages[MSG_FUNCTION], false)
+                if (!node.hasNonPublicOrTestParent() && TYPE_REFERENCE !in node) {
+                    emit(
+                        node.findChildByType(VALUE_PARAMETER_LIST)!!.endOffset,
+                        Messages[MSG_FUNCTION],
+                        false,
+                    )
                 }
             }
             PROPERTY -> {
@@ -65,9 +71,12 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
                 }
 
                 // Checks for violation.
-                if (!node.hasNonPublicParent() && TYPE_REFERENCE !in node) {
-                    val identifier = node.findChildByType(IDENTIFIER)!!
-                    emit(identifier.endOffset, Messages[MSG_PROPERTY], false)
+                if (!node.hasNonPublicOrTestParent() && TYPE_REFERENCE !in node) {
+                    emit(
+                        node.findChildByType(IDENTIFIER)!!.endOffset,
+                        Messages[MSG_PROPERTY],
+                        false,
+                    )
                 }
             }
         }
@@ -76,21 +85,5 @@ class SpecifyTypeExplicitlyRule : RulebookRule("specify-type-explicitly") {
     internal companion object {
         const val MSG_FUNCTION = "specify.type.explicitly.function"
         const val MSG_PROPERTY = "specify.type.explicitly.property"
-
-        private fun ASTNode.hasNonPublicParent(): Boolean {
-            var next: ASTNode? = this
-            while (next != null) {
-                if (next.isNonPublic()) {
-                    return true
-                }
-                next = next.treeParent
-            }
-            return false
-        }
-
-        private fun ASTNode.isNonPublic(): Boolean {
-            val modifiers = findChildByType(MODIFIER_LIST) ?: return false
-            return PRIVATE_KEYWORD in modifiers || INTERNAL_KEYWORD in modifiers
-        }
     }
 }

@@ -11,8 +11,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#avoid-meaningless-word).
  */
-class AvoidMeaninglessWordCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray =
+public class AvoidMeaninglessWordCheck : RulebookCheck() {
+    public override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -20,7 +20,7 @@ class AvoidMeaninglessWordCheck : RulebookCheck() {
             ANNOTATION_DEF,
         )
 
-    override fun visitToken(node: DetailAST) {
+    public override fun visitToken(node: DetailAST) {
         // Retrieve name.
         val ident = node.findFirstToken(IDENT) ?: return
         val matches = TITLE_CASE_REGEX.findAll(ident.text)

@@ -16,8 +16,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETERS
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-common-generics).
  */
-class UseCommonGenericsCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray =
+public class UseCommonGenericsCheck : RulebookCheck() {
+    public override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -26,7 +26,7 @@ class UseCommonGenericsCheck : RulebookCheck() {
             METHOD_DEF,
         )
 
-    override fun visitToken(node: DetailAST) {
+    public override fun visitToken(node: DetailAST) {
         // Filter out multiple generics.
         val typeParameters = node.findFirstToken(TYPE_PARAMETERS) ?: return
         val typeParameter =

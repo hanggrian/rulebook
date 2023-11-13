@@ -17,10 +17,10 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#end-sentence-with-period).
  */
-class EndTagSentenceWithPeriodCheck : AbstractJavadocCheck() {
-    override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
+public class EndTagSentenceWithPeriodCheck : AbstractJavadocCheck() {
+    public override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 
-    override fun visitJavadocToken(node: DetailNode) {
+    public override fun visitJavadocToken(node: DetailNode) {
         // Skip no description.
         val description = node.find(DESCRIPTION) ?: return
 
@@ -59,12 +59,12 @@ class EndTagSentenceWithPeriodCheck : AbstractJavadocCheck() {
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#end-sentence-with-period).
  */
-class EndCommentSentenceWithPeriodCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
+public class EndCommentSentenceWithPeriodCheck : RulebookCheck() {
+    public override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
 
-    override fun isCommentNodesRequired(): Boolean = true
+    public override fun isCommentNodesRequired(): Boolean = true
 
-    override fun visitToken(node: DetailAST) {
+    public override fun visitToken(node: DetailAST) {
         // Long descriptions have multiple lines, take only the last one.
         if (node.nextSibling?.type == NEWLINE &&
             node.nextSibling?.nextSibling?.type == SINGLE_LINE_COMMENT

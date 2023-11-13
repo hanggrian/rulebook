@@ -10,10 +10,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#throw-exception-subclass).
  */
-class ThrowExceptionSubclassCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_THROW)
+public class ThrowExceptionSubclassCheck : RulebookCheck() {
+    public override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_THROW)
 
-    override fun visitToken(node: DetailAST) {
+    public override fun visitToken(node: DetailAST) {
         // Only target declaration, reference such as `Exception error = new Exception()` is
         // ignored.
         val literalNew = node.findFirstToken(EXPR)?.findFirstToken(LITERAL_NEW) ?: return

@@ -1,6 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
+import com.hendraanggrian.rulebook.ktlint.internals.getFileName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
@@ -9,8 +10,6 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
-import org.jetbrains.kotlin.com.intellij.lang.FileASTNode
-import org.jetbrains.kotlin.psi.KtFile
 
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#capitalize-first-acronym-letter).
@@ -42,20 +41,8 @@ class CapitalizeFirstAcronymLetterRule : RulebookRule("capitalize-first-acronym-
                 }
             }
             FILE -> {
-                // Get filename, obtained from `com.pinterest.ktlint.ruleset.standard.FilenameRule`.
-                node as FileASTNode?
-                    ?: error("node is not ${FileASTNode::class} but ${node::class}")
-                val filePath = (node.psi as? KtFile)?.virtualFilePath
-                if (filePath?.endsWith(".kt") != true || filePath.endsWith("package.kt")) {
-                    // Ignore all non ".kt" files (including ".kts").
-                    stopTraversalOfAST()
-                    return
-                }
-                val fileName =
-                    filePath
-                        .replace('\\', '/') // Ensure compatibility with Windows OS.
-                        .substringAfterLast("/")
-                        .substringBefore(".")
+                // Retrieve name.
+                val fileName = getFileName(node) ?: return
 
                 // Checks for violation.
                 if (ABBREVIATION_REGEX.containsMatchIn(fileName)) {

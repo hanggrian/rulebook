@@ -12,6 +12,8 @@ class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
             RuleProvider { EndSentenceWithPeriodRule() },
             RuleProvider { InvertIfConditionRule() },
             RuleProvider { RemoveBlankLineBetweenCasesRule() },
+            RuleProvider { RemoveRedundantQualifierRule() },
+            RuleProvider { SpecifyAccessExplicitlyRule() },
             RuleProvider { SpecifyTypeExplicitlyRule() },
             RuleProvider { ThrowExceptionSubclassRule() },
             RuleProvider { UseCommonGenericsRule() },

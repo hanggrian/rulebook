@@ -8,14 +8,14 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#invert-if-condition).
  */
-class InvertIfConditionRule : RulebookRule() {
-    override fun getName(): String = "InvertIfCondition"
+public class InvertIfConditionRule : RulebookRule() {
+    public override fun getName(): String = "InvertIfCondition"
 
-    override fun getAstVisitorClass(): Class<*> = InvertIfConditionVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = InvertIfConditionVisitor::class.java
 }
 
-class InvertIfConditionVisitor : AbstractAstVisitor() {
-    override fun visitBlockStatement(statement: BlockStatement) {
+public class InvertIfConditionVisitor : AbstractAstVisitor() {
+    public override fun visitBlockStatement(statement: BlockStatement) {
         // Only proceed on one if.
         val if2 = statement.statements.singleOrNull() ?: return
         if (if2 !is IfStatement) {

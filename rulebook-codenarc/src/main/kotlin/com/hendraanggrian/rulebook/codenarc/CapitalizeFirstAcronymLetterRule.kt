@@ -10,19 +10,20 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#capitalize-first-acronym-letter).
  */
-class CapitalizeFirstAcronymLetterRule : RulebookRule() {
-    override fun getName(): String = "CapitalizeFirstAcronymLetter"
+public class CapitalizeFirstAcronymLetterRule : RulebookRule() {
+    public override fun getName(): String = "CapitalizeFirstAcronymLetter"
 
-    override fun getAstVisitorClass(): Class<*> = CapitalizeFirstAcronymLetterVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> =
+        CapitalizeFirstAcronymLetterVisitor::class.java
 }
 
-class CapitalizeFirstAcronymLetterVisitor : AbstractAstVisitor() {
-    override fun visitClassEx(node: ClassNode) {
+public class CapitalizeFirstAcronymLetterVisitor : AbstractAstVisitor() {
+    public override fun visitClassEx(node: ClassNode) {
         process(node, node.name)
         super.visitClassEx(node)
     }
 
-    override fun visitField(node: FieldNode) {
+    public override fun visitField(node: FieldNode) {
         // Allow all uppercase, which usually is static property.
         if (node.name.isStaticPropertyName()) {
             return super.visitField(node)
@@ -32,7 +33,7 @@ class CapitalizeFirstAcronymLetterVisitor : AbstractAstVisitor() {
         super.visitField(node)
     }
 
-    override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
+    public override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
         node.parameters.forEach { process(it, it.name) }
         process(node, node.name)
         super.visitConstructorOrMethod(node, isConstructor)
