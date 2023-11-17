@@ -7,5 +7,5 @@ dependencyResolutionManagement.repositories.mavenCentral()
 rootProject.name = "rulebook"
 
 include("rulebook-checkstyle", "rulebook-ktlint", "rulebook-codenarc")
-include("sample", "sample-library")
+include("sample", "sample-configured")
 include("website")

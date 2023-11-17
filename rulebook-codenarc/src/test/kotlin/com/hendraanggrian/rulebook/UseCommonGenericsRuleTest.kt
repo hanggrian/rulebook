@@ -34,10 +34,10 @@ class UseCommonGenericsRuleTest : AbstractRuleTestCase<UseCommonGenericsRule>() 
             """.trimIndent(),
             1,
             "class MyClass<X> {}",
-            Messages[MSG],
+            Messages.get(MSG, "E, K, N, T, V"),
             2,
             "interface MyInterface<X> {}",
-            Messages[MSG],
+            Messages.get(MSG, "E, K, N, T, V"),
         )
 
     @Test

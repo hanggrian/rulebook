@@ -12,6 +12,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#avoid-meaningless-word).
  */
 public class AvoidMeaninglessWordCheck : RulebookCheck() {
+    private var words =
+        setOf(
+            "Abstract",
+            "Base",
+            "Util",
+            "Utility",
+            "Helper",
+            "Manager",
+            "Wrapper",
+            "Data",
+            "Info",
+        )
+    private var exclude = emptySet<String>()
+
+    public fun setWords(vararg words: String) {
+        this.words = words.toSet()
+    }
+
+    public fun setExclude(vararg exclude: String) {
+        this.exclude = exclude.toSet()
+    }
+
     public override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
@@ -21,28 +43,18 @@ public class AvoidMeaninglessWordCheck : RulebookCheck() {
         )
 
     public override fun visitToken(node: DetailAST) {
-        // Retrieve name.
+        // retrieve name
         val ident = node.findFirstToken(IDENT) ?: return
-        val matches = TITLE_CASE_REGEX.findAll(ident.text)
-        val prefix = matches.first().value
-        val suffix = matches.last().value
 
-        // Find meaningless words.
-        if (prefix in RESTRICTED_PREFIXES) {
-            log(ident, Messages.get(MSG_PREFIX, prefix))
-        }
-        if (suffix in RESTRICTED_SUFFIXES) {
-            log(ident, Messages.get(MSG_SUFFIX, suffix))
-        }
+        // checks for violation
+        TITLE_CASE_REGEX.findAll(ident.text)
+            .filter { it.value in words && it.value !in exclude }
+            .forEach { log(ident, Messages.get(MSG, it.value)) }
     }
 
     internal companion object {
-        const val MSG_PREFIX = "avoid.meaningless.word.prefix"
-        const val MSG_SUFFIX = "avoid.meaningless.word.suffix"
+        const val MSG = "avoid.meaningless.word"
 
-        private val RESTRICTED_PREFIXES = setOf("Abstract", "Base", "Generic")
-        private val RESTRICTED_SUFFIXES =
-            setOf("Util", "Utility", "Manager", "Helper", "Wrapper", "Data", "Info")
         private val TITLE_CASE_REGEX =
             Regex("((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|([A-Z]+(?=([A-Z][a-z])|(\$)|([0-9]))))")
     }

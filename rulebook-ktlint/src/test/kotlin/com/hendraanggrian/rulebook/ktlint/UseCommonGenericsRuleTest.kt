@@ -32,11 +32,11 @@ class UseCommonGenericsRuleTest {
             interface MyInterface<X>
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 15, Messages[MSG]),
-            LintViolation(2, 36, Messages[MSG]),
-            LintViolation(3, 24, Messages[MSG]),
-            LintViolation(4, 28, Messages[MSG]),
-            LintViolation(5, 23, Messages[MSG]),
+            LintViolation(1, 15, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(2, 36, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(3, 24, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(4, 28, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(5, 23, Messages.get(MSG, "E, K, N, T, V")),
         )
 
     @Test
@@ -53,7 +53,7 @@ class UseCommonGenericsRuleTest {
             """
             fun <X> execute(list: List<X>) {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 6, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(1, 6, Messages.get(MSG, "E, K, N, T, V"))
 
     @Test
     fun `Skip inner generics`() =
@@ -74,5 +74,5 @@ class UseCommonGenericsRuleTest {
             """
             fun <reified X> execute(list: List<X>) {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 14, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(1, 14, Messages.get(MSG, "E, K, N, T, V"))
 }

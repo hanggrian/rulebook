@@ -1,8 +1,7 @@
 package com.hendraanggrian.rulebook
 
 import com.hendraanggrian.rulebook.codenarc.AvoidMeaninglessWordRule
-import com.hendraanggrian.rulebook.codenarc.AvoidMeaninglessWordVisitor.Companion.MSG_PREFIX
-import com.hendraanggrian.rulebook.codenarc.AvoidMeaninglessWordVisitor.Companion.MSG_SUFFIX
+import com.hendraanggrian.rulebook.codenarc.AvoidMeaninglessWordVisitor.Companion.MSG
 import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
@@ -40,22 +39,22 @@ class AvoidMeaninglessWordRuleTest : AbstractRuleTestCase<AvoidMeaninglessWordRu
             mapOf(
                 "line" to 1,
                 "source" to "class BaseSpaceship {}",
-                "message" to Messages.get(MSG_PREFIX, "Base"),
+                "message" to Messages.get(MSG, "Base"),
             ),
             mapOf(
                 "line" to 2,
                 "source" to "interface AbstractRocket {}",
-                "message" to Messages.get(MSG_PREFIX, "Abstract"),
+                "message" to Messages.get(MSG, "Abstract"),
             ),
             mapOf(
                 "line" to 3,
                 "source" to "@interface NavigatorHelper {}",
-                "message" to Messages.get(MSG_SUFFIX, "Helper"),
+                "message" to Messages.get(MSG, "Helper"),
             ),
             mapOf(
                 "line" to 4,
                 "source" to "enum PlanetInfo {}",
-                "message" to Messages.get(MSG_SUFFIX, "Info"),
+                "message" to Messages.get(MSG, "Info"),
             ),
         )
 
@@ -68,12 +67,12 @@ class AvoidMeaninglessWordRuleTest : AbstractRuleTestCase<AvoidMeaninglessWordRu
             mapOf(
                 "line" to 1,
                 "source" to "class BaseSpaceshipManager {}",
-                "message" to Messages.get(MSG_PREFIX, "Base"),
+                "message" to Messages.get(MSG, "Base"),
             ),
             mapOf(
                 "line" to 1,
                 "source" to "class BaseSpaceshipManager {}",
-                "message" to Messages.get(MSG_SUFFIX, "Manager"),
+                "message" to Messages.get(MSG, "Manager"),
             ),
         )
 }

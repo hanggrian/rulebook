@@ -24,7 +24,7 @@ public class CapitalizeFirstAcronymLetterVisitor : AbstractAstVisitor() {
     }
 
     public override fun visitField(node: FieldNode) {
-        // Allow all uppercase, which usually is static property.
+        // allow all uppercase, which usually is static property
         if (node.name.isStaticPropertyName()) {
             return super.visitField(node)
         }
@@ -40,7 +40,7 @@ public class CapitalizeFirstAcronymLetterVisitor : AbstractAstVisitor() {
     }
 
     private fun process(node: ASTNode, name: String) {
-        // Checks for violation.
+        // checks for violation
         if (REGEX.containsMatchIn(name)) {
             addViolation(node, Messages.get(MSG, name.transform()))
         }

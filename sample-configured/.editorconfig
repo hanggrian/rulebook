@@ -1,0 +1,5 @@
+[*.kt]
+ktlint_rulebook_block_tags = @constructor
+ktlint_rulebook_common_generics = A
+ktlint_rulebook_meaningless_words = Hello, World
+ktlint_rulebook_meaningless_words_exclude = Hello

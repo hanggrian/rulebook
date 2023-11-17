@@ -14,24 +14,24 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#capitalize-first-acronym-letter).
  */
-class CapitalizeFirstAcronymLetterRule : RulebookRule("capitalize-first-acronym-letter") {
+public class CapitalizeFirstAcronymLetterRule : RulebookRule("capitalize-first-acronym-letter") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // First line of filter.
+        // first line of filter
         when (node.elementType) {
             CLASS, OBJECT_DECLARATION, PROPERTY, FUN, VALUE_PARAMETER -> {
-                // Retrieve name.
+                // retrieve name
                 val identifier = node.findChildByType(IDENTIFIER) ?: return
 
-                // Allow all uppercase, which usually is static property.
+                // allow all uppercase, which usually is static property
                 if (node.elementType == PROPERTY && identifier.text.isStaticPropertyName()) {
                     return
                 }
 
-                // Checks for violation.
+                // checks for violation
                 if (ABBREVIATION_REGEX.containsMatchIn(identifier.text)) {
                     emit(
                         identifier.startOffset,
@@ -41,10 +41,10 @@ class CapitalizeFirstAcronymLetterRule : RulebookRule("capitalize-first-acronym-
                 }
             }
             FILE -> {
-                // Retrieve name.
+                // retrieve name
                 val fileName = getFileName(node) ?: return
 
-                // Checks for violation.
+                // checks for violation
                 if (ABBREVIATION_REGEX.containsMatchIn(fileName)) {
                     emit(node.startOffset, Messages.get(MSG, fileName.transform()), false)
                 }

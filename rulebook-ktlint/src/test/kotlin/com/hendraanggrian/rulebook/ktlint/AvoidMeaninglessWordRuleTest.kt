@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.AvoidMeaninglessWordRule.Companion.MSG_PREFIX
-import com.hendraanggrian.rulebook.ktlint.AvoidMeaninglessWordRule.Companion.MSG_SUFFIX
+import com.hendraanggrian.rulebook.ktlint.AvoidMeaninglessWordRule.Companion.MSG
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -35,12 +34,12 @@ class AvoidMeaninglessWordRuleTest {
             object LogHelper
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 7, Messages.get(MSG_PREFIX, "Base")),
-            LintViolation(2, 18, Messages.get(MSG_PREFIX, "Abstract")),
-            LintViolation(3, 12, Messages.get(MSG_SUFFIX, "Helper")),
-            LintViolation(4, 14, Messages.get(MSG_SUFFIX, "Info")),
-            LintViolation(5, 11, Messages.get(MSG_SUFFIX, "Data")),
-            LintViolation(6, 8, Messages.get(MSG_SUFFIX, "Helper")),
+            LintViolation(1, 7, Messages.get(MSG, "Base")),
+            LintViolation(2, 18, Messages.get(MSG, "Abstract")),
+            LintViolation(3, 12, Messages.get(MSG, "Helper")),
+            LintViolation(4, 14, Messages.get(MSG, "Info")),
+            LintViolation(5, 11, Messages.get(MSG, "Data")),
+            LintViolation(6, 8, Messages.get(MSG, "Helper")),
         )
 
     @Test
@@ -50,13 +49,13 @@ class AvoidMeaninglessWordRuleTest {
             class BaseSpaceshipManager
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 7, Messages.get(MSG_PREFIX, "Base")),
-            LintViolation(1, 7, Messages.get(MSG_SUFFIX, "Manager")),
+            LintViolation(1, 7, Messages.get(MSG, "Base")),
+            LintViolation(1, 7, Messages.get(MSG, "Manager")),
         )
 
     @Test
     fun `Utility file`() =
         assertThatCode("")
             .asFileWithPath("/some/path/Util.kt")
-            .hasLintViolationWithoutAutoCorrect(1, 1, Messages.get(MSG_SUFFIX, "Util"))
+            .hasLintViolationWithoutAutoCorrect(1, 1, Messages.get(MSG, "Util"))
 }

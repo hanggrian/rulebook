@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
+kotlin.explicitApi()
+
 dependencies {
     implementation(libs.ktlint.rule.engine.core)
     implementation(libs.ktlint.cli.ruleset.core)

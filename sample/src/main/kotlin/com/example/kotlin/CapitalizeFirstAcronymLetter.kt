@@ -1,4 +1,4 @@
-package com.example
+package com.example.kotlin
 
 val userJson: String = "{ user: \"Hendra Anggrian\" }"
 

@@ -9,24 +9,24 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#remove-blank-line-between-cases).
  */
-class RemoveBlankLineBetweenCasesRule : RulebookRule("remove-blank-line-between-cases") {
+public class RemoveBlankLineBetweenCasesRule : RulebookRule("remove-blank-line-between-cases") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // First line of filter.
+        // first line of filter
         if (node.elementType != WHEN_ENTRY) {
             return
         }
 
-        // Get previous whitespace.
+        // get previous whitespace
         val whitespace = node.treePrev
         if (whitespace.elementType != WHITE_SPACE) {
             return
         }
 
-        // Report missing empty line.
+        // report missing empty line
         if ("\n\n" in whitespace.text) {
             emit(whitespace.endOffset, Messages[MSG], false)
         }

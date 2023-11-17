@@ -8,13 +8,13 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-structural-equality).
  */
-class UseStructuralEqualityRule : RulebookRule("use-structural-equality") {
+public class UseStructuralEqualityRule : RulebookRule("use-structural-equality") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // Checks for violation.
+        // checks for violation
         when (node.elementType) {
             EQEQEQ -> emit(node.startOffset, Messages.get(MSG, "=="), false)
             EXCLEQEQEQ -> emit(node.startOffset, Messages.get(MSG, "!="), false)

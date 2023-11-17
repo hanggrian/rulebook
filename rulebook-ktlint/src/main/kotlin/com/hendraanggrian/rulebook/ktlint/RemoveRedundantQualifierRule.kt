@@ -13,47 +13,47 @@ import org.jetbrains.kotlin.psi.psiUtil.children
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#remove-redundant-qualifier).
  */
-class RemoveRedundantQualifierRule : RulebookRule("remove-redundant-qualifier") {
+public class RemoveRedundantQualifierRule : RulebookRule("remove-redundant-qualifier") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // First line of filter.
+        // first line of filter
         when (node.elementType) {
             TYPE_REFERENCE -> {
-                // Get text without argument and nullability.
+                // get text without argument and nullability
                 val typeText = node.text.substringBefore('<').substringBefore('?')
 
                 node.importDirectives.forEach {
-                    // Get text after `import`.
+                    // get text after `import`
                     val importText = it.text.substringAfterLast(' ')
 
-                    // Checks for violation.
+                    // checks for violation
                     if (typeText == importText) {
                         emit(node.startOffset, Messages[MSG], false)
                     }
                 }
             }
             DOT_QUALIFIED_EXPRESSION -> {
-                // Only consider top expression.
+                // only consider top expression
                 if (DOT_QUALIFIED_EXPRESSION in node) {
                     return
                 }
 
-                // But skip import line.
+                // but skip import line
                 if (node.treeParent.elementType == IMPORT_DIRECTIVE) {
                     return
                 }
 
-                // Get text without argument and nullability.
+                // get text without argument and nullability
                 val typeText = node.text.substringBefore('<').substringBefore('?')
 
                 node.importDirectives.forEach {
-                    // Get text after `import`.
+                    // get text after `import`
                     val importText = it.text.substringAfterLast(' ')
 
-                    // Checks for violation.
+                    // checks for violation
                     if (typeText.startsWith(importText)) {
                         emit(node.startOffset, Messages[MSG], false)
                     }

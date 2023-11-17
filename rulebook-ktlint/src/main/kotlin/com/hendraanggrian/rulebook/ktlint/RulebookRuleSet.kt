@@ -3,21 +3,20 @@ package com.hendraanggrian.rulebook.ktlint
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 
-class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
+public class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
     override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
             RuleProvider { AddBlankLineBeforeTagsRule() },
             RuleProvider { AvoidMeaninglessWordRule() },
             RuleProvider { CapitalizeFirstAcronymLetterRule() },
-            RuleProvider { EndSentenceWithPeriodRule() },
+            RuleProvider { EndBlockTagWithPeriod() },
             RuleProvider { InvertIfConditionRule() },
             RuleProvider { RemoveBlankLineBetweenCasesRule() },
             RuleProvider { RemoveRedundantQualifierRule() },
-            RuleProvider { SpecifyAccessExplicitlyRule() },
-            RuleProvider { SpecifyTypeExplicitlyRule() },
-            RuleProvider { ThrowExceptionSubclassRule() },
+            RuleProvider { ThrowNarrowerExceptionRule() },
             RuleProvider { UseCommonGenericsRule() },
             RuleProvider { UseKotlinApiRule() },
+            RuleProvider { UseStringTemplatesRule() },
             RuleProvider { UseStructuralEqualityRule() },
         )
 }

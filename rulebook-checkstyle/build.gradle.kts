@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
+kotlin.explicitApi()
+
 dependencies {
     ktlintRuleset(project(":$releaseArtifact-ktlint"))
 

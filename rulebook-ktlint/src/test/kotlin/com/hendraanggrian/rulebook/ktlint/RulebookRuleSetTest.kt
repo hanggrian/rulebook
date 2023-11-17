@@ -14,15 +14,14 @@ class RulebookRuleSetTest {
             AddBlankLineBeforeTagsRule::class,
             AvoidMeaninglessWordRule::class,
             CapitalizeFirstAcronymLetterRule::class,
-            EndSentenceWithPeriodRule::class,
+            EndBlockTagWithPeriod::class,
             InvertIfConditionRule::class,
             RemoveBlankLineBetweenCasesRule::class,
             RemoveRedundantQualifierRule::class,
-            SpecifyAccessExplicitlyRule::class,
-            SpecifyTypeExplicitlyRule::class,
-            ThrowExceptionSubclassRule::class,
+            ThrowNarrowerExceptionRule::class,
             UseCommonGenericsRule::class,
             UseKotlinApiRule::class,
+            UseStringTemplatesRule::class,
             UseStructuralEqualityRule::class,
         )
     }

@@ -1,4 +1,4 @@
-package com.example
+package com.example.kotlin
 
 fun referentialEquality(a: Any, b: Any) {
     if (a == b) {

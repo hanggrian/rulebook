@@ -5,7 +5,7 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.RuleSetId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
 
-sealed class RulebookRule(
+public sealed class RulebookRule(
     id: String,
     override val usesEditorConfigProperties: Set<EditorConfigProperty<*>> = emptySet(),
     override val visitorModifiers: Set<VisitorModifier> = emptySet(),
@@ -19,7 +19,7 @@ sealed class RulebookRule(
         visitorModifiers,
         usesEditorConfigProperties,
     ) {
-    companion object {
-        val ID = RuleSetId("rulebook")
+    public companion object {
+        public val ID: RuleSetId = RuleSetId("rulebook")
     }
 }

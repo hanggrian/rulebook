@@ -9,19 +9,19 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-kotlin-api).
  */
-class UseKotlinApiRule : RulebookRule("use-kotlin-api") {
+public class UseKotlinApiRule : RulebookRule("use-kotlin-api") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // First line of filter.
+        // first line of filter
         when (node.elementType) {
             IMPORT_DIRECTIVE -> {
-                // Get text after `import`.
+                // get text after `import`
                 val text = node.text.substringAfterLast(' ')
 
-                // Checks for violation.
+                // checks for violation
                 val kotlinClassReplacement = text.kotlinClassReplacement ?: return
                 val dotQualifiedExpression = node.findChildByType(DOT_QUALIFIED_EXPRESSION)!!
                 emit(
@@ -31,10 +31,10 @@ class UseKotlinApiRule : RulebookRule("use-kotlin-api") {
                 )
             }
             TYPE_REFERENCE -> {
-                // Get text without argument and nullability.
+                // get text without argument and nullability
                 val text = node.text.substringBefore('<').substringBefore('?')
 
-                // Checks for violation.
+                // checks for violation
                 val kotlinClassReplacement = text.kotlinClassReplacement ?: return
                 emit(
                     node.startOffset,

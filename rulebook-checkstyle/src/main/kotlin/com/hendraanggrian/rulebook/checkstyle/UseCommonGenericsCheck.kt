@@ -17,6 +17,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETERS
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-common-generics).
  */
 public class UseCommonGenericsCheck : RulebookCheck() {
+    private var generics = setOf("E", "K", "N", "T", "V")
+
+    public fun setGenerics(vararg generics: String) {
+        this.generics = generics.toSet()
+    }
+
     public override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
@@ -27,22 +33,20 @@ public class UseCommonGenericsCheck : RulebookCheck() {
         )
 
     public override fun visitToken(node: DetailAST) {
-        // Filter out multiple generics.
+        // filter out multiple generics
         val typeParameters = node.findFirstToken(TYPE_PARAMETERS) ?: return
         val typeParameter =
             typeParameters.children().singleOrNull { it.type == TYPE_PARAMETER } ?: return
 
-        // Checks for a match.
+        // checks for violation
         val ident = typeParameter.findFirstToken(IDENT) ?: return
-        if (!node.hasParentWithGenerics() && ident.text !in COMMON_GENERICS) {
-            log(node, Messages[MSG])
+        if (!node.hasParentWithGenerics() && ident.text !in generics) {
+            log(node, Messages.get(MSG, generics.joinToString()))
         }
     }
 
     internal companion object {
         const val MSG = "use.common.generics"
-
-        private val COMMON_GENERICS = setOf("E", "K", "N", "T", "V")
 
         private fun DetailAST.hasParentWithGenerics(): Boolean {
             var next: DetailAST? = parent

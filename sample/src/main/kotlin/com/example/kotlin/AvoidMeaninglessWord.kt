@@ -1,4 +1,4 @@
-package com.example
+package com.example.kotlin
 
 val myField: Int = 1
 
