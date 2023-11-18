@@ -11,12 +11,12 @@ plugins {
 
 checkstyle {
     toolVersion = libs.versions.checkstyle.get()
-    configFile = projectDir.resolve("sample_checks.xml")
+    configFile = projectDir.resolve("custom_checks.xml")
 }
 
 codenarc {
     toolVersion = libs.versions.codenarc.get()
-    configFile = projectDir.resolve("sample_rules.xml")
+    configFile = projectDir.resolve("custom_rules.xml")
 }
 
 dependencies {

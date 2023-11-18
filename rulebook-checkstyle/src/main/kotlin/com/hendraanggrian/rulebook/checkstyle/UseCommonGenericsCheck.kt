@@ -34,15 +34,17 @@ public class UseCommonGenericsCheck : RulebookCheck() {
 
     public override fun visitToken(node: DetailAST) {
         // filter out multiple generics
-        val typeParameters = node.findFirstToken(TYPE_PARAMETERS) ?: return
         val typeParameter =
-            typeParameters.children().singleOrNull { it.type == TYPE_PARAMETER } ?: return
+            node.findFirstToken(TYPE_PARAMETERS)?.children()
+                ?.singleOrNull { it.type == TYPE_PARAMETER }
+                ?: return
 
         // checks for violation
-        val ident = typeParameter.findFirstToken(IDENT) ?: return
-        if (!node.hasParentWithGenerics() && ident.text !in generics) {
-            log(node, Messages.get(MSG, generics.joinToString()))
-        }
+        val ident =
+            typeParameter.findFirstToken(IDENT)
+                ?.takeIf { !node.hasParentWithGenerics() && it.text !in generics }
+                ?: return
+        log(ident, Messages.get(MSG, generics.joinToString()))
     }
 
     internal companion object {

@@ -21,23 +21,20 @@ public class EndBlockTagWithPeriodCheck : AbstractJavadocCheck() {
     public override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 
     public override fun visitJavadocToken(node: DetailNode) {
-        // skip no description
-        val description = node.find(DESCRIPTION) ?: return
-
         // only enforce certain tags
-        if (node.children.none { it.text in tags }) {
-            return
-        }
+        node.takeUnless { n -> n.children.none { it.text in tags } } ?: return
 
         // long descriptions have multiple lines, take only the last one
         val text =
-            description.children.findLast { it.type == TEXT && it.text.isNotBlank() } ?: return
+            node.find(DESCRIPTION)?.children
+                ?.findLast { it.type == TEXT && it.text.isNotBlank() }
+                ?: return
 
         // checks for violation after trimming optional comment
-        val punctuation = text.text.trimComment().trimEnd().lastOrNull() ?: return
-        if (punctuation !in END_PUNCTUATIONS) {
-            log(text.lineNumber, Messages[MSG])
-        }
+        text.text.trimComment().trimEnd().lastOrNull()
+            ?.takeIf { it !in END_PUNCTUATIONS }
+            ?: return
+        log(text.lineNumber, Messages[MSG])
     }
 
     internal companion object {

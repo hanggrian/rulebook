@@ -25,39 +25,22 @@ public class RemoveRedundantQualifierRule : RulebookRule("remove-redundant-quali
                 // get text without argument and nullability
                 val typeText = node.text.substringBefore('<').substringBefore('?')
 
-                node.importDirectives.forEach {
-                    // get text after `import`
-                    val importText = it.text.substringAfterLast(' ')
-
-                    // checks for violation
-                    if (typeText == importText) {
-                        emit(node.startOffset, Messages[MSG], false)
-                    }
-                }
+                // checks for violation
+                node.importStatements.takeIf { typeText in it } ?: return
+                emit(node.startOffset, Messages[MSG], false)
             }
             DOT_QUALIFIED_EXPRESSION -> {
-                // only consider top expression
-                if (DOT_QUALIFIED_EXPRESSION in node) {
-                    return
-                }
-
-                // but skip import line
-                if (node.treeParent.elementType == IMPORT_DIRECTIVE) {
-                    return
-                }
+                // only consider top expression and no import line
+                node.takeUnless { DOT_QUALIFIED_EXPRESSION in it }
+                    ?.takeUnless { it.treeParent.elementType == IMPORT_DIRECTIVE }
+                    ?: return
 
                 // get text without argument and nullability
                 val typeText = node.text.substringBefore('<').substringBefore('?')
 
-                node.importDirectives.forEach {
-                    // get text after `import`
-                    val importText = it.text.substringAfterLast(' ')
-
-                    // checks for violation
-                    if (typeText.startsWith(importText)) {
-                        emit(node.startOffset, Messages[MSG], false)
-                    }
-                }
+                // checks for violation
+                node.importStatements.takeIf { typeText in it } ?: return
+                emit(node.startOffset, Messages[MSG], false)
             }
         }
     }
@@ -65,7 +48,7 @@ public class RemoveRedundantQualifierRule : RulebookRule("remove-redundant-quali
     internal companion object {
         const val MSG = "remove.redundant.qualifier"
 
-        private val ASTNode.importDirectives: Sequence<ASTNode>
+        private val ASTNode.importStatements: Sequence<String>
             get() {
                 var importList: ASTNode? = null
                 var root = treeParent
@@ -78,6 +61,7 @@ public class RemoveRedundantQualifierRule : RulebookRule("remove-redundant-quali
                 }
                 return importList?.children()
                     ?.filter { it.elementType == IMPORT_DIRECTIVE }
+                    ?.map { it.text.substringAfterLast(' ') } // get text after `import`
                     ?: return emptySequence()
             }
     }

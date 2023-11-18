@@ -24,14 +24,14 @@ public class AvoidMeaninglessWordCheck : RulebookCheck() {
             "Data",
             "Info",
         )
-    private var exclude = emptySet<String>()
+    private var excludeWords = emptySet<String>()
 
     public fun setWords(vararg words: String) {
         this.words = words.toSet()
     }
 
-    public fun setExclude(vararg exclude: String) {
-        this.exclude = exclude.toSet()
+    public fun setExcludeWords(vararg excludeWords: String) {
+        this.excludeWords = excludeWords.toSet()
     }
 
     public override fun getRequiredTokens(): IntArray =
@@ -43,12 +43,10 @@ public class AvoidMeaninglessWordCheck : RulebookCheck() {
         )
 
     public override fun visitToken(node: DetailAST) {
-        // retrieve name
-        val ident = node.findFirstToken(IDENT) ?: return
-
         // checks for violation
+        val ident = node.findFirstToken(IDENT) ?: return
         TITLE_CASE_REGEX.findAll(ident.text)
-            .filter { it.value in words && it.value !in exclude }
+            .filter { it.value in words && it.value !in excludeWords }
             .forEach { log(ident, Messages.get(MSG, it.value)) }
     }
 

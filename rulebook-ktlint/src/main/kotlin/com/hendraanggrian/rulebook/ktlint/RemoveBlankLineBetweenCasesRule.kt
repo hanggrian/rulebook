@@ -20,16 +20,13 @@ public class RemoveBlankLineBetweenCasesRule : RulebookRule("remove-blank-line-b
             return
         }
 
-        // get previous whitespace
-        val whitespace = node.treePrev
-        if (whitespace.elementType != WHITE_SPACE) {
-            return
-        }
-
-        // report missing empty line
-        if ("\n\n" in whitespace.text) {
-            emit(whitespace.endOffset, Messages[MSG], false)
-        }
+        // checks for violation
+        val whitespace =
+            node.treePrev
+                ?.takeUnless { it.elementType != WHITE_SPACE }
+                ?.takeIf { "\n\n" in it.text }
+                ?: return
+        emit(whitespace.endOffset, Messages[MSG], false)
     }
 
     internal companion object {

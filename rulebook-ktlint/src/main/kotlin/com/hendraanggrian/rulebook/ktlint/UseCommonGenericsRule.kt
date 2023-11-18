@@ -38,15 +38,17 @@ public class UseCommonGenericsRule : RulebookRule(
         }
 
         // filter out multiple generics
-        val typeParameterList = node.findChildByType(TYPE_PARAMETER_LIST) ?: return
         val typeParameter =
-            typeParameterList.children().singleOrNull { it.elementType == TYPE_PARAMETER } ?: return
+            node.findChildByType(TYPE_PARAMETER_LIST)?.children()
+                ?.singleOrNull { it.elementType == TYPE_PARAMETER }
+                ?: return
 
         // checks for violation
-        val identifier = typeParameter.findChildByType(IDENTIFIER) ?: return
-        if (!node.hasParentWithGenerics() && identifier.text !in generics) {
-            emit(identifier.startOffset, Messages.get(MSG, generics.joinToString()), false)
-        }
+        val identifier =
+            typeParameter.findChildByType(IDENTIFIER)
+                ?.takeIf { !node.hasParentWithGenerics() && it.text !in generics }
+                ?: return
+        emit(identifier.startOffset, Messages.get(MSG, generics.joinToString()), false)
     }
 
     internal companion object {

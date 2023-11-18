@@ -24,21 +24,18 @@ public class AddBlankLineBeforeTagsRule : RulebookRule("add-blank-line-before-bl
         }
 
         // only allow first tag
-        val kdocTag = node.findChildByType(KDOC_TAG) ?: return
-        if (kdocTag.prevSibling { it.elementType == KDOC_TAG } != null) {
-            return
-        }
+        val kdocTag =
+            node.findChildByType(KDOC_TAG)
+                ?.takeUnless { n -> n.prevSibling { it.elementType == KDOC_TAG } != null }
+                ?: return
 
-        // find previous leading asterisk
-        val kdocTagAsterisk = kdocTag.prevKdocLeadingAsterisk ?: return
-        val prevKdocTagLeadingAsterisk = kdocTagAsterisk.prevKdocLeadingAsterisk ?: return
-
-        // checks if last line is newline
-        val siblings = prevKdocTagLeadingAsterisk.siblingsUntil(KDOC_LEADING_ASTERISK)
-        val hasEmptyLine = siblings.size == 1 && siblings.single().isWhiteSpaceWithNewline()
-        if (!hasEmptyLine) {
-            emit(kdocTag.startOffset, Messages[MSG], false)
-        }
+        // checks for violation
+        kdocTag.prevKdocLeadingAsterisk
+            ?.prevKdocLeadingAsterisk
+            ?.siblingsUntil(KDOC_LEADING_ASTERISK)
+            ?.takeUnless { it.size == 1 && it.single().isWhiteSpaceWithNewline() }
+            ?: return
+        emit(kdocTag.startOffset, Messages[MSG], false)
     }
 
     internal companion object {

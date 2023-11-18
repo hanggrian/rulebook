@@ -24,15 +24,13 @@ public class UseStringTemplatesRule : RulebookRule("use-string-templates") {
         }
 
         // only target expression with string literal
-        if (STRING_TEMPLATE !in node) {
-            return
-        }
+        node.takeIf { STRING_TEMPLATE in it } ?: return
 
         // checks for violation
-        val operationReference = node.findChildByType(OPERATION_REFERENCE) ?: return
-        if (operationReference.children().singleOrNull()?.elementType == PLUS) {
-            emit(node.startOffset, Messages[MSG], false)
-        }
+        node.findChildByType(OPERATION_REFERENCE)?.children()?.singleOrNull()
+            ?.takeIf { it.elementType == PLUS }
+            ?: return
+        emit(node.startOffset, Messages[MSG], false)
     }
 
     internal companion object {

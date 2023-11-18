@@ -34,14 +34,10 @@ public class UseCommonGenericsVisitor : AbstractAstVisitor() {
         val genericType = genericTypes?.singleOrNull() ?: return
 
         // checks for violation
-        if (!node.hasParentWithGenerics() &&
-            genericType.name !in (rule as UseCommonGenericsRule).generics.split(", ")
-        ) {
-            addViolation(
-                genericType,
-                Messages.get(MSG, (rule as UseCommonGenericsRule).generics),
-            )
-        }
+        val generics = (rule as UseCommonGenericsRule).generics
+        node.takeIf { !it.hasParentWithGenerics() && genericType.name !in generics.split(", ") }
+            ?: return
+        addViolation(genericType, Messages.get(MSG, generics))
     }
 
     internal companion object {

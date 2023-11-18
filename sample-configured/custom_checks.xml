@@ -346,7 +346,7 @@
     <!-- Third-party rules -->
     <module name="AvoidMeaninglessWord">
       <property name="words" value="Hello, World"/>
-      <property name="exclude" value="Hello"/>
+      <property name="excludeWords" value="Hello"/>
     </module>
     <module name="EndBlockTagWithPeriod">
       <property name="tags" value="@exception"/>

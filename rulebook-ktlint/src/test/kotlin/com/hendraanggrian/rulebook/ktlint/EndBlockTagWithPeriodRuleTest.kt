@@ -1,13 +1,13 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.EndBlockTagWithPeriod.Companion.MSG
+import com.hendraanggrian.rulebook.ktlint.EndBlockTagWithPeriodRule.Companion.MSG
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class EndBlockTagWithPeriodTest {
-    private val assertThatCode = assertThatRule { EndBlockTagWithPeriod() }
+class EndBlockTagWithPeriodRuleTest {
+    private val assertThatCode = assertThatRule { EndBlockTagWithPeriodRule() }
 
     @Test
     fun `No description`() =

@@ -21,19 +21,14 @@ public class ThrowNarrowerExceptionRule : RulebookRule("throw-narrower-exception
             return
         }
 
-        // only target declaration, reference such as `val error = Exception()` is ignored
-        val callExpression = node.findChildByType(CALL_EXPRESSION) ?: return
-
-        // only target supertype
+        // checks for violation
         val identifier =
-            callExpression.findChildByType(REFERENCE_EXPRESSION)
+            node.findChildByType(CALL_EXPRESSION)
+                ?.findChildByType(REFERENCE_EXPRESSION)
                 ?.findChildByType(IDENTIFIER)
+                ?.takeIf { it.text in AMBIGUOUS_ERRORS }
                 ?: return
-
-        // report error if superclass exception is found
-        if (identifier.text in AMBIGUOUS_ERRORS) {
-            emit(identifier.startOffset, Messages[MSG], false)
-        }
+        emit(identifier.startOffset, Messages[MSG], false)
     }
 
     internal companion object {

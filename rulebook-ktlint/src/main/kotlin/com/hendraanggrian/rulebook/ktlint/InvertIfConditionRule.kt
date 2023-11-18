@@ -26,30 +26,20 @@ public class InvertIfConditionRule : RulebookRule("invert-if-condition") {
             return
         }
 
-        // only proceed on one if
-        val if2 = node.blockContent.singleOrNull() ?: return
-        if (if2.elementType != IF) {
-            return
-        }
-
-        // skip if statement with else
-        if (ELSE in if2) {
-            return
-        }
-
-        // obtain the inner block
-        val block = if2.findChildByType(THEN)?.findChildByType(BLOCK) ?: return
-
-        // collect whitespaces with newline
-        val newLines =
-            block.children()
-                .filter { it.elementType == WHITE_SPACE && "\n" in it.text }
-                .toList()
+        // only proceed on one if and no else
+        val if2 =
+            node.blockContent.singleOrNull()
+                ?.takeUnless { it.elementType != IF }
+                ?.takeUnless { ELSE in it }
+                ?: return
 
         // report 2 lines content
-        if (newLines.size > 2) {
-            emit(if2.startOffset, Messages[MSG], false)
-        }
+        if2.findChildByType(THEN)?.findChildByType(BLOCK)?.children()
+            ?.filter { it.elementType == WHITE_SPACE && "\n" in it.text }
+            ?.toList()
+            ?.takeIf { it.size > 2 }
+            ?: return
+        emit(if2.startOffset, Messages[MSG], false)
     }
 
     internal companion object {

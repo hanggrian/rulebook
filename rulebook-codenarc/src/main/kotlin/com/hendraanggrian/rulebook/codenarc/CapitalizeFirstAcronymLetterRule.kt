@@ -25,25 +25,23 @@ public class CapitalizeFirstAcronymLetterVisitor : AbstractAstVisitor() {
 
     public override fun visitField(node: FieldNode) {
         // allow all uppercase, which usually is static property
-        if (node.name.isStaticPropertyName()) {
-            return super.visitField(node)
-        }
+        node.takeUnless { it.name.isStaticPropertyName() } ?: return super.visitField(node)
 
+        // checks for violation
         process(node, node.name)
         super.visitField(node)
     }
 
     public override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
+        // checks for violation
         node.parameters.forEach { process(it, it.name) }
         process(node, node.name)
         super.visitConstructorOrMethod(node, isConstructor)
     }
 
     private fun process(node: ASTNode, name: String) {
-        // checks for violation
-        if (REGEX.containsMatchIn(name)) {
-            addViolation(node, Messages.get(MSG, name.transform()))
-        }
+        name.takeIf { REGEX.containsMatchIn(it) } ?: return
+        addViolation(node, Messages.get(MSG, name.transform()))
     }
 
     internal companion object {

@@ -9,7 +9,7 @@ import org.codenarc.rule.AbstractAstVisitor
  */
 public class AvoidMeaninglessWordRule : RulebookRule() {
     public var words: String = "Abstract, Base, Util, Utility, Helper, Manager, Wrapper, Data, Info"
-    public var exclude: String = ""
+    public var excludeWords: String = ""
 
     public override fun getName(): String = "AvoidMeaninglessWord"
 
@@ -22,7 +22,7 @@ public class AvoidMeaninglessWordVisitor : AbstractAstVisitor() {
         TITLE_CASE_REGEX.findAll(node.name)
             .filter {
                 it.value in (rule as AvoidMeaninglessWordRule).words.split(", ") &&
-                    it.value !in (rule as AvoidMeaninglessWordRule).exclude.split(", ")
+                    it.value !in (rule as AvoidMeaninglessWordRule).excludeWords.split(", ")
             }
             .forEach { addViolation(node, Messages.get(MSG, it.value)) }
         super.visitClassEx(node)

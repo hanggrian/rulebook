@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.psi.psiUtil.children
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#end-block-tag-with-period).
  */
-public class EndBlockTagWithPeriod : RulebookRule(
+public class EndBlockTagWithPeriodRule : RulebookRule(
     "end-block-tag-with-period",
     setOf(BLOCK_TAGS_PROPERTY),
 ) {
@@ -31,27 +31,26 @@ public class EndBlockTagWithPeriod : RulebookRule(
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        when (node.elementType) {
-            KDOC_TAG -> {
-                // long descriptions have multiple lines, take only the last one
-                val kdocText =
-                    node.children()
-                        .findLast { it.elementType == KDOC_TEXT && it.text.isNotBlank() }
-                        ?: return
-
-                // only enforce certain tags
-                val kdocTagName = node.findChildByType(KDOC_TAG_NAME) ?: return
-                if (kdocTagName.text !in tags) {
-                    return
-                }
-
-                // checks for violation after trimming optional comment
-                val punctuation = kdocText.text.trimComment().lastOrNull() ?: return
-                if (punctuation !in END_PUNCTUATIONS) {
-                    emit(kdocText.endOffset, Messages[MSG], false)
-                }
-            }
+        if (node.elementType != KDOC_TAG) {
+            return
         }
+
+        // only enforce certain tags
+        node.findChildByType(KDOC_TAG_NAME)
+            ?.takeUnless { it.text !in tags }
+            ?: return
+
+        // long descriptions have multiple lines, take only the last one
+        val kdocText =
+            node.children()
+                .findLast { it.elementType == KDOC_TEXT && it.text.isNotBlank() }
+                ?: return
+
+        // checks for violation after trimming optional comment
+        kdocText.text.trimComment().lastOrNull()
+            ?.takeIf { it !in END_PUNCTUATIONS }
+            ?: return
+        emit(kdocText.endOffset, Messages[MSG], false)
     }
 
     internal companion object {

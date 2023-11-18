@@ -35,19 +35,15 @@ public class AvoidMeaninglessWordRule : RulebookRule(
         // first line of filter
         when (node.elementType) {
             CLASS, OBJECT_DECLARATION -> {
-                // retrieve name
-                val identifier = node.findChildByType(IDENTIFIER) ?: return
-
                 // checks for violation
+                val identifier = node.findChildByType(IDENTIFIER) ?: return
                 TITLE_CASE_REGEX.findAll(identifier.text)
                     .filter { it.value in words && it.value !in exclude }
                     .forEach { emit(identifier.startOffset, Messages.get(MSG, it.value), false) }
             }
             FILE -> {
-                // retrieve name
-                val fileName = getFileName(node) ?: return
-
                 // checks for violation
+                val fileName = getFileName(node) ?: return
                 TITLE_CASE_REGEX.findAll(fileName)
                     .filter { it.value in words && it.value !in exclude }
                     .forEach { emit(node.startOffset, Messages.get(MSG, it.value), false) }

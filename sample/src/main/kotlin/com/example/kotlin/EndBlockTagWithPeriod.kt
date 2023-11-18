@@ -5,6 +5,4 @@ package com.example.kotlin
  * @param y desc1.
  * @param z asd.
  */
-fun sum(x: Int, y: Int, z: Int): Int {
-    return x + y + z
-}
+fun sum(x: Int, y: Int, z: Int): Int = x + y + z

@@ -23,7 +23,8 @@ public class UseKotlinApiRule : RulebookRule("use-kotlin-api") {
 
                 // checks for violation
                 val kotlinClassReplacement = text.kotlinClassReplacement ?: return
-                val dotQualifiedExpression = node.findChildByType(DOT_QUALIFIED_EXPRESSION)!!
+                val dotQualifiedExpression =
+                    node.findChildByType(DOT_QUALIFIED_EXPRESSION) ?: return
                 emit(
                     dotQualifiedExpression.startOffset,
                     Messages.get(MSG_IMPORT, kotlinClassReplacement),

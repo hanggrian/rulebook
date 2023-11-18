@@ -23,31 +23,30 @@ public class CapitalizeFirstAcronymLetterRule : RulebookRule("capitalize-first-a
         // first line of filter
         when (node.elementType) {
             CLASS, OBJECT_DECLARATION, PROPERTY, FUN, VALUE_PARAMETER -> {
-                // retrieve name
-                val identifier = node.findChildByType(IDENTIFIER) ?: return
-
                 // allow all uppercase, which usually is static property
-                if (node.elementType == PROPERTY && identifier.text.isStaticPropertyName()) {
-                    return
-                }
+                val identifier =
+                    node.findChildByType(IDENTIFIER)
+                        ?.takeUnless {
+                            node.elementType == PROPERTY &&
+                                it.text.isStaticPropertyName()
+                        }
+                        ?: return
 
                 // checks for violation
-                if (ABBREVIATION_REGEX.containsMatchIn(identifier.text)) {
-                    emit(
-                        identifier.startOffset,
-                        Messages.get(MSG, identifier.text.transform()),
-                        false,
-                    )
-                }
+                identifier.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) } ?: return
+                emit(
+                    identifier.startOffset,
+                    Messages.get(MSG, identifier.text.transform()),
+                    false,
+                )
             }
             FILE -> {
-                // retrieve name
-                val fileName = getFileName(node) ?: return
-
                 // checks for violation
-                if (ABBREVIATION_REGEX.containsMatchIn(fileName)) {
-                    emit(node.startOffset, Messages.get(MSG, fileName.transform()), false)
-                }
+                val fileName =
+                    getFileName(node)
+                        ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
+                        ?: return
+                emit(node.startOffset, Messages.get(MSG, fileName.transform()), false)
             }
         }
     }
