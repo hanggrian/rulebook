@@ -1,13 +1,13 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.UseCommonGenericsRule.Companion.MSG
+import com.hendraanggrian.rulebook.ktlint.RenameUncommonGenericsRule.Companion.MSG
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class UseCommonGenericsRuleTest {
-    private val assertThatCode = assertThatRule { UseCommonGenericsRule() }
+class RenameUncommonGenericsRuleTest {
+    private val assertThatCode = assertThatRule { RenameUncommonGenericsRule() }
 
     @Test
     fun `Common generic type in class-alike`() =

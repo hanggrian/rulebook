@@ -47,9 +47,9 @@ class EndBlockTagWithPeriodRuleTest {
             fun sum(a: Int, b: Int): Int = a + b
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 24, Messages[MSG]),
-            LintViolation(3, 25, Messages[MSG]),
-            LintViolation(4, 27, Messages[MSG]),
+            LintViolation(2, 24, Messages.get(MSG, "@param, @return")),
+            LintViolation(3, 25, Messages.get(MSG, "@param, @return")),
+            LintViolation(4, 27, Messages.get(MSG, "@param, @return")),
         )
 
     @Test
@@ -66,5 +66,5 @@ class EndBlockTagWithPeriodRuleTest {
              */
             fun sum(a: Int, b: Int): Int = a + b
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 11, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(3, 11, Messages.get(MSG, "@param, @return"))
 }

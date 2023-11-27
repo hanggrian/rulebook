@@ -3,7 +3,7 @@ package com.example.groovy
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class UseCommonGenerics {
+class RenameUncommonGenerics {
     class Point<N> {
         N x
     }

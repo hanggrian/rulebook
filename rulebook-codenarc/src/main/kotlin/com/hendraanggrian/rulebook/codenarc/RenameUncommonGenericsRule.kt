@@ -8,17 +8,17 @@ import org.codehaus.groovy.ast.MethodNode
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-common-generics).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#rename-uncommon-generics).
  */
-public class UseCommonGenericsRule : RulebookRule() {
+public class RenameUncommonGenericsRule : RulebookRule() {
     public var generics: String = "E, K, N, T, V"
 
-    public override fun getName(): String = "UseCommonGenerics"
+    public override fun getName(): String = "RenameUncommonGenerics"
 
-    public override fun getAstVisitorClass(): Class<*> = UseCommonGenericsVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = RenameUncommonGenericsVisitor::class.java
 }
 
-public class UseCommonGenericsVisitor : AbstractAstVisitor() {
+public class RenameUncommonGenericsVisitor : AbstractAstVisitor() {
     public override fun visitClassEx(node: ClassNode) {
         process(node, node.genericsTypes)
         super.visitClassEx(node)
@@ -34,14 +34,14 @@ public class UseCommonGenericsVisitor : AbstractAstVisitor() {
         val genericType = genericTypes?.singleOrNull() ?: return
 
         // checks for violation
-        val generics = (rule as UseCommonGenericsRule).generics
+        val generics = (rule as RenameUncommonGenericsRule).generics
         node.takeIf { !it.hasParentWithGenerics() && genericType.name !in generics.split(", ") }
             ?: return
         addViolation(genericType, Messages.get(MSG, generics))
     }
 
     internal companion object {
-        const val MSG = "use.common.generics"
+        const val MSG = "rename.uncommon.generics"
 
         private fun ASTNode.hasParentWithGenerics(): Boolean {
             val parents =

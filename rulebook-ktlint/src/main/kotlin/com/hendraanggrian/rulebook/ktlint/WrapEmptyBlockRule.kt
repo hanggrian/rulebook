@@ -2,43 +2,40 @@ package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-expression-function).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#wrap-empty-block).
  */
-public class UseExpressionFunctionRule : RulebookRule("use-expression-function") {
+public class WrapEmptyBlockRule : RulebookRule("wrap-empty-block") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        if (node.elementType != FUN) {
+        if (node.elementType != BLOCK) {
             return
         }
 
-        // find single-line function
-        val block = node.findChildByType(BLOCK) ?: return
-        val children = block.children().filter { it.elementType != WHITE_SPACE }.toList()
+        // checks for violation
+        val children = node.children().toList()
         children
             .takeIf {
                 it.firstOrNull()?.elementType == LBRACE &&
                     it.lastOrNull()?.elementType == RBRACE
             }
             ?.slice(1 until children.lastIndex)
-            ?.takeIf { it.singleOrNull()?.elementType == RETURN }
+            ?.takeIf { n -> n.isNotEmpty() && n.all { it.elementType == WHITE_SPACE } }
             ?: return
-        emit(block.startOffset, Messages[MSG], false)
+        emit(node.startOffset, Messages[MSG], false)
     }
 
     internal companion object {
-        const val MSG = "use.expression.function"
+        const val MSG = "wrap.empty.block"
     }
 }

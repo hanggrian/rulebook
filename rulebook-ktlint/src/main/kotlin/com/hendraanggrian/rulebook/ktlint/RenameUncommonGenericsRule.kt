@@ -11,14 +11,14 @@ import com.pinterest.ktlint.rule.engine.core.api.children
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
-import org.ec4j.core.model.PropertyType
+import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-common-generics).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#rename-uncommon-generics).
  */
-public class UseCommonGenericsRule : RulebookRule(
-    "use-common-generics",
+public class RenameUncommonGenericsRule : RulebookRule(
+    "rename-uncommon-generics",
     setOf(COMMON_GENERICS_PROPERTY),
 ) {
     private var generics = COMMON_GENERICS_PROPERTY.defaultValue
@@ -52,12 +52,12 @@ public class UseCommonGenericsRule : RulebookRule(
     }
 
     internal companion object {
-        const val MSG = "use.common.generics"
+        const val MSG = "rename.uncommon.generics"
 
         val COMMON_GENERICS_PROPERTY =
             EditorConfigProperty(
                 type =
-                    PropertyType.LowerCasingPropertyType(
+                    LowerCasingPropertyType(
                         "ktlint_rulebook_common_generics",
                         "A set of common generics.",
                         CommaSeparatedListValueParser(),

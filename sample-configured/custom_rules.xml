@@ -105,11 +105,14 @@
   </ruleset-ref>
 
   <!-- Third-party rules -->
+  <rule class="org.codenarc.rule.size.ClassSizeRule">
+    <property name="maxLines" value="10"/>
+  </rule>
   <rule class="com.hendraanggrian.rulebook.codenarc.AvoidMeaninglessWordRule">
     <property name="words" value="Hello, World"/>
     <property name="excludeWords" value="Hello"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.UseCommonGenericsRule">
+  <rule class="com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsRule">
     <property name="generics" value="A"/>
   </rule>
 </ruleset>

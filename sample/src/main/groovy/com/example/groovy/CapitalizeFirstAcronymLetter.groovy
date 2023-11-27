@@ -6,5 +6,5 @@ import groovy.transform.CompileStatic
 class CapitalizeFirstAcronymLetter {
     void blendArgb(int a, int r, int g, int b) {
     }
-    String userJson = "{ user: \"Hendra Anggrian\" }"
+    String userJson = "{ user: \"John Doe\" }"
 }

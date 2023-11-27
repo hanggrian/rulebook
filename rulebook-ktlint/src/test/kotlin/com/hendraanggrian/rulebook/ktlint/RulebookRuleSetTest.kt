@@ -16,14 +16,16 @@ class RulebookRuleSetTest {
             CapitalizeFirstAcronymLetterRule::class,
             EndBlockTagWithPeriodRule::class,
             InvertIfConditionRule::class,
+            ReduceFileLengthRule::class,
             RemoveBlankLineBetweenCasesRule::class,
             RemoveRedundantQualifierRule::class,
-            ThrowNarrowerExceptionRule::class,
-            UseCommonGenericsRule::class,
+            RenameUncommonGenericsRule::class,
+            ThrowNarrowerTypeRule::class,
             UseExpressionFunctionRule::class,
             UseKotlinApiRule::class,
             UseStringTemplatesRule::class,
             UseStructuralEqualityRule::class,
+            WrapEmptyBlockRule::class,
         )
     }
 }

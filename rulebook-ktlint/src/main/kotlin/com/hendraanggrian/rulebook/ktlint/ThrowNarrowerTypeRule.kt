@@ -8,9 +8,9 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#throw-narrower-exception).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#throw-narrower-type).
  */
-public class ThrowNarrowerExceptionRule : RulebookRule("throw-narrower-exception") {
+public class ThrowNarrowerTypeRule : RulebookRule("throw-narrower-type") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
@@ -32,7 +32,7 @@ public class ThrowNarrowerExceptionRule : RulebookRule("throw-narrower-exception
     }
 
     internal companion object {
-        const val MSG = "throw.narrower.exception"
+        const val MSG = "throw.narrower.type"
 
         private val AMBIGUOUS_ERRORS = setOf("Exception", "Error", "Throwable")
     }

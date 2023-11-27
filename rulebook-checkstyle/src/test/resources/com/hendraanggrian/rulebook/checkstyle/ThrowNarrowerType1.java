@@ -1,4 +1,4 @@
-public class ThrowNarrowerException1 {
+public class ThrowNarrowerType1 {
   public void exception() {
     throw new IllegalStateException();
   }

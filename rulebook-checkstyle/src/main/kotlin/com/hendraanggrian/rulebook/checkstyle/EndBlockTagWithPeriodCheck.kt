@@ -22,7 +22,7 @@ public class EndBlockTagWithPeriodCheck : AbstractJavadocCheck() {
 
     public override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
-        node.takeUnless { n -> n.children.none { it.text in tags } } ?: return
+        node.takeUnless { it.children.first().text !in tags } ?: return
 
         // long descriptions have multiple lines, take only the last one
         val text =
@@ -34,7 +34,7 @@ public class EndBlockTagWithPeriodCheck : AbstractJavadocCheck() {
         text.text.trimComment().trimEnd().lastOrNull()
             ?.takeIf { it !in END_PUNCTUATIONS }
             ?: return
-        log(text.lineNumber, Messages[MSG])
+        log(text.lineNumber, text.columnNumber, Messages.get(MSG, tags.joinToString()))
     }
 
     internal companion object {

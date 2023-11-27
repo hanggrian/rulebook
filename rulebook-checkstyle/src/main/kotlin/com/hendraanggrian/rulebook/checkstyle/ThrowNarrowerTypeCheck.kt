@@ -8,9 +8,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_NEW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#throw-narrower-exception).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#throw-narrower-type).
  */
-public class ThrowNarrowerExceptionCheck : RulebookCheck() {
+public class ThrowNarrowerTypeCheck : RulebookCheck() {
     public override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_THROW)
 
     public override fun visitToken(node: DetailAST) {
@@ -25,7 +25,7 @@ public class ThrowNarrowerExceptionCheck : RulebookCheck() {
     }
 
     internal companion object {
-        const val MSG = "throw.narrower.exception"
+        const val MSG = "throw.narrower.type"
 
         private val AMBIGUOUS_ERRORS = setOf("Exception", "Error", "Throwable")
     }

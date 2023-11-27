@@ -1,19 +1,19 @@
 package com.hendraanggrian.rulebook
 
-import com.hendraanggrian.rulebook.codenarc.UseCommonGenericsRule
-import com.hendraanggrian.rulebook.codenarc.UseCommonGenericsVisitor.Companion.MSG
+import com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsRule
+import com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsVisitor.Companion.MSG
 import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class UseCommonGenericsRuleTest : AbstractRuleTestCase<UseCommonGenericsRule>() {
-    override fun createRule(): UseCommonGenericsRule = UseCommonGenericsRule()
+class RenameUncommonGenericsRuleTest : AbstractRuleTestCase<RenameUncommonGenericsRule>() {
+    override fun createRule(): RenameUncommonGenericsRule = RenameUncommonGenericsRule()
 
     @Test
     fun `Rule properties`() {
         assertEquals(3, rule.priority)
-        assertEquals("UseCommonGenerics", rule.name)
+        assertEquals("RenameUncommonGenerics", rule.name)
     }
 
     @Test

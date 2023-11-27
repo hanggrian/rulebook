@@ -2,7 +2,7 @@ package com.example.java;
 
 import java.util.List;
 
-public class UseCommonGenerics {
+public class RenameUncommonGenerics {
   public class Point<G> {
     G x;
     G y;

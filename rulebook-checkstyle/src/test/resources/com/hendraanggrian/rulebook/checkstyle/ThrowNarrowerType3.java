@@ -1,4 +1,4 @@
-public class ThrowNarrowerException3 {
+public class ThrowNarrowerType3 {
   public void throwable() throws Throwable {
     Throwable throwable = new Throwable();
     throw throwable;

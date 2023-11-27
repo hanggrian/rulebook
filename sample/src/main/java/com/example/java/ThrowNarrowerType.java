@@ -1,6 +1,6 @@
 package com.example.java;
 
-public class ThrowNarrowerException {
+public class ThrowNarrowerType {
   public void throwCallExpression() throws Exception {
     throw new Exception();
   }

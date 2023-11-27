@@ -46,6 +46,11 @@
     <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
   </module>
 
+  <!-- Third-party rules -->
+  <module name="FileLength">
+    <property name="max" value="1000"/>
+  </module>
+
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
     <module name="IllegalTokenText">
@@ -346,7 +351,7 @@
     <!-- Third-party rules -->
     <module name="AvoidMeaninglessWord"/>
     <module name="EndBlockTagWithPeriod"/>
-    <module name="ThrowNarrowerException"/>
-    <module name="UseCommonGenerics"/>
+    <module name="RenameUncommonGenerics"/>
+    <module name="ThrowNarrowerType"/>
   </module>
 </module>

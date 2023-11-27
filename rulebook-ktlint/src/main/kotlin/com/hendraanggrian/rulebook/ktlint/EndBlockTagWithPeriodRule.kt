@@ -8,7 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
-import org.ec4j.core.model.PropertyType
+import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.children
 
@@ -50,7 +50,7 @@ public class EndBlockTagWithPeriodRule : RulebookRule(
         kdocText.text.trimComment().lastOrNull()
             ?.takeIf { it !in END_PUNCTUATIONS }
             ?: return
-        emit(kdocText.endOffset, Messages[MSG], false)
+        emit(kdocText.endOffset, Messages.get(MSG, tags.joinToString()), false)
     }
 
     internal companion object {
@@ -61,7 +61,7 @@ public class EndBlockTagWithPeriodRule : RulebookRule(
         val BLOCK_TAGS_PROPERTY =
             EditorConfigProperty(
                 type =
-                    PropertyType.LowerCasingPropertyType(
+                    LowerCasingPropertyType(
                         "ktlint_rulebook_block_tags",
                         "Block tags that have to end with a period.",
                         CommaSeparatedListValueParser(),

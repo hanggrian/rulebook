@@ -42,7 +42,6 @@ configurations {
     ktlint
 }
 dependencies {
-    ktlint "com.pinterest:ktlint:$ktlintVersion"
     ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:$libraryVersion"
 }
 // the rest of ktlint tasks' configuration
@@ -63,7 +62,6 @@ checkstyle {
     configFile "path/to/rulebook_checkstyle.xml"
 }
 dependencies {
-    checkstyle "com.puppycrawl.tools:checkstyle:$checkstyleVersion"
     checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$libraryVersion"
 }
 ```
@@ -83,7 +81,6 @@ codenarc {
     configFile "path/to/rulebook_codenarc.xml"
 }
 dependencies {
-    codenarc "org.codenarc:CodeNarc:$codenarcVersion"
     codenarc "com.hendraanggrian.rulebook:rulebook-codenarc:$libraryVersion"
 }
 ```

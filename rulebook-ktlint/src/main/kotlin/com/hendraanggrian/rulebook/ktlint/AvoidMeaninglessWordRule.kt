@@ -9,7 +9,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
-import org.ec4j.core.model.PropertyType
+import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
@@ -60,7 +60,7 @@ public class AvoidMeaninglessWordRule : RulebookRule(
         val MEANINGLESS_WORDS_PROPERTY =
             EditorConfigProperty(
                 type =
-                    PropertyType.LowerCasingPropertyType(
+                    LowerCasingPropertyType(
                         "ktlint_rulebook_meaningless_words",
                         "A set of banned words.",
                         CommaSeparatedListValueParser(),
@@ -83,7 +83,7 @@ public class AvoidMeaninglessWordRule : RulebookRule(
         val MEANINGLESS_WORDS_EXCLUDE_PROPERTY =
             EditorConfigProperty(
                 type =
-                    PropertyType.LowerCasingPropertyType(
+                    LowerCasingPropertyType(
                         "ktlint_rulebook_meaningless_words_exclude",
                         "Ignore specified words.",
                         CommaSeparatedListValueParser(),

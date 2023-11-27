@@ -5,8 +5,8 @@ import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class ThrowNarrowerExceptionRuleTest {
-    private val assertThatCode = assertThatRule { ThrowNarrowerExceptionRule() }
+class ThrowNarrowerTypeRuleTest {
+    private val assertThatCode = assertThatRule { ThrowNarrowerTypeRule() }
 
     @Test
     fun `Throw subclass exceptions`() =
@@ -36,9 +36,9 @@ class ThrowNarrowerExceptionRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 11, Messages[ThrowNarrowerExceptionRule.MSG]),
-            LintViolation(5, 11, Messages[ThrowNarrowerExceptionRule.MSG]),
-            LintViolation(8, 11, Messages[ThrowNarrowerExceptionRule.MSG]),
+            LintViolation(2, 11, Messages[ThrowNarrowerTypeRule.MSG]),
+            LintViolation(5, 11, Messages[ThrowNarrowerTypeRule.MSG]),
+            LintViolation(8, 11, Messages[ThrowNarrowerTypeRule.MSG]),
         )
 
     @Test

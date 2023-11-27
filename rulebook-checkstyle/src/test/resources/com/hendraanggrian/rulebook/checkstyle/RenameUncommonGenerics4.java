@@ -1,3 +1,3 @@
-public class UseCommonGenerics4 {
+public class RenameUncommonGenerics4 {
   public <X> void sum(List<X> list) {}
 }

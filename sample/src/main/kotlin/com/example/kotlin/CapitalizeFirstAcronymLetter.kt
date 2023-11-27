@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-val userJson: String = "{ user: \"Hendra Anggrian\" }"
+val userJson: String = "{ user: \"John Doe\" }"
 
 fun blendArgb() {}
 

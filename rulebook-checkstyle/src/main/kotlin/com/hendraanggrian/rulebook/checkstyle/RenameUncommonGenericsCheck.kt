@@ -14,9 +14,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETER
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETERS
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#use-common-generics).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#rename-uncommon-generics).
  */
-public class UseCommonGenericsCheck : RulebookCheck() {
+public class RenameUncommonGenericsCheck : RulebookCheck() {
     private var generics = setOf("E", "K", "N", "T", "V")
 
     public fun setGenerics(vararg generics: String) {
@@ -48,7 +48,7 @@ public class UseCommonGenericsCheck : RulebookCheck() {
     }
 
     internal companion object {
-        const val MSG = "use.common.generics"
+        const val MSG = "rename.uncommon.generics"
 
         private fun DetailAST.hasParentWithGenerics(): Boolean {
             var next: DetailAST? = parent
