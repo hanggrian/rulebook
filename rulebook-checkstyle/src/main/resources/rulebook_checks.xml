@@ -349,6 +349,7 @@
     </module>
 
     <!-- Third-party rules -->
+    <module name="AddSpaceBeforeComment"/>
     <module name="AvoidMeaninglessWord"/>
     <module name="EndBlockTagWithPeriod"/>
     <module name="RenameUncommonGenerics"/>

@@ -6,7 +6,8 @@
   with few changes:
 
   - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
-  - Lenient basics by excluding in `unused.xml`:
+  - Exclude `CompileStatic` in `convention.xml`:
+  - Allow empty blocks by excluding in `unused.xml`:
     - `EmptyCatchBlock`
     - `EmptyClass`
     - `EmptyElseBlock`
@@ -47,6 +48,7 @@
   <ruleset-ref path="rulesets/concurrency.xml"/>
   <ruleset-ref path="rulesets/convention.xml">
     <exclude name="PublicMethodsBeforeNonPublicMethods"/>
+    <exclude name="CompileStatic"/>
   </ruleset-ref>
   <ruleset-ref path="rulesets/design.xml">
     <exclude name="Instanceof"/>

@@ -48,6 +48,7 @@ public class RemoveRedundantQualifierRule : RulebookRule("remove-redundant-quali
     internal companion object {
         const val MSG = "remove.redundant.qualifier"
 
+        // TODO: expensive, replace with single root visit
         private val ASTNode.importStatements: Sequence<String>
             get() {
                 var importList: ASTNode? = null
