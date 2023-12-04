@@ -349,10 +349,12 @@
     </module>
 
     <!-- Third-party rules -->
-    <module name="AddSpaceBeforeComment"/>
-    <module name="AvoidMeaninglessWord"/>
-    <module name="EndBlockTagWithPeriod"/>
-    <module name="RenameUncommonGenerics"/>
-    <module name="ThrowNarrowerType"/>
+    <module name="BlockTagPunctuation"/>
+    <module name="CommentSpacing"/>
+    <module name="ConstructorPosition"/>
+    <module name="ExceptionThrowing"/>
+    <module name="GenericsNaming"/>
+    <module name="StaticInitializerPosition"/>
+    <module name="WordMeaning"/>
   </module>
 </module>

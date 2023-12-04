@@ -11,3 +11,9 @@ internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(ty
 
 internal fun DetailAST.children(): Sequence<DetailAST> =
     generateSequence(firstChild) { node -> node.nextSibling }
+
+internal fun DetailAST.siblings(forward: Boolean = true): Sequence<DetailAST> =
+    when {
+        forward -> generateSequence(nextSibling) { it.nextSibling }
+        else -> generateSequence(previousSibling) { it.previousSibling }
+    }

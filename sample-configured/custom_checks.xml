@@ -349,15 +349,15 @@
     </module>
 
     <!-- Third-party rules -->
-    <module name="AvoidMeaninglessWord">
-      <property name="words" value="Hello, World"/>
-      <property name="excludeWords" value="Hello"/>
+    <module name="BlockTagPunctuation">
+      <property name="punctuatedTags" value="@exception"/>
     </module>
-    <module name="EndBlockTagWithPeriod">
-      <property name="tags" value="@exception"/>
+    <module name="GenericsNaming">
+      <property name="commonGenerics" value="A"/>
     </module>
-    <module name="RenameUncommonGenerics">
-      <property name="generics" value="A"/>
+    <module name="WordMeaning">
+      <property name="meaninglessWords" value="Hello, World"/>
+      <property name="ignoredWords" value="Hello"/>
     </module>
   </module>
 </module>

@@ -6,6 +6,7 @@
   with few changes:
 
   - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
+  - Remove `logging.xml`:
   - Exclude `CompileStatic` in `convention.xml`:
   - Allow empty blocks by excluding in `unused.xml`:
     - `EmptyCatchBlock`
@@ -73,7 +74,6 @@
   <ruleset-ref path="rulesets/junit.xml">
     <exclude name="JUnitTestMethodWithoutAssert"/>
   </ruleset-ref>
-  <ruleset-ref path="rulesets/logging.xml"/>
   <ruleset-ref path="rulesets/naming.xml">
     <exclude name="ConfusingMethodName"/>
     <!-- unit tests have arbitrary names -->
@@ -106,8 +106,10 @@
   </ruleset-ref>
 
   <!-- Third-party rules -->
-  <rule class="com.hendraanggrian.rulebook.codenarc.AvoidMeaninglessWordRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.CapitalizeFirstAcronymLetterRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.InvertIfConditionRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.RenameUncommonGenericsRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.AcronymCapitalizationRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.ConstructorPositionRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNamingRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.IfStatementNestingRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.StaticInitializerPositionRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.WordMeaningRule"/>
 </ruleset>

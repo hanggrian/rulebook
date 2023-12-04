@@ -1,6 +1,6 @@
 [*.kt]
-ktlint_rulebook_block_tags = @constructor
-ktlint_rulebook_common_generics = A
-ktlint_rulebook_max_file_length = 10
-ktlint_rulebook_meaningless_words = Hello, World
-ktlint_rulebook_meaningless_words_exclude = Hello
+rulebook_punctuated_block_tags = @constructor
+rulebook_common_generics = A
+rulebook_max_file_size = 10
+rulebook_meaningless_words = Hello, World
+rulebook_meaningless_words_ignored = Hello
