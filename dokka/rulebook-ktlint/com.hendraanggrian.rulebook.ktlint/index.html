@@ -1,9 +1,11 @@
 <!doctype html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>com.hendraanggrian.rulebook.ktlint</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
@@ -16,12 +18,13 @@
         }
     }
     </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../styles/style.css" rel="Stylesheet">
-<link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../styles/main.css" rel="Stylesheet">
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <script type="text/javascript" src="../../scripts/clipboard.js" async></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
@@ -29,26 +32,32 @@
 <script type="text/javascript" src="../../scripts/prism.js" async></script>
 <script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-<a href="../../index.html">
-<span>rulebook</span>            </a>    </div>
-    <div>0.4
-    </div>
-    <div class="pull-right d-flex">
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../index.html">
+                            rulebook
+                    </a>            </div>
+            <div class="library-version">0.5-SNAPSHOT
+            </div>
+        </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":rulebook-ktlint:dokkaHtmlPartial/main">jvm</button>
         </div>
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
     </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
-    <div id="main">
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
 <div class="main-content" data-page-type="package" id="content" pageids="rulebook-ktlint::com.hendraanggrian.rulebook.ktlint////PointingToDeclaration//702701638">
   <div class="breadcrumbs"><a href="../index.html">rulebook-ktlint</a><span class="delimiter">/</span><span class="current">com.hendraanggrian.rulebook.ktlint</span></div>
   <div class="cover ">
@@ -59,137 +68,227 @@
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
         <h2 class="">Types</h2>
-        <div class="table"><a data-name="1866803119%2FClasslikes%2F702701638" anchor-label="AddBlankLineInDocumentationRule" id="1866803119%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+        <div class="table"><a data-name="847915660%2FClasslikes%2F702701638" anchor-label="BlockCommentSpacingRule" id="847915660%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-add-blank-line-in-documentation-rule/index.html"><span>Add</span><wbr><span>Blank</span><wbr><span>Line</span><wbr><span>In</span><wbr><span>Documentation</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1866803119%2FClasslikes%2F702701638"></span>
+                  <div><a href="-block-comment-spacing-rule/index.html"><span>Block</span><wbr><span>Comment</span><wbr><span>Spacing</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="847915660%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-add-blank-line-in-documentation-rule/index.html">AddBlankLineInDocumentationRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#add-blank-line-in-documentation">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-block-comment-spacing-rule/index.html">BlockCommentSpacingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#block-comment-spacing">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2059468789%2FClasslikes%2F702701638" anchor-label="InvertIfConditionRule" id="2059468789%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="-1888111728%2FClasslikes%2F702701638" anchor-label="BlockTagPunctuationRule" id="-1888111728%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-invert-if-condition-rule/index.html"><span>Invert</span><wbr><span>If</span><wbr><span>Condition</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2059468789%2FClasslikes%2F702701638"></span>
+                  <div><a href="-block-tag-punctuation-rule/index.html"><span>Block</span><wbr><span>Tag</span><wbr><span>Punctuation</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1888111728%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-invert-if-condition-rule/index.html">InvertIfConditionRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#invert-if-condition">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-block-tag-punctuation-rule/index.html">BlockTagPunctuationRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tag-punctuation">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2124057018%2FClasslikes%2F702701638" anchor-label="PunctuateDocumentationTagRule" id="-2124057018%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="509402520%2FClasslikes%2F702701638" anchor-label="BlockTagsInitialSpacingRule" id="509402520%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-punctuate-documentation-tag-rule/index.html"><span>Punctuate</span><wbr><span>Documentation</span><wbr><span>Tag</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2124057018%2FClasslikes%2F702701638"></span>
+                  <div><a href="-block-tags-initial-spacing-rule/index.html"><span>Block</span><wbr><span>Tags</span><wbr><span>Initial</span><wbr><span>Spacing</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="509402520%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-punctuate-documentation-tag-rule/index.html">PunctuateDocumentationTagRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#punctuate-documentation-tag">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-block-tags-initial-spacing-rule/index.html">BlockTagsInitialSpacingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tags-initial-spacing">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1156459712%2FClasslikes%2F702701638" anchor-label="RemoveBlankLineInSwitchRule" id="1156459712%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="-1547966630%2FClasslikes%2F702701638" anchor-label="ConstructorPositionRule" id="-1547966630%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-remove-blank-line-in-switch-rule/index.html"><span>Remove</span><wbr><span>Blank</span><wbr><span>Line</span><wbr><span>In</span><wbr><span>Switch</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1156459712%2FClasslikes%2F702701638"></span>
+                  <div><a href="-constructor-position-rule/index.html"><span>Constructor</span><wbr><span>Position</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1547966630%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-remove-blank-line-in-switch-rule/index.html">RemoveBlankLineInSwitchRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#remove-blank-line-in-switch">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-constructor-position-rule/index.html">ConstructorPositionRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1888059615%2FClasslikes%2F702701638" anchor-label="RemoveMeaninglessWordRule" id="-1888059615%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="-807873071%2FClasslikes%2F702701638" anchor-label="EmptyBlockWrappingRule" id="-807873071%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-remove-meaningless-word-rule/index.html"><span>Remove</span><wbr><span>Meaningless</span><wbr><span>Word</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1888059615%2FClasslikes%2F702701638"></span>
+                  <div><a href="-empty-block-wrapping-rule/index.html"><span>Empty</span><wbr><span>Block</span><wbr><span>Wrapping</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-807873071%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-remove-meaningless-word-rule/index.html">RemoveMeaninglessWordRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#remove-meaningless-word">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-empty-block-wrapping-rule/index.html">EmptyBlockWrappingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#empty-block-wrapping">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="130311511%2FClasslikes%2F702701638" anchor-label="RenameAbbreviationWordRule" id="130311511%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="147550450%2FClasslikes%2F702701638" anchor-label="ExceptionThrowingRule" id="147550450%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-rename-abbreviation-word-rule/index.html"><span>Rename</span><wbr><span>Abbreviation</span><wbr><span>Word</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="130311511%2FClasslikes%2F702701638"></span>
+                  <div><a href="-exception-throwing-rule/index.html"><span>Exception</span><wbr><span>Throwing</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="147550450%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-rename-abbreviation-word-rule/index.html">RenameAbbreviationWordRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#rename-abbreviation-word">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-exception-throwing-rule/index.html">ExceptionThrowingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#exception-throwing">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="491514479%2FClasslikes%2F702701638" anchor-label="RenameUncommonGenericsRule" id="491514479%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="-1789102279%2FClasslikes%2F702701638" anchor-label="FileInitialWrappingRule" id="-1789102279%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-rename-uncommon-generics-rule/index.html"><span>Rename</span><wbr><span>Uncommon</span><wbr><span>Generics</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="491514479%2FClasslikes%2F702701638"></span>
+                  <div><a href="-file-initial-wrapping-rule/index.html"><span>File</span><wbr><span>Initial</span><wbr><span>Wrapping</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1789102279%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-rename-uncommon-generics-rule/index.html">RenameUncommonGenericsRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#rename-uncommon-generics">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-file-initial-wrapping-rule/index.html">FileInitialWrappingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#file-initial-wrapping">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="993895918%2FClasslikes%2F702701638" anchor-label="ReplaceWithKotlinApiRule" id="993895918%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="-770371530%2FClasslikes%2F702701638" anchor-label="FileSizeLimitationRule" id="-770371530%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-replace-with-kotlin-api-rule/index.html"><span>Replace</span><wbr><span>With</span><wbr><span>Kotlin</span><wbr><span>Api</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="993895918%2FClasslikes%2F702701638"></span>
+                  <div><a href="-file-size-limitation-rule/index.html"><span>File</span><wbr><span>Size</span><wbr><span>Limitation</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-770371530%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-replace-with-kotlin-api-rule/index.html">ReplaceWithKotlinApiRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#replace-with-kotlin-api">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-file-size-limitation-rule/index.html">FileSizeLimitationRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#file-size-limitation">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1365996756%2FClasslikes%2F702701638" anchor-label="ReplaceWithStructuralEqualityRule" id="-1365996756%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="325385693%2FClasslikes%2F702701638" anchor-label="FunctionExpressionRule" id="325385693%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-replace-with-structural-equality-rule/index.html"><span>Replace</span><wbr><span>With</span><wbr><span>Structural</span><wbr><span>Equality</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1365996756%2FClasslikes%2F702701638"></span>
+                  <div><a href="-function-expression-rule/index.html"><span>Function</span><wbr><span>Expression</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="325385693%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-replace-with-structural-equality-rule/index.html">ReplaceWithStructuralEqualityRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#replace-with-structural-equality">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-function-expression-rule/index.html">FunctionExpressionRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#function-expression">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1528178121%2FClasslikes%2F702701638" anchor-label="GenericsNamingRule" id="1528178121%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-generics-naming-rule/index.html"><span>Generics</span><wbr><span>Naming</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1528178121%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-generics-naming-rule/index.html">GenericsNamingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-naming">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1569029653%2FClasslikes%2F702701638" anchor-label="IfStatementNestingRule" id="1569029653%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-if-statement-nesting-rule/index.html"><span>If</span><wbr><span>Statement</span><wbr><span>Nesting</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1569029653%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-if-statement-nesting-rule/index.html">IfStatementNestingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#if-statement-nesting">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1725063118%2FClasslikes%2F702701638" anchor-label="KotlinApiConsistencyRule" id="1725063118%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-kotlin-api-consistency-rule/index.html"><span>Kotlin</span><wbr><span>Api</span><wbr><span>Consistency</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1725063118%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-kotlin-api-consistency-rule/index.html">KotlinApiConsistencyRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#kotlin-api-consistency">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="677159584%2FClasslikes%2F702701638" anchor-label="ObjectsComparisonRule" id="677159584%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-objects-comparison-rule/index.html"><span>Objects</span><wbr><span>Comparison</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="677159584%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-objects-comparison-rule/index.html">ObjectsComparisonRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#objects-comparison">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1879002193%2FClasslikes%2F702701638" anchor-label="PropertyIdiomaticNamingRule" id="1879002193%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-property-idiomatic-naming-rule/index.html"><span>Property</span><wbr><span>Idiomatic</span><wbr><span>Naming</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1879002193%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-property-idiomatic-naming-rule/index.html">PropertyIdiomaticNamingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1843267146%2FClasslikes%2F702701638" anchor-label="QualifierRedundancyRule" id="-1843267146%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-qualifier-redundancy-rule/index.html"><span>Qualifier</span><wbr><span>Redundancy</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1843267146%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-qualifier-redundancy-rule/index.html">QualifierRedundancyRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#qualifier-redundancy">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -204,7 +303,7 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-rulebook-rule/index.html">RulebookRule</a> : <span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api/Rule///PointingToDeclaration/">Rule</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-rulebook-rule/index.html">RulebookRule</a> : <span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api/Rule///PointingToDeclaration/">Rule</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -224,32 +323,92 @@
               </div>
             </div>
           </div>
-<a data-name="254118369%2FClasslikes%2F702701638" anchor-label="SpecifyTypeExplicitlyRule" id="254118369%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="-1877580551%2FClasslikes%2F702701638" anchor-label="SourceAcronymCapitalizationRule" id="-1877580551%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-specify-type-explicitly-rule/index.html"><span>Specify</span><wbr><span>Type</span><wbr><span>Explicitly</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="254118369%2FClasslikes%2F702701638"></span>
+                  <div><a href="-source-acronym-capitalization-rule/index.html"><span>Source</span><wbr><span>Acronym</span><wbr><span>Capitalization</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1877580551%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-specify-type-explicitly-rule/index.html">SpecifyTypeExplicitlyRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#specify-type-explicitly">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-source-acronym-capitalization-rule/index.html">SourceAcronymCapitalizationRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#source-acronym-capitalization">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="393656748%2FClasslikes%2F702701638" anchor-label="ThrowExceptionSubclassRule" id="393656748%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+<a data-name="-657989563%2FClasslikes%2F702701638" anchor-label="SourceWordMeaningRule" id="-657989563%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-throw-exception-subclass-rule/index.html"><span>Throw</span><wbr><span>Exception</span><wbr><span>Subclass</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="393656748%2FClasslikes%2F702701638"></span>
+                  <div><a href="-source-word-meaning-rule/index.html"><span>Source</span><wbr><span>Word</span><wbr><span>Meaning</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-657989563%2FClasslikes%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-throw-exception-subclass-rule/index.html">ThrowExceptionSubclassRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#throw-exception-subclass">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-source-word-meaning-rule/index.html">SourceWordMeaningRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2052328874%2FClasslikes%2F702701638" anchor-label="StaticClassPositionRule" id="2052328874%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-static-class-position-rule/index.html"><span>Static</span><wbr><span>Class</span><wbr><span>Position</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2052328874%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-static-class-position-rule/index.html">StaticClassPositionRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1551415414%2FClasslikes%2F702701638" anchor-label="StringInterpolationRule" id="-1551415414%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-string-interpolation-rule/index.html"><span>String</span><wbr><span>Interpolation</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1551415414%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-string-interpolation-rule/index.html">StringInterpolationRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#string-interpolation">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-329508526%2FClasslikes%2F702701638" anchor-label="SwitchCasesWrappingRule" id="-329508526%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-switch-cases-wrapping-rule/index.html"><span>Switch</span><wbr><span>Cases</span><wbr><span>Wrapping</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-329508526%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-switch-cases-wrapping-rule/index.html">SwitchCasesWrappingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#switch-cases-wrapping">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2051595074%2FClasslikes%2F702701638" anchor-label="TodoCommentListingRule" id="2051595074%2FClasslikes%2F702701638" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-todo-comment-listing-rule/index.html"><span>Todo</span><wbr><span>Comment</span><wbr><span>Listing</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2051595074%2FClasslikes%2F702701638"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-todo-comment-listing-rule/index.html">TodoCommentListingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-comment-listing">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -262,8 +421,9 @@
       <div class="footer">
         <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>
 

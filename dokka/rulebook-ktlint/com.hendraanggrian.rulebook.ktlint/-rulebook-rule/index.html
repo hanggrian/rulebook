@@ -1,9 +1,11 @@
 <!doctype html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>RulebookRule</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
@@ -16,12 +18,13 @@
         }
     }
     </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
-<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
@@ -29,31 +32,37 @@
 <script type="text/javascript" src="../../../scripts/prism.js" async></script>
 <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-<a href="../../../index.html">
-<span>rulebook</span>            </a>    </div>
-    <div>0.4
-    </div>
-    <div class="pull-right d-flex">
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            rulebook
+                    </a>            </div>
+            <div class="library-version">0.5-SNAPSHOT
+            </div>
+        </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":rulebook-ktlint:dokkaHtmlPartial/main">jvm</button>
         </div>
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
     </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
-    <div id="main">
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
 <div class="main-content" data-page-type="classlike" id="content" pageids="rulebook-ktlint::com.hendraanggrian.rulebook.ktlint/RulebookRule///PointingToDeclaration//702701638">
   <div class="breadcrumbs"><a href="../../index.html">rulebook-ktlint</a><span class="delimiter">/</span><a href="../index.html">com.hendraanggrian.rulebook.ktlint</a><span class="delimiter">/</span><span class="current">RulebookRule</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Rulebook</span><wbr><span><span>Rule</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">RulebookRule</a> : <span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api/Rule///PointingToDeclaration/">Rule</span></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-add-blank-line-in-documentation-rule/index.html">AddBlankLineInDocumentationRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-invert-if-condition-rule/index.html">InvertIfConditionRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-punctuate-documentation-tag-rule/index.html">PunctuateDocumentationTagRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-remove-blank-line-in-switch-rule/index.html">RemoveBlankLineInSwitchRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-remove-meaningless-word-rule/index.html">RemoveMeaninglessWordRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-rename-abbreviation-word-rule/index.html">RenameAbbreviationWordRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-rename-uncommon-generics-rule/index.html">RenameUncommonGenericsRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-replace-with-kotlin-api-rule/index.html">ReplaceWithKotlinApiRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-replace-with-structural-equality-rule/index.html">ReplaceWithStructuralEqualityRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-specify-type-explicitly-rule/index.html">SpecifyTypeExplicitlyRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-throw-exception-subclass-rule/index.html">ThrowExceptionSubclassRule</a></div></span></div><div></div></div></div></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="index.html">RulebookRule</a> : <span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api/Rule///PointingToDeclaration/">Rule</span></div><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-block-comment-spacing-rule/index.html">BlockCommentSpacingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-block-tag-punctuation-rule/index.html">BlockTagPunctuationRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-block-tags-initial-spacing-rule/index.html">BlockTagsInitialSpacingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-constructor-position-rule/index.html">ConstructorPositionRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-empty-block-wrapping-rule/index.html">EmptyBlockWrappingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-exception-throwing-rule/index.html">ExceptionThrowingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-file-initial-wrapping-rule/index.html">FileInitialWrappingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-file-size-limitation-rule/index.html">FileSizeLimitationRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-function-expression-rule/index.html">FunctionExpressionRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-generics-naming-rule/index.html">GenericsNamingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-if-statement-nesting-rule/index.html">IfStatementNestingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-kotlin-api-consistency-rule/index.html">KotlinApiConsistencyRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-objects-comparison-rule/index.html">ObjectsComparisonRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-property-idiomatic-naming-rule/index.html">PropertyIdiomaticNamingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-qualifier-redundancy-rule/index.html">QualifierRedundancyRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-source-acronym-capitalization-rule/index.html">SourceAcronymCapitalizationRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-source-word-meaning-rule/index.html">SourceWordMeaningRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-static-class-position-rule/index.html">StaticClassPositionRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-string-interpolation-rule/index.html">StringInterpolationRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-switch-cases-wrapping-rule/index.html">SwitchCasesWrappingRule</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-todo-comment-listing-rule/index.html">TodoCommentListingRule</a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
@@ -83,13 +92,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#1587706842%2FProperties%2F702701638"><span><span>about</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#1587706842%2FProperties%2F702701638"><span><span>about</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1587706842%2FProperties%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-throw-exception-subclass-rule/index.html#1587706842%2FProperties%2F702701638">about</a><span class="token operator">: </span><span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api/Rule.About///PointingToDeclaration/">Rule.About</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-todo-comment-listing-rule/index.html#1587706842%2FProperties%2F702701638">about</a><span class="token operator">: </span><span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api/Rule.About///PointingToDeclaration/">Rule.About</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -98,13 +107,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#-34317156%2FProperties%2F702701638"><span>rule</span><wbr><span><span>Id</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#-34317156%2FProperties%2F702701638"><span>rule</span><wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-34317156%2FProperties%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-throw-exception-subclass-rule/index.html#-34317156%2FProperties%2F702701638">ruleId</a><span class="token operator">: </span><span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api/RuleId///PointingToDeclaration/">RuleId</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="../-todo-comment-listing-rule/index.html#-34317156%2FProperties%2F702701638">ruleId</a><span class="token operator">: </span><span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api/RuleId///PointingToDeclaration/">RuleId</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -147,13 +156,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#-224340077%2FFunctions%2F702701638"><span>after</span><wbr><span>Last</span><wbr><span><span>Node</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#-224340077%2FFunctions%2F702701638"><span>after</span><wbr><span>Last</span><wbr><span><span>Node</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-224340077%2FFunctions%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-throw-exception-subclass-rule/index.html#-224340077%2FFunctions%2F702701638"><span class="token function">afterLastNode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-todo-comment-listing-rule/index.html#-224340077%2FFunctions%2F702701638"><span class="token function">afterLastNode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -162,13 +171,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#-1533221943%2FFunctions%2F702701638"><span>after</span><wbr><span>Visit</span><wbr><span>Child</span><wbr><span><span>Nodes</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#-1533221943%2FFunctions%2F702701638"><span>after</span><wbr><span>Visit</span><wbr><span>Child</span><wbr><span><span>Nodes</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1533221943%2FFunctions%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-throw-exception-subclass-rule/index.html#-1533221943%2FFunctions%2F702701638"><span class="token function">afterVisitChildNodes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">node<span class="token operator">: </span><span data-unresolved-link="org.jetbrains.kotlin.com.intellij.lang/ASTNode///PointingToDeclaration/">ASTNode</span><span class="token punctuation">, </span></span><span class="parameter ">autoCorrect<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">emit<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>offset<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span><span class="token keyword"></span>errorMessage<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token keyword"></span>canBeAutoCorrected<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-todo-comment-listing-rule/index.html#-1533221943%2FFunctions%2F702701638"><span class="token function">afterVisitChildNodes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">node<span class="token operator">: </span><span data-unresolved-link="org.jetbrains.kotlin.com.intellij.lang/ASTNode///PointingToDeclaration/">ASTNode</span><span class="token punctuation">, </span></span><span class="parameter ">autoCorrect<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">emit<span class="token operator">: </span><span class="token punctuation">(</span><span class="token keyword"></span>offset<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span><span class="token keyword"></span>errorMessage<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token keyword"></span>canBeAutoCorrected<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -177,13 +186,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#1722609096%2FFunctions%2F702701638"><span>before</span><wbr><span>First</span><wbr><span><span>Node</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#1722609096%2FFunctions%2F702701638"><span>before</span><wbr><span>First</span><wbr><span><span>Node</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1722609096%2FFunctions%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-throw-exception-subclass-rule/index.html#1722609096%2FFunctions%2F702701638"><span class="token function">beforeFirstNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">editorConfig<span class="token operator">: </span><span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api.editorconfig/EditorConfig///PointingToDeclaration/">EditorConfig</span></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-todo-comment-listing-rule/index.html#1722609096%2FFunctions%2F702701638"><span class="token function">beforeFirstNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">editorConfig<span class="token operator">: </span><span data-unresolved-link="com.pinterest.ktlint.rule.engine.core.api.editorconfig/EditorConfig///PointingToDeclaration/">EditorConfig</span></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -207,13 +216,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#516717624%2FFunctions%2F702701638"><span>is</span><wbr><span>Used</span><wbr><span>For</span><wbr><span>Traversal</span><wbr><span>Of</span><wbr><span><span>AST</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#516717624%2FFunctions%2F702701638"><span>is</span><wbr><span>Used</span><wbr><span>For</span><wbr><span>Traversal</span><wbr><span>Of</span><wbr><span><span>AST</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="516717624%2FFunctions%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-throw-exception-subclass-rule/index.html#516717624%2FFunctions%2F702701638"><span class="token function">isUsedForTraversalOfAST</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-todo-comment-listing-rule/index.html#516717624%2FFunctions%2F702701638"><span class="token function">isUsedForTraversalOfAST</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -222,13 +231,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#-241442260%2FFunctions%2F702701638"><span>should</span><wbr><span>Continue</span><wbr><span>Traversal</span><wbr><span>Of</span><wbr><span><span>AST</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#-241442260%2FFunctions%2F702701638"><span>should</span><wbr><span>Continue</span><wbr><span>Traversal</span><wbr><span>Of</span><wbr><span><span>AST</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-241442260%2FFunctions%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-throw-exception-subclass-rule/index.html#-241442260%2FFunctions%2F702701638"><span class="token function">shouldContinueTraversalOfAST</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-todo-comment-listing-rule/index.html#-241442260%2FFunctions%2F702701638"><span class="token function">shouldContinueTraversalOfAST</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -237,13 +246,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#1579222040%2FFunctions%2F702701638"><span>start</span><wbr><span>Traversal</span><wbr><span>Of</span><wbr><span><span>AST</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#1579222040%2FFunctions%2F702701638"><span>start</span><wbr><span>Traversal</span><wbr><span>Of</span><wbr><span><span>AST</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1579222040%2FFunctions%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-throw-exception-subclass-rule/index.html#1579222040%2FFunctions%2F702701638"><span class="token function">startTraversalOfAST</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-todo-comment-listing-rule/index.html#1579222040%2FFunctions%2F702701638"><span class="token function">startTraversalOfAST</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -252,13 +261,13 @@
           <div class="table-row" data-filterable-current=":rulebook-ktlint:dokkaHtmlPartial/main" data-filterable-set=":rulebook-ktlint:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../-throw-exception-subclass-rule/index.html#-1528094684%2FFunctions%2F702701638"><span>stop</span><wbr><span>Traversal</span><wbr><span>Of</span><wbr><span><span>AST</span></span></a></div>
+                  <div><a href="../-todo-comment-listing-rule/index.html#-1528094684%2FFunctions%2F702701638"><span>stop</span><wbr><span>Traversal</span><wbr><span>Of</span><wbr><span><span>AST</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1528094684%2FFunctions%2F702701638"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-throw-exception-subclass-rule/index.html#-1528094684%2FFunctions%2F702701638"><span class="token function">stopTraversalOfAST</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-ktlint:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-todo-comment-listing-rule/index.html#-1528094684%2FFunctions%2F702701638"><span class="token function">stopTraversalOfAST</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -271,8 +280,9 @@
       <div class="footer">
         <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>
 

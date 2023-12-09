@@ -1,9 +1,11 @@
 <!doctype html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>com.hendraanggrian.rulebook.codenarc</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
@@ -16,12 +18,13 @@
         }
     }
     </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../styles/style.css" rel="Stylesheet">
-<link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../styles/main.css" rel="Stylesheet">
 <link href="../../styles/prism.css" rel="Stylesheet">
 <link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <script type="text/javascript" src="../../scripts/clipboard.js" async></script>
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
@@ -29,26 +32,32 @@
 <script type="text/javascript" src="../../scripts/prism.js" async></script>
 <script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-<a href="../../index.html">
-<span>rulebook</span>            </a>    </div>
-    <div>0.4
-    </div>
-    <div class="pull-right d-flex">
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../index.html">
+                            rulebook
+                    </a>            </div>
+            <div class="library-version">0.5-SNAPSHOT
+            </div>
+        </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":rulebook-codenarc:dokkaHtmlPartial/main">jvm</button>
         </div>
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
     </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
     </div>
-    <div id="main">
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
 <div class="main-content" data-page-type="package" id="content" pageids="rulebook-codenarc::com.hendraanggrian.rulebook.codenarc////PointingToDeclaration//-1980284671">
   <div class="breadcrumbs"><a href="../index.html">rulebook-codenarc</a><span class="delimiter">/</span><span class="current">com.hendraanggrian.rulebook.codenarc</span></div>
   <div class="cover ">
@@ -59,122 +68,122 @@
     <div class="tabs-section-body">
       <div data-togglable="TYPE">
         <h2 class="">Types</h2>
-        <div class="table"><a data-name="625073776%2FClasslikes%2F-1980284671" anchor-label="InvertIfConditionRule" id="625073776%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+        <div class="table"><a data-name="-1317072107%2FClasslikes%2F-1980284671" anchor-label="ConstructorPositionRule" id="-1317072107%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-invert-if-condition-rule/index.html"><span>Invert</span><wbr><span>If</span><wbr><span>Condition</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="625073776%2FClasslikes%2F-1980284671"></span>
+                  <div><a href="-constructor-position-rule/index.html"><span>Constructor</span><wbr><span>Position</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1317072107%2FClasslikes%2F-1980284671"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-invert-if-condition-rule/index.html">InvertIfConditionRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#invert-if-condition">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-constructor-position-rule/index.html">ConstructorPositionRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-996741144%2FClasslikes%2F-1980284671" anchor-label="InvertIfConditionVisitor" id="-996741144%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+<a data-name="-1960297181%2FClasslikes%2F-1980284671" anchor-label="ConstructorPositionVisitor" id="-1960297181%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-invert-if-condition-visitor/index.html"><span>Invert</span><wbr><span>If</span><wbr><span>Condition</span><wbr><span><span>Visitor</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-996741144%2FClasslikes%2F-1980284671"></span>
+                  <div><a href="-constructor-position-visitor/index.html"><span>Constructor</span><wbr><span>Position</span><wbr><span><span>Visitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1960297181%2FClasslikes%2F-1980284671"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-invert-if-condition-visitor/index.html">InvertIfConditionVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-constructor-position-visitor/index.html">ConstructorPositionVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="958244892%2FClasslikes%2F-1980284671" anchor-label="RemoveMeaninglessWordRule" id="958244892%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+<a data-name="-1850781394%2FClasslikes%2F-1980284671" anchor-label="GenericsNamingRule" id="-1850781394%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-remove-meaningless-word-rule/index.html"><span>Remove</span><wbr><span>Meaningless</span><wbr><span>Word</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="958244892%2FClasslikes%2F-1980284671"></span>
+                  <div><a href="-generics-naming-rule/index.html"><span>Generics</span><wbr><span>Naming</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1850781394%2FClasslikes%2F-1980284671"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-remove-meaningless-word-rule/index.html">RemoveMeaninglessWordRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#remove-meaningless-word">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-generics-naming-rule/index.html">GenericsNamingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-naming">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1165445444%2FClasslikes%2F-1980284671" anchor-label="RemoveMeaninglessWordVisitor" id="-1165445444%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+<a data-name="-1724736406%2FClasslikes%2F-1980284671" anchor-label="GenericsNamingVisitor" id="-1724736406%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-remove-meaningless-word-visitor/index.html"><span>Remove</span><wbr><span>Meaningless</span><wbr><span>Word</span><wbr><span><span>Visitor</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1165445444%2FClasslikes%2F-1980284671"></span>
+                  <div><a href="-generics-naming-visitor/index.html"><span>Generics</span><wbr><span>Naming</span><wbr><span><span>Visitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1724736406%2FClasslikes%2F-1980284671"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-remove-meaningless-word-visitor/index.html">RemoveMeaninglessWordVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-generics-naming-visitor/index.html">GenericsNamingVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1828561988%2FClasslikes%2F-1980284671" anchor-label="RenameAbbreviationWordRule" id="-1828561988%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+<a data-name="52457210%2FClasslikes%2F-1980284671" anchor-label="IfStatementNestingRule" id="52457210%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-rename-abbreviation-word-rule/index.html"><span>Rename</span><wbr><span>Abbreviation</span><wbr><span>Word</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1828561988%2FClasslikes%2F-1980284671"></span>
+                  <div><a href="-if-statement-nesting-rule/index.html"><span>If</span><wbr><span>Statement</span><wbr><span>Nesting</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="52457210%2FClasslikes%2F-1980284671"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-rename-abbreviation-word-rule/index.html">RenameAbbreviationWordRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#rename-abbreviation-word">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-if-statement-nesting-rule/index.html">IfStatementNestingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#if-statement-nesting">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1211375844%2FClasslikes%2F-1980284671" anchor-label="RenameAbbreviationWordVisitor" id="-1211375844%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+<a data-name="-206759138%2FClasslikes%2F-1980284671" anchor-label="IfStatementNestingVisitor" id="-206759138%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-rename-abbreviation-word-visitor/index.html"><span>Rename</span><wbr><span>Abbreviation</span><wbr><span>Word</span><wbr><span><span>Visitor</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1211375844%2FClasslikes%2F-1980284671"></span>
+                  <div><a href="-if-statement-nesting-visitor/index.html"><span>If</span><wbr><span>Statement</span><wbr><span>Nesting</span><wbr><span><span>Visitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-206759138%2FClasslikes%2F-1980284671"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-rename-abbreviation-word-visitor/index.html">RenameAbbreviationWordVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-if-statement-nesting-visitor/index.html">IfStatementNestingVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1467359020%2FClasslikes%2F-1980284671" anchor-label="RenameUncommonGenericsRule" id="-1467359020%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+<a data-name="1283465868%2FClasslikes%2F-1980284671" anchor-label="PropertyIdiomaticNamingRule" id="1283465868%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-rename-uncommon-generics-rule/index.html"><span>Rename</span><wbr><span>Uncommon</span><wbr><span>Generics</span><wbr><span><span>Rule</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1467359020%2FClasslikes%2F-1980284671"></span>
+                  <div><a href="-property-idiomatic-naming-rule/index.html"><span>Property</span><wbr><span>Idiomatic</span><wbr><span>Naming</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1283465868%2FClasslikes%2F-1980284671"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-rename-uncommon-generics-rule/index.html">RenameUncommonGenericsRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#rename-uncommon-generics">See wiki</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-property-idiomatic-naming-rule/index.html">PropertyIdiomaticNamingRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming">See wiki</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="493167364%2FClasslikes%2F-1980284671" anchor-label="RenameUncommonGenericsVisitor" id="493167364%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+<a data-name="-1953569204%2FClasslikes%2F-1980284671" anchor-label="PropertyIdiomaticNamingVisitor" id="-1953569204%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
           <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-rename-uncommon-generics-visitor/index.html"><span>Rename</span><wbr><span>Uncommon</span><wbr><span>Generics</span><wbr><span><span>Visitor</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="493167364%2FClasslikes%2F-1980284671"></span>
+                  <div><a href="-property-idiomatic-naming-visitor/index.html"><span>Property</span><wbr><span>Idiomatic</span><wbr><span>Naming</span><wbr><span><span>Visitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1953569204%2FClasslikes%2F-1980284671"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-rename-uncommon-generics-visitor/index.html">RenameUncommonGenericsVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-property-idiomatic-naming-visitor/index.html">PropertyIdiomaticNamingVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -189,7 +198,97 @@
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-rulebook-rule/index.html">RulebookRule</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitorRule///PointingToDeclaration/">AbstractAstVisitorRule</span></div><div class="brief "><p class="paragraph">A CodeNarc rule with immutable name and priority.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-rulebook-rule/index.html">RulebookRule</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitorRule///PointingToDeclaration/">AbstractAstVisitorRule</span></div><div class="brief "><p class="paragraph">A CodeNarc rule with immutable name and priority.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-142891596%2FClasslikes%2F-1980284671" anchor-label="SourceAcronymCapitalizationRule" id="-142891596%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-source-acronym-capitalization-rule/index.html"><span>Source</span><wbr><span>Acronym</span><wbr><span>Capitalization</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-142891596%2FClasslikes%2F-1980284671"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-source-acronym-capitalization-rule/index.html">SourceAcronymCapitalizationRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#source-acronym-capitalization">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-162352604%2FClasslikes%2F-1980284671" anchor-label="SourceAcronymCapitalizationVisitor" id="-162352604%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-source-acronym-capitalization-visitor/index.html"><span>Source</span><wbr><span>Acronym</span><wbr><span>Capitalization</span><wbr><span><span>Visitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-162352604%2FClasslikes%2F-1980284671"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-source-acronym-capitalization-visitor/index.html">SourceAcronymCapitalizationVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2092384576%2FClasslikes%2F-1980284671" anchor-label="SourceWordMeaningRule" id="-2092384576%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-source-word-meaning-rule/index.html"><span>Source</span><wbr><span>Word</span><wbr><span>Meaning</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2092384576%2FClasslikes%2F-1980284671"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-source-word-meaning-rule/index.html">SourceWordMeaningRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-959943272%2FClasslikes%2F-1980284671" anchor-label="SourceWordMeaningVisitor" id="-959943272%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-source-word-meaning-visitor/index.html"><span>Source</span><wbr><span>Word</span><wbr><span>Meaning</span><wbr><span><span>Visitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-959943272%2FClasslikes%2F-1980284671"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-source-word-meaning-visitor/index.html">SourceWordMeaningVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2011743899%2FClasslikes%2F-1980284671" anchor-label="StaticClassPositionRule" id="-2011743899%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-static-class-position-rule/index.html"><span>Static</span><wbr><span>Class</span><wbr><span>Position</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2011743899%2FClasslikes%2F-1980284671"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-static-class-position-rule/index.html">StaticClassPositionRule</a> : <a href="-rulebook-rule/index.html">RulebookRule</a></div><div class="brief "><p class="paragraph"><a href="https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position">See wiki</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="519746771%2FClasslikes%2F-1980284671" anchor-label="StaticClassPositionVisitor" id="519746771%2FClasslikes%2F-1980284671" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc:dokkaHtmlPartial/main" data-filterable-set=":rulebook-codenarc:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-static-class-position-visitor/index.html"><span>Static</span><wbr><span>Class</span><wbr><span>Position</span><wbr><span><span>Visitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="519746771%2FClasslikes%2F-1980284671"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-static-class-position-visitor/index.html">StaticClassPositionVisitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -202,8 +301,9 @@
       <div class="footer">
         <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
+            </div>
+        </div>
     </div>
-</div>
 </body>
 </html>
 
