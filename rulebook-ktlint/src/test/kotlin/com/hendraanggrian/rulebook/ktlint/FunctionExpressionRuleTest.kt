@@ -12,7 +12,7 @@ class FunctionExpressionRuleTest {
     fun `Expression function`() =
         assertThatCode(
             """
-            fun sum(a: Int, b: Int): Int = a + b
+            fun foo(): Int = 1
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -20,30 +20,19 @@ class FunctionExpressionRuleTest {
     fun `Regular function`() =
         assertThatCode(
             """
-            fun sum(a: Int, b: Int): Int {
-                return a + b
+            fun foo(): Int {
+                return 1
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 30, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(1, 16, Messages[MSG])
 
     @Test
-    fun `Regular function with whitespaces`() =
+    fun `Skip comment`() =
         assertThatCode(
             """
-            fun sum(a: Int, b: Int): Int {
-
-                return a + b
-            }
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 30, Messages[MSG])
-
-    @Test
-    fun `Regular function with comment`() =
-        assertThatCode(
-            """
-            fun sum(a: Int, b: Int): Int {
-                // some comment
-                return a + b
+            fun foo(): Int {
+                // comment
+                return 1
             }
             """.trimIndent(),
         ).hasNoLintViolations()

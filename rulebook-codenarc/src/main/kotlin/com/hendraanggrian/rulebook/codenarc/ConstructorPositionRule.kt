@@ -26,6 +26,7 @@ public class ConstructorPositionVisitor : AbstractAstVisitor() {
         if (node.methods.any { it.lineNumber < constructor.lineNumber }) {
             addViolation(constructor, Messages[MSG_METHODS])
         }
+
         super.visitClassComplete(node)
     }
 

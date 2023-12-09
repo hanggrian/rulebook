@@ -1,11 +1,14 @@
 package com.example.groovy
 
-class IfStatementNesting {
-    void main(int i, int j) {
-        if (!(i < j)) {
+class IfStatementNesting<E> {
+    List<E> elements
+
+    void iterate() {
+        if (elements == null) {
             return
         }
-        int k = i
-        k += j
+        for (element in elements) {
+            // ...
+        }
     }
 }

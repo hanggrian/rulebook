@@ -1,13 +1,15 @@
 package com.example.java;
 
 public class ConstructorPosition {
-  public void log() {
-    System.out.println("Hi " + nickname + "!");
-  }
+  public static class Foo {
+    public void baz() {}
 
-  public ConstructorPosition(String name) {
-    nickname = name.substring(0, 3);
-  }
+    public Foo() {
+      this(0);
+    }
 
-  private String nickname;
+    public Foo(int a) {}
+
+    public int bar = 0;
+  }
 }

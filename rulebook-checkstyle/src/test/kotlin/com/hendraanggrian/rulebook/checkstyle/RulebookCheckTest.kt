@@ -6,7 +6,7 @@ import kotlin.test.Test
 class RulebookCheckTest {
     @Test
     fun `Compare tokens`() {
-        val check = WordMeaningCheck()
+        val check = SourceWordMeaningCheck()
         val requiredTokens = check.requiredTokens.asList()
 
         assertThat(check.defaultTokens).asList().containsExactlyElementsIn(requiredTokens)

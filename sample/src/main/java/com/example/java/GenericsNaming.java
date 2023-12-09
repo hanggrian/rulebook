@@ -1,13 +1,7 @@
 package com.example.java;
 
-import java.util.List;
-
 public class GenericsNaming {
-  public class Point<G> {
-    G x;
-    G y;
-  }
+  public class Foo<A> {}
 
-  public <X> void sum(List<X> list) {
-  }
+  public <X> void bar() {}
 }

@@ -1,4 +1,4 @@
-public class GenericsNaming5 {
+public class GenericsNaming {
   public class Foo<T> {
     public class Bar<X> {
     }

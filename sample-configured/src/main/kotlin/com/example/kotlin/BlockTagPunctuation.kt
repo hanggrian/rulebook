@@ -1,6 +1,8 @@
 package com.example.kotlin
 
-/**
- * @constructor just a default constructor.
- */
-class BlockTagPunctuation
+class BlockTagPunctuation {
+    /**
+     * @constructor just a default constructor.
+     */
+    class MyClass(num: Int)
+}

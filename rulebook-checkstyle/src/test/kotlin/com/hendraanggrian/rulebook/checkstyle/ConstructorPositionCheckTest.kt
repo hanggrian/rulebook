@@ -7,7 +7,8 @@ class ConstructorPositionCheckTest {
     private val checker = prepareChecker(ConstructorPositionCheck::class)
 
     @Test
-    fun `Correct format`() = assertEquals(0, checker.process(prepareFiles("ConstructorPosition1")))
+    fun `Properties, initializers, constructors, and methods`() =
+        assertEquals(0, checker.process(prepareFiles("ConstructorPosition1")))
 
     @Test
     fun `Property after constructor`() =

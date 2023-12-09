@@ -1,6 +1,8 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG
+import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_LINE_END
+import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_LINE_START
+import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_MULTILINE_START
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -10,66 +12,59 @@ class BlockCommentSpacingRuleTest {
     private val assertThatCode = assertThatRule { BlockCommentSpacingRule() }
 
     @Test
-    fun `Correct format`() =
+    fun `Untrimmed block comment`() =
         assertThatCode(
             """
+            /** Summary. */
+            fun foo() {}
+
             /**
-             * Just a box.
+             * Summary.
              *
-             * @param width
-             * @param height
+             * @param num description.
              */
-            fun createRectangle(width: Int, height: Int) { }
+            fun bar(num: Int) {}
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `No summary are fine`() =
+    fun `Trimmed block comment`() =
         assertThatCode(
             """
-            /**
-             * @param width
-             * @param height
-             */
-            fun createRectangle(width: Int, height: Int) { }
+            /**Summary.*/
+            fun foo() {}
 
             /**
+             *Summary.
              *
-             * @param width
-             * @param height
+             *@param num description.
              */
-            fun createRectangle(width: Int, height: Int) { }
-            """.trimIndent(),
-        ).hasNoLintViolations()
-
-    @Test
-    fun `Missing empty line from summary`() =
-        assertThatCode(
-            """
-            /**
-             * Just a box.
-             * @param width
-             * @param height
-             */
-            fun summary(width: Int, height: Int) { }
-
-            /**
-             * [Box].
-             * @param width
-             * @param height
-             */
-            fun justLink(width: Int, height: Int) { }
-
-            /**
-             * `Box`.
-             * @param width
-             * @param height
-             */
-            fun justCode(width: Int, height: Int) { }
+            fun bar(num: Int) {}
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 4, Messages[MSG]),
-            LintViolation(10, 4, Messages[MSG]),
-            LintViolation(17, 4, Messages[MSG]),
+            LintViolation(1, 4, Messages[MSG_LINE_START]),
+            LintViolation(1, 12, Messages[MSG_LINE_END]),
+            LintViolation(5, 3, Messages[MSG_MULTILINE_START]),
+            LintViolation(7, 3, Messages[MSG_MULTILINE_START]),
+        )
+
+    @Test
+    fun `Unconventional block tags`() =
+        assertThatCode(
+            """
+            /**
+             *Summary.
+             *
+             *@param num description.
+             *@goodtag
+             *@awesometag with description.
+             */
+            fun foo(num: Int) {}
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(2, 3, Messages[MSG_MULTILINE_START]),
+            LintViolation(4, 3, Messages[MSG_MULTILINE_START]),
+            LintViolation(5, 3, Messages[MSG_MULTILINE_START]),
+            LintViolation(6, 3, Messages[MSG_MULTILINE_START]),
         )
 }

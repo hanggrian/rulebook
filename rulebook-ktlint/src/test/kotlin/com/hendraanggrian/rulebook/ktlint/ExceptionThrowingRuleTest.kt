@@ -12,10 +12,10 @@ class ExceptionThrowingRuleTest {
     fun `Throw subclass exceptions`() =
         assertThatCode(
             """
-            fun exception() {
+            fun foo() {
                 throw IllegalStateException()
             }
-            fun error() {
+            fun bar() {
                 throw StackOverflowError()
             }
             """.trimIndent(),
@@ -25,13 +25,13 @@ class ExceptionThrowingRuleTest {
     fun `Throw superclass exceptions`() =
         assertThatCode(
             """
-            fun throwable() {
+            fun foo() {
                 throw Throwable()
             }
-            fun exception() {
+            fun bar() {
                 throw Exception()
             }
-            fun error() {
+            fun baz() {
                 throw Error()
             }
             """.trimIndent(),
@@ -42,18 +42,18 @@ class ExceptionThrowingRuleTest {
         )
 
     @Test
-    fun `Throwing exceptions by reference`() =
+    fun `Skip throwing by reference`() =
         assertThatCode(
             """
-            fun throwable() {
+            fun foo() {
                 val throwable = Throwable()
                 throw throwable
             }
-            fun exception() {
+            fun bar() {
                 val error = Error()
                 throw error
             }
-            fun error() {
+            fun baz() {
                 val exception = Exception()
                 throw exception
             }

@@ -2,11 +2,9 @@ package com.example.java;
 
 public class BlockTagPunctuation {
   /**
-   * @param x desc1.
-   * @param y desc1.
-   * @param z desc1
+   * @return the new size of the group
    */
-  public int sum(int x, int y, int z) {
-    return x + y + z;
+  public int add(int num) {
+    return num;
   }
 }

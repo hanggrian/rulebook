@@ -1,3 +1,3 @@
-public class GenericsNaming3 {
+public class GenericsNaming {
   public <E> void sum(List<E> list) {}
 }

@@ -20,8 +20,6 @@ class IfStatementNestingRuleTest : AbstractRuleTestCase<IfStatementNestingRule>(
         assertNoViolations(
             """
             void foo() {
-                if (true) {}
-                if (true) { }
                 if (true) {
                 }
             }
@@ -29,14 +27,14 @@ class IfStatementNestingRuleTest : AbstractRuleTestCase<IfStatementNestingRule>(
         )
 
     @Test
-    fun `Correct format`() =
+    fun `Inverted if statement`() =
         assertNoViolations(
             """
             void foo() {
                 if (true) {
                     return
                 }
-                println()
+                bar()
             }
             """.trimIndent(),
         )
@@ -47,7 +45,7 @@ class IfStatementNestingRuleTest : AbstractRuleTestCase<IfStatementNestingRule>(
             """
             void foo() {
                 if (true) {
-                    println()
+                    bar()
                 }
             }
             """.trimIndent(),
@@ -59,8 +57,8 @@ class IfStatementNestingRuleTest : AbstractRuleTestCase<IfStatementNestingRule>(
             """
             void foo() {
                 if (true) {
-                    println()
-                    println()
+                    bar()
+                    baz()
                 }
             }
             """.trimIndent(),
@@ -75,14 +73,14 @@ class IfStatementNestingRuleTest : AbstractRuleTestCase<IfStatementNestingRule>(
             """
             void foo() {
                 if (true) {
-                    println()
-                    println()
+                    bar()
+                    baz()
                 } else if (false) {
-                    println()
-                    println()
+                    bar()
+                    baz()
                 } else {
-                    println()
-                    println()
+                    bar()
+                    baz()
                 }
             }
             """.trimIndent(),

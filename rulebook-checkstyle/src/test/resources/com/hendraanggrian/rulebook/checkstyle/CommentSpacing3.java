@@ -1,4 +1,5 @@
-/**ignore
- *block
- */
-public class CommentSpacing3 {}
+public class CommentSpacing {
+  /**ignore
+   *block
+   */
+}

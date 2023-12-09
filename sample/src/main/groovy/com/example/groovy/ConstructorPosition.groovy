@@ -1,13 +1,15 @@
 package com.example.groovy
 
 class ConstructorPosition {
-    private final String nickname
+    static class Foo {
+        final int bar = 0
 
-    ConstructorPosition(String name) {
-        nickname = name.substring(0, 3)
-    }
+        Foo() {
+            this(0)
+        }
 
-    void log() {
-        System.out.println("Hi " + nickname + "!")
+        Foo(int a) {}
+
+        void baz() {}
     }
 }

@@ -7,21 +7,29 @@
 
   - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
   - Remove `logging.xml`:
-  - Exclude `CompileStatic` in `convention.xml`:
-  - Allow empty blocks by excluding in `unused.xml`:
-    - `EmptyCatchBlock`
-    - `EmptyClass`
-    - `EmptyElseBlock`
-    - `EmptyFinallyBlock`
-    - `EmptyForStatement`
-    - `EmptyIfStatement`
-    - `EmptyInstanceInitializer`
-    - `EmptyMethod`
-    - `EmptyStaticInitializer`
-    - `EmptySwitchStatement`
-    - `EmptySynchronizedStatement`
-    - `EmptyTryBlock`
-    - `EmptyWhileStatement`
+  - Modify `convention.xml`:
+    - Exclude `CompileStatic`.
+    - Include `PublicMethodsBeforeNonPublicMethods`.
+  - Modify `formatting.xml`:
+    - Exclude `SpaceAfterOpeningBrace`.
+    - Exclude `SpaceBeforeClosingBrace`.
+    - Include `Indentation`.
+  - Modify `unused.xml`:
+    - Exclude `EmptyCatchBlock`.
+    - Exclude `EmptyClass`.
+    - Exclude `EmptyElseBlock`.
+    - Exclude `EmptyFinallyBlock`.
+    - Exclude `EmptyForStatement`.
+    - Exclude `EmptyIfStatement`.
+    - Exclude `EmptyInstanceInitializer`.
+    - Exclude `EmptyMethod`.
+    - Exclude `EmptyStaticInitializer`.
+    - Exclude `EmptySwitchStatement`.
+    - Exclude `EmptySynchronizedStatement`.
+    - Exclude `EmptyTryBlock`.
+    - Exclude `EmptyWhileStatement`.
+  - Include `SpaceAfterCommentDelimiter`.
+  - Configure `LineLength#length` from 120 to 100.
  -->
 <ruleset xmlns="http://codenarc.org/ruleset/1.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -48,7 +56,6 @@
   <ruleset-ref path="rulesets/braces.xml"/>
   <ruleset-ref path="rulesets/concurrency.xml"/>
   <ruleset-ref path="rulesets/convention.xml">
-    <exclude name="PublicMethodsBeforeNonPublicMethods"/>
     <exclude name="CompileStatic"/>
   </ruleset-ref>
   <ruleset-ref path="rulesets/design.xml">
@@ -64,7 +71,8 @@
   <ruleset-ref path="rulesets/formatting.xml">
     <exclude name="ClassEndsWithBlankLine"/>
     <exclude name="ClassStartsWithBlankLine"/>
-    <exclude name="Indentation"/>
+    <exclude name="SpaceAfterOpeningBrace"/>
+    <exclude name="SpaceBeforeClosingBrace"/>
   </ruleset-ref>
   <ruleset-ref path="rulesets/generic.xml"/>
   <ruleset-ref path="rulesets/grails.xml"/>
@@ -105,11 +113,17 @@
     <exclude name="UnnecessaryObjectReferences"/>
   </ruleset-ref>
 
+  <rule class="org.codenarc.rule.formatting.LineLengthRule">
+    <property name="length" value="100"/>
+  </rule>
+  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
+
   <!-- Third-party rules -->
-  <rule class="com.hendraanggrian.rulebook.codenarc.AcronymCapitalizationRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.ConstructorPositionRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNamingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.IfStatementNestingRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.StaticInitializerPositionRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.WordMeaningRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.PropertyIdiomaticNamingRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.SourceAcronymCapitalizationRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.SourceWordMeaningRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.StaticClassPositionRule"/>
 </ruleset>

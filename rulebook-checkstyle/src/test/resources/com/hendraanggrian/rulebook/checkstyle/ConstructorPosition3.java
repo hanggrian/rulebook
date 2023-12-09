@@ -1,11 +1,13 @@
-public class ConstructorPosition3 {
-  private int num;
+class ConstructorPosition {
+  public class Foo {
+    public void baz() {
+    }
 
-  public void increment() {
-    num++;
-  }
+    public Foo() {
+      this(0);
+    }
 
-  public ConstructorOrdering3() {
-    num = 0;
+    public Foo(int a) {
+    }
   }
 }

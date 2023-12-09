@@ -1,5 +1,7 @@
 package com.example.kotlin
 
-fun print(name: String) {
-    println("Hi, $name!")
+class StringInterpolation(name: Any, children: Collection<*>) {
+    init {
+        println("$name has ${children.size} children")
+    }
 }

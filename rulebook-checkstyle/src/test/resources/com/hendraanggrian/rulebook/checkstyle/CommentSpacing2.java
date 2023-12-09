@@ -1,3 +1,4 @@
-//bad
-//text
-public class CommentSpacing2 {}
+public class CommentSpacing {
+  //bad
+  //text
+}

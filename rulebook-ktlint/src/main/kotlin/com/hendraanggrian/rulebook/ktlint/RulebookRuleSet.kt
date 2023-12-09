@@ -6,22 +6,26 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 public class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
     override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
-            RuleProvider { AcronymCapitalizationRule() },
-            RuleProvider { ConstructorPositionRule() },
-            RuleProvider { StaticInitializerPositionRule() },
             RuleProvider { BlockCommentSpacingRule() },
             RuleProvider { BlockTagPunctuationRule() },
+            RuleProvider { BlockTagsInitialSpacingRule() },
+            RuleProvider { ConstructorPositionRule() },
             RuleProvider { EmptyBlockWrappingRule() },
             RuleProvider { ExceptionThrowingRule() },
-            RuleProvider { FileSizingRule() },
+            RuleProvider { FileInitialWrappingRule() },
+            RuleProvider { FileSizeLimitationRule() },
             RuleProvider { FunctionExpressionRule() },
             RuleProvider { GenericsNamingRule() },
             RuleProvider { IfStatementNestingRule() },
-            RuleProvider { JavaApiUsageRule() },
+            RuleProvider { KotlinApiConsistencyRule() },
             RuleProvider { ObjectsComparisonRule() },
+            RuleProvider { PropertyIdiomaticNamingRule() },
             RuleProvider { QualifierRedundancyRule() },
+            RuleProvider { SourceAcronymCapitalizationRule() },
+            RuleProvider { SourceWordMeaningRule() },
+            RuleProvider { StaticClassPositionRule() },
             RuleProvider { StringInterpolationRule() },
-            RuleProvider { SwitchCasesSpacingRule() },
-            RuleProvider { WordMeaningRule() },
+            RuleProvider { SwitchCasesWrappingRule() },
+            RuleProvider { TodoCommentListingRule() },
         )
 }

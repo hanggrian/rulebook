@@ -1,3 +1,5 @@
 package com.example.kotlin
 
-fun emptyBlock() {}
+class EmptyBlockWrapping {
+    fun foo() {}
+}

@@ -13,8 +13,6 @@ class IfStatementNestingRuleTest {
         assertThatCode(
             """
             fun foo() {
-                if (true) {}
-                if (true) { }
                 if (true) {
                 }
             }
@@ -22,14 +20,14 @@ class IfStatementNestingRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Correct format`() =
+    fun `Inverted if statement`() =
         assertThatCode(
             """
             fun foo() {
                 if (true) {
                     return
                 }
-                println()
+                bar()
             }
             """.trimIndent(),
         ).hasNoLintViolations()
@@ -40,7 +38,7 @@ class IfStatementNestingRuleTest {
             """
             fun foo() {
                 if (true) {
-                    println()
+                    bar()
                 }
             }
             """.trimIndent(),
@@ -52,8 +50,8 @@ class IfStatementNestingRuleTest {
             """
             fun foo() {
                 if (true) {
-                    println()
-                    println()
+                    bar()
+                    baz()
                 }
             }
             """.trimIndent(),
@@ -65,14 +63,14 @@ class IfStatementNestingRuleTest {
             """
             fun foo() {
                 if (true) {
-                    println()
-                    println()
+                    bar()
+                    baz()
                 } else if (false) {
-                    println()
-                    println()
+                    bar()
+                    baz()
                 } else {
-                    println()
-                    println()
+                    bar()
+                    baz()
                 }
             }
             """.trimIndent(),

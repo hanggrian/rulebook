@@ -15,9 +15,9 @@ class BlockTagPunctuationCheckTest {
 
     @Test
     fun `Descriptions don't end with a period`() =
-        assertEquals(3, checker.process(prepareFiles("BlockTagPunctuation3")))
+        assertEquals(2, checker.process(prepareFiles("BlockTagPunctuation3")))
 
     @Test
     fun `Long Descriptions`() =
-        assertEquals(1, checker.process(prepareFiles("BlockTagPunctuation4")))
+        assertEquals(2, checker.process(prepareFiles("BlockTagPunctuation4")))
 }

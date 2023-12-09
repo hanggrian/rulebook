@@ -16,6 +16,7 @@ dependencies {
 
     testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
     testImplementation(libs.ktlint.test)
+    testImplementation(libs.ktlint.ruleset.standard) // for ID comparison
     testImplementation(libs.truth)
 
     testRuntimeOnly(libs.logback)

@@ -23,14 +23,31 @@ public class StringInterpolationRule : RulebookRule("string-interpolation") {
             return
         }
 
-        // only target expression with string literal
-        node.takeIf { STRING_TEMPLATE in it } ?: return
+        // only target root expression
+        node.takeUnless { it.treeParent.elementType == BINARY_EXPRESSION } ?: return
 
-        // checks for violation
-        node.findChildByType(OPERATION_REFERENCE)?.children()?.singleOrNull()
-            ?.takeIf { it.elementType == PLUS }
-            ?: return
-        emit(node.startOffset, Messages[MSG], false)
+        // only target consecutive concat
+        var isString = false
+        var plusCount = 0
+        var next: ASTNode? = node
+        while (next != null) {
+            if (!isString) {
+                isString = STRING_TEMPLATE in next
+            }
+            if (next.findChildByType(OPERATION_REFERENCE)
+                    ?.children()?.singleOrNull()
+                    ?.elementType == PLUS
+            ) {
+                plusCount++
+            }
+            next = next.firstChildNode
+
+            // checks for violation
+            if (isString && plusCount > 1) {
+                emit(node.startOffset, Messages[MSG], false)
+                return
+            }
+        }
     }
 
     internal companion object {

@@ -17,12 +17,12 @@ import org.jetbrains.kotlin.psi.psiUtil.children
  */
 public class BlockTagPunctuationRule : RulebookRule(
     "block-tag-punctuation",
-    setOf(PUNCTUATED_TAGS_PROPERTY),
+    setOf(PUNCTUATED_BLOCK_TAGS_PROPERTY),
 ) {
-    private var punctuatedTags = PUNCTUATED_TAGS_PROPERTY.defaultValue
+    private var punctuatedTags = PUNCTUATED_BLOCK_TAGS_PROPERTY.defaultValue
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        punctuatedTags = editorConfig[PUNCTUATED_TAGS_PROPERTY]
+        punctuatedTags = editorConfig[PUNCTUATED_BLOCK_TAGS_PROPERTY]
     }
 
     override fun beforeVisitChildNodes(
@@ -58,11 +58,11 @@ public class BlockTagPunctuationRule : RulebookRule(
 
         private val END_PUNCTUATIONS = setOf('.', ')')
 
-        val PUNCTUATED_TAGS_PROPERTY =
+        val PUNCTUATED_BLOCK_TAGS_PROPERTY =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
-                        "rulebook_punctuated_tags",
+                        "rulebook_punctuated_block_tags",
                         "Block tags that have to end with a period.",
                         CommaSeparatedListValueParser(),
                     ),

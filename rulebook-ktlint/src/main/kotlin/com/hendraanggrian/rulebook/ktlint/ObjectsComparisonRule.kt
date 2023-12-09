@@ -16,12 +16,13 @@ public class ObjectsComparisonRule : RulebookRule("objects-comparison") {
     ) {
         // checks for violation
         when (node.elementType) {
-            EQEQEQ -> emit(node.startOffset, Messages.get(MSG, "=="), false)
-            EXCLEQEQEQ -> emit(node.startOffset, Messages.get(MSG, "!="), false)
+            EQEQEQ -> emit(node.startOffset, Messages[MSG_EQ], false)
+            EXCLEQEQEQ -> emit(node.startOffset, Messages[MSG_NEQ], false)
         }
     }
 
     internal companion object {
-        const val MSG = "objects.comparison"
+        const val MSG_EQ = "objects.comparison.eq"
+        const val MSG_NEQ = "objects.comparison.neq"
     }
 }

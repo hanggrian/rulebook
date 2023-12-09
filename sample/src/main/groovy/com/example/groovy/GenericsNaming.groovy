@@ -4,10 +4,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class GenericsNaming {
-    class Point<N> {
-        N x
-    }
+    class Foo<E> {}
 
-    <E> void sum(List<E> list) {
-    }
+    <N> void bar() {}
 }

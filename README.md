@@ -13,8 +13,8 @@ in other linters, providing the same experience across languages.
 
 | Language | Linter | Main Rules |
 | --- | --- | --- |
-| Kotlin | [Ktlint](https://pinterest.github.io/ktlint/) | [Kotlin coding conventions] via [Ktlint Standard Rules](https://pinterest.github.io/ktlint/0.49.1/rules/standard/) |
-| Java | [Checkstyle](https://checkstyle.org/) | [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) via [Checkstyle Google Checks](https://checkstyle.sourceforge.io/google_style.html) |
+| Kotlin | [Ktlint](https://pinterest.github.io/ktlint/) | [Ktlint Official Style](https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/) |
+| Java | [Checkstyle](https://checkstyle.org/) | [Google Java Style](https://google.github.io/styleguide/javaguide.html) |
 | Groovy | [CodeNarc](https://codenarc.org/) | [Groovy Style Guide](https://groovy-lang.org/style-guide.html) |
 
 ## Download
@@ -92,13 +92,12 @@ Presuming the IDE is *IntelliJ IDEA*, consider applying the linter style to it.
 ### Ktlint
 
 Explained in [Ktlint IntelliJ IDEA Configuration](https://pinterest.github.io/ktlint/0.49.1/rules/configuration-intellij-idea/),
-using standard [Kotlin coding conventions] is enough:
+using standard [Kotlin coding conventions](https://kotlinlang.org/docs/coding-conventions.html)
+is enough:
 
 - In `File > Settings > Editor > Code Style > Kotlin`, set from
   `Kotlin style guide`.
 - Append `kotlin.code.style=official` to root `gradle.properties`.
-
-[Kotlin coding conventions]: https://kotlinlang.org/docs/coding-conventions.html
 
 ### Checkstyle
 

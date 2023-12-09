@@ -1,8 +1,7 @@
 package com.example.kotlin
 
-data class Point<N>(
-    var x: N,
-    var y: N,
-)
+class GenericsNaming {
+    class Foo<E>(a: E)
 
-inline fun <reified T> getTypeName() = T::class.java.simpleName
+    fun <N> bar() {}
+}

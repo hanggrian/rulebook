@@ -34,6 +34,17 @@ public class ExceptionThrowingRule : RulebookRule("exception-throwing") {
     internal companion object {
         const val MSG = "exception.throwing"
 
-        private val AMBIGUOUS_ERRORS = setOf("Exception", "Error", "Throwable")
+        private val AMBIGUOUS_ERRORS =
+            setOf(
+                "Exception",
+                "Error",
+                "Throwable",
+                "java.lang.Exception",
+                "java.lang.Error",
+                "java.lang.Throwable",
+                "kotlin.Exception",
+                "kotlin.Error",
+                "kotlin.Throwable",
+            )
     }
 }

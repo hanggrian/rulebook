@@ -1,8 +1,8 @@
 package com.example.kotlin
 
-/**
- * @param x desc1.
- * @param y desc1.
- * @param z asd.
- */
-fun sum(x: Int, y: Int, z: Int): Int = x + y + z
+class BlockTagPunctuation {
+    /**
+     * @return the new size of the group.
+     */
+    fun add(num: Int): Int = num
+}

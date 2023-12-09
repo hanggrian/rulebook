@@ -13,7 +13,7 @@ class EmptyBlockWrappingRuleTest {
     fun `Wrapped empty block`() =
         assertThatCode(
             """
-            fun wrapped() {}
+            fun foo() {}
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -21,16 +21,16 @@ class EmptyBlockWrappingRuleTest {
     fun `Unwrapped empty block`() =
         assertThatCode(
             """
-            fun space() { }
-            fun newLine() {
+            fun foo() { }
+            fun bar() {
             }
-            fun blankLine() {
+            fun baz() {
 
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 13, Messages[MSG]),
-            LintViolation(2, 15, Messages[MSG]),
-            LintViolation(4, 17, Messages[MSG]),
+            LintViolation(1, 11, Messages[MSG]),
+            LintViolation(2, 11, Messages[MSG]),
+            LintViolation(4, 11, Messages[MSG]),
         )
 }

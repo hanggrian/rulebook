@@ -1,10 +1,7 @@
 package com.example.groovy
 
 class GenericsNaming {
-  class Point<A> {
-    A x
-  }
+    class Foo<A> {}
 
-  <A> void sum(List<A> list) {
-  }
+    <A> void bar() {}
 }

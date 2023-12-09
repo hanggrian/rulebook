@@ -17,19 +17,19 @@ class ConstructorPositionRuleTest : AbstractRuleTestCase<ConstructorPositionRule
     }
 
     @Test
-    fun `Correct format`() =
+    fun `Properties, initializers, constructors, and methods`() =
         assertNoViolations(
             """
-            class MyClass {
-              private int num
+            class Foo {
+              int bar = 0
 
-              public MyClass() {
-                num = 0
+              Foo() {
+                this(0)
               }
 
-              public void increment() {
-                num++
-              }
+              Foo(int a) {}
+
+              void baz() {}
             }
             """.trimIndent(),
         )
@@ -38,16 +38,18 @@ class ConstructorPositionRuleTest : AbstractRuleTestCase<ConstructorPositionRule
     fun `Property after constructor`() =
         assertSingleViolation(
             """
-            class MyClass {
-              public MyClass() {
-                num = 0
+            class Foo {
+              Foo() {
+                this(0)
               }
 
-              private int num
+              Foo(int a) {}
+
+              int bar = 0
             }
             """.trimIndent(),
             2,
-            "public MyClass() {",
+            "Foo() {",
             Messages[MSG_PROPERTIES],
         )
 
@@ -55,20 +57,18 @@ class ConstructorPositionRuleTest : AbstractRuleTestCase<ConstructorPositionRule
     fun `Method before constructor`() =
         assertSingleViolation(
             """
-            class MyClass {
-              private int num
+            class Foo {
+              void baz() {}
 
-              public void log() {
-                System.out.println(num)
+              Foo() {
+                this(0)
               }
 
-              public MyClass() {
-                num = 0
-              }
+              Foo(int a) {}
             }
             """.trimIndent(),
-            8,
-            "public MyClass() {",
+            4,
+            "Foo() {",
             Messages[MSG_METHODS],
         )
 }

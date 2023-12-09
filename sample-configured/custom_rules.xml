@@ -6,21 +6,28 @@
   with few changes:
 
   - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
-  - Exclude `CompileStatic` in `convention.xml`:
-  - Allow empty blocks by excluding in `unused.xml`:
-    - `EmptyCatchBlock`
-    - `EmptyClass`
-    - `EmptyElseBlock`
-    - `EmptyFinallyBlock`
-    - `EmptyForStatement`
-    - `EmptyIfStatement`
-    - `EmptyInstanceInitializer`
-    - `EmptyMethod`
-    - `EmptyStaticInitializer`
-    - `EmptySwitchStatement`
-    - `EmptySynchronizedStatement`
-    - `EmptyTryBlock`
-    - `EmptyWhileStatement`
+  - Remove `logging.xml`:
+  - Modify `convention.xml`:
+    - Exclude `CompileStatic`.
+    - Include `PublicMethodsBeforeNonPublicMethods`.
+  - Modify `formatting.xml`:
+    - Exclude `SpaceAfterOpeningBrace`.
+    - Exclude `SpaceBeforeClosingBrace`.
+    - Include `Indentation`.
+  - Modify `unused.xml`:
+    - Exclude `EmptyCatchBlock`.
+    - Exclude `EmptyClass`.
+    - Exclude `EmptyElseBlock`.
+    - Exclude `EmptyFinallyBlock`.
+    - Exclude `EmptyForStatement`.
+    - Exclude `EmptyIfStatement`.
+    - Exclude `EmptyInstanceInitializer`.
+    - Exclude `EmptyMethod`.
+    - Exclude `EmptyStaticInitializer`.
+    - Exclude `EmptySwitchStatement`.
+    - Exclude `EmptySynchronizedStatement`.
+    - Exclude `EmptyTryBlock`.
+    - Exclude `EmptyWhileStatement`.
  -->
 <ruleset xmlns="http://codenarc.org/ruleset/1.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -47,7 +54,6 @@
   <ruleset-ref path="rulesets/braces.xml"/>
   <ruleset-ref path="rulesets/concurrency.xml"/>
   <ruleset-ref path="rulesets/convention.xml">
-    <exclude name="PublicMethodsBeforeNonPublicMethods"/>
     <exclude name="CompileStatic"/>
   </ruleset-ref>
   <ruleset-ref path="rulesets/design.xml">
@@ -63,7 +69,8 @@
   <ruleset-ref path="rulesets/formatting.xml">
     <exclude name="ClassEndsWithBlankLine"/>
     <exclude name="ClassStartsWithBlankLine"/>
-    <exclude name="Indentation"/>
+    <exclude name="SpaceAfterOpeningBrace"/>
+    <exclude name="SpaceBeforeClosingBrace"/>
   </ruleset-ref>
   <ruleset-ref path="rulesets/generic.xml"/>
   <ruleset-ref path="rulesets/grails.xml"/>
@@ -73,7 +80,6 @@
   <ruleset-ref path="rulesets/junit.xml">
     <exclude name="JUnitTestMethodWithoutAssert"/>
   </ruleset-ref>
-  <ruleset-ref path="rulesets/logging.xml"/>
   <ruleset-ref path="rulesets/naming.xml">
     <exclude name="ConfusingMethodName"/>
     <!-- unit tests have arbitrary names -->
@@ -109,11 +115,11 @@
   <rule class="org.codenarc.rule.size.ClassSizeRule">
     <property name="maxLines" value="10"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.WordMeaningRule">
-    <property name="meaninglessWords" value="Hello, World"/>
-    <property name="ignoredWords" value="Hello"/>
-  </rule>
   <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNamingRule">
     <property name="commonGenerics" value="A"/>
+  </rule>
+  <rule class="com.hendraanggrian.rulebook.codenarc.SourceWordMeaningRule">
+    <property name="meaninglessWords" value="Hello, World"/>
+    <property name="ignoredWords" value="Hello"/>
   </rule>
 </ruleset>

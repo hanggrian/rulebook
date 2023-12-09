@@ -1,10 +1,9 @@
-public class BlockTagPunctuation1 {
+public class BlockTagPunctuation {
   /**
-   * @param a
-   * @param b
+   * @param num
    * @return
    */
-  int sum(int a, int b) {
-    return a + b;
+  public int add(int num) {
+    return num;
   }
 }

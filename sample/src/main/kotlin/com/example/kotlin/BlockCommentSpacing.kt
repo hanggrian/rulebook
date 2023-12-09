@@ -1,25 +1,12 @@
 package com.example.kotlin
 
-/**
- * Just a box.
- *
- * @param width
- * @param height
- */
-fun summary(width: Int, height: Int) {}
+class BlockCommentSpacing {
+    /** This is a short documentation comment. */
+    fun foo() {}
 
-/**
- * [Box].
- *
- * @param width
- * @param height
- */
-fun justLink(width: Int, height: Int) {}
-
-/**
- * `Box`.
- *
- * @param width
- * @param height
- */
-fun justCode(width: Int, height: Int) {}
+    /**
+     * This is a documentation comment
+     * on multiple lines.
+     */
+    fun bar() {}
+}

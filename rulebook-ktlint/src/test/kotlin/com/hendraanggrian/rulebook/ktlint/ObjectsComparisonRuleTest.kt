@@ -1,6 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.ObjectsComparisonRule.Companion.MSG
+import com.hendraanggrian.rulebook.ktlint.ObjectsComparisonRule.Companion.MSG_EQ
+import com.hendraanggrian.rulebook.ktlint.ObjectsComparisonRule.Companion.MSG_NEQ
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -13,10 +14,9 @@ class ObjectsComparisonRuleTest {
     fun `Structural equalities`() =
         assertThatCode(
             """
-            fun foo() {
-                if (0 == 1) {
-                }
-                if (0 != 1) {
+            fun baz() {
+                if (foo == bar) {
+                } else if (foo != bar) {
                 }
             }
             """.trimIndent(),
@@ -26,15 +26,14 @@ class ObjectsComparisonRuleTest {
     fun `Referential equalities`() =
         assertThatCode(
             """
-            fun foo() {
-                if (0 === 1) {
-                }
-                if (0 !== 1) {
+            fun baz() {
+                if (foo === bar) {
+                } else if (foo !== bar) {
                 }
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 11, Messages.get(MSG, "==")),
-            LintViolation(4, 11, Messages.get(MSG, "!=")),
+            LintViolation(2, 13, Messages[MSG_EQ]),
+            LintViolation(3, 20, Messages[MSG_NEQ]),
         )
 }

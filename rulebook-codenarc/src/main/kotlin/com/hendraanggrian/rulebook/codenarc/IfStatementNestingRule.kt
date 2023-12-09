@@ -26,6 +26,7 @@ public class IfStatementNestingVisitor : AbstractAstVisitor() {
         // report 2 lines content
         if2.ifBlock.text.takeIf { ';' in it } ?: return super.visitBlockStatement(statement)
         addViolation(if2, Messages[MSG])
+
         super.visitBlockStatement(statement)
     }
 

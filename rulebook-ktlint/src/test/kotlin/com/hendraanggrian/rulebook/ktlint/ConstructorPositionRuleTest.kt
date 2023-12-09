@@ -10,31 +10,29 @@ class ConstructorPositionRuleTest {
     private val assertThatCode = assertThatRule { ConstructorPositionRule() }
 
     @Test
-    fun `Correct format`() =
+    fun `Properties, initializers, constructors, and methods`() =
         assertThatCode(
             """
-            class MyClass(num: Number) {
-                init {
-                    println(num)
-                }
+            class Foo(a: Int) {
+                val bar = 0
 
-                constructor(num: Int) : this(num as Number)
+                init {}
 
-                fun log() = println(num)
+                constructor() : this(0)
+
+                fun baz() {}
             }
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `Init after constructor`() =
+    fun `Initializer after constructor`() =
         assertThatCode(
             """
-            class MyClass(num: Number) {
-                constructor(num: Int) : this(num as Number)
+            class Foo(a: Int) {
+                constructor() : this(0)
 
-                init {
-                    println(num)
-                }
+                init {}
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_PROPERTIES])
@@ -43,10 +41,10 @@ class ConstructorPositionRuleTest {
     fun `Property after constructor`() =
         assertThatCode(
             """
-            class MyClass(num: Number) {
-                constructor(num: Int) : this(num as Number)
+            class Foo(a: Int) {
+                constructor() : this(0)
 
-                val num2 = num
+                val bar = 0
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_PROPERTIES])
@@ -55,10 +53,10 @@ class ConstructorPositionRuleTest {
     fun `Method before constructor`() =
         assertThatCode(
             """
-            class MyClass(num: Number) {
-                fun log() = println(num)
+            class Foo(a: Int) {
+                fun baz() {}
 
-                constructor(num: Int) : this(num as Number)
+                constructor() : this(0)
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(4, 5, Messages[MSG_METHODS])

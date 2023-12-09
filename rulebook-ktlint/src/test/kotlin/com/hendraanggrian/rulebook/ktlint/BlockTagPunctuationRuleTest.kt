@@ -14,11 +14,10 @@ class BlockTagPunctuationRuleTest {
         assertThatCode(
             """
             /**
-             * @param a
-             * @param b
+             * @param num
              * @return
              */
-            fun sum(a: Int, b: Int): Int = a + b
+            fun add(num: Int): Int
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -27,11 +26,10 @@ class BlockTagPunctuationRuleTest {
         assertThatCode(
             """
             /**
-             * @param a first value.
-             * @param b second value.
-             * @return combined values.
+             * @param num value.
+             * @return total value.
              */
-            fun sum(a: Int, b: Int): Int = a + b
+            fun add(num: Int): Int
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -40,16 +38,14 @@ class BlockTagPunctuationRuleTest {
         assertThatCode(
             """
             /**
-             * @param a first value
-             * @param b second value
-             * @return combined values
+             * @param num value
+             * @return total value
              */
-            fun sum(a: Int, b: Int): Int = a + b
+            fun add(num: Int): Int
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 24, Messages.get(MSG, "@param, @return")),
-            LintViolation(3, 25, Messages.get(MSG, "@param, @return")),
-            LintViolation(4, 27, Messages.get(MSG, "@param, @return")),
+            LintViolation(2, 20, Messages.get(MSG, "@param, @return")),
+            LintViolation(3, 23, Messages.get(MSG, "@param, @return")),
         )
 
     @Test
@@ -57,14 +53,15 @@ class BlockTagPunctuationRuleTest {
         assertThatCode(
             """
             /**
-             * @param a first
+             * @param num
              *   value
-             * @param b second
-             *   value.
-             * @return combined
-             *   values.
+             * @return total
+             *   value
              */
-            fun sum(a: Int, b: Int): Int = a + b
+            fun add(num: Int): Int
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 11, Messages.get(MSG, "@param, @return"))
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(3, 11, Messages.get(MSG, "@param, @return")),
+            LintViolation(5, 11, Messages.get(MSG, "@param, @return")),
+        )
 }

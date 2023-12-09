@@ -12,8 +12,8 @@ class StringInterpolationRuleTest {
     fun `String templates`() =
         assertThatCode(
             """
-            fun print(name: String) {
-                println("Hi ${'$'}name!");
+            fun foo() {
+                println("${'$'}name has ${'$'}{children.size} children")
             }
             """.trimIndent(),
         ).hasNoLintViolations()
@@ -22,9 +22,19 @@ class StringInterpolationRuleTest {
     fun `String concatenation`() =
         assertThatCode(
             """
-            fun print(name: String) {
-                println("Hi " + name + "!");
+            fun foo() {
+                println(name + " has " + children.size + " children")
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(2, 13, Messages[MSG])
+
+    @Test
+    fun `Skip single plus operator`() =
+        assertThatCode(
+            """
+            fun foo() {
+                println(name + " has ")
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
 }
