@@ -9,9 +9,9 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import kotlin.text.RegexOption.IGNORE_CASE
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-comment-listing).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-comment-formatting).
  */
-public class TodoCommentListingRule : RulebookRule("todo-comment-listing") {
+public class TodoCommentFormattingRule : RulebookRule("todo-comment-formatting") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
@@ -34,19 +34,21 @@ public class TodoCommentListingRule : RulebookRule("todo-comment-listing") {
             } ?: return
 
         // checks for violation
-        when {
-            LOWERCASE_REGEX.containsMatchIn(text) ->
-                emit(node.startOffset, Messages[MSG_LOWERCASE], false)
-            UNKNOWN_REGEX.containsMatchIn(text) ->
-                emit(node.startOffset, Messages[MSG_UNKNOWN], false)
+        if (KEYWORD_REGEX.containsMatchIn(text)) {
+            val keyword = KEYWORD_REGEX.find(text)!!.value
+            emit(node.startOffset, Messages.get(MSG_KEYWORD, keyword), false)
+        }
+        if (SEPARATOR_REGEX.containsMatchIn(text)) {
+            val separator = SEPARATOR_REGEX.find(text)!!.value.last()
+            emit(node.startOffset, Messages.get(MSG_SEPARATOR, separator), false)
         }
     }
 
     internal companion object {
-        const val MSG_LOWERCASE = "todo.comment.listing.lowercase"
-        const val MSG_UNKNOWN = "todo.comment.listing.unknown"
+        const val MSG_KEYWORD = "todo.comment.formatting.keyword"
+        const val MSG_SEPARATOR = "todo.comment.formatting.separator"
 
-        private val LOWERCASE_REGEX = Regex("(todo|fixme):")
-        private val UNKNOWN_REGEX = Regex("(TO-DO|FIX):", IGNORE_CASE)
+        private val KEYWORD_REGEX = Regex("\\b(?i:fixme|todo)(?<!FIXME|TODO)\\b")
+        private val SEPARATOR_REGEX = Regex("\\b(todo|fixme)\\S", IGNORE_CASE)
     }
 }

@@ -25,7 +25,7 @@ public class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
             RuleProvider { SourceWordMeaningRule() },
             RuleProvider { StaticClassPositionRule() },
             RuleProvider { StringInterpolationRule() },
-            RuleProvider { SwitchCasesWrappingRule() },
-            RuleProvider { TodoCommentListingRule() },
+            RuleProvider { SwitchStatementWrappingRule() },
+            RuleProvider { TodoCommentFormattingRule() },
         )
 }

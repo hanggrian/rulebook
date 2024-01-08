@@ -1,12 +1,12 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.SwitchCasesWrappingRule.Companion.MSG
+import com.hendraanggrian.rulebook.ktlint.SwitchStatementWrappingRule.Companion.MSG
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class SwitchCasesWrappingRuleTest {
-    private val assertThatCode = assertThatRule { SwitchCasesWrappingRule() }
+class SwitchStatementWrappingRuleTest {
+    private val assertThatCode = assertThatRule { SwitchStatementWrappingRule() }
 
     @Test
     fun `Joined switch case branches`() =

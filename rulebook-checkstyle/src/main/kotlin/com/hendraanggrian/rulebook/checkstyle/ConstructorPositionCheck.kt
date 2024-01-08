@@ -29,12 +29,10 @@ public class ConstructorPositionCheck : RulebookCheck() {
         val constructor = node.findFirstToken(OBJBLOCK).findFirstToken(CTOR_DEF) ?: return
 
         // checks for violation
-        if (constructor.siblings(true).any { it.type == VARIABLE_DEF }) {
-            log(constructor, Messages[MSG_PROPERTIES])
-        }
-        if (constructor.siblings(false).any { it.type == METHOD_DEF }) {
-            log(constructor, Messages[MSG_METHODS])
-        }
+        constructor.siblings(true).filter { it.type == VARIABLE_DEF }
+            .forEach { log(it, Messages[MSG_PROPERTIES]) }
+        constructor.siblings(false).filter { it.type == METHOD_DEF }
+            .forEach { log(it, Messages[MSG_METHODS]) }
     }
 
     internal companion object {

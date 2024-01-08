@@ -27,13 +27,13 @@ class FunctionExpressionRuleTest {
         ).hasLintViolationWithoutAutoCorrect(1, 16, Messages[MSG])
 
     @Test
-    fun `Skip comment`() =
+    fun `Check property accessor`() =
         assertThatCode(
             """
-            fun foo(): Int {
-                // comment
-                return 1
-            }
+            val bar: Int
+                get() {
+                    return 1
+                }
             """.trimIndent(),
-        ).hasNoLintViolations()
+        ).hasLintViolationWithoutAutoCorrect(2, 11, Messages[MSG])
 }

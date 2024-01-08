@@ -3,6 +3,7 @@ package com.hendraanggrian.rulebook.ktlint.internals
 import com.pinterest.ktlint.rule.engine.core.api.Rule
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.lang.FileASTNode
+import org.jetbrains.kotlin.com.intellij.openapi.util.text.StringUtil.substringBefore
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 import org.jetbrains.kotlin.psi.KtFile
 
@@ -19,6 +20,9 @@ internal fun ASTNode.siblingsUntil(type: IElementType): List<ASTNode> {
     }
     return list
 }
+
+// get text without argument and nullability
+internal val ASTNode.qualifierName: String get() = text.substringBefore('<').substringBefore('?')
 
 // get filename, obtained from `com.pinterest.ktlint.ruleset.standard.FilenameRule`
 internal fun Rule.getFileName(node: ASTNode): String? {

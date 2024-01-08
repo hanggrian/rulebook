@@ -7,9 +7,9 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#switch-cases-wrapping).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#switch-statement-wrapping).
  */
-public class SwitchCasesWrappingRule : RulebookRule("switch-cases-wrapping") {
+public class SwitchStatementWrappingRule : RulebookRule("switch-statement-wrapping") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
@@ -30,6 +30,6 @@ public class SwitchCasesWrappingRule : RulebookRule("switch-cases-wrapping") {
     }
 
     internal companion object {
-        const val MSG = "switch.cases.wrapping"
+        const val MSG = "switch.statement.wrapping"
     }
 }

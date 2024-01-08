@@ -1,6 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
+import com.hendraanggrian.rulebook.ktlint.internals.qualifierName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
@@ -22,11 +23,11 @@ public class PropertyIdiomaticNamingRule : RulebookRule("property-idiomatic-nami
 
         // skip no declaration
         val typeName =
-            node.findChildByType(TYPE_REFERENCE)?.text
+            node.findChildByType(TYPE_REFERENCE)
                 ?.let {
-                    val s = it.substringBefore('<')
+                    val s = it.qualifierName
                     when {
-                        !it.startsWith("kotlin.") && !it.startsWith("java.") -> s
+                        !it.text.startsWith("kotlin.") && !it.text.startsWith("java.") -> s
                         else -> s.substringAfterLast('.')
                     }
                 } ?: return

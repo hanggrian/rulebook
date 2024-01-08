@@ -48,8 +48,8 @@ class ConstructorPositionRuleTest : AbstractRuleTestCase<ConstructorPositionRule
               int bar = 0
             }
             """.trimIndent(),
-            2,
-            "Foo() {",
+            8,
+            "int bar = 0",
             Messages[MSG_PROPERTIES],
         )
 
@@ -67,8 +67,8 @@ class ConstructorPositionRuleTest : AbstractRuleTestCase<ConstructorPositionRule
               Foo(int a) {}
             }
             """.trimIndent(),
-            4,
-            "Foo() {",
+            2,
+            "void baz() {}",
             Messages[MSG_METHODS],
         )
 }

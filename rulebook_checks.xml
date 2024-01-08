@@ -14,7 +14,7 @@
     - Remove `MissingJavadocType`.
     - Add `JavadocMissingWhitespaceAfterAsterisk`.
   - Modify `Miscellaneous`:
-    - Add `TodoComment` with format `todo|fixme|fix`.
+    - Add `TodoComment` with format `todo|fixme`.
   - Configure `AbbreviationAsWordInName#allowedAbbreviationLength` from 0 to 2.
  -->
 <!DOCTYPE module PUBLIC
@@ -360,7 +360,7 @@
     </module>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="TodoComment">
-      <property name="format" value="todo|fixme|fix"/>
+      <property name="format" value="todo|fixme"/>
     </module>
 
     <!-- Third-party rules -->

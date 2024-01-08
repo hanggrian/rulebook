@@ -29,12 +29,10 @@ public class ConstructorPositionRule : RulebookRule("constructor-position") {
         val constructor = node.findChildByType(SECONDARY_CONSTRUCTOR) ?: return
 
         // checks for violation
-        if (constructor.siblings(true).any { it.isPropertyOrInitializer() }) {
-            emit(constructor.startOffset, Messages[MSG_PROPERTIES], false)
-        }
-        if (constructor.siblings(false).any { it.isMethod() }) {
-            emit(constructor.startOffset, Messages[MSG_METHODS], false)
-        }
+        constructor.siblings(true).filter { it.isPropertyOrInitializer() }
+            .forEach { emit(it.startOffset, Messages[MSG_PROPERTIES], false) }
+        constructor.siblings(false).filter { it.isMethod() }
+            .forEach { emit(it.startOffset, Messages[MSG_METHODS], false) }
     }
 
     internal companion object {

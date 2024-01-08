@@ -32,8 +32,8 @@ class RulebookRuleSetTest {
             SourceWordMeaningRule::class,
             StaticClassPositionRule::class,
             StringInterpolationRule::class,
-            SwitchCasesWrappingRule::class,
-            TodoCommentListingRule::class,
+            SwitchStatementWrappingRule::class,
+            TodoCommentFormattingRule::class,
         )
     }
 

@@ -1,6 +1,6 @@
 package com.example.java;
 
 public class TodoCommentListing {
-  // todo: add tests
-  // fix: fix bug
+  // todo add tests
+  // fixme memory leak
 }

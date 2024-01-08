@@ -20,12 +20,10 @@ public class ConstructorPositionVisitor : AbstractAstVisitor() {
             node.declaredConstructors.firstOrNull() ?: return super.visitClassComplete(node)
 
         // checks for violation
-        if (node.fields.any { it.lineNumber > constructor.lineNumber }) {
-            addViolation(constructor, Messages[MSG_PROPERTIES])
-        }
-        if (node.methods.any { it.lineNumber < constructor.lineNumber }) {
-            addViolation(constructor, Messages[MSG_METHODS])
-        }
+        node.fields.filter { it.lineNumber > constructor.lineNumber }
+            .forEach { addViolation(it, Messages[MSG_PROPERTIES]) }
+        node.methods.filter { it.lineNumber < constructor.lineNumber }
+            .forEach { addViolation(it, Messages[MSG_METHODS]) }
 
         super.visitClassComplete(node)
     }

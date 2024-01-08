@@ -35,7 +35,7 @@ class ConstructorPositionRuleTest {
                 init {}
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_PROPERTIES])
+        ).hasLintViolationWithoutAutoCorrect(4, 5, Messages[MSG_PROPERTIES])
 
     @Test
     fun `Property after constructor`() =
@@ -47,7 +47,7 @@ class ConstructorPositionRuleTest {
                 val bar = 0
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_PROPERTIES])
+        ).hasLintViolationWithoutAutoCorrect(4, 5, Messages[MSG_PROPERTIES])
 
     @Test
     fun `Method before constructor`() =
@@ -59,5 +59,5 @@ class ConstructorPositionRuleTest {
                 constructor() : this(0)
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(4, 5, Messages[MSG_METHODS])
+        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_METHODS])
 }
