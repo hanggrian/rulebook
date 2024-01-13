@@ -1,12 +1,15 @@
 package com.example.kotlin
 
 class IfStatementNesting<E>(val elements: List<E>?) {
-    fun iterate() {
-        if (elements == null) {
+    fun foo() {
+        if (true) {
             return
         }
-        for (element in elements) {
-            // ...
-        }
+        bar()
+        baz()
     }
+
+    fun bar() {}
+
+    fun baz() {}
 }

@@ -32,7 +32,7 @@ public class FileSizeLimitationRule : RulebookRule(
         }
 
         // checks for violation
-        node.text.split('\n')
+        node.text.lines()
             .let { if (it.last().isEmpty()) it.lastIndex else it.size }
             .takeIf { it > maxFileLength }
             ?: return

@@ -10,9 +10,9 @@ import java.lang.reflect.Modifier.isStatic
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position).
  */
 public class StaticClassPositionRule : RulebookRule() {
-    public override fun getName(): String = "StaticClassPosition"
+    override fun getName(): String = "StaticClassPosition"
 
-    public override fun getAstVisitorClass(): Class<*> = StaticClassPositionVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = StaticClassPositionVisitor::class.java
 }
 
 public class StaticClassPositionVisitor : AbstractAstVisitor() {

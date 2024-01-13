@@ -34,7 +34,7 @@ public class SourceWordMeaningCheck : RulebookCheck() {
         ignoredWords = words.toSet()
     }
 
-    public override fun getRequiredTokens(): IntArray =
+    override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -42,12 +42,14 @@ public class SourceWordMeaningCheck : RulebookCheck() {
             ANNOTATION_DEF,
         )
 
-    public override fun visitToken(node: DetailAST) {
+    override fun visitToken(node: DetailAST) {
+        // get identifier name
+        val (name, ast) = node.findFirstToken(IDENT)?.let { it.text to it } ?: return
+
         // checks for violation
-        val ident = node.findFirstToken(IDENT) ?: return
-        TITLE_CASE_REGEX.findAll(ident.text)
+        TITLE_CASE_REGEX.findAll(name)
             .filter { it.value in meaninglessWords && it.value !in ignoredWords }
-            .forEach { log(ident, Messages.get(MSG, it.value)) }
+            .forEach { log(ast, Messages.get(MSG, it.value)) }
     }
 
     internal companion object {

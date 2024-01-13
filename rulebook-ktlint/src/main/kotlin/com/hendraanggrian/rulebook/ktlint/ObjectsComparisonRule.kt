@@ -14,11 +14,20 @@ public class ObjectsComparisonRule : RulebookRule("objects-comparison") {
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
-        // checks for violation
-        when (node.elementType) {
-            EQEQEQ -> emit(node.startOffset, Messages[MSG_EQ], false)
-            EXCLEQEQEQ -> emit(node.startOffset, Messages[MSG_NEQ], false)
+        // first line of filter
+        if (node.elementType != EQEQEQ &&
+            node.elementType != EXCLEQEQEQ
+        ) {
+            return
         }
+
+        // checks for violation
+        val key =
+            when (node.elementType) {
+                EQEQEQ -> MSG_EQ
+                else -> MSG_NEQ
+            }
+        emit(node.startOffset, Messages[key], false)
     }
 
     internal companion object {

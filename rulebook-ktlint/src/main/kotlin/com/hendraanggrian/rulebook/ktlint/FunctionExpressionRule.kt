@@ -18,15 +18,17 @@ public class FunctionExpressionRule : RulebookRule("function-expression") {
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        if (node.elementType != FUN && node.elementType != PROPERTY_ACCESSOR) {
+        if (node.elementType != FUN &&
+            node.elementType != PROPERTY_ACCESSOR
+        ) {
             return
         }
 
         // checks for violation
-        val block = node.findChildByType(BLOCK) ?: return
-        (block as KtBlockExpression).children.singleOrNull()
-            .takeIf { it is KtReturnExpression }
-            ?: return
+        val block =
+            (node.findChildByType(BLOCK) as? KtBlockExpression)
+                ?.takeIf { it.children.singleOrNull() is KtReturnExpression }
+                ?: return
         emit(block.startOffset, Messages[MSG], false)
     }
 

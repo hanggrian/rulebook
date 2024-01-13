@@ -8,9 +8,9 @@ import org.codenarc.rule.AbstractAstVisitor
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming).
  */
 public class PropertyIdiomaticNamingRule : RulebookRule() {
-    public override fun getName(): String = "PropertyIdiomaticNaming"
+    override fun getName(): String = "PropertyIdiomaticNaming"
 
-    public override fun getAstVisitorClass(): Class<*> = PropertyIdiomaticNamingVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = PropertyIdiomaticNamingVisitor::class.java
 }
 
 public class PropertyIdiomaticNamingVisitor : AbstractAstVisitor() {

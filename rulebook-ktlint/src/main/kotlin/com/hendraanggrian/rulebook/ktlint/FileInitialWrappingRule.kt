@@ -20,9 +20,7 @@ public class FileInitialWrappingRule : RulebookRule("file-initial-wrapping") {
         }
 
         // checks for violation
-        node.firstChildNode
-            ?.takeIf { it.elementType == WHITE_SPACE }
-            ?: return
+        node.firstChildNode?.takeIf { it.elementType == WHITE_SPACE } ?: return
         emit(node.startOffset, Messages[MSG], false)
     }
 

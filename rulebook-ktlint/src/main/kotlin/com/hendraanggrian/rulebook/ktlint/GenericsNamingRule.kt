@@ -33,7 +33,9 @@ public class GenericsNamingRule : RulebookRule(
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        if (node.elementType != CLASS && node.elementType != FUN) {
+        if (node.elementType != CLASS &&
+            node.elementType != FUN
+        ) {
             return
         }
 

@@ -47,17 +47,15 @@ class TodoCommentFormattingRuleTest {
     fun `TODOs in multiline comment`() =
         assertThatCode(
             """
-            /**
-             * todo add tests
-             */
+            /** todo add tests */
 
             /**
              * FIXME: memory leak
              */
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 2, Messages.get(MSG_KEYWORD, "todo")),
-            LintViolation(6, 2, Messages.get(MSG_SEPARATOR, ":")),
+            LintViolation(1, 4, Messages.get(MSG_KEYWORD, "todo")),
+            LintViolation(4, 2, Messages.get(MSG_SEPARATOR, ":")),
         )
 
     @Test

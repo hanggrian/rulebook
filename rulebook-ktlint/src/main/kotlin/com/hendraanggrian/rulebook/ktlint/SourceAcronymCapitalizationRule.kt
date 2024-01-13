@@ -21,50 +21,50 @@ public class SourceAcronymCapitalizationRule : RulebookRule("source-acronym-capi
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        when (node.elementType) {
-            CLASS, OBJECT_DECLARATION, PROPERTY, FUN, VALUE_PARAMETER -> {
-                // allow all uppercase, which usually is static property
-                val identifier =
+        if (node.elementType != FILE &&
+            node.elementType != CLASS &&
+            node.elementType != OBJECT_DECLARATION &&
+            node.elementType != PROPERTY &&
+            node.elementType != FUN &&
+            node.elementType != VALUE_PARAMETER
+        ) {
+            return
+        }
+
+        // get file or identifier name
+        val (name, ast) =
+            when (node.elementType) {
+                FILE -> (getFileName(node) ?: return) to node
+                else ->
                     node.findChildByType(IDENTIFIER)
                         ?.takeUnless {
-                            node.elementType == PROPERTY &&
-                                it.text.isStaticPropertyName()
-                        } ?: return
-
-                // checks for violation
-                identifier.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) } ?: return
-                emit(
-                    identifier.startOffset,
-                    Messages.get(MSG, identifier.text.transform()),
-                    false,
-                )
-            }
-            FILE -> {
-                // checks for violation
-                val fileName =
-                    getFileName(node)
-                        ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
+                            // allow all uppercase, which usually is static property
+                            node.elementType == PROPERTY && STATIC_PROPERTY_REGEX.matches(it.text)
+                        }
+                        ?.let { it.text to it }
                         ?: return
-                emit(node.startOffset, Messages.get(MSG, fileName.transform()), false)
             }
-        }
+
+        // checks for violation
+        val replacement =
+            name.takeIf { ACRONYM_REGEX.containsMatchIn(it) }
+                ?.run {
+                    ACRONYM_REGEX.replace(this) {
+                        it.value.first() +
+                            when {
+                                it.range.last == lastIndex -> it.value.drop(1).lowercase()
+                                else -> it.value.drop(1).dropLast(1).lowercase() + it.value.last()
+                            }
+                    }
+                }
+                ?: return
+        emit(ast.startOffset, Messages.get(MSG, replacement), false)
     }
 
     internal companion object {
         const val MSG = "source.acronym.capitalization"
 
-        private val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
-
-        private fun String.isStaticPropertyName(): Boolean =
-            all { it.isUpperCase() || it.isDigit() || it == '_' }
-
-        private fun String.transform(): String =
-            ABBREVIATION_REGEX.replace(this) {
-                it.value.first() +
-                    when {
-                        it.range.last == lastIndex -> it.value.drop(1).lowercase()
-                        else -> it.value.drop(1).dropLast(1).lowercase() + it.value.last()
-                    }
-            }
+        private val ACRONYM_REGEX = Regex("[A-Z]{3,}")
+        private val STATIC_PROPERTY_REGEX = Regex("^[A-Z][A-Z0-9_]*\$")
     }
 }

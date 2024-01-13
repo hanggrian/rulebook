@@ -67,4 +67,19 @@ class BlockCommentSpacingRuleTest {
             LintViolation(5, 3, Messages[MSG_MULTILINE_START]),
             LintViolation(6, 3, Messages[MSG_MULTILINE_START]),
         )
+
+    @Test
+    fun `Single line with block tag`() =
+        assertThatCode(
+            """
+            /**@see java.util.List*/
+            fun foo(num: Int) {}
+
+            /** @see java.util.List */
+            fun bar(num: Int) {}
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(1, 4, Messages[MSG_LINE_START]),
+            LintViolation(1, 23, Messages[MSG_LINE_END]),
+        )
 }

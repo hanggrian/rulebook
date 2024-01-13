@@ -23,7 +23,7 @@ public class BlockTagsInitialSpacingRule : RulebookRule("block-tags-initial-spac
             return
         }
 
-        // only allow first tag
+        // only target first tag
         val kdocTag = node.findChildByType(KDOC_TAG) ?: return
 
         // checks for violation

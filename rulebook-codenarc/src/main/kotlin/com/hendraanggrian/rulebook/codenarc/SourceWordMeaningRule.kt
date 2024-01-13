@@ -13,19 +13,18 @@ public class SourceWordMeaningRule : RulebookRule() {
 
     public var ignoredWords: String = ""
 
-    public override fun getName(): String = "SourceWordMeaning"
+    override fun getName(): String = "SourceWordMeaning"
 
-    public override fun getAstVisitorClass(): Class<*> = SourceWordMeaningVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = SourceWordMeaningVisitor::class.java
 }
 
 public class SourceWordMeaningVisitor : AbstractAstVisitor() {
-    public override fun visitClassEx(node: ClassNode) {
+    override fun visitClassEx(node: ClassNode) {
         // checks for violation
+        val meaninglessWords = (rule as SourceWordMeaningRule).meaninglessWords.split(", ")
+        val ignoredWords = (rule as SourceWordMeaningRule).ignoredWords.split(", ")
         TITLE_CASE_REGEX.findAll(node.name)
-            .filter {
-                it.value in (rule as SourceWordMeaningRule).meaninglessWords.split(", ") &&
-                    it.value !in (rule as SourceWordMeaningRule).ignoredWords.split(", ")
-            }
+            .filter { it.value in meaninglessWords && it.value !in ignoredWords }
             .forEach { addViolation(node, Messages.get(MSG, it.value)) }
 
         super.visitClassEx(node)

@@ -24,15 +24,16 @@ public class StaticClassPositionRule : RulebookRule("static-class-position") {
         }
 
         // checks for violation
-        val class2 = node.treeParent.treeParent
-        class2.takeIf { n ->
-            n.siblings().any {
-                it.elementType == PROPERTY ||
-                    it.elementType == CLASS_INITIALIZER ||
-                    it.elementType == SECONDARY_CONSTRUCTOR ||
-                    it.elementType == FUN
-            }
-        } ?: return
+        val class2 =
+            node.treeParent.treeParent
+                .takeIf { n ->
+                    n.siblings().any {
+                        it.elementType == PROPERTY ||
+                            it.elementType == CLASS_INITIALIZER ||
+                            it.elementType == SECONDARY_CONSTRUCTOR ||
+                            it.elementType == FUN
+                    }
+                } ?: return
         emit(class2.startOffset, Messages[MSG], false)
     }
 

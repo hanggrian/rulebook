@@ -6,7 +6,7 @@ import org.codenarc.rule.AbstractAstVisitorRule
  * A CodeNarc rule with immutable name and priority.
  */
 public sealed class RulebookRule : AbstractAstVisitorRule() {
-    public override fun getPriority(): Int = 3
+    override fun getPriority(): Int = 3
 
     public final override fun setName(name: String?): Nothing =
         throw UnsupportedOperationException()
