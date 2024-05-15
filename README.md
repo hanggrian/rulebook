@@ -1,5 +1,5 @@
-[![Travis CI](https://img.shields.io/travis/com/hendraanggrian/rulebook)](https://travis-ci.com/github/hendraanggrian/rulebook/)
-[![Codecov](https://img.shields.io/codecov/c/github/hendraanggrian/rulebook)](https://codecov.io/gh/hendraanggrian/rulebook/)
+[![CircleCI](https://img.shields.io/circleci/build/gh/hendraanggrian/rulebook)](https://circleci.com/gh/hendraanggrian/rulebook/)
+[![Codecov](https://img.shields.io/codecov/c/gh/hendraanggrian/rulebook)](https://codecov.io/gh/hendraanggrian/rulebook/)
 [![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hendraanggrian/rulebook/rulebook-ktlint/)
 [![Nexus Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian.rulebook/rulebook-ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/rulebook/rulebook-ktlint/)
 [![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/)

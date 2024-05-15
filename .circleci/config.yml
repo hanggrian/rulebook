@@ -1,0 +1,18 @@
+version: 2.1
+orbs:
+  codecov: codecov/codecov@3
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:8.0
+    steps:
+      - checkout
+      - run: gradle build koverXmlReport
+      - codecov/upload
+
+workflow:
+  version: 2.1
+  build-test:
+    jobs:
+      - build
