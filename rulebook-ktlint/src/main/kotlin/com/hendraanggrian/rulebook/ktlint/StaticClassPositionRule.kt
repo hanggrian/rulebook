@@ -10,10 +10,10 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position)
  */
 public class StaticClassPositionRule : RulebookRule("static-class-position") {
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
@@ -24,16 +24,15 @@ public class StaticClassPositionRule : RulebookRule("static-class-position") {
         }
 
         // checks for violation
-        val class2 =
-            node.treeParent.treeParent
-                .takeIf { n ->
-                    n.siblings().any {
-                        it.elementType == PROPERTY ||
-                            it.elementType == CLASS_INITIALIZER ||
-                            it.elementType == SECONDARY_CONSTRUCTOR ||
-                            it.elementType == FUN
-                    }
-                } ?: return
+        val class2 = node.treeParent.treeParent
+        class2.takeIf { n ->
+            n.siblings().any {
+                it.elementType == PROPERTY ||
+                    it.elementType == CLASS_INITIALIZER ||
+                    it.elementType == SECONDARY_CONSTRUCTOR ||
+                    it.elementType == FUN
+            }
+        } ?: return
         emit(class2.startOffset, Messages[MSG], false)
     }
 

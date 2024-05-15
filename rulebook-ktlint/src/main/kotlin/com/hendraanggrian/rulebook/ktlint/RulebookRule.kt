@@ -7,8 +7,8 @@ import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProper
 
 public sealed class RulebookRule(
     id: String,
-    override val usesEditorConfigProperties: Set<EditorConfigProperty<*>> = emptySet(),
-    override val visitorModifiers: Set<VisitorModifier> = emptySet(),
+    public override val usesEditorConfigProperties: Set<EditorConfigProperty<*>> = emptySet(),
+    public override val visitorModifiers: Set<VisitorModifier> = emptySet(),
 ) : Rule(
         RuleId("${ID.value}:$id"),
         About(

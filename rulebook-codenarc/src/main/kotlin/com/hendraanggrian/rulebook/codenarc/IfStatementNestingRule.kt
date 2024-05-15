@@ -6,20 +6,21 @@ import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#if-statement-nesting).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#if-statement-nesting)
  */
 public class IfStatementNestingRule : RulebookRule() {
-    override fun getName(): String = "IfStatementNesting"
+    public override fun getName(): String = "IfStatementNesting"
 
-    override fun getAstVisitorClass(): Class<*> = IfStatementNestingVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = IfStatementNestingVisitor::class.java
 }
 
 public class IfStatementNestingVisitor : AbstractAstVisitor() {
-    override fun visitBlockStatement(statement: BlockStatement) {
+    public override fun visitBlockStatement(statement: BlockStatement) {
         // only proceed on one if and no else
         val if2 =
             statement.statements.singleOrNull()
-                ?.takeIf { (it as? IfStatement)?.elseBlock?.isEmpty ?: false } as IfStatement?
+                ?.takeUnless { it !is IfStatement }
+                ?.takeUnless { !(it as IfStatement).elseBlock.isEmpty } as IfStatement?
                 ?: return super.visitBlockStatement(statement)
 
         // report 2 lines content

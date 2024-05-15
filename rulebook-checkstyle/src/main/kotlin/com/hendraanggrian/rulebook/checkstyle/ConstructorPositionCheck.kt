@@ -13,10 +13,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position)
  */
 public class ConstructorPositionCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray =
+    public override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -24,7 +24,7 @@ public class ConstructorPositionCheck : RulebookCheck() {
             ANNOTATION_DEF,
         )
 
-    override fun visitToken(node: DetailAST) {
+    public override fun visitToken(node: DetailAST) {
         // avoid directly targeting constructor for efficiency
         val constructor = node.findFirstToken(OBJBLOCK).findFirstToken(CTOR_DEF) ?: return
 

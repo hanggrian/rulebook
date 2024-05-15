@@ -7,10 +7,10 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#switch-statement-wrapping).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#switch-statement-wrapping)
  */
 public class SwitchStatementWrappingRule : RulebookRule("switch-statement-wrapping") {
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
@@ -23,7 +23,8 @@ public class SwitchStatementWrappingRule : RulebookRule("switch-statement-wrappi
         // checks for violation
         val whitespace =
             node.treePrev
-                ?.takeIf { it.elementType == WHITE_SPACE && "\n\n" in it.text }
+                ?.takeUnless { it.elementType != WHITE_SPACE }
+                ?.takeIf { "\n\n" in it.text }
                 ?: return
         emit(whitespace.endOffset, Messages[MSG], false)
     }

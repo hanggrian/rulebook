@@ -5,16 +5,16 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position)
  */
 public class ConstructorPositionRule : RulebookRule() {
-    override fun getName(): String = "ConstructorPosition"
+    public override fun getName(): String = "ConstructorPosition"
 
-    override fun getAstVisitorClass(): Class<*> = ConstructorPositionVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = ConstructorPositionVisitor::class.java
 }
 
 public class ConstructorPositionVisitor : AbstractAstVisitor() {
-    override fun visitClassComplete(node: ClassNode) {
+    public override fun visitClassComplete(node: ClassNode) {
         // avoid directly targeting constructor for efficiency
         val constructor =
             node.declaredConstructors.firstOrNull() ?: return super.visitClassComplete(node)

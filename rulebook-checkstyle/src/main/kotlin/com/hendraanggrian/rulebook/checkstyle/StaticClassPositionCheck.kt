@@ -15,10 +15,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position)
  */
 public class StaticClassPositionCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray =
+    public override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -26,18 +26,16 @@ public class StaticClassPositionCheck : RulebookCheck() {
             ANNOTATION_DEF,
         )
 
-    override fun visitToken(node: DetailAST) {
-        // skip non-static
-        node.findFirstToken(MODIFIERS)?.contains(LITERAL_STATIC) ?: return
-
+    public override fun visitToken(node: DetailAST) {
         // checks for violation
-        node.takeIf { n ->
-            n.siblings().any {
-                it.type == VARIABLE_DEF ||
-                    it.type == CTOR_DEF ||
-                    it.type == METHOD_DEF
-            }
-        } ?: return
+        node.takeIf { it.findFirstToken(MODIFIERS)?.contains(LITERAL_STATIC) ?: false }
+            ?.takeIf { n ->
+                n.siblings().any {
+                    it.type == VARIABLE_DEF ||
+                        it.type == CTOR_DEF ||
+                        it.type == METHOD_DEF
+                }
+            } ?: return
         log(node, Messages[MSG])
     }
 

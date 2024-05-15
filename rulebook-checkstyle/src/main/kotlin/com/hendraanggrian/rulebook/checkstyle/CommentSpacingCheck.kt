@@ -6,14 +6,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#comment-spacing).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#comment-spacing)
  */
 public class CommentSpacingCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
+    public override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
 
-    override fun isCommentNodesRequired(): Boolean = true
+    public override fun isCommentNodesRequired(): Boolean = true
 
-    override fun visitToken(node: DetailAST) {
+    public override fun visitToken(node: DetailAST) {
         // checks for violation
         node.findFirstToken(COMMENT_CONTENT)
             .takeIf { !it.text.startsWith(' ') }

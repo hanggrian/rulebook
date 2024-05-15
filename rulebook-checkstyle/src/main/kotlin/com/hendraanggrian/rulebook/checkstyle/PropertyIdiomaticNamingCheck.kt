@@ -8,12 +8,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming)
  */
 public class PropertyIdiomaticNamingCheck : RulebookCheck() {
-    override fun getRequiredTokens(): IntArray = intArrayOf(VARIABLE_DEF)
+    public override fun getRequiredTokens(): IntArray = intArrayOf(VARIABLE_DEF)
 
-    override fun visitToken(node: DetailAST) {
+    public override fun visitToken(node: DetailAST) {
         // skip no declaration
         val typeName =
             node.findFirstToken(TYPE)?.actualText

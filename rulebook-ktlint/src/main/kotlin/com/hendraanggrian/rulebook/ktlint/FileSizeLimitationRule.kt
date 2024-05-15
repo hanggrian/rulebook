@@ -9,7 +9,7 @@ import org.ec4j.core.model.PropertyType.PropertyValueParser.POSITIVE_INT_VALUE_P
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#file-size-limitation).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#file-size-limitation)
  */
 public class FileSizeLimitationRule : RulebookRule(
     "file-size-limitation",
@@ -17,11 +17,11 @@ public class FileSizeLimitationRule : RulebookRule(
 ) {
     private var maxFileLength = MAX_FILE_LENGTH_PROPERTY.defaultValue
 
-    override fun beforeFirstNode(editorConfig: EditorConfig) {
+    public override fun beforeFirstNode(editorConfig: EditorConfig) {
         maxFileLength = editorConfig[MAX_FILE_LENGTH_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

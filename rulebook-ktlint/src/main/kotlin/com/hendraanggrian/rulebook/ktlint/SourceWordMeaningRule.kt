@@ -13,7 +13,7 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning)
  */
 public class SourceWordMeaningRule : RulebookRule(
     "source-word-meaning",
@@ -22,35 +22,33 @@ public class SourceWordMeaningRule : RulebookRule(
     private var meaninglessWords = MEANINGLESS_WORDS_PROPERTY.defaultValue
     private var ignoredWords = MEANINGLESS_WORDS_IGNORED_PROPERTY.defaultValue
 
-    override fun beforeFirstNode(editorConfig: EditorConfig) {
+    public override fun beforeFirstNode(editorConfig: EditorConfig) {
         meaninglessWords = editorConfig[MEANINGLESS_WORDS_PROPERTY]
         ignoredWords = editorConfig[MEANINGLESS_WORDS_IGNORED_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        if (node.elementType != FILE &&
-            node.elementType != CLASS &&
-            node.elementType != OBJECT_DECLARATION
-        ) {
-            return
-        }
-
-        // get file or identifier name
-        val (name, ast) =
-            when (node.elementType) {
-                FILE -> (getFileName(node) ?: return) to node
-                else -> node.findChildByType(IDENTIFIER)?.let { it.text to it } ?: return
+        when (node.elementType) {
+            CLASS, OBJECT_DECLARATION -> {
+                // checks for violation
+                val identifier = node.findChildByType(IDENTIFIER) ?: return
+                TITLE_CASE_REGEX.findAll(identifier.text)
+                    .filter { it.value in meaninglessWords && it.value !in ignoredWords }
+                    .forEach { emit(identifier.startOffset, Messages.get(MSG, it.value), false) }
             }
-
-        // checks for violation
-        TITLE_CASE_REGEX.findAll(name)
-            .filter { it.value in meaninglessWords && it.value !in ignoredWords }
-            .forEach { emit(ast.startOffset, Messages.get(MSG, it.value), false) }
+            FILE -> {
+                // checks for violation
+                val fileName = getFileName(node) ?: return
+                TITLE_CASE_REGEX.findAll(fileName)
+                    .filter { it.value in meaninglessWords && it.value !in ignoredWords }
+                    .forEach { emit(node.startOffset, Messages.get(MSG, it.value), false) }
+            }
+        }
     }
 
     internal companion object {

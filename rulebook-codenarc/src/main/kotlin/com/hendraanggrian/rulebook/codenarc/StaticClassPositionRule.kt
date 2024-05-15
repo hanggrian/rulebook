@@ -7,16 +7,16 @@ import org.codenarc.rule.AbstractAstVisitor
 import java.lang.reflect.Modifier.isStatic
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position)
  */
 public class StaticClassPositionRule : RulebookRule() {
-    override fun getName(): String = "StaticClassPosition"
+    public override fun getName(): String = "StaticClassPosition"
 
-    override fun getAstVisitorClass(): Class<*> = StaticClassPositionVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = StaticClassPositionVisitor::class.java
 }
 
 public class StaticClassPositionVisitor : AbstractAstVisitor() {
-    override fun visitClassComplete(node: ClassNode) {
+    public override fun visitClassComplete(node: ClassNode) {
         // get first inner static class
         var innerClass: ClassNode? = null
         for (c in node.innerClasses) {

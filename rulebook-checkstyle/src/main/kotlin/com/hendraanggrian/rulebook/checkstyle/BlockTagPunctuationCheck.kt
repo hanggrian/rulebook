@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tag-punctuation).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tag-punctuation)
  */
 public class BlockTagPunctuationCheck : AbstractJavadocCheck() {
     private var punctuatedTags = setOf("@param", "@return")
@@ -18,9 +18,9 @@ public class BlockTagPunctuationCheck : AbstractJavadocCheck() {
         punctuatedTags = tags.toSet()
     }
 
-    override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
+    public override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 
-    override fun visitJavadocToken(node: DetailNode) {
+    public override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
         node.takeUnless { it.children.first().text !in punctuatedTags } ?: return
 

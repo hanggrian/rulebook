@@ -4,7 +4,7 @@ import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 
 public class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
-    override fun getRuleProviders(): Set<RuleProvider> =
+    public override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
             RuleProvider { BlockCommentSpacingRule() },
             RuleProvider { BlockTagPunctuationRule() },

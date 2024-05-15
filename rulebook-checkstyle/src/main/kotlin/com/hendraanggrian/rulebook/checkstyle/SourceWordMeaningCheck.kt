@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning)
  */
 public class SourceWordMeaningCheck : RulebookCheck() {
     private var meaninglessWords =
@@ -34,7 +34,7 @@ public class SourceWordMeaningCheck : RulebookCheck() {
         ignoredWords = words.toSet()
     }
 
-    override fun getRequiredTokens(): IntArray =
+    public override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -42,14 +42,12 @@ public class SourceWordMeaningCheck : RulebookCheck() {
             ANNOTATION_DEF,
         )
 
-    override fun visitToken(node: DetailAST) {
-        // get identifier name
-        val (name, ast) = node.findFirstToken(IDENT)?.let { it.text to it } ?: return
-
+    public override fun visitToken(node: DetailAST) {
         // checks for violation
-        TITLE_CASE_REGEX.findAll(name)
+        val ident = node.findFirstToken(IDENT) ?: return
+        TITLE_CASE_REGEX.findAll(ident.text)
             .filter { it.value in meaninglessWords && it.value !in ignoredWords }
-            .forEach { log(ast, Messages.get(MSG, it.value)) }
+            .forEach { log(ident, Messages.get(MSG, it.value)) }
     }
 
     internal companion object {

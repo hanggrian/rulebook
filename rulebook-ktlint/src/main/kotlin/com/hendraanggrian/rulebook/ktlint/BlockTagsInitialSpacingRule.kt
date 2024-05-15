@@ -10,10 +10,10 @@ import com.pinterest.ktlint.rule.engine.core.api.prevSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tags-initial-spacing).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tags-initial-spacing)
  */
 public class BlockTagsInitialSpacingRule : RulebookRule("block-tags-initial-spacing") {
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
@@ -23,7 +23,7 @@ public class BlockTagsInitialSpacingRule : RulebookRule("block-tags-initial-spac
             return
         }
 
-        // only target first tag
+        // only allow first tag
         val kdocTag = node.findChildByType(KDOC_TAG) ?: return
 
         // checks for violation

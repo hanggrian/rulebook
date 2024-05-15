@@ -9,25 +9,23 @@ import org.jetbrains.kotlin.psi.KtBlockExpression
 import org.jetbrains.kotlin.psi.KtReturnExpression
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#function-expression).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#function-expression)
  */
 public class FunctionExpressionRule : RulebookRule("function-expression") {
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        if (node.elementType != FUN &&
-            node.elementType != PROPERTY_ACCESSOR
-        ) {
+        if (node.elementType != FUN && node.elementType != PROPERTY_ACCESSOR) {
             return
         }
 
         // checks for violation
         val block =
             (node.findChildByType(BLOCK) as? KtBlockExpression)
-                ?.takeIf { it.children.singleOrNull() is KtReturnExpression }
+                ?.takeIf { b -> b.children.singleOrNull() is KtReturnExpression }
                 ?: return
         emit(block.startOffset, Messages[MSG], false)
     }

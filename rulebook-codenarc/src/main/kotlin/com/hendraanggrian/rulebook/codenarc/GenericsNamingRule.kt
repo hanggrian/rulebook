@@ -8,23 +8,23 @@ import org.codehaus.groovy.ast.MethodNode
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-naming).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-naming)
  */
 public class GenericsNamingRule : RulebookRule() {
     public var commonGenerics: String = "E, K, N, T, V"
 
-    override fun getName(): String = "GenericsNaming"
+    public override fun getName(): String = "GenericsNaming"
 
-    override fun getAstVisitorClass(): Class<*> = GenericsNamingVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = GenericsNamingVisitor::class.java
 }
 
 public class GenericsNamingVisitor : AbstractAstVisitor() {
-    override fun visitClassEx(node: ClassNode) {
+    public override fun visitClassEx(node: ClassNode) {
         process(node, node.genericsTypes)
         super.visitClassEx(node)
     }
 
-    override fun visitMethodEx(node: MethodNode) {
+    public override fun visitMethodEx(node: MethodNode) {
         process(node, node.genericsTypes)
         super.visitMethodEx(node)
     }
@@ -34,10 +34,10 @@ public class GenericsNamingVisitor : AbstractAstVisitor() {
         val genericType = genericTypes?.singleOrNull() ?: return
 
         // checks for violation
-        val commonGenerics = (rule as GenericsNamingRule).commonGenerics.split(", ")
-        node.takeIf { !it.hasParentWithGenerics() && genericType.name !in commonGenerics }
+        val generics = (rule as GenericsNamingRule).commonGenerics
+        node.takeIf { !it.hasParentWithGenerics() && genericType.name !in generics.split(", ") }
             ?: return
-        addViolation(genericType, Messages.get(MSG, (rule as GenericsNamingRule).commonGenerics))
+        addViolation(genericType, Messages.get(MSG, generics))
     }
 
     internal companion object {

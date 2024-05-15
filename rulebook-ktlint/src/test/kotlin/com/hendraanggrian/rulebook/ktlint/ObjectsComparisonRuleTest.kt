@@ -16,9 +16,7 @@ class ObjectsComparisonRuleTest {
             """
             fun baz() {
                 if (foo == bar) {
-                    baz()
                 } else if (foo != bar) {
-                    baz()
                 }
             }
             """.trimIndent(),
@@ -30,14 +28,12 @@ class ObjectsComparisonRuleTest {
             """
             fun baz() {
                 if (foo === bar) {
-                    baz()
                 } else if (foo !== bar) {
-                    baz()
                 }
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(2, 13, Messages[MSG_EQ]),
-            LintViolation(4, 20, Messages[MSG_NEQ]),
+            LintViolation(3, 20, Messages[MSG_NEQ]),
         )
 }

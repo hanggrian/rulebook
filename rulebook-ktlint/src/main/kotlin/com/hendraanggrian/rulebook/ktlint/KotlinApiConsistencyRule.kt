@@ -9,59 +9,56 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.KtImportDirective
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#kotlin-api-consistency).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#kotlin-api-consistency)
  */
 public class KotlinApiConsistencyRule : RulebookRule("kotlin-api-consistency") {
     private var isTestClass = false
 
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        if (node.elementType != IMPORT_DIRECTIVE &&
-            node.elementType != TYPE_REFERENCE
-        ) {
-            return
-        }
+        when (node.elementType) {
+            IMPORT_DIRECTIVE -> {
+                // get text after `import`
+                val path = (node.psi as KtImportDirective).importPath!!.pathStr
 
-        // get import or reference
-        val (api, ast) =
-            when (node.elementType) {
-                IMPORT_DIRECTIVE -> {
-                    // get text after `import`
-                    val path = (node.psi as KtImportDirective).importPath!!.pathStr
-
-                    // check if running on test
-                    if (!isTestClass) {
-                        path.takeIf { s -> TEST_LIBRARIES.any { s.startsWith(it) } }
-                            ?.let { isTestClass = true }
-                    }
-
-                    val dotQualifiedExpression =
-                        node.findChildByType(DOT_QUALIFIED_EXPRESSION) ?: return
-                    path to dotQualifiedExpression
+                // check if running on test
+                if (!isTestClass) {
+                    path.takeIf { s -> TEST_LIBRARIES.any { s.startsWith(it) } }
+                        ?.let { isTestClass = true }
                 }
-                else -> node.qualifierName to node
-            }
 
-        // checks for violation
-        val replacement =
+                // checks for violation
+                val replacement = path.kotlinClassReplacement ?: return
+                val dotQualifiedExpression =
+                    node.findChildByType(DOT_QUALIFIED_EXPRESSION) ?: return
+                emit(dotQualifiedExpression.startOffset, Messages.get(MSG, replacement), false)
+            }
+            TYPE_REFERENCE -> {
+                // checks for violation
+                val replacement = node.qualifierName.kotlinClassReplacement ?: return
+                emit(node.startOffset, Messages.get(MSG, replacement), false)
+            }
+        }
+    }
+
+    private val String.kotlinClassReplacement: String?
+        get() =
             when {
-                api.startsWith("java.lang.") ->
+                startsWith("java.lang.") ->
                     try {
-                        Class.forName(api).kotlin.qualifiedName
+                        Class.forName(this).kotlin.qualifiedName
                             ?.takeIf { it.startsWith("kotlin.") }
                     } catch (e: ClassNotFoundException) {
                         null
                     }
-                api.startsWith("java.util.") -> COLLECTIONS_REPLACEMENT[api]
-                isTestClass && api.startsWith("org.junit") -> TEST_ANNOTATIONS_REPLACEMENT[api]
+                startsWith("java.util.") -> COLLECTIONS_REPLACEMENT[this]
+                isTestClass && startsWith("org.junit") -> TEST_ANNOTATIONS_REPLACEMENT[this]
                 else -> null
-            } ?: return
-        emit(ast.startOffset, Messages.get(MSG, replacement), false)
-    }
+            }
 
     internal companion object {
         const val MSG = "kotlin.api.consistency"

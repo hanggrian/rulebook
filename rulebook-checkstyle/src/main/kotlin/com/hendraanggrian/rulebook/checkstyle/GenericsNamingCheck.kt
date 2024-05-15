@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETER
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETERS
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-naming).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-naming)
  */
 public class GenericsNamingCheck : RulebookCheck() {
     private var commonGenerics = setOf("E", "K", "N", "T", "V")
@@ -23,7 +23,7 @@ public class GenericsNamingCheck : RulebookCheck() {
         commonGenerics = generics.toSet()
     }
 
-    override fun getRequiredTokens(): IntArray =
+    public override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -32,7 +32,7 @@ public class GenericsNamingCheck : RulebookCheck() {
             METHOD_DEF,
         )
 
-    override fun visitToken(node: DetailAST) {
+    public override fun visitToken(node: DetailAST) {
         // filter out multiple generics
         val typeParameter =
             node.findFirstToken(TYPE_PARAMETERS)?.children()

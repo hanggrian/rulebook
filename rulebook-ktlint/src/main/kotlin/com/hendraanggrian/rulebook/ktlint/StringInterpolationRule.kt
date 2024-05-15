@@ -10,10 +10,10 @@ import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#string-interpolation).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#string-interpolation)
  */
 public class StringInterpolationRule : RulebookRule("string-interpolation") {
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

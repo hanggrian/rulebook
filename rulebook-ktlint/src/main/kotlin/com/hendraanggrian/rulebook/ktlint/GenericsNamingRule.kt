@@ -15,7 +15,7 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-naming).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-naming)
  */
 public class GenericsNamingRule : RulebookRule(
     "generics-naming",
@@ -23,19 +23,17 @@ public class GenericsNamingRule : RulebookRule(
 ) {
     private var commonGenerics = COMMON_GENERICS_PROPERTY.defaultValue
 
-    override fun beforeFirstNode(editorConfig: EditorConfig) {
+    public override fun beforeFirstNode(editorConfig: EditorConfig) {
         commonGenerics = editorConfig[COMMON_GENERICS_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
-        if (node.elementType != CLASS &&
-            node.elementType != FUN
-        ) {
+        if (node.elementType != CLASS && node.elementType != FUN) {
             return
         }
 

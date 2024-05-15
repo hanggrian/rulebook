@@ -8,10 +8,10 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming)
  */
 public class PropertyIdiomaticNamingRule : RulebookRule("property-idiomatic-naming") {
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

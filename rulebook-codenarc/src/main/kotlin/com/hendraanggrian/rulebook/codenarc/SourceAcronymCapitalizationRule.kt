@@ -8,58 +8,58 @@ import org.codehaus.groovy.ast.MethodNode
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-acronym-capitalization).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-acronym-capitalization)
  */
 public class SourceAcronymCapitalizationRule : RulebookRule() {
-    override fun getName(): String = "SourceAcronymCapitalization"
+    public override fun getName(): String = "SourceAcronymCapitalization"
 
-    override fun getAstVisitorClass(): Class<*> = SourceAcronymCapitalizationVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> =
+        SourceAcronymCapitalizationVisitor::class.java
 }
 
 public class SourceAcronymCapitalizationVisitor : AbstractAstVisitor() {
-    override fun visitClassEx(node: ClassNode) {
-        process(node.name, node)
+    public override fun visitClassEx(node: ClassNode) {
+        process(node, node.name)
         super.visitClassEx(node)
     }
 
-    override fun visitField(node: FieldNode) {
+    public override fun visitField(node: FieldNode) {
         // allow all uppercase, which usually is static property
-        node.takeUnless { STATIC_PROPERTY_REGEX.matches(it.name) } ?: return super.visitField(node)
+        node.takeUnless { it.name.isStaticPropertyName() } ?: return super.visitField(node)
 
         // checks for violation
-        process(node.name, node)
+        process(node, node.name)
 
         super.visitField(node)
     }
 
-    override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
+    public override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
         // checks for violation
-        node.parameters.forEach { process(it.name, it) }
-        process(node.name, node)
-
+        node.parameters.forEach { process(it, it.name) }
+        process(node, node.name)
         super.visitConstructorOrMethod(node, isConstructor)
     }
 
-    private fun process(name: String, ast: ASTNode) {
-        val replacement =
-            name.takeIf { ACRONYM_REGEX.containsMatchIn(it) }
-                ?.run {
-                    ACRONYM_REGEX.replace(this) {
-                        it.value.first() +
-                            when {
-                                it.range.last == lastIndex -> it.value.drop(1).lowercase()
-                                else -> it.value.drop(1).dropLast(1).lowercase() + it.value.last()
-                            }
-                    }
-                }
-                ?: return
-        addViolation(ast, Messages.get(MSG, replacement))
+    private fun process(node: ASTNode, name: String) {
+        name.takeIf { REGEX.containsMatchIn(it) } ?: return
+        addViolation(node, Messages.get(MSG, name.transform()))
     }
 
     internal companion object {
         const val MSG = "source.acronym.capitalization"
 
-        private val ACRONYM_REGEX = Regex("[A-Z]{3,}")
-        private val STATIC_PROPERTY_REGEX = Regex("^[A-Z][A-Z0-9_]*\$")
+        private val REGEX = Regex("[A-Z]{3,}")
+
+        private fun String.isStaticPropertyName(): Boolean =
+            all { it.isUpperCase() || it.isDigit() || it == '_' }
+
+        private fun String.transform(): String =
+            REGEX.replace(this) {
+                it.value.first() +
+                    when {
+                        it.range.last == lastIndex -> it.value.drop(1).lowercase()
+                        else -> it.value.drop(1).dropLast(1).lowercase() + it.value.last()
+                    }
+            }
     }
 }

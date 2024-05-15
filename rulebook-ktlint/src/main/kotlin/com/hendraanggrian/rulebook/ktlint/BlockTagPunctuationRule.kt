@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tag-punctuation).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tag-punctuation)
  */
 public class BlockTagPunctuationRule : RulebookRule(
     "block-tag-punctuation",
@@ -21,11 +21,11 @@ public class BlockTagPunctuationRule : RulebookRule(
 ) {
     private var punctuatedTags = PUNCTUATED_BLOCK_TAGS_PROPERTY.defaultValue
 
-    override fun beforeFirstNode(editorConfig: EditorConfig) {
+    public override fun beforeFirstNode(editorConfig: EditorConfig) {
         punctuatedTags = editorConfig[PUNCTUATED_BLOCK_TAGS_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(
+    public override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

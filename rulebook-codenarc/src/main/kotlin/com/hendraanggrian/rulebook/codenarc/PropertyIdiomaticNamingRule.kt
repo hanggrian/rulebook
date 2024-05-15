@@ -5,16 +5,16 @@ import org.codehaus.groovy.ast.FieldNode
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming)
  */
 public class PropertyIdiomaticNamingRule : RulebookRule() {
-    override fun getName(): String = "PropertyIdiomaticNaming"
+    public override fun getName(): String = "PropertyIdiomaticNaming"
 
-    override fun getAstVisitorClass(): Class<*> = PropertyIdiomaticNamingVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = PropertyIdiomaticNamingVisitor::class.java
 }
 
 public class PropertyIdiomaticNamingVisitor : AbstractAstVisitor() {
-    override fun visitField(node: FieldNode) {
+    public override fun visitField(node: FieldNode) {
         // skip no declaration
         val typeName =
             node.type?.name

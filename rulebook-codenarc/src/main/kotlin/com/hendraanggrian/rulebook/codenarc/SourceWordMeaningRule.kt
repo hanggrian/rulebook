@@ -5,7 +5,7 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning).
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning)
  */
 public class SourceWordMeaningRule : RulebookRule() {
     public var meaninglessWords: String =
@@ -13,18 +13,19 @@ public class SourceWordMeaningRule : RulebookRule() {
 
     public var ignoredWords: String = ""
 
-    override fun getName(): String = "SourceWordMeaning"
+    public override fun getName(): String = "SourceWordMeaning"
 
-    override fun getAstVisitorClass(): Class<*> = SourceWordMeaningVisitor::class.java
+    public override fun getAstVisitorClass(): Class<*> = SourceWordMeaningVisitor::class.java
 }
 
 public class SourceWordMeaningVisitor : AbstractAstVisitor() {
-    override fun visitClassEx(node: ClassNode) {
+    public override fun visitClassEx(node: ClassNode) {
         // checks for violation
-        val meaninglessWords = (rule as SourceWordMeaningRule).meaninglessWords.split(", ")
-        val ignoredWords = (rule as SourceWordMeaningRule).ignoredWords.split(", ")
         TITLE_CASE_REGEX.findAll(node.name)
-            .filter { it.value in meaninglessWords && it.value !in ignoredWords }
+            .filter {
+                it.value in (rule as SourceWordMeaningRule).meaninglessWords.split(", ") &&
+                    it.value !in (rule as SourceWordMeaningRule).ignoredWords.split(", ")
+            }
             .forEach { addViolation(node, Messages.get(MSG, it.value)) }
 
         super.visitClassEx(node)
