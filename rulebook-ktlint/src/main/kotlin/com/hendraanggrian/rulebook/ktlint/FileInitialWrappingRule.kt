@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#file-initial-wrapping)
  */
 public class FileInitialWrappingRule : RulebookRule("file-initial-wrapping") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

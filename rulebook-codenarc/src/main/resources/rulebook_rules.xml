@@ -8,33 +8,34 @@
   - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
   - Remove `logging.xml`:
   - Modify `convention.xml`:
-    - Exclude `CompileStatic`.
-    - Include `PublicMethodsBeforeNonPublicMethods`.
+    - Remove `CompileStatic`.
+    - Add `PublicMethodsBeforeNonPublicMethods`.
   - Modify `formatting.xml`:
-    - Exclude `SpaceAfterOpeningBrace`.
-    - Exclude `SpaceBeforeClosingBrace`.
-    - Include `Indentation`.
+    - Remove `SpaceAfterOpeningBrace`.
+    - Remove `SpaceBeforeClosingBrace`.
+    - Add `Indentation`.
   - Modify `unused.xml`:
-    - Exclude `EmptyCatchBlock`.
-    - Exclude `EmptyClass`.
-    - Exclude `EmptyElseBlock`.
-    - Exclude `EmptyFinallyBlock`.
-    - Exclude `EmptyForStatement`.
-    - Exclude `EmptyIfStatement`.
-    - Exclude `EmptyInstanceInitializer`.
-    - Exclude `EmptyMethod`.
-    - Exclude `EmptyStaticInitializer`.
-    - Exclude `EmptySwitchStatement`.
-    - Exclude `EmptySynchronizedStatement`.
-    - Exclude `EmptyTryBlock`.
-    - Exclude `EmptyWhileStatement`.
-  - Include `SpaceAfterCommentDelimiter`.
+    - Remove `EmptyCatchBlock`.
+    - Remove `EmptyClass`.
+    - Remove `EmptyElseBlock`.
+    - Remove `EmptyFinallyBlock`.
+    - Remove `EmptyForStatement`.
+    - Remove `EmptyIfStatement`.
+    - Remove `EmptyInstanceInitializer`.
+    - Remove `EmptyMethod`.
+    - Remove `EmptyStaticInitializer`.
+    - Remove `EmptySwitchStatement`.
+    - Remove `EmptySynchronizedStatement`.
+    - Remove `EmptyTryBlock`.
+    - Remove `EmptyWhileStatement`.
+  - Add `SpaceAfterCommentDelimiter`.
   - Configure `LineLength#length` from 120 to 100.
  -->
-<ruleset xmlns="http://codenarc.org/ruleset/1.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"
-         xsi:noNamespaceSchemaLocation="http://codenarc.org/ruleset-schema.xsd">
+<ruleset
+  xmlns="http://codenarc.org/ruleset/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"
+  xsi:noNamespaceSchemaLocation="http://codenarc.org/ruleset-schema.xsd">
 
   <description>Rulebook third-party rules</description>
 
@@ -113,10 +114,10 @@
     <exclude name="UnnecessaryObjectReferences"/>
   </ruleset-ref>
 
+  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
   <rule class="org.codenarc.rule.formatting.LineLengthRule">
     <property name="length" value="100"/>
   </rule>
-  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
 
   <!-- Third-party rules -->
   <rule class="com.hendraanggrian.rulebook.codenarc.ConstructorPositionRule"/>

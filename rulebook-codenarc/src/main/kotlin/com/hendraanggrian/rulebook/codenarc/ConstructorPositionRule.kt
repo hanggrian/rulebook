@@ -8,13 +8,13 @@ import org.codenarc.rule.AbstractAstVisitor
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position)
  */
 public class ConstructorPositionRule : RulebookRule() {
-    public override fun getName(): String = "ConstructorPosition"
+    override fun getName(): String = "ConstructorPosition"
 
-    public override fun getAstVisitorClass(): Class<*> = ConstructorPositionVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = ConstructorPositionVisitor::class.java
 }
 
 public class ConstructorPositionVisitor : AbstractAstVisitor() {
-    public override fun visitClassComplete(node: ClassNode) {
+    override fun visitClassComplete(node: ClassNode) {
         // avoid directly targeting constructor for efficiency
         val constructor =
             node.declaredConstructors.firstOrNull() ?: return super.visitClassComplete(node)

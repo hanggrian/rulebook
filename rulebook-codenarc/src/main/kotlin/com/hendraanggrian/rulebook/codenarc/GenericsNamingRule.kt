@@ -13,18 +13,18 @@ import org.codenarc.rule.AbstractAstVisitor
 public class GenericsNamingRule : RulebookRule() {
     public var commonGenerics: String = "E, K, N, T, V"
 
-    public override fun getName(): String = "GenericsNaming"
+    override fun getName(): String = "GenericsNaming"
 
-    public override fun getAstVisitorClass(): Class<*> = GenericsNamingVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = GenericsNamingVisitor::class.java
 }
 
 public class GenericsNamingVisitor : AbstractAstVisitor() {
-    public override fun visitClassEx(node: ClassNode) {
+    override fun visitClassEx(node: ClassNode) {
         process(node, node.genericsTypes)
         super.visitClassEx(node)
     }
 
-    public override fun visitMethodEx(node: MethodNode) {
+    override fun visitMethodEx(node: MethodNode) {
         process(node, node.genericsTypes)
         super.visitMethodEx(node)
     }

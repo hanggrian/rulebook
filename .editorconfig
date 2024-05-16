@@ -20,6 +20,6 @@ ktlint_function_signature_rule_force_multiline_when_parameter_count_greater_or_e
 max_line_length = 100
 ij_java_continuation_indent_size = 4
 
-[*.groovy]
+[*.{groovy,py}]
 indent_size = 4
 max_line_length = 100

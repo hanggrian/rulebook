@@ -1,8 +1,8 @@
 # Developing
 
-Commands to print source files tree nodes for testing purposes.
-
 ## Ktlint
+
+Print AST of a file.
 
 ```shell
 ktlint --color printAST $file
@@ -12,7 +12,17 @@ ktlint --color printAST $file
 
 ## Checkstyle
 
+Print AST of a file.
+
 ```shell
 checkstyle -T $file
 checkstyle -J $file # for javadoc
+```
+
+## Pylint
+
+Use the following command to custom rules locally.
+
+```shell
+pip install -e rulebook-pylint
 ```

@@ -1,34 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  CodeNarc configuration file for Rulebook, find out more at https://github.com/hendraanggrian/rulebook/.
-
-  Derived from https://github.com/google/protobuf-gradle-plugin/blob/master/config/codenarc/codenarc.xml
-  with few changes:
-
-  - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
-  - Remove `logging.xml`:
-  - Modify `convention.xml`:
-    - Exclude `CompileStatic`.
-    - Include `PublicMethodsBeforeNonPublicMethods`.
-  - Modify `formatting.xml`:
-    - Exclude `SpaceAfterOpeningBrace`.
-    - Exclude `SpaceBeforeClosingBrace`.
-    - Include `Indentation`.
-  - Modify `unused.xml`:
-    - Exclude `EmptyCatchBlock`.
-    - Exclude `EmptyClass`.
-    - Exclude `EmptyElseBlock`.
-    - Exclude `EmptyFinallyBlock`.
-    - Exclude `EmptyForStatement`.
-    - Exclude `EmptyIfStatement`.
-    - Exclude `EmptyInstanceInitializer`.
-    - Exclude `EmptyMethod`.
-    - Exclude `EmptyStaticInitializer`.
-    - Exclude `EmptySwitchStatement`.
-    - Exclude `EmptySynchronizedStatement`.
-    - Exclude `EmptyTryBlock`.
-    - Exclude `EmptyWhileStatement`.
- -->
 <ruleset xmlns="http://codenarc.org/ruleset/1.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"

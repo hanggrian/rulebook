@@ -31,7 +31,7 @@ class SourceWordMeaningRuleTest {
             data class NavigationHelper
             sealed class PlanetInfo
             interface RouteData
-            object LogHelper
+            object LoggerWrapper
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 7, Messages.get(MSG, "Base")),
@@ -39,7 +39,7 @@ class SourceWordMeaningRuleTest {
             LintViolation(3, 12, Messages.get(MSG, "Helper")),
             LintViolation(4, 14, Messages.get(MSG, "Info")),
             LintViolation(5, 11, Messages.get(MSG, "Data")),
-            LintViolation(6, 8, Messages.get(MSG, "Helper")),
+            LintViolation(6, 8, Messages.get(MSG, "Wrapper")),
         )
 
     @Test

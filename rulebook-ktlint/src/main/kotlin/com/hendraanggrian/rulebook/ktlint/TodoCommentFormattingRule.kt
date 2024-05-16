@@ -12,7 +12,7 @@ import kotlin.text.RegexOption.IGNORE_CASE
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-comment-formatting)
  */
 public class TodoCommentFormattingRule : RulebookRule("todo-comment-formatting") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

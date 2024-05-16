@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#switch-statement-wrapping)
  */
 public class SwitchStatementWrappingRule : RulebookRule("switch-statement-wrapping") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

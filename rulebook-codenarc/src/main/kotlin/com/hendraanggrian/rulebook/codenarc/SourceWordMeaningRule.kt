@@ -13,13 +13,13 @@ public class SourceWordMeaningRule : RulebookRule() {
 
     public var ignoredWords: String = ""
 
-    public override fun getName(): String = "SourceWordMeaning"
+    override fun getName(): String = "SourceWordMeaning"
 
-    public override fun getAstVisitorClass(): Class<*> = SourceWordMeaningVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = SourceWordMeaningVisitor::class.java
 }
 
 public class SourceWordMeaningVisitor : AbstractAstVisitor() {
-    public override fun visitClassEx(node: ClassNode) {
+    override fun visitClassEx(node: ClassNode) {
         // checks for violation
         TITLE_CASE_REGEX.findAll(node.name)
             .filter {

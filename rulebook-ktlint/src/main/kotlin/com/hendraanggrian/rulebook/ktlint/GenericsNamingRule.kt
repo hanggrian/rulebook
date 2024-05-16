@@ -23,11 +23,11 @@ public class GenericsNamingRule : RulebookRule(
 ) {
     private var commonGenerics = COMMON_GENERICS_PROPERTY.defaultValue
 
-    public override fun beforeFirstNode(editorConfig: EditorConfig) {
+    override fun beforeFirstNode(editorConfig: EditorConfig) {
         commonGenerics = editorConfig[COMMON_GENERICS_PROPERTY]
     }
 
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

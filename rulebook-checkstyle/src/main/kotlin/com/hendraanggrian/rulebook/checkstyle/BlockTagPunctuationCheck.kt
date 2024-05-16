@@ -18,9 +18,9 @@ public class BlockTagPunctuationCheck : AbstractJavadocCheck() {
         punctuatedTags = tags.toSet()
     }
 
-    public override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
+    override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 
-    public override fun visitJavadocToken(node: DetailNode) {
+    override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
         node.takeUnless { it.children.first().text !in punctuatedTags } ?: return
 

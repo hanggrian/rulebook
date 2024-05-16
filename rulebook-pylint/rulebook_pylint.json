@@ -1,0 +1,6 @@
+{
+  "generics-naming": "Use common generics %s.",
+  "property-idiomatic-naming": "Use descriptive name.",
+  "source-acronym-capitalization": "Rename acronym to %s.",
+  "source-word-meaning": "Avoid meaningless word %s."
+}

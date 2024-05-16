@@ -21,27 +21,20 @@ class PropertyIdiomaticNamingRuleTest : AbstractRuleTestCase<PropertyIdiomaticNa
             """
             class Foo {
                 String name = ""
-
-                List<String> text = []
             }
             """.trimIndent(),
         )
 
     @Test
-    fun `Class names`() =
-        assertTwoViolations(
+    fun `Prohibited names`() =
+        assertSingleViolation(
             """
             class MyClass {
                 String string = ""
-
-                List<String> list = []
             }
             """.trimIndent(),
             2,
             "String string = \"\"",
-            Messages[MSG],
-            4,
-            "List<String> list = []",
             Messages[MSG],
         )
 }

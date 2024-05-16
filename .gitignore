@@ -12,5 +12,11 @@ local.properties
 .idea/
 out/
 
+# PyCharm
+venv/
+.venv/
+__pycache__/
+*.egg-info/
+
 # VSCode
 bin/

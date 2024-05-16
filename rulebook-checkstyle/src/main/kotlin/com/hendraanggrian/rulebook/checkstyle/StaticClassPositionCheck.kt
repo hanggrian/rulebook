@@ -18,7 +18,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position)
  */
 public class StaticClassPositionCheck : RulebookCheck() {
-    public override fun getRequiredTokens(): IntArray =
+    override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -26,7 +26,7 @@ public class StaticClassPositionCheck : RulebookCheck() {
             ANNOTATION_DEF,
         )
 
-    public override fun visitToken(node: DetailAST) {
+    override fun visitToken(node: DetailAST) {
         // checks for violation
         node.takeIf { it.findFirstToken(MODIFIERS)?.contains(LITERAL_STATIC) ?: false }
             ?.takeIf { n ->

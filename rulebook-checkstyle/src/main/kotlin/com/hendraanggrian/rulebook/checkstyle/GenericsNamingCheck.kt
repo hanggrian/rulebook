@@ -23,7 +23,7 @@ public class GenericsNamingCheck : RulebookCheck() {
         commonGenerics = generics.toSet()
     }
 
-    public override fun getRequiredTokens(): IntArray =
+    override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
@@ -32,7 +32,7 @@ public class GenericsNamingCheck : RulebookCheck() {
             METHOD_DEF,
         )
 
-    public override fun visitToken(node: DetailAST) {
+    override fun visitToken(node: DetailAST) {
         // filter out multiple generics
         val typeParameter =
             node.findFirstToken(TYPE_PARAMETERS)?.children()

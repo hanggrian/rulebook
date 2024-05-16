@@ -59,6 +59,25 @@ class SourceAcronymCapitalizationRuleTest :
         )
 
     @Test
+    fun `Function names with lowercase abbreviation`() =
+        assertNoViolations(
+            """
+            void myFunction() {}
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Function names with uppercase abbreviation`() =
+        assertSingleViolation(
+            """
+            void myFUNCTION() {}
+            """.trimIndent(),
+            1,
+            "void myFUNCTION() {}",
+            Messages.get(MSG, "myFunction"),
+        )
+
+    @Test
     fun `Property names with lowercase abbreviation`() =
         assertNoViolations(
             """
@@ -87,25 +106,6 @@ class SourceAcronymCapitalizationRuleTest :
             2,
             "var globalPROPERTY = 1",
             Messages.get(MSG, "globalProperty"),
-        )
-
-    @Test
-    fun `Function names with lowercase abbreviation`() =
-        assertNoViolations(
-            """
-            void myFunction() {}
-            """.trimIndent(),
-        )
-
-    @Test
-    fun `Function names with uppercase abbreviation`() =
-        assertSingleViolation(
-            """
-            void myFUNCTION() {}
-            """.trimIndent(),
-            1,
-            "void myFUNCTION() {}",
-            Messages.get(MSG, "myFunction"),
         )
 
     @Test
@@ -141,7 +141,7 @@ class SourceAcronymCapitalizationRuleTest :
         assertNoViolations(
             """
             class Foo {
-                final int MY_INT = 0
+                final int MY_PROPERTY = 0
             }
             """.trimIndent(),
         )

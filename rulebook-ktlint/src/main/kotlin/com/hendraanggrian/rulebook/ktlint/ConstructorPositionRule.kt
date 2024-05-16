@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position)
  */
 public class ConstructorPositionRule : RulebookRule("constructor-position") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

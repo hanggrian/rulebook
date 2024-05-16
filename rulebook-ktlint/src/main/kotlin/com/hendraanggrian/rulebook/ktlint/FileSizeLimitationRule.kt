@@ -17,11 +17,11 @@ public class FileSizeLimitationRule : RulebookRule(
 ) {
     private var maxFileLength = MAX_FILE_LENGTH_PROPERTY.defaultValue
 
-    public override fun beforeFirstNode(editorConfig: EditorConfig) {
+    override fun beforeFirstNode(editorConfig: EditorConfig) {
         maxFileLength = editorConfig[MAX_FILE_LENGTH_PROPERTY]
     }
 
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
@@ -46,7 +46,7 @@ public class FileSizeLimitationRule : RulebookRule(
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
-                        "rulebook_max_file_length",
+                        "rulebook_max_file_size",
                         "Max lines of code that is allowed.",
                         POSITIVE_INT_VALUE_PARSER,
                     ),

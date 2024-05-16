@@ -22,12 +22,12 @@ public class SourceWordMeaningRule : RulebookRule(
     private var meaninglessWords = MEANINGLESS_WORDS_PROPERTY.defaultValue
     private var ignoredWords = MEANINGLESS_WORDS_IGNORED_PROPERTY.defaultValue
 
-    public override fun beforeFirstNode(editorConfig: EditorConfig) {
+    override fun beforeFirstNode(editorConfig: EditorConfig) {
         meaninglessWords = editorConfig[MEANINGLESS_WORDS_PROPERTY]
         ignoredWords = editorConfig[MEANINGLESS_WORDS_IGNORED_PROPERTY]
     }
 
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

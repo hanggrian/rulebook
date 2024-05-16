@@ -21,11 +21,11 @@ public class BlockTagPunctuationRule : RulebookRule(
 ) {
     private var punctuatedTags = PUNCTUATED_BLOCK_TAGS_PROPERTY.defaultValue
 
-    public override fun beforeFirstNode(editorConfig: EditorConfig) {
+    override fun beforeFirstNode(editorConfig: EditorConfig) {
         punctuatedTags = editorConfig[PUNCTUATED_BLOCK_TAGS_PROPERTY]
     }
 
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

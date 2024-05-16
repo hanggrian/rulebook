@@ -11,19 +11,18 @@ import org.codenarc.rule.AbstractAstVisitor
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-acronym-capitalization)
  */
 public class SourceAcronymCapitalizationRule : RulebookRule() {
-    public override fun getName(): String = "SourceAcronymCapitalization"
+    override fun getName(): String = "SourceAcronymCapitalization"
 
-    public override fun getAstVisitorClass(): Class<*> =
-        SourceAcronymCapitalizationVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = SourceAcronymCapitalizationVisitor::class.java
 }
 
 public class SourceAcronymCapitalizationVisitor : AbstractAstVisitor() {
-    public override fun visitClassEx(node: ClassNode) {
+    override fun visitClassEx(node: ClassNode) {
         process(node, node.name)
         super.visitClassEx(node)
     }
 
-    public override fun visitField(node: FieldNode) {
+    override fun visitField(node: FieldNode) {
         // allow all uppercase, which usually is static property
         node.takeUnless { it.name.isStaticPropertyName() } ?: return super.visitField(node)
 
@@ -33,7 +32,7 @@ public class SourceAcronymCapitalizationVisitor : AbstractAstVisitor() {
         super.visitField(node)
     }
 
-    public override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
+    override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
         // checks for violation
         node.parameters.forEach { process(it, it.name) }
         process(node, node.name)

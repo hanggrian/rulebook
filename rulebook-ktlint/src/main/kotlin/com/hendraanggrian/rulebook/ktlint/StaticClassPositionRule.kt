@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position)
  */
 public class StaticClassPositionRule : RulebookRule("static-class-position") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

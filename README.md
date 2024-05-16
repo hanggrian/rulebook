@@ -6,16 +6,17 @@
 
 # Rulebook
 
-Third-party rules for JVM-based lint tools, meant to be used in conjunction with
-official ones. Most of the rules are opinionated personal code styles. However,
-some already exists in other linters, providing the same experience across
-languages.
+Third-party rules for JVM and Python lint tools, meant to be used in conjunction
+with official ones. Most of the rules are opinionated personal code styles.
+However, some already exists in other linters, providing the same experience
+across multiple languages.
 
 Language | Linter | Main Rules
 --- | --- | ---
 Kotlin | [Ktlint](https://pinterest.github.io/ktlint/) | [Ktlint Official Style](https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/)
 Java | [Checkstyle](https://checkstyle.org/) | [Google Java Style](https://google.github.io/styleguide/javaguide.html)
-Groovy | [CodeNarc](https://codenarc.org/) | [Groovy Style Guide](https://groovy-lang.org/style-guide.html)
+Groovy | [CodeNarc](https://codenarc.org/) | [Standard Groovy Style](https://groovy-lang.org/style-guide.html)
+Python | [Pylint](https://pylint.org/) | [Google Python Style](https://google.github.io/styleguide/pyguide.html)
 
 [View all rules](https://github.com/hendraanggrian/rulebook/wiki/)
 

@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#objects-comparison)
  */
 public class ObjectsComparisonRule : RulebookRule("objects-comparison") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

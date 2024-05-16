@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.psi.KtImportDirective
 public class KotlinApiConsistencyRule : RulebookRule("kotlin-api-consistency") {
     private var isTestClass = false
 
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

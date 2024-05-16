@@ -12,7 +12,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#empty-block-wrapping)
  */
 public class EmptyBlockWrappingRule : RulebookRule("empty-block-wrapping") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

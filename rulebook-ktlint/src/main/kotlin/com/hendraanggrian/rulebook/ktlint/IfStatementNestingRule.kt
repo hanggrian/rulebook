@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.psi.psiUtil.children
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#if-statement-nesting)
  */
 public class IfStatementNestingRule : RulebookRule("if-statement-nesting") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,

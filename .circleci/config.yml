@@ -1,9 +1,9 @@
 version: 2.1
 orbs:
-  codecov: codecov/codecov@3
+  codecov: codecov/codecov@4.1.0
 
 jobs:
-  build:
+  build-jvm:
     docker:
       - image: cimg/openjdk:8.0
     steps:
@@ -11,8 +11,17 @@ jobs:
       - run: gradle build koverXmlReport
       - codecov/upload
 
-workflow:
-  version: 2.1
-  build-test:
+  build-python:
+    docker:
+      - image: cimg/python:3.10
+    steps:
+      - checkout
+      - run: pip install -r rulebook-pylint/requirements.txt
+      - run: pytest --cov .
+      - codecov/upload
+
+workflows:
+  main:
     jobs:
-      - build
+      - build-jvm
+      - build-python

@@ -4,41 +4,34 @@ import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.getFileName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#source-acronym-capitalization)
  */
 public class SourceAcronymCapitalizationRule : RulebookRule("source-acronym-capitalization") {
-    public override fun beforeVisitChildNodes(
+    override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
         emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
     ) {
         // first line of filter
         when (node.elementType) {
-            CLASS, OBJECT_DECLARATION, PROPERTY, FUN, VALUE_PARAMETER -> {
-                // allow all uppercase, which usually is static property
+            CLASS, OBJECT_DECLARATION -> {
+                // checks for violation
                 val identifier =
                     node.findChildByType(IDENTIFIER)
-                        ?.takeUnless {
-                            node.elementType == PROPERTY &&
-                                it.text.isStaticPropertyName()
-                        } ?: return
-
-                // checks for violation
-                identifier.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) } ?: return
+                        ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
+                        ?: return
                 emit(
                     identifier.startOffset,
                     Messages.get(MSG, identifier.text.transform()),
                     false,
                 )
             }
+
             FILE -> {
                 // checks for violation
                 val fileName =
