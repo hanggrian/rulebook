@@ -2,9 +2,9 @@ import unittest
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
+from rulebook_pylint.source_acronym_capitalization_checker import SourceAcronymCapitalizationChecker
 
-from source_acronym_capitalization_checker import SourceAcronymCapitalizationChecker
-from testing import msg
+from .testing import msg
 
 
 # pylint: disable=missing-class-docstring
@@ -15,7 +15,7 @@ class TestSourceAcronymCapitalizationChecker(CheckerTestCase):
         def1 = extract_node(
             '''
             class MySqlClass: #@
-                stub = 1
+                print()
             ''',
         )
         with self.assertNoMessages():
@@ -25,11 +25,11 @@ class TestSourceAcronymCapitalizationChecker(CheckerTestCase):
         def1 = extract_node(
             '''
             class MySQLClass: #@
-                stub = 1
+                print()
             ''',
         )
         with self.assertAddsMessages(
-            msg(SourceAcronymCapitalizationChecker, def1, (2, 0), 'MySqlClass'),
+            msg(SourceAcronymCapitalizationChecker.MSG, (2, 0, 16), def1, 'MySqlClass'),
         ):
             self.checker.visit_classdef(def1)
 

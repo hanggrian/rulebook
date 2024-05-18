@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=66.1"]
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = "rulebook-pylint"
+version = '0.5'
+license = { text = "Apache-2.0" }
+description = "Extended lint rules for JVM and Python"
+readme = "README.md"
+authors = [
+  { name = "Hendra Anggrian", email = "hendraanggrian@gmail.com" }
+]
+keywords = ["lint rules", "lint checkers"]
+requires-python = ">=3.8.0"
+
+[project.urls]
+"Source Code" = "https://github.com/hendraanggrian/rulebook"
+"Bug Tracker" = "https://github.com/hendraanggrian/rulebook/issues"
+
+[tool.setuptools.packages.find]
+where = ["rulebook_pylint"]
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.aliases]
+test = "pytest"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["*test_*.py"]

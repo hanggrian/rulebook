@@ -25,7 +25,7 @@ public class ConstructorPositionCheck : RulebookCheck() {
         )
 
     override fun visitToken(node: DetailAST) {
-        // avoid directly targeting constructor for efficiency
+        // there may be multiple constructors in JVM, target class instead for efficiency
         val constructor = node.findFirstToken(OBJBLOCK).findFirstToken(CTOR_DEF) ?: return
 
         // checks for violation

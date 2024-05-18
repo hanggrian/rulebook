@@ -25,7 +25,7 @@ public class ConstructorPositionRule : RulebookRule("constructor-position") {
             return
         }
 
-        // avoid directly targeting constructor for efficiency
+        // there may be multiple constructors in JVM, target class instead for efficiency
         val constructor = node.findChildByType(SECONDARY_CONSTRUCTOR) ?: return
 
         // checks for violation

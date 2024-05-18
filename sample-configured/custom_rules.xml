@@ -85,11 +85,10 @@
   <rule class="org.codenarc.rule.size.ClassSizeRule">
     <property name="maxLines" value="10"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNamingRule">
+  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsCommonNamingRule">
     <property name="commonGenerics" value="A"/>
   </rule>
   <rule class="com.hendraanggrian.rulebook.codenarc.SourceWordMeaningRule">
     <property name="meaninglessWords" value="Hello, World"/>
-    <property name="ignoredWords" value="Hello"/>
   </rule>
 </ruleset>

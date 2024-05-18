@@ -419,7 +419,7 @@
     <module name="BlockTagPunctuation"/>
     <module name="CommentSpacing"/>
     <module name="ConstructorPosition"/>
-    <module name="GenericsNaming"/>
+    <module name="GenericsCommonNaming"/>
     <module name="SourceWordMeaning"/>
     <module name="StaticClassPosition"/>
   </module>

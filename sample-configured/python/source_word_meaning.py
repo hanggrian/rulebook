@@ -1,2 +1,2 @@
-class WorldRocket:
+class HellWorl:
     stub = 1

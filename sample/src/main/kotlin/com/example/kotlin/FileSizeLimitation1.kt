@@ -3,503 +3,500 @@
 
 package com.example.kotlin
 
-class FileSizeLimitation1() {
-    var num = 0
-
+class FileSizeLimitation1 {
     fun foo() {
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
-        num++
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
+
+        println()
     }
 }

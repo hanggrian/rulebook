@@ -15,6 +15,6 @@ class SourceWordMeaningCheckTest {
         assertEquals(4, checker.process(prepareFiles("SourceWordMeaning2")))
 
     @Test
-    fun `Violating both ends`() =
-        assertEquals(2, checker.process(prepareFiles("SourceWordMeaning3")))
+    fun `Utility class found`() =
+        assertEquals(1, checker.process(prepareFiles("SourceWordMeaning3")))
 }

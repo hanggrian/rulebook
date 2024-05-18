@@ -35,12 +35,18 @@ public class TodoCommentFormattingRule : RulebookRule("todo-comment-formatting")
 
         // checks for violation
         if (KEYWORD_REGEX.containsMatchIn(text)) {
-            val keyword = KEYWORD_REGEX.find(text)!!.value
-            emit(node.startOffset, Messages.get(MSG_KEYWORD, keyword), false)
+            emit(
+                node.startOffset,
+                Messages.get(MSG_KEYWORD, KEYWORD_REGEX.find(text)!!.value),
+                false,
+            )
         }
         if (SEPARATOR_REGEX.containsMatchIn(text)) {
-            val separator = SEPARATOR_REGEX.find(text)!!.value.last()
-            emit(node.startOffset, Messages.get(MSG_SEPARATOR, separator), false)
+            emit(
+                node.startOffset,
+                Messages.get(MSG_SEPARATOR, SEPARATOR_REGEX.find(text)!!.value.last()),
+                false,
+            )
         }
     }
 

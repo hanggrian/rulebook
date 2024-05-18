@@ -2,9 +2,9 @@ import unittest
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
+from rulebook_pylint.property_idiomatic_naming_checker import PropertyIdiomaticNamingChecker
 
-from property_idiomatic_naming_checker import PropertyIdiomaticNamingChecker
-from testing import msg
+from .testing import msg
 
 
 # pylint: disable=missing-class-docstring
@@ -30,11 +30,11 @@ class TestPropertyIdiomaticNamingChecker(CheckerTestCase):
             ''',
         )
         with self.assertAddsMessages(
-            msg(PropertyIdiomaticNamingChecker, def1.targets[0], (2, 0)),
+            msg(PropertyIdiomaticNamingChecker.MSG, (2, 0, 7), def1.targets[0]),
         ):
             self.checker.visit_assign(def1)
         with self.assertAddsMessages(
-            msg(PropertyIdiomaticNamingChecker, def2.target, (3, 0)),
+            msg(PropertyIdiomaticNamingChecker.MSG, (3, 0, 6), def2.target),
         ):
             self.checker.visit_assign(def2)
 
@@ -54,8 +54,8 @@ class TestPropertyIdiomaticNamingChecker(CheckerTestCase):
             ''',
         )
         with self.assertAddsMessages(
-            msg(PropertyIdiomaticNamingChecker, def1.targets[0].elts[0], (2, 1)),
-            msg(PropertyIdiomaticNamingChecker, def1.targets[0].elts[1], (2, 10)),
+            msg(PropertyIdiomaticNamingChecker.MSG, (2, 1, 8), def1.targets[0].elts[0]),
+            msg(PropertyIdiomaticNamingChecker.MSG, (2, 10, 16), def1.targets[0].elts[1]),
         ):
             self.checker.visit_assign(def1)
 

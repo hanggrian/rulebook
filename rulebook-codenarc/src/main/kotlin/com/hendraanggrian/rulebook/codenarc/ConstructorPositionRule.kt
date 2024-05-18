@@ -15,7 +15,7 @@ public class ConstructorPositionRule : RulebookRule() {
 
 public class ConstructorPositionVisitor : AbstractAstVisitor() {
     override fun visitClassComplete(node: ClassNode) {
-        // avoid directly targeting constructor for efficiency
+        // there may be multiple constructors in JVM, target class instead for efficiency
         val constructor =
             node.declaredConstructors.firstOrNull() ?: return super.visitClassComplete(node)
 

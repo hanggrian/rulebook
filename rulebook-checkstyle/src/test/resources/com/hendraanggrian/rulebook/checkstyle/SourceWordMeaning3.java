@@ -1,4 +1,4 @@
 public class SourceWordMeaning {
-  public class BaseSpaceshipManager {
+  public class SpaceshipUtil {
   }
 }

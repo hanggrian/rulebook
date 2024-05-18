@@ -121,7 +121,7 @@
 
   <!-- Third-party rules -->
   <rule class="com.hendraanggrian.rulebook.codenarc.ConstructorPositionRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNamingRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsCommonNamingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.IfStatementNestingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.PropertyIdiomaticNamingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.SourceAcronymCapitalizationRule"/>

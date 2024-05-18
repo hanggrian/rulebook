@@ -12,7 +12,7 @@ public sealed class RulebookRule(
 ) : Rule(
         RuleId("${ID.value}:$id"),
         About(
-            maintainer = "Rulebook",
+            maintainer = "Hendra Anggrian",
             repositoryUrl = "https://github.com/hendraanggrian/rulebook",
             issueTrackerUrl = "https://github.com/hendraanggrian/rulebook/issues",
         ),

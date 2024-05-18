@@ -1,6 +1,7 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.SourceWordMeaningRule.Companion.MSG
+import com.hendraanggrian.rulebook.ktlint.SourceWordMeaningRule.Companion.MSG_ALL
+import com.hendraanggrian.rulebook.ktlint.SourceWordMeaningRule.Companion.MSG_UTIL
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -26,36 +27,33 @@ class SourceWordMeaningRuleTest {
     fun `Meaningless class names`() =
         assertThatCode(
             """
-            class BaseSpaceship
-            annotation class AbstractRocket
-            data class NavigationHelper
-            sealed class PlanetInfo
-            interface RouteData
-            object LoggerWrapper
+            class SpaceshipManager
+            annotation class RocketManager
+            data class NavigationManager
+            sealed class PlanetManager
+            interface RouteManager
+            object LoggerManager
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 7, Messages.get(MSG, "Base")),
-            LintViolation(2, 18, Messages.get(MSG, "Abstract")),
-            LintViolation(3, 12, Messages.get(MSG, "Helper")),
-            LintViolation(4, 14, Messages.get(MSG, "Info")),
-            LintViolation(5, 11, Messages.get(MSG, "Data")),
-            LintViolation(6, 8, Messages.get(MSG, "Wrapper")),
+            LintViolation(1, 7, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(2, 18, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(3, 12, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(4, 14, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(5, 11, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(6, 8, Messages.get(MSG_ALL, "Manager")),
         )
 
     @Test
-    fun `Violating both ends`() =
+    fun `Utility class found`() =
         assertThatCode(
             """
-            class BaseSpaceshipManager
+            class SpaceshipUtil
             """.trimIndent(),
-        ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 7, Messages.get(MSG, "Base")),
-            LintViolation(1, 7, Messages.get(MSG, "Manager")),
-        )
+        ).hasLintViolationWithoutAutoCorrect(1, 7, Messages.get(MSG_UTIL, "Spaceships"))
 
     @Test
-    fun `Utility file`() =
+    fun `Utility file found`() =
         assertThatCode("")
-            .asFileWithPath("/some/path/Util.kt")
-            .hasLintViolationWithoutAutoCorrect(1, 1, Messages.get(MSG, "Util"))
+            .asFileWithPath("/some/path/SpaceshipUtility.kt")
+            .hasLintViolationWithoutAutoCorrect(1, 1, Messages.get(MSG_UTIL, "Spaceships"))
 }

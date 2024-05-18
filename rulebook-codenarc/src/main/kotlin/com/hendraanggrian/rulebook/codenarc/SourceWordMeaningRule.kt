@@ -9,9 +9,7 @@ import org.codenarc.rule.AbstractAstVisitor
  */
 public class SourceWordMeaningRule : RulebookRule() {
     public var meaninglessWords: String =
-        "Abstract, Base, Util, Utility, Helper, Manager, Wrapper, Data, Info"
-
-    public var ignoredWords: String = ""
+        "Util, Utility, Helper, Manager, Wrapper"
 
     override fun getName(): String = "SourceWordMeaning"
 
@@ -22,17 +20,24 @@ public class SourceWordMeaningVisitor : AbstractAstVisitor() {
     override fun visitClassEx(node: ClassNode) {
         // checks for violation
         TITLE_CASE_REGEX.findAll(node.name)
-            .filter {
-                it.value in (rule as SourceWordMeaningRule).meaninglessWords.split(", ") &&
-                    it.value !in (rule as SourceWordMeaningRule).ignoredWords.split(", ")
+            .filter { it.value in (rule as SourceWordMeaningRule).meaninglessWords.split(", ") }
+            .forEach {
+                when (val word = it.value) {
+                    "Util", "Utility" ->
+                        addViolation(
+                            node,
+                            Messages.get(MSG_UTIL, node.name.substringBefore(word) + 's'),
+                        )
+                    else -> addViolation(node, Messages.get(MSG_ALL, word))
+                }
             }
-            .forEach { addViolation(node, Messages.get(MSG, it.value)) }
 
         super.visitClassEx(node)
     }
 
     internal companion object {
-        const val MSG = "source.word.meaning"
+        const val MSG_ALL = "source.word.meaning.all"
+        const val MSG_UTIL = "source.word.meaning.util"
 
         private val TITLE_CASE_REGEX =
             Regex("((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|([A-Z]+(?=([A-Z][a-z])|(\$)|([0-9]))))")

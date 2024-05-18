@@ -1,5 +1,6 @@
-class BaseRocket:
-    stub = 1
+class BaseManager:
+    print()
+
 
 class SpaceshipUtility:
-    stub = 1
+    print()

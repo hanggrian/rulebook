@@ -399,12 +399,11 @@
     <module name="BlockTagPunctuation">
       <property name="punctuatedTags" value="@exception"/>
     </module>
-    <module name="GenericsNaming">
+    <module name="GenericsCommonNaming">
       <property name="commonGenerics" value="A"/>
     </module>
     <module name="SourceWordMeaning">
       <property name="meaninglessWords" value="Hello, World"/>
-      <property name="ignoredWords" value="Hello"/>
     </module>
   </module>
 </module>

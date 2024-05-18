@@ -17,14 +17,12 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  */
 public class SourceWordMeaningRule : RulebookRule(
     "source-word-meaning",
-    setOf(MEANINGLESS_WORDS_PROPERTY, MEANINGLESS_WORDS_IGNORED_PROPERTY),
+    setOf(MEANINGLESS_WORDS_PROPERTY),
 ) {
     private var meaninglessWords = MEANINGLESS_WORDS_PROPERTY.defaultValue
-    private var ignoredWords = MEANINGLESS_WORDS_IGNORED_PROPERTY.defaultValue
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         meaninglessWords = editorConfig[MEANINGLESS_WORDS_PROPERTY]
-        ignoredWords = editorConfig[MEANINGLESS_WORDS_IGNORED_PROPERTY]
     }
 
     override fun beforeVisitChildNodes(
@@ -38,21 +36,38 @@ public class SourceWordMeaningRule : RulebookRule(
                 // checks for violation
                 val identifier = node.findChildByType(IDENTIFIER) ?: return
                 TITLE_CASE_REGEX.findAll(identifier.text)
-                    .filter { it.value in meaninglessWords && it.value !in ignoredWords }
-                    .forEach { emit(identifier.startOffset, Messages.get(MSG, it.value), false) }
+                    .filter { it.value in meaninglessWords }
+                    .forEach { process(identifier, identifier.text, it, emit) }
             }
             FILE -> {
                 // checks for violation
                 val fileName = getFileName(node) ?: return
                 TITLE_CASE_REGEX.findAll(fileName)
-                    .filter { it.value in meaninglessWords && it.value !in ignoredWords }
-                    .forEach { emit(node.startOffset, Messages.get(MSG, it.value), false) }
+                    .filter { it.value in meaninglessWords }
+                    .forEach { process(node, fileName, it, emit) }
             }
         }
     }
 
+    private fun process(
+        node: ASTNode,
+        fullName: String,
+        result: MatchResult,
+        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
+    ): Unit =
+        when (val word = result.value) {
+            "Util", "Utility" ->
+                emit(
+                    node.startOffset,
+                    Messages.get(MSG_UTIL, fullName.substringBefore(word) + 's'),
+                    false,
+                )
+            else -> emit(node.startOffset, Messages.get(MSG_ALL, word), false)
+        }
+
     internal companion object {
-        const val MSG = "source.word.meaning"
+        const val MSG_ALL = "source.word.meaning.all"
+        const val MSG_UTIL = "source.word.meaning.util"
 
         private val TITLE_CASE_REGEX =
             Regex("((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|([A-Z]+(?=([A-Z][a-z])|(\$)|([0-9]))))")
@@ -65,30 +80,7 @@ public class SourceWordMeaningRule : RulebookRule(
                         "A set of banned words.",
                         CommaSeparatedListValueParser(),
                     ),
-                defaultValue =
-                    setOf(
-                        "Abstract",
-                        "Base",
-                        "Util",
-                        "Utility",
-                        "Helper",
-                        "Manager",
-                        "Wrapper",
-                        "Data",
-                        "Info",
-                    ),
-                propertyWriter = { it.joinToString() },
-            )
-
-        val MEANINGLESS_WORDS_IGNORED_PROPERTY =
-            EditorConfigProperty(
-                type =
-                    LowerCasingPropertyType(
-                        "rulebook_meaningless_words_ignored",
-                        "Exclusion to the banned words.",
-                        CommaSeparatedListValueParser(),
-                    ),
-                defaultValue = emptySet(),
+                defaultValue = setOf("Util", "Utility", "Helper", "Manager", "Wrapper"),
                 propertyWriter = { it.joinToString() },
             )
     }

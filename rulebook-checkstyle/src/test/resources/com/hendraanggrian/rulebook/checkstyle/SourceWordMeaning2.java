@@ -1,13 +1,13 @@
 public class SourceWordMeaning {
-  public class BaseSpaceship {
+  public class SpaceshipManager {
   }
 
-  public interface AbstractRocket {
+  public interface RocketManager {
   }
 
-  public @interface NavigatorHelper {
+  public @interface NavigatorManager {
   }
 
-  public enum PlanetInfo {
+  public enum PlanetManager {
   }
 }

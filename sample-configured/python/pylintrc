@@ -3,6 +3,8 @@
 # Derived from https://github.com/google/styleguide/blob/gh-pages/pylintrc
 # with few changes:
 #
+# - Revert jobs from 4 to 1 processes, multiple jobs can report duplicate errors.
+# - Revert indent from 2 to 4 spaces.
 # - Modify `disable`:
 #   - Add 'missing-module-docstring'
 
@@ -20,13 +22,18 @@ persistent=no
 
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
-load-plugins=generics_naming_checker,
-  property_idiomatic_naming_checker,
-  source_acronym_capitalization_checker,
-  source_word_meaning_checker
+load-plugins=
+  rulebook_pylint.constructor_position_checker,
+  rulebook_pylint.file_size_limitation_checker,
+  rulebook_pylint.generics_common_naming_checker,
+  rulebook_pylint.object_structural_comparison_checker,
+  rulebook_pylint.property_idiomatic_naming_checker,
+  rulebook_pylint.source_acronym_capitalization_checker,
+  rulebook_pylint.source_word_meaning_checker,
+  rulebook_pylint.todo_comment_formatting_checker,
 
 # Use multiple processes to speed up Pylint.
-jobs=4
+jobs=1
 
 # Allow loading of arbitrary C extensions. Extensions are imported into the
 # active Python interpreter and may run arbitrary code.
@@ -54,7 +61,8 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
-disable=R,
+disable=
+  R,
   abstract-method,
   apply-builtin,
   arguments-differ,
@@ -249,9 +257,7 @@ max-line-length=100
 # lines made too long by directives to pytype.
 
 # Regexp for a line that is allowed to be longer than the limit.
-ignore-long-lines=(?x)(
-  ^\s*(\#\ )?<?https?://\S+>?$|
-  ^\s*(from\s+\S+\s+)?import\s+.+$)
+ignore-long-lines=(?x)(^\s*(\#\ )?<?https?://\S+>?$|^\s*(from\s+\S+\s+)?import\s+.+$)
 
 # Allow the body of an if to be on the same line as the test if there is no
 # else.
@@ -347,7 +353,8 @@ spelling-store-unknown-words=no
 [IMPORTS]
 
 # Deprecated modules which should not be used, separated by a comma
-deprecated-modules=regsub,
+deprecated-modules=
+  regsub,
   TERMIOS,
   Bastion,
   rexec,
@@ -381,27 +388,32 @@ analyse-fallback-blocks=no
 [CLASSES]
 
 # List of method names used to declare (i.e. assign) instance attributes.
-defining-attr-methods=__init__,
+defining-attr-methods=
+  __init__,
   __new__,
   setUp
 
 # List of member names, which should be excluded from the protected access
 # warning.
-exclude-protected=_asdict,
+exclude-protected=
+  _asdict,
   _fields,
   _replace,
   _source,
   _make
 
 # List of valid names for the first argument in a class method.
-valid-classmethod-first-arg=cls,
+valid-classmethod-first-arg=
+  cls,
   class_
 
 # List of valid names for the first argument in a metaclass class method.
 valid-metaclass-classmethod-first-arg=mcs
 
+
 [OTHERS]
 
 rulebook-common-generics=A
+rulebook-max-file-size=10
 rulebook-meaningless-words=Hello, World
-rulebook-meaningless-words-ignored=World
+rulebook-prohibited-properties=m_str, m_list
