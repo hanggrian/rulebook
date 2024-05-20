@@ -16,8 +16,8 @@ if TYPE_CHECKING:
 class TodoCommentFormattingChecker(BaseRawFileChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-comment-formatting
     """
-    MSG_KEYWORD: str = 'todo-comment-formatting-keyword'
-    MSG_SEPARATOR: str = 'todo-comment-formatting-separator'
+    MSG_KEYWORD: str = 'todo.comment.formatting.keyword'
+    MSG_SEPARATOR: str = 'todo.comment.formatting.separator'
 
     KEYWORD_REGEX: Pattern = regex.compile(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
     SEPARATOR_REGEX: Pattern = regex.compile(r'\b(todo|fixme)\S', IGNORECASE)

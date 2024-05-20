@@ -12,7 +12,12 @@ authors = [
   { name = "Hendra Anggrian", email = "hendraanggrian@gmail.com" }
 ]
 keywords = ["lint rules", "lint checkers"]
-requires-python = ">=3.8.0"
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+]
 
 [project.urls]
 "Source Code" = "https://github.com/hendraanggrian/rulebook"
@@ -20,6 +25,7 @@ requires-python = ">=3.8.0"
 
 [tool.setuptools.packages.find]
 where = ["rulebook_pylint"]
+exclude = ["tests*"]
 
 [tool.setuptools.package-dir]
 "" = "."
@@ -28,5 +34,5 @@ where = ["rulebook_pylint"]
 test = "pytest"
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["rulebook_pylint/tests"]
 python_files = ["*test_*.py"]

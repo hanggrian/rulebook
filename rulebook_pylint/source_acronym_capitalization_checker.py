@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class SourceAcronymCapitalizationChecker(BaseChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#source-acronym-capitalization
     """
-    MSG: str = 'source-acronym-capitalization'
+    MSG: str = 'source.acronym.capitalization'
 
     ABBREVIATION_REGEX: Pattern = regex.compile(r'[A-Z]{3,}')
 
@@ -25,7 +25,7 @@ class SourceAcronymCapitalizationChecker(BaseChecker):
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
         if not bool(SourceAcronymCapitalizationChecker.ABBREVIATION_REGEX.search(node.name)):
-            return
+            return None
         self.add_message(
             SourceAcronymCapitalizationChecker.MSG,
             node=node,

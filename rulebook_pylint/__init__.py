@@ -1,4 +1,4 @@
-from __future__ import annotations
+"""main"""
 
 from typing import TYPE_CHECKING
 

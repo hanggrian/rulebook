@@ -13,8 +13,8 @@ if TYPE_CHECKING:
 class ConstructorPositionChecker(BaseChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position
     """
-    MSG_PROPERTIES: str = 'constructor-position-properties'
-    MSG_METHODS: str = 'constructor-position-methods'
+    MSG_PROPERTIES: str = 'constructor.position.properties'
+    MSG_METHODS: str = 'constructor.position.methods'
 
     name: str = 'constructor-position'
     msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG_PROPERTIES, MSG_METHODS)
@@ -22,7 +22,7 @@ class ConstructorPositionChecker(BaseChecker):
     def visit_functiondef(self, node: FunctionDef) -> None:
         # there is only one constructor in Python, target method directly
         if node.name != '__init__':
-            return
+            return None
 
         # checks for violation
         next_node: NodeNG = node.next_sibling()

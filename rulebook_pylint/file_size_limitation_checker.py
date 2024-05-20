@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 class FileSizeLimitationChecker(BaseRawFileChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#file-size-limitation
     """
-    MSG: str = 'file-size-limitation'
+    MSG: str = 'file.size.limitation'
 
     name: str = 'file-size-limitation'
     msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG)
@@ -34,7 +34,7 @@ class FileSizeLimitationChecker(BaseRawFileChecker):
             size: int = len(stream.readlines())
             max_size: int = self.linter.config.rulebook_max_file_size
             if size < max_size:
-                return
+                return None
             self.add_message(FileSizeLimitationChecker.MSG, line=0, args=max_size)
 
 

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 class GenericsCommonNamingChecker(BaseChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-common-naming
     """
-    MSG: str = 'generics-common-naming'
+    MSG: str = 'generics.common.naming'
 
     name: str = 'generics-common-naming'
     msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG)
@@ -32,19 +32,19 @@ class GenericsCommonNamingChecker(BaseChecker):
     def visit_assign(self, node: Assign) -> None:
         # only target TypeVar declaration
         if not isinstance(node.value, Call):
-            return
+            return None
         call: Call = node.value
         if not isinstance(call.func, Name) or call.func.name != 'TypeVar':
-            return
+            return None
 
         # get assigned property
         target: AssignName | None = get_assignname(node)
         if not target:
-            return
+            return None
 
         # checks for violation
         if target.name in self.linter.config.rulebook_common_generics:
-            return
+            return None
         self.add_message(GenericsCommonNamingChecker.MSG, node=target, args=target.name)
 
 

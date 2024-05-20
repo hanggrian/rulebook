@@ -14,9 +14,10 @@ out/
 
 # PyCharm
 venv/
+.pytest_cache/
 __pycache__/
 *.egg-info/
-**/.coverage
+.coverage
 
 # VSCode
 bin/

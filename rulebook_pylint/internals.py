@@ -1,19 +1,20 @@
 from json import load
 from os.path import join, dirname
 
-from astroid import Assign, AnnAssign, AssignName
+from astroid import NodeNG, Assign, AnnAssign, AssignName
+from pylint.typing import MessageDefinitionTuple
 
 
 class Messages:
-    FILENAME: str = 'rulebook_pylint.json'
+    FILENAME: str = 'resources/rulebook_pylint.json'
     counter: int = 7531  # arbitrary number to distinguish from PEP
 
     with open(join(dirname(__file__), FILENAME), 'r', encoding='UTF-8') as file:
         bundle: object = load(file)
 
     @staticmethod
-    def get(*keys: str) -> dict[str, tuple[str, str, str]]:
-        result: dict[str, tuple[str, str, str]] = {}
+    def get(*keys: str) -> dict[str, MessageDefinitionTuple]:
+        result: dict[str, MessageDefinitionTuple] = {}
         for key in keys:
             Messages.counter = Messages.counter + 1
             result[f'E{Messages.counter:04d}'] = (
@@ -25,9 +26,14 @@ class Messages:
 
 
 def get_assignname(node: Assign) -> AssignName | None:
-    target: AssignName
-    if isinstance(node, AnnAssign) and isinstance(node.target, AssignName):
-        return node.target
+    target: NodeNG
+    if isinstance(node, AnnAssign):
+        target = node.target
     elif isinstance(node.targets[0], AssignName):
-        return node.targets[0]
+        target = node.targets[0]
+    else:
+        return None
+
+    if isinstance(target, AssignName):
+        return target
     return None

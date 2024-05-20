@@ -15,8 +15,8 @@ if TYPE_CHECKING:
 class SourceWordMeaningChecker(BaseChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#source-word-meaning
     """
-    MSG_ALL: str = 'source-word-meaning-all'
-    MSG_UTIL: str = 'source-word-meaning-util'
+    MSG_ALL: str = 'source.word.meaning.all'
+    MSG_UTIL: str = 'source.word.meaning.util'
 
     TITLE_CASE_REGEX: Pattern = regex.compile(
         r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|' +
@@ -50,7 +50,7 @@ class SourceWordMeaningChecker(BaseChecker):
                     node=node,
                     args=node.name[:node.name.index(word)] + 's',
                 )
-                return
+                return None
             self.add_message(SourceWordMeaningChecker.MSG_ALL, node=node, args=word)
 
 

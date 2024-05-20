@@ -24,5 +24,5 @@ checkstyle -J $file # for javadoc
 Use the following command to custom rules locally.
 
 ```shell
-pip install -e rulebook-pylint
+pip install -e rulebook_pylint
 ```

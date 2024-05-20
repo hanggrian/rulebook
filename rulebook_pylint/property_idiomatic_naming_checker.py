@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from astroid import NodeNG, Assign, AnnAssign, AugAssign, Tuple, AssignName
+from astroid import NodeNG, Assign, AssignAttr, AssignName, AnnAssign, AugAssign, Tuple
 from pylint.checkers import BaseChecker
 from pylint.typing import MessageDefinitionTuple, Options
 
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 class PropertyIdiomaticNamingChecker(BaseChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#property-idiomatic-naming
     """
-    MSG: str = 'property-idiomatic-naming'
+    MSG: str = 'property.idiomatic.naming'
 
     name: str = 'property-idiomatic-naming'
     msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG)
@@ -32,24 +32,31 @@ class PropertyIdiomaticNamingChecker(BaseChecker):
     def visit_assign(self, node: Assign) -> None:
         # skip assignments with operator
         if isinstance(node, AugAssign):
-            return
+            return None
 
         # checks for violation
-        target: AssignName
-        if isinstance(node, AnnAssign) and isinstance(node.target, AssignName):
+        target: NodeNG
+        if isinstance(node, AnnAssign):
             target = node.target
-            self._process(target, target.name)
-            return
+            self._process(target)
+            return None
         for target in node.targets:
             if not isinstance(target, Tuple):
-                self._process(target, target.name)
+                self._process(target)
                 continue
             for elt in target.elts:
-                self._process(elt, elt.name)
+                self._process(elt)
 
-    def _process(self, node: NodeNG, name: str) -> None:
+    def _process(self, node: NodeNG) -> None:
+        if isinstance(node, AssignAttr):
+            name: str = node.attrname
+        elif isinstance(node, AssignName):
+            name: str = node.name
+        else:
+            return None
+
         if name not in self.linter.config.rulebook_prohibited_properties:
-            return
+            return None
         self.add_message(PropertyIdiomaticNamingChecker.MSG, node=node)
 
 

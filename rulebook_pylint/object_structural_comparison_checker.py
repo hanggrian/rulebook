@@ -13,8 +13,8 @@ if TYPE_CHECKING:
 class ObjectStructuralComparisonChecker(BaseChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#object-structural-comparison
     """
-    MSG_EQ: str = 'object-structural-comparison-eq'
-    MSG_NEQ: str = 'object-structural-comparison-neq'
+    MSG_EQ: str = 'object.structural.comparison.eq'
+    MSG_NEQ: str = 'object.structural.comparison.neq'
 
     name: str = 'object-structural-comparison'
     msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG_EQ, MSG_NEQ)
@@ -25,12 +25,12 @@ class ObjectStructuralComparisonChecker(BaseChecker):
         elif isinstance(node, Assign):
             self._process(node.value)
 
-    def _process(self, node: NodeNG):
+    def _process(self, node: NodeNG) -> None:
         # skip no comparison and multiple operators
         if not isinstance(node, Compare):
-            return
+            return None
         if len(node.ops) > 1:
-            return
+            return None
         ops = node.ops[0]
 
         # find qualifying operator
@@ -40,13 +40,13 @@ class ObjectStructuralComparisonChecker(BaseChecker):
         elif operator == 'is':
             msg: str = ObjectStructuralComparisonChecker.MSG_EQ
         else:
-            return
+            return None
 
         # checks for violation
         left: NodeNG = node.left
         right: NodeNG = ops[1]
         if left.as_string() == 'None' or right.as_string() == 'None':
-            return
+            return None
         self.add_message(msg, node=node)
 
 
