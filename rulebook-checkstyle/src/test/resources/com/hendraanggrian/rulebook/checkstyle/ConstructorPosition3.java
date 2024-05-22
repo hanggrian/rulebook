@@ -1,13 +1,13 @@
 class ConstructorPosition {
-  public class Foo {
-    public void baz() {
-    }
+    public class Foo {
+        public void baz() {
+        }
 
-    public Foo() {
-      this(0);
-    }
+        public Foo() {
+            this(0);
+        }
 
-    public Foo(int a) {
+        public Foo(int a) {
+        }
     }
-  }
 }

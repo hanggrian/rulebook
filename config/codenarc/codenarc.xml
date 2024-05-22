@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The standard Rulebook CodeNarc configuration.
+
+  Rulebook: https://github.com/hendraanggrian/rulebook/
+  CodeNarc: https://codenarc.org/
+  Source template: https://github.com/google/protobuf-gradle-plugin/blob/master/config/codenarc/codenarc.xml
+
+  Modifications:
+
+  - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
+  - Remove 'logging.xml':
+  - Modify 'convention.xml':
+    - Remove 'CompileStatic'.
+    - Add 'PublicMethodsBeforeNonPublicMethods'.
+  - Modify 'formatting.xml':
+    - Remove 'SpaceAfterOpeningBrace'.
+    - Remove 'SpaceBeforeClosingBrace'.
+    - Add 'Indentation'.
+  - Modify 'unused.xml':
+    - Remove 'EmptyCatchBlock'.
+    - Remove 'EmptyClass'.
+    - Remove 'EmptyElseBlock'.
+    - Remove 'EmptyFinallyBlock'.
+    - Remove 'EmptyForStatement'.
+    - Remove 'EmptyIfStatement'.
+    - Remove 'EmptyInstanceInitializer'.
+    - Remove 'EmptyMethod'.
+    - Remove 'EmptyStaticInitializer'.
+    - Remove 'EmptySwitchStatement'.
+    - Remove 'EmptySynchronizedStatement'.
+    - Remove 'EmptyTryBlock'.
+    - Remove 'EmptyWhileStatement'.
+  - Add 'SpaceAfterCommentDelimiter'.
+  - Configure 'LineLength#length' from 120 to 100.
+ -->
+<ruleset
+  xmlns="http://codenarc.org/ruleset/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"
+  xsi:noNamespaceSchemaLocation="http://codenarc.org/ruleset-schema.xsd">
+
+  <description>Rulebook third-party rules</description>
+
+  <ruleset-ref path="rulesets/basic.xml">
+    <exclude name="EmptyCatchBlock"/>
+    <exclude name="EmptyClass"/>
+    <exclude name="EmptyElseBlock"/>
+    <exclude name="EmptyFinallyBlock"/>
+    <exclude name="EmptyForStatement"/>
+    <exclude name="EmptyIfStatement"/>
+    <exclude name="EmptyInstanceInitializer"/>
+    <exclude name="EmptyMethod"/>
+    <exclude name="EmptyStaticInitializer"/>
+    <exclude name="EmptySwitchStatement"/>
+    <exclude name="EmptySynchronizedStatement"/>
+    <exclude name="EmptyTryBlock"/>
+    <exclude name="EmptyWhileStatement"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/braces.xml"/>
+  <ruleset-ref path="rulesets/concurrency.xml"/>
+  <ruleset-ref path="rulesets/convention.xml">
+    <exclude name="CompileStatic"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/design.xml">
+    <exclude name="Instanceof"/>
+    <exclude name="ImplementationAsType"/>
+    <exclude name="BuilderMethodWithSideEffects"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/dry.xml">
+    <exclude name="DuplicateStringLiteral"/>
+    <exclude name="DuplicateNumberLiteral"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/exceptions.xml"/>
+  <ruleset-ref path="rulesets/formatting.xml">
+    <exclude name="ClassEndsWithBlankLine"/>
+    <exclude name="ClassStartsWithBlankLine"/>
+    <exclude name="SpaceAfterOpeningBrace"/>
+    <exclude name="SpaceBeforeClosingBrace"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/generic.xml"/>
+  <ruleset-ref path="rulesets/grails.xml"/>
+  <ruleset-ref path="rulesets/groovyism.xml"/>
+  <ruleset-ref path="rulesets/imports.xml"/>
+  <ruleset-ref path="rulesets/jdbc.xml"/>
+  <ruleset-ref path="rulesets/junit.xml">
+    <exclude name="JUnitTestMethodWithoutAssert"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/naming.xml">
+    <exclude name="ConfusingMethodName"/>
+    <!-- unit tests have arbitrary names -->
+    <exclude name="MethodName"/>
+    <exclude name="FactoryMethodName"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/security.xml">
+    <exclude name="JavaIoPackageAccess"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/serialization.xml"/>
+  <ruleset-ref path="rulesets/size.xml">
+    <!-- AbcMetric, CrapMetric and CyclomaticComplexity require external libs -->
+    <exclude name="AbcMetric"/>
+    <exclude name="CrapMetric"/>
+    <exclude name="CyclomaticComplexity"/>
+    <exclude name="NestedBlockDepth"/>
+    <exclude name="MethodCount"/>
+  </ruleset-ref>
+  <ruleset-ref path="rulesets/unnecessary.xml">
+    <exclude name="UnnecessaryCollectCall"/>
+    <exclude name="UnnecessaryGetter"/>
+
+    <exclude name="UnnecessaryGString"/>
+    <exclude name="UnnecessarySetter"/>
+    <exclude name="UnnecessaryPublicModifier"/>
+    <exclude name="UnnecessaryReturnKeyword"/>
+
+    <!-- Poor suggestion when using static typing -->
+    <exclude name="UnnecessaryObjectReferences"/>
+  </ruleset-ref>
+
+  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
+  <rule class="org.codenarc.rule.formatting.LineLengthRule">
+    <property name="length" value="100"/>
+  </rule>
+
+  <!-- Third-party rules -->
+  <rule class="com.hendraanggrian.rulebook.codenarc.ConstructorPositionRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsCommonNamingRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.IfStatementNestingRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.PropertyIllegalNamingRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.SourceAcronymCapitalizationRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.SourceWordMeaningRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.StaticClassPositionRule"/>
+</ruleset>

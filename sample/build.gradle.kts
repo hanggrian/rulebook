@@ -9,15 +9,8 @@ plugins {
     codenarc
 }
 
-checkstyle {
-    toolVersion = libs.versions.checkstyle.get()
-    configFile = rootDir.resolve("rulebook_checks.xml")
-}
-
-codenarc {
-    toolVersion = libs.versions.codenarc.get()
-    configFile = rootDir.resolve("rulebook_rules.xml")
-}
+checkstyle.toolVersion = libs.versions.checkstyle.get()
+codenarc.toolVersion = libs.versions.codenarc.get()
 
 dependencies {
     ktlintRuleset(project(":$releaseArtifact-ktlint"))

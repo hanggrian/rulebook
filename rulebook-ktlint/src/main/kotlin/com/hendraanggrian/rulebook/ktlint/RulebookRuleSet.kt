@@ -19,7 +19,7 @@ public class RulebookRuleSet : RuleSetProviderV3(RulebookRule.ID) {
             RuleProvider { IfStatementNestingRule() },
             RuleProvider { KotlinApiConsistencyRule() },
             RuleProvider { ObjectStructuralComparisonRule() },
-            RuleProvider { PropertyIdiomaticNamingRule() },
+            RuleProvider { PropertyIllegalNamingRule() },
             RuleProvider { QualifierRedundancyRule() },
             RuleProvider { SourceAcronymCapitalizationRule() },
             RuleProvider { SourceWordMeaningRule() },

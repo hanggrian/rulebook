@@ -1,0 +1,21 @@
+{
+  "file-size-limitation": "Reduce file size to %d.",
+  "object-structural-comparison-eq": "Use equality ==.",
+  "object-structural-comparison-neq": "Use equality !=.",
+  "string-single-quoting": "Use single quotes.",
+  "todo-comment-formatting-keyword": "Illegal keyword %s.",
+  "todo-comment-formatting-separator": "Illegal separator %s.",
+
+  "generics-common-naming": "Use common generics %s.",
+  "property-idiomatic-naming": "Use descriptive name.",
+  "source-acronym-capitalization": "Rename acronym to %s.",
+  "source-word-meaning-all": "Avoid meaningless word %s.",
+  "source-word-meaning-util": "Utility class should be named %s.",
+
+  "constructor-position-properties": "Put constructors after properties and initializer block.",
+  "constructor-position-methods": "Put constructors before methods.",
+
+  "empty-line-wrapping": "Unexpected blank lines.",
+  "file-initial-wrapping": "Unexpected \\n\\n between switch cases.",
+  "switch-statement-wrapping": "Unexpected \\n\\n between switch cases."
+}

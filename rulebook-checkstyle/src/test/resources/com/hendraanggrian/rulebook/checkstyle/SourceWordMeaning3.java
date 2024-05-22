@@ -1,4 +1,4 @@
 public class SourceWordMeaning {
-  public class SpaceshipUtil {
-  }
+    public class SpaceshipUtil {
+    }
 }

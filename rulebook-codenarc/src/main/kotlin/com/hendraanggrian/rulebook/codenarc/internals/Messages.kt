@@ -5,7 +5,7 @@ import java.text.MessageFormat
 import java.util.ResourceBundle
 
 internal object Messages {
-    private const val FILENAME = "rulebook_codenarc"
+    private const val FILENAME = "messages"
     private lateinit var bundleRef: WeakReference<ResourceBundle>
 
     operator fun get(key: String): String = bundle.getString(key)

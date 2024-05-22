@@ -1,4 +1,4 @@
 public class CommentSpacing {
-  // good
-  // text
+    // good
+    // text
 }

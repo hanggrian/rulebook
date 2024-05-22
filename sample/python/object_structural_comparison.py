@@ -1,5 +1,4 @@
 # TODO checker passes tests but not triggering in sample
-
 foo = 0
 bar = 1
 

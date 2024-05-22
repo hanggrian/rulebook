@@ -26,7 +26,7 @@ class RulebookRuleSetTest {
             IfStatementNestingRule::class,
             KotlinApiConsistencyRule::class,
             ObjectStructuralComparisonRule::class,
-            PropertyIdiomaticNamingRule::class,
+            PropertyIllegalNamingRule::class,
             QualifierRedundancyRule::class,
             SourceAcronymCapitalizationRule::class,
             SourceWordMeaningRule::class,

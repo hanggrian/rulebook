@@ -1,5 +1,5 @@
 package com.example.java;
 
 public class CommentSpacing {
-  //This is a comment.
+    // This is a comment.
 }

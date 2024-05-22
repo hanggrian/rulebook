@@ -1,7 +1,9 @@
 package com.example.java;
 
 public class GenericsCommonNaming {
-  public class Foo<A> {}
+    public class Foo<T> {
+    }
 
-  public <X> void bar() {}
+    public <N> void bar() {
+    }
 }

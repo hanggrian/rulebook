@@ -1,12 +1,12 @@
 public class ConstructorPosition {
-  public class Foo {
-    public Foo() {
-      this(0);
-    }
+    public class Foo {
+        public Foo() {
+            this(0);
+        }
 
-    public Foo(int a) {
-    }
+        public Foo(int a) {
+        }
 
-    public int bar = 0;
-  }
+        public int bar = 0;
+    }
 }

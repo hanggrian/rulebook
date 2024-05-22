@@ -1,13 +1,13 @@
 public class SourceWordMeaning {
-  public class Spaceship {
-  }
+    public class Spaceship {
+    }
 
-  public interface Rocket {
-  }
+    public interface Rocket {
+    }
 
-  public @interface Navigator {
-  }
+    public @interface Navigator {
+    }
 
-  public enum Planet {
-  }
+    public enum Planet {
+    }
 }

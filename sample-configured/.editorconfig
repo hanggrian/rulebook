@@ -1,6 +1,6 @@
 [*.kt]
 rulebook_common_generics = A
 rulebook_punctuated_block_tags = @constructor
-rulebook_prohibited_properties = mString, mList
+rulebook_illegal_properties = mString, mList
 rulebook_max_file_size = 10
 rulebook_meaningless_words = Hello, World
