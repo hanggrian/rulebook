@@ -4,7 +4,7 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.constructor_position_checker import ConstructorPositionChecker
 
-from .testing import msg
+from .tests import msg
 
 class TestConstructorPositionChecker(CheckerTestCase):
     CHECKER_CLASS = ConstructorPositionChecker

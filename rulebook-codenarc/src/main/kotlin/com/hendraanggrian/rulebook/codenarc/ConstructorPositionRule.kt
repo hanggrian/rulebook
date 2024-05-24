@@ -10,22 +10,22 @@ import org.codenarc.rule.AbstractAstVisitor
 public class ConstructorPositionRule : RulebookRule() {
     override fun getName(): String = "ConstructorPosition"
 
-    override fun getAstVisitorClass(): Class<*> = ConstructorPositionVisitor::class.java
-}
+    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-public class ConstructorPositionVisitor : AbstractAstVisitor() {
-    override fun visitClassComplete(node: ClassNode) {
-        // there may be multiple constructors in JVM, target class instead for efficiency
-        val constructor =
-            node.declaredConstructors.firstOrNull() ?: return super.visitClassComplete(node)
+    public class Visitor : AbstractAstVisitor() {
+        override fun visitClassComplete(node: ClassNode) {
+            // there may be multiple constructors in JVM, target class instead for efficiency
+            val constructor =
+                node.declaredConstructors.firstOrNull() ?: return super.visitClassComplete(node)
 
-        // checks for violation
-        node.fields.filter { it.lineNumber > constructor.lineNumber }
-            .forEach { addViolation(it, Messages[MSG_PROPERTIES]) }
-        node.methods.filter { it.lineNumber < constructor.lineNumber }
-            .forEach { addViolation(it, Messages[MSG_METHODS]) }
+            // checks for violation
+            node.fields.filter { it.lineNumber > constructor.lineNumber }
+                .forEach { addViolation(it, Messages[MSG_PROPERTIES]) }
+            node.methods.filter { it.lineNumber < constructor.lineNumber }
+                .forEach { addViolation(it, Messages[MSG_METHODS]) }
 
-        super.visitClassComplete(node)
+            super.visitClassComplete(node)
+        }
     }
 
     internal companion object {

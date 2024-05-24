@@ -10,6 +10,9 @@ class ConstructorPositionRuleTest {
     private val assertThatCode = assertThatRule { ConstructorPositionRule() }
 
     @Test
+    fun `Rule properties`(): Unit = ConstructorPositionRule().assertProperties()
+
+    @Test
     fun `Properties, initializers, constructors, and methods`() =
         assertThatCode(
             """

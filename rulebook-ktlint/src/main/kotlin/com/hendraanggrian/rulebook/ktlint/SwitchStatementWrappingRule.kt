@@ -24,7 +24,7 @@ public class SwitchStatementWrappingRule : RulebookRule("switch-statement-wrappi
         val whitespace =
             node.treePrev
                 ?.takeUnless { it.elementType != WHITE_SPACE }
-                ?.takeIf { "\n\n" in it.text }
+                ?.takeIf { n -> n.text.count { it == '\n' } > 1 }
                 ?: return
         emit(whitespace.endOffset, Messages[MSG], false)
     }

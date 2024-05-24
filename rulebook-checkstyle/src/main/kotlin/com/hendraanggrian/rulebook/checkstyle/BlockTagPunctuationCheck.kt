@@ -12,17 +12,17 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tag-punctuation)
  */
 public class BlockTagPunctuationCheck : AbstractJavadocCheck() {
-    private var punctuatedTags = setOf("@param", "@return")
+    private var blockTags = setOf("@param", "@return")
 
-    public fun setPunctuatedTags(vararg tags: String) {
-        punctuatedTags = tags.toSet()
+    public fun setBlockTags(vararg blockTags: String) {
+        this.blockTags = blockTags.toSet()
     }
 
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 
     override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
-        node.takeUnless { it.children.first().text !in punctuatedTags } ?: return
+        node.takeUnless { it.children.first().text !in blockTags } ?: return
 
         // long descriptions have multiple lines, take only the last one
         val text =
@@ -34,7 +34,7 @@ public class BlockTagPunctuationCheck : AbstractJavadocCheck() {
         text.text.trimComment().trimEnd().lastOrNull()
             ?.takeIf { it !in END_PUNCTUATIONS }
             ?: return
-        log(text.lineNumber, text.columnNumber, Messages.get(MSG, punctuatedTags.joinToString()))
+        log(text.lineNumber, text.columnNumber, Messages.get(MSG, blockTags.joinToString()))
     }
 
     internal companion object {

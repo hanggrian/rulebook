@@ -4,7 +4,7 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.object_structural_comparison_checker import ObjectStructuralComparisonChecker
 
-from .testing import msg
+from .tests import msg
 
 class TestObjectStructuralComparisonChecker(CheckerTestCase):
     CHECKER_CLASS = ObjectStructuralComparisonChecker

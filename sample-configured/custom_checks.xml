@@ -397,13 +397,13 @@
 
     <!-- Third-party rules -->
     <module name="BlockTagPunctuation">
-      <property name="punctuatedTags" value="@exception"/>
+      <property name="blockTags" value="@exception"/>
     </module>
-    <module name="GenericsCommonNaming">
-      <property name="commonGenerics" value="A"/>
+    <module name="ClassNameBlacklisting">
+      <property name="names" value="Hello, World"/>
     </module>
-    <module name="SourceWordMeaning">
-      <property name="meaninglessWords" value="Hello, World"/>
+    <module name="GenericsNameWhitelisting">
+      <property name="names" value="A"/>
     </module>
   </module>
 </module>

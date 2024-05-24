@@ -18,7 +18,7 @@ class FileSizeLimitationChecker(BaseRawFileChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG)
     options: Options = (
         (
-            'rulebook-max-file-size',
+            'rulebook-limit-file-size',
             {
                 'default': 1000,
                 'type': 'int',
@@ -31,7 +31,7 @@ class FileSizeLimitationChecker(BaseRawFileChecker):
     def process_module(self, node: Module) -> None:
         with node.stream() as stream:
             size: int = len(stream.readlines())
-            max_size: int = self.linter.config.rulebook_max_file_size
+            max_size: int = self.linter.config.rulebook_limit_file_size
             if size < max_size:
                 return None
             self.add_message(FileSizeLimitationChecker.MSG, line=0, args=max_size)

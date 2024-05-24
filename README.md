@@ -16,10 +16,10 @@ across multiple languages.
 
 Language | Linter | Variants
 --- | --- | ---
-Kotlin | [Ktlint](https://pinterest.github.io/ktlint/) | [Ktlint Default Style](https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/)
-Java | [Checkstyle](https://checkstyle.org/) | [Checkstyle Default Style](https://checkstyle.sourceforge.io/sun_style.html) or [Google Java Style](https://google.github.io/styleguide/javaguide.html)
-Groovy | [CodeNarc](https://codenarc.org/) | [CodeNarc Default Style](https://groovy-lang.org/style-guide.html)
-Python | [Pylint](https://pylint.org/) | [Pylint Default Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or [Google Python Style](https://google.github.io/styleguide/pyguide.html)
+Kotlin | [Ktlint](https://pinterest.github.io/ktlint/) | [Ktlint Official Style](https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/)
+Java | [Checkstyle](https://checkstyle.org/) | [Sun Style](https://checkstyle.sourceforge.io/sun_style.html) or [Google Java Style](https://google.github.io/styleguide/javaguide.html)
+Groovy | [CodeNarc](https://codenarc.org/) | [Groovy Style](https://groovy-lang.org/style-guide.html)
+Python | [Pylint](https://pylint.org/) | [Pylint Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or [Google Python Style](https://google.github.io/styleguide/pyguide.html)
 
 [View all rules](https://github.com/hendraanggrian/rulebook/wiki/)
 

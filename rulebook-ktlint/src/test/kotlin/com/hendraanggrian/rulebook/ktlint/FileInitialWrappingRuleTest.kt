@@ -9,6 +9,9 @@ class FileInitialWrappingRuleTest {
     private val assertThatCode = assertThatRule { FileInitialWrappingRule() }
 
     @Test
+    fun `Rule properties`(): Unit = FileInitialWrappingRule().assertProperties()
+
+    @Test
     fun `Trimmed file`() =
         assertThatCode(
             """

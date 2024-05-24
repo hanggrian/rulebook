@@ -85,10 +85,13 @@
   <rule class="org.codenarc.rule.size.ClassSizeRule">
     <property name="maxLines" value="10"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsCommonNamingRule">
-    <property name="commonGenerics" value="A"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.ClassNameBlacklistingRule">
+    <property name="names" value="Hello, World"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.SourceWordMeaningRule">
-    <property name="meaninglessWords" value="Hello, World"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule">
+    <property name="names" value="mString, mList"/>
+  </rule>
+  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNameWhitelistingRule">
+    <property name="names" value="A"/>
   </rule>
 </ruleset>

@@ -4,20 +4,21 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class BlockTagPunctuationCheckTest {
-    private val checker = prepareChecker(BlockTagPunctuationCheck::class)
+    private val checker = checkerOf<BlockTagPunctuationCheck>()
 
     @Test
-    fun `No description`() = assertEquals(0, checker.process(prepareFiles("BlockTagPunctuation1")))
+    fun `Rule properties()`(): Unit = BlockTagPunctuationCheck().assertProperties()
 
     @Test
-    fun `Descriptions end with a period`() =
-        assertEquals(0, checker.process(prepareFiles("BlockTagPunctuation2")))
+    fun `No description`() = assertEquals(0, checker.read("BlockTagPunctuation1"))
+
+    @Test
+    fun `Descriptions end with a period`() = assertEquals(0, checker.read("BlockTagPunctuation2"))
 
     @Test
     fun `Descriptions don't end with a period`() =
-        assertEquals(2, checker.process(prepareFiles("BlockTagPunctuation3")))
+        assertEquals(2, checker.read("BlockTagPunctuation3"))
 
     @Test
-    fun `Long Descriptions`() =
-        assertEquals(2, checker.process(prepareFiles("BlockTagPunctuation4")))
+    fun `Long Descriptions`() = assertEquals(2, checker.read("BlockTagPunctuation4"))
 }

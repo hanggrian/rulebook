@@ -4,17 +4,18 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ConstructorPositionCheckTest {
-    private val checker = prepareChecker(ConstructorPositionCheck::class)
+    private val checker = checkerOf<ConstructorPositionCheck>()
+
+    @Test
+    fun `Rule properties()`(): Unit = ConstructorPositionCheck().assertProperties()
 
     @Test
     fun `Properties, initializers, constructors, and methods`() =
-        assertEquals(0, checker.process(prepareFiles("ConstructorPosition1")))
+        assertEquals(0, checker.read("ConstructorPosition1"))
 
     @Test
-    fun `Property after constructor`() =
-        assertEquals(1, checker.process(prepareFiles("ConstructorPosition2")))
+    fun `Property after constructor`() = assertEquals(1, checker.read("ConstructorPosition2"))
 
     @Test
-    fun `Method before constructor`() =
-        assertEquals(1, checker.process(prepareFiles("ConstructorPosition3")))
+    fun `Method before constructor`() = assertEquals(1, checker.read("ConstructorPosition3"))
 }

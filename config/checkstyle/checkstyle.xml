@@ -201,10 +201,11 @@
 
     <!-- Third-party rules -->
     <module name="BlockTagPunctuation"/>
+    <module name="ClassNameBlacklisting"/>
     <module name="CommentSpacing"/>
     <module name="ConstructorPosition"/>
-    <module name="GenericsCommonNaming"/>
-    <module name="SourceWordMeaning"/>
+    <module name="GenericsNameWhitelisting"/>
+    <module name="QualifierConsistency"/>
     <module name="StaticClassPosition"/>
   </module>
 </module>

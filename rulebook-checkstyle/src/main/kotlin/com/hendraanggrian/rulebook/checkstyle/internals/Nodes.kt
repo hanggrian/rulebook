@@ -11,29 +11,48 @@ internal operator fun DetailNode.contains(type: Int): Boolean = children.any { i
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 
 /** In Checkstyle Javadoc, nodes with children do not have text any may contain '<EOF>'. */
-internal val DetailNode.actualText: String
-    get() =
+internal fun DetailNode.joinText(separator: String = "", excludeType: Int = EOF): String {
+    val result =
         when {
             children.isEmpty() -> text
             else ->
                 buildString {
                     children.forEach {
-                        if (it.type != EOF) {
-                            append(it.actualText)
+                        if (it.type != excludeType) {
+                            append(it.joinText(separator, excludeType))
+                            append(separator)
                         }
                     }
                 }
         }
+    if (result.endsWith(separator)) {
+        return result.substring(0, result.length - separator.length)
+    }
+    return result
+}
 
 /** In Checkstyle, nodes with children do not have text. */
-internal val DetailAST.actualText: String
-    get() {
-        val children = children().toList()
-        return when {
+internal fun DetailAST.joinText(separator: String = "", excludeType: Int = 0): String {
+    val children = children().toList()
+    val result =
+        when {
             children.isEmpty() -> text
-            else -> buildString { children.forEach { append(it.actualText) } }
+            else ->
+                buildString {
+                    for (child in children) {
+                        if (child.type == excludeType) {
+                            continue
+                        }
+                        append(child.joinText(separator, excludeType))
+                        append(separator)
+                    }
+                }
         }
+    if (result.endsWith(separator)) {
+        return result.substring(0, result.length - separator.length)
     }
+    return result
+}
 
 internal fun DetailAST.children(): Sequence<DetailAST> =
     generateSequence(firstChild) { node -> node.nextSibling }

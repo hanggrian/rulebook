@@ -1,19 +1,15 @@
 package com.hendraanggrian.rulebook.codenarc
 
-import com.hendraanggrian.rulebook.codenarc.StaticClassPositionVisitor.Companion.MSG
+import com.hendraanggrian.rulebook.codenarc.StaticClassPositionRule.Companion.MSG
 import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class StaticClassPositionRuleTest : AbstractRuleTestCase<StaticClassPositionRule>() {
     override fun createRule() = StaticClassPositionRule()
 
     @Test
-    fun `Rule properties`() {
-        assertEquals(3, rule.priority)
-        assertEquals("StaticClassPosition", rule.name)
-    }
+    fun `Rule properties`(): Unit = rule.assertProperties()
 
     @Test
     fun `Static class at the bottom`() =

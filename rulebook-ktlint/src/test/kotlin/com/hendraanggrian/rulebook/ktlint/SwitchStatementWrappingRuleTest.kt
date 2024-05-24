@@ -9,6 +9,9 @@ class SwitchStatementWrappingRuleTest {
     private val assertThatCode = assertThatRule { SwitchStatementWrappingRule() }
 
     @Test
+    fun `Rule properties`(): Unit = SwitchStatementWrappingRule().assertProperties()
+
+    @Test
     fun `Joined switch case branches`() =
         assertThatCode(
             """

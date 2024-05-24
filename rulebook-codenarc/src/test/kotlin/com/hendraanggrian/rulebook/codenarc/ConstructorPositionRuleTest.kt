@@ -1,35 +1,31 @@
 package com.hendraanggrian.rulebook.codenarc
 
-import com.hendraanggrian.rulebook.codenarc.ConstructorPositionVisitor.Companion.MSG_METHODS
-import com.hendraanggrian.rulebook.codenarc.ConstructorPositionVisitor.Companion.MSG_PROPERTIES
+import com.hendraanggrian.rulebook.codenarc.ConstructorPositionRule.Companion.MSG_METHODS
+import com.hendraanggrian.rulebook.codenarc.ConstructorPositionRule.Companion.MSG_PROPERTIES
 import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 class ConstructorPositionRuleTest : AbstractRuleTestCase<ConstructorPositionRule>() {
     override fun createRule() = ConstructorPositionRule()
 
     @Test
-    fun `Rule properties`() {
-        assertEquals(3, rule.priority)
-        assertEquals("ConstructorPosition", rule.name)
-    }
+    fun `Rule properties`(): Unit = rule.assertProperties()
 
     @Test
     fun `Properties, initializers, constructors, and methods`() =
         assertNoViolations(
             """
             class Foo {
-              int bar = 0
+                int bar = 0
 
-              Foo() {
-                this(0)
-              }
+                Foo() {
+                  this(0)
+                }
 
-              Foo(int a) {}
+                Foo(int a) {}
 
-              void baz() {}
+                void baz() {}
             }
             """.trimIndent(),
         )
@@ -39,13 +35,13 @@ class ConstructorPositionRuleTest : AbstractRuleTestCase<ConstructorPositionRule
         assertSingleViolation(
             """
             class Foo {
-              Foo() {
-                this(0)
-              }
+                Foo() {
+                  this(0)
+                }
 
-              Foo(int a) {}
+                Foo(int a) {}
 
-              int bar = 0
+                int bar = 0
             }
             """.trimIndent(),
             8,
@@ -58,13 +54,13 @@ class ConstructorPositionRuleTest : AbstractRuleTestCase<ConstructorPositionRule
         assertSingleViolation(
             """
             class Foo {
-              void baz() {}
+                void baz() {}
 
-              Foo() {
-                this(0)
-              }
+                Foo() {
+                  this(0)
+                }
 
-              Foo(int a) {}
+                Foo(int a) {}
             }
             """.trimIndent(),
             2,

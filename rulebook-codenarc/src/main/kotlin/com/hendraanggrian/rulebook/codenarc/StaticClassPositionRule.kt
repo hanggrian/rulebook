@@ -12,33 +12,33 @@ import java.lang.reflect.Modifier.isStatic
 public class StaticClassPositionRule : RulebookRule() {
     override fun getName(): String = "StaticClassPosition"
 
-    override fun getAstVisitorClass(): Class<*> = StaticClassPositionVisitor::class.java
-}
+    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-public class StaticClassPositionVisitor : AbstractAstVisitor() {
-    override fun visitClassComplete(node: ClassNode) {
-        // get first inner static class
-        var innerClass: ClassNode? = null
-        for (c in node.innerClasses) {
-            if (!isStatic(c.modifiers)) {
-                continue
+    public class Visitor : AbstractAstVisitor() {
+        override fun visitClassComplete(node: ClassNode) {
+            // get first inner static class
+            var innerClass: ClassNode? = null
+            for (c in node.innerClasses) {
+                if (!isStatic(c.modifiers)) {
+                    continue
+                }
+                innerClass = c
+                break
             }
-            innerClass = c
-            break
-        }
-        if (innerClass == null) {
-            return super.visitClassComplete(node)
-        }
+            if (innerClass == null) {
+                return super.visitClassComplete(node)
+            }
 
-        // checks for violation
-        node.takeIf {
-            it.fields.isAnyAfter(innerClass) ||
-                it.declaredConstructors.isAnyAfter(innerClass) ||
-                it.methods.isAnyAfter(innerClass)
-        } ?: return super.visitClassComplete(node)
-        addViolation(innerClass, Messages[MSG])
+            // checks for violation
+            node.takeIf {
+                it.fields.isAnyAfter(innerClass) ||
+                    it.declaredConstructors.isAnyAfter(innerClass) ||
+                    it.methods.isAnyAfter(innerClass)
+            } ?: return super.visitClassComplete(node)
+            addViolation(innerClass, Messages[MSG])
 
-        super.visitClassComplete(node)
+            super.visitClassComplete(node)
+        }
     }
 
     internal companion object {

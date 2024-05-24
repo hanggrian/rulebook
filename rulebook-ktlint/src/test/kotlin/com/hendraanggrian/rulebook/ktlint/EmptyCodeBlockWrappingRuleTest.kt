@@ -10,6 +10,9 @@ class EmptyCodeBlockWrappingRuleTest {
     private val assertThatCode = assertThatRule { EmptyCodeBlockWrappingRule() }
 
     @Test
+    fun `Rule properties`(): Unit = EmptyCodeBlockWrappingRule().assertProperties()
+
+    @Test
     fun `Wrapped empty block`() =
         assertThatCode(
             """

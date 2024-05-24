@@ -14,6 +14,9 @@ class FileSizeLimitationRuleTest {
         )
 
     @Test
+    fun `Rule properties`(): Unit = FileSizeLimitationRule().assertProperties()
+
+    @Test
     fun `Small file`() =
         assertThatCode(
             """

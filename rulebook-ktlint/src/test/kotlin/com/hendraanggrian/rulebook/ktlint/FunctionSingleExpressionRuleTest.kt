@@ -9,6 +9,9 @@ class FunctionSingleExpressionRuleTest {
     private val assertThatCode = assertThatRule { FunctionSingleExpressionRule() }
 
     @Test
+    fun `Rule properties`(): Unit = FunctionSingleExpressionRule().assertProperties()
+
+    @Test
     fun `Expression function`() =
         assertThatCode(
             """

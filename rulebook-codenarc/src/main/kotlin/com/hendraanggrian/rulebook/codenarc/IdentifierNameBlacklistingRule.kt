@@ -1,0 +1,36 @@
+package com.hendraanggrian.rulebook.codenarc
+
+import com.hendraanggrian.rulebook.codenarc.internals.Messages
+import org.codehaus.groovy.ast.FieldNode
+import org.codenarc.rule.AbstractAstVisitor
+
+/**
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#identifier-name-blacklisting)
+ */
+public class IdentifierNameBlacklistingRule : RulebookRule() {
+    private var names = "integer, string, list, set, map"
+
+    public fun setNames(names: String) {
+        this.names = names
+    }
+
+    override fun getName(): String = "IdentifierNameBlacklisting"
+
+    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
+
+    public class Visitor : AbstractAstVisitor() {
+        override fun visitField(node: FieldNode) {
+            // checks for violation
+            node.takeIf {
+                it.name in (rule as IdentifierNameBlacklistingRule).names.split(", ")
+            } ?: return super.visitField(node)
+            addViolation(node, Messages[MSG])
+
+            super.visitField(node)
+        }
+    }
+
+    internal companion object {
+        const val MSG = "identifier.name.blacklisting"
+    }
+}

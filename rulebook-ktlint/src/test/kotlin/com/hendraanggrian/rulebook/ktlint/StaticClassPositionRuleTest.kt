@@ -9,6 +9,9 @@ class StaticClassPositionRuleTest {
     private val assertThatCode = assertThatRule { StaticClassPositionRule() }
 
     @Test
+    fun `Rule properties`(): Unit = StaticClassPositionRule().assertProperties()
+
+    @Test
     fun `Static class at the bottom`() =
         assertThatCode(
             """

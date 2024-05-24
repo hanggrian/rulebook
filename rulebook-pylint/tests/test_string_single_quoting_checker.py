@@ -4,7 +4,7 @@ from astroid import parse
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.string_single_quoting_checker import StringSingleQuotingChecker
 
-from .testing import msg
+from .tests import msg
 
 class TestStringSingleQuotingChecker(CheckerTestCase):
     CHECKER_CLASS = StringSingleQuotingChecker

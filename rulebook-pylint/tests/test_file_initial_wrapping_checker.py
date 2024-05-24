@@ -4,7 +4,7 @@ from astroid import parse
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.file_initial_wrapping_checker import FileInitialWrappingChecker
 
-from .testing import msg
+from .tests import msg
 
 class TestFileInitialWrappingChecker(CheckerTestCase):
     CHECKER_CLASS = FileInitialWrappingChecker

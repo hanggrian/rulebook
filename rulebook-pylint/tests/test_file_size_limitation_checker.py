@@ -4,7 +4,7 @@ from astroid import parse
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.file_size_limitation_checker import FileSizeLimitationChecker
 
-from .testing import msg
+from .tests import msg
 
 class TestFileSizeLimitationChecker(CheckerTestCase):
     CHECKER_CLASS = FileSizeLimitationChecker

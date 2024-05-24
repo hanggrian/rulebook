@@ -10,6 +10,9 @@ class BlockTagPunctuationRuleTest {
     private val assertThatCode = assertThatRule { BlockTagPunctuationRule() }
 
     @Test
+    fun `Rule properties`(): Unit = BlockTagPunctuationRule().assertProperties()
+
+    @Test
     fun `No description`() =
         assertThatCode(
             """

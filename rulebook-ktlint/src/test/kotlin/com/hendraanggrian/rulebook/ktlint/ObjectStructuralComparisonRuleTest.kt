@@ -11,6 +11,9 @@ class ObjectStructuralComparisonRuleTest {
     private val assertThatCode = assertThatRule { ObjectStructuralComparisonRule() }
 
     @Test
+    fun `Rule properties`(): Unit = ObjectStructuralComparisonRule().assertProperties()
+
+    @Test
     fun `Structural equalities`() =
         assertThatCode(
             """

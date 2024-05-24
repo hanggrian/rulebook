@@ -4,7 +4,7 @@
 
 Print AST of a file.
 
-```shell
+```sh
 ktlint --color printAST $file
 ```
 
@@ -14,7 +14,7 @@ ktlint --color printAST $file
 
 Print AST of a file.
 
-```shell
+```sh
 checkstyle -T $file
 checkstyle -J $file # for javadoc
 ```
@@ -23,6 +23,6 @@ checkstyle -J $file # for javadoc
 
 Use the following command to custom rules locally.
 
-```shell
+```sh
 pip install -e rulebook
 ```

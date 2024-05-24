@@ -9,6 +9,9 @@ class ExceptionSubclassThrowingRuleTest {
     private val assertThatCode = assertThatRule { ExceptionSubclassThrowingRule() }
 
     @Test
+    fun `Rule properties`(): Unit = ExceptionSubclassThrowingRule().assertProperties()
+
+    @Test
     fun `Throw subclass exceptions`() =
         assertThatCode(
             """

@@ -4,7 +4,7 @@ from astroid import parse
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.empty_line_wrapping_checker import EmptyLineWrappingChecker
 
-from .testing import msg
+from .tests import msg
 
 class TestEmptyLineWrappingChecker(CheckerTestCase):
     CHECKER_CLASS = EmptyLineWrappingChecker

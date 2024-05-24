@@ -4,7 +4,7 @@ from astroid import parse
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.switch_statement_wrapping_checker import SwitchStatementWrappingChecker
 
-from .testing import msg
+from .tests import msg
 
 class TestSwitchStatementWrappingChecker(CheckerTestCase):
     CHECKER_CLASS = SwitchStatementWrappingChecker
