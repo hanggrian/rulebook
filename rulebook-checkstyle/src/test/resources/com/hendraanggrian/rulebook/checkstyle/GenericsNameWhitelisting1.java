@@ -1,7 +1,5 @@
 public class GenericsNameWhitelisting {
-    public class MyClass<T> {
-    }
+    public class MyClass<T> {}
 
-    public interface MyInterface<T> {
-    }
+    public interface MyInterface<T> {}
 }

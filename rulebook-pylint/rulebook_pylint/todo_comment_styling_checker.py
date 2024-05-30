@@ -3,17 +3,16 @@ from typing import TYPE_CHECKING
 
 import regex
 from astroid import Module
-from pylint.checkers import BaseRawFileChecker
 from pylint.typing import MessageDefinitionTuple
 from regex import Pattern, Match, IGNORECASE
-
-from .internals import Messages
+from rulebook_pylint.checkers import RawChecker
+from rulebook_pylint.internals import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 # pylint: disable=todo-comment-formatting-keyword,todo-comment-styling-separator
-class TodoCommentStylingChecker(BaseRawFileChecker):
+class TodoCommentStylingChecker(RawChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-styling-formatting
     """
     MSG_KEYWORD: str = 'todo-comment-styling-keyword'

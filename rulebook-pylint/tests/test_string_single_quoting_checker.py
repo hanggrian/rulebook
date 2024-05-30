@@ -1,7 +1,6 @@
 from unittest import main
 
-from astroid import parse
-from pylint.testutils import CheckerTestCase
+from pylint.testutils import CheckerTestCase, _tokenize_str
 from rulebook_pylint.string_single_quoting_checker import StringSingleQuotingChecker
 
 from .tests import msg
@@ -10,34 +9,28 @@ class TestStringSingleQuotingChecker(CheckerTestCase):
     CHECKER_CLASS = StringSingleQuotingChecker
 
     def test_single_quote_string(self):
-        def_all = \
-            parse(
-                '''
-                foo = 'bar' #@
-                ''',
-            )
+        code = \
+            '''
+            foo = 'bar'
+            '''
         with self.assertNoMessages():
-            self.checker.process_module(def_all)
+            self.checker.process_tokens(_tokenize_str(code))
 
     def test_double_empty_line(self):
-        def_all = \
-            parse(
-                '''
-                foo = "bar" #@
-                ''',
-            )
-        with self.assertAddsMessages(msg(StringSingleQuotingChecker.MSG, (2, 6, 11))):
-            self.checker.process_module(def_all)
+        code = \
+            '''
+            foo = "bar"
+            '''
+        with self.assertAddsMessages(msg(StringSingleQuotingChecker.MSG, (2, 18, 23))):
+            self.checker.process_tokens(_tokenize_str(code))
 
     def test_skip_content_with_single_quote(self):
-        def_all = \
-            parse(
-                '''
-                foo = "'" #@
-                ''',
-            )
+        code = \
+            '''
+            foo = "'"
+            '''
         with self.assertNoMessages():
-            self.checker.process_module(def_all)
+            self.checker.process_tokens(_tokenize_str(code))
 
 if __name__ == '__main__':
     main()

@@ -1,4 +1,3 @@
 public class ClassNameBlacklisting {
-    public class SpaceshipUtil {
-    }
+    public class SpaceshipUtil { }
 }

@@ -4,8 +4,7 @@ public class StaticClassPosition {
             public static int VALUE = 0;
         }
 
-        public Foo(int a) {
-        }
+        public Foo(int a) {}
 
         public Foo() {
             this(VALUE);

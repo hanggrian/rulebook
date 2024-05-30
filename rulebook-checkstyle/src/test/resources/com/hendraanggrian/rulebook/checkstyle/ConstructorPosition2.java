@@ -4,8 +4,7 @@ public class ConstructorPosition {
             this(0);
         }
 
-        public Foo(int a) {
-        }
+        public Foo(int a) {}
 
         public int bar = 0;
     }

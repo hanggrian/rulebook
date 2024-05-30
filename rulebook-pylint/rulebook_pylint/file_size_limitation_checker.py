@@ -1,15 +1,14 @@
 from typing import TYPE_CHECKING
 
 from astroid import Module
-from pylint.checkers import BaseRawFileChecker
 from pylint.typing import MessageDefinitionTuple, Options
-
-from .internals import Messages
+from rulebook_pylint.checkers import RawChecker
+from rulebook_pylint.internals import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
-class FileSizeLimitationChecker(BaseRawFileChecker):
+class FileSizeLimitationChecker(RawChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#file-size-limitation
     """
     MSG: str = 'file-size-limitation'

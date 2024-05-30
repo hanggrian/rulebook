@@ -1,7 +1,7 @@
 package com.example.kotlin
 
-class IfStatementFlattening<E>(val elements: List<E>?) {
-    fun iterate() {
+class IfStatementFlattening {
+    fun iterate(elements: List<Int>?) {
         if (elements == null) {
             return
         }

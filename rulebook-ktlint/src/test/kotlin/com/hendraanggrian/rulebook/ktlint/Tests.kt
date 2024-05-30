@@ -3,7 +3,7 @@ package com.hendraanggrian.rulebook.ktlint
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
-internal inline fun <reified T : RulebookRule> T.assertProperties() {
+internal inline fun <reified T : Rule> T.assertProperties() {
     assertEquals(
         "rulebook:" +
             T::class.java.simpleName.substringBefore("Rule")

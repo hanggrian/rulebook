@@ -17,7 +17,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-name-whitelisting)
  */
-public class GenericsNameWhitelistingRule : RulebookRule(
+public class GenericsNameWhitelistingRule : Rule(
     "generics-name-whitelisting",
     setOf(NAMES_PROPERTY),
 ) {
@@ -46,7 +46,7 @@ public class GenericsNameWhitelistingRule : RulebookRule(
         // checks for violation
         val identifier =
             typeParameter.findChildByType(IDENTIFIER)
-                ?.takeIf { !node.hasParentWithGenerics() && it.text !in names }
+                ?.takeUnless { node.hasParentWithGenerics() || it.text in names }
                 ?: return
         emit(identifier.startOffset, Messages.get(MSG, names.joinToString()), false)
     }
@@ -67,7 +67,7 @@ public class GenericsNameWhitelistingRule : RulebookRule(
             )
 
         private fun ASTNode.hasParentWithGenerics(): Boolean {
-            var next: ASTNode? = treeParent
+            var next = treeParent
             while (next != null) {
                 if (TYPE_PARAMETER_LIST in next) {
                     return true

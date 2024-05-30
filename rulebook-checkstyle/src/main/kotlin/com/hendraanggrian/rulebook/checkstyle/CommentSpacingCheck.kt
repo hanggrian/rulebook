@@ -8,16 +8,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#comment-spacing)
  */
-public class CommentSpacingCheck : RulebookCheck() {
+public class CommentSpacingCheck : Check() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
 
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
+        // skip empty comment
+        val commentContent =
+            node.findFirstToken(COMMENT_CONTENT)
+                ?.takeUnless { it.text == "\n" }
+                ?: return
+
         // checks for violation
-        node.findFirstToken(COMMENT_CONTENT)
-            .takeIf { !it.text.startsWith(' ') }
-            ?: return
+        commentContent.takeUnless { it.text.startsWith(' ') } ?: return
         log(node, Messages[MSG])
     }
 

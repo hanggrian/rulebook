@@ -7,7 +7,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position)
  */
-public class ConstructorPositionRule : RulebookRule() {
+public class ConstructorPositionRule : Rule() {
     override fun getName(): String = "ConstructorPosition"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

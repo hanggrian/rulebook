@@ -1,4 +1,3 @@
 public class GenericsNameWhitelisting {
-    public <E> void sum(List<E> list) {
-    }
+    public <E> void sum(List<E> list) {}
 }

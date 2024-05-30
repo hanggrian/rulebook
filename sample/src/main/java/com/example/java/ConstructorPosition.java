@@ -8,10 +8,8 @@ public class ConstructorPosition {
             this(0);
         }
 
-        public Foo(final int a) {
-        }
+        public Foo(final int a) {}
 
-        public void baz() {
-        }
+        public void baz() {}
     }
 }

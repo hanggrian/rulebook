@@ -10,7 +10,7 @@ class TestConstructorPositionChecker(CheckerTestCase):
     CHECKER_CLASS = ConstructorPositionChecker
 
     def test_properties_initializers_constructors_and_methods(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 class Foo:
@@ -24,10 +24,10 @@ class TestConstructorPositionChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_functiondef(def1)
+            self.checker.visit_functiondef(node1)
 
     def test_property_after_constructor(self):
-        def1, def2 = \
+        node1, node2 = \
             extract_node(
                 '''
                 class Foo:
@@ -38,12 +38,12 @@ class TestConstructorPositionChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ConstructorPositionChecker.MSG_PROPERTIES, (6, 4, 7), def2.targets[0]),
+            msg(ConstructorPositionChecker.MSG_PROPERTIES, (6, 4, 7), node2.targets[0]),
         ):
-            self.checker.visit_functiondef(def1)
+            self.checker.visit_functiondef(node1)
 
     def test_method_before_constructor(self):
-        def1, def2 = \
+        node1, node2 = \
             extract_node(
                 '''
                 class Foo:
@@ -55,9 +55,9 @@ class TestConstructorPositionChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ConstructorPositionChecker.MSG_METHODS, (3, 4, 11), def1),
+            msg(ConstructorPositionChecker.MSG_METHODS, (3, 4, 11), node1),
         ):
-            self.checker.visit_functiondef(def2)
+            self.checker.visit_functiondef(node2)
 
 if __name__ == '__main__':
     main()

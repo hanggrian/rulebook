@@ -2,7 +2,6 @@ package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.endOffset
-import com.hendraanggrian.rulebook.ktlint.internals.siblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
@@ -11,7 +10,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-comment-spacing)
  */
-public class BlockCommentSpacingRule : RulebookRule("block-comment-spacing") {
+public class BlockCommentSpacingRule : Rule("block-comment-spacing") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
@@ -25,32 +24,26 @@ public class BlockCommentSpacingRule : RulebookRule("block-comment-spacing") {
 
                 // checks for violation
                 if (!node.text.startsWith(' ')) {
-                    emit(node.startOffset, Messages[MSG_LINE_START], false)
+                    emit(node.startOffset, Messages[MSG_SINGLE_START], false)
                 }
                 if (!node.text.endsWith(' ')) {
-                    emit(node.endOffset, Messages[MSG_LINE_END], false)
+                    emit(node.endOffset, Messages[MSG_SINGLE_END], false)
                 }
             }
             KDOC_LEADING_ASTERISK -> {
+                // take non-whitespace sibling
+                val next = node.treeNext?.takeUnless { it.elementType == WHITE_SPACE } ?: return
+
                 // checks for violation
-                node.siblingsUntil(KDOC_LEADING_ASTERISK)
-                    .takeUnless { n ->
-                        n.all {
-                            it.elementType == KDOC_LEADING_ASTERISK ||
-                                it.elementType == WHITE_SPACE
-                        }
-                    }
-                    ?.joinToString("") { it.text }
-                    ?.takeUnless { it.startsWith(' ') }
-                    ?: return
-                emit(node.endOffset, Messages[MSG_MULTILINE_START], false)
+                next.takeUnless { it.text.startsWith(' ') } ?: return
+                emit(next.startOffset, Messages[MSG_MULTI], false)
             }
         }
     }
 
     internal companion object {
-        const val MSG_LINE_START = "block.comment.spacing.line.start"
-        const val MSG_LINE_END = "block.comment.spacing.line.end"
-        const val MSG_MULTILINE_START = "block.comment.spacing.multiline.start"
+        const val MSG_SINGLE_START = "block.comment.spacing.single.start"
+        const val MSG_SINGLE_END = "block.comment.spacing.single.end"
+        const val MSG_MULTI = "block.comment.spacing.multi"
     }
 }

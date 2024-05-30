@@ -6,8 +6,7 @@ public class StaticClassPosition {
             this(Bar.VALUE);
         }
 
-        public Foo(final int a) {
-        }
+        public Foo(final int a) {}
 
         public static class Bar {
             public static final int VALUE = 0;

@@ -10,7 +10,7 @@ class TestClassNameBlacklistingChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameBlacklistingChecker
 
     def test_meaningful_class_names(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 class Spaceship: #@
@@ -18,10 +18,10 @@ class TestClassNameBlacklistingChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_classdef(def1)
+            self.checker.visit_classdef(node1)
 
     def test_meaningless_class_names(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 class SpaceshipManager: #@
@@ -29,12 +29,12 @@ class TestClassNameBlacklistingChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ClassNameBlacklistingChecker.MSG_ALL, (2, 0, 22), def1, 'Manager'),
+            msg(ClassNameBlacklistingChecker.MSG_ALL, (2, 0, 22), node1, 'Manager'),
         ):
-            self.checker.visit_classdef(def1)
+            self.checker.visit_classdef(node1)
 
     def test_utility_class_found(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 class SpaceshipUtil: #@
@@ -42,9 +42,9 @@ class TestClassNameBlacklistingChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ClassNameBlacklistingChecker.MSG_UTIL, (2, 0, 19), def1, 'Spaceships'),
+            msg(ClassNameBlacklistingChecker.MSG_UTIL, (2, 0, 19), node1, 'Spaceships'),
         ):
-            self.checker.visit_classdef(def1)
+            self.checker.visit_classdef(node1)
 
 if __name__ == '__main__':
     main()

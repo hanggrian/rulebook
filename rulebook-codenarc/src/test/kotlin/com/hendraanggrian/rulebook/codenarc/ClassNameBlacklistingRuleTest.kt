@@ -32,26 +32,10 @@ class ClassNameBlacklistingRuleTest : AbstractRuleTestCase<ClassNameBlacklisting
             @interface NavigatorManager {}
             enum PlanetManager {}
             """.trimIndent(),
-            mapOf(
-                "line" to 1,
-                "source" to "class SpaceshipManager {}",
-                "message" to Messages.get(MSG_ALL, "Manager"),
-            ),
-            mapOf(
-                "line" to 2,
-                "source" to "interface RocketManager {}",
-                "message" to Messages.get(MSG_ALL, "Manager"),
-            ),
-            mapOf(
-                "line" to 3,
-                "source" to "@interface NavigatorManager {}",
-                "message" to Messages.get(MSG_ALL, "Manager"),
-            ),
-            mapOf(
-                "line" to 4,
-                "source" to "enum PlanetManager {}",
-                "message" to Messages.get(MSG_ALL, "Manager"),
-            ),
+            violationOf(1, "class SpaceshipManager {}", Messages.get(MSG_ALL, "Manager")),
+            violationOf(2, "interface RocketManager {}", Messages.get(MSG_ALL, "Manager")),
+            violationOf(3, "@interface NavigatorManager {}", Messages.get(MSG_ALL, "Manager")),
+            violationOf(4, "enum PlanetManager {}", Messages.get(MSG_ALL, "Manager")),
         )
 
     @Test

@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.psi.KtImportDirective
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#kotlin-api-priority)
  */
-public class KotlinApiPriorityRule : RulebookRule("kotlin-api-priority") {
+public class KotlinApiPriorityRule : Rule("kotlin-api-priority") {
     private var isTestClass = false
 
     override fun beforeVisitChildNodes(
@@ -27,8 +27,9 @@ public class KotlinApiPriorityRule : RulebookRule("kotlin-api-priority") {
 
                 // check if running on test
                 if (!isTestClass) {
-                    path.takeIf { s -> TEST_LIBRARIES.any { s.startsWith(it) } }
-                        ?.let { isTestClass = true }
+                    path.takeIf { s -> TEST_LIBRARIES.any { s.startsWith(it) } }?.let {
+                        isTestClass = true
+                    }
                 }
 
                 // checks for violation

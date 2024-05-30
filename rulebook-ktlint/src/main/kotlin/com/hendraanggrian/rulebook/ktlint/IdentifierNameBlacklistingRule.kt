@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#identifier-name-blacklisting)
  */
-public class IdentifierNameBlacklistingRule : RulebookRule(
+public class IdentifierNameBlacklistingRule : Rule(
     "identifier-name-blacklisting",
     setOf(NAMES_PROPERTY),
 ) {

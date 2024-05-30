@@ -10,7 +10,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-name-whitelisting)
  */
-public class GenericsNameWhitelistingRule : RulebookRule() {
+public class GenericsNameWhitelistingRule : Rule() {
     private var names = "E, K, N, T, V"
 
     public fun setNames(names: String) {
@@ -38,7 +38,10 @@ public class GenericsNameWhitelistingRule : RulebookRule() {
 
             // checks for violation
             val generics = (rule as GenericsNameWhitelistingRule).names
-            node.takeIf { !it.hasParentWithGenerics() && genericType.name !in generics.split(", ") }
+            node
+                .takeUnless {
+                    it.hasParentWithGenerics() || genericType.name in generics.split(", ")
+                }
                 ?: return
             addViolation(genericType, Messages.get(MSG, generics))
         }

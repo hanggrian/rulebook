@@ -11,7 +11,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#qualifier-consistency)
  */
-public class QualifierConsistencyRule : RulebookRule() {
+public class QualifierConsistencyRule : Rule() {
     override fun getName(): String = "QualifierConsistency"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
@@ -40,12 +40,12 @@ public class QualifierConsistencyRule : RulebookRule() {
             super.visitMethodEx(node)
         }
 
-        override fun visitMethodCallExpression(call: MethodCallExpression) {
+        override fun visitMethodCallExpression(node: MethodCallExpression) {
             // checks for violation
-            val expression = call.objectExpression
+            val expression = node.objectExpression
             process(expression, expression.text)
 
-            return super.visitMethodCallExpression(call)
+            return super.visitMethodCallExpression(node)
         }
 
         private fun process(node: ASTNode, text: String) {

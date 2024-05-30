@@ -1,15 +1,14 @@
 from typing import TYPE_CHECKING
 
 from astroid import NodeNG, FunctionDef, If
-from pylint.checkers import BaseChecker
 from pylint.typing import MessageDefinitionTuple
-
-from .internals import Messages
+from rulebook_pylint.checkers import Checker
+from rulebook_pylint.internals import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
-class IfStatementFlatteningChecker(BaseChecker):
+class IfStatementFlatteningChecker(Checker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#if-statement-flattening
     """
     MSG: str = 'if-statement-flattening'
@@ -25,7 +24,7 @@ class IfStatementFlatteningChecker(BaseChecker):
 
         # report 2 lines content
         if len(if2.body) < 2:
-            return
+            return None
         self.add_message(IfStatementFlatteningChecker.MSG, node=if2)
 
 def register(linter: 'PyLinter') -> None:

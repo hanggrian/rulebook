@@ -9,7 +9,7 @@ import java.lang.reflect.Modifier.isStatic
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position)
  */
-public class StaticClassPositionRule : RulebookRule() {
+public class StaticClassPositionRule : Rule() {
     override fun getName(): String = "StaticClassPosition"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
@@ -30,11 +30,13 @@ public class StaticClassPositionRule : RulebookRule() {
             }
 
             // checks for violation
-            node.takeIf {
-                it.fields.isAnyAfter(innerClass) ||
-                    it.declaredConstructors.isAnyAfter(innerClass) ||
-                    it.methods.isAnyAfter(innerClass)
-            } ?: return super.visitClassComplete(node)
+            node
+                .takeIf {
+                    it.fields.isAnyAfter(innerClass) ||
+                        it.declaredConstructors.isAnyAfter(innerClass) ||
+                        it.methods.isAnyAfter(innerClass)
+                }
+                ?: return super.visitClassComplete(node)
             addViolation(innerClass, Messages[MSG])
 
             super.visitClassComplete(node)

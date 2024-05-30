@@ -1,8 +1,8 @@
 package com.hendraanggrian.rulebook.ktlint
 
-import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_LINE_END
-import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_LINE_START
-import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_MULTILINE_START
+import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_MULTI
+import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_SINGLE_END
+import com.hendraanggrian.rulebook.ktlint.BlockCommentSpacingRule.Companion.MSG_SINGLE_START
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
@@ -45,10 +45,10 @@ class BlockCommentSpacingRuleTest {
             fun bar(num: Int) {}
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 4, Messages[MSG_LINE_START]),
-            LintViolation(1, 12, Messages[MSG_LINE_END]),
-            LintViolation(5, 3, Messages[MSG_MULTILINE_START]),
-            LintViolation(7, 3, Messages[MSG_MULTILINE_START]),
+            LintViolation(1, 4, Messages[MSG_SINGLE_START]),
+            LintViolation(1, 12, Messages[MSG_SINGLE_END]),
+            LintViolation(5, 3, Messages[MSG_MULTI]),
+            LintViolation(7, 3, Messages[MSG_MULTI]),
         )
 
     @Test
@@ -65,9 +65,9 @@ class BlockCommentSpacingRuleTest {
             fun foo(num: Int) {}
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 3, Messages[MSG_MULTILINE_START]),
-            LintViolation(4, 3, Messages[MSG_MULTILINE_START]),
-            LintViolation(5, 3, Messages[MSG_MULTILINE_START]),
-            LintViolation(6, 3, Messages[MSG_MULTILINE_START]),
+            LintViolation(2, 3, Messages[MSG_MULTI]),
+            LintViolation(4, 3, Messages[MSG_MULTI]),
+            LintViolation(5, 3, Messages[MSG_MULTI]),
+            LintViolation(6, 3, Messages[MSG_MULTI]),
         )
 }

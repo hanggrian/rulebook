@@ -10,7 +10,7 @@ class TestIfStatementFlatteningChecker(CheckerTestCase):
     CHECKER_CLASS = IfStatementFlatteningChecker
 
     def test_empty_then_statement(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 def foo(): #@
@@ -19,10 +19,10 @@ class TestIfStatementFlatteningChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_functiondef(def1)
+            self.checker.visit_functiondef(node1)
 
     def test_inverted_if_statement(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 def foo(): #@
@@ -32,10 +32,10 @@ class TestIfStatementFlatteningChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_functiondef(def1)
+            self.checker.visit_functiondef(node1)
 
     def test_only_1_line_in_if_statement(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 def foo(): #@
@@ -44,10 +44,10 @@ class TestIfStatementFlatteningChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_functiondef(def1)
+            self.checker.visit_functiondef(node1)
 
     def test_at_least_2_lines_in_if_statement(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 def foo(): #@
@@ -57,12 +57,12 @@ class TestIfStatementFlatteningChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(IfStatementFlatteningChecker.MSG, (3, 4, 5, 13), def1.body[0]),
+            msg(IfStatementFlatteningChecker.MSG, (3, 4, 5, 13), node1.body[0]),
         ):
-            self.checker.visit_functiondef(def1)
+            self.checker.visit_functiondef(node1)
 
     def test_if_statement_with_else_if(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 def foo(): #@
@@ -74,10 +74,10 @@ class TestIfStatementFlatteningChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_functiondef(def1)
+            self.checker.visit_functiondef(node1)
 
     def test_if_statement_with_else(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 def foo(): #@
@@ -89,7 +89,7 @@ class TestIfStatementFlatteningChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_functiondef(def1)
+            self.checker.visit_functiondef(node1)
 
 if __name__ == '__main__':
     main()

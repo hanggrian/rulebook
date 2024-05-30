@@ -1,15 +1,14 @@
 from typing import TYPE_CHECKING
 
 from astroid import Assign, Call, Name, AssignName
-from pylint.checkers import BaseChecker
 from pylint.typing import MessageDefinitionTuple, Options
-
-from .internals import Messages, get_assignname
+from rulebook_pylint.checkers import Checker
+from rulebook_pylint.internals import Messages, get_assignname
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
-class GenericsNameWhitelistingChecker(BaseChecker):
+class GenericsNameWhitelistingChecker(Checker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-name-whitelisting
     """
     MSG: str = 'generics-name-whitelisting'

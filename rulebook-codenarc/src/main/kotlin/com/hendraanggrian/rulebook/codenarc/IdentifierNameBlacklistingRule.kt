@@ -7,7 +7,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#identifier-name-blacklisting)
  */
-public class IdentifierNameBlacklistingRule : RulebookRule() {
+public class IdentifierNameBlacklistingRule : Rule() {
     private var names = "integer, string, list, set, map"
 
     public fun setNames(names: String) {
@@ -21,9 +21,11 @@ public class IdentifierNameBlacklistingRule : RulebookRule() {
     public class Visitor : AbstractAstVisitor() {
         override fun visitField(node: FieldNode) {
             // checks for violation
-            node.takeIf {
-                it.name in (rule as IdentifierNameBlacklistingRule).names.split(", ")
-            } ?: return super.visitField(node)
+            node
+                .takeIf {
+                    it.name in (rule as IdentifierNameBlacklistingRule).names.split(", ")
+                }
+                ?: return super.visitField(node)
             addViolation(node, Messages[MSG])
 
             super.visitField(node)

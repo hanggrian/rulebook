@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#empty-code-block-wrapping)
  */
-public class EmptyCodeBlockWrappingRule : RulebookRule("empty-code-block-wrapping") {
+public class EmptyCodeBlockWrappingRule : Rule("empty-code-block-wrapping") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,

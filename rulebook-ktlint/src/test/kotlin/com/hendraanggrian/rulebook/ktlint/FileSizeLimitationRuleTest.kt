@@ -7,11 +7,7 @@ import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
 class FileSizeLimitationRuleTest {
-    private val assertThatCode =
-        assertThatRule(
-            { FileSizeLimitationRule() },
-            editorConfigProperties = setOf(MAX_FILE_LENGTH_PROPERTY to 3),
-        )
+    private val assertThatCode = assertThatRule { FileSizeLimitationRule() }
 
     @Test
     fun `Rule properties`(): Unit = FileSizeLimitationRule().assertProperties()
@@ -24,7 +20,8 @@ class FileSizeLimitationRuleTest {
 
             import namespace.one.*
             """.trimIndent(),
-        ).hasNoLintViolations()
+        ).withEditorConfigOverride(MAX_FILE_LENGTH_PROPERTY to 3)
+            .hasNoLintViolations()
 
     @Test
     fun `Large file`() =
@@ -35,5 +32,6 @@ class FileSizeLimitationRuleTest {
             import namespace.one.*
             import namespace.two.*
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 1, Messages.get(MSG, 3))
+        ).withEditorConfigOverride(MAX_FILE_LENGTH_PROPERTY to 3)
+            .hasLintViolationWithoutAutoCorrect(1, 1, Messages.get(MSG, 3))
 }

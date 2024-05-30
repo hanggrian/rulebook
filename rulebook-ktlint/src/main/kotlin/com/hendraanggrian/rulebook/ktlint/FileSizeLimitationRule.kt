@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#file-size-limitation)
  */
-public class FileSizeLimitationRule : RulebookRule(
+public class FileSizeLimitationRule : Rule(
     "file-size-limitation",
     setOf(MAX_FILE_LENGTH_PROPERTY),
 ) {

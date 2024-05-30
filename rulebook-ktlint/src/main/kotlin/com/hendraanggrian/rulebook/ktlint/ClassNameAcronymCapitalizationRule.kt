@@ -12,7 +12,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-acronym-capitalization)
  */
 public class ClassNameAcronymCapitalizationRule :
-    RulebookRule("class-name-acronym-capitalization") {
+    Rule("class-name-acronym-capitalization") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,

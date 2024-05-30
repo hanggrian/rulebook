@@ -10,7 +10,7 @@ class TestGenericsCommonNamingChecker(CheckerTestCase):
     CHECKER_CLASS = GenericsNameWhitelistingChecker
 
     def test_common_generic_type_in_class_alike(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 T = TypeVar('T') #@
@@ -20,10 +20,10 @@ class TestGenericsCommonNamingChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_assign(def1)
+            self.checker.visit_assign(node1)
 
     def test_uncommon_generic_type_in_class_alike(self):
-        def1 = \
+        node2 = \
             extract_node(
                 '''
                 X = TypeVar('X') #@
@@ -33,9 +33,9 @@ class TestGenericsCommonNamingChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(GenericsNameWhitelistingChecker.MSG, (2, 0, 1), def1.targets[0], 'X'),
+            msg(GenericsNameWhitelistingChecker.MSG, (2, 0, 1), node2.targets[0], 'X'),
         ):
-            self.checker.visit_assign(def1)
+            self.checker.visit_assign(node2)
 
 if __name__ == '__main__':
     main()

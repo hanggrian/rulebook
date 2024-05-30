@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset xmlns="http://codenarc.org/ruleset/1.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"
-         xsi:noNamespaceSchemaLocation="http://codenarc.org/ruleset-schema.xsd">
+<ruleset
+  xmlns="http://codenarc.org/ruleset/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"
+  xsi:noNamespaceSchemaLocation="http://codenarc.org/ruleset-schema.xsd">
 
   <description>Rulebook third-party rules</description>
 
@@ -80,6 +81,11 @@
     <!-- Poor suggestion when using static typing -->
     <exclude name="UnnecessaryObjectReferences"/>
   </ruleset-ref>
+
+  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
+  <rule class="org.codenarc.rule.formatting.LineLengthRule">
+    <property name="length" value="100"/>
+  </rule>
 
   <!-- Third-party rules -->
   <rule class="org.codenarc.rule.size.ClassSizeRule">

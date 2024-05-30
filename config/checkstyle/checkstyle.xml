@@ -8,19 +8,23 @@
 
   Modifications:
 
-  - Remove 'JavadocPackage'.
+  - Modify 'Size violations':
+    - Change `LineLength` max from 80 to 100.
   - Modify 'Class design':
     - Remove 'VisibilityModifier'.
   - Modify 'Coding':
     - Add 'IllegalThrows' with that includes 'Exception', 'Error' and 'Throwable'.
   - Modify 'Javadoc Comments':
     - Remove 'MissingJavadocMethod'.
+    - Remove 'JavadocPackage'.
     - Remove 'JavadocVariable'.
     - Add 'JavadocMissingWhitespaceAfterAsterisk'.
   - Modify 'Miscellaneous':
     - Add 'TodoComment' with capturing 'TODO' and 'FIXME'.
   - Modify 'Naming Conventions':
     - Add 'IllegalIdentifierName' with Java object and collection type names.
+  - Modify 'Whitespace':
+    - Remove 'WhitespaceAround'.
   - Configure 'AbbreviationAsWordInName#allowedAbbreviationLength' from 0 to 2.
  -->
 <!DOCTYPE module PUBLIC
@@ -66,6 +70,7 @@
   <module name="FileLength"/>
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
+    <property name="max" value="100"/>
   </module>
 
   <!-- Checks for whitespace                               -->
@@ -133,7 +138,6 @@
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
-    <module name="WhitespaceAround"/>
 
     <!-- Modifier Checks                                    -->
     <!-- See https://checkstyle.org/config_modifiers.html -->
@@ -200,12 +204,17 @@
     </module>
 
     <!-- Third-party rules -->
-    <module name="BlockTagPunctuation"/>
+    <module name="BlockTagDescriptionPunctuation"/>
     <module name="ClassNameBlacklisting"/>
     <module name="CommentSpacing"/>
     <module name="ConstructorPosition"/>
+    <module name="EmptyBlockCommentLineJoining"/>
+    <module name="EmptyCommentLineJoining"/>
+    <module name="FileInitialJoining"/>
     <module name="GenericsNameWhitelisting"/>
+    <module name="IfStatementFlattening"/>
     <module name="QualifierConsistency"/>
     <module name="StaticClassPosition"/>
+    <module name="SwitchCaseJoining"/>
   </module>
 </module>

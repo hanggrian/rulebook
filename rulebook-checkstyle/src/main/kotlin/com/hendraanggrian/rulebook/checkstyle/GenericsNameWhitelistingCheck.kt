@@ -16,7 +16,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETERS
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#generics-name-whitelisting)
  */
-public class GenericsNameWhitelistingCheck : RulebookCheck() {
+public class GenericsNameWhitelistingCheck : Check() {
     private var names = setOf("E", "K", "N", "T", "V")
 
     public fun setNames(vararg names: String) {
@@ -42,7 +42,7 @@ public class GenericsNameWhitelistingCheck : RulebookCheck() {
         // checks for violation
         val ident =
             typeParameter.findFirstToken(IDENT)
-                ?.takeIf { !node.hasParentWithGenerics() && it.text !in names }
+                ?.takeUnless { node.hasParentWithGenerics() || it.text in names }
                 ?: return
         log(ident, Messages.get(MSG, names.joinToString()))
     }
@@ -51,7 +51,7 @@ public class GenericsNameWhitelistingCheck : RulebookCheck() {
         const val MSG = "generics.name.whitelisting"
 
         private fun DetailAST.hasParentWithGenerics(): Boolean {
-            var next: DetailAST? = parent
+            var next = parent
             while (next != null) {
                 if (TYPE_PARAMETERS in next) {
                     return true

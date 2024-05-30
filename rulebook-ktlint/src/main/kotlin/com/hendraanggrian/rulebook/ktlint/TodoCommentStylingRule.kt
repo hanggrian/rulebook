@@ -1,9 +1,12 @@
 package com.hendraanggrian.rulebook.ktlint
 
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
+import com.hendraanggrian.rulebook.ktlint.internals.contains
 import com.hendraanggrian.rulebook.ktlint.internals.siblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import kotlin.text.RegexOption.IGNORE_CASE
@@ -11,7 +14,7 @@ import kotlin.text.RegexOption.IGNORE_CASE
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-comment-styling)
  */
-public class TodoCommentStylingRule : RulebookRule("todo-comment-styling") {
+public class TodoCommentStylingRule : Rule("todo-comment-styling") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
@@ -21,14 +24,13 @@ public class TodoCommentStylingRule : RulebookRule("todo-comment-styling") {
         val text =
             when (node.elementType) {
                 EOL_COMMENT -> node.text
+                KDOC_SECTION ->
+                    node.takeUnless { KDOC_LEADING_ASTERISK in node }
+                        ?.findChildByType(KDOC_TEXT)
+                        ?.text
                 KDOC_LEADING_ASTERISK ->
                     node.siblingsUntil(KDOC_LEADING_ASTERISK)
-                        .takeUnless { n ->
-                            n.all {
-                                it.elementType == KDOC_LEADING_ASTERISK ||
-                                    it.elementType == WHITE_SPACE
-                            }
-                        }
+                        .takeUnless { n -> n.all { it.elementType == WHITE_SPACE } }
                         ?.joinToString("") { it.text }
                 else -> null
             } ?: return

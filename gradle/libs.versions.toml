@@ -2,7 +2,7 @@
 jdk = "8"
 # kotlin
 kotlin = "1.9.20"
-ktlint = "1.0.1"
+ktlint = "1.2.1"
 # java
 checkstyle = "8.45.1"
 # groovy

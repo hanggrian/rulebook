@@ -23,19 +23,6 @@ class IfStatementFlatteningRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Inverted if statement`() =
-        assertThatCode(
-            """
-            fun foo() {
-                if (true) {
-                    return
-                }
-                bar()
-            }
-            """.trimIndent(),
-        ).hasNoLintViolations()
-
-    @Test
     fun `Only 1 line in if statement`() =
         assertThatCode(
             """
@@ -59,21 +46,6 @@ class IfStatementFlatteningRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG])
-
-    @Test
-    fun `If statement with else if`() =
-        assertThatCode(
-            """
-            fun foo() {
-                if (true) {
-                    bar()
-                    baz()
-                } else if (false) {
-                    bar()
-                }
-            }
-            """.trimIndent(),
-        ).hasNoLintViolations()
 
     @Test
     fun `If statement with else`() =

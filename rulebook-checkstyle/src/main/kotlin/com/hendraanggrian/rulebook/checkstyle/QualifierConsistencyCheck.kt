@@ -13,13 +13,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#qualifier-consistency)
  */
-public class QualifierConsistencyCheck : RulebookCheck() {
+public class QualifierConsistencyCheck : Check() {
     private val importPaths = mutableSetOf<String>()
     private val targetNodes = mutableSetOf<DetailAST>()
 
     override fun getRequiredTokens(): IntArray = intArrayOf(IMPORT, TYPE, METHOD_CALL)
-
-    override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
         // first line of filter
@@ -33,9 +31,9 @@ public class QualifierConsistencyCheck : RulebookCheck() {
             METHOD_CALL -> {
                 // only consider top expression
                 val dot =
-                    node.takeUnless { DOT !in it }
+                    node.takeIf { DOT in it }
                         ?.firstChild
-                        ?.takeUnless { DOT !in it }
+                        ?.takeIf { DOT in it }
                         ?.firstChild
                         ?: return
 

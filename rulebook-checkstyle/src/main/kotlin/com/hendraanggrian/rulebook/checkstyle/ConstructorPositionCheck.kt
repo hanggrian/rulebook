@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position)
  */
-public class ConstructorPositionCheck : RulebookCheck() {
+public class ConstructorPositionCheck : Check() {
     override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,

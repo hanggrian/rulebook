@@ -29,7 +29,7 @@ internal fun Checker.read(resource: String): Int {
     return process(listOf(testFile))
 }
 
-internal fun RulebookCheck.assertProperties() {
+internal fun Check.assertProperties() {
     val requiredTokens = requiredTokens.asList()
     assertThat(defaultTokens).asList().containsExactlyElementsIn(requiredTokens)
     assertThat(acceptableTokens).asList().containsExactlyElementsIn(requiredTokens)

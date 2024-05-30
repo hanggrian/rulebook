@@ -10,7 +10,7 @@ class TestObjectStructuralComparisonChecker(CheckerTestCase):
     CHECKER_CLASS = ObjectStructuralComparisonChecker
 
     def test_structural_equalities(self):
-        def1, def2 = \
+        node1, node2 = \
             extract_node(
                 '''
                 if foo == bar: #@
@@ -20,11 +20,11 @@ class TestObjectStructuralComparisonChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_compare(def1)
-            self.checker.visit_compare(def2)
+            self.checker.visit_compare(node1)
+            self.checker.visit_compare(node2)
 
     def test_referential_equalities(self):
-        def1, def2 = \
+        node1, node2 = \
             extract_node(
                 '''
                 if foo is bar: #@
@@ -34,26 +34,26 @@ class TestObjectStructuralComparisonChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ObjectStructuralComparisonChecker.MSG_EQ, (2, 3, 13), def1.test),
-            msg(ObjectStructuralComparisonChecker.MSG_NEQ, (4, 5, 19), def2.test),
+            msg(ObjectStructuralComparisonChecker.MSG_EQ, (2, 3, 13), node1.test),
+            msg(ObjectStructuralComparisonChecker.MSG_NEQ, (4, 5, 19), node2.test),
         ):
-            self.checker.visit_compare(def1)
-            self.checker.visit_compare(def2)
+            self.checker.visit_compare(node1)
+            self.checker.visit_compare(node2)
 
     def test_assigned_condition(self):
-        def1 = \
+        node1 = \
             extract_node(
                 '''
                 baz = foo is bar #@
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ObjectStructuralComparisonChecker.MSG_EQ, (2, 6, 16), def1.value),
+            msg(ObjectStructuralComparisonChecker.MSG_EQ, (2, 6, 16), node1.value),
         ):
-            self.checker.visit_compare(def1)
+            self.checker.visit_compare(node1)
 
     def test_skip_comparing_none(self):
-        def1, def2 = \
+        node1, node2 = \
             extract_node(
                 '''
                 if foo is None: #@
@@ -63,8 +63,8 @@ class TestObjectStructuralComparisonChecker(CheckerTestCase):
                 ''',
             )
         with self.assertNoMessages():
-            self.checker.visit_compare(def1)
-            self.checker.visit_compare(def2)
+            self.checker.visit_compare(node1)
+            self.checker.visit_compare(node2)
 
 if __name__ == '__main__':
     main()

@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.psi.psiUtil.children
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#if-statement-flattening)
  */
-public class IfStatementFlatteningRule : RulebookRule("if-statement-flattening") {
+public class IfStatementFlatteningRule : Rule("if-statement-flattening") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,
@@ -27,13 +27,20 @@ public class IfStatementFlatteningRule : RulebookRule("if-statement-flattening")
         }
 
         // only proceed on one if and no else
+        val children = node.children().toList()
         val if2 =
-            node.blockContent.singleOrNull()
-                ?.takeUnless { it.elementType != IF }
+            children
+                .takeIf {
+                    it.firstOrNull()?.elementType == LBRACE &&
+                        it.lastOrNull()?.elementType == RBRACE
+                }
+                ?.slice(1 until children.lastIndex)
+                ?.singleOrNull { it.elementType != WHITE_SPACE }
+                ?.takeIf { it.elementType == IF }
                 ?.takeUnless { ELSE in it }
                 ?: return
 
-        // report 2 lines content
+        // checks for violation
         if2.findChildByType(THEN)?.findChildByType(BLOCK)?.children()
             ?.filter { it.elementType == WHITE_SPACE && "\n" in it.text }
             ?.toList()
@@ -44,30 +51,5 @@ public class IfStatementFlatteningRule : RulebookRule("if-statement-flattening")
 
     internal companion object {
         const val MSG = "if.statement.flattening"
-
-        private val ASTNode.blockContent
-            get(): List<ASTNode> {
-                val content = children().toList()
-                // empty block is at least 2 node '{}'
-                if (content.size < 3) {
-                    return emptyList()
-                }
-                // iterate forward & backward
-                var i = 0
-                var j = content.lastIndex
-                var next = content[i]
-                while (next.elementType == LBRACE || next.elementType == WHITE_SPACE) {
-                    next = content[++i]
-                }
-                next = content[j]
-                while (next.elementType == RBRACE || next.elementType == WHITE_SPACE) {
-                    next = content[--j]
-                }
-                // return only valid range
-                return when {
-                    i > j -> emptyList()
-                    else -> content.subList(i, j + 1)
-                }
-            }
     }
 }

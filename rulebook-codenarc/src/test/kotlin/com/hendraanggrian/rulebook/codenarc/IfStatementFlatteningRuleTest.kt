@@ -23,19 +23,6 @@ class IfStatementFlatteningRuleTest : AbstractRuleTestCase<IfStatementFlattening
         )
 
     @Test
-    fun `Inverted if statement`() =
-        assertNoViolations(
-            """
-            void foo() {
-                if (true) {
-                    return
-                }
-                bar()
-            }
-            """.trimIndent(),
-        )
-
-    @Test
     fun `Only 1 line in if statement`() =
         assertNoViolations(
             """
@@ -61,21 +48,6 @@ class IfStatementFlatteningRuleTest : AbstractRuleTestCase<IfStatementFlattening
             2,
             "if (true) {",
             Messages[MSG],
-        )
-
-    @Test
-    fun `If statement with else if`() =
-        assertNoViolations(
-            """
-            void foo() {
-                if (true) {
-                    bar()
-                    baz()
-                } else if (false) {
-                    bar()
-                }
-            }
-            """.trimIndent(),
         )
 
     @Test

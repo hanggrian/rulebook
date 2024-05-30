@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-blacklisting)
  */
-public class ClassNameBlacklistingRule : RulebookRule(
+public class ClassNameBlacklistingRule : Rule(
     "class-name-blacklisting",
     setOf(NAMES_PROPERTY),
 ) {

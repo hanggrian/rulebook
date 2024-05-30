@@ -8,25 +8,25 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#if-statement-flattening)
  */
-public class IfStatementFlatteningRule : RulebookRule() {
+public class IfStatementFlatteningRule : Rule() {
     override fun getName(): String = "IfStatementFlattening"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
     public class Visitor : AbstractAstVisitor() {
-        override fun visitBlockStatement(statement: BlockStatement) {
+        override fun visitBlockStatement(node: BlockStatement) {
             // only proceed on one if and no else
             val if2 =
-                statement.statements.singleOrNull()
-                    ?.takeUnless { it !is IfStatement }
-                    ?.takeUnless { !(it as IfStatement).elseBlock.isEmpty } as IfStatement?
-                    ?: return super.visitBlockStatement(statement)
+                node.statements.singleOrNull()
+                    ?.takeIf { it is IfStatement }
+                    ?.takeIf { (it as IfStatement).elseBlock.isEmpty } as IfStatement?
+                    ?: return super.visitBlockStatement(node)
 
-            // report 2 lines content
-            if2.ifBlock.text.takeIf { ';' in it } ?: return super.visitBlockStatement(statement)
+            // checks for violation
+            if2.ifBlock.text.takeIf { ';' in it } ?: return super.visitBlockStatement(node)
             addViolation(if2, Messages[MSG])
 
-            super.visitBlockStatement(statement)
+            super.visitBlockStatement(node)
         }
     }
 

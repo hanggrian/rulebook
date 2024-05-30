@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#object-structural-comparison)
  */
-public class ObjectStructuralComparisonRule : RulebookRule("object-structural-comparison") {
+public class ObjectStructuralComparisonRule : Rule("object-structural-comparison") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,

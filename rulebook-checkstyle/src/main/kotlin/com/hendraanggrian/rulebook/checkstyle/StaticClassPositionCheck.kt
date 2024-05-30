@@ -17,7 +17,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#static-class-position)
  */
-public class StaticClassPositionCheck : RulebookCheck() {
+public class StaticClassPositionCheck : Check() {
     override fun getRequiredTokens(): IntArray =
         intArrayOf(
             CLASS_DEF,

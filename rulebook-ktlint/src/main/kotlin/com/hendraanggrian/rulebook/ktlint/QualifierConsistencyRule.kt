@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.psi.KtImportDirective
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#qualifier-consistency)
  */
-public class QualifierConsistencyRule : RulebookRule("qualifier-consistency") {
+public class QualifierConsistencyRule : Rule("qualifier-consistency") {
     private val importPaths = mutableSetOf<String>()
     private val targetNodes = mutableSetOf<ASTNode>()
 

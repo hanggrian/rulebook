@@ -1,15 +1,14 @@
 from typing import TYPE_CHECKING
 
 from astroid import NodeNG, FunctionDef, Assign, AssignName
-from pylint.checkers import BaseChecker
 from pylint.typing import MessageDefinitionTuple
-
-from .internals import Messages, get_assignname
+from rulebook_pylint.checkers import Checker
+from rulebook_pylint.internals import Messages, get_assignname
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
-class ConstructorPositionChecker(BaseChecker):
+class ConstructorPositionChecker(Checker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#constructor-position
     """
     MSG_PROPERTIES: str = 'constructor-position-properties'

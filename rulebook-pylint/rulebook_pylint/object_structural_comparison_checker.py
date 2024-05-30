@@ -1,15 +1,14 @@
 from typing import TYPE_CHECKING
 
 from astroid import NodeNG, Compare, If, Assign
-from pylint.checkers import BaseChecker
 from pylint.typing import MessageDefinitionTuple
-
-from .internals import Messages
+from rulebook_pylint.checkers import Checker
+from rulebook_pylint.internals import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
-class ObjectStructuralComparisonChecker(BaseChecker):
+class ObjectStructuralComparisonChecker(Checker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#object-structural-comparison
     """
     MSG_EQ: str = 'object-structural-comparison-eq'

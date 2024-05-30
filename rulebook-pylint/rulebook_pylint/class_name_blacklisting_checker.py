@@ -2,16 +2,15 @@ from typing import TYPE_CHECKING
 
 import regex
 from astroid import ClassDef
-from pylint.checkers import BaseChecker
 from pylint.typing import MessageDefinitionTuple, Options
 from regex import Pattern
-
-from .internals import Messages
+from rulebook_pylint.checkers import Checker
+from rulebook_pylint.internals import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
-class ClassNameBlacklistingChecker(BaseChecker):
+class ClassNameBlacklistingChecker(Checker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-blacklisting
     """
     MSG_ALL: str = 'class-name-blacklisting-all'

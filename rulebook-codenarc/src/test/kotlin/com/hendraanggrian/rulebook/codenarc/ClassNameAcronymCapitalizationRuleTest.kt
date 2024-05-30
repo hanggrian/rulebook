@@ -32,25 +32,9 @@ class ClassNameAcronymCapitalizationRuleTest :
             @interface MySQLAnnotation {}
             enum MySQLEnum {}
             """.trimIndent(),
-            mapOf(
-                "line" to 1,
-                "source" to "class MySQLClass {}",
-                "message" to Messages.get(MSG, "MySqlClass"),
-            ),
-            mapOf(
-                "line" to 2,
-                "source" to "interface MySQLInterface {}",
-                "message" to Messages.get(MSG, "MySqlInterface"),
-            ),
-            mapOf(
-                "line" to 3,
-                "source" to "@interface MySQLAnnotation {}",
-                "message" to Messages.get(MSG, "MySqlAnnotation"),
-            ),
-            mapOf(
-                "line" to 4,
-                "source" to "enum MySQLEnum {}",
-                "message" to Messages.get(MSG, "MySqlEnum"),
-            ),
+            violationOf(1, "class MySQLClass {}", Messages.get(MSG, "MySqlClass")),
+            violationOf(2, "interface MySQLInterface {}", Messages.get(MSG, "MySqlInterface")),
+            violationOf(3, "@interface MySQLAnnotation {}", Messages.get(MSG, "MySqlAnnotation")),
+            violationOf(4, "enum MySQLEnum {}", Messages.get(MSG, "MySqlEnum")),
         )
 }

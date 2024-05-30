@@ -2,8 +2,7 @@ public class StaticClassPosition {
     public class Foo {
         public int bar = VALUE;
 
-        public Foo(int a) {
-        }
+        public Foo(int a) {}
 
         public Foo() {
             this(VALUE);

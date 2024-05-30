@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.psi.KtReturnExpression
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#function-single-expression)
  */
-public class FunctionSingleExpressionRule : RulebookRule("function-single-expression") {
+public class FunctionSingleExpressionRule : Rule("function-single-expression") {
     override fun beforeVisitChildNodes(
         node: ASTNode,
         autoCorrect: Boolean,

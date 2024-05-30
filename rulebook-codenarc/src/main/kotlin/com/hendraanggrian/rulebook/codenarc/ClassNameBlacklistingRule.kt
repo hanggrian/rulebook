@@ -7,7 +7,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-blacklisting)
  */
-public class ClassNameBlacklistingRule : RulebookRule() {
+public class ClassNameBlacklistingRule : Rule() {
     private var names = "Util, Utility, Helper, Manager, Wrapper"
 
     public fun setNames(names: String) {

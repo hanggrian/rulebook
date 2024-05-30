@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-blacklisting)
  */
-public class ClassNameBlacklistingCheck : RulebookCheck() {
+public class ClassNameBlacklistingCheck : Check() {
     private var names = setOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 
     public fun setNames(vararg names: String) {

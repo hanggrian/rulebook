@@ -41,20 +41,8 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
                 }
             }
             """.trimIndent(),
-            mapOf(
-                "line" to 4,
-                "source" to "java.lang.String property = new java.lang.String()",
-                "message" to Messages[MSG],
-            ),
-            mapOf(
-                "line" to 5,
-                "source" to "void parameter(java.lang.String param) {}",
-                "message" to Messages[MSG],
-            ),
-            mapOf(
-                "line" to 7,
-                "source" to "java.lang.String.format(\"%s\", \"Hello World\")",
-                "message" to Messages[MSG],
-            ),
+            violationOf(4, "java.lang.String property = new java.lang.String()", Messages[MSG]),
+            violationOf(5, "void parameter(java.lang.String param) {}", Messages[MSG]),
+            violationOf(7, "java.lang.String.format(\"%s\", \"Hello World\")", Messages[MSG]),
         )
 }
