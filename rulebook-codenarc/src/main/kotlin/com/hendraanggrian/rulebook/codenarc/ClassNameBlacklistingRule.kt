@@ -18,6 +18,14 @@ public class ClassNameBlacklistingRule : Rule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
+    internal companion object {
+        const val MSG_ALL = "class.name.blacklisting.all"
+        const val MSG_UTIL = "class.name.blacklisting.util"
+
+        private val TITLE_CASE_REGEX =
+            Regex("((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|([A-Z]+(?=([A-Z][a-z])|(\$)|([0-9]))))")
+    }
+
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassEx(node: ClassNode) {
             // checks for violation
@@ -36,13 +44,5 @@ public class ClassNameBlacklistingRule : Rule() {
 
             super.visitClassEx(node)
         }
-    }
-
-    internal companion object {
-        const val MSG_ALL = "class.name.blacklisting.all"
-        const val MSG_UTIL = "class.name.blacklisting.util"
-
-        private val TITLE_CASE_REGEX =
-            Regex("((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|([A-Z]+(?=([A-Z][a-z])|(\$)|([0-9]))))")
     }
 }

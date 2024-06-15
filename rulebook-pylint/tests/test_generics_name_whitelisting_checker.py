@@ -6,6 +6,7 @@ from rulebook_pylint.generics_name_whitelisting_checker import GenericsNameWhite
 
 from .tests import msg
 
+
 class TestGenericsCommonNamingChecker(CheckerTestCase):
     CHECKER_CLASS = GenericsNameWhitelistingChecker
 
@@ -36,6 +37,7 @@ class TestGenericsCommonNamingChecker(CheckerTestCase):
             msg(GenericsNameWhitelistingChecker.MSG, (2, 0, 1), node2.targets[0], 'X'),
         ):
             self.checker.visit_assign(node2)
+
 
 if __name__ == '__main__':
     main()

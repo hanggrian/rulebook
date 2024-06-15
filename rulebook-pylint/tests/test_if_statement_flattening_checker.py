@@ -6,6 +6,7 @@ from rulebook_pylint.if_statement_flattening_checker import IfStatementFlattenin
 
 from .tests import msg
 
+
 class TestIfStatementFlatteningChecker(CheckerTestCase):
     CHECKER_CLASS = IfStatementFlatteningChecker
 
@@ -90,6 +91,7 @@ class TestIfStatementFlatteningChecker(CheckerTestCase):
             )
         with self.assertNoMessages():
             self.checker.visit_functiondef(node1)
+
 
 if __name__ == '__main__':
     main()

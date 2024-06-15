@@ -48,9 +48,6 @@ public class ClassNameAcronymCapitalizationRule :
 
         private val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
 
-        private fun String.isStaticPropertyName(): Boolean =
-            all { it.isUpperCase() || it.isDigit() || it == '_' }
-
         private fun String.transform(): String =
             ABBREVIATION_REGEX.replace(this) {
                 it.value.first() +

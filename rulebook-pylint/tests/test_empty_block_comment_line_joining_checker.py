@@ -7,6 +7,7 @@ from rulebook_pylint.empty_block_comment_line_joining_checker \
 
 from .tests import msg
 
+
 class TestEmptyBlockCommentLineJoiningChecker(CheckerTestCase):
     CHECKER_CLASS = EmptyBlockCommentLineJoiningChecker
 
@@ -93,6 +94,7 @@ class TestEmptyBlockCommentLineJoiningChecker(CheckerTestCase):
         ):
             self.checker.visit_classdef(node1)
             self.checker.visit_functiondef(node2)
+
 
 if __name__ == '__main__':
     main()

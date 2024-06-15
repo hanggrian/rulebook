@@ -2,12 +2,25 @@ package com.hendraanggrian.rulebook.checkstyle.internals
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.DetailNode
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 
 internal fun DetailNode.find(type: Int): DetailNode? = children.firstOrNull { it.type == type }
 
 internal operator fun DetailNode.contains(type: Int): Boolean = children.any { it.type == type }
 
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
+
+internal fun DetailAST.hasModifier(type: Int): Boolean =
+    MODIFIERS in this &&
+        type in findFirstToken(MODIFIERS)!!
+
+internal fun DetailAST.hasAnnotation(name: String): Boolean =
+    MODIFIERS in this &&
+        findFirstToken(MODIFIERS)
+            .children()
+            .any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
 
 /** In Checkstyle, nodes with children do not have text. */
 internal fun DetailAST.joinText(separator: String = "", excludeType: Int = 0): String {

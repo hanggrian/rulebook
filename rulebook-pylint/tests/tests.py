@@ -1,6 +1,7 @@
 from astroid import NodeNG
 from pylint.testutils import MessageTest
 
+
 def msg(
     key: str,
     location: int | tuple[int, int, int] | tuple[int, int, int, int] = 0,

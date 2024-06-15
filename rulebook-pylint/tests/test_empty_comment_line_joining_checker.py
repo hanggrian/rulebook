@@ -5,6 +5,7 @@ from rulebook_pylint.empty_comment_line_joining_checker import EmptyCommentLineJ
 
 from .tests import msg
 
+
 class TestEmptyCommentLineJoiningChecker(CheckerTestCase):
     CHECKER_CLASS = EmptyCommentLineJoiningChecker
 
@@ -30,6 +31,7 @@ class TestEmptyCommentLineJoiningChecker(CheckerTestCase):
             msg(EmptyCommentLineJoiningChecker.MSG, 4),
         ):
             self.checker.process_tokens(_tokenize_str(code))
+
 
 if __name__ == '__main__':
     main()

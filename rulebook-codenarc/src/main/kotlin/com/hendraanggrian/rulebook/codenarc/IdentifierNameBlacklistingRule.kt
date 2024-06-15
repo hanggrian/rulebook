@@ -18,6 +18,10 @@ public class IdentifierNameBlacklistingRule : Rule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
+    internal companion object {
+        const val MSG = "identifier.name.blacklisting"
+    }
+
     public class Visitor : AbstractAstVisitor() {
         override fun visitField(node: FieldNode) {
             // checks for violation
@@ -30,9 +34,5 @@ public class IdentifierNameBlacklistingRule : Rule() {
 
             super.visitField(node)
         }
-    }
-
-    internal companion object {
-        const val MSG = "identifier.name.blacklisting"
     }
 }

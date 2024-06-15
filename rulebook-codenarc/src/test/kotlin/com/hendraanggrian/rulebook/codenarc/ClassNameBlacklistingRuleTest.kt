@@ -17,8 +17,11 @@ class ClassNameBlacklistingRuleTest : AbstractRuleTestCase<ClassNameBlacklisting
         assertNoViolations(
             """
             class Spaceship {}
+
             interface Rocket {}
+
             @interface Navigator {}
+
             enum Planet {}
             """.trimIndent(),
         )
@@ -28,14 +31,17 @@ class ClassNameBlacklistingRuleTest : AbstractRuleTestCase<ClassNameBlacklisting
         assertViolations(
             """
             class SpaceshipManager {}
+
             interface RocketManager {}
+
             @interface NavigatorManager {}
+
             enum PlanetManager {}
             """.trimIndent(),
             violationOf(1, "class SpaceshipManager {}", Messages.get(MSG_ALL, "Manager")),
-            violationOf(2, "interface RocketManager {}", Messages.get(MSG_ALL, "Manager")),
-            violationOf(3, "@interface NavigatorManager {}", Messages.get(MSG_ALL, "Manager")),
-            violationOf(4, "enum PlanetManager {}", Messages.get(MSG_ALL, "Manager")),
+            violationOf(3, "interface RocketManager {}", Messages.get(MSG_ALL, "Manager")),
+            violationOf(5, "@interface NavigatorManager {}", Messages.get(MSG_ALL, "Manager")),
+            violationOf(7, "enum PlanetManager {}", Messages.get(MSG_ALL, "Manager")),
         )
 
     @Test

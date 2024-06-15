@@ -1,5 +1,5 @@
 public class EmptyCommentLineJoining {
-    void foo() {
+    public void foo() {
         // Lorem ipsum
         //
         //

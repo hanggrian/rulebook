@@ -17,9 +17,13 @@ class GenericsNameWhitelistingRuleTest {
         assertThatCode(
             """
             class MyClass<T>
+
             annotation class MyAnnotationClass<T>
+
             data class MyDataClass<T>(val i: Int)
+
             sealed class MySealedClass<T>
+
             interface MyInterface<T>
             """.trimIndent(),
         ).hasNoLintViolations()
@@ -29,17 +33,21 @@ class GenericsNameWhitelistingRuleTest {
         assertThatCode(
             """
             class MyClass<X>
+
             annotation class MyAnnotationClass<X>
+
             data class MyDataClass<X>(val i: Int)
+
             sealed class MySealedClass<X>
+
             interface MyInterface<X>
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 15, Messages.get(MSG, "E, K, N, T, V")),
-            LintViolation(2, 36, Messages.get(MSG, "E, K, N, T, V")),
-            LintViolation(3, 24, Messages.get(MSG, "E, K, N, T, V")),
-            LintViolation(4, 28, Messages.get(MSG, "E, K, N, T, V")),
-            LintViolation(5, 23, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(3, 36, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(5, 24, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(7, 28, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(9, 23, Messages.get(MSG, "E, K, N, T, V")),
         )
 
     @Test
@@ -63,10 +71,9 @@ class GenericsNameWhitelistingRuleTest {
         assertThatCode(
             """
             class Foo<T> {
-                class Bar<X> {
-                }
-                fun <Y> bar() {
-                }
+                class Bar<X> {}
+
+                fun <Y> bar() {}
             }
             """.trimIndent(),
         ).hasNoLintViolations()

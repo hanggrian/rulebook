@@ -125,10 +125,11 @@
   <!-- Third-party rules -->
   <rule class="com.hendraanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.ClassNameBlacklistingRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.ConstructorPositionRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.ClassOrganizationRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNameWhitelistingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.IfStatementFlatteningRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.InnerClassPositionRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.StaticClassPositionRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
 </ruleset>

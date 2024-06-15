@@ -6,6 +6,7 @@ from rulebook_pylint.file_size_limitation_checker import FileSizeLimitationCheck
 
 from .tests import msg
 
+
 class TestFileSizeLimitationChecker(CheckerTestCase):
     CHECKER_CLASS = FileSizeLimitationChecker
     CHECKER_CLASS.options[0][1]['default'] = 3
@@ -30,6 +31,7 @@ class TestFileSizeLimitationChecker(CheckerTestCase):
             )
         with self.assertAddsMessages(msg(FileSizeLimitationChecker.MSG, 0, args=3)):
             self.checker.process_module(node_all)
+
 
 if __name__ == '__main__':
     main()

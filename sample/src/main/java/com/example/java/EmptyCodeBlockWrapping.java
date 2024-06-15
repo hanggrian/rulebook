@@ -1,12 +1,9 @@
 package com.example.java;
 
 public class EmptyCodeBlockWrapping {
-    void foo() { }
+    public void foo() {}
 
-    void bar() {
-    }
+    public void bar() {}
 
-    void baz() {
-
-    }
+    public void baz() {}
 }

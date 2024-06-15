@@ -6,6 +6,7 @@ from rulebook_pylint.class_name_blacklisting_checker import ClassNameBlacklistin
 
 from .tests import msg
 
+
 class TestClassNameBlacklistingChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameBlacklistingChecker
 
@@ -45,6 +46,7 @@ class TestClassNameBlacklistingChecker(CheckerTestCase):
             msg(ClassNameBlacklistingChecker.MSG_UTIL, (2, 0, 19), node1, 'Spaceships'),
         ):
             self.checker.visit_classdef(node1)
+
 
 if __name__ == '__main__':
     main()

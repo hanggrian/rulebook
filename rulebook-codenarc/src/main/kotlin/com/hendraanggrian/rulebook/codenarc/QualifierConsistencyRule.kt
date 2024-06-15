@@ -16,6 +16,10 @@ public class QualifierConsistencyRule : Rule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
+    internal companion object {
+        const val MSG = "qualifier.consistency"
+    }
+
     public class Visitor : AbstractAstVisitor() {
         private val importPaths = mutableSetOf<String>()
 
@@ -54,9 +58,5 @@ public class QualifierConsistencyRule : Rule() {
             }
             addViolation(node, Messages[MSG])
         }
-    }
-
-    internal companion object {
-        const val MSG = "qualifier.consistency"
     }
 }

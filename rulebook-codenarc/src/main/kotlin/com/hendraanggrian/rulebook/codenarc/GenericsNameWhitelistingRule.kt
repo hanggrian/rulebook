@@ -21,6 +21,20 @@ public class GenericsNameWhitelistingRule : Rule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
+    internal companion object {
+        const val MSG = "generics.name.whitelisting"
+
+        private fun ASTNode.hasParentWithGenerics(): Boolean {
+            val parents =
+                when (this) {
+                    is MethodNode ->
+                        declaringClass.outerClasses.toMutableList().also { it.add(declaringClass) }
+                    else -> (this as ClassNode).outerClasses
+                }
+            return parents.any { it.name != "None" && !it.genericsTypes.isNullOrEmpty() }
+        }
+    }
+
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassEx(node: ClassNode) {
             process(node, node.genericsTypes)
@@ -44,20 +58,6 @@ public class GenericsNameWhitelistingRule : Rule() {
                 }
                 ?: return
             addViolation(genericType, Messages.get(MSG, generics))
-        }
-    }
-
-    internal companion object {
-        const val MSG = "generics.name.whitelisting"
-
-        private fun ASTNode.hasParentWithGenerics(): Boolean {
-            val parents =
-                when (this) {
-                    is MethodNode ->
-                        declaringClass.outerClasses.toMutableList().also { it.add(declaringClass) }
-                    else -> (this as ClassNode).outerClasses
-                }
-            return parents.any { it.name != "None" && !it.genericsTypes.isNullOrEmpty() }
         }
     }
 }

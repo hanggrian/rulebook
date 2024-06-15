@@ -17,10 +17,15 @@ class ClassNameAcronymCapitalizationRuleTest {
         assertThatCode(
             """
             class MySqlClass
+
             annotation class MySqlAnnotationClass
+
             data class MySqlDataClass
+
             sealed class MySqlSealedClass
+
             interface MySqlInterface
+
             object MySqlObject
             """.trimIndent(),
         ).hasNoLintViolations()
@@ -30,19 +35,24 @@ class ClassNameAcronymCapitalizationRuleTest {
         assertThatCode(
             """
             class MySQLClass
+
             annotation class MySQLAnnotationClass
+
             data class MySQLDataClass
+
             sealed class MySQLSealedClass
+
             interface MySQLInterface
+
             object MySQLObject
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 7, Messages.get(MSG, "MySqlClass")),
-            LintViolation(2, 18, Messages.get(MSG, "MySqlAnnotationClass")),
-            LintViolation(3, 12, Messages.get(MSG, "MySqlDataClass")),
-            LintViolation(4, 14, Messages.get(MSG, "MySqlSealedClass")),
-            LintViolation(5, 11, Messages.get(MSG, "MySqlInterface")),
-            LintViolation(6, 8, Messages.get(MSG, "MySqlObject")),
+            LintViolation(3, 18, Messages.get(MSG, "MySqlAnnotationClass")),
+            LintViolation(5, 12, Messages.get(MSG, "MySqlDataClass")),
+            LintViolation(7, 14, Messages.get(MSG, "MySqlSealedClass")),
+            LintViolation(9, 11, Messages.get(MSG, "MySqlInterface")),
+            LintViolation(11, 8, Messages.get(MSG, "MySqlObject")),
         )
 
     @Test

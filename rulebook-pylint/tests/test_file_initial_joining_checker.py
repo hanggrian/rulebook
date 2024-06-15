@@ -5,6 +5,7 @@ from rulebook_pylint.file_initial_joining_checker import FileInitialJoiningCheck
 
 from .tests import msg
 
+
 class TestFileInitialJoiningChecker(CheckerTestCase):
     CHECKER_CLASS = FileInitialJoiningChecker
 
@@ -22,6 +23,7 @@ class TestFileInitialJoiningChecker(CheckerTestCase):
             '''
         with self.assertAddsMessages(msg(FileInitialJoiningChecker.MSG, 0)):
             self.checker.process_tokens(_tokenize_str(code))
+
 
 if __name__ == '__main__':
     main()

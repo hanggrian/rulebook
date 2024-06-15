@@ -7,7 +7,8 @@
   Google Java Style Guide: https://google.github.io/styleguide/javaguide.html
   Source template: https://github.com/checkstyle/checkstyle/blob/005fba53352456515cfdcdf5dcd3dea351661f2b/src/main/resources/google_checks.xml
 
-  - Remove 'WhitespaceAround'.
+  - Modify 'Class design':
+    - Add 'InnerTypeLast'.
   - Modify 'Coding':
     - Add 'IllegalThrows' with that includes 'Exception', 'Error' and 'Throwable'.
   - Modify 'Javadoc Comments':
@@ -19,6 +20,8 @@
     - Add 'TodoComment' with capturing 'TODO' and 'FIXME'.
   - Modify 'Naming Conventions':
     - Add 'IllegalIdentifierName' with Java object and collection type names.
+  - Modify 'Whitespace':
+    - Remove 'WhitespaceAround'.
   - Configure 'AbbreviationAsWordInName#allowedAbbreviationLength' from 0 to 2.
  -->
 <!DOCTYPE module PUBLIC
@@ -394,18 +397,21 @@
         value="(?i)^(?!(integer|string|list|set|map|_)$).+$"/>
     </module>
 
+    <module name="InnerTypeLast"/>
+
     <!-- Third-party rules -->
     <module name="BlockTagDescriptionPunctuation"/>
     <module name="ClassNameBlacklisting"/>
+    <module name="ClassOrganization"/>
     <module name="CommentSpacing"/>
-    <module name="ConstructorPosition"/>
+    <module name="ConditionalBranchJoining"/>
     <module name="EmptyBlockCommentLineJoining"/>
+    <module name="EmptyCodeBlockWrapping"/>
     <module name="EmptyCommentLineJoining"/>
     <module name="FileInitialJoining"/>
     <module name="GenericsNameWhitelisting"/>
     <module name="IfStatementFlattening"/>
     <module name="QualifierConsistency"/>
-    <module name="StaticClassPosition"/>
-    <module name="SwitchCaseJoining"/>
+    <module name="SpecialFunctionPosition"/>
   </module>
 </module>

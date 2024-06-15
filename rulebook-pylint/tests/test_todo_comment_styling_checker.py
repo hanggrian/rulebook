@@ -6,6 +6,7 @@ from rulebook_pylint.todo_comment_styling_checker import TodoCommentStylingCheck
 
 from .tests import msg
 
+
 class TestTodoCommentFormattingChecker(CheckerTestCase):
     CHECKER_CLASS = TodoCommentStylingChecker
 
@@ -60,6 +61,7 @@ class TestTodoCommentFormattingChecker(CheckerTestCase):
             msg(TodoCommentStylingChecker.MSG_SEPARATOR, 2, args=':'),
         ):
             self.checker.process_module(node_all)
+
 
 if __name__ == '__main__':
     main()

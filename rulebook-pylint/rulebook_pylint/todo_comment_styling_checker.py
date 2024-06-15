@@ -11,6 +11,7 @@ from rulebook_pylint.internals import Messages
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
+
 # pylint: disable=todo-comment-formatting-keyword,todo-comment-styling-separator
 class TodoCommentStylingChecker(RawChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-styling-formatting
@@ -22,7 +23,7 @@ class TodoCommentStylingChecker(RawChecker):
     SEPARATOR_REGEX: Pattern = regex.compile(r'\b(todo|fixme)\S', IGNORECASE)
 
     name: str = 'todo-comment-styling'
-    msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG_KEYWORD, MSG_SEPARATOR)
+    msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_KEYWORD, MSG_SEPARATOR)
 
     def process_module(self, node: Module) -> None:
         with node.stream() as stream:
@@ -35,20 +36,13 @@ class TodoCommentStylingChecker(RawChecker):
                 comment_content: str = decode(parts[1])
 
                 # checks for violation
-                match: Match = TodoCommentStylingChecker.KEYWORD_REGEX.search(comment_content)
+                match: Match = self.KEYWORD_REGEX.search(comment_content)
                 if match:
-                    self.add_message(
-                        TodoCommentStylingChecker.MSG_KEYWORD,
-                        line=line_no,
-                        args=match.group(0),
-                    )
-                match: Match = TodoCommentStylingChecker.SEPARATOR_REGEX.search(comment_content)
+                    self.add_message(self.MSG_KEYWORD, line=line_no, args=match.group(0))
+                match: Match = self.SEPARATOR_REGEX.search(comment_content)
                 if match:
-                    self.add_message(
-                        TodoCommentStylingChecker.MSG_SEPARATOR,
-                        line=line_no,
-                        args=match.group(0)[-1],
-                    )
+                    self.add_message(self.MSG_SEPARATOR, line=line_no, args=match.group(0)[-1])
+
 
 def register(linter: 'PyLinter') -> None:
     linter.register_checker(TodoCommentStylingChecker(linter))

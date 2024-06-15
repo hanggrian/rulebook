@@ -7,6 +7,7 @@ from rulebook_pylint.class_name_acronym_capitalization_checker import \
 
 from .tests import msg
 
+
 class TestClassNameAcronymCapitalizationChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameAcronymCapitalizationChecker
 
@@ -33,6 +34,7 @@ class TestClassNameAcronymCapitalizationChecker(CheckerTestCase):
             msg(ClassNameAcronymCapitalizationChecker.MSG, (2, 0, 16), node1, 'MySqlClass'),
         ):
             self.checker.visit_classdef(node1)
+
 
 if __name__ == '__main__':
     main()

@@ -4,7 +4,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class GenericsNameWhitelisting {
-    class Foo<E> {}
-
     <N> void bar() {}
+
+    class Foo<E> {}
 }

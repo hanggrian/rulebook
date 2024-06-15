@@ -13,6 +13,10 @@ public class IfStatementFlatteningRule : Rule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
+    internal companion object {
+        const val MSG = "if.statement.flattening"
+    }
+
     public class Visitor : AbstractAstVisitor() {
         override fun visitBlockStatement(node: BlockStatement) {
             // only proceed on one if and no else
@@ -28,9 +32,5 @@ public class IfStatementFlatteningRule : Rule() {
 
             super.visitBlockStatement(node)
         }
-    }
-
-    internal companion object {
-        const val MSG = "if.statement.flattening"
     }
 }

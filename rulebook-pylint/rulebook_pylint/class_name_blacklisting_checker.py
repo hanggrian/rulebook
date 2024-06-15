@@ -10,6 +10,7 @@ from rulebook_pylint.internals import Messages
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
+
 class ClassNameBlacklistingChecker(Checker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-blacklisting
     """
@@ -23,18 +24,19 @@ class ClassNameBlacklistingChecker(Checker):
         )
 
     name: str = 'class-name-blacklisting'
-    msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG_ALL, MSG_UTIL)
-    options: Options = (
+    msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_ALL, MSG_UTIL)
+    options: Options = \
         (
-            'rulebook-blacklist-class-names',
-            {
-                'default': ('Util', 'Utility', 'Helper', 'Manager', 'Wrapper'),
-                'type': 'csv',
-                'metavar': '<comma-separated names>',
-                'help': 'A set of banned words.',
-            },
-        ),
-    )
+            (
+                'rulebook-blacklist-class-names',
+                {
+                    'default': ('Util', 'Utility', 'Helper', 'Manager', 'Wrapper'),
+                    'type': 'csv',
+                    'metavar': '<comma-separated names>',
+                    'help': 'A set of banned words.',
+                },
+            ),
+        )
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
@@ -45,13 +47,14 @@ class ClassNameBlacklistingChecker(Checker):
 
             if word in {'Util', 'Utility'}:
                 self.add_message(
-                    ClassNameBlacklistingChecker.MSG_UTIL,
+                    self.MSG_UTIL,
                     node=node,
                     args=node.name[:node.name.index(word)] + 's',
                 )
                 return None
-            self.add_message(ClassNameBlacklistingChecker.MSG_ALL, node=node, args=word)
+            self.add_message(self.MSG_ALL, node=node, args=word)
         return None
+
 
 def register(linter: 'PyLinter') -> None:
     linter.register_checker(ClassNameBlacklistingChecker(linter))

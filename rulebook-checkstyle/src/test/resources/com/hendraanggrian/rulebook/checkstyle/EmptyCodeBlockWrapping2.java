@@ -1,8 +1,8 @@
 public class EmptyCodeBlockWrapping {
-    void foo() { }
-    void bar() {
+    public void foo() { }
+    public void bar() {
     }
-    void baz() {
+    public void baz() {
 
     }
 }

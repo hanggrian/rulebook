@@ -12,6 +12,8 @@
     - Change `LineLength` max from 80 to 100.
   - Modify 'Class design':
     - Remove 'VisibilityModifier'.
+    - Remove 'DesignForExtension',
+    - Add 'InnerTypeLast'.
   - Modify 'Coding':
     - Add 'IllegalThrows' with that includes 'Exception', 'Error' and 'Throwable'.
   - Modify 'Javadoc Comments':
@@ -167,7 +169,6 @@
 
     <!-- Checks for class design                         -->
     <!-- See https://checkstyle.org/config_design.html -->
-    <module name="DesignForExtension"/>
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="InterfaceIsType"/>
@@ -203,18 +204,21 @@
         value="(?i)^(?!(integer|string|list|set|map|_)$).+$"/>
     </module>
 
+    <module name="InnerTypeLast"/>
+
     <!-- Third-party rules -->
     <module name="BlockTagDescriptionPunctuation"/>
     <module name="ClassNameBlacklisting"/>
+    <module name="ClassOrganization"/>
     <module name="CommentSpacing"/>
-    <module name="ConstructorPosition"/>
+    <module name="ConditionalBranchJoining"/>
     <module name="EmptyBlockCommentLineJoining"/>
+    <module name="EmptyCodeBlockWrapping"/>
     <module name="EmptyCommentLineJoining"/>
     <module name="FileInitialJoining"/>
     <module name="GenericsNameWhitelisting"/>
     <module name="IfStatementFlattening"/>
     <module name="QualifierConsistency"/>
-    <module name="StaticClassPosition"/>
-    <module name="SwitchCaseJoining"/>
+    <module name="SpecialFunctionPosition"/>
   </module>
 </module>

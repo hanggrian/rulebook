@@ -14,6 +14,21 @@ public class ClassNameAcronymCapitalizationRule : Rule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
+    internal companion object {
+        const val MSG = "class.name.acronym.capitalization"
+
+        private val REGEX = Regex("[A-Z]{3,}")
+
+        private fun String.transform(): String =
+            REGEX.replace(this) {
+                it.value.first() +
+                    when {
+                        it.range.last == lastIndex -> it.value.drop(1).lowercase()
+                        else -> it.value.drop(1).dropLast(1).lowercase() + it.value.last()
+                    }
+            }
+    }
+
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassEx(node: ClassNode) {
             process(node, node.name)
@@ -32,20 +47,5 @@ public class ClassNameAcronymCapitalizationRule : Rule() {
             name.takeIf { REGEX.containsMatchIn(it) } ?: return
             addViolation(node, Messages.get(MSG, name.transform()))
         }
-    }
-
-    internal companion object {
-        const val MSG = "class.name.acronym.capitalization"
-
-        private val REGEX = Regex("[A-Z]{3,}")
-
-        private fun String.transform(): String =
-            REGEX.replace(this) {
-                it.value.first() +
-                    when {
-                        it.range.last == lastIndex -> it.value.drop(1).lowercase()
-                        else -> it.value.drop(1).dropLast(1).lowercase() + it.value.last()
-                    }
-            }
     }
 }

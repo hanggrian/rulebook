@@ -1,3 +1,3 @@
 public class EmptyCodeBlockWrapping {
-    void foo() {}
+    public void foo() {}
 }

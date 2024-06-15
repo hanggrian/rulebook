@@ -1,5 +1,5 @@
 def foo():
     if False:
-        return
-    print()
-    print()
+        print()
+        print()
+

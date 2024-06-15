@@ -25,15 +25,17 @@ class EmptyCodeBlockWrappingRuleTest {
         assertThatCode(
             """
             fun foo() { }
+
             fun bar() {
             }
+
             fun baz() {
 
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 11, Messages[MSG]),
-            LintViolation(2, 11, Messages[MSG]),
-            LintViolation(4, 11, Messages[MSG]),
+            LintViolation(3, 11, Messages[MSG]),
+            LintViolation(6, 11, Messages[MSG]),
         )
 }

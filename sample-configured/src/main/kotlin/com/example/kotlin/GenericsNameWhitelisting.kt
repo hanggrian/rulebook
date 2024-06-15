@@ -1,7 +1,7 @@
 package com.example.kotlin
 
 class GenericsNameWhitelisting {
-    class Foo<A>(a: A)
+    fun <A> foo() {}
 
-    fun <A> bar() {}
+    class Bar<A>(a: A)
 }

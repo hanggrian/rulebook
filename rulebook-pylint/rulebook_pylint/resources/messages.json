@@ -1,23 +1,25 @@
 {
   "file-size-limitation": "Reduce file size to %d.",
   "if-statement-flattening": "Invert if condition.",
-  "object-structural-comparison-eq": "Use equality ==.",
-  "object-structural-comparison-neq": "Use equality !=.",
+  "operand-structural-equality-eq": "Use operator ==.",
+  "operand-structural-equality-neq": "Use operator !=.",
   "string-single-quoting": "Use single quotes.",
   "todo-comment-styling-keyword": "Illegal keyword %s.",
   "todo-comment-styling-separator": "Illegal separator %s.",
+
+  "class-organization": "Put %s before %s.",
+  "class-organization-constructor": "constructor",
+  "class-organization-function": "function",
+  "inner-class-position": "Put inner class at the bottom.",
+  "special-function-position": "Put %s last.",
 
   "class-name-acronym-capitalization": "Rename acronym to %s.",
   "class-name-blacklisting-all": "Avoid meaningless word %s.",
   "class-name-blacklisting-util": "Utility class should be named %s.",
   "generics-name-whitelisting": "Use common generics %s.",
 
-  "constructor-position-properties": "Put constructors after properties and initializer block.",
-  "constructor-position-methods": "Put constructors before methods.",
-
+  "conditional-branch-joining": "Unexpected newline between branches.",
   "empty-block-comment-line-joining": "Unexpected consecutive newline after *.",
   "empty-comment-line-joining": "Unexpected consecutive newline after //.",
-  "empty-line-joining": "Unexpected consecutive newline.",
-  "file-initial-joining": "Unexpected newline at the beginning.",
-  "switch-case-joining": "Unexpected newline between cases."
+  "file-initial-joining": "Unexpected newline at the beginning."
 }

@@ -5,6 +5,7 @@ from rulebook_pylint.string_single_quoting_checker import StringSingleQuotingChe
 
 from .tests import msg
 
+
 class TestStringSingleQuotingChecker(CheckerTestCase):
     CHECKER_CLASS = StringSingleQuotingChecker
 
@@ -31,6 +32,7 @@ class TestStringSingleQuotingChecker(CheckerTestCase):
             '''
         with self.assertNoMessages():
             self.checker.process_tokens(_tokenize_str(code))
+
 
 if __name__ == '__main__':
     main()

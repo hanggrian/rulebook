@@ -5,5 +5,5 @@ public class EmptyBlockCommentLineJoining {
      *
      * dolor sit amet.
      */
-    void foo() {}
+    public void foo() {}
 }

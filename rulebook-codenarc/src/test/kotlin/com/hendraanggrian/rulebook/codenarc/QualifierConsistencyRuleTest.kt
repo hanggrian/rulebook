@@ -19,7 +19,9 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
 
             class QualifierConsistency {
                 String property = new String()
+
                 void parameter(String param) {}
+
                 void call() {
                     String.format("%s", "Hello World")
                 }
@@ -35,14 +37,16 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
 
             class QualifierConsistency {
                 java.lang.String property = new java.lang.String()
+
                 void parameter(java.lang.String param) {}
+
                 void call() {
                     java.lang.String.format("%s", "Hello World")
                 }
             }
             """.trimIndent(),
             violationOf(4, "java.lang.String property = new java.lang.String()", Messages[MSG]),
-            violationOf(5, "void parameter(java.lang.String param) {}", Messages[MSG]),
-            violationOf(7, "java.lang.String.format(\"%s\", \"Hello World\")", Messages[MSG]),
+            violationOf(6, "void parameter(java.lang.String param) {}", Messages[MSG]),
+            violationOf(9, "java.lang.String.format(\"%s\", \"Hello World\")", Messages[MSG]),
         )
 }

@@ -1,2 +1,2 @@
 class RestAPI:
-    http_url = "https://example.com"
+    http_url = 'https://example.com'

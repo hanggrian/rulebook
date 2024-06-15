@@ -8,17 +8,18 @@ from rulebook_pylint.internals import Messages
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
+
 class StringSingleQuotingChecker(TokenChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#string-single-quoting
     """
     MSG: str = 'string-single-quoting'
 
     name: str = 'string-single-quoting'
-    msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG)
+    msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for token in tokens:
-            # skip non-string
+            # first line of filter
             if token.type != STRING:
                 continue
 
@@ -29,12 +30,13 @@ class StringSingleQuotingChecker(TokenChecker):
                 "'" in content[1:-1]:
                 continue
             self.add_message(
-                StringSingleQuotingChecker.MSG,
+                self.MSG,
                 line=token.start[0],
                 col_offset=token.start[1],
                 end_lineno=token.end[0],
                 end_col_offset=token.end[1],
             )
+
 
 def register(linter: 'PyLinter') -> None:
     linter.register_checker(StringSingleQuotingChecker(linter))

@@ -18,10 +18,15 @@ class ClassNameBlacklistingRuleTest {
         assertThatCode(
             """
             class Spaceship
+
             annotation class Rocket
+
             data class Navigator
+
             sealed class Planet
+
             interface Route
+
             object Logger
             """.trimIndent(),
         ).hasNoLintViolations()
@@ -31,19 +36,24 @@ class ClassNameBlacklistingRuleTest {
         assertThatCode(
             """
             class SpaceshipManager
+
             annotation class RocketManager
+
             data class NavigationManager
+
             sealed class PlanetManager
+
             interface RouteManager
+
             object LoggerManager
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 7, Messages.get(MSG_ALL, "Manager")),
-            LintViolation(2, 18, Messages.get(MSG_ALL, "Manager")),
-            LintViolation(3, 12, Messages.get(MSG_ALL, "Manager")),
-            LintViolation(4, 14, Messages.get(MSG_ALL, "Manager")),
-            LintViolation(5, 11, Messages.get(MSG_ALL, "Manager")),
-            LintViolation(6, 8, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(3, 18, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(5, 12, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(7, 14, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(9, 11, Messages.get(MSG_ALL, "Manager")),
+            LintViolation(11, 8, Messages.get(MSG_ALL, "Manager")),
         )
 
     @Test

@@ -10,6 +10,7 @@ from rulebook_pylint.internals import Messages
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
+
 class ClassNameAcronymCapitalizationChecker(Checker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-acronym-capitalization
     """
@@ -18,22 +19,14 @@ class ClassNameAcronymCapitalizationChecker(Checker):
     ABBREVIATION_REGEX: Pattern = regex.compile(r'[A-Z]{3,}')
 
     name: str = 'class-name-acronym-capitalization'
-    msgs: dict[str, MessageDefinitionTuple] = Messages.get(MSG)
+    msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
-        if not bool(ClassNameAcronymCapitalizationChecker.ABBREVIATION_REGEX.search(node.name)):
+        if not bool(self.ABBREVIATION_REGEX.search(node.name)):
             return None
-        self.add_message(
-            ClassNameAcronymCapitalizationChecker.MSG,
-            node=node,
-            args=ClassNameAcronymCapitalizationChecker._transform(node.name),
-        )
+        self.add_message(self.MSG, node=node, args=self._transform(node.name))
         return None
-
-    @staticmethod
-    def _is_static_property_name(name: str) -> bool:
-        return all(char.isupper() or char.isdigit() or char == '_' for char in name)
 
     @staticmethod
     def _transform(name: str) -> str:
@@ -44,6 +37,7 @@ class ClassNameAcronymCapitalizationChecker(Checker):
             return group_value[0] + group_value[1:-1].lower() + group_value[-1]
 
         return ClassNameAcronymCapitalizationChecker.ABBREVIATION_REGEX.sub(replace_match, name)
+
 
 def register(linter: 'PyLinter') -> None:
     linter.register_checker(ClassNameAcronymCapitalizationChecker(linter))

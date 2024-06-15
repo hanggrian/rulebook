@@ -1,8 +1,8 @@
 public class EmptyCodeBlockWrapping {
-    class Foo { }
-    class Bar {
+    public class Foo { }
+    public class Bar {
     }
-    class Baz {
+    public class Baz {
 
     }
 }

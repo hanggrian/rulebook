@@ -16,6 +16,7 @@ class GenericsNameWhitelistingRuleTest : AbstractRuleTestCase<GenericsNameWhitel
         assertNoViolations(
             """
             class MyClass<T> {}
+
             interface MyInterface<T> {}
             """.trimIndent(),
         )
@@ -25,12 +26,13 @@ class GenericsNameWhitelistingRuleTest : AbstractRuleTestCase<GenericsNameWhitel
         assertTwoViolations(
             """
             class MyClass<X> {}
+
             interface MyInterface<X> {}
             """.trimIndent(),
             1,
             "class MyClass<X> {}",
             Messages.get(MSG, "E, K, N, T, V"),
-            2,
+            3,
             "interface MyInterface<X> {}",
             Messages.get(MSG, "E, K, N, T, V"),
         )
@@ -59,6 +61,7 @@ class GenericsNameWhitelistingRuleTest : AbstractRuleTestCase<GenericsNameWhitel
             class Foo<T> {
                 class Bar<X> {
                 }
+
                 <Y> void bar() {
                 }
             }

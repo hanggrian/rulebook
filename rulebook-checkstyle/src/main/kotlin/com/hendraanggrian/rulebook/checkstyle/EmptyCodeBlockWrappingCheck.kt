@@ -1,6 +1,7 @@
 package com.hendraanggrian.rulebook.checkstyle
 
 import com.hendraanggrian.rulebook.checkstyle.internals.Messages
+import com.hendraanggrian.rulebook.checkstyle.internals.children
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
@@ -13,10 +14,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 public class EmptyCodeBlockWrappingCheck : Check() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK, SLIST)
 
+    override fun isCommentNodesRequired(): Boolean = true
+
     override fun visitToken(node: DetailAST) {
         // first line of filter
         when (node.type) {
+            // class block have left and right braces
             OBJBLOCK -> {
+                node.children().forEach { println(it) }
                 // skip non-empty content
                 node.takeUnless { it.childCount > 2 } ?: return
 
@@ -27,7 +32,9 @@ public class EmptyCodeBlockWrappingCheck : Check() {
                 // checks for violation
                 process(lcurly, rcurly)
             }
+            // function block only have right brace
             SLIST -> {
+                node.children().forEach { println(it) }
                 // skip non-empty content
                 node.takeUnless { it.childCount > 1 } ?: return
 
