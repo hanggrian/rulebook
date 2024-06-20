@@ -39,6 +39,11 @@ public class ClassOrganizationCheck : Check() {
                 continue
             }
 
+            // in Java, static members have specific keyword
+            if (child.hasModifier(LITERAL_STATIC)) {
+                continue
+            }
+
             // checks for violation
             if (ELEMENT_POSITIONS.getOrDefault(lastType, -1) > ELEMENT_POSITIONS[child.type]!!) {
                 log(
@@ -49,11 +54,6 @@ public class ClassOrganizationCheck : Check() {
                         ELEMENT_ARGUMENTS[lastType]!!,
                     ),
                 )
-            }
-
-            // in Java, static members have specific keyword
-            if (child.hasModifier(LITERAL_STATIC)) {
-                continue
             }
 
             lastType = child.type

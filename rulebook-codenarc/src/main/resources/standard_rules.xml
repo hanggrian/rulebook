@@ -31,9 +31,15 @@
     - Remove 'EmptySynchronizedStatement'.
     - Remove 'EmptyTryBlock'.
     - Remove 'EmptyWhileStatement'.
-  - Add 'SpaceAfterCommentDelimiter'.
+  - Modify 'unnecessary.xml':
+    - Remove 'UnnecessaryConstructor'.
   - Configure 'LineLength#length' from 120 to 100.
- -->
+  - Add 'SpaceBeforeCommentDelimiter'.
+  - Add 'SpaceAfterCommentDelimiter'.
+  - Add 'JavadocConsecutiveEmptyLines'.
+  - Add 'JavadocEmptyFirstLine'.
+  - Add 'JavadocEmptyLastLine'.
+-->
 <ruleset
   xmlns="http://codenarc.org/ruleset/1.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -115,16 +121,23 @@
 
     <!-- Poor suggestion when using static typing -->
     <exclude name="UnnecessaryObjectReferences"/>
+    <!-- Clash with 'UtilityClassInstanceHiding' -->
+    <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
-  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
   <rule class="org.codenarc.rule.formatting.LineLengthRule">
     <property name="length" value="100"/>
   </rule>
 
+  <rule class="org.codenarc.rule.comments.SpaceBeforeCommentDelimiterRule"/>
+  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocEmptyFirstLineRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocEmptyLastLineRule"/>
+
   <!-- Third-party rules -->
+  <rule class="com.hendraanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.ClassNameBlacklistingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.ClassOrganizationRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNameWhitelistingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule"/>
@@ -132,4 +145,5 @@
   <rule class="com.hendraanggrian.rulebook.codenarc.InnerClassPositionRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
 </ruleset>

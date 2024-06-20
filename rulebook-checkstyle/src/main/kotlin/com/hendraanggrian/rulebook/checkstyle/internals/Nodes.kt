@@ -6,8 +6,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 
-internal fun DetailNode.find(type: Int): DetailNode? = children.firstOrNull { it.type == type }
-
 internal operator fun DetailNode.contains(type: Int): Boolean = children.any { it.type == type }
 
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
@@ -21,6 +19,15 @@ internal fun DetailAST.hasAnnotation(name: String): Boolean =
         findFirstToken(MODIFIERS)
             .children()
             .any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
+
+internal val DetailAST.lastmostChild: DetailAST
+    get() {
+        var last = this
+        while (last.lastChild != null) {
+            last = last.lastChild
+        }
+        return last
+    }
 
 /** In Checkstyle, nodes with children do not have text. */
 internal fun DetailAST.joinText(separator: String = "", excludeType: Int = 0): String {

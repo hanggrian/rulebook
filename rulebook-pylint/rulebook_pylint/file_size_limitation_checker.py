@@ -30,6 +30,7 @@ class FileSizeLimitationChecker(RawChecker):
         )
 
     def process_module(self, node: Module) -> None:
+        # checks for violation
         with node.stream() as stream:
             size: int = len(stream.readlines())
             max_size: int = self.linter.config.rulebook_limit_file_size

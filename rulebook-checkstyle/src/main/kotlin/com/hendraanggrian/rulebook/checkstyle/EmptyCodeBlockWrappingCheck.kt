@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.checkstyle
 
 import com.hendraanggrian.rulebook.checkstyle.internals.Messages
-import com.hendraanggrian.rulebook.checkstyle.internals.children
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
@@ -17,37 +16,29 @@ public class EmptyCodeBlockWrappingCheck : Check() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // first line of filter
+        // additional filter
+        val lcurly: DetailAST
+        val rcurly: DetailAST
         when (node.type) {
-            // class block have left and right braces
             OBJBLOCK -> {
-                node.children().forEach { println(it) }
                 // skip non-empty content
                 node.takeUnless { it.childCount > 2 } ?: return
 
-                // get braces
-                val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
-
-                // checks for violation
-                process(lcurly, rcurly)
+                // class block have left and right braces
+                lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
+                rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
             }
-            // function block only have right brace
-            SLIST -> {
-                node.children().forEach { println(it) }
+            else -> {
                 // skip non-empty content
                 node.takeUnless { it.childCount > 1 } ?: return
 
-                // get braces
-                val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
-
-                // checks for violation
-                process(node, rcurly)
+                // function block only have right brace
+                lcurly = node
+                rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
             }
         }
-    }
 
-    private fun process(lcurly: DetailAST, rcurly: DetailAST) {
+        // checks for violation
         lcurly.takeUnless { it.lineNo == rcurly.lineNo && lcurly.columnNo + 1 == rcurly.columnNo }
             ?: return
         log(lcurly, Messages[MSG])

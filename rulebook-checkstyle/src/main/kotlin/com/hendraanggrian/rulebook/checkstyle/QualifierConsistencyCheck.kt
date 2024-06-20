@@ -20,7 +20,7 @@ public class QualifierConsistencyCheck : Check() {
     override fun getRequiredTokens(): IntArray = intArrayOf(IMPORT, TYPE, METHOD_CALL)
 
     override fun visitToken(node: DetailAST) {
-        // first line of filter
+        // additional filter
         when (node.type) {
             IMPORT ->
                 // keep import list

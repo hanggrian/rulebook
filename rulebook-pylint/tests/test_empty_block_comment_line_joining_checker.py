@@ -20,7 +20,7 @@ class TestEmptyBlockCommentLineJoiningChecker(CheckerTestCase):
 
                 dolor sit amet.
                 """
-                '''
+                ''',
             )
         with self.assertNoMessages():
             self.checker.visit_module(node_all)
@@ -59,7 +59,7 @@ class TestEmptyBlockCommentLineJoiningChecker(CheckerTestCase):
 
                 dolor sit amet.
                 """
-                '''
+                ''',
             )
         with self.assertAddsMessages(
             msg(EmptyBlockCommentLineJoiningChecker.MSG, (2, 0, 7, 3), node_all.doc_node),

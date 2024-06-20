@@ -14,12 +14,15 @@
   "special-function-position": "Put %s last.",
 
   "class-name-acronym-capitalization": "Rename acronym to %s.",
-  "class-name-blacklisting-all": "Avoid meaningless word %s.",
-  "class-name-blacklisting-util": "Utility class should be named %s.",
+  "class-final-name-blacklisting-all": "Avoid meaningless word %s.",
+  "class-final-name-blacklisting-util": "Utility class should be named %s.",
   "generics-name-whitelisting": "Use common generics %s.",
 
-  "conditional-branch-joining": "Unexpected newline between branches.",
-  "empty-block-comment-line-joining": "Unexpected consecutive newline after *.",
-  "empty-comment-line-joining": "Unexpected consecutive newline after //.",
-  "file-initial-joining": "Unexpected newline at the beginning."
+  "block-comment-line-trimming-first": "Unexpected newline after \"\"\".",
+  "block-comment-line-trimming-last": "Unexpected newline before \"\"\".",
+  "code-block-line-trimming": "Unexpected newline after :.",
+  "conditional-branch-line-wrapping": "Unexpected newline between branches.",
+  "empty-block-comment-line-joining": "Unexpected consecutive newline in \"\"\".",
+  "empty-comment-line-joining": "Unexpected consecutive newline after #.",
+  "file-initial-line-trimming": "Unexpected newline at the beginning."
 }

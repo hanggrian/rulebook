@@ -80,18 +80,25 @@
 
     <!-- Poor suggestion when using static typing -->
     <exclude name="UnnecessaryObjectReferences"/>
+    <!-- Clash with 'UtilityClassInstanceHiding' -->
+    <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
-  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
   <rule class="org.codenarc.rule.formatting.LineLengthRule">
     <property name="length" value="100"/>
   </rule>
+
+  <rule class="org.codenarc.rule.comments.SpaceBeforeCommentDelimiterRule"/>
+  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocEmptyFirstLineRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocEmptyLastLineRule"/>
 
   <!-- Third-party rules -->
   <rule class="org.codenarc.rule.size.ClassSizeRule">
     <property name="maxLines" value="10"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.ClassNameBlacklistingRule">
+  <rule class="com.hendraanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule">
     <property name="names" value="Hello, World"/>
   </rule>
   <rule class="com.hendraanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule">

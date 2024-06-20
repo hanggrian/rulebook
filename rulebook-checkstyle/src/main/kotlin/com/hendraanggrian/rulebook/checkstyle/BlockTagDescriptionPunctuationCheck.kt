@@ -1,7 +1,6 @@
 package com.hendraanggrian.rulebook.checkstyle
 
 import com.hendraanggrian.rulebook.checkstyle.internals.Messages
-import com.hendraanggrian.rulebook.checkstyle.internals.find
 import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
@@ -25,8 +24,8 @@ public class BlockTagDescriptionPunctuationCheck : JavadocCheck() {
 
         // long descriptions have multiple lines, take only the last one
         val text =
-            node.find(DESCRIPTION)?.children
-                ?.findLast { it.type == TEXT && it.text.isNotBlank() }
+            node.children?.firstOrNull { it.type == DESCRIPTION }
+                ?.children?.findLast { it.type == TEXT && it.text.isNotBlank() }
                 ?: return
 
         // checks for violation after trimming optional comment

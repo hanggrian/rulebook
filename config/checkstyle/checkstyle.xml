@@ -28,7 +28,7 @@
   - Modify 'Whitespace':
     - Remove 'WhitespaceAround'.
   - Configure 'AbbreviationAsWordInName#allowedAbbreviationLength' from 0 to 2.
- -->
+-->
 <!DOCTYPE module PUBLIC
   "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
   "https://checkstyle.org/dtds/configuration_1_3.dtd">
@@ -207,15 +207,18 @@
     <module name="InnerTypeLast"/>
 
     <!-- Third-party rules -->
+    <module name="BlockCommentLineTrimming"/>
     <module name="BlockTagDescriptionPunctuation"/>
-    <module name="ClassNameBlacklisting"/>
+    <module name="ClassFinalNameBlacklisting"/>
     <module name="ClassOrganization"/>
+    <module name="CodeBlockLineTrimming"/>
     <module name="CommentSpacing"/>
-    <module name="ConditionalBranchJoining"/>
+    <module name="ConditionalBranchLineWrapping"/>
+    <module name="ControlFlowMultilineBracing"/>
     <module name="EmptyBlockCommentLineJoining"/>
     <module name="EmptyCodeBlockWrapping"/>
     <module name="EmptyCommentLineJoining"/>
-    <module name="FileInitialJoining"/>
+    <module name="FileInitialLineTrimming"/>
     <module name="GenericsNameWhitelisting"/>
     <module name="IfStatementFlattening"/>
     <module name="QualifierConsistency"/>
