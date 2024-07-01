@@ -19,7 +19,7 @@ class ClassOrganizationRuleTest : AbstractRuleTestCase<ClassOrganizationRule>() 
                 int bar = 0
 
                 Foo() {
-                  this(0)
+                    this(0)
                 }
 
                 Foo(int a) {}
@@ -35,7 +35,7 @@ class ClassOrganizationRuleTest : AbstractRuleTestCase<ClassOrganizationRule>() 
             """
             class Foo {
                 Foo() {
-                  this(0)
+                    this(0)
                 }
 
                 Foo(int a) {}
@@ -56,7 +56,7 @@ class ClassOrganizationRuleTest : AbstractRuleTestCase<ClassOrganizationRule>() 
                 void baz() {}
 
                 Foo() {
-                  this(0)
+                    this(0)
                 }
 
                 Foo(int a) {}

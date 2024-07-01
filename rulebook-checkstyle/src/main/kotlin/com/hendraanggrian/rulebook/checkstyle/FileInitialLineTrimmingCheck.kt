@@ -21,7 +21,8 @@ public class FileInitialLineTrimmingCheck : Check() {
 
     override fun finishTree(node: DetailAST) {
         // checks for violation
-        node.takeUnless { minIndex == 1 }
+        node
+            .takeUnless { minIndex == 1 }
             ?.takeIf { it.lineNo > 1 } ?: return
         log(node, Messages[MSG])
     }

@@ -20,6 +20,15 @@ internal fun DetailAST.hasAnnotation(name: String): Boolean =
             .children()
             .any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
 
+internal val DetailAST.firstmostChild: DetailAST
+    get() {
+        var last = this
+        while (last.firstChild != null) {
+            last = last.firstChild
+        }
+        return last
+    }
+
 internal val DetailAST.lastmostChild: DetailAST
     get() {
         var last = this

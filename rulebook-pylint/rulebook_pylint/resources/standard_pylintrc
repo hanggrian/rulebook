@@ -61,6 +61,7 @@ load-plugins=
   rulebook_pylint.generics_name_whitelisting_checker,
   rulebook_pylint.if_statement_flattening_checker,
   rulebook_pylint.inner_class_position_checker,
+  rulebook_pylint.multiline_parameter_comma_trailing_checker,
   rulebook_pylint.operand_structural_equality_checker,
   rulebook_pylint.special_function_position_checker,
   rulebook_pylint.string_single_quoting_checker,

@@ -5,8 +5,7 @@ import com.hendraanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 
-class SpecialFunctionPositionRuleTest :
-    AbstractRuleTestCase<SpecialFunctionPositionRule>() {
+class SpecialFunctionPositionRuleTest : AbstractRuleTestCase<SpecialFunctionPositionRule>() {
     override fun createRule() = SpecialFunctionPositionRule()
 
     @Test

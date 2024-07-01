@@ -12,6 +12,7 @@
     - Add 'HideUtilityClassConstructor'.
   - Modify 'Coding':
     - Add 'IllegalThrows' with that includes 'Exception', 'Error' and 'Throwable'.
+    - Add 'ArrayTrailingComma'.
   - Modify 'Javadoc Comments':
     - Remove 'SummaryJavadoc'.
     - Remove 'MissingJavadocMethod'.
@@ -388,6 +389,7 @@
         name="illegalClassNames"
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
     </module>
+    <module name="ArrayTrailingComma"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="TodoComment">
       <property name="format" value="todo|fixme"/>
@@ -409,13 +411,14 @@
     <module name="CodeBlockLineTrimming"/>
     <module name="CommentSpacing"/>
     <module name="ConditionalBranchLineWrapping"/>
-    <module name="ControlFlowMultilineBracing"/>
     <module name="EmptyBlockCommentLineJoining"/>
     <module name="EmptyCodeBlockWrapping"/>
     <module name="EmptyCommentLineJoining"/>
     <module name="FileInitialLineTrimming"/>
     <module name="GenericsNameWhitelisting"/>
     <module name="IfStatementFlattening"/>
+    <module name="MultilineAssignmentBreaking"/>
+    <module name="MultilineControlFlowBracing"/>
     <module name="QualifierConsistency"/>
     <module name="SpecialFunctionPosition"/>
   </module>

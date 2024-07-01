@@ -13,9 +13,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_WHILE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
 /**
- * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#control-flow-multiline-bracing)
+ * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#multiline-control-flow-bracing)
  */
-public class ControlFlowMultilineBracingCheck : Check() {
+public class MultilineControlFlowBracingCheck : Check() {
     override fun getRequiredTokens(): IntArray =
         intArrayOf(
             LITERAL_IF,
@@ -34,9 +34,7 @@ public class ControlFlowMultilineBracingCheck : Check() {
         }
 
         // checks for violation
-        if (node.lineNo == node.lastmostChild.lineNo) {
-            return
-        }
+        node.takeUnless { it.lineNo == node.lastmostChild.lineNo } ?: return
         log(node, Messages[MSG_ALL])
     }
 
@@ -56,6 +54,6 @@ public class ControlFlowMultilineBracingCheck : Check() {
     }
 
     internal companion object {
-        const val MSG = "control.flow.multiline.bracing"
+        const val MSG = "multiline.control.flow.bracing"
     }
 }

@@ -1,5 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.contains
 import com.hendraanggrian.rulebook.ktlint.internals.qualifierName
@@ -7,21 +8,20 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_DIRECTIVE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.KtImportDirective
 
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#qualifier-consistency)
  */
-public class QualifierConsistencyRule : Rule("qualifier-consistency") {
+public class QualifierConsistencyRule :
+    Rule("qualifier-consistency"),
+    RuleAutocorrectApproveHandler {
     private val importPaths = mutableSetOf<String>()
     private val targetNodes = mutableSetOf<ASTNode>()
 
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         when (node.elementType) {
             IMPORT_DIRECTIVE ->
@@ -32,7 +32,8 @@ public class QualifierConsistencyRule : Rule("qualifier-consistency") {
                 targetNodes += node
             DOT_QUALIFIED_EXPRESSION -> {
                 // only consider top expression and no import line
-                node.takeUnless { DOT_QUALIFIED_EXPRESSION in it }
+                node
+                    .takeUnless { DOT_QUALIFIED_EXPRESSION in it }
                     ?.takeUnless { it.treeParent.elementType == IMPORT_DIRECTIVE }
                     ?: return
 
@@ -42,11 +43,7 @@ public class QualifierConsistencyRule : Rule("qualifier-consistency") {
         }
     }
 
-    override fun afterVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+    override fun afterVisitChildNodes(node: ASTNode, emit: Emit) {
         // only trigger once
         if (node.elementType != FILE) {
             return

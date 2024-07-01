@@ -23,7 +23,8 @@ public class SpecialFunctionPositionCheck : Check() {
 
         // checks for violation
         val ident = node.findFirstToken(IDENT) ?: return
-        node.siblings()
+        node
+            .siblings()
             .takeIf { siblings ->
                 // in Java, static members have specific keyword
                 siblings.any {

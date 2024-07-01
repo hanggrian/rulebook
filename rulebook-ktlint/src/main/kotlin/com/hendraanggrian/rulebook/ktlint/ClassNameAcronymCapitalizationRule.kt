@@ -1,29 +1,29 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.getFileName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-acronym-capitalization)
  */
 public class ClassNameAcronymCapitalizationRule :
-    Rule("class-name-acronym-capitalization") {
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+    Rule("class-name-acronym-capitalization"),
+    RuleAutocorrectApproveHandler {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         when (node.elementType) {
             CLASS, OBJECT_DECLARATION -> {
                 // checks for violation
                 val identifier =
-                    node.findChildByType(IDENTIFIER)
+                    node
+                        .findChildByType(IDENTIFIER)
                         ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
                         ?: return
                 emit(
@@ -53,7 +53,12 @@ public class ClassNameAcronymCapitalizationRule :
                 it.value.first() +
                     when {
                         it.range.last == lastIndex -> it.value.drop(1).lowercase()
-                        else -> it.value.drop(1).dropLast(1).lowercase() + it.value.last()
+                        else ->
+                            it.value
+                                .drop(1)
+                                .dropLast(1)
+                                .lowercase() +
+                                it.value.last()
                     }
             }
     }

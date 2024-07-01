@@ -24,12 +24,17 @@ public class BlockTagDescriptionPunctuationCheck : JavadocCheck() {
 
         // long descriptions have multiple lines, take only the last one
         val text =
-            node.children?.firstOrNull { it.type == DESCRIPTION }
-                ?.children?.findLast { it.type == TEXT && it.text.isNotBlank() }
+            node.children
+                ?.firstOrNull { it.type == DESCRIPTION }
+                ?.children
+                ?.findLast { it.type == TEXT && it.text.isNotBlank() }
                 ?: return
 
-        // checks for violation after trimming optional comment
-        text.text.trimComment().trimEnd().lastOrNull()
+        // checks for violation
+        text.text
+            .trimComment()
+            .trimEnd()
+            .lastOrNull()
             ?.takeUnless { it in END_PUNCTUATIONS }
             ?: return
         log(text.lineNumber, text.columnNumber, Messages.get(MSG, blockTags.joinToString()))

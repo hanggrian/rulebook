@@ -20,7 +20,6 @@ public class RulebookRuleSet : RuleSetProviderV3(Rule.ID) {
             RuleProvider { ErrorSubclassThrowingRule() },
             RuleProvider { FileInitialLineTrimmingRule() },
             RuleProvider { FileSizeLimitationRule() },
-            RuleProvider { FunctionSingleExpressionRule() },
             RuleProvider { GenericsNameWhitelistingRule() },
             RuleProvider { IdentifierNameBlacklistingRule() },
             RuleProvider { IfStatementFlatteningRule() },

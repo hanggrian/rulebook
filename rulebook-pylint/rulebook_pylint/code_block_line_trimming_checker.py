@@ -24,9 +24,11 @@ class CodeBlockLineTrimmingChecker(TokenChecker):
                 continue
 
             # checks for violation
-            if i + 2 >= len(tokens) or tokens[i + 1].type != NEWLINE or tokens[i + 2].type != NL:
+            next_token: TokenInfo = tokens[i + 1]
+            next_token2: TokenInfo = tokens[i + 2]
+            if i + 2 >= len(tokens) or next_token.type != NEWLINE or next_token2.type != NL:
                 continue
-            self.add_message(self.MSG, line=tokens[i + 2].start[0])
+            self.add_message(self.MSG, line=next_token2.start[0], col_offset=next_token2.start[1])
 
 
 def register(linter: 'PyLinter') -> None:

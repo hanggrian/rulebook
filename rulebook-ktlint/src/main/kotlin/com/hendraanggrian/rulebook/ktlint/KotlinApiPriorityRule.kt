@@ -1,24 +1,24 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.qualifierName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_DIRECTIVE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.KtImportDirective
 
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#kotlin-api-priority)
  */
-public class KotlinApiPriorityRule : Rule("kotlin-api-priority") {
+public class KotlinApiPriorityRule :
+    Rule("kotlin-api-priority"),
+    RuleAutocorrectApproveHandler {
     private var isTestClass = false
 
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         when (node.elementType) {
             IMPORT_DIRECTIVE -> {
@@ -51,7 +51,9 @@ public class KotlinApiPriorityRule : Rule("kotlin-api-priority") {
             when {
                 startsWith("java.lang.") ->
                     try {
-                        Class.forName(this).kotlin.qualifiedName
+                        Class
+                            .forName(this)
+                            .kotlin.qualifiedName
                             ?.takeIf { it.startsWith("kotlin.") }
                     } catch (e: ClassNotFoundException) {
                         null

@@ -1,22 +1,22 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.hasModifier
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OVERRIDE_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#special-function-position)
  */
-public class SpecialFunctionPositionRule : Rule("special-function-position") {
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+public class SpecialFunctionPositionRule :
+    Rule("special-function-position"),
+    RuleAutocorrectApproveHandler {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         if (node.elementType != FUN) {
             return
@@ -29,7 +29,8 @@ public class SpecialFunctionPositionRule : Rule("special-function-position") {
 
         // checks for violation
         val identifier = node.findChildByType(IDENTIFIER) ?: return
-        node.siblings()
+        node
+            .siblings()
             .takeIf { siblings ->
                 // in Kotlin, static members belong in companion object
                 siblings.any {

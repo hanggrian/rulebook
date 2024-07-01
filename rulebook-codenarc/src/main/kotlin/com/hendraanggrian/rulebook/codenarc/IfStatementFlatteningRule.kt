@@ -21,7 +21,8 @@ public class IfStatementFlatteningRule : Rule() {
         override fun visitBlockStatement(node: BlockStatement) {
             // only proceed on one if and no else
             val if2 =
-                node.statements.singleOrNull()
+                node.statements
+                    .singleOrNull()
                     ?.takeIf { it is IfStatement }
                     ?.takeIf { (it as IfStatement).elseBlock.isEmpty } as IfStatement?
                     ?: return super.visitBlockStatement(node)

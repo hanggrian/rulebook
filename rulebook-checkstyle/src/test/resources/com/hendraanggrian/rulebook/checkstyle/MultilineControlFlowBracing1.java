@@ -1,4 +1,4 @@
-public class ControlFlowMultilineBracing {
+public class MultilineControlFlowBracing {
     public void foo() {
         if (true) { bar(); }
         if (true) { bar(); } else if (false) { baz(); } else { bar(); }

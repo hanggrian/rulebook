@@ -24,7 +24,12 @@ public class ClassNameAcronymCapitalizationRule : Rule() {
                 it.value.first() +
                     when {
                         it.range.last == lastIndex -> it.value.drop(1).lowercase()
-                        else -> it.value.drop(1).dropLast(1).lowercase() + it.value.last()
+                        else ->
+                            it.value
+                                .drop(1)
+                                .dropLast(1)
+                                .lowercase() +
+                                it.value.last()
                     }
             }
     }

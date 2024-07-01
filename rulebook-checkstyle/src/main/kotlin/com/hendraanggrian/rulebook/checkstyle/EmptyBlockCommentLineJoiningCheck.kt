@@ -15,8 +15,10 @@ public class EmptyBlockCommentLineJoiningCheck : JavadocCheck() {
     override fun visitJavadocToken(node: DetailNode) {
         // find matching sibling
         val next =
-            node.next?.takeIf { it.type == NEWLINE }
-                ?.next?.takeIf { it.type == LEADING_ASTERISK }
+            node.next
+                ?.takeIf { it.type == NEWLINE }
+                ?.next
+                ?.takeIf { it.type == LEADING_ASTERISK }
                 ?: return
 
         // checks for violation

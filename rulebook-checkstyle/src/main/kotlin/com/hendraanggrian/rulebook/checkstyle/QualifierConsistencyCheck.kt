@@ -31,7 +31,8 @@ public class QualifierConsistencyCheck : Check() {
             METHOD_CALL -> {
                 // only consider top expression
                 val dot =
-                    node.takeIf { DOT in it }
+                    node
+                        .takeIf { DOT in it }
                         ?.firstChild
                         ?.takeIf { DOT in it }
                         ?.firstChild

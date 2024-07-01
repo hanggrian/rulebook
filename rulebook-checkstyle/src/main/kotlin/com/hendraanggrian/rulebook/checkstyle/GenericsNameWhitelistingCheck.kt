@@ -35,13 +35,16 @@ public class GenericsNameWhitelistingCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // filter out multiple generics
         val typeParameter =
-            node.findFirstToken(TYPE_PARAMETERS)?.children()
+            node
+                .findFirstToken(TYPE_PARAMETERS)
+                ?.children()
                 ?.singleOrNull { it.type == TYPE_PARAMETER }
                 ?: return
 
         // checks for violation
         val ident =
-            typeParameter.findFirstToken(IDENT)
+            typeParameter
+                .findFirstToken(IDENT)
                 ?.takeUnless { node.hasParentWithGenerics() || it.text in names }
                 ?: return
         log(ident, Messages.get(MSG, names.joinToString()))

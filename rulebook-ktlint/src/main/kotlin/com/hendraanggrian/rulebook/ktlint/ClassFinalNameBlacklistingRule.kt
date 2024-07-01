@@ -1,11 +1,13 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.getFileName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
@@ -15,21 +17,19 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#class-final-name-blacklisting)
  */
-public class ClassFinalNameBlacklistingRule : Rule(
-    "class-final-name-blacklisting",
-    setOf(FINAL_NAMES_PROPERTY),
-) {
+public class ClassFinalNameBlacklistingRule :
+    Rule(
+        "class-final-name-blacklisting",
+        setOf(FINAL_NAMES_PROPERTY),
+    ),
+    RuleAutocorrectApproveHandler {
     private var names = FINAL_NAMES_PROPERTY.defaultValue
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         names = editorConfig[FINAL_NAMES_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         when (node.elementType) {
             CLASS, OBJECT_DECLARATION -> {
@@ -47,12 +47,7 @@ public class ClassFinalNameBlacklistingRule : Rule(
         }
     }
 
-    private fun process(
-        node: ASTNode,
-        fullName: String,
-        finalName: String,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ): Unit =
+    private fun process(node: ASTNode, fullName: String, finalName: String, emit: Emit) {
         when (finalName) {
             "Util", "Utility" ->
                 emit(
@@ -62,6 +57,7 @@ public class ClassFinalNameBlacklistingRule : Rule(
                 )
             else -> emit(node.startOffset, Messages.get(MSG_ALL, finalName), false)
         }
+    }
 
     internal companion object {
         const val MSG_ALL = "class.final.name.blacklisting.all"

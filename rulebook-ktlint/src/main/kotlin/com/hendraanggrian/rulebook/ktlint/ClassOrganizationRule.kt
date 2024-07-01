@@ -1,5 +1,6 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.contains
 import com.hendraanggrian.rulebook.ktlint.internals.hasModifier
@@ -11,6 +12,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY_ACCESSOR
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SECONDARY_CONSTRUCTOR
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
@@ -18,12 +20,10 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#class-organization)
  */
-public class ClassOrganizationRule : Rule("class-organization") {
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+public class ClassOrganizationRule :
+    Rule("class-organization"),
+    RuleAutocorrectApproveHandler {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         if (node.elementType != CLASS_BODY) {
             return

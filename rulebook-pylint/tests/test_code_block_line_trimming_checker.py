@@ -25,7 +25,7 @@ class TestCodeBlockLineTrimmingCheckerChecker(CheckerTestCase):
 
                 bar = 0
             '''
-        with self.assertAddsMessages(msg(CodeBlockLineTrimmingChecker.MSG, 3)):
+        with self.assertAddsMessages(msg(CodeBlockLineTrimmingChecker.MSG, (3, 0))):
             self.checker.process_tokens(_tokenize_str(code))
 
     def test_function_block_without_first_newline(self):
@@ -44,7 +44,7 @@ class TestCodeBlockLineTrimmingCheckerChecker(CheckerTestCase):
 
                 bar = 0
             '''
-        with self.assertAddsMessages(msg(CodeBlockLineTrimmingChecker.MSG, 3)):
+        with self.assertAddsMessages(msg(CodeBlockLineTrimmingChecker.MSG, (3, 0))):
             self.checker.process_tokens(_tokenize_str(code))
 
 

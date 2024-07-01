@@ -1,7 +1,9 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
 import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
@@ -11,28 +13,27 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#file-size-limitation)
  */
-public class FileSizeLimitationRule : Rule(
-    "file-size-limitation",
-    setOf(MAX_FILE_LENGTH_PROPERTY),
-) {
+public class FileSizeLimitationRule :
+    Rule(
+        "file-size-limitation",
+        setOf(MAX_FILE_LENGTH_PROPERTY),
+    ),
+    RuleAutocorrectApproveHandler {
     private var maxFileLength = MAX_FILE_LENGTH_PROPERTY.defaultValue
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         maxFileLength = editorConfig[MAX_FILE_LENGTH_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         if (node.elementType != FILE) {
             return
         }
 
         // checks for violation
-        node.text.lines()
+        node.text
+            .lines()
             .let { if (it.last().isEmpty()) it.lastIndex else it.size }
             .takeIf { it > maxFileLength }
             ?: return

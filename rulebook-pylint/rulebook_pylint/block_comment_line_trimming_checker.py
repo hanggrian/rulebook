@@ -1,10 +1,10 @@
+import re
 from typing import TYPE_CHECKING
 
 from astroid import Const, Module, ClassDef, FunctionDef
 from pylint.typing import MessageDefinitionTuple
 from rulebook_pylint.checkers import Checker
 from rulebook_pylint.internals import Messages
-import re
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -29,7 +29,7 @@ class BlockCommentLineTrimmingChecker(Checker):
         self._process(node.doc_node)
 
     def _process(self, docstring: Const | None) -> None:
-            # first line of filter
+        # first line of filter
         if not docstring or not isinstance(docstring, Const):
             return None
 

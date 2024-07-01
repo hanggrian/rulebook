@@ -7,6 +7,7 @@ from rulebook_pylint.todo_comment_styling_checker import TodoCommentStylingCheck
 from .tests import msg
 
 
+# pylint: disable=todo-comment-styling-keyword,todo-comment-styling-separator
 class TestTodoCommentFormattingChecker(CheckerTestCase):
     CHECKER_CLASS = TodoCommentStylingChecker
 

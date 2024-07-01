@@ -1,10 +1,12 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLARATION_ENTRY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
@@ -14,21 +16,19 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#identifier-name-blacklisting)
  */
-public class IdentifierNameBlacklistingRule : Rule(
-    "identifier-name-blacklisting",
-    setOf(NAMES_PROPERTY),
-) {
+public class IdentifierNameBlacklistingRule :
+    Rule(
+        "identifier-name-blacklisting",
+        setOf(NAMES_PROPERTY),
+    ),
+    RuleAutocorrectApproveHandler {
     private var names = NAMES_PROPERTY.defaultValue
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         names = editorConfig[NAMES_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         if (node.elementType != PROPERTY &&
             node.elementType != VALUE_PARAMETER &&
@@ -39,7 +39,8 @@ public class IdentifierNameBlacklistingRule : Rule(
 
         // checks for violation
         val identifier =
-            node.findChildByType(IDENTIFIER)
+            node
+                .findChildByType(IDENTIFIER)
                 ?.takeIf { it.text in names }
                 ?: return
         emit(identifier.startOffset, Messages[MSG], false)

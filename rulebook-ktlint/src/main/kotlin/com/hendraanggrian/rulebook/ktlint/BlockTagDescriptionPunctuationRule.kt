@@ -1,10 +1,12 @@
 package com.hendraanggrian.rulebook.ktlint
 
+import com.hendraanggrian.rulebook.ktlint.internals.Emit
 import com.hendraanggrian.rulebook.ktlint.internals.Messages
 import com.hendraanggrian.rulebook.ktlint.internals.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG_NAME
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
+import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
@@ -15,39 +17,41 @@ import org.jetbrains.kotlin.psi.psiUtil.children
 /**
  * [See wiki](https://github.com/hendraanggrian/rulebook/wiki/Rules#block-tag-description-punctuation)
  */
-public class BlockTagDescriptionPunctuationRule : Rule(
-    "block-tag-description-punctuation",
-    setOf(PUNCTUATED_BLOCK_TAGS_PROPERTY),
-) {
+public class BlockTagDescriptionPunctuationRule :
+    Rule(
+        "block-tag-description-punctuation",
+        setOf(PUNCTUATED_BLOCK_TAGS_PROPERTY),
+    ),
+    RuleAutocorrectApproveHandler {
     private var punctuatedTags = PUNCTUATED_BLOCK_TAGS_PROPERTY.defaultValue
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         punctuatedTags = editorConfig[PUNCTUATED_BLOCK_TAGS_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(
-        node: ASTNode,
-        autoCorrect: Boolean,
-        emit: (offset: Int, errorMessage: String, canBeAutoCorrected: Boolean) -> Unit,
-    ) {
+    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
         if (node.elementType != KDOC_TAG) {
             return
         }
 
         // only enforce certain tags
-        node.findChildByType(KDOC_TAG_NAME)
+        node
+            .findChildByType(KDOC_TAG_NAME)
             ?.takeIf { it.text in punctuatedTags }
             ?: return
 
         // long descriptions have multiple lines, take only the last one
         val kdocText =
-            node.children()
+            node
+                .children()
                 .findLast { it.elementType == KDOC_TEXT && it.text.isNotBlank() }
                 ?: return
 
-        // checks for violation after trimming optional comment
-        kdocText.text.trimComment().lastOrNull()
+        // checks for violation
+        kdocText.text
+            .trimComment()
+            .lastOrNull()
             ?.takeUnless { it in END_PUNCTUATIONS }
             ?: return
         emit(kdocText.endOffset, Messages.get(MSG, punctuatedTags.joinToString()), false)

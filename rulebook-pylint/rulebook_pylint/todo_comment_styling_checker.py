@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-# pylint: disable=todo-comment-formatting-keyword,todo-comment-styling-separator
+# pylint: disable=todo-comment-styling-keyword,todo-comment-styling-separator
 class TodoCommentStylingChecker(RawChecker):
     """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-styling-formatting
     """

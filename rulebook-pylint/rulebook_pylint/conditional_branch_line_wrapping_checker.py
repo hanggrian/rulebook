@@ -25,7 +25,7 @@ class ConditionalBranchLineWrappingChecker(TokenChecker):
                 self.add_message(self.MSG, line=prev_token.start[0])
 
             # keep previous token for comparison
-            if token.type != INDENT and token.type != DEDENT:
+            if token.type not in (INDENT, DEDENT):
                 prev_token = token
 
 

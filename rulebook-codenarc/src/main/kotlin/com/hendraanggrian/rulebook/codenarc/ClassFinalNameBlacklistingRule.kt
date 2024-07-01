@@ -27,7 +27,9 @@ public class ClassFinalNameBlacklistingRule : Rule() {
         override fun visitClassEx(node: ClassNode) {
             // checks for violation
             val finalName =
-                (rule as ClassFinalNameBlacklistingRule).names.split(", ")
+                (rule as ClassFinalNameBlacklistingRule)
+                    .names
+                    .split(", ")
                     .firstOrNull { node.name.endsWith(it) }
                     ?: return
             when (finalName) {

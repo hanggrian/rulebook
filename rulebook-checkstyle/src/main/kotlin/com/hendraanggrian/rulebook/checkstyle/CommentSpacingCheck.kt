@@ -16,7 +16,8 @@ public class CommentSpacingCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // skip empty comment
         val commentContent =
-            node.findFirstToken(COMMENT_CONTENT)
+            node
+                .findFirstToken(COMMENT_CONTENT)
                 ?.takeUnless { it.text == "\n" }
                 ?: return
 

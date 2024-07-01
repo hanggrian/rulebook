@@ -143,7 +143,9 @@
   <rule class="com.hendraanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.IfStatementFlatteningRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.InnerClassPositionRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.MultilineAssignmentBreakingRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
+  <rule class="com.hendraanggrian.rulebook.codenarc.SingleStatementDeclarationRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
   <rule class="com.hendraanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
 </ruleset>

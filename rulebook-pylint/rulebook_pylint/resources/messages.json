@@ -1,8 +1,11 @@
 {
   "file-size-limitation": "Reduce file size to %d.",
   "if-statement-flattening": "Invert if condition.",
+  "multiline-assignment-breaking": "Break assignment into newline.",
+  "multiline-parameter-comma-trailing": "Put trailing comma.",
   "operand-structural-equality-eq": "Use operator ==.",
   "operand-structural-equality-neq": "Use operator !=.",
+  "single-type-import-declaration": "Do not import all.",
   "string-single-quoting": "Use single quotes.",
   "todo-comment-styling-keyword": "Illegal keyword %s.",
   "todo-comment-styling-separator": "Illegal separator %s.",

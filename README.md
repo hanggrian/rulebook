@@ -1,5 +1,5 @@
-[![CircleCI](https://img.shields.io/circleci/build/gh/hendraanggrian/rulebook)](https://circleci.com/gh/hendraanggrian/rulebook/)
-[![Codecov](https://img.shields.io/codecov/c/gh/hendraanggrian/rulebook)](https://codecov.io/gh/hendraanggrian/rulebook/) \
+[![CircleCI](https://img.shields.io/circleci/build/gh/haanggrian/rulebook)](https://circleci.com/gh/haanggrian/rulebook/)
+[![Codecov](https://img.shields.io/codecov/c/gh/haanggrian/rulebook)](https://codecov.io/gh/haanggrian/rulebook/) \
 [![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hendraanggrian/rulebook/rulebook-ktlint/)
 [![Maven Central Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian.rulebook/rulebook-ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/rulebook/rulebook-ktlint/)
 [![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/) \
@@ -21,7 +21,7 @@ Java | [Checkstyle](https://checkstyle.org/) | [Sun Style](https://checkstyle.so
 Groovy | [CodeNarc](https://codenarc.org/) | [Groovy Style](https://groovy-lang.org/style-guide.html)
 Python | [Pylint](https://pylint.org/) | [Pylint Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or [Google Python Style](https://google.github.io/styleguide/pyguide.html)
 
-[View all rules](https://github.com/hendraanggrian/rulebook/wiki/)
+[View all rules](https://github.com/hanggrian/rulebook/wiki/)
 
 ## Download
 

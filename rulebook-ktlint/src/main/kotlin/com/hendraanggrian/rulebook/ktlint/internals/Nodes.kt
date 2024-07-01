@@ -1,11 +1,18 @@
 package com.hendraanggrian.rulebook.ktlint.internals
 
+import com.pinterest.ktlint.rule.engine.core.api.AutocorrectDecision
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.MODIFIER_LIST
 import com.pinterest.ktlint.rule.engine.core.api.Rule
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.lang.FileASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 import org.jetbrains.kotlin.psi.KtFile
+
+internal typealias Emit = (
+    offset: Int,
+    errorMessage: String,
+    canBeAutoCorrected: Boolean,
+) -> AutocorrectDecision
 
 internal inline val ASTNode.endOffset: Int get() = startOffset + textLength
 
@@ -37,7 +44,8 @@ internal fun Rule.getFileName(node: ASTNode): String? {
         stopTraversalOfAST()
         return null
     }
-    return filePath.replace('\\', '/') // ensure compatibility with Windows OS
+    return filePath
+        .replace('\\', '/') // ensure compatibility with Windows OS
         .substringAfterLast("/")
         .substringBefore(".")
 }

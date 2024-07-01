@@ -4,13 +4,18 @@ from pylint.testutils import MessageTest
 
 def msg(
     key: str,
-    location: int | tuple[int, int, int] | tuple[int, int, int, int] = 0,
+    location: int | tuple[int, int] | tuple[int, int, int] | tuple[int, int, int, int] = 0,
     node: NodeNG | None = None,
     args: object | None = None,
 ):
     if not isinstance(location, tuple):
         x1: int = location
         y1: None = None
+        x2: None = None
+        y2: None = None
+    elif len(location) == 2:
+        x1: int = location[0]
+        y1: int = location[1]
         x2: None = None
         y2: None = None
     elif len(location) == 3:

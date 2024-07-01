@@ -27,7 +27,6 @@ class RulebookRuleSetTest {
             ErrorSubclassThrowingRule::class,
             FileInitialLineTrimmingRule::class,
             FileSizeLimitationRule::class,
-            FunctionSingleExpressionRule::class,
             GenericsNameWhitelistingRule::class,
             IdentifierNameBlacklistingRule::class,
             IfStatementFlatteningRule::class,
@@ -43,10 +42,18 @@ class RulebookRuleSetTest {
     @Test
     fun `No overlapping ID`() {
         val standardIds = StandardRuleSetProvider().getRuleProviders().ids
-        RulebookRuleSet().getRuleProviders().ids
+        RulebookRuleSet()
+            .getRuleProviders()
+            .ids
             .forEach { assertThat(it).isNotIn(standardIds) }
     }
 
     private val Set<RuleProvider>.ids
-        get() = map { it.createNewRuleInstance().ruleId.value.substringAfterLast(':') }
+        get() =
+            map {
+                it
+                    .createNewRuleInstance()
+                    .ruleId.value
+                    .substringAfterLast(':')
+            }
 }

@@ -20,7 +20,8 @@ public class IfStatementFlatteningCheck : Check() {
         // only proceed on one if and no else
         val children = node.children().toList()
         val if2 =
-            children.takeIf { it.lastOrNull()?.type == RCURLY }
+            children
+                .takeIf { it.lastOrNull()?.type == RCURLY }
                 ?.dropLast(1)
                 ?.singleOrNull()
                 ?.takeIf { it.type == LITERAL_IF }
@@ -30,7 +31,10 @@ public class IfStatementFlatteningCheck : Check() {
         println(if2.joinText())
 
         // checks for violation
-        if2.findFirstToken(SLIST)?.children()?.toList()
+        if2
+            .findFirstToken(SLIST)
+            ?.children()
+            ?.toList()
             ?.takeIf { it.size > 2 }
             ?: return
         log(if2, Messages[MSG])
