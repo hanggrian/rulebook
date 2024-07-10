@@ -10,28 +10,34 @@ class TestStringSingleQuotingChecker(CheckerTestCase):
     CHECKER_CLASS = StringSingleQuotingChecker
 
     def test_single_quote_string(self):
-        code = \
-            '''
-            foo = 'bar'
-            '''
+        tokens = \
+            _tokenize_str(
+                '''
+                foo = 'bar'
+                ''',
+            )
         with self.assertNoMessages():
-            self.checker.process_tokens(_tokenize_str(code))
+            self.checker.process_tokens(tokens)
 
     def test_double_empty_line(self):
-        code = \
-            '''
-            foo = "bar"
-            '''
-        with self.assertAddsMessages(msg(StringSingleQuotingChecker.MSG, (2, 18, 23))):
-            self.checker.process_tokens(_tokenize_str(code))
+        tokens = \
+            _tokenize_str(
+                '''
+                foo = "bar"
+                ''',
+            )
+        with self.assertAddsMessages(msg(StringSingleQuotingChecker.MSG, (2, 22, 27))):
+            self.checker.process_tokens(tokens)
 
     def test_skip_content_with_single_quote(self):
-        code = \
-            '''
-            foo = "'"
-            '''
+        tokens = \
+            _tokenize_str(
+                '''
+                foo = "'"
+                ''',
+            )
         with self.assertNoMessages():
-            self.checker.process_tokens(_tokenize_str(code))
+            self.checker.process_tokens(tokens)
 
 
 if __name__ == '__main__':

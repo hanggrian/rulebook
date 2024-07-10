@@ -8,7 +8,7 @@ version = "0.5-dev1"
 license = { text = "Apache-2.0" }
 description = "Extended lint rules for JVM and Python"
 readme = "README.md"
-authors = [{ name = "Hendra Anggrian", email = "hendraanggrian@gmail.com" }]
+authors = [{ name = "Hendra Anggrian", email = "hanggrian@proton.me" }]
 keywords = ["lint rules", "lint checkers"]
 requires-python = ">=3.8"
 classifiers = [
@@ -18,8 +18,8 @@ classifiers = [
 ]
 
 [project.urls]
-"Source Code" = "https://github.com/hendraanggrian/rulebook"
-"Bug Tracker" = "https://github.com/hendraanggrian/rulebook/issues"
+"Source Code" = "https://github.com/hanggrian/rulebook"
+"Bug Tracker" = "https://github.com/hanggrian/rulebook/issues"
 
 [tool.setuptools]
 license-files = ["LICENSE"]

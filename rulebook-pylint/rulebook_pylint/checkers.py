@@ -3,7 +3,7 @@ from abc import ABC
 from pylint.checkers import BaseChecker, BaseTokenChecker, BaseRawFileChecker
 
 
-class Checker(BaseChecker, ABC):
+class Checker(BaseChecker):
     """No custom implementation."""
 
 

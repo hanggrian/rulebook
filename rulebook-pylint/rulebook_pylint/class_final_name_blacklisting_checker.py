@@ -5,14 +5,14 @@ from astroid import ClassDef
 from pylint.typing import MessageDefinitionTuple, Options
 from regex import Pattern
 from rulebook_pylint.checkers import Checker
-from rulebook_pylint.internals import Messages
+from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
 class ClassFinalNameBlacklistingChecker(Checker):
-    """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#class-final-name-blacklisting
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-blacklisting
     """
     MSG_ALL: str = 'class-final-name-blacklisting-all'
     MSG_UTIL: str = 'class-final-name-blacklisting-util'

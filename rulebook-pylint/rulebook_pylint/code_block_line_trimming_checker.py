@@ -3,14 +3,14 @@ from typing import TYPE_CHECKING
 
 from pylint.typing import MessageDefinitionTuple
 from rulebook_pylint.checkers import TokenChecker
-from rulebook_pylint.internals import Messages
+from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
 class CodeBlockLineTrimmingChecker(TokenChecker):
-    """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#code-block-line-trimming
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#code-block-line-trimming
     """
     MSG: str = 'code-block-line-trimming'
 
@@ -18,6 +18,7 @@ class CodeBlockLineTrimmingChecker(TokenChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
+        token: TokenInfo
         for i, token in enumerate(tokens):
             # first line of filter
             if token.type != OP or token.string != ':':

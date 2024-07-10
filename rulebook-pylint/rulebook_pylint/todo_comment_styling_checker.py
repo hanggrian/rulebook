@@ -6,7 +6,7 @@ from astroid import Module
 from pylint.typing import MessageDefinitionTuple
 from regex import Pattern, Match, IGNORECASE
 from rulebook_pylint.checkers import RawChecker
-from rulebook_pylint.internals import Messages
+from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 # pylint: disable=todo-comment-styling-keyword,todo-comment-styling-separator
 class TodoCommentStylingChecker(RawChecker):
-    """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#todo-styling-formatting
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#todo-styling-formatting
     """
     MSG_KEYWORD: str = 'todo-comment-styling-keyword'
     MSG_SEPARATOR: str = 'todo-comment-styling-separator'
@@ -27,6 +27,7 @@ class TodoCommentStylingChecker(RawChecker):
 
     def process_module(self, node: Module) -> None:
         with node.stream() as stream:
+            line: bytes
             for i, line in enumerate(stream):
                 # obtain comment content
                 line_no = i + 1

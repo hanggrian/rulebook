@@ -1,7 +1,7 @@
-[![CircleCI](https://img.shields.io/circleci/build/gh/haanggrian/rulebook)](https://circleci.com/gh/haanggrian/rulebook/)
-[![Codecov](https://img.shields.io/codecov/c/gh/haanggrian/rulebook)](https://codecov.io/gh/haanggrian/rulebook/) \
-[![Maven Central](https://img.shields.io/maven-central/v/com.hendraanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hendraanggrian/rulebook/rulebook-ktlint/)
-[![Maven Central Snapshot](https://img.shields.io/nexus/s/com.hendraanggrian.rulebook/rulebook-ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hendraanggrian/rulebook/rulebook-ktlint/)
+[![CircleCI](https://img.shields.io/circleci/build/gh/hanggrian/rulebook)](https://app.circleci.com/gh/hanggrian/rulebook/)
+[![Codecov](https://img.shields.io/codecov/c/gh/hanggrian/rulebook)](https://app.codecov.io/gh/hanggrian/rulebook/) \
+[![Maven Central](https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/)
+[![Maven Central Snapshot](https://img.shields.io/nexus/s/com.hanggrian.rulebook/rulebook-ktlint?server=https%3A%2F%2Fs01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/hanggrian/rulebook/rulebook-ktlint/)
 [![OpenJDK](https://img.shields.io/badge/jdk-1.8%2B-informational)](https://openjdk.java.net/projects/jdk8/) \
 [![Package Index](https://shields.io/pypi/v/rulebook-pylint)](https://pypi.org/project/rulebook-pylint/)
 [![Package Index Test](https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org)](https://test.pypi.org/project/rulebook-pylint/)

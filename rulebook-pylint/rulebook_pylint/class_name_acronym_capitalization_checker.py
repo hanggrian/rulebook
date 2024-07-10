@@ -5,14 +5,14 @@ from astroid import ClassDef
 from pylint.typing import MessageDefinitionTuple
 from regex import Pattern
 from rulebook_pylint.checkers import Checker
-from rulebook_pylint.internals import Messages
+from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
 class ClassNameAcronymCapitalizationChecker(Checker):
-    """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#class-name-acronym-capitalization
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-name-acronym-capitalization
     """
     MSG: str = 'class-name-acronym-capitalization'
 

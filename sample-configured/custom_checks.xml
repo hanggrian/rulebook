@@ -175,7 +175,7 @@
     </module>
 
     <!-- Third-party rules -->
-    <module name="BlockTagDescriptionPunctuation">
+    <module name="BlockTagPunctuation">
       <property name="blockTags" value="@exception"/>
     </module>
     <module name="ClassFinalNameBlacklisting">

@@ -98,13 +98,13 @@
   <rule class="org.codenarc.rule.size.ClassSizeRule">
     <property name="maxLines" value="10"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule">
+  <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule">
     <property name="names" value="Hello, World"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule">
+  <rule class="com.hanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule">
     <property name="names" value="mString, mList"/>
   </rule>
-  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNameWhitelistingRule">
+  <rule class="com.hanggrian.rulebook.codenarc.GenericsNameWhitelistingRule">
     <property name="names" value="A"/>
   </rule>
 </ruleset>

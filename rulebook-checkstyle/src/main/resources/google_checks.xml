@@ -2,7 +2,7 @@
 <!--
   The Rulebook Checkstyle configuration file that is Google Python Style Guide compliant.
 
-  Rulebook: https://github.com/hendraanggrian/rulebook/
+  Rulebook: https://github.com/hanggrian/rulebook/
   Checkstyle: https://checkstyle.sourceforge.io/
   Google Java Style Guide: https://google.github.io/styleguide/javaguide.html
   Source template: https://github.com/checkstyle/checkstyle/blob/005fba53352456515cfdcdf5dcd3dea351661f2b/src/main/resources/google_checks.xml
@@ -11,7 +11,8 @@
     - Add 'InnerTypeLast'.
     - Add 'HideUtilityClassConstructor'.
   - Modify 'Coding':
-    - Add 'IllegalThrows' with that includes 'Exception', 'Error' and 'Throwable'.
+    - Add 'IllegalThrows' that includes 'Exception', 'Error' and 'Throwable'.
+    - Add 'IllegalCatch' that includes 'Exception', 'Error' and 'Throwable'.
     - Add 'ArrayTrailingComma'.
   - Modify 'Javadoc Comments':
     - Remove 'SummaryJavadoc'.
@@ -389,6 +390,11 @@
         name="illegalClassNames"
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
     </module>
+    <module name="IllegalCatch">
+      <property
+        name="illegalClassNames"
+        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
+    </module>
     <module name="ArrayTrailingComma"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="TodoComment">
@@ -404,21 +410,24 @@
     <module name="HideUtilityClassConstructor"/>
 
     <!-- Third-party rules -->
+    <module name="AssignmentWrapping"/>
+    <module name="BlockCommentLineJoining"/>
     <module name="BlockCommentLineTrimming"/>
-    <module name="BlockTagDescriptionPunctuation"/>
+    <module name="BlockTagPunctuation"/>
     <module name="ClassFinalNameBlacklisting"/>
     <module name="ClassOrganization"/>
     <module name="CodeBlockLineTrimming"/>
+    <module name="CommentLineJoining"/>
+    <module name="CommentLineTrimming"/>
     <module name="CommentSpacing"/>
-    <module name="ConditionalBranchLineWrapping"/>
-    <module name="EmptyBlockCommentLineJoining"/>
-    <module name="EmptyCodeBlockWrapping"/>
-    <module name="EmptyCommentLineJoining"/>
+    <module name="ConditionalBranchLineJoining"/>
+    <module name="ControlFlowBracing"/>
+    <module name="DeclarationLineSpacing"/>
+    <module name="EmptyCodeBlockConciseness"/>
+    <module name="ExceptionExtending"/>
     <module name="FileInitialLineTrimming"/>
     <module name="GenericsNameWhitelisting"/>
-    <module name="IfStatementFlattening"/>
-    <module name="MultilineAssignmentBreaking"/>
-    <module name="MultilineControlFlowBracing"/>
+    <module name="IfFlattening"/>
     <module name="QualifierConsistency"/>
     <module name="SpecialFunctionPosition"/>
   </module>

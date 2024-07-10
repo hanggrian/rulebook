@@ -3,18 +3,19 @@ from typing import TYPE_CHECKING
 from astroid import ClassDef, FunctionDef
 from pylint.typing import MessageDefinitionTuple
 from rulebook_pylint.checkers import Checker
-from rulebook_pylint.internals import Messages, has_decorator
+from rulebook_pylint.internals.messages import Messages
+from rulebook_pylint.internals.nodes import has_decorator
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
 class ClassOrganizationChecker(Checker):
-    """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#class-organization
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-organization
     """
     MSG: str = 'class-organization'
-    MSG_CONSTRUCTOR: str = 'class-organization-constructor'
-    MSG_FUNCTION: str = 'class-organization-function'
+    MSG_CONSTRUCTOR: str = 'constructor'
+    MSG_FUNCTION: str = 'function'
 
     name: str = 'class-organization'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)

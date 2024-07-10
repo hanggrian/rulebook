@@ -3,14 +3,14 @@ from typing import TYPE_CHECKING
 
 from pylint.typing import MessageDefinitionTuple
 from rulebook_pylint.checkers import TokenChecker
-from rulebook_pylint.internals import Messages
+from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
 class StringSingleQuotingChecker(TokenChecker):
-    """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#string-single-quoting
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#string-single-quoting
     """
     MSG: str = 'string-single-quoting'
 
@@ -18,6 +18,7 @@ class StringSingleQuotingChecker(TokenChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
+        token: TokenInfo
         for token in tokens:
             # first line of filter
             if token.type != STRING:

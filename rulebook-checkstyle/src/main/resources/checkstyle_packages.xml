@@ -4,5 +4,5 @@
   "https://checkstyle.org/dtds/packages_1_0.dtd">
 
 <checkstyle-packages>
-  <package name="com.hendraanggrian.rulebook.checkstyle"/>
+  <package name="com.hanggrian.rulebook.checkstyle"/>
 </checkstyle-packages>

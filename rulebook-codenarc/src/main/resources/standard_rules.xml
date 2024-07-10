@@ -2,13 +2,12 @@
 <!--
   The standard Rulebook CodeNarc configuration.
 
-  Rulebook: https://github.com/hendraanggrian/rulebook/
+  Rulebook: https://github.com/hanggrian/rulebook/
   CodeNarc: https://codenarc.org/
   Source template: https://github.com/google/protobuf-gradle-plugin/blob/master/config/codenarc/codenarc.xml
 
   Modifications:
 
-  - Add third-party rules from https://github.com/hendraanggrian/rulebook/wiki.
   - Remove 'logging.xml':
   - Modify 'convention.xml':
     - Remove 'CompileStatic'.
@@ -129,23 +128,23 @@
     <property name="length" value="100"/>
   </rule>
 
-  <rule class="org.codenarc.rule.comments.SpaceBeforeCommentDelimiterRule"/>
-  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
   <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>
   <rule class="org.codenarc.rule.comments.JavadocEmptyFirstLineRule"/>
   <rule class="org.codenarc.rule.comments.JavadocEmptyLastLineRule"/>
+  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
+  <rule class="org.codenarc.rule.comments.SpaceBeforeCommentDelimiterRule"/>
 
   <!-- Third-party rules -->
-  <rule class="com.hendraanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.ClassOrganizationRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.GenericsNameWhitelistingRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.IfStatementFlatteningRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.InnerClassPositionRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.MultilineAssignmentBreakingRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.SingleStatementDeclarationRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
-  <rule class="com.hendraanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ClassOrganizationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.GenericsNameWhitelistingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IfFlatteningRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.StatementIsolationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.UtilityClassConstructorHidingRule"/>
 </ruleset>

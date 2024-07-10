@@ -10,19 +10,23 @@ class TestFileInitialLineTrimmingChecker(CheckerTestCase):
     CHECKER_CLASS = FileInitialLineTrimmingChecker
 
     def test_trimmed_file(self):
-        code = \
-            '''import unittest
-            '''
+        tokens = \
+            _tokenize_str(
+                '''import unittest
+                ''',
+            )
         with self.assertNoMessages():
-            self.checker.process_tokens(_tokenize_str(code))
+            self.checker.process_tokens(tokens)
 
     def test_padded_file(self):
-        code = \
-            '''
-            import unittest
-            '''
+        tokens = \
+            _tokenize_str(
+                '''
+                import unittest
+                ''',
+            )
         with self.assertAddsMessages(msg(FileInitialLineTrimmingChecker.MSG, 0)):
-            self.checker.process_tokens(_tokenize_str(code))
+            self.checker.process_tokens(tokens)
 
 
 if __name__ == '__main__':

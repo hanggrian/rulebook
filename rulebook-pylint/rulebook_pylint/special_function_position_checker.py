@@ -3,14 +3,15 @@ from typing import TYPE_CHECKING
 from astroid import NodeNG, FunctionDef
 from pylint.typing import MessageDefinitionTuple
 from rulebook_pylint.checkers import Checker
-from rulebook_pylint.internals import Messages, has_decorator
+from rulebook_pylint.internals.messages import Messages
+from rulebook_pylint.internals.nodes import has_decorator
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
 class SpecialFunctionPositionChecker(Checker):
-    """See wiki: https://github.com/hendraanggrian/rulebook/wiki/Rules#special-function-position
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#special-function-position
     """
     MSG: str = 'special-function-position'
 

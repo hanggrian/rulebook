@@ -1,6 +1,6 @@
 # The standard Rulebook Pylint configuration.
 #
-# Rulebook: https://github.com/hendraanggrian/rulebook/
+# Rulebook: https://github.com/hanggrian/rulebook/
 # Pylint: https://pypi.org/project/pylint/
 # Source template: https://github.com/pylint-dev/pylint/blob/b738d233e2df7651abae847e2331e2621482e5fb/pylintrc/
 #
@@ -48,24 +48,25 @@ load-plugins=
   pylint.extensions.broad_try_clause,
   pylint.extensions.dict_init_mutate,
   pylint.extensions.consider_refactoring_into_while_condition,
+  rulebook_pylint.block_comment_line_joining_checker,
   rulebook_pylint.block_comment_line_trimming_checker,
   rulebook_pylint.class_final_name_blacklisting_checker,
   rulebook_pylint.class_name_acronym_capitalization_checker,
   rulebook_pylint.class_organization_checker,
   rulebook_pylint.code_block_line_trimming_checker,
-  rulebook_pylint.conditional_branch_line_wrapping_checker,
-  rulebook_pylint.empty_block_comment_line_joining_checker,
-  rulebook_pylint.empty_comment_line_joining_checker,
+  rulebook_pylint.comment_line_joining_checker,
+  rulebook_pylint.comment_line_trimming_checker,
+  rulebook_pylint.conditional_branch_line_joining_checker,
+  rulebook_pylint.exception_extending_checker,
   rulebook_pylint.file_initial_line_trimming_checker,
   rulebook_pylint.file_size_limitation_checker,
   rulebook_pylint.generics_name_whitelisting_checker,
-  rulebook_pylint.if_statement_flattening_checker,
+  rulebook_pylint.if_flattening_checker,
   rulebook_pylint.inner_class_position_checker,
-  rulebook_pylint.multiline_parameter_comma_trailing_checker,
-  rulebook_pylint.operand_structural_equality_checker,
   rulebook_pylint.special_function_position_checker,
   rulebook_pylint.string_single_quoting_checker,
   rulebook_pylint.todo_comment_styling_checker,
+  rulebook_pylint.trailing_comma_insertion_checker,
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
 # number of processors available to use.
