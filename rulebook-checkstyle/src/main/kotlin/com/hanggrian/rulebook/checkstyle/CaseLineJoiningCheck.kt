@@ -6,9 +6,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 
 /**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#conditional-branch-line-joining)
+ * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining)
  */
-public class ConditionalBranchLineJoiningCheck : Check() {
+public class CaseLineJoiningCheck : Check() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CASE_GROUP)
 
     override fun visitToken(node: DetailAST) {
@@ -21,6 +21,6 @@ public class ConditionalBranchLineJoiningCheck : Check() {
     }
 
     internal companion object {
-        const val MSG = "conditional.branch.line.joining"
+        const val MSG = "case.line.joining"
     }
 }

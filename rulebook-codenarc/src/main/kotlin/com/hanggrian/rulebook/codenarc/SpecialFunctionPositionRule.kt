@@ -46,15 +46,16 @@ public class SpecialFunctionPositionRule : Rule() {
                 }
 
                 // checks for violation
-                if (lastObjectOverriddenMethod != null &&
-                    lastObjectOverriddenMethod.lineNumber < method.lineNumber
+                if (lastObjectOverriddenMethod == null ||
+                    lastObjectOverriddenMethod.lineNumber >= method.lineNumber
                 ) {
-                    addViolation(
-                        lastObjectOverriddenMethod,
-                        Messages.get(MSG, lastObjectOverriddenMethod.name),
-                    )
-                    return super.visitClassComplete(node)
+                    continue
                 }
+                addViolation(
+                    lastObjectOverriddenMethod,
+                    Messages.get(MSG, lastObjectOverriddenMethod.name),
+                )
+                return super.visitClassComplete(node)
             }
 
             super.visitClassComplete(node)

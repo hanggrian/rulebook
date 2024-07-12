@@ -1,9 +1,6 @@
 package com.example.groovy
 
-import groovy.transform.CompileStatic
-
-@CompileStatic
-class StatementIsolation {
+class StatementWrapping {
     void foo() {
         int bar = 1
         int baz = 2

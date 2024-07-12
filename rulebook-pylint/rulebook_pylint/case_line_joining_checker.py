@@ -9,12 +9,12 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class ConditionalBranchLineJoiningChecker(TokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#conditional-branch-line-joining
+class CaseLineJoiningChecker(TokenChecker):
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining
     """
-    MSG: str = 'conditional-branch-line-joining'
+    MSG: str = 'case-line-joining'
 
-    name: str = 'conditional-branch-line-joining'
+    name: str = 'case-line-joining'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
@@ -31,4 +31,4 @@ class ConditionalBranchLineJoiningChecker(TokenChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(ConditionalBranchLineJoiningChecker(linter))
+    linter.register_checker(CaseLineJoiningChecker(linter))

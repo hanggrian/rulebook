@@ -5,7 +5,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 
 internal operator fun DetailNode.contains(type: Int): Boolean = children.any { it.type == type }
@@ -44,12 +47,24 @@ internal val DetailAST.lastmostChild: DetailAST
         return last
     }
 
+internal val DetailAST.lastIf: DetailAST?
+    get() {
+        for (child in children().asIterable().reversed()) {
+            return when (child.type) {
+                LITERAL_IF -> child
+                SEMI, RCURLY, SINGLE_LINE_COMMENT -> continue
+                else -> null
+            }
+        }
+        return null
+    }
+
 /** In Checkstyle, nodes with children do not have text. */
 internal fun DetailAST.joinText(separator: String = "", excludeType: Int = 0): String {
-    val children = children().toList()
+    val children = children()
     val result =
         when {
-            children.isEmpty() -> text
+            children.count() == 0 -> text
             else ->
                 buildString {
                     for (child in children) {

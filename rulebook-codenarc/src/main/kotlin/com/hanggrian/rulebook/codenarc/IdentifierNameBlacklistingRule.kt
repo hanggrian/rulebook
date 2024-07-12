@@ -28,8 +28,7 @@ public class IdentifierNameBlacklistingRule : Rule() {
             node
                 .takeIf {
                     it.name in (rule as IdentifierNameBlacklistingRule).names.split(", ")
-                }
-                ?: return super.visitField(node)
+                } ?: return super.visitField(node)
             addViolation(node, Messages[MSG])
 
             super.visitField(node)

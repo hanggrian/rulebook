@@ -7,7 +7,7 @@ class CommentSpacingCheckTest {
     private val checker = checkerOf<CommentSpacingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = CommentSpacingCheck().assertProperties()
+    fun `Rule properties`() = CommentSpacingCheck().assertProperties()
 
     @Test
     fun `With whitespace`() = assertEquals(0, checker.read("CommentSpacing1"))

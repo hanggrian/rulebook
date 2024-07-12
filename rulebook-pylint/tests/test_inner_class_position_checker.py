@@ -14,14 +14,14 @@ class TestInnerClassPositionChecker(CheckerTestCase):
         node1, node2 = \
             extract_node(
                 '''
-                class Foo: #@
+                class Foo:  #@
                     def __init__(self):
                         print()
 
                     def bar(self):
                         print()
 
-                    class Inner: #@
+                    class Inner:  #@
                         print()
                 ''',
             )
@@ -33,8 +33,8 @@ class TestInnerClassPositionChecker(CheckerTestCase):
         node1, node2 = \
             extract_node(
                 '''
-                class Foo: #@
-                    class Inner: #@
+                class Foo:  #@
+                    class Inner:  #@
                         print()
 
                     def __init__(self):

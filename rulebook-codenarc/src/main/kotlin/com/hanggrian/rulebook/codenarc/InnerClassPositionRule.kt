@@ -42,8 +42,7 @@ public class InnerClassPositionRule : Rule() {
                     it.fields.isAnyAfter(innerClass) ||
                         it.declaredConstructors.isAnyAfter(innerClass) ||
                         it.methods.isAnyAfter(innerClass)
-                }
-                ?: return super.visitClassComplete(node)
+                } ?: return super.visitClassComplete(node)
             addViolation(innerClass, Messages[MSG])
 
             super.visitClassComplete(node)

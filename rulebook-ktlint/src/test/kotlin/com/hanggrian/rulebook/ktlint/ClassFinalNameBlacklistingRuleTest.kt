@@ -11,7 +11,7 @@ class ClassFinalNameBlacklistingRuleTest {
     private val assertThatCode = assertThatRule { ClassFinalNameBlacklistingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = ClassFinalNameBlacklistingRule().assertProperties()
+    fun `Rule properties`() = ClassFinalNameBlacklistingRule().assertProperties()
 
     @Test
     fun `Meaningful class names`() =

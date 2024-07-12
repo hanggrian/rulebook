@@ -7,7 +7,7 @@ class BlockTagPunctuationCheckTest {
     private val checker = checkerOf<BlockTagPunctuationCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = BlockTagPunctuationCheck().assertProperties()
+    fun `Rule properties`() = BlockTagPunctuationCheck().assertProperties()
 
     @Test
     fun `No description`() = assertEquals(0, checker.read("BlockTagPunctuation1"))

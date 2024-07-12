@@ -9,7 +9,7 @@ class SpecialFunctionPositionRuleTest {
     private val assertThatCode = assertThatRule { SpecialFunctionPositionRule() }
 
     @Test
-    fun `Rule properties`(): Unit = SpecialFunctionPositionRule().assertProperties()
+    fun `Rule properties`() = SpecialFunctionPositionRule().assertProperties()
 
     @Test
     fun `Overridden function at the bottom`() =

@@ -10,7 +10,7 @@ class FileSizeLimitationRuleTest {
     private val assertThatCode = assertThatRule { FileSizeLimitationRule() }
 
     @Test
-    fun `Rule properties`(): Unit = FileSizeLimitationRule().assertProperties()
+    fun `Rule properties`() = FileSizeLimitationRule().assertProperties()
 
     @Test
     fun `Small file`() =

@@ -3,9 +3,9 @@ package com.hanggrian.rulebook.ktlint
 import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
+import com.hanggrian.rulebook.ktlint.internals.lastIf
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
@@ -26,29 +26,20 @@ public class IfFlatteningRule :
             return
         }
 
-        // only proceed on one if and no else
-        val children = node.children().toList()
-        val if2 =
-            children
-                .takeIf {
-                    it.firstOrNull()?.elementType == LBRACE &&
-                        it.lastOrNull()?.elementType == RBRACE
-                }?.slice(1 until children.lastIndex)
-                ?.singleOrNull { it.elementType != WHITE_SPACE }
-                ?.takeIf { it.elementType == IF }
-                ?.takeUnless { ELSE in it }
-                ?: return
-
         // checks for violation
-        if2
-            .findChildByType(THEN)
+        val `if` = node.lastIf ?: return
+        `if`
+            .takeIf { ELSE !in it }
+            ?.findChildByType(THEN)
             ?.findChildByType(BLOCK)
             ?.children()
-            ?.filter { it.elementType == WHITE_SPACE && "\n" in it.text }
-            ?.toList()
-            ?.takeIf { it.size > 2 }
+            ?.filter {
+                it.elementType != LBRACE &&
+                    it.elementType != RBRACE &&
+                    it.elementType != WHITE_SPACE
+            }?.takeIf { it.count() > 1 }
             ?: return
-        emit(if2.startOffset, Messages[MSG], false)
+        emit(`if`.startOffset, Messages[MSG], false)
     }
 
     internal companion object {

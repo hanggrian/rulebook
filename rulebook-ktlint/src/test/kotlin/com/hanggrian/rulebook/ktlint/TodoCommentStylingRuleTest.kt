@@ -11,7 +11,7 @@ class TodoCommentStylingRuleTest {
     private val assertThatCode = assertThatRule { TodoCommentStylingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = TodoCommentStylingRule().assertProperties()
+    fun `Rule properties`() = TodoCommentStylingRule().assertProperties()
 
     @Test
     fun `Uppercase TODO comments`() =

@@ -7,7 +7,7 @@ class CommentLineTrimmingCheckTest {
     private val checker = checkerOf<CommentLineTrimmingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = CommentLineTrimmingCheck().assertProperties()
+    fun `Rule properties`() = CommentLineTrimmingCheck().assertProperties()
 
     @Test
     fun `Comment without initial and final newline`() =

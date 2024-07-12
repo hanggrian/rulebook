@@ -7,7 +7,7 @@ class GenericsNameWhitelistingCheckTest {
     private val checker = checkerOf<GenericsNameWhitelistingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = GenericsNameWhitelistingCheck().assertProperties()
+    fun `Rule properties`() = GenericsNameWhitelistingCheck().assertProperties()
 
     @Test
     fun `Common generic type in class-alike`() =

@@ -10,7 +10,7 @@ class ClassFinalNameBlacklistingRuleTest : AbstractRuleTestCase<ClassFinalNameBl
     override fun createRule() = ClassFinalNameBlacklistingRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Meaningful class names`() =

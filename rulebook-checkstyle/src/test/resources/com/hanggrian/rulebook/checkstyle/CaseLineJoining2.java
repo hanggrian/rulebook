@@ -1,15 +1,17 @@
 package com.hanggrian.rulebook.checkstyle;
 
-public class ConditionalBranchLineJoining {
-    public ConditionalBranchLineJoining() {
+public class CaseLineJoining {
+    public CaseLineJoining(int foo) {
         switch (foo) {
             case 0:
                 bar();
                 break;
 
             case 1:
-                baz();
+                bar();
                 break;
         }
     }
+
+    private void bar() {}
 }

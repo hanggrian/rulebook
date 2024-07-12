@@ -14,7 +14,7 @@ class TestClassOrganizationChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class Foo: #@
+                class Foo:  #@
                     def __init__(self):
                         print()
 
@@ -29,11 +29,11 @@ class TestClassOrganizationChecker(CheckerTestCase):
         node1, node2 = \
             extract_node(
                 '''
-                class Foo: #@
+                class Foo:  #@
                     def bar():
                         print()
 
-                    def __init__(self): #@
+                    def __init__(self):  #@
                         print()
                 ''',
             )
@@ -46,7 +46,7 @@ class TestClassOrganizationChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class Foo: #@
+                class Foo:  #@
                     @staticmethod
                     def bar():
                         print()

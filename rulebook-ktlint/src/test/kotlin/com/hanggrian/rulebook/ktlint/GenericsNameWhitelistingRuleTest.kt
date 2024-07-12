@@ -10,7 +10,7 @@ class GenericsNameWhitelistingRuleTest {
     private val assertThatCode = assertThatRule { GenericsNameWhitelistingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = GenericsNameWhitelistingRule().assertProperties()
+    fun `Rule properties`() = GenericsNameWhitelistingRule().assertProperties()
 
     @Test
     fun `Common generic type in class-alike`() =

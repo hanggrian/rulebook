@@ -11,7 +11,7 @@ class BlockCommentLineTrimmingRuleTest {
     private val assertThatCode = assertThatRule { BlockCommentLineTrimmingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = BlockCommentLineTrimmingRule().assertProperties()
+    fun `Rule properties`() = BlockCommentLineTrimmingRule().assertProperties()
 
     @Test
     fun `Block comment without initial and final newline`() =

@@ -9,7 +9,7 @@ class InnerClassPositionRuleTest : AbstractRuleTestCase<InnerClassPositionRule>(
     override fun createRule() = InnerClassPositionRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Inner class at the bottom`() =

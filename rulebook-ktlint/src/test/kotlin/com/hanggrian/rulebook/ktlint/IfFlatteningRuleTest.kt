@@ -9,38 +9,32 @@ class IfFlatteningRuleTest {
     private val assertThatCode = assertThatRule { IfFlatteningRule() }
 
     @Test
-    fun `Rule properties`(): Unit = IfFlatteningRule().assertProperties()
+    fun `Rule properties`() = IfFlatteningRule().assertProperties()
 
     @Test
-    fun `Empty then statement`() =
+    fun `Empty or one statement in if statement`() =
         assertThatCode(
             """
             fun foo() {
                 if (true) {
                 }
             }
-            """.trimIndent(),
-        ).hasNoLintViolations()
 
-    @Test
-    fun `Only 1 line in if statement`() =
-        assertThatCode(
-            """
-            fun foo() {
+            fun bar() {
                 if (true) {
-                    bar()
+                    baz()
                 }
             }
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `At least 2 lines in if statement`() =
+    fun `Invert if with two statements`() =
         assertThatCode(
             """
             fun foo() {
                 if (true) {
-                    bar()
+                    baz()
                     baz()
                 }
             }
@@ -48,15 +42,15 @@ class IfFlatteningRuleTest {
         ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG])
 
     @Test
-    fun `If statement with else`() =
+    fun `Do not invert when there is else`() =
         assertThatCode(
             """
             fun foo() {
                 if (true) {
-                    bar()
+                    baz()
                     baz()
                 } else {
-                    bar()
+                    baz()
                 }
             }
             """.trimIndent(),

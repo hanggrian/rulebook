@@ -9,7 +9,7 @@ class GenericsNameWhitelistingRuleTest : AbstractRuleTestCase<GenericsNameWhitel
     override fun createRule() = GenericsNameWhitelistingRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Common generic type in class`() =

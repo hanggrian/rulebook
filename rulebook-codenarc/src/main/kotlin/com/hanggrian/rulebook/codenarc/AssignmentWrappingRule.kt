@@ -24,11 +24,13 @@ public class AssignmentWrappingRule : Rule() {
                 expression.operation
                     .takeIf { it.type == ASSIGN }
                     ?.takeUnless { expression.lineNumber == expression.lastLineNumber }
-                    ?: return
+                    ?: return super.visitBinaryExpression(expression)
 
             // checks for violation
             val assignee = expression.rightExpression
-            assignee.takeUnless { it.lineNumber == operation.startLine + 1 } ?: return
+            assignee
+                .takeUnless { it.lineNumber == operation.startLine + 1 }
+                ?: return super.visitBinaryExpression(expression)
             addViolation(assignee, Messages[MSG])
 
             super.visitBinaryExpression(expression)

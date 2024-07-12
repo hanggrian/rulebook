@@ -9,7 +9,7 @@ class BlockCommentLineJoiningRuleTest {
     private val assertThatCode = assertThatRule { BlockCommentLineJoiningRule() }
 
     @Test
-    fun `Rule properties`(): Unit = BlockCommentLineJoiningRule().assertProperties()
+    fun `Rule properties`() = BlockCommentLineJoiningRule().assertProperties()
 
     @Test
     fun `Single empty line in block comment`() =

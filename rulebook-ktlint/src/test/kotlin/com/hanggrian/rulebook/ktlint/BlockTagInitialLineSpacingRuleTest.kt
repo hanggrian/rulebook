@@ -10,7 +10,7 @@ class BlockTagInitialLineSpacingRuleTest {
     private val assertThatCode = assertThatRule { BlockTagInitialLineSpacingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = BlockTagInitialLineSpacingRule().assertProperties()
+    fun `Rule properties`() = BlockTagInitialLineSpacingRule().assertProperties()
 
     @Test
     fun `Separate summary and block tag group`() =

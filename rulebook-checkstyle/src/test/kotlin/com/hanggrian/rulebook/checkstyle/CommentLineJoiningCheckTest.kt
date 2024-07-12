@@ -7,7 +7,7 @@ class CommentLineJoiningCheckTest {
     private val checker = checkerOf<CommentLineJoiningCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = CommentLineJoiningCheck().assertProperties()
+    fun `Rule properties`() = CommentLineJoiningCheck().assertProperties()
 
     @Test
     fun `Single empty line in EOL comment`() = assertEquals(0, checker.read("CommentLineJoining1"))

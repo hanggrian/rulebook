@@ -10,7 +10,7 @@ class ExceptionExtendingRuleTest {
     private val assertThatCode = assertThatRule { ExceptionExtendingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = ExceptionExtendingRule().assertProperties()
+    fun `Rule properties`() = ExceptionExtendingRule().assertProperties()
 
     @Test
     fun `Extend user exceptions`() =

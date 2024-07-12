@@ -27,7 +27,7 @@ class TestBlockCommentLineJoiningChecker(CheckerTestCase):
         node1, node2 = \
             extract_node(
                 '''
-                class Foo: #@
+                class Foo:  #@
                     """
                     Lorem ipsum
 
@@ -35,7 +35,7 @@ class TestBlockCommentLineJoiningChecker(CheckerTestCase):
                     """
                     print()
 
-                def bar(): #@
+                def bar():  #@
                     """
                     Lorem ipsum
 
@@ -68,7 +68,7 @@ class TestBlockCommentLineJoiningChecker(CheckerTestCase):
         node1, node2 = \
             extract_node(
                 '''
-                class Foo: #@
+                class Foo:  #@
                     """
                     Lorem ipsum
 
@@ -77,7 +77,7 @@ class TestBlockCommentLineJoiningChecker(CheckerTestCase):
                     """
                     print()
 
-                def bar(): #@
+                def bar():  #@
                     """
                     Lorem ipsum
 

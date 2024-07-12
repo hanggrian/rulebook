@@ -11,7 +11,7 @@ class UtilityClassConstructorHidingRuleTest :
     override fun createRule() = UtilityClassConstructorHidingRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Utility class with private constructor`() =

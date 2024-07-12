@@ -37,8 +37,7 @@ public class SpecialFunctionPositionRule :
                     it.elementType == FUN &&
                         !it.isSpecialFunction()
                 }
-            }
-            ?: return
+            } ?: return
         emit(node.startOffset, Messages.get(MSG, identifier.text), false)
     }
 

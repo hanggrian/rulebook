@@ -7,7 +7,7 @@ class CodeBlockLineTrimmingCheckTest {
     private val checker = checkerOf<CodeBlockLineTrimmingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = CodeBlockLineTrimmingCheck().assertProperties()
+    fun `Rule properties`() = CodeBlockLineTrimmingCheck().assertProperties()
 
     @Test
     fun `Class block without first and last newline`() =

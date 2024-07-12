@@ -15,7 +15,7 @@ class TestBlockCommentLineTrimmingChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class Foo: #@
+                class Foo:  #@
                     """
                     Lorem ipsum
                     """
@@ -29,7 +29,7 @@ class TestBlockCommentLineTrimmingChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class Foo: #@
+                class Foo:  #@
                     """
 
                     Lorem ipsum

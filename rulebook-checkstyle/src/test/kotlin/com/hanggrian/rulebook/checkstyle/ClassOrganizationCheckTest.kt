@@ -7,7 +7,7 @@ class ClassOrganizationCheckTest {
     private val checker = checkerOf<ClassOrganizationCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = ClassOrganizationCheck().assertProperties()
+    fun `Rule properties`() = ClassOrganizationCheck().assertProperties()
 
     @Test
     fun `Correct organizations`() = assertEquals(0, checker.read("ClassOrganization1"))

@@ -15,10 +15,10 @@ class TestSpecialFunctionPositionChecker(CheckerTestCase):
             extract_node(
                 '''
                 class Foo:
-                    def bar(): #@
+                    def bar():  #@
                         print()
 
-                    def __str__(self): #@
+                    def __str__(self):  #@
                         return 'baz'
                 ''',
             )
@@ -31,10 +31,10 @@ class TestSpecialFunctionPositionChecker(CheckerTestCase):
             extract_node(
                 '''
                 class Foo:
-                    def __str__(self): #@
+                    def __str__(self):  #@
                         return 'baz'
 
-                    def bar(): #@
+                    def bar():  #@
                         print()
                 ''',
             )
@@ -49,13 +49,13 @@ class TestSpecialFunctionPositionChecker(CheckerTestCase):
             extract_node(
                 '''
                 class Foo:
-                    def __str__(self): #@
+                    def __str__(self):  #@
                         return 'baz'
 
-                    def __hash__(self): #@
+                    def __hash__(self):  #@
                         return 0
 
-                    def __eq__(self, other): #@
+                    def __eq__(self, other):  #@
                         return False
                 ''',
             )

@@ -9,7 +9,7 @@ class ClassOrganizationRuleTest : AbstractRuleTestCase<ClassOrganizationRule>() 
     override fun createRule() = ClassOrganizationRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Properties, initializers, constructors, and methods`() =

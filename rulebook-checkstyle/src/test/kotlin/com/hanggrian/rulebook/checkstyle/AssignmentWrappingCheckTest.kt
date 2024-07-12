@@ -7,7 +7,7 @@ class AssignmentWrappingCheckTest {
     private val checker = checkerOf<AssignmentWrappingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = AssignmentWrappingCheck().assertProperties()
+    fun `Rule properties`() = AssignmentWrappingCheck().assertProperties()
 
     @Test
     fun `Single-line assignment`() = assertEquals(0, checker.read("AssignmentWrapping1"))

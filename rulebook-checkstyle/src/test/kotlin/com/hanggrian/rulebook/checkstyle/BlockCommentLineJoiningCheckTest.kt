@@ -7,7 +7,7 @@ class BlockCommentLineJoiningCheckTest {
     private val checker = checkerOf<BlockCommentLineJoiningCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = BlockCommentLineJoiningCheck().assertProperties()
+    fun `Rule properties`() = BlockCommentLineJoiningCheck().assertProperties()
 
     @Test
     fun `Single empty line in block comment`() =

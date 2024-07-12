@@ -14,7 +14,7 @@ class TestExceptionExtendingChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class Foo(Exception): #@
+                class Foo(Exception):  #@
                     pass
                 ''',
             )
@@ -25,7 +25,7 @@ class TestExceptionExtendingChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class Foo(BaseException): #@
+                class Foo(BaseException):  #@
                     pass
                 ''',
             )

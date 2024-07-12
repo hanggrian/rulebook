@@ -9,7 +9,7 @@ class InnerClassPositionRuleTest {
     private val assertThatCode = assertThatRule { InnerClassPositionRule() }
 
     @Test
-    fun `Rule properties`(): Unit = InnerClassPositionRule().assertProperties()
+    fun `Rule properties`() = InnerClassPositionRule().assertProperties()
 
     @Test
     fun `Inner class at the bottom`() =

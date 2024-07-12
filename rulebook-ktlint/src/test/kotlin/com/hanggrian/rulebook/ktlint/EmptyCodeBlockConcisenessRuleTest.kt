@@ -10,7 +10,7 @@ class EmptyCodeBlockConcisenessRuleTest {
     private val assertThatCode = assertThatRule { EmptyCodeBlockConcisenessRule() }
 
     @Test
-    fun `Rule properties`(): Unit = EmptyCodeBlockConcisenessRule().assertProperties()
+    fun `Rule properties`() = EmptyCodeBlockConcisenessRule().assertProperties()
 
     @Test
     fun `Wrapped empty block`() =

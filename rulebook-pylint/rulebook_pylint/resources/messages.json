@@ -1,11 +1,12 @@
 {
   "assignment-wrapping": "Break assignment into newline.",
   "file-size-limitation": "Reduce file size to %d.",
-  "if-flattening": "Invert if condition.",
+  "if-flattening": "Invert 'if' condition.",
   "string-single-quoting": "Use single quotes.",
   "todo-comment-styling-keyword": "Illegal keyword %s.",
   "todo-comment-styling-separator": "Illegal separator %s.",
   "trailing-comma-insertion": "Put trailing comma.",
+  "switch-multiple-branching": "Replace 'match' with 'if'.",
 
   "exception-extending": "Extend from Exception class.",
 
@@ -21,10 +22,10 @@
   "block-comment-line-joining": "Unexpected consecutive newline in \"\"\".",
   "block-comment-line-trimming-first": "Unexpected newline after \"\"\".",
   "block-comment-line-trimming-last": "Unexpected newline before \"\"\".",
+  "case-line-joining": "Unexpected newline between branches.",
   "comment-line-joining": "Unexpected consecutive newline after #.",
   "comment-line-trimming": "Unexpected newline after #.",
   "code-block-line-trimming": "Unexpected newline after :.",
-  "conditional-branch-line-joining": "Unexpected newline between branches.",
   "file-initial-line-trimming": "Unexpected newline at the beginning.",
 
   "constructor": "constructor",

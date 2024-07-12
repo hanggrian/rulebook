@@ -12,7 +12,7 @@ class BlockCommentSpacingRuleTest {
     private val assertThatCode = assertThatRule { BlockCommentSpacingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = BlockCommentSpacingRule().assertProperties()
+    fun `Rule properties`() = BlockCommentSpacingRule().assertProperties()
 
     @Test
     fun `Untrimmed block comment`() =

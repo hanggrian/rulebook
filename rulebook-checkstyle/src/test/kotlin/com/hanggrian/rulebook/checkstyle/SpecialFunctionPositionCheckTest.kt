@@ -7,7 +7,7 @@ class SpecialFunctionPositionCheckTest {
     private val checker = checkerOf<SpecialFunctionPositionCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = SpecialFunctionPositionCheck().assertProperties()
+    fun `Rule properties`() = SpecialFunctionPositionCheck().assertProperties()
 
     @Test
     fun `Overridden function at the bottom`() =

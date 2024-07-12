@@ -1,15 +1,15 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.ConditionalBranchLineJoiningRule.Companion.MSG
+import com.hanggrian.rulebook.ktlint.CaseLineJoiningRule.Companion.MSG
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class ConditionalBranchLineJoiningRuleTest {
-    private val assertThatCode = assertThatRule { ConditionalBranchLineJoiningRule() }
+class CaseLineJoiningRuleTest {
+    private val assertThatCode = assertThatRule { CaseLineJoiningRule() }
 
     @Test
-    fun `Rule properties`(): Unit = ConditionalBranchLineJoiningRule().assertProperties()
+    fun `Rule properties`() = CaseLineJoiningRule().assertProperties()
 
     @Test
     fun `Joined switch case branches`() =

@@ -47,9 +47,9 @@ public class ControlFlowBracingCheck : Check() {
                     return false
                 }
 
-                current = current.findFirstToken(LITERAL_ELSE)
+                current = current.findFirstToken(LITERAL_ELSE)!!
                 if (LITERAL_IF in current) {
-                    current = current.findFirstToken(LITERAL_IF)
+                    current = current.findFirstToken(LITERAL_IF)!!
                 }
             }
             return true

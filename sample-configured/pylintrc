@@ -23,25 +23,9 @@ persistent=no
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
 load-plugins=
-  rulebook_pylint.block_comment_line_joining_checker,
-  rulebook_pylint.block_comment_line_trimming_checker,
   rulebook_pylint.class_final_name_blacklisting_checker,
-  rulebook_pylint.class_name_acronym_capitalization_checker,
-  rulebook_pylint.class_organization_checker,
-  rulebook_pylint.code_block_line_trimming_checker,
-  rulebook_pylint.comment_line_joining_checker,
-  rulebook_pylint.comment_line_trimming_checker,
-  rulebook_pylint.conditional_branch_line_joining_checker,
-  rulebook_pylint.exception_extending_checker,
-  rulebook_pylint.file_initial_line_trimming_checker,
   rulebook_pylint.file_size_limitation_checker,
   rulebook_pylint.generics_name_whitelisting_checker,
-  rulebook_pylint.if_flattening_checker,
-  rulebook_pylint.inner_class_position_checker,
-  rulebook_pylint.special_function_position_checker,
-  rulebook_pylint.string_single_quoting_checker,
-  rulebook_pylint.todo_comment_styling_checker,
-  rulebook_pylint.trailing_comma_insertion_checker,
 
 # Use multiple processes to speed up Pylint.
 jobs=1

@@ -14,7 +14,7 @@ class TestClassFinalNameBlacklistingChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class Spaceship: #@
+                class Spaceship:  #@
                     print()
                 ''',
             )
@@ -25,7 +25,7 @@ class TestClassFinalNameBlacklistingChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class SpaceshipManager: #@
+                class SpaceshipManager:  #@
                     print()
                 ''',
             )
@@ -38,7 +38,7 @@ class TestClassFinalNameBlacklistingChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class SpaceshipUtil: #@
+                class SpaceshipUtil:  #@
                     print()
                 ''',
             )

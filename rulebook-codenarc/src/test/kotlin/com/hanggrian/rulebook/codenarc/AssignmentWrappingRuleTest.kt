@@ -9,7 +9,7 @@ class AssignmentWrappingRuleTest : AbstractRuleTestCase<AssignmentWrappingRule>(
     override fun createRule() = AssignmentWrappingRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Single-line assignment`() =

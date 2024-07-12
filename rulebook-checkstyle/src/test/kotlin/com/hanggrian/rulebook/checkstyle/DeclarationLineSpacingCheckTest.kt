@@ -7,7 +7,7 @@ class DeclarationLineSpacingCheckTest {
     private val checker = checkerOf<DeclarationLineSpacingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = DeclarationLineSpacingCheck().assertProperties()
+    fun `Rule properties`() = DeclarationLineSpacingCheck().assertProperties()
 
     @Test
     fun `Declarations with newline`() = assertEquals(0, checker.read("DeclarationLineSpacing1"))

@@ -9,7 +9,7 @@ class FileInitialLineTrimmingRuleTest {
     private val assertThatCode = assertThatRule { FileInitialLineTrimmingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = FileInitialLineTrimmingRule().assertProperties()
+    fun `Rule properties`() = FileInitialLineTrimmingRule().assertProperties()
 
     @Test
     fun `Trimmed file`() =

@@ -1,13 +1,11 @@
 package com.example.java;
 
-import java.util.List;
-
 public class IfFlattening {
-    public void iterate(final List<Integer> elements) {
-        if (elements == null) {
-            for (int element : elements) {
-                System.out.println(element);
-            }
+    public void foo() {
+        if (true) {
+            return;
         }
+        System.out.println();
+        System.out.println();
     }
 }

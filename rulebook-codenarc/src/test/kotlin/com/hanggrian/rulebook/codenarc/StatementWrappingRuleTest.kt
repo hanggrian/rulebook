@@ -1,15 +1,15 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.StatementIsolationRule.Companion.MSG
+import com.hanggrian.rulebook.codenarc.StatementWrappingRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 
-class StatementIsolationRuleTest : AbstractRuleTestCase<StatementIsolationRule>() {
-    override fun createRule() = StatementIsolationRule()
+class StatementWrappingRuleTest : AbstractRuleTestCase<StatementWrappingRule>() {
+    override fun createRule() = StatementWrappingRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Single statement`() =

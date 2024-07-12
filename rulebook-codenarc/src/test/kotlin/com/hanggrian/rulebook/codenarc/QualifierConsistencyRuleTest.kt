@@ -9,7 +9,7 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
     override fun createRule() = QualifierConsistencyRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Consistent qualifiers`() =

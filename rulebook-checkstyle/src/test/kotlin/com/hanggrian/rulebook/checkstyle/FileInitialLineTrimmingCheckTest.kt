@@ -7,7 +7,7 @@ class FileInitialLineTrimmingCheckTest {
     private val checker = checkerOf<FileInitialLineTrimmingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = FileInitialLineTrimmingCheck().assertProperties()
+    fun `Rule properties`() = FileInitialLineTrimmingCheck().assertProperties()
 
     @Test
     fun `Trimmed file`() = assertEquals(0, checker.read("FileInitialLineTrimming1"))

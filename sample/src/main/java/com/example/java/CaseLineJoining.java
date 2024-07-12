@@ -1,7 +1,7 @@
 package com.example.java;
 
-public class ConditionalBranchLineJoining {
-    public ConditionalBranchLineJoining(final int foo, final Runnable bar, final Runnable baz) {
+public class CaseLineJoining {
+    public CaseLineJoining(final int foo, final Runnable bar, final Runnable baz) {
         switch (foo) {
             case 0: bar.run();
             case 1:

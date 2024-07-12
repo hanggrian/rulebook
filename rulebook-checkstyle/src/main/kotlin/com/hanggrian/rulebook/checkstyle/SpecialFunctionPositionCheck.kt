@@ -32,8 +32,7 @@ public class SpecialFunctionPositionCheck : Check() {
                         !it.isSpecialFunction() &&
                         !it.hasModifier(LITERAL_STATIC)
                 }
-            }
-            ?: return
+            } ?: return
         log(node, Messages.get(MSG, ident.text))
     }
 

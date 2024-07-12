@@ -9,33 +9,27 @@ class IfFlatteningRuleTest : AbstractRuleTestCase<IfFlatteningRule>() {
     override fun createRule() = IfFlatteningRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
-    fun `Empty then statement`() =
+    fun `Empty or one statement in if statement`() =
         assertNoViolations(
             """
             void foo() {
                 if (true) {
                 }
             }
-            """.trimIndent(),
-        )
 
-    @Test
-    fun `Only 1 line in if statement`() =
-        assertNoViolations(
-            """
-            void foo() {
+            void bar() {
                 if (true) {
-                    bar()
+                    baz()
                 }
             }
             """.trimIndent(),
         )
 
     @Test
-    fun `At least 2 lines in if statement`() =
+    fun `Invert if with two statements`() =
         assertSingleViolation(
             """
             void foo() {
@@ -51,15 +45,15 @@ class IfFlatteningRuleTest : AbstractRuleTestCase<IfFlatteningRule>() {
         )
 
     @Test
-    fun `If statement with else`() =
+    fun `Do not invert when there is else`() =
         assertNoViolations(
             """
             void foo() {
                 if (true) {
-                    bar()
+                    baz()
                     baz()
                 } else {
-                    bar()
+                    baz()
                 }
             }
             """.trimIndent(),

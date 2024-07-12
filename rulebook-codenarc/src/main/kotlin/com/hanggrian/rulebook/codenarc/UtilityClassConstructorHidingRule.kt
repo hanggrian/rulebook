@@ -21,24 +21,26 @@ public class UtilityClassConstructorHidingRule : Rule() {
         override fun visitClassEx(node: ClassNode) {
             // skip empty class
             if (node.methods.isEmpty() && node.fields.isEmpty()) {
-                return
+                return super.visitClassEx(node)
             }
 
             // skip if class has non-static member
             if (node.methods.any { !it.isStatic } || node.fields.any { !it.isStatic }) {
-                return
+                return super.visitClassEx(node)
             }
 
             // checks for violation
             if (node.declaredConstructors.isEmpty()) {
                 addViolation(node, Messages[MSG_NEW])
-                return
+                return super.visitClassEx(node)
             }
             for (constructor in node.declaredConstructors) {
                 if (!constructor.isPrivate) {
                     addViolation(constructor, Messages[MSG_EXIST])
                 }
             }
+
+            super.visitClassEx(node)
         }
     }
 }

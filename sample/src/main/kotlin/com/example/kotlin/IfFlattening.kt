@@ -1,12 +1,11 @@
 package com.example.kotlin
 
 class IfFlattening {
-    fun iterate(elements: List<Int>?) {
-        if (elements == null) {
+    fun foo(condition: Boolean) {
+        if (condition) {
             return
         }
-        for (element in elements) {
-            // ...
-        }
+        println()
+        println()
     }
 }

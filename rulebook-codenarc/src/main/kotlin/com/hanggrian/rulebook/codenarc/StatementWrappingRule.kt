@@ -5,22 +5,26 @@ import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#statement-isolation)
+ * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#statement-wrapping)
  */
-public class StatementIsolationRule : Rule() {
-    override fun getName(): String = "StatementIsolation"
+public class StatementWrappingRule : Rule() {
+    override fun getName(): String = "StatementWrapping"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
     internal companion object {
-        const val MSG = "statement.isolation"
+        const val MSG = "statement.wrapping"
     }
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitBlockStatement(statement: BlockStatement) {
             for (statement2 in statement.statements) {
                 // checks for violation
-                sourceLine(statement2).takeIf { ';' in it } ?: continue
+                sourceLine(statement2)
+                    .takeIf { line ->
+                        ';' in line &&
+                            line.substringAfter(';').let { it.isNotEmpty() && "//" !in it }
+                    } ?: continue
                 addViolation(statement2, Messages[MSG])
             }
 

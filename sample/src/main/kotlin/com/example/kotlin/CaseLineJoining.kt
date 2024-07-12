@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-class ConditionalBranchLineJoining(foo: Int, bar: () -> Unit, baz: () -> Unit) {
+class CaseLineJoining(foo: Int, bar: () -> Unit, baz: () -> Unit) {
     init {
         when (foo) {
             0 -> bar()

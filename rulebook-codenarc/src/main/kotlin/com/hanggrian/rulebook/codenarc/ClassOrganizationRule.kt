@@ -52,12 +52,11 @@ public class ClassOrganizationRule : Rule() {
             }
             for (constructor in node.declaredConstructors) {
                 // checks for violation
-                when {
-                    firstFunctionIndex != null && constructor.lineNumber > firstFunctionIndex ->
-                        addViolation(
-                            constructor,
-                            Messages.get(MSG, Messages[MSG_CONSTRUCTOR], Messages[MSG_FUNCTION]),
-                        )
+                if (firstFunctionIndex != null && constructor.lineNumber > firstFunctionIndex) {
+                    addViolation(
+                        constructor,
+                        Messages.get(MSG, Messages[MSG_CONSTRUCTOR], Messages[MSG_FUNCTION]),
+                    )
                 }
             }
 

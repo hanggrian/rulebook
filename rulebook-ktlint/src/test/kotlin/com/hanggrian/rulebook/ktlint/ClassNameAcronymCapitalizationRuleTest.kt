@@ -10,7 +10,7 @@ class ClassNameAcronymCapitalizationRuleTest {
     private val assertThatCode = assertThatRule { ClassNameAcronymCapitalizationRule() }
 
     @Test
-    fun `Rule properties`(): Unit = ClassNameAcronymCapitalizationRule().assertProperties()
+    fun `Rule properties`() = ClassNameAcronymCapitalizationRule().assertProperties()
 
     @Test
     fun `Class names with lowercase abbreviation`() =

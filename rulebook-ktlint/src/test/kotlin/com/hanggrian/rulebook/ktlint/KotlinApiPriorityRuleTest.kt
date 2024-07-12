@@ -10,7 +10,7 @@ class KotlinApiPriorityRuleTest {
     private val assertThatCode = assertThatRule { KotlinApiPriorityRule() }
 
     @Test
-    fun `Rule properties`(): Unit = KotlinApiPriorityRule().assertProperties()
+    fun `Rule properties`() = KotlinApiPriorityRule().assertProperties()
 
     @Test
     fun `Kotlin API in imports`() =

@@ -55,8 +55,7 @@ public class GenericsNameWhitelistingRule : Rule() {
             node
                 .takeUnless {
                     it.hasParentWithGenerics() || genericType.name in generics.split(", ")
-                }
-                ?: return
+                } ?: return
             addViolation(genericType, Messages.get(MSG, generics))
         }
     }

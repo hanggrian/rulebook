@@ -141,10 +141,12 @@
   <rule class="com.hanggrian.rulebook.codenarc.ClassOrganizationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.GenericsNameWhitelistingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ElseFlatteningRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.IfFlatteningRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.StatementIsolationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.SwitchMultipleBranchingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.UtilityClassConstructorHidingRule"/>
 </ruleset>

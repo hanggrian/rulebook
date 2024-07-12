@@ -7,7 +7,7 @@ class ExceptionExtendingCheckTest {
     private val checker = checkerOf<ExceptionExtendingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = ExceptionExtendingCheck().assertProperties()
+    fun `Rule properties`() = ExceptionExtendingCheck().assertProperties()
 
     @Test
     fun `Extend user exceptions`() = assertEquals(0, checker.read("ExceptionExtending1"))

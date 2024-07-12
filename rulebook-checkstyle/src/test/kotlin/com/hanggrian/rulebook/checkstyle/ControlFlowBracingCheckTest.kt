@@ -7,7 +7,7 @@ class ControlFlowBracingCheckTest {
     private val checker = checkerOf<ControlFlowBracingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = ControlFlowBracingCheck().assertProperties()
+    fun `Rule properties`() = ControlFlowBracingCheck().assertProperties()
 
     @Test
     fun `Single-line control flows with bracing`() =

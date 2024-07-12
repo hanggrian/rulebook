@@ -1,14 +1,11 @@
 package com.example.groovy
 
 class IfFlattening<E> {
-    List<E> elements
-
-    void iterate() {
-        if (elements == null) {
+    void foo(boolean condition) {
+        if (!condition) {
             return
         }
-        for (element in elements) {
-            // ...
-        }
+        println()
+        println()
     }
 }

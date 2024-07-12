@@ -14,7 +14,7 @@ class TestGenericsCommonNamingChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                T = TypeVar('T') #@
+                T = TypeVar('T')  #@
 
                 class MyClass(T):
                     print()
@@ -27,7 +27,7 @@ class TestGenericsCommonNamingChecker(CheckerTestCase):
         node2 = \
             extract_node(
                 '''
-                X = TypeVar('X') #@
+                X = TypeVar('X')  #@
 
                 class MyClass(T):
                     print()

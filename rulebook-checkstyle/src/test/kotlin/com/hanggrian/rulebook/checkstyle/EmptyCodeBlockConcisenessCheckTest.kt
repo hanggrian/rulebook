@@ -7,7 +7,7 @@ class EmptyCodeBlockConcisenessCheckTest {
     private val checker = checkerOf<EmptyCodeBlockConcisenessCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = EmptyCodeBlockConcisenessCheck().assertProperties()
+    fun `Rule properties`() = EmptyCodeBlockConcisenessCheck().assertProperties()
 
     @Test
     fun `Wrapped empty class block`() = assertEquals(0, checker.read("EmptyCodeBlockConciseness1"))

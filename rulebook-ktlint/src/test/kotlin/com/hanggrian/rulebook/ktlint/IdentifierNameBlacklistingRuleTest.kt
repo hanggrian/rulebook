@@ -10,7 +10,7 @@ class IdentifierNameBlacklistingRuleTest {
     private val assertThatCode = assertThatRule { IdentifierNameBlacklistingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = IdentifierNameBlacklistingRule().assertProperties()
+    fun `Rule properties`() = IdentifierNameBlacklistingRule().assertProperties()
 
     @Test
     fun `Descriptive property names`() =

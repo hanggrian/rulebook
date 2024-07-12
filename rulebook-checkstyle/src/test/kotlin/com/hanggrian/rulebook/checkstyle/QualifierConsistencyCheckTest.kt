@@ -7,7 +7,7 @@ class QualifierConsistencyCheckTest {
     private val checker = checkerOf<QualifierConsistencyCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = QualifierConsistencyCheck().assertProperties()
+    fun `Rule properties`() = QualifierConsistencyCheck().assertProperties()
 
     @Test
     fun `Consistent qualifiers`() = assertEquals(0, checker.read("QualifierConsistencyCheck1"))

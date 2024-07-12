@@ -10,7 +10,7 @@ class ExceptionSubclassCatchingRuleTest {
     private val assertThatCode = assertThatRule { ExceptionSubclassCatchingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = ExceptionSubclassCatchingRule().assertProperties()
+    fun `Rule properties`() = ExceptionSubclassCatchingRule().assertProperties()
 
     @Test
     fun `Catch narrow exceptions`() =

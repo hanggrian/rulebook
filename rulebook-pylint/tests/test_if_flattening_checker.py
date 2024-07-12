@@ -10,11 +10,11 @@ from .tests import msg
 class TestIfFlatteningChecker(CheckerTestCase):
     CHECKER_CLASS = IfFlatteningChecker
 
-    def test_empty_then_statement(self):
+    def test_one_statement_in_if_statement(self):
         node1 = \
             extract_node(
                 '''
-                def foo(): #@
+                def foo():  #@
                     if True:
                         print()
                 ''',
@@ -22,36 +22,11 @@ class TestIfFlatteningChecker(CheckerTestCase):
         with self.assertNoMessages():
             self.checker.visit_functiondef(node1)
 
-    def test_inverted_if_statement(self):
+    def test_invert_if_with_two_statements(self):
         node1 = \
             extract_node(
                 '''
-                def foo(): #@
-                    if True:
-                        return
-                    bar()
-                ''',
-            )
-        with self.assertNoMessages():
-            self.checker.visit_functiondef(node1)
-
-    def test_only_1_line_in_if_statement(self):
-        node1 = \
-            extract_node(
-                '''
-                def foo(): #@
-                    if True:
-                        bar()
-                ''',
-            )
-        with self.assertNoMessages():
-            self.checker.visit_functiondef(node1)
-
-    def test_at_least_2_lines_in_if_statement(self):
-        node1 = \
-            extract_node(
-                '''
-                def foo(): #@
+                def foo():  #@
                     if True:
                         bar()
                         baz()
@@ -62,26 +37,11 @@ class TestIfFlatteningChecker(CheckerTestCase):
         ):
             self.checker.visit_functiondef(node1)
 
-    def test_if_statement_with_else_if(self):
+    def test_do_not_invert_when_there_is_else(self):
         node1 = \
             extract_node(
                 '''
-                def foo(): #@
-                    if True:
-                        bar()
-                        baz()
-                    elif False:
-                        baz()
-                ''',
-            )
-        with self.assertNoMessages():
-            self.checker.visit_functiondef(node1)
-
-    def test_if_statement_with_else(self):
-        node1 = \
-            extract_node(
-                '''
-                def foo(): #@
+                def foo():  #@
                     if True:
                         bar()
                         baz()

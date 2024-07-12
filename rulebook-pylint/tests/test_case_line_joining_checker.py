@@ -1,14 +1,13 @@
 from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
-from rulebook_pylint.conditional_branch_line_joining_checker \
-    import ConditionalBranchLineJoiningChecker
+from rulebook_pylint.case_line_joining_checker import CaseLineJoiningChecker
 
 from .tests import msg
 
 
-class TestConditionalBranchLineJoiningChecker(CheckerTestCase):
-    CHECKER_CLASS = ConditionalBranchLineJoiningChecker
+class TestCaseLineJoiningChecker(CheckerTestCase):
+    CHECKER_CLASS = CaseLineJoiningChecker
 
     def test_joined_switch_case_branches(self):
         tokens = \
@@ -36,7 +35,7 @@ class TestConditionalBranchLineJoiningChecker(CheckerTestCase):
                         print()
                 ''',
             )
-        with self.assertAddsMessages(msg(ConditionalBranchLineJoiningChecker.MSG, (5, 0))):
+        with self.assertAddsMessages(msg(CaseLineJoiningChecker.MSG, (5, 0))):
             self.checker.process_tokens(tokens)
 
 

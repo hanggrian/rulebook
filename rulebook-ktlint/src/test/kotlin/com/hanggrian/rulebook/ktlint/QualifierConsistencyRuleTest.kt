@@ -10,7 +10,7 @@ class QualifierConsistencyRuleTest {
     private val assertThatCode = assertThatRule { QualifierConsistencyRule() }
 
     @Test
-    fun `Rule properties`(): Unit = QualifierConsistencyRule().assertProperties()
+    fun `Rule properties`() = QualifierConsistencyRule().assertProperties()
 
     @Test
     fun `Consistent qualifiers`() =

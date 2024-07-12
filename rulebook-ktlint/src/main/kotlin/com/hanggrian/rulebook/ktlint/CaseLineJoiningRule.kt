@@ -10,10 +10,10 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 
 /**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#conditional-branch-line-joining)
+ * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining)
  */
-public class ConditionalBranchLineJoiningRule :
-    Rule("conditional-branch-line-joining"),
+public class CaseLineJoiningRule :
+    Rule("case-line-joining"),
     RuleAutocorrectApproveHandler {
     override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
@@ -31,6 +31,6 @@ public class ConditionalBranchLineJoiningRule :
     }
 
     internal companion object {
-        const val MSG = "conditional.branch.line.joining"
+        const val MSG = "case.line.joining"
     }
 }

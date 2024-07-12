@@ -10,7 +10,7 @@ class ClassNameAcronymCapitalizationRuleTest :
     override fun createRule() = ClassNameAcronymCapitalizationRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Class names with lowercase abbreviation`() =

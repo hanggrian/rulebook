@@ -9,7 +9,7 @@ class ClassOrganizationRuleTest {
     private val assertThatCode = assertThatRule { ClassOrganizationRule() }
 
     @Test
-    fun `Rule properties`(): Unit = ClassOrganizationRule().assertProperties()
+    fun `Rule properties`() = ClassOrganizationRule().assertProperties()
 
     @Test
     fun `Correct organization`() =

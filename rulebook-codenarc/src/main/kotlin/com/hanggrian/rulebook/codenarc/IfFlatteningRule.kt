@@ -19,17 +19,16 @@ public class IfFlatteningRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitBlockStatement(node: BlockStatement) {
-            // only proceed on one if and no else
-            val if2 =
-                node.statements
-                    .singleOrNull()
-                    ?.takeIf { it is IfStatement }
-                    ?.takeIf { (it as IfStatement).elseBlock.isEmpty } as IfStatement?
-                    ?: return super.visitBlockStatement(node)
-
             // checks for violation
-            if2.ifBlock.text.takeIf { ';' in it } ?: return super.visitBlockStatement(node)
-            addViolation(if2, Messages[MSG])
+            val `if` =
+                node.statements.lastOrNull() as? IfStatement
+                    ?: return super.visitBlockStatement(node)
+            `if`.ifBlock
+                ?.takeIf { `if`.elseBlock.isEmpty }
+                ?.text
+                ?.takeIf { ';' in it }
+                ?: return super.visitBlockStatement(node)
+            addViolation(`if`, Messages[MSG])
 
             super.visitBlockStatement(node)
         }

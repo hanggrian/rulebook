@@ -7,7 +7,7 @@ class ClassFinalNameBlacklistingCheckTest {
     private val checker = checkerOf<ClassFinalNameBlacklistingCheck>()
 
     @Test
-    fun `Rule properties`(): Unit = ClassFinalNameBlacklistingCheck().assertProperties()
+    fun `Rule properties`() = ClassFinalNameBlacklistingCheck().assertProperties()
 
     @Test
     fun `Meaningful class names`() = assertEquals(0, checker.read("ClassNameBlacklisting1"))

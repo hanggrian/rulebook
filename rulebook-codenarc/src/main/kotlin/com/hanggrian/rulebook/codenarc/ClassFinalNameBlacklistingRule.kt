@@ -31,7 +31,7 @@ public class ClassFinalNameBlacklistingRule : Rule() {
                     .names
                     .split(", ")
                     .firstOrNull { node.name.endsWith(it) }
-                    ?: return
+                    ?: return super.visitClassEx(node)
             when (finalName) {
                 "Util", "Utility" ->
                     addViolation(

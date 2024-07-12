@@ -9,7 +9,7 @@ class SpecialFunctionPositionRuleTest : AbstractRuleTestCase<SpecialFunctionPosi
     override fun createRule() = SpecialFunctionPositionRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Overridden function at the bottom`() =

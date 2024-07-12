@@ -15,7 +15,7 @@ class TestClassNameAcronymCapitalizationChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class MySqlClass: #@
+                class MySqlClass:  #@
                     print()
                 ''',
             )
@@ -26,7 +26,7 @@ class TestClassNameAcronymCapitalizationChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                class MySQLClass: #@
+                class MySQLClass:  #@
                     print()
                 ''',
             )

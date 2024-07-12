@@ -10,7 +10,7 @@ class CommentLineTrimmingRuleTest {
     private val assertThatCode = assertThatRule { CommentLineTrimmingRule() }
 
     @Test
-    fun `Rule properties`(): Unit = CommentLineTrimmingRule().assertProperties()
+    fun `Rule properties`() = CommentLineTrimmingRule().assertProperties()
 
     @Test
     fun `Comment without initial and final newline`() =

@@ -9,7 +9,7 @@ class IdentifierNameBlacklistingRuleTest : AbstractRuleTestCase<IdentifierNameBl
     override fun createRule() = IdentifierNameBlacklistingRule()
 
     @Test
-    fun `Rule properties`(): Unit = rule.assertProperties()
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Descriptive field names`() =

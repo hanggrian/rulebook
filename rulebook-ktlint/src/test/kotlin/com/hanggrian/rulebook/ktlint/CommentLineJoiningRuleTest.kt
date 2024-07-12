@@ -9,7 +9,7 @@ class CommentLineJoiningRuleTest {
     private val assertThatCode = assertThatRule { CommentLineJoiningRule() }
 
     @Test
-    fun `Rule properties`(): Unit = CommentLineJoiningRule().assertProperties()
+    fun `Rule properties`() = CommentLineJoiningRule().assertProperties()
 
     @Test
     fun `Single empty line in EOL comment`() =
