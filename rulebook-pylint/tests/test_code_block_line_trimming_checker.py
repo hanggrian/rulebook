@@ -3,11 +3,14 @@ from unittest import main
 from pylint.testutils import CheckerTestCase, _tokenize_str
 from rulebook_pylint.code_block_line_trimming_checker import CodeBlockLineTrimmingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestCodeBlockLineTrimmingCheckerChecker(CheckerTestCase):
     CHECKER_CLASS = CodeBlockLineTrimmingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_class_block_without_first_newline(self):
         tokens = \

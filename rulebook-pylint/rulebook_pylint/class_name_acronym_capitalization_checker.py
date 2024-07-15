@@ -24,9 +24,8 @@ class ClassNameAcronymCapitalizationChecker(Checker):
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
         if not bool(self.ABBREVIATION_REGEX.search(node.name)):
-            return None
+            return
         self.add_message(self.MSG, node=node, args=self._transform(node.name))
-        return None
 
     @staticmethod
     def _transform(name: str) -> str:

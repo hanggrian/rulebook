@@ -24,20 +24,20 @@ public class CodeBlockLineTrimmingCheck : Check() {
         val rcurlySibling = rcurly.previousSibling?.lastmostChild ?: return
 
         // left curly is conditional
-        val lcurly: DetailAST
-        val lcurlySibling: DetailAST
-        when (node.type) {
-            OBJBLOCK -> {
-                // get first two nodes to compare
-                lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                lcurlySibling = lcurly.nextSibling?.orBlockComment ?: return
+        val (lcurly, lcurlySibling) =
+            when (node.type) {
+                OBJBLOCK -> {
+                    // get first two nodes to compare
+                    val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
+                    val lcurlySibling = lcurly.nextSibling?.orBlockComment ?: return
+                    lcurly to lcurlySibling
+                }
+                else -> {
+                    // the first node is slist itself
+                    val lcurlySibling = node.firstChild?.orBlockComment ?: return
+                    node to lcurlySibling
+                }
             }
-            else -> {
-                // the first node is slist itself
-                lcurly = node
-                lcurlySibling = node.firstChild?.orBlockComment ?: return
-            }
-        }
 
         // checks for violation
         if (lcurlySibling.lineNo - lcurly.lineNo > 1) {

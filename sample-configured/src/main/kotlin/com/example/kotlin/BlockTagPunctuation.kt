@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-class BlockTagDescriptionPunctuation {
+class BlockTagPunctuation {
     /**
      * @constructor just a default constructor.
      */

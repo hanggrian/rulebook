@@ -44,10 +44,11 @@ public class ClassOrganizationRule :
             // in Kotlin, static members belong in companion object
             val currentType =
                 when {
-                    // property with getter and setter is essentially a function
-                    child.elementType == PROPERTY && PROPERTY_ACCESSOR in child -> FUN
-                    // companion object must have appropriate keyword
+                    child.elementType == PROPERTY && PROPERTY_ACCESSOR in child ->
+                        // property with getter and setter is essentially a function
+                        FUN
                     child.elementType == OBJECT_DECLARATION ->
+                        // companion object must have appropriate keyword
                         when {
                             child.hasModifier(COMPANION_KEYWORD) -> OBJECT_DECLARATION
                             else -> continue

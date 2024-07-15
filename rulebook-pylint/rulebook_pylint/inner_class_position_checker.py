@@ -20,17 +20,16 @@ class InnerClassPositionChecker(Checker):
     def visit_classdef(self, node: ClassDef) -> None:
         # consider only inner class
         if node.parent is not None and not isinstance(node.parent, ClassDef):
-            return None
+            return
 
         current: NodeNG = node
         while current is not None:
             # checks for violation
             if isinstance(current, FunctionDef):
                 self.add_message(self.MSG, node=node)
-                return None
+                return
 
             current = current.next_sibling()
-        return None
 
 
 def register(linter: 'PyLinter') -> None:

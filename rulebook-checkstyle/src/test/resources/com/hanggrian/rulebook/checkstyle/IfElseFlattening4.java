@@ -1,13 +1,11 @@
 package com.hanggrian.rulebook.checkstyle;
 
-public class IfFlattening {
+public class IfElseFlattening {
     public void foo() {
         if (true) {
-        }
-    }
-
-    public void bar() {
-        if (true) {
+            baz();
+            baz();
+        } else if (false) {
             baz();
         }
     }

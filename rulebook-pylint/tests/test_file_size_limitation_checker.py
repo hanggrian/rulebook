@@ -4,12 +4,15 @@ from astroid import parse
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.file_size_limitation_checker import FileSizeLimitationChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestFileSizeLimitationChecker(CheckerTestCase):
     CHECKER_CLASS = FileSizeLimitationChecker
     CHECKER_CLASS.options[0][1]['default'] = 3
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_small_size(self):
         node_all = \

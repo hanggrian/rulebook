@@ -31,7 +31,7 @@ class CommentLineTrimmingChecker(TokenChecker):
             # continue if this comment is first line
             if is_newline_single(tokens[i - 1]) and \
                 tokens[i - 2].type == COMMENT:
-                return None
+                return
 
             # iterate to find last
             j = i
@@ -43,7 +43,7 @@ class CommentLineTrimmingChecker(TokenChecker):
 
             # skip blank comment
             if current_token is token:
-                return None
+                return
 
             # checks for violation
             if is_comment_empty(token):
@@ -54,7 +54,7 @@ class CommentLineTrimmingChecker(TokenChecker):
                     line=current_token.start[0],
                     col_offset=current_token.start[1],
                 )
-            return None
+            return
 
 
 def register(linter: 'PyLinter') -> None:

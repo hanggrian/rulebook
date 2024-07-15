@@ -33,21 +33,20 @@ class GenericsNameWhitelistingChecker(Checker):
     def visit_assign(self, node: Assign) -> None:
         # only target TypeVar declaration
         if not isinstance(node.value, Call):
-            return None
+            return
         call: Call = node.value
         if not isinstance(call.func, Name) or call.func.name != 'TypeVar':
-            return None
+            return
 
         # get assigned property
         target: AssignName | None = get_assignname(node)
         if not target:
-            return None
+            return
 
         # checks for violation
         if target.name in self.linter.config.rulebook_whitelist_generics_names:
-            return None
+            return
         self.add_message(self.MSG, node=target, args=target.name)
-        return None
 
 
 def register(linter: 'PyLinter') -> None:

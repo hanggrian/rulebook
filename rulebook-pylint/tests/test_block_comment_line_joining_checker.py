@@ -4,11 +4,14 @@ from astroid import extract_node, parse
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.block_comment_line_joining_checker import BlockCommentLineJoiningChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestBlockCommentLineJoiningChecker(CheckerTestCase):
     CHECKER_CLASS = BlockCommentLineJoiningChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_single_empty_line_in_docstring(self):
         node_all = \

@@ -1,6 +1,6 @@
 package com.example.groovy
 
-class IfFlattening<E> {
+class IfElseFlattening {
     void foo(boolean condition) {
         if (!condition) {
             return

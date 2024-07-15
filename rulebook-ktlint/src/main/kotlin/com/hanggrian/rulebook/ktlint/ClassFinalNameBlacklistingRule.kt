@@ -31,19 +31,37 @@ public class ClassFinalNameBlacklistingRule :
 
     override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
-        when (node.elementType) {
-            CLASS, OBJECT_DECLARATION -> {
-                // checks for violation
-                val identifier = node.findChildByType(IDENTIFIER) ?: return
-                val finalName = names.firstOrNull { identifier.text.endsWith(it) } ?: return
-                process(identifier, identifier.text, finalName, emit)
+        if (node.elementType != CLASS &&
+            node.elementType != OBJECT_DECLARATION &&
+            node.elementType != FILE
+        ) {
+            return
+        }
+
+        // obtain corresponding full and final name
+        val (node2, fullName, finalName) =
+            when (node.elementType) {
+                CLASS, OBJECT_DECLARATION -> {
+                    val identifier = node.findChildByType(IDENTIFIER) ?: return
+                    val finalName = names.firstOrNull { identifier.text.endsWith(it) } ?: return
+                    Triple(identifier, identifier.text, finalName)
+                }
+                else -> {
+                    val fileName = getFileName(node) ?: return
+                    val finalName = names.firstOrNull { fileName.endsWith(it) } ?: return
+                    Triple(node, fileName, finalName)
+                }
             }
-            FILE -> {
-                // checks for violation
-                val fileName = getFileName(node) ?: return
-                val finalName = names.firstOrNull { fileName.endsWith(it) } ?: return
-                process(node, fileName, finalName, emit)
-            }
+
+        // checks for violation
+        when (finalName) {
+            "Util", "Utility" ->
+                emit(
+                    node2.startOffset,
+                    Messages.get(MSG_UTIL, fullName.substringBefore(finalName) + 's'),
+                    false,
+                )
+            else -> emit(node2.startOffset, Messages.get(MSG_ALL, finalName), false)
         }
     }
 
@@ -62,17 +80,5 @@ public class ClassFinalNameBlacklistingRule :
                 defaultValue = setOf("Util", "Utility", "Helper", "Manager", "Wrapper"),
                 propertyWriter = { it.joinToString() },
             )
-
-        private fun process(node: ASTNode, fullName: String, finalName: String, emit: Emit) {
-            when (finalName) {
-                "Util", "Utility" ->
-                    emit(
-                        node.startOffset,
-                        Messages.get(MSG_UTIL, fullName.substringBefore(finalName) + 's'),
-                        false,
-                    )
-                else -> emit(node.startOffset, Messages.get(MSG_ALL, finalName), false)
-            }
-        }
     }
 }

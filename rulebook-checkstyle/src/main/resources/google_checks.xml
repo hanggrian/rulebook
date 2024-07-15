@@ -423,12 +423,13 @@
     <module name="CommentSpacing"/>
     <module name="ControlFlowBracing"/>
     <module name="DeclarationLineSpacing"/>
+    <module name="DefaultFlattening"/>
     <module name="ElseFlattening"/>
     <module name="EmptyCodeBlockConciseness"/>
     <module name="ExceptionExtending"/>
     <module name="FileInitialLineTrimming"/>
     <module name="GenericsNameWhitelisting"/>
-    <module name="IfFlattening"/>
+    <module name="IfElseFlattening"/>
     <module name="QualifierConsistency"/>
     <module name="SpecialFunctionPosition"/>
     <module name="SwitchMultipleBranching"/>

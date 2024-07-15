@@ -17,23 +17,14 @@ public class ClassNameAcronymCapitalizationRule : Rule() {
     internal companion object {
         const val MSG = "class.name.acronym.capitalization"
 
-        private val REGEX = Regex("[A-Z]{3,}")
-
-        private fun String.transform(): String =
-            REGEX.replace(this) {
-                it.value.first() +
-                    when {
-                        it.range.last == lastIndex -> it.value.drop(1).lowercase()
-                        else ->
-                            it.value.drop(1).dropLast(1).lowercase() +
-                                it.value.last()
-                    }
-            }
+        private val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
     }
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassEx(node: ClassNode) {
+            // checks for violation
             process(node, node.name)
+
             super.visitClassEx(node)
         }
 
@@ -46,8 +37,21 @@ public class ClassNameAcronymCapitalizationRule : Rule() {
         }
 
         private fun process(node: ASTNode, name: String) {
-            name.takeIf { REGEX.containsMatchIn(it) } ?: return
-            addViolation(node, Messages.get(MSG, name.transform()))
+            val transformation =
+                name
+                    .takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
+                    ?.let { n ->
+                        ABBREVIATION_REGEX.replace(n) {
+                            it.value.first() +
+                                when {
+                                    it.range.last == n.lastIndex -> it.value.drop(1).lowercase()
+                                    else ->
+                                        it.value.drop(1).dropLast(1).lowercase() +
+                                            it.value.last()
+                                }
+                        }
+                    } ?: return
+            addViolation(node, Messages.get(MSG, transformation))
         }
     }
 }

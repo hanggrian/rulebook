@@ -20,30 +20,34 @@ public class KotlinApiPriorityRule :
 
     override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
-        when (node.elementType) {
-            IMPORT_DIRECTIVE -> {
-                // get text after `import`
-                val path = (node.psi as KtImportDirective).importPath!!.pathStr
+        if (node.elementType != IMPORT_DIRECTIVE &&
+            node.elementType != TYPE_REFERENCE
+        ) {
+            return
+        }
 
-                // check if running on test
-                if (!isTestClass) {
-                    path.takeIf { s -> TEST_LIBRARIES.any { s.startsWith(it) } }?.let {
+        // obtain corresponding qualifier
+        val (node2, qualifier) =
+            when (node.elementType) {
+                IMPORT_DIRECTIVE -> {
+                    // get text after `import`
+                    val path = (node.psi as KtImportDirective).importPath!!.pathStr
+
+                    // check if running on test
+                    if (!isTestClass && TEST_LIBRARIES.any { path.startsWith(it) }) {
                         isTestClass = true
                     }
-                }
 
-                // checks for violation
-                val replacement = path.kotlinClassReplacement ?: return
-                val dotQualifiedExpression =
-                    node.findChildByType(DOT_QUALIFIED_EXPRESSION) ?: return
-                emit(dotQualifiedExpression.startOffset, Messages.get(MSG, replacement), false)
+                    val dotQualifiedExpression =
+                        node.findChildByType(DOT_QUALIFIED_EXPRESSION) ?: return
+                    dotQualifiedExpression to path
+                }
+                else -> node to node.qualifierName
             }
-            TYPE_REFERENCE -> {
-                // checks for violation
-                val replacement = node.qualifierName.kotlinClassReplacement ?: return
-                emit(node.startOffset, Messages.get(MSG, replacement), false)
-            }
-        }
+
+        // checks for violation
+        val replacement = qualifier.kotlinClassReplacement ?: return
+        emit(node2.startOffset, Messages.get(MSG, replacement), false)
     }
 
     private val String.kotlinClassReplacement: String?

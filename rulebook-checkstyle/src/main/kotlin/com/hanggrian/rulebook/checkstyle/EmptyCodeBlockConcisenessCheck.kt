@@ -17,26 +17,26 @@ public class EmptyCodeBlockConcisenessCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // additional filter
-        val lcurly: DetailAST
-        val rcurly: DetailAST
-        when (node.type) {
-            OBJBLOCK -> {
-                // skip non-empty content
-                node.takeUnless { it.childCount > 2 } ?: return
+        val (lcurly, rcurly) =
+            when (node.type) {
+                OBJBLOCK -> {
+                    // skip non-empty content
+                    node.takeUnless { it.childCount > 2 } ?: return
 
-                // class block have left and right braces
-                lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
-            }
-            else -> {
-                // skip non-empty content
-                node.takeUnless { it.childCount > 1 } ?: return
+                    // class block have left and right braces
+                    val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
+                    val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
+                    lcurly to rcurly
+                }
+                else -> {
+                    // skip non-empty content
+                    node.takeUnless { it.childCount > 1 } ?: return
 
-                // function block only have right brace
-                lcurly = node
-                rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
+                    // function block only have right brace
+                    val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
+                    node to rcurly
+                }
             }
-        }
 
         // checks for violation
         lcurly.takeUnless { it.lineNo == rcurly.lineNo && lcurly.columnNo + 1 == rcurly.columnNo }

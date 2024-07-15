@@ -31,13 +31,16 @@ public class BlockCommentLineTrimmingRule :
 
         // final node may be asterisk or tag
         val lastChild =
-            node.children().last().let {
-                when (it.elementType) {
-                    KDOC_LEADING_ASTERISK -> it
-                    KDOC_TAG -> it.findChildByType(KDOC_LEADING_ASTERISK)
-                    else -> null
+            node
+                .children()
+                .last()
+                .let {
+                    when (it.elementType) {
+                        KDOC_LEADING_ASTERISK -> it
+                        KDOC_TAG -> it.findChildByType(KDOC_LEADING_ASTERISK)
+                        else -> null
+                    }
                 }
-            }
         if (lastChild?.treePrev?.elementType == WHITE_SPACE) {
             emit(lastChild.treePrev!!.endOffset, Messages[MSG_LAST], false)
         }

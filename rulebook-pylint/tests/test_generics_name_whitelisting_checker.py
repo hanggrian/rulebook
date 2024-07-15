@@ -4,11 +4,14 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.generics_name_whitelisting_checker import GenericsNameWhitelistingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestGenericsCommonNamingChecker(CheckerTestCase):
     CHECKER_CLASS = GenericsNameWhitelistingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_common_generic_type_in_class_alike(self):
         node1 = \

@@ -35,9 +35,8 @@ class FileSizeLimitationChecker(RawChecker):
             size: int = len(stream.readlines())
             max_size: int = self.linter.config.rulebook_limit_file_size
             if size < max_size:
-                return None
+                return
             self.add_message(self.MSG, line=0, args=max_size)
-        return None
 
 
 def register(linter: 'PyLinter') -> None:

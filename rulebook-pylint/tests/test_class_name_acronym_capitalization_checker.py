@@ -5,11 +5,14 @@ from pylint.testutils import CheckerTestCase
 from rulebook_pylint.class_name_acronym_capitalization_checker \
     import ClassNameAcronymCapitalizationChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestClassNameAcronymCapitalizationChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameAcronymCapitalizationChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_class_names_with_lowercase_abbreviation(self):
         node1 = \

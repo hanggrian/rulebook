@@ -16,5 +16,6 @@ class ElseFlatteningCheckTest {
     fun `Lift else when if has return`() = assertEquals(1, checker.read("ElseFlattening2"))
 
     @Test
-    fun `Do not lift when there is else if`() = assertEquals(0, checker.read("ElseFlattening3"))
+    fun `Skip if not all if blocks have return or throw`() =
+        assertEquals(0, checker.read("ElseFlattening3"))
 }

@@ -23,12 +23,13 @@ public class SpecialFunctionPositionRule :
         }
 
         // target special function
-        if (!node.isSpecialFunction()) {
-            return
-        }
+        val identifier =
+            node
+                .takeIf { it.isSpecialFunction() }
+                ?.findChildByType(IDENTIFIER)
+                ?: return
 
         // checks for violation
-        val identifier = node.findChildByType(IDENTIFIER) ?: return
         node
             .siblings()
             .takeIf { siblings ->

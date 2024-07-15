@@ -50,15 +50,16 @@ public class ClassOrganizationRule : Rule() {
                         )
                 }
             }
-            for (constructor in node.declaredConstructors) {
-                // checks for violation
-                if (firstFunctionIndex != null && constructor.lineNumber > firstFunctionIndex) {
+            // checks for violation
+            firstFunctionIndex ?: return
+            node.declaredConstructors
+                .filter { it.lineNumber > firstFunctionIndex }
+                .forEach {
                     addViolation(
-                        constructor,
+                        it,
                         Messages.get(MSG, Messages[MSG_CONSTRUCTOR], Messages[MSG_FUNCTION]),
                     )
                 }
-            }
 
             super.visitClassComplete(node)
         }

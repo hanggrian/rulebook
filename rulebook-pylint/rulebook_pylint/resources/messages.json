@@ -1,11 +1,14 @@
 {
   "assignment-wrapping": "Break assignment into newline.",
   "file-size-limitation": "Reduce file size to %d.",
-  "if-flattening": "Invert 'if' condition.",
   "string-single-quoting": "Use single quotes.",
   "todo-comment-styling-keyword": "Illegal keyword %s.",
   "todo-comment-styling-separator": "Illegal separator %s.",
   "trailing-comma-insertion": "Put trailing comma.",
+
+  "default-flattening": "Remove redundant 'case _'.",
+  "if-else-flattening-invert": "Invert 'if' condition.",
+  "if-else-flattening-lift": "Lift 'else' and add 'return' in 'if'.",
   "switch-multiple-branching": "Replace 'match' with 'if'.",
 
   "exception-extending": "Extend from Exception class.",

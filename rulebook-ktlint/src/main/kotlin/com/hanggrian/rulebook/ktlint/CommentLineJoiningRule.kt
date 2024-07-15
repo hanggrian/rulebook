@@ -22,7 +22,9 @@ public class CommentLineJoiningRule :
         }
 
         // skip comment with content
-        node.takeIf { it.isEolCommentEmpty() } ?: return
+        if (!node.isEolCommentEmpty()) {
+            return
+        }
 
         // find matching sibling
         val next =

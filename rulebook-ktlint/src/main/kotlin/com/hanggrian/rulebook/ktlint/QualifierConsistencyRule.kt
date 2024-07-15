@@ -23,24 +23,27 @@ public class QualifierConsistencyRule :
 
     override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
-        when (node.elementType) {
-            IMPORT_DIRECTIVE ->
-                // keep import list
-                importPaths += (node.psi as KtImportDirective).importPath!!.pathStr
-            TYPE_REFERENCE ->
-                // keep expressions
-                targetNodes += node
-            DOT_QUALIFIED_EXPRESSION -> {
-                // only consider top expression and no import line
-                node
-                    .takeUnless { DOT_QUALIFIED_EXPRESSION in it }
-                    ?.takeUnless { it.treeParent.elementType == IMPORT_DIRECTIVE }
-                    ?: return
-
-                // keep expressions
-                targetNodes += node
-            }
+        if (node.elementType != IMPORT_DIRECTIVE &&
+            node.elementType != TYPE_REFERENCE &&
+            node.elementType != DOT_QUALIFIED_EXPRESSION
+        ) {
+            return
         }
+
+        // keep import list and expressions
+        if (node.elementType == IMPORT_DIRECTIVE) {
+            importPaths += (node.psi as KtImportDirective).importPath!!.pathStr
+            return
+        }
+        targetNodes +=
+            when (node.elementType) {
+                TYPE_REFERENCE -> node
+                else ->
+                    node
+                        .takeUnless { DOT_QUALIFIED_EXPRESSION in it }
+                        ?.takeUnless { it.treeParent.elementType == IMPORT_DIRECTIVE }
+                        ?: return
+            }
     }
 
     override fun afterVisitChildNodes(node: ASTNode, emit: Emit) {

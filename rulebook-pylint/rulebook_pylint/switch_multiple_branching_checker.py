@@ -20,9 +20,8 @@ class SwitchMultipleBranchingChecker(Checker):
     def visit_match(self, node: Match) -> None:
         # checks for violation
         if len(node.cases) > 1:
-            return None
+            return
         self.add_message(self.MSG, node=node)
-        return None
 
 
 def register(linter: 'PyLinter') -> None:

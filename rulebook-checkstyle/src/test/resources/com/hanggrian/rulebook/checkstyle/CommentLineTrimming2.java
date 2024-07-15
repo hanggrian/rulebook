@@ -1,6 +1,6 @@
 package com.hanggrian.rulebook.checkstyle;
 
-class CommentLineTrimming {
+public class CommentLineTrimming {
     //
     // Lorem ipsum.
     //

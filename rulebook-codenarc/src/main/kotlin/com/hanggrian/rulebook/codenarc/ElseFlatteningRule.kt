@@ -1,10 +1,10 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
+import com.hanggrian.rulebook.codenarc.internals.hasReturnOrThrow
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
-import org.codehaus.groovy.ast.stmt.ReturnStatement
-import org.codehaus.groovy.ast.stmt.ThrowStatement
+import org.codehaus.groovy.ast.stmt.Statement
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
@@ -19,19 +19,29 @@ public class ElseFlatteningRule : Rule() {
         const val MSG = "else.flattening"
     }
 
+    // Do not use `visitIfElse` because it also tracks `if` and `else if` simultaneously.
     public class Visitor : AbstractAstVisitor() {
         override fun visitBlockStatement(node: BlockStatement) {
-            // checks for violation
-            val `if` =
-                node.statements.lastOrNull() as? IfStatement
-                    ?: return super.visitBlockStatement(node)
-            val `else` = `if`.elseBlock
-            (`if`.ifBlock as? BlockStatement)
-                .takeIf { `else` !is IfStatement }
-                ?.statements
-                ?.takeIf { s -> s.any { it is ReturnStatement || it is ThrowStatement } }
-                ?: return super.visitBlockStatement(node)
-            addViolation(`else`, Messages[MSG])
+            for (statement in node.statements) {
+                // skip single if
+                val `if` =
+                    (statement as? IfStatement)
+                        ?.takeUnless { it.elseBlock.isEmpty }
+                        ?: continue
+
+                // checks for violation
+                var lastElse: Statement? = null
+                var currentIf: IfStatement? = `if`
+                while (currentIf != null) {
+                    if (!currentIf.hasReturnOrThrow()) {
+                        return
+                    }
+                    lastElse = currentIf.elseBlock
+                    currentIf = lastElse as? IfStatement
+                }
+                lastElse ?: return super.visitBlockStatement(node)
+                addViolation(lastElse, Messages[MSG])
+            }
 
             super.visitBlockStatement(node)
         }

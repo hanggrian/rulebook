@@ -28,7 +28,7 @@ class FileInitialLineTrimmingChecker(TokenChecker):
             # checks for violation
             if type2 == NL:
                 self.add_message(self.MSG, line=0)
-            return None
+            return
 
 
 def register(linter: 'PyLinter') -> None:

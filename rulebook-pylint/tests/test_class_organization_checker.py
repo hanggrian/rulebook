@@ -4,11 +4,14 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.class_organization_checker import ClassOrganizationChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestClassOrganizationChecker(CheckerTestCase):
     CHECKER_CLASS = ClassOrganizationChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_correct_organization(self):
         node1 = \

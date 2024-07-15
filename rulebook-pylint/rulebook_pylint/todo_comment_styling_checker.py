@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 # pylint: disable=todo-comment-styling-keyword,todo-comment-styling-separator
 class TodoCommentStylingChecker(RawChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#todo-styling-formatting
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#todo-comment-styling
     """
     MSG_KEYWORD: str = 'todo-comment-styling-keyword'
     MSG_SEPARATOR: str = 'todo-comment-styling-separator'

@@ -22,8 +22,9 @@ public class AssignmentWrappingCheck : Check() {
                 ?: return
 
         // checks for violation
-        val assignee = assign.firstmostChild
-        assignee.takeUnless { it.lineNo == assign.lineNo + 1 } ?: return
+        val assignee =
+            assign.firstmostChild
+                .takeUnless { it.lineNo == assign.lineNo + 1 } ?: return
         log(assignee, Messages[MSG])
     }
 

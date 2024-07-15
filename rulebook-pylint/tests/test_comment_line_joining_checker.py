@@ -3,11 +3,14 @@ from unittest import main
 from pylint.testutils import CheckerTestCase, _tokenize_str
 from rulebook_pylint.comment_line_joining_checker import CommentLineJoiningChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestCommentLineJoiningChecker(CheckerTestCase):
     CHECKER_CLASS = CommentLineJoiningChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_single_empty_line_in_comment(self):
         tokens = \

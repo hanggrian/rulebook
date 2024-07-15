@@ -34,8 +34,7 @@ public class FileSizeLimitationRule :
         // checks for violation
         node.text
             .lines()
-            .let { if (it.last().isEmpty()) it.lastIndex else it.size }
-            .takeIf { it > maxFileLength }
+            .takeIf { (if (it.last().isEmpty()) it.lastIndex else it.size) > maxFileLength }
             ?: return
         emit(node.startOffset, Messages.get(MSG, maxFileLength), false)
     }

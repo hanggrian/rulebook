@@ -26,24 +26,15 @@ public class InnerClassPositionRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassComplete(node: ClassNode) {
-            // get first inner class
-            var innerClass: ClassNode? = null
-            for (c in node.innerClasses) {
-                innerClass = c
-                break
-            }
-            if (innerClass == null) {
-                return super.visitClassComplete(node)
-            }
-
             // checks for violation
-            node
-                .takeIf {
-                    it.fields.isAnyAfter(innerClass) ||
-                        it.declaredConstructors.isAnyAfter(innerClass) ||
-                        it.methods.isAnyAfter(innerClass)
-                } ?: return super.visitClassComplete(node)
-            addViolation(innerClass, Messages[MSG])
+            for (cls in node.innerClasses) {
+                node.takeIf {
+                    it.fields.isAnyAfter(cls) ||
+                        it.declaredConstructors.isAnyAfter(cls) ||
+                        it.methods.isAnyAfter(cls)
+                } ?: continue
+                addViolation(cls, Messages[MSG])
+            }
 
             super.visitClassComplete(node)
         }

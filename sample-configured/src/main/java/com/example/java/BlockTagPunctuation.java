@@ -2,7 +2,7 @@ package com.example.java;
 
 import java.io.IOException;
 
-public class BlockTagDescriptionPunctuation {
+public class BlockTagPunctuation {
     /**
      * @throws Exception oops
      */

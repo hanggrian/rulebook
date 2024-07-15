@@ -23,30 +23,26 @@ public class NullStructuralEqualityRule :
             return
         }
 
+        // find null operand
+        node.firstChildNode.takeIf { it.elementType == NULL }
+            ?: node.lastChildNode.takeIf { it.elementType == NULL }
+            ?: return
+
         // checks for violation
-        val operationReference = node.findChildByType(OPERATION_REFERENCE) ?: return
-        process(operationReference, node.firstChildNode, emit)
-        process(operationReference, node.lastChildNode, emit)
+        val operator =
+            node
+                .findChildByType(OPERATION_REFERENCE)
+                ?.firstChildNode
+                ?.takeIf { it.elementType == EQEQEQ || it.elementType == EXCLEQEQEQ }
+                ?: return
+        emit(
+            operator.startOffset,
+            Messages.get(MSG, if (operator.elementType == EQEQEQ) "==" else "!="),
+            false,
+        )
     }
 
     internal companion object {
         const val MSG = "null.structural.equality"
-
-        private fun process(operator: ASTNode, operand: ASTNode, emit: Emit) {
-            if (operand.elementType == NULL) {
-                emit(
-                    operator.firstChildNode.startOffset,
-                    Messages.get(
-                        MSG,
-                        when {
-                            EQEQEQ in operator -> "=="
-                            EXCLEQEQEQ in operator -> "!="
-                            else -> return
-                        },
-                    ),
-                    false,
-                )
-            }
-        }
     }
 }

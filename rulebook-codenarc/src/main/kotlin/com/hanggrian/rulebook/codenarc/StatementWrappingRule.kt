@@ -17,18 +17,18 @@ public class StatementWrappingRule : Rule() {
     }
 
     public class Visitor : AbstractAstVisitor() {
-        override fun visitBlockStatement(statement: BlockStatement) {
-            for (statement2 in statement.statements) {
+        override fun visitBlockStatement(node: BlockStatement) {
+            for (statement in node.statements) {
                 // checks for violation
-                sourceLine(statement2)
+                sourceLine(statement)
                     .takeIf { line ->
                         ';' in line &&
                             line.substringAfter(';').let { it.isNotEmpty() && "//" !in it }
                     } ?: continue
-                addViolation(statement2, Messages[MSG])
+                addViolation(statement, Messages[MSG])
             }
 
-            super.visitBlockStatement(statement)
+            super.visitBlockStatement(node)
         }
     }
 }

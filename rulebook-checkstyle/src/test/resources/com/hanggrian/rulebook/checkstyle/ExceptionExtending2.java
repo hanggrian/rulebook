@@ -1,6 +1,6 @@
 package com.hanggrian.rulebook.checkstyle;
 
-public class ControlFlowBracing {
+public class ExceptionExtending {
     public class Foo extends Throwable {
     }
 

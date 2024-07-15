@@ -27,8 +27,7 @@ class ExceptionExtendingChecker(Checker):
             if 'BaseException' not in base.name:
                 continue
             self.add_message(self.MSG, node=base)
-            return None
-        return None
+            return
 
 
 def register(linter: 'PyLinter') -> None:

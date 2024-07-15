@@ -31,14 +31,13 @@ class BlockCommentLineTrimmingChecker(Checker):
     def _process(self, docstring: Const | None) -> None:
         # first line of filter
         if not docstring or not isinstance(docstring, Const):
-            return None
+            return
 
         # checks for violation
         if docstring.value.startswith('\n\n'):
             self.add_message(self.MSG_FIRST, node=docstring)
         if re.search(r'\n\n\s*$', docstring.value):
             self.add_message(self.MSG_LAST, node=docstring)
-        return None
 
 
 def register(linter: 'PyLinter') -> None:

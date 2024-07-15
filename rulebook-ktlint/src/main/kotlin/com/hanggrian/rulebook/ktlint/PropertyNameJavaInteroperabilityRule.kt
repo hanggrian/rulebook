@@ -29,7 +29,9 @@ public class PropertyNameJavaInteroperabilityRule :
     RuleAutocorrectApproveHandler {
     override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
-        if (node.elementType != CLASS && node.elementType != OBJECT_DECLARATION) {
+        if (node.elementType != CLASS &&
+            node.elementType != OBJECT_DECLARATION
+        ) {
             return
         }
 
@@ -51,32 +53,31 @@ public class PropertyNameJavaInteroperabilityRule :
         }
 
         // checks for violation
-        properties
-            .filterNot {
-                it.hasAnnotation("JvmField") ||
-                    it.findChildByType(PROPERTY_ACCESSOR)?.hasAnnotation("JvmName") == true
-            }.forEach { property ->
-                val identifier =
-                    property
-                        .findChildByType(IDENTIFIER)
-                        ?.takeIf { !it.text.startsWith("is") }
-                        ?: return
+        for (property in properties.filterNot {
+            it.hasAnnotation("JvmField") ||
+                it.findChildByType(PROPERTY_ACCESSOR)?.hasAnnotation("JvmName") == true
+        }) {
+            val identifier =
                 property
-                    .findChildByType(TYPE_REFERENCE)
-                    ?.findChildByType(USER_TYPE)
-                    ?.findChildByType(REFERENCE_EXPRESSION)
-                    ?.findChildByType(IDENTIFIER)
-                    ?.takeIf { it.text == "Boolean" }
-                    ?: return
-                emit(
-                    identifier.startOffset,
-                    Messages.get(
-                        MSG,
-                        "is" + identifier.text.replaceFirstChar { it.uppercaseChar() },
-                    ),
-                    false,
-                )
-            }
+                    .findChildByType(IDENTIFIER)
+                    ?.takeIf { !it.text.startsWith("is") }
+                    ?: continue
+            property
+                .findChildByType(TYPE_REFERENCE)
+                ?.findChildByType(USER_TYPE)
+                ?.findChildByType(REFERENCE_EXPRESSION)
+                ?.findChildByType(IDENTIFIER)
+                ?.takeIf { it.text == "Boolean" }
+                ?: continue
+            emit(
+                identifier.startOffset,
+                Messages.get(
+                    MSG,
+                    "is" + identifier.text.replaceFirstChar { it.uppercaseChar() },
+                ),
+                false,
+            )
+        }
     }
 
     internal companion object {

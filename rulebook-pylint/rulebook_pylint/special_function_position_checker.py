@@ -33,13 +33,13 @@ class SpecialFunctionPositionChecker(Checker):
             '__bool__',
         }
 
-    name: str = 'object-overridden-function-position'
+    name: str = 'special-function-position'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
         # first line of filter
         if node.name not in self.OBJECT_OVERRIDDEN_FUNCTIONS:
-            return None
+            return
 
         current: NodeNG = node
         while current is not None:
@@ -48,10 +48,9 @@ class SpecialFunctionPositionChecker(Checker):
                 not has_decorator(current, 'staticmethod') and \
                 current.name not in self.OBJECT_OVERRIDDEN_FUNCTIONS:
                 self.add_message(self.MSG, node=node, args=node.name)
-                return None
+                return
 
             current = current.next_sibling()
-        return None
 
 
 def register(linter: 'PyLinter') -> None:

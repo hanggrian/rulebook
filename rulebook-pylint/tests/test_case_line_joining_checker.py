@@ -3,11 +3,14 @@ from unittest import main
 from pylint.testutils import CheckerTestCase, _tokenize_str
 from rulebook_pylint.case_line_joining_checker import CaseLineJoiningChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestCaseLineJoiningChecker(CheckerTestCase):
     CHECKER_CLASS = CaseLineJoiningChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_joined_switch_case_branches(self):
         tokens = \

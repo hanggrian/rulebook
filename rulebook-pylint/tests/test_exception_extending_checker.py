@@ -4,11 +4,14 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.exception_extending_checker import ExceptionExtendingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestExceptionExtendingChecker(CheckerTestCase):
     CHECKER_CLASS = ExceptionExtendingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_extend_user_exceptions(self):
         node1 = \

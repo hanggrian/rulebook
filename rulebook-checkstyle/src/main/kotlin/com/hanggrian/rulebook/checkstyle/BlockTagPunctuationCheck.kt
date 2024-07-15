@@ -20,7 +20,7 @@ public class BlockTagPunctuationCheck : JavadocCheck() {
 
     override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
-        node.takeIf { it.children.first().text in blockTags } ?: return
+        node.children.first().takeIf { it.text in blockTags } ?: return
 
         // long descriptions have multiple lines, take only the last one
         val text =

@@ -4,11 +4,14 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.class_final_name_blacklisting_checker import ClassFinalNameBlacklistingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestClassFinalNameBlacklistingChecker(CheckerTestCase):
     CHECKER_CLASS = ClassFinalNameBlacklistingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_meaningful_class_names(self):
         node1 = \

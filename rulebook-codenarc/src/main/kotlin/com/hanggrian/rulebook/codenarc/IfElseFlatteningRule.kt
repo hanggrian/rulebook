@@ -6,29 +6,37 @@ import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-flattening)
+ * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening)
  */
-public class IfFlatteningRule : Rule() {
-    override fun getName(): String = "IfFlattening"
+public class IfElseFlatteningRule : Rule() {
+    override fun getName(): String = "IfElseFlattening"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
     internal companion object {
-        const val MSG = "if.flattening"
+        const val MSG_INVERT = "if.else.flattening.invert"
+        const val MSG_LIFT = "if.else.flattening.lift"
     }
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitBlockStatement(node: BlockStatement) {
-            // checks for violation
+            // get last if
             val `if` =
                 node.statements.lastOrNull() as? IfStatement
                     ?: return super.visitBlockStatement(node)
+
+            // checks for violation
+            val `else` = `if`.elseBlock
+            if (!`else`.isEmpty) {
+                `else`.takeUnless { it is IfStatement } ?: return super.visitBlockStatement(node)
+                addViolation(`else`, Messages[MSG_LIFT])
+                return super.visitBlockStatement(node)
+            }
             `if`.ifBlock
-                ?.takeIf { `if`.elseBlock.isEmpty }
                 ?.text
                 ?.takeIf { ';' in it }
                 ?: return super.visitBlockStatement(node)
-            addViolation(`if`, Messages[MSG])
+            addViolation(`if`, Messages[MSG_INVERT])
 
             super.visitBlockStatement(node)
         }

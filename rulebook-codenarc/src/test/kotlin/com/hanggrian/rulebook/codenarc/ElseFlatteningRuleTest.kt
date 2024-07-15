@@ -18,6 +18,8 @@ class ElseFlatteningRuleTest : AbstractRuleTestCase<ElseFlatteningRule>() {
             void foo() {
                 if (true) {
                     baz()
+                } else if (false) {
+                    baz()
                 } else {
                     baz()
                 }
@@ -31,19 +33,21 @@ class ElseFlatteningRuleTest : AbstractRuleTestCase<ElseFlatteningRule>() {
             """
             void foo() {
                 if (true) {
+                    throw new Exception()
+                } else if (false) {
                     return
                 } else {
                     baz()
                 }
             }
             """.trimIndent(),
-            4,
+            6,
             "} else {",
             Messages[MSG],
         )
 
     @Test
-    fun `Do not lift when there is else if`() =
+    fun `Skip if not all if blocks have return or throw`() =
         assertNoViolations(
             """
             void foo() {

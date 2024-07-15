@@ -3,11 +3,14 @@ from unittest import main
 from pylint.testutils import CheckerTestCase, _tokenize_str
 from rulebook_pylint.string_single_quoting_checker import StringSingleQuotingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestStringSingleQuotingChecker(CheckerTestCase):
     CHECKER_CLASS = StringSingleQuotingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_single_quote_string(self):
         tokens = \

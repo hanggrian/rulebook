@@ -17,12 +17,13 @@ public class SpecialFunctionPositionCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // target special function
-        if (!node.isSpecialFunction()) {
-            return
-        }
+        val ident =
+            node
+                .takeIf { it.isSpecialFunction() }
+                ?.findFirstToken(IDENT)
+                ?: return
 
         // checks for violation
-        val ident = node.findFirstToken(IDENT) ?: return
         node
             .siblings()
             .takeIf { siblings ->

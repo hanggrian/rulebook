@@ -28,7 +28,7 @@ public class GenericsNameWhitelistingRule : Rule() {
             val parents =
                 when (this) {
                     is MethodNode ->
-                        declaringClass.outerClasses.toMutableList().also { it.add(declaringClass) }
+                        declaringClass.outerClasses + declaringClass
                     else -> (this as ClassNode).outerClasses
                 }
             return parents.any { it.name != "None" && !it.genericsTypes.isNullOrEmpty() }
@@ -48,15 +48,15 @@ public class GenericsNameWhitelistingRule : Rule() {
 
         private fun process(node: ASTNode, genericTypes: Array<GenericsType>?) {
             // filter out multiple generics
-            val genericType = genericTypes?.singleOrNull() ?: return
+            val genericsType = genericTypes?.singleOrNull() ?: return
 
             // checks for violation
-            val generics = (rule as GenericsNameWhitelistingRule).names
+            val names = (rule as GenericsNameWhitelistingRule).names
             node
                 .takeUnless {
-                    it.hasParentWithGenerics() || genericType.name in generics.split(", ")
+                    it.hasParentWithGenerics() || genericsType.name in names.split(", ")
                 } ?: return
-            addViolation(genericType, Messages.get(MSG, generics))
+            addViolation(genericsType, Messages.get(MSG, names))
         }
     }
 }

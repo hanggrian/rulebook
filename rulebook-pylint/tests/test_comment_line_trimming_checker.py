@@ -3,11 +3,14 @@ from unittest import main
 from pylint.testutils import CheckerTestCase, _tokenize_str
 from rulebook_pylint.comment_line_trimming_checker import CommentLineTrimmingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestCommentLineTrimmingChecker(CheckerTestCase):
     CHECKER_CLASS = CommentLineTrimmingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_comment_without_initial_and_final_newline(self):
         tokens = \

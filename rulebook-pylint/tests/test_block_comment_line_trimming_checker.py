@@ -5,11 +5,14 @@ from pylint.testutils import CheckerTestCase
 from rulebook_pylint.block_comment_line_trimming_checker \
     import BlockCommentLineTrimmingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestBlockCommentLineTrimmingChecker(CheckerTestCase):
     CHECKER_CLASS = BlockCommentLineTrimmingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_summary_without_initial_and_final_newline(self):
         node1 = \

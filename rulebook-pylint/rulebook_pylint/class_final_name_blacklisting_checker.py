@@ -23,7 +23,7 @@ class ClassFinalNameBlacklistingChecker(Checker):
             r'([A-Z]+(?=([A-Z][a-z])|($)|([0-9]))))',
         )
 
-    name: str = 'class-name-blacklisting'
+    name: str = 'class-final-name-blacklisting'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_ALL, MSG_UTIL)
     options: Options = \
         (
@@ -51,9 +51,8 @@ class ClassFinalNameBlacklistingChecker(Checker):
                     node=node,
                     args=node.name[:node.name.index(word)] + 's',
                 )
-                return None
+                return
             self.add_message(self.MSG_ALL, node=node, args=word)
-        return None
 
 
 def register(linter: 'PyLinter') -> None:

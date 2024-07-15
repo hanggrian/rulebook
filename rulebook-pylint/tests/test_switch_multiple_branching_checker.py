@@ -4,11 +4,14 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.switch_multiple_branching_checker import SwitchMultipleBranchingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestSwitchMultipleBranchingChecker(CheckerTestCase):
     CHECKER_CLASS = SwitchMultipleBranchingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_multiple_switch_branches(self):
         node1 = \

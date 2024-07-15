@@ -4,11 +4,14 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.special_function_position_checker import SpecialFunctionPositionChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestSpecialFunctionPositionChecker(CheckerTestCase):
     CHECKER_CLASS = SpecialFunctionPositionChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_overridden_function_at_the_bottom(self):
         node1, node2 = \

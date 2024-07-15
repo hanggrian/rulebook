@@ -4,12 +4,15 @@ from astroid import parse
 from pylint.testutils import CheckerTestCase
 from rulebook_pylint.todo_comment_styling_checker import TodoCommentStylingChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 # pylint: disable=todo-comment-styling-keyword,todo-comment-styling-separator
 class TestTodoCommentFormattingChecker(CheckerTestCase):
     CHECKER_CLASS = TodoCommentStylingChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_uppercase_todo_comments(self):
         node_all = \

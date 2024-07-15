@@ -21,6 +21,14 @@ public class TodoCommentStylingRule :
     RuleAutocorrectApproveHandler {
     override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         // first line of filter
+        if (node.elementType != EOL_COMMENT &&
+            node.elementType != KDOC_SECTION &&
+            node.elementType != KDOC_LEADING_ASTERISK
+        ) {
+            return
+        }
+
+        // obtain comment content
         val text =
             when (node.elementType) {
                 EOL_COMMENT -> node.text
@@ -29,12 +37,11 @@ public class TodoCommentStylingRule :
                         .takeUnless { KDOC_LEADING_ASTERISK in node }
                         ?.findChildByType(KDOC_TEXT)
                         ?.text
-                KDOC_LEADING_ASTERISK ->
+                else ->
                     node
                         .siblingsUntil(KDOC_LEADING_ASTERISK)
                         .takeUnless { n -> n.all { it.elementType == WHITE_SPACE } }
                         ?.joinToString("") { it.text }
-                else -> null
             } ?: return
 
         // checks for violation

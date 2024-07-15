@@ -1,5 +1,19 @@
 from astroid import NodeNG
+from pylint.checkers import BaseChecker
 from pylint.testutils import MessageTest
+
+
+def assert_properties(checker: BaseChecker):
+    line = str(checker).rsplit("<class 'rulebook_pylint.", 1)[1].split("'>", 1)[0]
+    module = line.split('.', 1)[0]
+    cls = line.rsplit('.', 1)[1]
+
+    assert checker.name == module.split('_checker')[0].replace('_', '-')
+    assert checker.name == \
+           ''.join(['_' + c.lower() if c.isupper() else c for c in cls]) \
+               .lstrip('_') \
+               .split('_checker', 1)[0] \
+               .replace('_', '-')
 
 
 def msg(

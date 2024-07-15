@@ -20,28 +20,22 @@ public class QualifierConsistencyCheck : Check() {
     override fun getRequiredTokens(): IntArray = intArrayOf(IMPORT, TYPE, METHOD_CALL)
 
     override fun visitToken(node: DetailAST) {
-        // additional filter
-        when (node.type) {
-            IMPORT ->
-                // keep import list
-                importPaths += node.joinText(".", SEMI)
-            TYPE ->
-                // keep expressions
-                targetNodes += node
-            METHOD_CALL -> {
-                // only consider top expression
-                val dot =
+        // keep import list and expressions
+        if (node.type == IMPORT) {
+            importPaths += node.joinText(".", SEMI)
+            return
+        }
+        targetNodes +=
+            when (node.type) {
+                TYPE -> node
+                else ->
                     node
                         .takeIf { DOT in it }
                         ?.firstChild
                         ?.takeIf { DOT in it }
                         ?.firstChild
                         ?: return
-
-                // keep expressions
-                targetNodes += dot
             }
-        }
     }
 
     override fun finishTree(node: DetailAST) {

@@ -37,20 +37,21 @@ public class BlockCommentLineTrimmingCheck : JavadocCheck() {
 
         // final node may be newline or tag
         val lastChild =
-            children.last { it.type != EOF }.let { child ->
-                when (child.type) {
-                    NEWLINE -> child
-                    JAVADOC_TAG -> {
-                        val description = child.children.firstOrNull { it.type == DESCRIPTION }
-                        if (description != null) {
+            children
+                .last { it.type != EOF }
+                .let { child ->
+                    when (child.type) {
+                        NEWLINE -> child
+                        JAVADOC_TAG -> {
+                            val description =
+                                child.children.firstOrNull { it.type == DESCRIPTION }
+                                    ?: return@let null
                             children = description.filterEmpty()
                             return@let children.lastOrNull { it.type == NEWLINE }
                         }
-                        return@let null
+                        else -> null
                     }
-                    else -> null
                 }
-            }
         if (lastChild != null &&
             children.indexOf(lastChild).let {
                 children.getOrNull(it - 1)?.type == LEADING_ASTERISK &&

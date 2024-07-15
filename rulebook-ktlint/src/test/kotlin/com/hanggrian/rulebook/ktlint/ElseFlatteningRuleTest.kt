@@ -18,6 +18,8 @@ class ElseFlatteningRuleTest {
             fun foo() {
                 if (true) {
                     baz()
+                } else if (false) {
+                    baz()
                 } else {
                     baz()
                 }
@@ -31,16 +33,18 @@ class ElseFlatteningRuleTest {
             """
             fun foo() {
                 if (true) {
+                    throw Exception()
+                } else if (false) {
                     return
                 } else {
                     baz()
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(4, 7, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(6, 7, Messages[MSG])
 
     @Test
-    fun `Do not lift when there is else if`() =
+    fun `Skip if not all if blocks have return or throw`() =
         assertThatCode(
             """
             fun foo() {

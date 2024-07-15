@@ -3,11 +3,14 @@ from unittest import main
 from pylint.testutils import CheckerTestCase, _tokenize_str
 from rulebook_pylint.trailing_comma_insertion_checker import TrailingCommaInsertionChecker
 
-from .tests import msg
+from .tests import assert_properties, msg
 
 
 class TestTrailingCommaInsertionChecker(CheckerTestCase):
     CHECKER_CLASS = TrailingCommaInsertionChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     def test_single_line_parameter(self):
         tokens = \
