@@ -22,18 +22,18 @@ public class ClassNameAcronymCapitalizationRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassEx(node: ClassNode) {
+            super.visitClassEx(node)
+
             // checks for violation
             process(node, node.name)
-
-            super.visitClassEx(node)
         }
 
         override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
+            super.visitConstructorOrMethod(node, isConstructor)
+
             // checks for violation
             node.parameters.forEach { process(it, it.name) }
             process(node, node.name)
-
-            super.visitConstructorOrMethod(node, isConstructor)
         }
 
         private fun process(node: ASTNode, name: String) {

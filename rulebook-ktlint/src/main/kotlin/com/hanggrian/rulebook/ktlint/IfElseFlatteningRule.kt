@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
@@ -12,22 +11,17 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening)
  */
-public class IfElseFlatteningRule :
-    Rule("if-else-flattening"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != BLOCK) {
-            return
-        }
+public class IfElseFlatteningRule : Rule("if-else-flattening") {
+    override val tokens: TokenSet = TokenSet.create(BLOCK)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // get last if
         var `if`: ASTNode? = null
         for (child in node.children().asIterable().reversed()) {
@@ -53,12 +47,13 @@ public class IfElseFlatteningRule :
             .findChildByType(THEN)!!
             .findChildByType(BLOCK)
             ?.children()
-            ?.filter {
-                it.elementType != LBRACE &&
-                    it.elementType != RBRACE &&
-                    it.elementType != WHITE_SPACE
-            }?.takeIf { it.count() > 1 }
-            ?: return
+            ?.takeIf { n ->
+                n.count {
+                    it.elementType != LBRACE &&
+                        it.elementType != RBRACE &&
+                        it.elementType != WHITE_SPACE
+                } > 1
+            } ?: return
         emit(`if`.startOffset, Messages[MSG_INVERT], false)
     }
 

@@ -26,7 +26,9 @@ public class CommentLineJoiningCheck : Check() {
                 ?: return
 
         // checks for violation
-        next.takeIf { it.type == SINGLE_LINE_COMMENT && it.isEolCommentEmpty() } ?: return
+        next
+            .takeIf { it.type == SINGLE_LINE_COMMENT && it.isEolCommentEmpty() }
+            ?: return
         log(next, Messages[MSG_EOL])
     }
 

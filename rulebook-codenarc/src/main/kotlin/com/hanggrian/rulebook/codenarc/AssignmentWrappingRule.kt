@@ -19,21 +19,21 @@ public class AssignmentWrappingRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitBinaryExpression(node: BinaryExpression) {
+            super.visitBinaryExpression(node)
+
             // target multiline assignment
-            val operation =
+            val assign =
                 node.operation
                     .takeIf { it.type == ASSIGN }
                     ?.takeUnless { node.lineNumber == node.lastLineNumber }
-                    ?: return super.visitBinaryExpression(node)
+                    ?: return
 
             // checks for violation
-            val expression = node.rightExpression
-            expression
-                .takeUnless { it.lineNumber == operation.startLine + 1 }
-                ?: return super.visitBinaryExpression(node)
+            val expression =
+                node.rightExpression
+                    .takeUnless { it.lineNumber == assign.startLine + 1 }
+                    ?: return
             addViolation(expression, Messages[MSG])
-
-            super.visitBinaryExpression(node)
         }
     }
 }

@@ -22,7 +22,9 @@ public class BlockCommentLineJoiningCheck : JavadocCheck() {
                 ?: return
 
         // checks for violation
-        next.next?.takeIf { it.type == NEWLINE } ?: return
+        next.next
+            ?.takeIf { it.type == NEWLINE }
+            ?: return
         log(next.lineNumber, next.columnNumber, Messages[MSG])
     }
 

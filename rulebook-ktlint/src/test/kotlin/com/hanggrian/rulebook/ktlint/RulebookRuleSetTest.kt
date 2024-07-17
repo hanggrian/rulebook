@@ -26,6 +26,7 @@ class RulebookRuleSetTest {
             CommentLineTrimmingRule::class,
             DefaultFlatteningRule::class,
             ElseFlatteningRule::class,
+            ElvisWrappingRule::class,
             EmptyCodeBlockConcisenessRule::class,
             ExceptionExtendingRule::class,
             ExceptionSubclassCatchingRule::class,

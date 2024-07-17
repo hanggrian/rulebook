@@ -22,7 +22,9 @@ public class CommentSpacingCheck : Check() {
                 ?: return
 
         // checks for violation
-        commentContent.takeUnless { it.text.startsWith(' ') } ?: return
+        commentContent
+            .takeUnless { it.text.startsWith(' ') }
+            ?: return
         log(node, Messages[MSG])
     }
 

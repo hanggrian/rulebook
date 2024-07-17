@@ -1,49 +1,34 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.getFileName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-name-acronym-capitalization)
  */
-public class ClassNameAcronymCapitalizationRule :
-    Rule("class-name-acronym-capitalization"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != CLASS &&
-            node.elementType != OBJECT_DECLARATION &&
-            node.elementType != FILE
-        ) {
-            return
-        }
+public class ClassNameAcronymCapitalizationRule : Rule("class-name-acronym-capitalization") {
+    override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION, FILE)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // obtain class name
         val (node2, name) =
             when (node.elementType) {
-                CLASS, OBJECT_DECLARATION -> {
-                    val identifier =
-                        node
-                            .findChildByType(IDENTIFIER)
-                            ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
-                            ?: return
-                    identifier to identifier.text
-                }
-                else -> {
-                    val fileName =
-                        getFileName(node)
-                            ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
-                            ?: return
-                    node to fileName
-                }
-            }
+                CLASS, OBJECT_DECLARATION ->
+                    node
+                        .findChildByType(IDENTIFIER)
+                        ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
+                        ?.let { it to it.text }
+                else ->
+                    getFileName(node)
+                        ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
+                        ?.let { node to it }
+            } ?: return
 
         // checks for violation
         val transformation =

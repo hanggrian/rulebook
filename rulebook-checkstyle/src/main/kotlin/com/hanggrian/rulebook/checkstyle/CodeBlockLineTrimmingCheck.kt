@@ -1,7 +1,7 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
-import com.hanggrian.rulebook.checkstyle.internals.lastmostChild
+import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LCURLY
@@ -21,7 +21,7 @@ public class CodeBlockLineTrimmingCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // right curly is persistent
         val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
-        val rcurlySibling = rcurly.previousSibling?.lastmostChild ?: return
+        val rcurlySibling = rcurly.previousSibling?.lastMostChild ?: return
 
         // left curly is conditional
         val (lcurly, lcurlySibling) =
@@ -32,11 +32,11 @@ public class CodeBlockLineTrimmingCheck : Check() {
                     val lcurlySibling = lcurly.nextSibling?.orBlockComment ?: return
                     lcurly to lcurlySibling
                 }
-                else -> {
+                else ->
                     // the first node is slist itself
-                    val lcurlySibling = node.firstChild?.orBlockComment ?: return
-                    node to lcurlySibling
-                }
+                    node.firstChild
+                        ?.let { node to it }
+                        ?: return
             }
 
         // checks for violation

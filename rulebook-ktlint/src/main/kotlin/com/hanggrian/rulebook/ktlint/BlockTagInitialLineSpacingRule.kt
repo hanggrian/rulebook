@@ -1,28 +1,22 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.siblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import com.pinterest.ktlint.rule.engine.core.api.prevSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-initial-line-spacing)
  */
-public class BlockTagInitialLineSpacingRule :
-    Rule("block-tag-initial-line-spacing"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != KDOC_SECTION) {
-            return
-        }
+public class BlockTagInitialLineSpacingRule : Rule("block-tag-initial-line-spacing") {
+    override val tokens: TokenSet = TokenSet.create(KDOC_SECTION)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // only allow first tag
         val kdocTag = node.findChildByType(KDOC_TAG) ?: return
 

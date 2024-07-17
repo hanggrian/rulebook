@@ -51,15 +51,13 @@ public class BlockCommentLineTrimmingCheck : JavadocCheck() {
                         }
                         else -> null
                     }
-                }
-        if (lastChild != null &&
-            children.indexOf(lastChild).let {
-                children.getOrNull(it - 1)?.type == LEADING_ASTERISK &&
-                    children.getOrNull(it - 2)?.type == NEWLINE
-            }
-        ) {
-            log(lastChild.lineNumber, lastChild.columnNumber, Messages[MSG_LAST])
-        }
+                }?.takeIf { n ->
+                    children.indexOf(n).let {
+                        children.getOrNull(it - 1)?.type == LEADING_ASTERISK &&
+                            children.getOrNull(it - 2)?.type == NEWLINE
+                    }
+                } ?: return
+        log(lastChild.lineNumber, lastChild.columnNumber, Messages[MSG_LAST])
     }
 
     internal companion object {

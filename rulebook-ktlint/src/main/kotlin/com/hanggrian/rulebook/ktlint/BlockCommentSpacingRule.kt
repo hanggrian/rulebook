@@ -1,26 +1,26 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-spacing)
  */
-public class BlockCommentSpacingRule :
-    Rule("block-comment-spacing"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
+public class BlockCommentSpacingRule : Rule("block-comment-spacing") {
+    override val tokens: TokenSet = TokenSet.create(KDOC_SECTION, KDOC_LEADING_ASTERISK)
+
+    override fun visitToken(node: ASTNode, emit: Emit) {
         when (node.elementType) {
             KDOC_SECTION -> {
                 // only target single line
-                node.treeParent.takeUnless { '\n' in it.text } ?: return
+                node.treeParent
+                    .takeUnless { '\n' in it.text }
+                    ?: return
 
                 // checks for violation
                 if (!node.text.startsWith(' ')) {
@@ -30,12 +30,14 @@ public class BlockCommentSpacingRule :
                     emit(node.endOffset, Messages[MSG_SINGLE_END], false)
                 }
             }
-            KDOC_LEADING_ASTERISK -> {
+            else -> {
                 // take non-whitespace sibling
-                val next = node.treeNext?.takeUnless { it.elementType == WHITE_SPACE } ?: return
+                val next = node.treeNext?.takeUnless { it.isWhiteSpace() } ?: return
 
                 // checks for violation
-                next.takeUnless { it.text.startsWith(' ') } ?: return
+                next
+                    .takeUnless { it.text.startsWith(' ') }
+                    ?: return
                 emit(next.startOffset, Messages[MSG_MULTI], false)
             }
         }

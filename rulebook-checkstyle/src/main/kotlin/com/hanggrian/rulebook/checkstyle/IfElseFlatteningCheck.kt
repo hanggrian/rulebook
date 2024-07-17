@@ -22,7 +22,7 @@ public class IfElseFlatteningCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // get last if
         var `if`: DetailAST? = null
-        for (child in node.children().asIterable().reversed()) {
+        for (child in node.children.asIterable().reversed()) {
             when (child.type) {
                 LITERAL_IF -> {
                     `if` = child
@@ -43,9 +43,8 @@ public class IfElseFlatteningCheck : Check() {
         }
         `if`
             .findFirstToken(SLIST)
-            ?.children()
-            ?.filter { it.type != RCURLY && it.type != SEMI }
-            ?.takeIf { it.count() > 1 }
+            ?.children
+            ?.takeIf { n -> n.count { it.type != RCURLY && it.type != SEMI } > 1 }
             ?: return
         log(`if`, Messages[MSG_INVERT])
     }

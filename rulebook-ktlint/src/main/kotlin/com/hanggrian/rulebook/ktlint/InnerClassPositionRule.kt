@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.hasModifier
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
@@ -11,22 +10,17 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SECONDARY_CONSTRUCTOR
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position)
  */
-public class InnerClassPositionRule :
-    Rule("inner-class-position"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != CLASS) {
-            return
-        }
+public class InnerClassPositionRule : Rule("inner-class-position") {
+    override val tokens: TokenSet = TokenSet.create(CLASS)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // consider only inner class
         node.treeParent
             .takeIf { it.elementType == CLASS_BODY }

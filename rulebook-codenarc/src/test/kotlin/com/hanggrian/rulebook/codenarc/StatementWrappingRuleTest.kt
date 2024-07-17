@@ -4,12 +4,17 @@ import com.hanggrian.rulebook.codenarc.StatementWrappingRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class StatementWrappingRuleTest : AbstractRuleTestCase<StatementWrappingRule>() {
     override fun createRule() = StatementWrappingRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<StatementWrappingRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Single statement`() =

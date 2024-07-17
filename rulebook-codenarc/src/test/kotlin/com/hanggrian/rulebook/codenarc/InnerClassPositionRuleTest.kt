@@ -4,12 +4,17 @@ import com.hanggrian.rulebook.codenarc.InnerClassPositionRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class InnerClassPositionRuleTest : AbstractRuleTestCase<InnerClassPositionRule>() {
     override fun createRule() = InnerClassPositionRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<InnerClassPositionRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Inner class at the bottom`() =

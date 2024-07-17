@@ -1,26 +1,20 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.hanggrian.rulebook.ktlint.internals.isWhitespaceMultipleNewline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining)
  */
-public class CaseLineJoiningRule :
-    Rule("case-line-joining"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != WHEN_ENTRY) {
-            return
-        }
+public class CaseLineJoiningRule : Rule("case-line-joining") {
+    override val tokens: TokenSet = TokenSet.create(WHEN_ENTRY)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // checks for violation
         val whitespace =
             node.treePrev

@@ -4,12 +4,17 @@ import com.hanggrian.rulebook.codenarc.SwitchMultipleBranchingRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class SwitchMultipleBranchingRuleTest : AbstractRuleTestCase<SwitchMultipleBranchingRule>() {
     override fun createRule() = SwitchMultipleBranchingRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<SwitchMultipleBranchingRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Multiple switch branches`() =

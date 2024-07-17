@@ -1,8 +1,8 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
-import com.hanggrian.rulebook.checkstyle.internals.firstmostChild
-import com.hanggrian.rulebook.checkstyle.internals.lastmostChild
+import com.hanggrian.rulebook.checkstyle.internals.firstMostChild
+import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ASSIGN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
@@ -18,14 +18,15 @@ public class AssignmentWrappingCheck : Check() {
         val assign =
             node
                 .findFirstToken(ASSIGN)
-                ?.takeUnless { it.lastmostChild.lineNo == node.lineNo }
+                ?.takeUnless { it.lastMostChild.lineNo == node.lineNo }
                 ?: return
 
         // checks for violation
-        val assignee =
-            assign.firstmostChild
-                .takeUnless { it.lineNo == assign.lineNo + 1 } ?: return
-        log(assignee, Messages[MSG])
+        val expression =
+            assign.firstMostChild
+                .takeUnless { it.lineNo == assign.lineNo + 1 }
+                ?: return
+        log(expression, Messages[MSG])
     }
 
     internal companion object {

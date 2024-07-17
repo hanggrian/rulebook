@@ -19,6 +19,7 @@ public class RulebookRuleSet : RuleSetProviderV3(Rule.ID) {
             RuleProvider { CommentLineTrimmingRule() },
             RuleProvider { DefaultFlatteningRule() },
             RuleProvider { ElseFlatteningRule() },
+            RuleProvider { ElvisWrappingRule() },
             RuleProvider { EmptyCodeBlockConcisenessRule() },
             RuleProvider { ExceptionExtendingRule() },
             RuleProvider { ExceptionSubclassCatchingRule() },

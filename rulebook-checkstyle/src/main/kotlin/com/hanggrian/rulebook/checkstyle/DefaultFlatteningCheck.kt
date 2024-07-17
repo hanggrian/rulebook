@@ -19,7 +19,7 @@ public class DefaultFlatteningCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // skip no default
-        val cases = node.children().filter { it.type == CASE_GROUP }
+        val cases = node.children.filter { it.type == CASE_GROUP }
         val default = cases.lastOrNull()?.takeIf { LITERAL_DEFAULT in it } ?: return
 
         // checks for violation

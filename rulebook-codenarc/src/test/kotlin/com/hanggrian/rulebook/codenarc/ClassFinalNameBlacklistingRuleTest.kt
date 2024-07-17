@@ -1,16 +1,26 @@
 package com.hanggrian.rulebook.codenarc
 
+import com.google.common.truth.Truth.assertThat
 import com.hanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule.Companion.MSG_ALL
 import com.hanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule.Companion.MSG_UTIL
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class ClassFinalNameBlacklistingRuleTest : AbstractRuleTestCase<ClassFinalNameBlacklistingRule>() {
     override fun createRule() = ClassFinalNameBlacklistingRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<ClassFinalNameBlacklistingRule.Visitor>(rule.astVisitor)
+
+        val rule = ClassFinalNameBlacklistingRule()
+        rule.setNames("Hello, World")
+        assertThat(rule.names).containsExactly("Hello", "World")
+    }
 
     @Test
     fun `Meaningful class names`() =

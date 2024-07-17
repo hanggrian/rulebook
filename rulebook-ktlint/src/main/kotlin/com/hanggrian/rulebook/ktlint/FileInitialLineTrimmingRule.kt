@@ -1,26 +1,22 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-initial-line-trimming)
  */
-public class FileInitialLineTrimmingRule :
-    Rule("file-initial-line-trimming"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != FILE) {
-            return
-        }
+public class FileInitialLineTrimmingRule : Rule("file-initial-line-trimming") {
+    override val tokens: TokenSet = TokenSet.create(FILE)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // checks for violation
-        node.firstChildNode?.takeIf { it.elementType == WHITE_SPACE } ?: return
+        node.firstChildNode
+            ?.takeIf { it.elementType == WHITE_SPACE }
+            ?: return
         emit(node.startOffset, Messages[MSG], false)
     }
 

@@ -32,11 +32,13 @@ public class SpecialFunctionPositionRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassComplete(node: ClassNode) {
-            var lastObjectOverriddenMethod: MethodNode? = null
+            super.visitClassComplete(node)
+
+            var lastSpecialFunction: MethodNode? = null
             for (method in node.methods) {
-                // target special method
+                // target special function
                 if (method.isSpecialFunction()) {
-                    lastObjectOverriddenMethod = method
+                    lastSpecialFunction = method
                     continue
                 }
 
@@ -46,19 +48,15 @@ public class SpecialFunctionPositionRule : Rule() {
                 }
 
                 // checks for violation
-                if (lastObjectOverriddenMethod == null ||
-                    lastObjectOverriddenMethod.lineNumber >= method.lineNumber
-                ) {
-                    continue
-                }
+                lastSpecialFunction
+                    ?.takeIf { it.lineNumber < method.lineNumber }
+                    ?: continue
                 addViolation(
-                    lastObjectOverriddenMethod,
-                    Messages.get(MSG, lastObjectOverriddenMethod.name),
+                    lastSpecialFunction,
+                    Messages.get(MSG, lastSpecialFunction.name),
                 )
-                return super.visitClassComplete(node)
+                return
             }
-
-            super.visitClassComplete(node)
         }
     }
 }

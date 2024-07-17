@@ -1,31 +1,23 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.qualifierName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_DIRECTIVE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.KtImportDirective
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#kotlin-api-priority)
  */
-public class KotlinApiPriorityRule :
-    Rule("kotlin-api-priority"),
-    RuleAutocorrectApproveHandler {
+public class KotlinApiPriorityRule : Rule("kotlin-api-priority") {
     private var isTestClass = false
 
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != IMPORT_DIRECTIVE &&
-            node.elementType != TYPE_REFERENCE
-        ) {
-            return
-        }
+    override val tokens: TokenSet = TokenSet.create(IMPORT_DIRECTIVE, TYPE_REFERENCE)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // obtain corresponding qualifier
         val (node2, qualifier) =
             when (node.elementType) {
@@ -38,9 +30,10 @@ public class KotlinApiPriorityRule :
                         isTestClass = true
                     }
 
-                    val dotQualifiedExpression =
-                        node.findChildByType(DOT_QUALIFIED_EXPRESSION) ?: return
-                    dotQualifiedExpression to path
+                    node
+                        .findChildByType(DOT_QUALIFIED_EXPRESSION)
+                        ?.let { it to path }
+                        ?: return
                 }
                 else -> node to node.qualifierName
             }

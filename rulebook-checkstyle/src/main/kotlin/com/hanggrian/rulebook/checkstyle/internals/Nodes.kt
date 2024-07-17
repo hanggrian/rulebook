@@ -1,7 +1,9 @@
+@file:JvmName("NodesKt")
+@file:JvmMultifileClass
+
 package com.hanggrian.rulebook.checkstyle.internals
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST
-import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
@@ -11,10 +13,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-internal val DetailNode.next: DetailNode?
-    get() = parent.children.let { it.getOrNull(it.indexOf(this) + 1) }
-
-internal val DetailAST.firstmostChild: DetailAST
+internal val DetailAST.firstMostChild: DetailAST
     get() {
         var last = this
         while (last.firstChild != null) {
@@ -23,7 +22,7 @@ internal val DetailAST.firstmostChild: DetailAST
         return last
     }
 
-internal val DetailAST.lastmostChild: DetailAST
+internal val DetailAST.lastMostChild: DetailAST
     get() {
         var last = this
         while (last.lastChild != null) {
@@ -32,16 +31,11 @@ internal val DetailAST.lastmostChild: DetailAST
         return last
     }
 
-internal fun DetailAST.children(): Sequence<DetailAST> =
-    generateSequence(firstChild) { node -> node.nextSibling }
+internal val DetailAST.children: Sequence<DetailAST>
+    get() = generateSequence(firstChild) { node -> node.nextSibling }
 
-internal fun DetailAST.siblings(forward: Boolean = true): Sequence<DetailAST> =
-    when {
-        forward -> generateSequence(nextSibling) { it.nextSibling }
-        else -> generateSequence(previousSibling) { it.previousSibling }
-    }
-
-internal operator fun DetailNode.contains(type: Int): Boolean = children.any { it.type == type }
+internal val DetailAST.nextSiblings: Sequence<DetailAST>
+    get() = generateSequence(nextSibling) { it.nextSibling }
 
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 
@@ -52,7 +46,7 @@ internal fun DetailAST.hasModifier(type: Int): Boolean =
 internal fun DetailAST.hasAnnotation(name: String): Boolean =
     MODIFIERS in this &&
         findFirstToken(MODIFIERS)
-            .children()
+            .children
             .any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
 
 internal fun DetailAST.hasReturnOrThrow(): Boolean {
@@ -69,7 +63,7 @@ internal fun DetailAST.isEolCommentEmpty(): Boolean =
 
 /** In Checkstyle, nodes with children do not have text. */
 internal fun DetailAST.joinText(separator: String = "", excludeType: Int = 0): String {
-    val children = children()
+    val children = children
     val result =
         when {
             children.count() == 0 -> text

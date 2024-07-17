@@ -5,12 +5,17 @@ import com.hanggrian.rulebook.codenarc.IfElseFlatteningRule.Companion.MSG_LIFT
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
     override fun createRule() = IfElseFlatteningRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<IfElseFlatteningRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Empty or one statement in if statement`() =

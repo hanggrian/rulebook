@@ -4,12 +4,17 @@ import com.hanggrian.rulebook.codenarc.QualifierConsistencyRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRule>() {
     override fun createRule() = QualifierConsistencyRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<QualifierConsistencyRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Consistent qualifiers`() =

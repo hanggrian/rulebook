@@ -4,12 +4,17 @@ import com.hanggrian.rulebook.codenarc.DefaultFlatteningRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() {
     override fun createRule() = DefaultFlatteningRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<DefaultFlatteningRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `No throw or return in case`() =

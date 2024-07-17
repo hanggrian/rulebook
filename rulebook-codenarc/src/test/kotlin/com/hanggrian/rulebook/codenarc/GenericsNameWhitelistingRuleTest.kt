@@ -1,15 +1,25 @@
 package com.hanggrian.rulebook.codenarc
 
+import com.google.common.truth.Truth.assertThat
 import com.hanggrian.rulebook.codenarc.GenericsNameWhitelistingRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class GenericsNameWhitelistingRuleTest : AbstractRuleTestCase<GenericsNameWhitelistingRule>() {
     override fun createRule() = GenericsNameWhitelistingRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<GenericsNameWhitelistingRule.Visitor>(rule.astVisitor)
+
+        val rule = GenericsNameWhitelistingRule()
+        rule.setNames("X, Z")
+        assertThat(rule.names).containsExactly("X", "Z")
+    }
 
     @Test
     fun `Common generic type in class`() =

@@ -11,10 +11,10 @@ import org.codenarc.rule.AbstractAstVisitor
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-whitelisting)
  */
 public class GenericsNameWhitelistingRule : Rule() {
-    private var names = "E, K, N, T, V"
+    internal var names = setOf("E", "K", "N", "T", "V")
 
     public fun setNames(names: String) {
-        this.names = names
+        this.names = names.split(", ").toSet()
     }
 
     override fun getName(): String = "GenericsNameWhitelisting"
@@ -27,8 +27,7 @@ public class GenericsNameWhitelistingRule : Rule() {
         private fun ASTNode.hasParentWithGenerics(): Boolean {
             val parents =
                 when (this) {
-                    is MethodNode ->
-                        declaringClass.outerClasses + declaringClass
+                    is MethodNode -> declaringClass.outerClasses + declaringClass
                     else -> (this as ClassNode).outerClasses
                 }
             return parents.any { it.name != "None" && !it.genericsTypes.isNullOrEmpty() }
@@ -37,13 +36,15 @@ public class GenericsNameWhitelistingRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassEx(node: ClassNode) {
-            process(node, node.genericsTypes)
             super.visitClassEx(node)
+
+            process(node, node.genericsTypes)
         }
 
         override fun visitMethodEx(node: MethodNode) {
-            process(node, node.genericsTypes)
             super.visitMethodEx(node)
+
+            process(node, node.genericsTypes)
         }
 
         private fun process(node: ASTNode, genericTypes: Array<GenericsType>?) {
@@ -53,10 +54,9 @@ public class GenericsNameWhitelistingRule : Rule() {
             // checks for violation
             val names = (rule as GenericsNameWhitelistingRule).names
             node
-                .takeUnless {
-                    it.hasParentWithGenerics() || genericsType.name in names.split(", ")
-                } ?: return
-            addViolation(genericsType, Messages.get(MSG, names))
+                .takeUnless { it.hasParentWithGenerics() || genericsType.name in names }
+                ?: return
+            addViolation(genericsType, Messages.get(MSG, names.joinToString(", ")))
         }
     }
 }

@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.BROAD_EXCEPTIONS
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CATCH
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
@@ -10,21 +8,16 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.USER_TYPE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER_LIST
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#exception-subclass-catching)
  */
-public class ExceptionSubclassCatchingRule :
-    Rule("exception-subclass-catching"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != CATCH) {
-            return
-        }
+public class ExceptionSubclassCatchingRule : Rule("exception-subclass-catching") {
+    override val tokens: TokenSet = TokenSet.create(CATCH)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // checks for violation
         val identifier =
             node
@@ -41,5 +34,18 @@ public class ExceptionSubclassCatchingRule :
 
     internal companion object {
         const val MSG = "exception.subclass.catching"
+
+        private val BROAD_EXCEPTIONS =
+            setOf(
+                "Exception",
+                "Error",
+                "Throwable",
+                "java.lang.Exception",
+                "java.lang.Error",
+                "java.lang.Throwable",
+                "kotlin.Exception",
+                "kotlin.Error",
+                "kotlin.Throwable",
+            )
     }
 }

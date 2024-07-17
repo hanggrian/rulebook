@@ -18,11 +18,13 @@ public class SwitchMultipleBranchingRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitSwitch(none: SwitchStatement) {
-            // checks for violation
-            none.caseStatements.takeIf { it.size < 2 } ?: return
-            addViolation(none, Messages[MSG])
-
             super.visitSwitch(none)
+
+            // checks for violation
+            none.caseStatements
+                .takeIf { it.size == 1 }
+                ?: return
+            addViolation(none, Messages[MSG])
         }
     }
 }

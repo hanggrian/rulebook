@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
 import com.hanggrian.rulebook.ktlint.internals.hasModifier
@@ -12,35 +11,26 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY_ACCESSOR
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SECONDARY_CONSTRUCTOR
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-organization)
  */
-public class ClassOrganizationRule :
-    Rule("class-organization"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != CLASS_BODY) {
-            return
-        }
+public class ClassOrganizationRule : Rule("class-organization") {
+    override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         var lastType: IElementType? = null
-        for (child in node.children()) {
-            // capture child types
-            if (child.elementType != PROPERTY &&
-                child.elementType != CLASS_INITIALIZER &&
-                child.elementType != SECONDARY_CONSTRUCTOR &&
-                child.elementType != FUN &&
-                child.elementType != OBJECT_DECLARATION
-            ) {
-                continue
-            }
-
+        for (child in node.children().filter {
+            it.elementType == PROPERTY ||
+                it.elementType == CLASS_INITIALIZER ||
+                it.elementType == SECONDARY_CONSTRUCTOR ||
+                it.elementType == FUN ||
+                it.elementType == OBJECT_DECLARATION
+        }) {
             // in Kotlin, static members belong in companion object
             val currentType =
                 when {

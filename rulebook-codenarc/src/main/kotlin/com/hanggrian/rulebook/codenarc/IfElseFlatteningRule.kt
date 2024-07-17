@@ -20,25 +20,24 @@ public class IfElseFlatteningRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitBlockStatement(node: BlockStatement) {
+            super.visitBlockStatement(node)
+
             // get last if
             val `if` =
                 node.statements.lastOrNull() as? IfStatement
-                    ?: return super.visitBlockStatement(node)
+                    ?: return
 
             // checks for violation
             val `else` = `if`.elseBlock
             if (!`else`.isEmpty) {
-                `else`.takeUnless { it is IfStatement } ?: return super.visitBlockStatement(node)
+                `else`.takeUnless { it is IfStatement } ?: return
                 addViolation(`else`, Messages[MSG_LIFT])
-                return super.visitBlockStatement(node)
+                return
             }
             `if`.ifBlock
-                ?.text
-                ?.takeIf { ';' in it }
-                ?: return super.visitBlockStatement(node)
+                ?.takeIf { ';' in it.text }
+                ?: return
             addViolation(`if`, Messages[MSG_INVERT])
-
-            super.visitBlockStatement(node)
         }
     }
 }

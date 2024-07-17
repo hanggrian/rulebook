@@ -4,12 +4,17 @@ import com.hanggrian.rulebook.codenarc.SpecialFunctionPositionRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class SpecialFunctionPositionRuleTest : AbstractRuleTestCase<SpecialFunctionPositionRule>() {
     override fun createRule() = SpecialFunctionPositionRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<SpecialFunctionPositionRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Overridden function at the bottom`() =

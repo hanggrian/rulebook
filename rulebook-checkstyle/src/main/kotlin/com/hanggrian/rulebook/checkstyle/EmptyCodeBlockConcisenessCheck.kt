@@ -21,7 +21,9 @@ public class EmptyCodeBlockConcisenessCheck : Check() {
             when (node.type) {
                 OBJBLOCK -> {
                     // skip non-empty content
-                    node.takeUnless { it.childCount > 2 } ?: return
+                    if (node.childCount > 2) {
+                        return
+                    }
 
                     // class block have left and right braces
                     val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
@@ -30,16 +32,21 @@ public class EmptyCodeBlockConcisenessCheck : Check() {
                 }
                 else -> {
                     // skip non-empty content
-                    node.takeUnless { it.childCount > 1 } ?: return
+                    if (node.childCount > 1) {
+                        return
+                    }
 
                     // function block only have right brace
-                    val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
-                    node to rcurly
+                    node.lastChild
+                        .takeIf { it.type == RCURLY }
+                        ?.let { node to it }
+                        ?: return
                 }
             }
 
         // checks for violation
-        lcurly.takeUnless { it.lineNo == rcurly.lineNo && lcurly.columnNo + 1 == rcurly.columnNo }
+        lcurly
+            .takeUnless { it.lineNo == rcurly.lineNo && lcurly.columnNo + 1 == rcurly.columnNo }
             ?: return
         log(lcurly, Messages[MSG])
     }

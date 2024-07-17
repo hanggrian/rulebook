@@ -8,10 +8,10 @@ import org.codenarc.rule.AbstractAstVisitor
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#identifier-name-blacklisting)
  */
 public class IdentifierNameBlacklistingRule : Rule() {
-    private var names = "integer, string, list, set, map"
+    internal var names = setOf("integer", "string", "list", "set", "map")
 
     public fun setNames(names: String) {
-        this.names = names
+        this.names = names.split(", ").toSet()
     }
 
     override fun getName(): String = "IdentifierNameBlacklisting"
@@ -24,14 +24,14 @@ public class IdentifierNameBlacklistingRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitField(node: FieldNode) {
-            // checks for violation
-            node
-                .takeIf {
-                    it.name in (rule as IdentifierNameBlacklistingRule).names.split(", ")
-                } ?: return super.visitField(node)
-            addViolation(node, Messages[MSG])
-
             super.visitField(node)
+
+            // checks for violation
+            val names = (rule as IdentifierNameBlacklistingRule).names
+            node
+                .takeIf { it.name in names }
+                ?: return
+            addViolation(node, Messages[MSG])
         }
     }
 }

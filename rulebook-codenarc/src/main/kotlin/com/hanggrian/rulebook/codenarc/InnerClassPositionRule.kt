@@ -26,17 +26,17 @@ public class InnerClassPositionRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassComplete(node: ClassNode) {
-            // checks for violation
-            for (cls in node.innerClasses) {
-                node.takeIf {
-                    it.fields.isAnyAfter(cls) ||
-                        it.declaredConstructors.isAnyAfter(cls) ||
-                        it.methods.isAnyAfter(cls)
-                } ?: continue
-                addViolation(cls, Messages[MSG])
-            }
-
             super.visitClassComplete(node)
+
+            // checks for violation
+            for (`class` in node.innerClasses) {
+                node.takeIf {
+                    it.fields.isAnyAfter(`class`) ||
+                        it.declaredConstructors.isAnyAfter(`class`) ||
+                        it.methods.isAnyAfter(`class`)
+                } ?: continue
+                addViolation(`class`, Messages[MSG])
+            }
         }
     }
 }

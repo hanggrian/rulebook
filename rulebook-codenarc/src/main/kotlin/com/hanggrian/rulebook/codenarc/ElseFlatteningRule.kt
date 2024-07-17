@@ -22,6 +22,8 @@ public class ElseFlatteningRule : Rule() {
     // Do not use `visitIfElse` because it also tracks `if` and `else if` simultaneously.
     public class Visitor : AbstractAstVisitor() {
         override fun visitBlockStatement(node: BlockStatement) {
+            super.visitBlockStatement(node)
+
             for (statement in node.statements) {
                 // skip single if
                 val `if` =
@@ -39,11 +41,9 @@ public class ElseFlatteningRule : Rule() {
                     lastElse = currentIf.elseBlock
                     currentIf = lastElse as? IfStatement
                 }
-                lastElse ?: return super.visitBlockStatement(node)
+                lastElse ?: return
                 addViolation(lastElse, Messages[MSG])
             }
-
-            super.visitBlockStatement(node)
         }
     }
 }

@@ -27,12 +27,8 @@ class BlockCommentLineJoiningChecker(Checker):
         self._process(node.doc_node)
 
     def _process(self, docstring: Const | None) -> None:
-        # first line of filter
-        if not docstring or not isinstance(docstring, Const):
-            return
-
         # checks for violation
-        if '\n\n\n' not in docstring.value:
+        if not docstring or '\n\n\n' not in docstring.value:
             return
         self.add_message(self.MSG, node=docstring)
 

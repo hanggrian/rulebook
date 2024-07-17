@@ -50,4 +50,16 @@ class KotlinApiPriorityRuleTest {
     fun `No Kotlin replacement`() =
         assertThatCode("import java.lang.ResourceBundle")
             .hasNoLintViolations()
+
+    @Test
+    fun `Unit test methods`() =
+        assertThatCode(
+            """
+            import org.junit.Test
+
+            @Test
+            fun testSomething() {
+            }
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(1, 8, Messages.get(MSG, "kotlin.test.Test"))
 }

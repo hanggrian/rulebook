@@ -19,6 +19,8 @@ public class DefaultFlatteningRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitSwitch(node: SwitchStatement) {
+            super.visitSwitch(node)
+
             // skip no default
             val default = node.defaultStatement ?: return
 
@@ -28,8 +30,6 @@ public class DefaultFlatteningRule : Rule() {
                 .takeIf { case -> case.all { it.hasReturnOrThrow() } }
                 ?: return
             addViolation(default, Messages[MSG])
-
-            super.visitSwitch(node)
         }
     }
 }

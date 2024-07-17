@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
-import com.hanggrian.rulebook.checkstyle.internals.lastmostChild
+import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION_FIELD_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
@@ -29,8 +29,7 @@ public class DeclarationLineSpacingCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // need at least 1 child
         val children =
-            node
-                .children()
+            node.children
                 .filter { it.type in DECLARATION_ARGUMENTS.keys }
                 .toList()
                 .takeIf { it.isNotEmpty() }
@@ -52,7 +51,7 @@ public class DeclarationLineSpacingCheck : Check() {
 
             // checks for violation
             children[i - 1]
-                .lastmostChild
+                .lastMostChild
                 .takeUnless { it.lineNo == childLine - 2 }
                 ?: continue
             log(child, Messages.get(MSG, DECLARATION_ARGUMENTS[child.type]!!))

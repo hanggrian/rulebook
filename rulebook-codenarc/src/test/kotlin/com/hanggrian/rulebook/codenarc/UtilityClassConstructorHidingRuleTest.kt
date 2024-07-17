@@ -5,13 +5,18 @@ import com.hanggrian.rulebook.codenarc.UtilityClassConstructorHidingRule.Compani
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class UtilityClassConstructorHidingRuleTest :
     AbstractRuleTestCase<UtilityClassConstructorHidingRule>() {
     override fun createRule() = UtilityClassConstructorHidingRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<UtilityClassConstructorHidingRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Utility class with private constructor`() =

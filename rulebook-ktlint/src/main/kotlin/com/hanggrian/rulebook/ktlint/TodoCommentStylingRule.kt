@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
 import com.hanggrian.rulebook.ktlint.internals.siblingsUntil
@@ -9,25 +8,22 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERI
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import kotlin.text.RegexOption.IGNORE_CASE
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#todo-comment-styling)
  */
-public class TodoCommentStylingRule :
-    Rule("todo-comment-styling"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != EOL_COMMENT &&
-            node.elementType != KDOC_SECTION &&
-            node.elementType != KDOC_LEADING_ASTERISK
-        ) {
-            return
-        }
+public class TodoCommentStylingRule : Rule("todo-comment-styling") {
+    override val tokens: TokenSet =
+        TokenSet.create(
+            EOL_COMMENT,
+            KDOC_SECTION,
+            KDOC_LEADING_ASTERISK,
+        )
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // obtain comment content
         val text =
             when (node.elementType) {

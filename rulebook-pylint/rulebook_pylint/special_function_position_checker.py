@@ -15,7 +15,7 @@ class SpecialFunctionPositionChecker(Checker):
     """
     MSG: str = 'special-function-position'
 
-    OBJECT_OVERRIDDEN_FUNCTIONS: set[str] = \
+    SPECIAL_FUNCTIONS: set[str] = \
         {
             '__str__',
             '__hash__',
@@ -38,7 +38,7 @@ class SpecialFunctionPositionChecker(Checker):
 
     def visit_functiondef(self, node: FunctionDef) -> None:
         # first line of filter
-        if node.name not in self.OBJECT_OVERRIDDEN_FUNCTIONS:
+        if node.name not in self.SPECIAL_FUNCTIONS:
             return
 
         current: NodeNG = node
@@ -46,7 +46,7 @@ class SpecialFunctionPositionChecker(Checker):
             # checks for violation
             if isinstance(current, FunctionDef) and \
                 not has_decorator(current, 'staticmethod') and \
-                current.name not in self.OBJECT_OVERRIDDEN_FUNCTIONS:
+                current.name not in self.SPECIAL_FUNCTIONS:
                 self.add_message(self.MSG, node=node, args=node.name)
                 return
 

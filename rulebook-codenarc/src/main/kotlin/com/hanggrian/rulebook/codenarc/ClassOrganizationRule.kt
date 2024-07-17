@@ -21,6 +21,8 @@ public class ClassOrganizationRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassComplete(node: ClassNode) {
+            super.visitClassComplete(node)
+
             // get indices of first members
             val firstConstructorIndex =
                 node.declaredConstructors
@@ -60,8 +62,6 @@ public class ClassOrganizationRule : Rule() {
                         Messages.get(MSG, Messages[MSG_CONSTRUCTOR], Messages[MSG_FUNCTION]),
                     )
                 }
-
-            super.visitClassComplete(node)
         }
     }
 }

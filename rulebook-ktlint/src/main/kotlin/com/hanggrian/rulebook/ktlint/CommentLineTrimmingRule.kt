@@ -1,25 +1,19 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.isEolCommentEmpty
 import com.hanggrian.rulebook.ktlint.internals.isWhitespaceSingleNewline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-trimming)
  */
-public class CommentLineTrimmingRule :
-    Rule("comment-line-trimming"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != EOL_COMMENT) {
-            return
-        }
+public class CommentLineTrimmingRule : Rule("comment-line-trimming") {
+    override val tokens: TokenSet = TokenSet.create(EOL_COMMENT)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // continue if this comment is first line
         val prev = node.treePrev
         if (prev?.isWhitespaceSingleNewline() == true &&

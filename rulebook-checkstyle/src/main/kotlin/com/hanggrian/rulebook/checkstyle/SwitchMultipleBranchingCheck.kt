@@ -15,9 +15,8 @@ public class SwitchMultipleBranchingCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // checks for violation
         node
-            .children()
-            .filter { it.type == CASE_GROUP }
-            .takeIf { it.count() < 2 }
+            .children
+            .takeIf { n -> n.count { it.type == CASE_GROUP } == 1 }
             ?: return
         log(node, Messages[MSG])
     }

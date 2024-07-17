@@ -24,32 +24,32 @@ public class QualifierConsistencyRule : Rule() {
         private val importPaths = mutableSetOf<String>()
 
         override fun visitImports(node: ModuleNode) {
+            super.visitImports(node)
+
             // keep import list
             node.imports.forEach { importPaths += it.type.name }
-
-            super.visitImports(node)
         }
 
         override fun visitField(node: FieldNode) {
+            super.visitField(node)
+
             // checks for violation
             process(node, node.type.name)
-
-            super.visitField(node)
         }
 
         override fun visitMethodEx(node: MethodNode) {
+            super.visitMethodEx(node)
+
             // checks for violation
             node.parameters.forEach { process(it, it.type.name) }
-
-            super.visitMethodEx(node)
         }
 
         override fun visitMethodCallExpression(node: MethodCallExpression) {
+            super.visitMethodCallExpression(node)
+
             // checks for violation
             val expression = node.objectExpression
             process(expression, expression.text)
-
-            return super.visitMethodCallExpression(node)
         }
 
         private fun process(node: ASTNode, text: String) {

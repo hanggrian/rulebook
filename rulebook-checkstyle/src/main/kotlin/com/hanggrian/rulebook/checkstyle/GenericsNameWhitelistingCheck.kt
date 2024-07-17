@@ -17,7 +17,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE_PARAMETERS
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-whitelisting)
  */
 public class GenericsNameWhitelistingCheck : Check() {
-    private var names = setOf("E", "K", "N", "T", "V")
+    internal var names = setOf("E", "K", "N", "T", "V")
 
     public fun setNames(vararg names: String) {
         this.names = names.toSet()
@@ -37,7 +37,7 @@ public class GenericsNameWhitelistingCheck : Check() {
         val typeParameter =
             node
                 .findFirstToken(TYPE_PARAMETERS)
-                ?.children()
+                ?.children
                 ?.singleOrNull { it.type == TYPE_PARAMETER }
                 ?: return
 

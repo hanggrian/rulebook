@@ -1,5 +1,6 @@
 package com.hanggrian.rulebook.checkstyle
 
+import com.google.common.truth.Truth.assertThat
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -7,7 +8,13 @@ class GenericsNameWhitelistingCheckTest {
     private val checker = checkerOf<GenericsNameWhitelistingCheck>()
 
     @Test
-    fun `Rule properties`() = GenericsNameWhitelistingCheck().assertProperties()
+    fun `Rule properties`() {
+        val check = GenericsNameWhitelistingCheck()
+        check.assertProperties()
+
+        check.setNames("X", "Z")
+        assertThat(check.names).containsExactly("X", "Z")
+    }
 
     @Test
     fun `Common generic type in class-alike`() =

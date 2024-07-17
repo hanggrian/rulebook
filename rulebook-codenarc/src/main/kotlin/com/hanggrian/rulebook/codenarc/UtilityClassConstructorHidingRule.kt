@@ -19,28 +19,28 @@ public class UtilityClassConstructorHidingRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitClassEx(node: ClassNode) {
+            super.visitClassEx(node)
+
             // skip empty class
             if (node.methods.isEmpty() && node.fields.isEmpty()) {
-                return super.visitClassEx(node)
+                return
             }
 
             // skip if class has non-static member
             if (node.methods.any { !it.isStatic } || node.fields.any { !it.isStatic }) {
-                return super.visitClassEx(node)
+                return
             }
 
             // checks for violation
             if (node.declaredConstructors.isEmpty()) {
                 addViolation(node, Messages[MSG_NEW])
-                return super.visitClassEx(node)
+                return
             }
             for (constructor in node.declaredConstructors) {
                 if (!constructor.isPrivate) {
                     addViolation(constructor, Messages[MSG_EXIST])
                 }
             }
-
-            super.visitClassEx(node)
         }
     }
 }

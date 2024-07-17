@@ -1,27 +1,21 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.hasModifier
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OVERRIDE_KEYWORD
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#special-function-position)
  */
-public class SpecialFunctionPositionRule :
-    Rule("special-function-position"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != FUN) {
-            return
-        }
+public class SpecialFunctionPositionRule : Rule("special-function-position") {
+    override val tokens: TokenSet = TokenSet.create(FUN)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // target special function
         val identifier =
             node

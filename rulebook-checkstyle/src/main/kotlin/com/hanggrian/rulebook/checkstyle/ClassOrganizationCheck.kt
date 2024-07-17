@@ -29,16 +29,12 @@ public class ClassOrganizationCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         var lastType = -1
-        for (child in node.findFirstToken(OBJBLOCK)!!.children()) {
-            // capture child types
-            if (child.type != VARIABLE_DEF &&
-                child.type != CTOR_DEF &&
-                child.type != COMPACT_CTOR_DEF &&
-                child.type != METHOD_DEF
-            ) {
-                continue
-            }
-
+        for (child in node.findFirstToken(OBJBLOCK)!!.children.filter {
+            it.type == VARIABLE_DEF ||
+                it.type == CTOR_DEF ||
+                it.type == COMPACT_CTOR_DEF ||
+                it.type == METHOD_DEF
+        }) {
             // in Java, static members have specific keyword
             if (child.hasModifier(LITERAL_STATIC)) {
                 continue

@@ -10,7 +10,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation)
  */
 public class BlockTagPunctuationCheck : JavadocCheck() {
-    private var blockTags = setOf("@param", "@return")
+    internal var blockTags = setOf("@param", "@return")
 
     public fun setBlockTags(vararg blockTags: String) {
         this.blockTags = blockTags.toSet()
@@ -20,14 +20,17 @@ public class BlockTagPunctuationCheck : JavadocCheck() {
 
     override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
-        node.children.first().takeIf { it.text in blockTags } ?: return
+        node.children
+            .first()
+            .takeIf { it.text in blockTags }
+            ?: return
 
         // long descriptions have multiple lines, take only the last one
         val text =
             node.children
                 ?.firstOrNull { it.type == DESCRIPTION }
                 ?.children
-                ?.findLast { it.type == TEXT && it.text.isNotBlank() }
+                ?.lastOrNull { it.type == TEXT && it.text.isNotBlank() }
                 ?: return
 
         // checks for violation

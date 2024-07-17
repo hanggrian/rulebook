@@ -4,13 +4,18 @@ import com.hanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule.Compan
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class ClassNameAcronymCapitalizationRuleTest :
     AbstractRuleTestCase<ClassNameAcronymCapitalizationRule>() {
     override fun createRule() = ClassNameAcronymCapitalizationRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<ClassNameAcronymCapitalizationRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Class names with lowercase abbreviation`() =

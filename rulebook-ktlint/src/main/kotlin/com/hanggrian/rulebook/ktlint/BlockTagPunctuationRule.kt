@@ -1,18 +1,16 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG_NAME
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
 import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
-import org.jetbrains.kotlin.psi.psiUtil.children
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation)
@@ -21,20 +19,16 @@ public class BlockTagPunctuationRule :
     Rule(
         "block-tag-punctuation",
         setOf(PUNCTUATED_BLOCK_TAGS_PROPERTY),
-    ),
-    RuleAutocorrectApproveHandler {
+    ) {
     private var punctuatedTags = PUNCTUATED_BLOCK_TAGS_PROPERTY.defaultValue
+
+    override val tokens: TokenSet = TokenSet.create(KDOC_TAG)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         punctuatedTags = editorConfig[PUNCTUATED_BLOCK_TAGS_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != KDOC_TAG) {
-            return
-        }
-
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // only enforce certain tags
         node
             .findChildByType(KDOC_TAG_NAME)
@@ -44,8 +38,8 @@ public class BlockTagPunctuationRule :
         // long descriptions have multiple lines, take only the last one
         val kdocText =
             node
-                .children()
-                .findLast { it.elementType == KDOC_TEXT && it.text.isNotBlank() }
+                .lastChildNode
+                ?.takeIf { it.elementType == KDOC_TEXT && it.text.isNotBlank() }
                 ?: return
 
         // checks for violation

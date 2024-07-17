@@ -1,5 +1,6 @@
 package com.hanggrian.rulebook.checkstyle
 
+import com.google.common.truth.Truth.assertThat
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -7,7 +8,13 @@ class BlockTagPunctuationCheckTest {
     private val checker = checkerOf<BlockTagPunctuationCheck>()
 
     @Test
-    fun `Rule properties`() = BlockTagPunctuationCheck().assertProperties()
+    fun `Rule properties`() {
+        val check = BlockTagPunctuationCheck()
+        check.assertProperties()
+
+        check.setBlockTags("@author", "@see")
+        assertThat(check.blockTags).containsExactly("@author", "@see")
+    }
 
     @Test
     fun `No description`() = assertEquals(0, checker.read("BlockTagPunctuation1"))

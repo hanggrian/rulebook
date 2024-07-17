@@ -1,28 +1,22 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
 import com.hanggrian.rulebook.ktlint.internals.hasReturnOrThrow
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
-import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#default-flattening)
  */
-public class DefaultFlatteningRule :
-    Rule("default-flattening"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != WHEN) {
-            return
-        }
+public class DefaultFlatteningRule : Rule("default-flattening") {
+    override val tokens: TokenSet = TokenSet.create(WHEN)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // skip no default
         val cases = node.children().filter { it.elementType == WHEN_ENTRY }
         val default = cases.lastOrNull()?.takeIf { ELSE_KEYWORD in it } ?: return

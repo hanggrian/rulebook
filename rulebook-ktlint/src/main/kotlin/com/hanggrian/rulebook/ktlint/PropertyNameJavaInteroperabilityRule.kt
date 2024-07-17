@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ANNOTATION_ENTRY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
@@ -17,24 +16,17 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.USER_TYPE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER_LIST
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#property-name-java-interoperability)
  */
-public class PropertyNameJavaInteroperabilityRule :
-    Rule("property-name-java-interoperability"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != CLASS &&
-            node.elementType != OBJECT_DECLARATION
-        ) {
-            return
-        }
+public class PropertyNameJavaInteroperabilityRule : Rule("property-name-java-interoperability") {
+    override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // collect fields declared in constructor
         val properties = mutableListOf<ASTNode>()
         if (node.elementType == CLASS) {

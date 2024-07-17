@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.hasAnnotation
 import com.hanggrian.rulebook.checkstyle.internals.hasModifier
-import com.hanggrian.rulebook.checkstyle.internals.siblings
+import com.hanggrian.rulebook.checkstyle.internals.nextSiblings
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_STATIC
@@ -24,8 +24,7 @@ public class SpecialFunctionPositionCheck : Check() {
                 ?: return
 
         // checks for violation
-        node
-            .siblings()
+        node.nextSiblings
             .takeIf { siblings ->
                 // in Java, static members have specific keyword
                 siblings.any {

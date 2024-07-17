@@ -23,7 +23,8 @@ public class FileInitialLineTrimmingCheck : Check() {
         // checks for violation
         node
             .takeUnless { minIndex == 1 }
-            ?.takeIf { it.lineNo > 1 } ?: return
+            ?.takeIf { it.lineNo > 1 }
+            ?: return
         log(node, Messages[MSG])
     }
 

@@ -1,5 +1,6 @@
 package com.hanggrian.rulebook.checkstyle
 
+import com.google.common.truth.Truth.assertThat
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -7,7 +8,13 @@ class ClassFinalNameBlacklistingCheckTest {
     private val checker = checkerOf<ClassFinalNameBlacklistingCheck>()
 
     @Test
-    fun `Rule properties`() = ClassFinalNameBlacklistingCheck().assertProperties()
+    fun `Rule properties`() {
+        val check = ClassFinalNameBlacklistingCheck()
+        check.assertProperties()
+
+        check.setNames("Hello", "World")
+        assertThat(check.names).containsExactly("Hello", "World")
+    }
 
     @Test
     fun `Meaningful class names`() = assertEquals(0, checker.read("ClassNameBlacklisting1"))

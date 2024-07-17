@@ -29,11 +29,9 @@ class BlockCommentLineTrimmingChecker(Checker):
         self._process(node.doc_node)
 
     def _process(self, docstring: Const | None) -> None:
-        # first line of filter
-        if not docstring or not isinstance(docstring, Const):
-            return
-
         # checks for violation
+        if not docstring:
+            return
         if docstring.value.startswith('\n\n'):
             self.add_message(self.MSG_FIRST, node=docstring)
         if re.search(r'\n\n\s*$', docstring.value):

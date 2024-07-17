@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
@@ -12,21 +11,16 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.SUPER_TYPE_ENTRY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SUPER_TYPE_LIST
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.USER_TYPE
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending)
  */
-public class ExceptionExtendingRule :
-    Rule("exception-extending"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != CLASS) {
-            return
-        }
+public class ExceptionExtendingRule : Rule("exception-extending") {
+    override val tokens: TokenSet = TokenSet.create(CLASS)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // get identifier from supertype declared with or without constructor callee
         val superTypeList = node.findChildByType(SUPER_TYPE_LIST) ?: return
         val identifier =
@@ -47,7 +41,9 @@ public class ExceptionExtendingRule :
                 ?: return
 
         // checks for violation
-        identifier.takeIf { it.text in NON_APPLICATION_EXCEPTIONS } ?: return
+        identifier
+            .takeIf { it.text in NON_APPLICATION_EXCEPTIONS }
+            ?: return
         emit(identifier.startOffset, Messages[MSG], false)
     }
 

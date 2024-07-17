@@ -4,12 +4,17 @@ import com.hanggrian.rulebook.codenarc.ClassOrganizationRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
+import kotlin.test.assertIs
 
 class ClassOrganizationRuleTest : AbstractRuleTestCase<ClassOrganizationRule>() {
     override fun createRule() = ClassOrganizationRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        assertIs<ClassOrganizationRule.Visitor>(rule.astVisitor)
+    }
 
     @Test
     fun `Properties, initializers, constructors, and methods`() =

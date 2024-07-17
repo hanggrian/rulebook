@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
@@ -8,13 +7,13 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_PARAMETER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_PARAMETER_LIST
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.children
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
 import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-whitelisting)
@@ -23,22 +22,16 @@ public class GenericsNameWhitelistingRule :
     Rule(
         "generics-name-whitelisting",
         setOf(NAMES_PROPERTY),
-    ),
-    RuleAutocorrectApproveHandler {
+    ) {
     private var names = NAMES_PROPERTY.defaultValue
+
+    override val tokens: TokenSet = TokenSet.create(CLASS, FUN)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         names = editorConfig[NAMES_PROPERTY]
     }
 
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != CLASS &&
-            node.elementType != FUN
-        ) {
-            return
-        }
-
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // filter out multiple generics
         val typeParameter =
             node

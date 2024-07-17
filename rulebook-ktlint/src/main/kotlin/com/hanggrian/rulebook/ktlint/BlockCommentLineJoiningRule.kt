@@ -1,25 +1,19 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.internals.Emit
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
-import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-line-joining)
  */
-public class BlockCommentLineJoiningRule :
-    Rule("block-comment-line-joining"),
-    RuleAutocorrectApproveHandler {
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        // first line of filter
-        if (node.elementType != KDOC_LEADING_ASTERISK) {
-            return
-        }
+public class BlockCommentLineJoiningRule : Rule("block-comment-line-joining") {
+    override val tokens: TokenSet = TokenSet.create(KDOC_LEADING_ASTERISK)
 
+    override fun visitToken(node: ASTNode, emit: Emit) {
         // find matching sibling
         val next =
             node.treeNext
@@ -29,7 +23,9 @@ public class BlockCommentLineJoiningRule :
                 ?: return
 
         // checks for violation
-        next.treeNext?.takeIf { it.isWhiteSpaceWithNewline() } ?: return
+        next.treeNext
+            ?.takeIf { it.isWhiteSpaceWithNewline() }
+            ?: return
         emit(next.endOffset, Messages[MSG], false)
     }
 
