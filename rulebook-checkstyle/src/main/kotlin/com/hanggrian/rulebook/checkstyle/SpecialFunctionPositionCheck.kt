@@ -17,7 +17,7 @@ public class SpecialFunctionPositionCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // target special function
-        val ident =
+        val identifier =
             node
                 .takeIf { it.isSpecialFunction() }
                 ?.findFirstToken(IDENT)
@@ -25,15 +25,15 @@ public class SpecialFunctionPositionCheck : Check() {
 
         // checks for violation
         node.nextSiblings
-            .takeIf { siblings ->
+            .takeIf { nodes ->
                 // in Java, static members have specific keyword
-                siblings.any {
+                nodes.any {
                     it.type == METHOD_DEF &&
                         !it.isSpecialFunction() &&
                         !it.hasModifier(LITERAL_STATIC)
                 }
             } ?: return
-        log(node, Messages.get(MSG, ident.text))
+        log(node, Messages.get(MSG, identifier.text))
     }
 
     internal companion object {

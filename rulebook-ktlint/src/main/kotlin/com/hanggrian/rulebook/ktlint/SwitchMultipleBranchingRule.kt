@@ -17,7 +17,7 @@ public class SwitchMultipleBranchingRule : Rule("switch-multiple-branching") {
         // checks for violation
         node
             .children()
-            .takeIf { n -> n.count { it.elementType == WHEN_ENTRY } == 1 }
+            .takeIf { nodes -> nodes.count { it.elementType == WHEN_ENTRY } == 1 }
             ?: return
         emit(node.startOffset, Messages[MSG], false)
     }

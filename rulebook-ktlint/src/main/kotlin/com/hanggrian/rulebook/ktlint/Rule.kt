@@ -17,8 +17,8 @@ public typealias Emit = (
 
 public abstract class Rule(
     id: String,
-    override val usesEditorConfigProperties: Set<EditorConfigProperty<*>> = emptySet(),
-    override val visitorModifiers: Set<VisitorModifier> = emptySet(),
+    final override val usesEditorConfigProperties: Set<EditorConfigProperty<*>> = emptySet(),
+    final override val visitorModifiers: Set<VisitorModifier> = emptySet(),
 ) : Rule(
         RuleId("${ID.value}:$id"),
         About(
@@ -34,7 +34,7 @@ public abstract class Rule(
 
     public abstract fun visitToken(node: ASTNode, emit: Emit)
 
-    override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
+    final override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         if (node.elementType in tokens) {
             visitToken(node, emit)
         }

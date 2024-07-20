@@ -16,8 +16,8 @@ public class EmptyCodeBlockConcisenessCheck : Check() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // additional filter
-        val (lcurly, rcurly) =
+        // obtain corresponding braces
+        val (leftBrace, rightBrace) =
             when (node.type) {
                 OBJBLOCK -> {
                     // skip non-empty content
@@ -26,9 +26,9 @@ public class EmptyCodeBlockConcisenessCheck : Check() {
                     }
 
                     // class block have left and right braces
-                    val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                    val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
-                    lcurly to rcurly
+                    val leftBrace = node.firstChild.takeIf { it.type == LCURLY } ?: return
+                    val rightBrace = node.lastChild.takeIf { it.type == RCURLY } ?: return
+                    leftBrace to rightBrace
                 }
                 else -> {
                     // skip non-empty content
@@ -45,10 +45,12 @@ public class EmptyCodeBlockConcisenessCheck : Check() {
             }
 
         // checks for violation
-        lcurly
-            .takeUnless { it.lineNo == rcurly.lineNo && lcurly.columnNo + 1 == rcurly.columnNo }
-            ?: return
-        log(lcurly, Messages[MSG])
+        leftBrace
+            .takeUnless {
+                it.lineNo == rightBrace.lineNo &&
+                    leftBrace.columnNo + 1 == rightBrace.columnNo
+            } ?: return
+        log(leftBrace, Messages[MSG])
     }
 
     internal companion object {

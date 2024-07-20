@@ -1,11 +1,11 @@
-from tokenize import TokenInfo, COMMENT
+from tokenize import TokenInfo, COMMENT, NL
 from typing import TYPE_CHECKING
 
 from pylint.typing import MessageDefinitionTuple
 from regex import regex, Pattern
 from rulebook_pylint.checkers import TokenChecker
 from rulebook_pylint.internals.messages import Messages
-from rulebook_pylint.internals.nodes import is_newline_single, is_comment_empty
+from rulebook_pylint.internals.nodes import is_comment_empty
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -29,14 +29,14 @@ class CommentLineTrimmingChecker(TokenChecker):
                 continue
 
             # continue if this comment is first line
-            if is_newline_single(tokens[i - 1]) and \
+            if tokens[i - 1].type == NL and \
                 tokens[i - 2].type == COMMENT:
                 return
 
             # iterate to find last
-            j = i
+            j: int = i
             while j + 2 < len(tokens) and \
-                is_newline_single(tokens[j + 1]) and \
+                tokens[j + 1].type == NL and \
                 tokens[j + 2].type == COMMENT:
                 j += 2
             current_token: TokenInfo = tokens[j]

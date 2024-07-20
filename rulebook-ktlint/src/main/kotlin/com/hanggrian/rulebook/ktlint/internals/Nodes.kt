@@ -9,6 +9,8 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
+import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 
@@ -55,11 +57,18 @@ internal fun ASTNode.hasReturnOrThrow(): Boolean {
     return RETURN in statements || THROW in statements
 }
 
-internal fun ASTNode.isWhitespaceMultipleNewline(): Boolean =
-    elementType == WHITE_SPACE && text.count { it == '\n' } > 1
+internal fun ASTNode.isMultiline(): Boolean {
+    if (isWhiteSpaceWithNewline()) {
+        return true
+    }
+    return children().any { it.isMultiline() }
+}
 
-internal fun ASTNode.isWhitespaceSingleNewline(): Boolean =
+internal fun ASTNode.isWhitespaceWithSingleNewline(): Boolean =
     elementType == WHITE_SPACE && text.count { it == '\n' } == 1
+
+internal fun ASTNode.isWhitespaceWithMultipleNewlines(): Boolean =
+    elementType == WHITE_SPACE && text.count { it == '\n' } > 1
 
 internal fun ASTNode.isEolCommentEmpty(): Boolean =
     elementType == EOL_COMMENT && text.substringAfter("//").isBlank()

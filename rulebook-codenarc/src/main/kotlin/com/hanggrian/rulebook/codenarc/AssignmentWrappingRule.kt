@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
+import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.syntax.Types.ASSIGN
 import org.codenarc.rule.AbstractAstVisitor
@@ -24,8 +25,7 @@ public class AssignmentWrappingRule : Rule() {
             // target multiline assignment
             val assign =
                 node.operation
-                    .takeIf { it.type == ASSIGN }
-                    ?.takeUnless { node.lineNumber == node.lastLineNumber }
+                    .takeIf { it.type == ASSIGN && node.isMultiline() }
                     ?: return
 
             // checks for violation

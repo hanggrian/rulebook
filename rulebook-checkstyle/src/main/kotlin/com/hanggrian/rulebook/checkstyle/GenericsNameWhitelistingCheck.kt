@@ -42,12 +42,12 @@ public class GenericsNameWhitelistingCheck : Check() {
                 ?: return
 
         // checks for violation
-        val ident =
+        val identifier =
             typeParameter
                 .findFirstToken(IDENT)
                 ?.takeUnless { node.hasParentWithGenerics() || it.text in names }
                 ?: return
-        log(ident, Messages.get(MSG, names.joinToString()))
+        log(identifier, Messages.get(MSG, names.joinToString()))
     }
 
     internal companion object {

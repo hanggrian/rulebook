@@ -17,7 +17,7 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
     }
 
     @Test
-    fun `Consistent qualifiers`() =
+    fun `Consistent class qualifiers`() =
         assertNoViolations(
             """
             import java.lang.String
@@ -35,7 +35,7 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
         )
 
     @Test
-    fun `Redundant qualifiers`() =
+    fun `Redundant class qualifiers`() =
         assertViolations(
             """
             import java.lang.String
@@ -53,5 +53,44 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
             violationOf(4, "java.lang.String property = new java.lang.String()", Messages[MSG]),
             violationOf(6, "void parameter(java.lang.String param) {}", Messages[MSG]),
             violationOf(9, "java.lang.String.format(\"%s\", \"Hello World\")", Messages[MSG]),
+        )
+
+    @Test
+    fun `Consistent method qualifiers`() =
+        assertNoViolations(
+            """
+            import java.lang.String
+            import java.lang.String.format
+
+            class QualifierConsistency {
+                String property = String.format("%s", "Hello World")
+
+                void call() {
+                    format("%s", "Hello World")
+                }
+            }
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Redundant method qualifiers`(): Unit =
+        assertTwoViolations(
+            """
+            import java.lang.String.format
+
+            class QualifierConsistency {
+                String property = java.lang.String.format("%s", "Hello World")
+
+                void call() {
+                    java.lang.String.format("%s", "Hello World")
+                }
+            }
+            """.trimIndent(),
+            4,
+            "String property = java.lang.String.format(\"%s\", \"Hello World\")",
+            Messages[MSG],
+            7,
+            "java.lang.String.format(\"%s\", \"Hello World\")",
+            Messages[MSG],
         )
 }

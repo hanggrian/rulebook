@@ -8,5 +8,13 @@ public class IfElseFlattening {
         }
     }
 
+    public void baz() {
+        if (true) {
+            baz(
+                0
+            );
+        }
+    }
+
     public void baz() {}
 }

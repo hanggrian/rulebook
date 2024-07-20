@@ -4,8 +4,8 @@ import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -24,7 +24,7 @@ public class EmptyCodeBlockConcisenessRule : Rule("empty-code-block-conciseness"
             }?.children()
             ?.toList()
             ?.let { it.slice(1 until it.lastIndex) }
-            ?.takeIf { n -> n.isNotEmpty() && n.all { it.elementType == WHITE_SPACE } }
+            ?.takeIf { nodes -> nodes.isNotEmpty() && nodes.all { it.isWhiteSpace() } }
             ?: return
         emit(node.startOffset, Messages[MSG], false)
     }

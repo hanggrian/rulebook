@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
+import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codenarc.rule.AbstractAstVisitor
@@ -34,8 +35,9 @@ public class IfElseFlatteningRule : Rule() {
                 addViolation(`else`, Messages[MSG_LIFT])
                 return
             }
-            `if`.ifBlock
-                ?.takeIf { ';' in it.text }
+            (`if`.ifBlock as? BlockStatement)
+                ?.statements
+                ?.takeIf { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
                 ?: return
             addViolation(`if`, Messages[MSG_INVERT])
         }

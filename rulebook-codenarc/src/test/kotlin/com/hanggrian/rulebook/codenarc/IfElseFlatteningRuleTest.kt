@@ -35,8 +35,8 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
         )
 
     @Test
-    fun `Invert if with two statements`() =
-        assertSingleViolation(
+    fun `Invert if with multiline statement or two statements`() =
+        assertTwoViolations(
             """
             void foo() {
                 if (true) {
@@ -44,8 +44,19 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
                     baz()
                 }
             }
+
+            void bar() {
+                if (true) {
+                    baz(
+                        0
+                    )
+                }
+            }
             """.trimIndent(),
             2,
+            "if (true) {",
+            Messages[MSG_INVERT],
+            9,
             "if (true) {",
             Messages[MSG_INVERT],
         )

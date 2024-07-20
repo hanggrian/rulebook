@@ -4,6 +4,7 @@ from astroid import NodeNG, If, For, While, FunctionDef
 from pylint.typing import MessageDefinitionTuple
 from rulebook_pylint.checkers import Checker
 from rulebook_pylint.internals.messages import Messages
+from rulebook_pylint.internals.nodes import is_multiline
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -44,15 +45,20 @@ class IfElseFlatteningChecker(Checker):
             return
 
         # checks for violation
-        else2 = if2.orelse
+        else2: list[NodeNG] = if2.orelse
         if len(else2) > 0:
-            if isinstance(else2[0], If):
+            else_first_child: NodeNG = else2[0]
+            if isinstance(else_first_child, If):
                 return
-            self.add_message(self.MSG_LIFT, node=else2[0])
+            self.add_message(self.MSG_LIFT, node=else_first_child)
             return
-        if len(if2.body) < 2:
-            return
-        self.add_message(self.MSG_INVERT, node=if2)
+        length: int = len(if2.body)
+        if length == 1:
+            condition: bool = is_multiline(if2.body[0])
+        else:
+            condition: bool = length > 1
+        if condition:
+            self.add_message(self.MSG_INVERT, node=if2)
 
 
 def register(linter: 'PyLinter') -> None:

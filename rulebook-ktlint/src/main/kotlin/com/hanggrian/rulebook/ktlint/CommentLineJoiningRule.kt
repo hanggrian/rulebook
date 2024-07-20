@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.ktlint
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.hanggrian.rulebook.ktlint.internals.isEolCommentEmpty
-import com.hanggrian.rulebook.ktlint.internals.isWhitespaceSingleNewline
+import com.hanggrian.rulebook.ktlint.internals.isWhitespaceWithSingleNewline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -23,7 +23,7 @@ public class CommentLineJoiningRule : Rule("comment-line-joining") {
         // find matching sibling
         val next =
             node.treeNext
-                ?.takeIf { it.isWhitespaceSingleNewline() }
+                ?.takeIf { it.isWhitespaceWithSingleNewline() }
                 ?.treeNext
                 ?.takeIf { it.elementType == EOL_COMMENT }
                 ?: return

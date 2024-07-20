@@ -1,4 +1,4 @@
-from tokenize import TokenInfo, NL, COMMENT
+from tokenize import TokenInfo, COMMENT
 
 from astroid import NodeNG, Name, Assign, AnnAssign, AssignName, FunctionDef, ClassDef
 
@@ -26,8 +26,8 @@ def get_assignname(node: Assign) -> AssignName | None:
     return None
 
 
-def is_newline_single(token: TokenInfo) -> bool:
-    return token.type == NL and token.string == '\n'
+def is_multiline(node: NodeNG) -> bool:
+    return node.end_lineno > node.lineno
 
 
 def is_comment_empty(token: TokenInfo) -> bool:

@@ -5,3 +5,10 @@ def foo(condition: bool):
     else:
         print()
         print()
+
+
+def bar(condition: bool):
+    if condition:
+        print(
+            0,
+        )

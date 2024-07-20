@@ -26,6 +26,7 @@ ktlint-cli-ruleset-core = { module = "com.pinterest.ktlint:ktlint-cli-ruleset-co
 ktlint-ruleset-standard = { module = "com.pinterest.ktlint:ktlint-ruleset-standard", version.ref = "ktlint" }
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 codenarc = { module = "org.codenarc:CodeNarc", version.ref = "codenarc" }
+guava = "com.google.guava:guava:33.2.1-jre"
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
 truth = "com.google.truth:truth:1.4.4"

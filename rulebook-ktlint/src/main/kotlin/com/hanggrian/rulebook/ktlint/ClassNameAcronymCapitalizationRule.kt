@@ -34,11 +34,11 @@ public class ClassNameAcronymCapitalizationRule : Rule("class-name-acronym-capit
         val transformation =
             name
                 .takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
-                ?.let { n ->
-                    ABBREVIATION_REGEX.replace(n) {
+                ?.let { s ->
+                    ABBREVIATION_REGEX.replace(s) {
                         it.value.first() +
                             when {
-                                it.range.last == n.lastIndex -> it.value.drop(1).lowercase()
+                                it.range.last == s.lastIndex -> it.value.drop(1).lowercase()
                                 else ->
                                     it.value.drop(1).dropLast(1).lowercase() +
                                         it.value.last()

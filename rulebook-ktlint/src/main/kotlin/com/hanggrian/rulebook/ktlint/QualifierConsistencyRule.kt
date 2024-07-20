@@ -1,12 +1,15 @@
 package com.hanggrian.rulebook.ktlint
 
+import com.google.common.collect.HashMultimap
 import com.hanggrian.rulebook.ktlint.internals.Messages
-import com.hanggrian.rulebook.ktlint.internals.contains
 import com.hanggrian.rulebook.ktlint.internals.qualifierName
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CALL_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRESSION
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_DIRECTIVE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.REFERENCE_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.isRoot
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.KtImportDirective
@@ -16,7 +19,7 @@ import org.jetbrains.kotlin.psi.KtImportDirective
  */
 public class QualifierConsistencyRule : Rule("qualifier-consistency") {
     private val importPaths = mutableSetOf<String>()
-    private val targetNodes = mutableSetOf<ASTNode>()
+    private val targetNodes = HashMultimap.create<ASTNode, ASTNode>()
 
     override val tokens: TokenSet =
         TokenSet.create(
@@ -31,29 +34,44 @@ public class QualifierConsistencyRule : Rule("qualifier-consistency") {
             importPaths += (node.psi as KtImportDirective).importPath!!.pathStr
             return
         }
-        targetNodes +=
-            when (node.elementType) {
-                TYPE_REFERENCE -> node
-                else ->
+        when (node.elementType) {
+            // keep class qualifier
+            TYPE_REFERENCE -> targetNodes.put(node, null)
+            // keep class qualifier and calling method
+            else -> {
+                val dot =
                     node
-                        .takeUnless { DOT_QUALIFIED_EXPRESSION in it }
-                        ?.takeUnless { it.treeParent.elementType == IMPORT_DIRECTIVE }
+                        .takeUnless { it.treeParent.elementType == IMPORT_DIRECTIVE }
+                        ?.findChildByType(DOT_QUALIFIED_EXPRESSION)
                         ?: return
+                targetNodes.put(dot, null)
+                targetNodes.put(
+                    dot,
+                    node
+                        .findChildByType(CALL_EXPRESSION)
+                        ?.findChildByType(REFERENCE_EXPRESSION)
+                        ?.findChildByType(IDENTIFIER)
+                        ?: return,
+                )
             }
+        }
     }
 
     override fun afterVisitChildNodes(node: ASTNode, emit: Emit) {
         // only trigger once
-        if (node.elementType != FILE) {
+        if (!node.isRoot()) {
             return
         }
 
         // checks for violation
-        for (targetNode in targetNodes) {
-            if (targetNode.qualifierName !in importPaths) {
-                continue
+        targetNodes.forEach { `class`, method ->
+            if (when (method) {
+                    null -> `class`.qualifierName in importPaths
+                    else -> `class`.qualifierName + '.' + method.text in importPaths
+                }
+            ) {
+                emit(`class`.startOffset, Messages[MSG], false)
             }
-            emit(targetNode.startOffset, Messages[MSG], false)
         }
     }
 

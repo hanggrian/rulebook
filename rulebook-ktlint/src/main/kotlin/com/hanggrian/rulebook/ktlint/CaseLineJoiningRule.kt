@@ -2,9 +2,8 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
-import com.hanggrian.rulebook.ktlint.internals.isWhitespaceMultipleNewline
+import com.hanggrian.rulebook.ktlint.internals.isWhitespaceWithMultipleNewlines
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -18,8 +17,7 @@ public class CaseLineJoiningRule : Rule("case-line-joining") {
         // checks for violation
         val whitespace =
             node.treePrev
-                ?.takeIf { it.elementType == WHITE_SPACE }
-                ?.takeIf { it.isWhitespaceMultipleNewline() }
+                ?.takeIf { it.isWhitespaceWithMultipleNewlines() }
                 ?: return
         emit(whitespace.endOffset, Messages[MSG], false)
     }

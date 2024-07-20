@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.contains
+import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
@@ -44,7 +45,8 @@ public class IfElseFlatteningCheck : Check() {
         `if`
             .findFirstToken(SLIST)
             ?.children
-            ?.takeIf { n -> n.count { it.type != RCURLY && it.type != SEMI } > 1 }
+            ?.filter { it.type != RCURLY && it.type != SEMI }
+            ?.takeIf { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
             ?: return
         log(`if`, Messages[MSG_INVERT])
     }

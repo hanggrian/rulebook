@@ -4,6 +4,7 @@ import com.hanggrian.rulebook.ktlint.IfElseFlatteningRule.Companion.MSG_INVERT
 import com.hanggrian.rulebook.ktlint.IfElseFlatteningRule.Companion.MSG_LIFT
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class IfElseFlatteningRuleTest {
@@ -30,7 +31,7 @@ class IfElseFlatteningRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Invert if with two statements`() =
+    fun `Invert if with multiline statement or two statements`() =
         assertThatCode(
             """
             fun foo() {
@@ -39,8 +40,19 @@ class IfElseFlatteningRuleTest {
                     baz()
                 }
             }
+
+            fun bar() {
+                if (true) {
+                    baz(
+                        0,
+                    )
+                }
+            }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_INVERT])
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(2, 5, Messages[MSG_INVERT]),
+            LintViolation(9, 5, Messages[MSG_INVERT]),
+        )
 
     @Test
     fun `Lift else when there is no else if`() =

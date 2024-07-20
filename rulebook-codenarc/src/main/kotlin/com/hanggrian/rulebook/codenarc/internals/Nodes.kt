@@ -1,5 +1,6 @@
 package com.hanggrian.rulebook.codenarc.internals
 
+import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.AnnotatedNode
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.CaseStatement
@@ -25,3 +26,5 @@ internal fun Statement.hasReturnOrThrow(): Boolean {
         .statements
         .any { it is ReturnStatement || it is ThrowStatement }
 }
+
+internal fun ASTNode.isMultiline(): Boolean = lastLineNumber > lineNumber

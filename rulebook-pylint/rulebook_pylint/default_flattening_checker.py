@@ -1,6 +1,6 @@
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
-from astroid import Match, MatchAs, Return, Raise, MatchCase
+from astroid import Match, MatchAs, MatchCase, Return, Raise, Break
 from pylint.typing import MessageDefinitionTuple
 from rulebook_pylint.checkers import Checker
 from rulebook_pylint.internals.messages import Messages
@@ -28,9 +28,8 @@ class DefaultFlatteningChecker(Checker):
 
         # checks for violation
         for case in cases[:-1]:
-            for statement in case.body:
-                if not isinstance(statement, (Return, Raise)):
-                    return
+            if not any(isinstance(node, (Return, Raise)) for node in case.body):
+                return
         self.add_message(self.MSG, node=default)
 
 

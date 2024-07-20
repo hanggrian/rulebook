@@ -25,7 +25,7 @@ public class DefaultFlatteningRule : Rule("default-flattening") {
         cases
             .toList()
             .dropLast(1)
-            .takeIf { case -> case.all { it.hasReturnOrThrow() } }
+            .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }
             ?: return
         emit(default.startOffset, Messages[MSG], false)
     }

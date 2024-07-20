@@ -16,7 +16,7 @@ public class SwitchMultipleBranchingCheck : Check() {
         // checks for violation
         node
             .children
-            .takeIf { n -> n.count { it.type == CASE_GROUP } == 1 }
+            .takeIf { nodes -> nodes.count { it.type == CASE_GROUP } == 1 }
             ?: return
         log(node, Messages[MSG])
     }

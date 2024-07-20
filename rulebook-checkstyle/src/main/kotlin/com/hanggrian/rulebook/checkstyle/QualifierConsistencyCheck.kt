@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
-import com.hanggrian.rulebook.checkstyle.internals.contains
 import com.hanggrian.rulebook.checkstyle.internals.joinText
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT
@@ -25,28 +24,26 @@ public class QualifierConsistencyCheck : Check() {
             importPaths += node.joinText(".", SEMI)
             return
         }
-        targetNodes +=
-            when (node.type) {
-                TYPE -> node
-                else ->
+        when (node.type) {
+            // keep class qualifier
+            TYPE -> targetNodes += node
+            // keep class qualifier and calling method
+            else -> {
+                val dot =
                     node
-                        .takeIf { DOT in it }
-                        ?.firstChild
-                        ?.takeIf { DOT in it }
-                        ?.firstChild
+                        .findFirstToken(DOT)
                         ?: return
+                targetNodes += dot
+                targetNodes += dot.findFirstToken(DOT) ?: return
             }
-    }
-
-    override fun finishTree(node: DetailAST) {
-        // checks for violation
-        for (targetNode in targetNodes) {
-            if (targetNode.joinText(".") !in importPaths) {
-                continue
-            }
-            log(targetNode, Messages[MSG])
         }
     }
+
+    override fun finishTree(node: DetailAST): Unit =
+        // checks for violation
+        targetNodes
+            .filter { it.joinText(".") in importPaths }
+            .forEach { log(it, Messages[MSG]) }
 
     internal companion object {
         const val MSG = "qualifier.consistency"

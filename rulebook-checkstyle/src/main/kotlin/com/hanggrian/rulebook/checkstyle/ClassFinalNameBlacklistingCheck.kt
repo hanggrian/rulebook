@@ -28,19 +28,19 @@ public class ClassFinalNameBlacklistingCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // checks for violation
-        val ident = node.findFirstToken(IDENT) ?: return
+        val identifier = node.findFirstToken(IDENT) ?: return
         val finalName =
             names
-                .singleOrNull { ident.text.endsWith(it) }
+                .singleOrNull { identifier.text.endsWith(it) }
                 ?: return
         if (finalName in UTILITY_FINAL_NAMES) {
             log(
-                ident,
-                Messages.get(MSG_UTIL, ident.text.substringBefore(finalName) + 's'),
+                identifier,
+                Messages.get(MSG_UTIL, identifier.text.substringBefore(finalName) + 's'),
             )
             return
         }
-        log(ident, Messages.get(MSG_ALL, finalName))
+        log(identifier, Messages.get(MSG_ALL, finalName))
     }
 
     internal companion object {

@@ -26,9 +26,9 @@ public class SpecialFunctionPositionRule : Rule("special-function-position") {
         // checks for violation
         node
             .siblings()
-            .takeIf { siblings ->
+            .takeIf { nodes ->
                 // in Kotlin, static members belong in companion object
-                siblings.any {
+                nodes.any {
                     it.elementType == FUN &&
                         !it.isSpecialFunction()
                 }

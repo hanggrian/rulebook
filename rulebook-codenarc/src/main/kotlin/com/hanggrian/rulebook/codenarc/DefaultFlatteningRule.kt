@@ -27,7 +27,7 @@ public class DefaultFlatteningRule : Rule() {
             // checks for violation
             node
                 .caseStatements
-                .takeIf { case -> case.all { it.hasReturnOrThrow() } }
+                .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }
                 ?: return
             addViolation(default, Messages[MSG])
         }

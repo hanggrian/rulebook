@@ -50,7 +50,8 @@ public class KotlinApiPriorityRule : Rule("kotlin-api-priority") {
                     try {
                         Class
                             .forName(this)
-                            .kotlin.qualifiedName
+                            .kotlin
+                            .qualifiedName
                             ?.takeIf { it.startsWith("kotlin.") }
                     } catch (e: ClassNotFoundException) {
                         null

@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
+import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
@@ -11,9 +12,10 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
+import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
-import org.jetbrains.kotlin.psi.psiUtil.children
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening)
@@ -47,13 +49,9 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
             .findChildByType(THEN)!!
             .findChildByType(BLOCK)
             ?.children()
-            ?.takeIf { n ->
-                n.count {
-                    it.elementType != LBRACE &&
-                        it.elementType != RBRACE &&
-                        it.elementType != WHITE_SPACE
-                } > 1
-            } ?: return
+            ?.filter { it.elementType != LBRACE && it.elementType != RBRACE && !it.isWhiteSpace() }
+            ?.takeIf { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+            ?: return
         emit(`if`.startOffset, Messages[MSG_INVERT], false)
     }
 

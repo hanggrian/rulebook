@@ -26,7 +26,7 @@ public class DefaultFlatteningCheck : Check() {
         cases
             .toList()
             .dropLast(1)
-            .takeIf { case -> case.all { it.hasReturnOrThrow() } }
+            .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }
             ?: return
         log(default, Messages[MSG])
     }

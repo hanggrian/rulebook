@@ -19,18 +19,18 @@ public class CodeBlockLineTrimmingCheck : Check() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // right curly is persistent
-        val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
-        val rcurlySibling = rcurly.previousSibling?.lastMostChild ?: return
+        // right brace is persistent
+        val rightBrace = node.lastChild.takeIf { it.type == RCURLY } ?: return
+        val rightBraceSibling = rightBrace.previousSibling?.lastMostChild ?: return
 
-        // left curly is conditional
-        val (lcurly, lcurlySibling) =
+        // left brace is conditional
+        val (leftBrace, leftBraceSibling) =
             when (node.type) {
                 OBJBLOCK -> {
                     // get first two nodes to compare
-                    val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                    val lcurlySibling = lcurly.nextSibling?.orBlockComment ?: return
-                    lcurly to lcurlySibling
+                    val leftBrace = node.firstChild.takeIf { it.type == LCURLY } ?: return
+                    val leftBraceSibling = leftBrace.nextSibling?.orBlockComment ?: return
+                    leftBrace to leftBraceSibling
                 }
                 else ->
                     // the first node is slist itself
@@ -40,11 +40,11 @@ public class CodeBlockLineTrimmingCheck : Check() {
             }
 
         // checks for violation
-        if (lcurlySibling.lineNo - lcurly.lineNo > 1) {
-            log(lcurlySibling, Messages[MSG_FIRST])
+        if (leftBraceSibling.lineNo - leftBrace.lineNo > 1) {
+            log(leftBraceSibling, Messages[MSG_FIRST])
         }
-        if (rcurly.lineNo - rcurlySibling.lineNo > 1) {
-            log(rcurlySibling, Messages[MSG_LAST])
+        if (rightBrace.lineNo - rightBraceSibling.lineNo > 1) {
+            log(rightBraceSibling, Messages[MSG_LAST])
         }
     }
 

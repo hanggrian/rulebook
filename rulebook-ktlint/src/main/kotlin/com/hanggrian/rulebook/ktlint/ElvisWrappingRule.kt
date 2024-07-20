@@ -1,11 +1,11 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
+import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.hanggrian.rulebook.ktlint.internals.lastMostChild
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELVIS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
-import com.pinterest.ktlint.rule.engine.core.api.children
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline
 import com.pinterest.ktlint.rule.engine.core.api.prevCodeSibling
@@ -22,8 +22,7 @@ public class ElvisWrappingRule : Rule("elvis-wrapping") {
         // target multiline statement
         val operationReference =
             node.treeParent
-                .takeIf { it.elementType == OPERATION_REFERENCE }
-                ?.takeIf { it.treeParent.hasWhitespaceWithNewline() }
+                .takeIf { it.elementType == OPERATION_REFERENCE && it.treeParent.isMultiline() }
                 ?: return
 
         // checks for violation
@@ -49,12 +48,5 @@ public class ElvisWrappingRule : Rule("elvis-wrapping") {
 
     internal companion object {
         const val MSG = "elvis.wrapping"
-
-        private fun ASTNode.hasWhitespaceWithNewline(): Boolean {
-            if (isWhiteSpaceWithNewline()) {
-                return true
-            }
-            return children().any { it.hasWhitespaceWithNewline() }
-        }
     }
 }

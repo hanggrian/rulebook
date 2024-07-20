@@ -13,7 +13,7 @@ class QualifierConsistencyRuleTest {
     fun `Rule properties`() = QualifierConsistencyRule().assertProperties()
 
     @Test
-    fun `Consistent qualifiers`() =
+    fun `Consistent class qualifiers`() =
         assertThatCode(
             """
             import kotlin.String
@@ -29,7 +29,7 @@ class QualifierConsistencyRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Redundant qualifiers`() =
+    fun `Redundant class qualifiers`() =
         assertThatCode(
             """
             import kotlin.String
@@ -47,5 +47,33 @@ class QualifierConsistencyRuleTest {
             LintViolation(5, 22, Messages[MSG]),
             LintViolation(7, 5, Messages[MSG]),
             LintViolation(9, 14, Messages[MSG]),
+        )
+
+    @Test
+    fun `Consistent method qualifiers`() =
+        assertThatCode(
+            """
+            import kotlin.String
+            import kotlin.String.format
+
+            val property = String.format("%s", "Hello World")
+
+            fun call() = format("%s", "Hello World")
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Redundant method qualifiers`() =
+        assertThatCode(
+            """
+            import kotlin.String.format
+
+            val property = kotlin.String.format("%s", "Hello World")
+
+            fun call() = kotlin.String.format("%s", "Hello World")
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(3, 16, Messages[MSG]),
+            LintViolation(5, 14, Messages[MSG]),
         )
 }

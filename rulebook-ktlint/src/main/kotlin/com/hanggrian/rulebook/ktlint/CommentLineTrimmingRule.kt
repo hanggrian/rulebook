@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.isEolCommentEmpty
-import com.hanggrian.rulebook.ktlint.internals.isWhitespaceSingleNewline
+import com.hanggrian.rulebook.ktlint.internals.isWhitespaceWithSingleNewline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -16,7 +16,7 @@ public class CommentLineTrimmingRule : Rule("comment-line-trimming") {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // continue if this comment is first line
         val prev = node.treePrev
-        if (prev?.isWhitespaceSingleNewline() == true &&
+        if (prev?.isWhitespaceWithSingleNewline() == true &&
             prev.treePrev?.elementType == EOL_COMMENT
         ) {
             return
@@ -24,7 +24,7 @@ public class CommentLineTrimmingRule : Rule("comment-line-trimming") {
 
         // iterate to find last
         var current = node
-        while (current.treeNext?.isWhitespaceSingleNewline() == true &&
+        while (current.treeNext?.isWhitespaceWithSingleNewline() == true &&
             current.treeNext?.treeNext?.elementType == EOL_COMMENT
         ) {
             current = current.treeNext.treeNext

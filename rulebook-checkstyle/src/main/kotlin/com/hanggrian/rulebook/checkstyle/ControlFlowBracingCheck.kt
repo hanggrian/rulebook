@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.contains
-import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
+import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_DO
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
@@ -34,7 +34,7 @@ public class ControlFlowBracingCheck : Check() {
 
         // checks for violation
         node
-            .takeUnless { it.lineNo == node.lastMostChild.lineNo }
+            .takeIf { it.isMultiline() }
             ?: return
         log(node, Messages[MSG])
     }

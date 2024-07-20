@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.firstMostChild
-import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
+import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ASSIGN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
@@ -18,7 +18,7 @@ public class AssignmentWrappingCheck : Check() {
         val assign =
             node
                 .findFirstToken(ASSIGN)
-                ?.takeUnless { it.lastMostChild.lineNo == node.lineNo }
+                ?.takeIf { it.isMultiline() }
                 ?: return
 
         // checks for violation

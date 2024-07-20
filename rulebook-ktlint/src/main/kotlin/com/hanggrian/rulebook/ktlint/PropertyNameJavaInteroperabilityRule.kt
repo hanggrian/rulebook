@@ -30,18 +30,22 @@ public class PropertyNameJavaInteroperabilityRule : Rule("property-name-java-int
         // collect fields declared in constructor
         val properties = mutableListOf<ASTNode>()
         if (node.elementType == CLASS) {
-            val valueParameterList =
+            properties +=
                 node
                     .findChildByType(PRIMARY_CONSTRUCTOR)
                     ?.findChildByType(VALUE_PARAMETER_LIST)
+                    ?.children()
+                    ?.filter { it.elementType == VALUE_PARAMETER }
                     ?: return
-            properties += valueParameterList.children().filter { it.elementType == VALUE_PARAMETER }
         }
 
         // collect fields declared in block
         val classBody = node.findChildByType(CLASS_BODY)
         if (classBody != null) {
-            properties += classBody.children().filter { it.elementType == PROPERTY }
+            properties +=
+                classBody
+                    .children()
+                    .filter { it.elementType == PROPERTY }
         }
 
         // checks for violation
@@ -52,15 +56,15 @@ public class PropertyNameJavaInteroperabilityRule : Rule("property-name-java-int
             val identifier =
                 property
                     .findChildByType(IDENTIFIER)
-                    ?.takeIf { !it.text.startsWith("is") }
-                    ?: continue
-            property
-                .findChildByType(TYPE_REFERENCE)
-                ?.findChildByType(USER_TYPE)
-                ?.findChildByType(REFERENCE_EXPRESSION)
-                ?.findChildByType(IDENTIFIER)
-                ?.takeIf { it.text == "Boolean" }
-                ?: continue
+                    ?.takeUnless { it.text.startsWith("is") }
+                    ?.takeIf {
+                        property
+                            .findChildByType(TYPE_REFERENCE)
+                            ?.findChildByType(USER_TYPE)
+                            ?.findChildByType(REFERENCE_EXPRESSION)
+                            ?.findChildByType(IDENTIFIER)
+                            ?.text == "Boolean"
+                    } ?: continue
             emit(
                 identifier.startOffset,
                 Messages.get(

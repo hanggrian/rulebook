@@ -22,6 +22,7 @@ public class QualifierConsistencyRule : Rule() {
 
     public class Visitor : AbstractAstVisitor() {
         private val importPaths = mutableSetOf<String>()
+        private val targetNodes = mutableSetOf<ASTNode>()
 
         override fun visitImports(node: ModuleNode) {
             super.visitImports(node)
@@ -41,6 +42,7 @@ public class QualifierConsistencyRule : Rule() {
             super.visitMethodEx(node)
 
             // checks for violation
+            process(node, node.returnType.name)
             node.parameters.forEach { process(it, it.type.name) }
         }
 
@@ -48,14 +50,16 @@ public class QualifierConsistencyRule : Rule() {
             super.visitMethodCallExpression(node)
 
             // checks for violation
-            val expression = node.objectExpression
-            process(expression, expression.text)
+            val `class` = node.objectExpression
+            process(`class`, `class`.text)
+            process(`class`, `class`.text + '.' + node.method.text)
         }
 
         private fun process(node: ASTNode, text: String) {
-            if (text !in importPaths) {
-                return
-            }
+            node
+                .takeIf { it !in targetNodes && text in importPaths }
+                ?: return
+            targetNodes += node
             addViolation(node, Messages[MSG])
         }
     }

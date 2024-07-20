@@ -10,8 +10,14 @@ class QualifierConsistencyCheckTest {
     fun `Rule properties`() = QualifierConsistencyCheck().assertProperties()
 
     @Test
-    fun `Consistent qualifiers`() = assertEquals(0, checker.read("QualifierConsistencyCheck1"))
+    fun `Consistent class qualifiers`() = assertEquals(0, checker.read("QualifierConsistency1"))
 
     @Test
-    fun `Redundant qualifiers`() = assertEquals(3, checker.read("QualifierConsistencyCheck2"))
+    fun `Redundant class qualifiers`() = assertEquals(3, checker.read("QualifierConsistency2"))
+
+    @Test
+    fun `Consistent method qualifiers`() = assertEquals(0, checker.read("QualifierConsistency3"))
+
+    @Test
+    fun `Redundant method qualifiers`() = assertEquals(2, checker.read("QualifierConsistency4"))
 }

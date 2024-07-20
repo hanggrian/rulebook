@@ -13,6 +13,7 @@ kotlin.explicitApi()
 dependencies {
     implementation(libs.ktlint.rule.engine.core)
     implementation(libs.ktlint.cli.ruleset.core)
+    implementation(libs.guava)
 
     testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
     testImplementation(libs.ktlint.test)

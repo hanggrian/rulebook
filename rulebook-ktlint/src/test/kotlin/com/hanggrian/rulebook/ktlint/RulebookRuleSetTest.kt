@@ -49,11 +49,8 @@ class RulebookRuleSetTest {
 
     @Test
     fun `No overlapping ID`() {
-        val standardIds = StandardRuleSetProvider().getRuleProviders().ids
-        RulebookRuleSet()
-            .getRuleProviders()
-            .ids
-            .forEach { assertThat(it).isNotIn(standardIds) }
+        assertThat(RulebookRuleSet().getRuleProviders().ids)
+            .containsNoneIn(StandardRuleSetProvider().getRuleProviders().ids)
     }
 
     private val Set<RuleProvider>.ids
