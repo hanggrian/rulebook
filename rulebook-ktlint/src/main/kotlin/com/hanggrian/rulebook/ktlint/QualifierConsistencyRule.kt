@@ -10,6 +10,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_DIRECTIVE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.REFERENCE_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.isRoot
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.KtImportDirective
@@ -41,7 +42,7 @@ public class QualifierConsistencyRule : Rule("qualifier-consistency") {
             else -> {
                 val dot =
                     node
-                        .takeUnless { it.treeParent.elementType == IMPORT_DIRECTIVE }
+                        .takeIf { it.parent(IMPORT_DIRECTIVE) == null }
                         ?.findChildByType(DOT_QUALIFIED_EXPRESSION)
                         ?: return
                 targetNodes.put(dot, null)

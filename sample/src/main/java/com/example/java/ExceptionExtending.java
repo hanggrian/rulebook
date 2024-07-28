@@ -2,7 +2,7 @@ package com.example.java;
 
 public class ExceptionExtending {
     public class MyException extends Exception {
-        public MyException(final String message) {
+        public MyException(String message) {
             super(message);
         }
     }

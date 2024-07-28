@@ -1,7 +1,7 @@
 package com.example.java;
 
 public class DefaultFlattening {
-    public void foo(final int bar) {
+    public void foo(int bar) {
         switch (bar) {
             case 0:
                 throw new RuntimeException();

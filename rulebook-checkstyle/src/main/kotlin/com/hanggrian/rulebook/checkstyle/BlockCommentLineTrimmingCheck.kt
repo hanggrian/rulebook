@@ -18,8 +18,12 @@ public class BlockCommentLineTrimmingCheck : JavadocCheck() {
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC)
 
     override fun visitJavadocToken(node: DetailNode) {
-        // skip single-line block comment
-        if (node.children.size < 3) {
+        // allow blank comment
+        if (node.children
+                .filterNot { it.type == LEADING_ASTERISK || it.type == EOF }
+                .joinToString("") { it.text }
+                .isBlank()
+        ) {
             return
         }
 

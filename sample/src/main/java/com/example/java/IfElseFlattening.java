@@ -13,9 +13,13 @@ public class IfElseFlattening {
         if (true) {
             System.out.println();
         } else if (false) {
-            System.out.println();
+            if (false) {
+                System.out.println();
+            }
         } else {
-            System.out.println();
+            if (true) {
+                System.out.println();
+            }
         }
     }
 }

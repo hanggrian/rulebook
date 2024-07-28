@@ -8,7 +8,7 @@ public class ClassOrganization {
             this(0);
         }
 
-        public Foo(final int a) {}
+        public Foo(int a) {}
 
         public void baz() {}
     }

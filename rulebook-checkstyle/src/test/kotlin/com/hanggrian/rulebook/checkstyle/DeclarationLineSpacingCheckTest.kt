@@ -17,4 +17,7 @@ class DeclarationLineSpacingCheckTest {
 
     @Test
     fun `Block comment in declarations`() = assertEquals(0, checker.read("DeclarationLineSpacing3"))
+
+    @Test
+    fun `Skip fields`() = assertEquals(0, checker.read("DeclarationLineSpacing4"))
 }

@@ -24,6 +24,12 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
     override val tokens: TokenSet = TokenSet.create(BLOCK)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
+        // skip recursive if-else
+        val parent = node.treeParent
+        if (parent?.elementType == THEN || parent?.elementType == ELSE) {
+            return
+        }
+
         // get last if
         var `if`: ASTNode? = null
         for (child in node.children().asIterable().reversed()) {
@@ -41,16 +47,15 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
         // checks for violation
         val `else` = `if`.findChildByType(ELSE)
         if (`else` != null) {
-            `else`.takeUnless { IF in it } ?: return
+            `else`
+                .takeUnless { IF in it }
+                ?.takeIf { it.isMultiline() }
+                ?: return
             emit(`if`.findChildByType(ELSE_KEYWORD)!!.startOffset, Messages[MSG_LIFT], false)
             return
         }
         `if`
-            .findChildByType(THEN)!!
-            .findChildByType(BLOCK)
-            ?.children()
-            ?.filter { it.elementType != LBRACE && it.elementType != RBRACE && !it.isWhiteSpace() }
-            ?.takeIf { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+            .takeIf { it.hasMultipleLines() }
             ?: return
         emit(`if`.startOffset, Messages[MSG_INVERT], false)
     }
@@ -58,5 +63,14 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
     internal companion object {
         const val MSG_INVERT = "if.else.flattening.invert"
         const val MSG_LIFT = "if.else.flattening.lift"
+
+        private fun ASTNode.hasMultipleLines() =
+            findChildByType(THEN)!!
+                .findChildByType(BLOCK)
+                ?.children()
+                ?.filter {
+                    it.elementType != LBRACE && it.elementType != RBRACE && !it.isWhiteSpace()
+                }?.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+                ?: false
     }
 }

@@ -19,9 +19,6 @@ class IfElseFlatteningChecker(Checker):
     name: str = 'if-else-flattening'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_INVERT, MSG_LIFT)
 
-    def visit_if(self, node: If) -> None:
-        self._process(node.body)
-
     def visit_for(self, node: For) -> None:
         self._process(node.body)
 
@@ -46,19 +43,32 @@ class IfElseFlatteningChecker(Checker):
 
         # checks for violation
         else2: list[NodeNG] = if2.orelse
+
+        print("AAA")
+        for e in else2:
+            print(e)
+
         if len(else2) > 0:
             else_first_child: NodeNG = else2[0]
-            if isinstance(else_first_child, If):
+            if self._else_has_if(else2):
                 return
-            self.add_message(self.MSG_LIFT, node=else_first_child)
+            if self._has_multiple_lines(else2):
+                self.add_message(self.MSG_LIFT, node=else_first_child)
             return
-        length: int = len(if2.body)
-        if length == 1:
-            condition: bool = is_multiline(if2.body[0])
-        else:
-            condition: bool = length > 1
-        if condition:
+        if self._has_multiple_lines(if2.body):
             self.add_message(self.MSG_INVERT, node=if2)
+
+    def _else_has_if(self, nodes: list[NodeNG]) -> bool:
+        for node in nodes:
+            if isinstance(node, If):
+                return True
+        return False
+
+    def _has_multiple_lines(self, nodes: list[NodeNG]) -> bool:
+        length: int = len(nodes)
+        if length == 1:
+            return is_multiline(nodes[0])
+        return length > 1
 
 
 def register(linter: 'PyLinter') -> None:

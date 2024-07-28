@@ -21,6 +21,12 @@ public class IfElseFlatteningCheck : Check() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
+        // skip recursive if-else
+        val parent = node.parent
+        if (parent?.type == LITERAL_IF || parent?.type == LITERAL_ELSE) {
+            return
+        }
+
         // get last if
         var `if`: DetailAST? = null
         for (child in node.children.asIterable().reversed()) {
@@ -38,15 +44,15 @@ public class IfElseFlatteningCheck : Check() {
         // checks for violation
         val `else` = `if`.findFirstToken(LITERAL_ELSE)
         if (`else` != null) {
-            `else`.takeUnless { LITERAL_IF in it } ?: return
+            `else`
+                .takeUnless { LITERAL_IF in it }
+                ?.takeIf { it.hasMultipleLines() }
+                ?: return
             log(`else`, Messages[MSG_LIFT])
             return
         }
         `if`
-            .findFirstToken(SLIST)
-            ?.children
-            ?.filter { it.type != RCURLY && it.type != SEMI }
-            ?.takeIf { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+            .takeIf { it.hasMultipleLines() }
             ?: return
         log(`if`, Messages[MSG_INVERT])
     }
@@ -54,5 +60,12 @@ public class IfElseFlatteningCheck : Check() {
     internal companion object {
         const val MSG_INVERT = "if.else.flattening.invert"
         const val MSG_LIFT = "if.else.flattening.lift"
+
+        private fun DetailAST.hasMultipleLines() =
+            findFirstToken(SLIST)
+                ?.children
+                ?.filter { it.type != RCURLY && it.type != SEMI }
+                ?.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+                ?: false
     }
 }

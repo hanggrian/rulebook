@@ -56,4 +56,14 @@ class PropertyNameJavaInteroperabilityRuleTest {
             }
             """.trimIndent(),
         ).hasNoLintViolations()
+
+    @Test
+    fun `Do not collect parameters or non-public fields`() =
+        assertThatCode(
+            """
+            class Foo(bar: Boolean) {
+                private var baz: Boolean = true
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
 }

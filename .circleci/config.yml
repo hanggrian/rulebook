@@ -6,7 +6,7 @@ orbs:
 jobs:
   upload-coverage:
     docker:
-      - image: hendraanggrian/cimg-multiplatform:openjdk8-python3
+      - image: hanggrian/cimg-multiplatform:openjdk11-python3
     steps:
       - checkout
       - run: gradle test koverXmlReport

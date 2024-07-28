@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
+import com.hanggrian.rulebook.checkstyle.internals.isLeaf
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
@@ -21,7 +22,7 @@ public class EmptyCodeBlockConcisenessCheck : Check() {
             when (node.type) {
                 OBJBLOCK -> {
                     // skip non-empty content
-                    if (node.childCount > 2) {
+                    if (node.isLeaf() || node.childCount > 2) {
                         return
                     }
 
@@ -32,7 +33,7 @@ public class EmptyCodeBlockConcisenessCheck : Check() {
                 }
                 else -> {
                     // skip non-empty content
-                    if (node.childCount > 1) {
+                    if (node.isLeaf() || node.childCount > 1) {
                         return
                     }
 

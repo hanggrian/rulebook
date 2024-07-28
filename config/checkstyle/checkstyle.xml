@@ -20,13 +20,16 @@
     - Add 'ArrayTrailingComma'.
     - Add 'OneStatementPerLine'.
     - Remove 'MissingSwitchDefault'.
+    - Remove 'HiddenField'.
   - Modify 'Javadoc Comments':
     - Remove 'MissingJavadocMethod'.
     - Remove 'JavadocPackage'.
     - Remove 'JavadocVariable'.
     - Add 'JavadocMissingWhitespaceAfterAsterisk'.
+    - Change 'JavadocMethod' to 'allowMissingParamTags' and 'allowMissingReturnTag'.
   - Modify 'Miscellaneous':
     - Add 'TodoComment' with capturing 'TODO' and 'FIXME'.
+    - Remove 'FinalParameters'.
   - Modify 'Naming Conventions':
     - Add 'IllegalIdentifierName' with Java object and collection type names.
   - Modify 'Whitespace':
@@ -103,7 +106,10 @@
     <!-- Checks for Javadoc comments.                     -->
     <!-- See https://checkstyle.org/config_javadoc.html -->
     <module name="InvalidJavadocPosition"/>
-    <module name="JavadocMethod"/>
+    <module name="JavadocMethod">
+      <property name="allowMissingParamTags" value="true"/>
+      <property name="allowMissingReturnTag" value="true"/>
+    </module>
     <module name="JavadocType"/>
     <module name="JavadocStyle"/>
 
@@ -179,7 +185,6 @@
     <!-- Miscellaneous other checks.                   -->
     <!-- See https://checkstyle.org/config_misc.html -->
     <module name="ArrayTypeStyle"/>
-    <module name="FinalParameters"/>
     <module name="TodoComment"/>
     <module name="UpperEll"/>
 

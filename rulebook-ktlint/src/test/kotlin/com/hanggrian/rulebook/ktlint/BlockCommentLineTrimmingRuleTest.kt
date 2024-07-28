@@ -41,6 +41,27 @@ class BlockCommentLineTrimmingRuleTest {
         )
 
     @Test
+    fun `Block tag description with final newline`() =
+        assertThatCode(
+            """
+            /**
+             * @return a number.
+             *
+             */
+            fun foo(): Int
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(3, 2, Messages[MSG_LAST])
+
+    @Test
+    fun `Skip single-line block comment`() =
+        assertThatCode(
+            """
+            /** Lorem ipsum. */
+            fun foo(): Int
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
     fun `Skip blank block comment`() =
         assertThatCode(
             """
@@ -52,14 +73,14 @@ class BlockCommentLineTrimmingRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Block tag description with final newline`() =
+    fun `Skip multiline block tag description`() =
         assertThatCode(
             """
             /**
-             * @return a number.
-             *
+             * @param bar Lorem ipsum
+             *   dolor sit amet.
              */
-            fun foo(): Int
+            fun foo(bar: Int): Int
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 2, Messages[MSG_LAST])
+        ).hasNoLintViolations()
 }

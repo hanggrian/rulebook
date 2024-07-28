@@ -1,7 +1,7 @@
 package com.example.java;
 
 public class SwitchMultipleBranching {
-    public SwitchMultipleBranching(final int foo, final Runnable bar) {
+    public SwitchMultipleBranching(int foo, Runnable bar) {
         if (foo == 0) {
             bar.run();
         }

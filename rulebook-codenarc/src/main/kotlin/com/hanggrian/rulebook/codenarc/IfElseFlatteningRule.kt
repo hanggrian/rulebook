@@ -2,8 +2,12 @@ package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import com.hanggrian.rulebook.codenarc.internals.isMultiline
+import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.stmt.BlockStatement
+import org.codehaus.groovy.ast.stmt.ForStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
+import org.codehaus.groovy.ast.stmt.Statement
+import org.codehaus.groovy.ast.stmt.WhileStatement
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
@@ -20,26 +24,50 @@ public class IfElseFlatteningRule : Rule() {
     }
 
     public class Visitor : AbstractAstVisitor() {
-        override fun visitBlockStatement(node: BlockStatement) {
-            super.visitBlockStatement(node)
+        override fun visitForLoop(node: ForStatement) {
+            super.visitForLoop(node)
+            process(node.loopBlock as? BlockStatement ?: return)
+        }
 
+        override fun visitWhileLoop(node: WhileStatement) {
+            super.visitWhileLoop(node)
+            process(node.loopBlock as? BlockStatement ?: return)
+        }
+
+        override fun visitMethodEx(node: MethodNode) {
+            super.visitMethodEx(node)
+            process(node.code as? BlockStatement ?: return)
+        }
+
+        private fun process(blockStatement: BlockStatement) {
             // get last if
             val `if` =
-                node.statements.lastOrNull() as? IfStatement
+                blockStatement.statements.lastOrNull() as? IfStatement
                     ?: return
 
             // checks for violation
             val `else` = `if`.elseBlock
             if (!`else`.isEmpty) {
-                `else`.takeUnless { it is IfStatement } ?: return
+                `else`
+                    .takeUnless { it is IfStatement }
+                    ?.takeIf { it.hasMultipleLines() }
+                    ?: return
                 addViolation(`else`, Messages[MSG_LIFT])
                 return
             }
-            (`if`.ifBlock as? BlockStatement)
-                ?.statements
-                ?.takeIf { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
+            `if`
+                .ifBlock
+                .takeIf { it.hasMultipleLines() }
                 ?: return
             addViolation(`if`, Messages[MSG_INVERT])
+        }
+
+        private companion object {
+            fun Statement.hasMultipleLines() =
+                (this as? BlockStatement)
+                    ?.statements
+                    ?.let { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
+                    ?: false
         }
     }
 }

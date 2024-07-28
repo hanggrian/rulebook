@@ -70,6 +70,7 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
                     baz()
                 } else {
                     baz()
+                    baz()
                 }
             }
             """.trimIndent(),
@@ -109,5 +110,37 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
             2,
             "if (true) {",
             Messages[MSG_INVERT],
+        )
+
+    @Test
+    fun `Skip recursive if-else`() =
+        assertTwoViolations(
+            """
+            void foo() {
+                if (true) {
+                    if (true) {
+                        baz()
+                        baz()
+                    }
+                }
+            }
+
+            void foo() {
+                if (true) {
+                    baz()
+                } else {
+                    if (true) {
+                        baz()
+                        baz()
+                    }
+                }
+            }
+            """.trimIndent(),
+            2,
+            "if (true) {",
+            Messages[MSG_INVERT],
+            13,
+            "} else {",
+            Messages[MSG_LIFT],
         )
 }

@@ -14,7 +14,7 @@ class TestBlockCommentLineTrimmingChecker(CheckerTestCase):
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
 
-    def test_summary_without_initial_and_final_newline(self):
+    def test_block_comment_without_initial_and_final_newline(self):
         node1 = \
             extract_node(
                 '''
@@ -28,7 +28,7 @@ class TestBlockCommentLineTrimmingChecker(CheckerTestCase):
         with self.assertNoMessages():
             self.checker.visit_classdef(node1)
 
-    def test_summary_with_initial_and_final_newline(self):
+    def test_block_comment_with_initial_and_final_newline(self):
         node1 = \
             extract_node(
                 '''
@@ -45,6 +45,31 @@ class TestBlockCommentLineTrimmingChecker(CheckerTestCase):
             msg(BlockCommentLineTrimmingChecker.MSG_FIRST, (3, 4, 7, 7), node1.doc_node),
             msg(BlockCommentLineTrimmingChecker.MSG_LAST, (3, 4, 7, 7), node1.doc_node),
         ):
+            self.checker.visit_classdef(node1)
+
+    def test_skip_single_line_block_comment(self):
+        node1 = \
+            extract_node(
+                '''
+                class Foo:  #@
+                    """Lorem ipsum"""
+                    print()
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.visit_classdef(node1)
+
+    def test_skip_blank_comment(self):
+        node1 = \
+            extract_node(
+                '''
+                class Foo:  #@
+                    """
+                    """
+                    print()
+                ''',
+            )
+        with self.assertNoMessages():
             self.checker.visit_classdef(node1)
 
 

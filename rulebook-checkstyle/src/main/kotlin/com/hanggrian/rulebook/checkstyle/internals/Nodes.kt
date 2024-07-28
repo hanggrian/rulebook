@@ -57,6 +57,8 @@ internal fun DetailAST.hasReturnOrThrow(): Boolean {
     return LITERAL_RETURN in statements || LITERAL_THROW in statements
 }
 
+internal fun DetailAST.isLeaf(): Boolean = childCount == 0
+
 internal fun DetailAST.isMultiline(): Boolean = lastMostChild.lineNo > lineNo
 
 internal fun DetailAST.isEolCommentEmpty(): Boolean =

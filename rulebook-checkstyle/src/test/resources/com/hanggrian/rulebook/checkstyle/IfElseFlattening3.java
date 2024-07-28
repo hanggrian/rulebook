@@ -6,6 +6,7 @@ public class IfElseFlattening {
             baz();
         } else {
             baz();
+            baz();
         }
     }
 

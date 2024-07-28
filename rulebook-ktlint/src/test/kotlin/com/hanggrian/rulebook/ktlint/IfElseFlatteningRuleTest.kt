@@ -63,6 +63,7 @@ class IfElseFlatteningRuleTest {
                     baz()
                 } else {
                     baz()
+                    baz()
                 }
             }
             """.trimIndent(),
@@ -97,4 +98,33 @@ class IfElseFlatteningRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_INVERT])
+
+    @Test
+    fun `Skip recursive if-else`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) {
+                    if (true) {
+                        baz()
+                        baz()
+                    }
+                }
+            }
+
+            fun bar() {
+                if (true) {
+                    baz()
+                } else {
+                    if (true) {
+                        baz()
+                        baz()
+                    }
+                }
+            }
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(2, 5, Messages[MSG_INVERT]),
+            LintViolation(13, 7, Messages[MSG_LIFT]),
+        )
 }

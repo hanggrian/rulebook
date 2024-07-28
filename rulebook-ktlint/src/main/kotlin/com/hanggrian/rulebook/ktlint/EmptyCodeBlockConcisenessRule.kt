@@ -5,6 +5,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.isLeaf
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -19,7 +20,8 @@ public class EmptyCodeBlockConcisenessRule : Rule("empty-code-block-conciseness"
         // checks for violation
         node
             .takeIf {
-                it.firstChildNode.elementType == LBRACE &&
+                !it.isLeaf() &&
+                    it.firstChildNode.elementType == LBRACE &&
                     it.lastChildNode.elementType == RBRACE
             }?.children()
             ?.toList()

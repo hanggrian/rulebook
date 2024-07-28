@@ -50,11 +50,13 @@ public class DeclarationLineSpacingCheck : Check() {
                     ?: child.lineNo
 
             // checks for violation
+            val msgKey = DECLARATION_ARGUMENTS[child.type]!!
             children[i - 1]
-                .lastMostChild
-                .takeUnless { it.lineNo == childLine - 2 }
+                .takeUnless { msgKey == MSG_PROPERTY && it.type == child.type }
+                ?.lastMostChild
+                ?.takeUnless { it.lineNo == childLine - 2 }
                 ?: continue
-            log(child, Messages.get(MSG, DECLARATION_ARGUMENTS[child.type]!!))
+            log(child, Messages.get(MSG, msgKey))
         }
     }
 

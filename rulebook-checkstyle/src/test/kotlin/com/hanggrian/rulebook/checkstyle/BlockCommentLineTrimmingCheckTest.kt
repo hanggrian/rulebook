@@ -10,14 +10,21 @@ class BlockCommentLineTrimmingCheckTest {
     fun `Rule properties`() = BlockCommentLineTrimmingCheck().assertProperties()
 
     @Test
-    fun `Summary without initial and final newline`() =
+    fun `Block comment without initial and final newline`() =
         assertEquals(0, checker.read("BlockCommentLineTrimming1"))
 
     @Test
-    fun `Summary with initial and final newline`() =
+    fun `Block tag description with final newline`() =
         assertEquals(2, checker.read("BlockCommentLineTrimming2"))
 
     @Test
-    fun `Block tag description with final newline`() =
+    fun `Skip single-line block comment`() =
         assertEquals(1, checker.read("BlockCommentLineTrimming3"))
+
+    @Test
+    fun `Skip blank block comment`() = assertEquals(0, checker.read("BlockCommentLineTrimming4"))
+
+    @Test
+    fun `Skip multiline block tag description`() =
+        assertEquals(0, checker.read("BlockCommentLineTrimming5"))
 }

@@ -1,6 +1,9 @@
 package com.example.kotlin
 
-class PropertyNameJavaInteroperability(val isPropertyInPrimaryConstructor: Boolean) {
+class PropertyNameJavaInteroperability(
+    private val isPropertyInPrimaryConstructor: Boolean,
+    isPropertyInPrimaryConstructor2: Boolean,
+) {
     val isPropertyWithType: Boolean = true
 
     @JvmField

@@ -2,8 +2,8 @@ package com.hanggrian.rulebook.checkstyle;
 
 public class BlockCommentLineTrimming {
     /**
-     * @return a number.
-     *
+     * @param bar Lorem ipsum
+     *   dolor sit amet.
      */
     public class Foo {}
 }

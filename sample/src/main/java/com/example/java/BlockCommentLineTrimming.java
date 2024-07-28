@@ -9,4 +9,11 @@ public class BlockCommentLineTrimming {
     public int foo() {
         return 0;
     }
+
+    /**
+     * @return a number.
+     */
+    public int bar() {
+        return 0;
+    }
 }
