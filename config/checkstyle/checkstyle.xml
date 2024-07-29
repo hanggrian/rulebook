@@ -27,6 +27,7 @@
     - Remove 'JavadocVariable'.
     - Add 'JavadocMissingWhitespaceAfterAsterisk'.
     - Change 'JavadocMethod' to 'allowMissingParamTags' and 'allowMissingReturnTag'.
+    - Change 'JavadocType' to 'allowMissingParamTags'.
   - Modify 'Miscellaneous':
     - Add 'TodoComment' with capturing 'TODO' and 'FIXME'.
     - Remove 'FinalParameters'.
@@ -110,7 +111,9 @@
       <property name="allowMissingParamTags" value="true"/>
       <property name="allowMissingReturnTag" value="true"/>
     </module>
-    <module name="JavadocType"/>
+    <module name="JavadocType">
+      <property name="allowMissingParamTags" value="true"/>
+    </module>
     <module name="JavadocStyle"/>
 
     <!-- Checks for Naming Conventions.                  -->
@@ -168,7 +171,6 @@
     <!-- See https://checkstyle.org/config_coding.html -->
     <module name="EmptyStatement"/>
     <module name="EqualsHashCode"/>
-    <module name="HiddenField"/>
     <module name="IllegalInstantiation"/>
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
@@ -217,6 +219,9 @@
       <property
         name="format"
         value="(?i)^(?!(integer|string|list|set|map|_)$).+$"/>
+      <property
+        name="tokens"
+        value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_COMPONENT_DEF"/>
     </module>
 
     <module name="InnerTypeLast"/>

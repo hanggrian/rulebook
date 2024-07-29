@@ -16,7 +16,8 @@ class DeclarationLineSpacingCheckTest {
     fun `Declarations without newline`() = assertEquals(3, checker.read("DeclarationLineSpacing2"))
 
     @Test
-    fun `Block comment in declarations`() = assertEquals(0, checker.read("DeclarationLineSpacing3"))
+    fun `Block comment and annotations in declarations`() =
+        assertEquals(0, checker.read("DeclarationLineSpacing3"))
 
     @Test
     fun `Skip fields`() = assertEquals(0, checker.read("DeclarationLineSpacing4"))

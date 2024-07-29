@@ -6,15 +6,18 @@ public class DeclarationLineSpacing {
     /**
      * Lorem ipsum.
      */
+    @Deprecated
     public DeclarationLineSpacing() {}
 
     /**
      * Lorem ipsum.
      */
+    @Deprecated
     public void bar() {}
 
     /**
      * Lorem ipsum.
      */
+    @Deprecated
     public class Baz {}
 }

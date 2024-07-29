@@ -10,18 +10,17 @@ class CodeBlockLineTrimmingCheckTest {
     fun `Rule properties`() = CodeBlockLineTrimmingCheck().assertProperties()
 
     @Test
-    fun `Class block without first and last newline`() =
+    fun `Code blocks without newline padding`() =
         assertEquals(0, checker.read("CodeBlockLineTrimming1"))
 
     @Test
-    fun `Class block with first and last newline`() =
-        assertEquals(2, checker.read("CodeBlockLineTrimming2"))
+    fun `Code blocks with newline padding`() =
+        assertEquals(4, checker.read("CodeBlockLineTrimming2"))
 
     @Test
-    fun `Function block without first and last newline`() =
+    fun `Block comment and annotations in members`() =
         assertEquals(0, checker.read("CodeBlockLineTrimming3"))
 
     @Test
-    fun `Function block with first and last newline`() =
-        assertEquals(2, checker.read("CodeBlockLineTrimming4"))
+    fun `Comment in members`() = assertEquals(0, checker.read("CodeBlockLineTrimming4"))
 }

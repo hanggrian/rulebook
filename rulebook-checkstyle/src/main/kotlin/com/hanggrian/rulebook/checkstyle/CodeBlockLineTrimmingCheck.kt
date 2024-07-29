@@ -2,10 +2,9 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
+import com.hanggrian.rulebook.checkstyle.internals.orComment
 import com.puppycrawl.tools.checkstyle.api.DetailAST
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LCURLY
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
@@ -29,12 +28,13 @@ public class CodeBlockLineTrimmingCheck : Check() {
                 OBJBLOCK -> {
                     // get first two nodes to compare
                     val leftBrace = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                    val leftBraceSibling = leftBrace.nextSibling?.orBlockComment ?: return
+                    val leftBraceSibling = leftBrace.nextSibling?.orComment ?: return
                     leftBrace to leftBraceSibling
                 }
                 else ->
                     // the first node is slist itself
                     node.firstChild
+                        ?.orComment
                         ?.let { node to it }
                         ?: return
             }
@@ -51,11 +51,5 @@ public class CodeBlockLineTrimmingCheck : Check() {
     internal companion object {
         const val MSG_FIRST = "code.block.line.trimming.first"
         const val MSG_LAST = "code.block.line.trimming.last"
-
-        private val DetailAST.orBlockComment: DetailAST
-            get() =
-                findFirstToken(MODIFIERS)
-                    ?.findFirstToken(BLOCK_COMMENT_BEGIN)
-                    ?: this
     }
 }

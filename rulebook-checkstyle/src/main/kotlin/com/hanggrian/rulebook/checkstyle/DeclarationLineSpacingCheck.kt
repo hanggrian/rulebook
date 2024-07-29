@@ -3,16 +3,15 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
+import com.hanggrian.rulebook.checkstyle.internals.orComment
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION_FIELD_DEF
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CLASS_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMPACT_CTOR_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CTOR_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ENUM_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_DEF
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RECORD_COMPONENT_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RECORD_DEF
@@ -42,12 +41,7 @@ public class DeclarationLineSpacingCheck : Check() {
             }
 
             // block comment starts earlier
-            val childLine =
-                child
-                    .findFirstToken(MODIFIERS)
-                    ?.findFirstToken(BLOCK_COMMENT_BEGIN)
-                    ?.lineNo
-                    ?: child.lineNo
+            val childLine = child.orComment.lineNo
 
             // checks for violation
             val msgKey = DECLARATION_ARGUMENTS[child.type]!!

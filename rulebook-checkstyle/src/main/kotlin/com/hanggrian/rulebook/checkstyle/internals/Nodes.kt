@@ -5,6 +5,7 @@ package com.hanggrian.rulebook.checkstyle.internals
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
@@ -12,6 +13,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 
 internal val DetailAST.firstMostChild: DetailAST
     get() {
@@ -36,6 +38,36 @@ internal val DetailAST.children: Sequence<DetailAST>
 
 internal val DetailAST.nextSiblings: Sequence<DetailAST>
     get() = generateSequence(nextSibling) { it.nextSibling }
+
+internal val DetailAST.orComment: DetailAST
+    get() {
+        if (SINGLE_LINE_COMMENT in this) {
+            return findFirstToken(SINGLE_LINE_COMMENT)
+        }
+        if (BLOCK_COMMENT_BEGIN in this) {
+            return findFirstToken(BLOCK_COMMENT_BEGIN)
+        }
+        if (TYPE in this) {
+            val type = findFirstToken(TYPE)!!
+            val comment =
+                type.findFirstToken(SINGLE_LINE_COMMENT)
+                    ?: type.findFirstToken(BLOCK_COMMENT_BEGIN)
+            if (comment != null) {
+                return comment
+            }
+        }
+
+        var current = this
+        while (!current.isLeaf()) {
+            if (current.type == SINGLE_LINE_COMMENT ||
+                current.type == BLOCK_COMMENT_BEGIN
+            ) {
+                return current
+            }
+            current = current.firstChild
+        }
+        return this
+    }
 
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 

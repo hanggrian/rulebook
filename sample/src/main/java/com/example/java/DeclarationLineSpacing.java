@@ -11,5 +11,6 @@ public class DeclarationLineSpacing {
     /**
      * Lorem ipsum.
      */
+    @Deprecated
     public class Baz {}
 }

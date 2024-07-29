@@ -404,6 +404,9 @@
       <property
         name="format"
         value="(?i)^(?!(integer|string|list|set|map|_)$).+$"/>
+      <property
+        name="tokens"
+        value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_COMPONENT_DEF"/>
     </module>
 
     <module name="InnerTypeLast"/>
