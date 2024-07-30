@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rulebook-pylint"
-version = "0.1-dev1"
+version = "0.1"
 license = { text = "Apache-2.0" }
 description = "Extended lint rules for JVM and Python"
 readme = "README.md"

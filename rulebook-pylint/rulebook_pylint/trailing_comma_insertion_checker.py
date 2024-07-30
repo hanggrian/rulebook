@@ -1,4 +1,4 @@
-from tokenize import TokenInfo, OP, NL
+from tokenize import TokenInfo, OP, NL, COMMENT
 from typing import TYPE_CHECKING
 
 from pylint.typing import MessageDefinitionTuple
@@ -18,9 +18,12 @@ class TrailingCommaInsertionChecker(TokenChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
+        # filter out comments
+        tokens = [t for t in tokens if t.type != COMMENT]
+
         token: TokenInfo
         for i, token in enumerate(tokens):
-            # first line of filter
+            # find closing parenthesis
             if token.type != OP or token.string != ')':
                 continue
 

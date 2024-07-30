@@ -1,10 +1,10 @@
 [![CircleCI](https://img.shields.io/circleci/build/gh/hanggrian/rulebook)](https://app.circleci.com/pipelines/github/hanggrian/rulebook/)
 [![Codecov](https://img.shields.io/codecov/c/gh/hanggrian/rulebook)](https://app.codecov.io/gh/hanggrian/rulebook/) \
 [![Maven Central](https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/)
-[![OpenJDK](https://img.shields.io/badge/jdk-11%2B-informational)](https://openjdk.java.net/projects/jdk8/) \
+[![OpenJDK](https://img.shields.io/badge/jdk-11%2B-informational)](https://openjdk.org/projects/jdk/11/) \
 [![Package Index](https://shields.io/pypi/v/rulebook-pylint)](https://pypi.org/project/rulebook-pylint/)
 [![Package Index Test](https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org)](https://test.pypi.org/project/rulebook-pylint/)
-[![Python](https://img.shields.io/badge/python-3-informational)](https://www.python.org/download/releases/3.0/)
+[![Python](https://img.shields.io/badge/python-3-informational)](https://docs.python.org/3/)
 
 # Rulebook
 
@@ -15,7 +15,7 @@ across multiple languages.
 
 Language | Linter | Variants
 --- | --- | ---
-Kotlin | [Ktlint](https://pinterest.github.io/ktlint/) | [Ktlint Official Style](https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/)
+Kotlin | [Ktlint](https://pinterest.github.io/ktlint/) | [Ktlint Style](https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/)
 Java | [Checkstyle](https://checkstyle.org/) | [Sun Style](https://checkstyle.sourceforge.io/sun_style.html) or [Google Java Style](https://google.github.io/styleguide/javaguide.html)
 Groovy | [CodeNarc](https://codenarc.org/) | [Groovy Style](https://groovy-lang.org/style-guide.html)
 Python | [Pylint](https://pylint.org/) | [Pylint Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or [Google Python Style](https://google.github.io/styleguide/pyguide.html)
@@ -32,9 +32,9 @@ repositories {
 }
 
 dependencies {
-    ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:$version"
-    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$version"
-    codenarc "com.hendraanggrian.rulebook:rulebook-codenarc:$version"
+    ktlint "com.hanggrian.rulebook:rulebook-ktlint:$version"
+    checkstyle "com.hanggrian.rulebook:rulebook-checkstyle:$version"
+    codenarc "com.hanggrian.rulebook:rulebook-codenarc:$version"
 }
 ```
 
@@ -58,7 +58,7 @@ configurations {
 }
 
 dependencies {
-    ktlint "com.hendraanggrian.rulebook:rulebook-ktlint:$libraryVersion"
+    ktlint "com.hanggrian.rulebook:rulebook-ktlint:$libraryVersion"
 }
 
 // the rest of ktlint tasks' configuration
@@ -81,7 +81,7 @@ checkstyle {
 }
 
 dependencies {
-    checkstyle "com.hendraanggrian.rulebook:rulebook-checkstyle:$libraryVersion"
+    checkstyle "com.hanggrian.rulebook:rulebook-checkstyle:$libraryVersion"
 }
 ```
 
@@ -102,7 +102,7 @@ codenarc {
 }
 
 dependencies {
-    codenarc "com.hendraanggrian.rulebook:rulebook-codenarc:$libraryVersion"
+    codenarc "com.hanggrian.rulebook:rulebook-codenarc:$libraryVersion"
 }
 ```
 

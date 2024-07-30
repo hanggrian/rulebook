@@ -20,7 +20,7 @@ class StringSingleQuotingChecker(TokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         token: TokenInfo
         for token in tokens:
-            # first line of filter
+            # target string
             if token.type != STRING:
                 continue
 

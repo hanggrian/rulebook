@@ -49,13 +49,14 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
         if (`else` != null) {
             `else`
                 .takeUnless { IF in it }
-                ?.takeIf { it.isMultiline() }
+                ?.takeIf { it.hasMultipleLines() }
                 ?: return
             emit(`if`.findChildByType(ELSE_KEYWORD)!!.startOffset, Messages[MSG_LIFT], false)
             return
         }
         `if`
-            .takeIf { it.hasMultipleLines() }
+            .findChildByType(THEN)
+            ?.takeIf { it.hasMultipleLines() }
             ?: return
         emit(`if`.startOffset, Messages[MSG_INVERT], false)
     }
@@ -65,8 +66,7 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
         const val MSG_LIFT = "if.else.flattening.lift"
 
         private fun ASTNode.hasMultipleLines() =
-            findChildByType(THEN)!!
-                .findChildByType(BLOCK)
+            findChildByType(BLOCK)
                 ?.children()
                 ?.filter {
                     it.elementType != LBRACE && it.elementType != RBRACE && !it.isWhiteSpace()

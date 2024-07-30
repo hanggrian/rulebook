@@ -44,10 +44,6 @@ class IfElseFlatteningChecker(Checker):
         # checks for violation
         else2: list[NodeNG] = if2.orelse
 
-        print("AAA")
-        for e in else2:
-            print(e)
-
         if len(else2) > 0:
             else_first_child: NodeNG = else2[0]
             if self._else_has_if(else2):
@@ -58,13 +54,15 @@ class IfElseFlatteningChecker(Checker):
         if self._has_multiple_lines(if2.body):
             self.add_message(self.MSG_INVERT, node=if2)
 
-    def _else_has_if(self, nodes: list[NodeNG]) -> bool:
+    @staticmethod
+    def _else_has_if(nodes: list[NodeNG]) -> bool:
         for node in nodes:
             if isinstance(node, If):
                 return True
         return False
 
-    def _has_multiple_lines(self, nodes: list[NodeNG]) -> bool:
+    @staticmethod
+    def _has_multiple_lines(nodes: list[NodeNG]) -> bool:
         length: int = len(nodes)
         if length == 1:
             return is_multiline(nodes[0])

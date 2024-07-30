@@ -37,7 +37,7 @@ class SpecialFunctionPositionChecker(Checker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
-        # first line of filter
+        # target special function
         if node.name not in self.SPECIAL_FUNCTIONS:
             return
 

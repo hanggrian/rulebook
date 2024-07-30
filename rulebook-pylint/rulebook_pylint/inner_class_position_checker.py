@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class InnerClassPositionChecker(Checker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-organization
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position
     """
     MSG: str = 'inner-class-position'
 

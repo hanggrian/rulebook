@@ -60,6 +60,23 @@ class TestTrailingCommaInsertionChecker(CheckerTestCase):
         ):
             self.checker.process_tokens(tokens)
 
+    def test_skip_inline_comment(self):
+        tokens = \
+            _tokenize_str(
+                '''
+                def foo(
+                    bar: int,  # bar
+                    baz: int,  # baz
+                ):
+                    print(
+                        1,  # 1
+                        2,  # 2
+                    )
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.process_tokens(tokens)
+
 
 if __name__ == '__main__':
     main()

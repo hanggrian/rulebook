@@ -20,7 +20,7 @@ class CodeBlockLineTrimmingChecker(TokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         token: TokenInfo
         for i, token in enumerate(tokens):
-            # first line of filter
+            # target colon operator
             if token.type != OP or token.string != ':':
                 continue
 

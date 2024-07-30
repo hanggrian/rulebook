@@ -25,7 +25,7 @@ class CommentLineJoiningChecker(TokenChecker):
         last_empty_token: TokenInfo | None = None
         token: TokenInfo
         for token in tokens:
-            # first line of filter
+            # target comment
             if token.type != COMMENT:
                 continue
 

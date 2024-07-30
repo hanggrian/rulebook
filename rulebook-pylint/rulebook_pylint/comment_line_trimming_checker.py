@@ -24,7 +24,7 @@ class CommentLineTrimmingChecker(TokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         token: TokenInfo
         for i, token in enumerate(tokens):
-            # first line of filter
+            # target comment
             if token.type != COMMENT:
                 continue
 
