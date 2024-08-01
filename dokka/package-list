@@ -2,8 +2,8 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 
 module:rulebook-checkstyle
-com.hendraanggrian.rulebook.checkstyle
+com.hanggrian.rulebook.checkstyle
 module:rulebook-codenarc
-com.hendraanggrian.rulebook.codenarc
+com.hanggrian.rulebook.codenarc
 module:rulebook-ktlint
-com.hendraanggrian.rulebook.ktlint
+com.hanggrian.rulebook.ktlint
