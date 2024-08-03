@@ -31,21 +31,21 @@ public class InnerClassPositionRule : Rule("inner-class-position") {
         // in Kotlin, static members belong in companion object
         for (child in node.siblings()) {
             // capture child types
-            if (child.elementType != PROPERTY &&
-                child.elementType != CLASS_INITIALIZER &&
-                child.elementType != SECONDARY_CONSTRUCTOR &&
-                child.elementType != FUN &&
-                child.elementType != OBJECT_DECLARATION
-            ) {
-                continue
-            }
+            child
+                .takeUnless {
+                    it.elementType != PROPERTY &&
+                        it.elementType != CLASS_INITIALIZER &&
+                        it.elementType != SECONDARY_CONSTRUCTOR &&
+                        it.elementType != FUN &&
+                        it.elementType != OBJECT_DECLARATION
+                } ?: continue
 
-            // skip non-companion object
-            if (child.elementType == OBJECT_DECLARATION && !child.hasModifier(COMPANION_KEYWORD)) {
-                continue
-            }
-
-            // report once
+            // checks for violation
+            child
+                .takeUnless {
+                    it.elementType == OBJECT_DECLARATION &&
+                        !it.hasModifier(COMPANION_KEYWORD)
+                } ?: continue
             emit(node.startOffset, Messages[MSG], false)
             return
         }

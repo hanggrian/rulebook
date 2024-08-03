@@ -24,14 +24,11 @@ public class GenericsNameWhitelistingRule : Rule() {
     internal companion object {
         const val MSG = "generics.name.whitelisting"
 
-        private fun ASTNode.hasParentWithGenerics(): Boolean {
-            val parents =
-                when (this) {
-                    is MethodNode -> declaringClass.outerClasses + declaringClass
-                    else -> (this as ClassNode).outerClasses
-                }
-            return parents.any { it.name != "None" && !it.genericsTypes.isNullOrEmpty() }
-        }
+        private fun ASTNode.hasParentWithGenerics(): Boolean =
+            when (this) {
+                is MethodNode -> declaringClass.outerClasses + declaringClass
+                else -> (this as ClassNode).outerClasses
+            }.any { it.name != "None" && !it.genericsTypes.isNullOrEmpty() }
     }
 
     public class Visitor : AbstractAstVisitor() {

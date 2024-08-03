@@ -15,9 +15,9 @@ public class CommentLineJoiningCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // skip comment with content
-        if (!node.isEolCommentEmpty()) {
-            return
-        }
+        node
+            .takeIf { it.isEolCommentEmpty() }
+            ?: return
 
         // find matching sibling
         val next =

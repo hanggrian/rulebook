@@ -5,8 +5,6 @@ val releaseArtifact: String by project
 val releaseDescription: String by project
 val releaseUrl: String by project
 
-val prismVersion = "1.29.0"
-
 plugins {
     alias(libs.plugins.pages)
     alias(libs.plugins.git.publish)
@@ -14,10 +12,10 @@ plugins {
 
 pages {
     resources.from("$rootDir/build/dokka/")
-    styles.add("https://cdnjs.cloudflare.com/ajax/libs/prism/$prismVersion/themes/prism-tomorrow.min.css")
+    styles.add("https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css")
     scripts.addAll(
-        "https://cdnjs.cloudflare.com/ajax/libs/prism/$prismVersion/prism.min.js",
-        "https://cdnjs.cloudflare.com/ajax/libs/prism/$prismVersion/components/prism-groovy.min.js", // replacement for gradle
+        "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-groovy.min.js", // replacement for gradle
     )
     minimal {
         authorName = developerName

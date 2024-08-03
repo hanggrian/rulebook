@@ -3,13 +3,17 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@3
 
-jobs:
-  upload-coverage:
+executors:
+  linux:
     docker:
       - image: hanggrian/cimg-multiplatform:openjdk11-python3
+
+jobs:
+  upload-coverage:
+    executor: linux
     steps:
       - checkout
-      - run: gradle test koverXmlReport
+      - run: ./gradlew test koverXmlReport
       - run: pip install -r requirements.txt
       - run: pytest --cov .
       - codecov/upload

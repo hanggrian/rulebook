@@ -15,12 +15,11 @@ public class CommentLineTrimmingRule : Rule("comment-line-trimming") {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // continue if this comment is first line
-        val prev = node.treePrev
-        if (prev?.isWhitespaceWithSingleNewline() == true &&
-            prev.treePrev?.elementType == EOL_COMMENT
-        ) {
-            return
-        }
+        node.treePrev
+            .takeUnless {
+                it?.isWhitespaceWithSingleNewline() == true &&
+                    it.treePrev?.elementType == EOL_COMMENT
+            } ?: return
 
         // iterate to find last
         var current = node
@@ -31,9 +30,9 @@ public class CommentLineTrimmingRule : Rule("comment-line-trimming") {
         }
 
         // skip blank comment
-        if (current === node) {
-            return
-        }
+        current
+            .takeUnless { it === node }
+            ?: return
 
         // checks for violation
         if (node.isEolCommentEmpty()) {

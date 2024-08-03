@@ -145,9 +145,10 @@
   <rule class="com.hanggrian.rulebook.codenarc.ElseFlatteningRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.IfElseFlatteningRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.SwitchMultipleBranchingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.UtilityClassConstructorHidingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
 </ruleset>

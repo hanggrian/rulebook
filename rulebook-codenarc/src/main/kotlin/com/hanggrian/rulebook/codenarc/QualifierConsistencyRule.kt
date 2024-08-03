@@ -56,10 +56,10 @@ public class QualifierConsistencyRule : Rule() {
         }
 
         private fun process(node: ASTNode, text: String) {
-            node
-                .takeIf { it !in targetNodes && text in importPaths }
-                ?: return
-            targetNodes += node
+            targetNodes +=
+                node
+                    .takeIf { it !in targetNodes && text in importPaths }
+                    ?: return
             addViolation(node, Messages[MSG])
         }
     }

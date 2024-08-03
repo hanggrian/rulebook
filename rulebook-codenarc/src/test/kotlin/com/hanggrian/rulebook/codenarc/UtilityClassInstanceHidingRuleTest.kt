@@ -1,28 +1,29 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.UtilityClassConstructorHidingRule.Companion.MSG_EXIST
-import com.hanggrian.rulebook.codenarc.UtilityClassConstructorHidingRule.Companion.MSG_NEW
+import com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule.Companion.MSG_CONSTRUCTOR
+import com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule.Companion.MSG_CONSTRUCTOR_MODIFIER
+import com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule.Companion.MSG_MODIFIER
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class UtilityClassConstructorHidingRuleTest :
-    AbstractRuleTestCase<UtilityClassConstructorHidingRule>() {
-    override fun createRule() = UtilityClassConstructorHidingRule()
+class UtilityClassInstanceHidingRuleTest :
+    AbstractRuleTestCase<UtilityClassInstanceHidingRule>() {
+    override fun createRule() = UtilityClassInstanceHidingRule()
 
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
 
-        assertIs<UtilityClassConstructorHidingRule.Visitor>(rule.astVisitor)
+        assertIs<UtilityClassInstanceHidingRule.Visitor>(rule.astVisitor)
     }
 
     @Test
-    fun `Utility class with private constructor`() =
+    fun `Utility class with private constructor and final modifier`() =
         assertNoViolations(
             """
-            class Foo {
+            final class Foo {
                 private Foo() {}
 
                 static void bar() {}
@@ -31,8 +32,8 @@ class UtilityClassConstructorHidingRuleTest :
         )
 
     @Test
-    fun `Utility class without constructor`() =
-        assertSingleViolation(
+    fun `Utility class without modifier and constructor`() =
+        assertTwoViolations(
             """
             class Foo {
                 static void bar() {}
@@ -40,14 +41,17 @@ class UtilityClassConstructorHidingRuleTest :
             """.trimIndent(),
             1,
             "class Foo {",
-            Messages[MSG_NEW],
+            Messages[MSG_MODIFIER],
+            1,
+            "class Foo {",
+            Messages[MSG_CONSTRUCTOR],
         )
 
     @Test
     fun `Utility class with non-private constructors`() =
         assertTwoViolations(
             """
-            class Foo {
+            final class Foo {
                 Foo(int a) {}
 
                 public Foo(int a, int b) {}
@@ -57,9 +61,9 @@ class UtilityClassConstructorHidingRuleTest :
             """.trimIndent(),
             2,
             "Foo(int a) {}",
-            Messages[MSG_EXIST],
+            Messages[MSG_CONSTRUCTOR_MODIFIER],
             4,
             "public Foo(int a, int b) {}",
-            Messages[MSG_EXIST],
+            Messages[MSG_CONSTRUCTOR_MODIFIER],
         )
 }

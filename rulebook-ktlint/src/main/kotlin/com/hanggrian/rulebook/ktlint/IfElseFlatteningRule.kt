@@ -25,10 +25,9 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip recursive if-else
-        val parent = node.treeParent
-        if (parent?.elementType == THEN || parent?.elementType == ELSE) {
-            return
-        }
+        node.treeParent
+            ?.takeUnless { it.elementType == THEN || it.elementType == ELSE }
+            ?: return
 
         // get last if
         var `if`: ASTNode? = null

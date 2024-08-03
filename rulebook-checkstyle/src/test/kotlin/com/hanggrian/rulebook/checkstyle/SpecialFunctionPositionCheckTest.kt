@@ -10,16 +10,15 @@ class SpecialFunctionPositionCheckTest {
     fun `Rule properties`() = SpecialFunctionPositionCheck().assertProperties()
 
     @Test
-    fun `Overridden function at the bottom`() =
+    fun `Special function at the bottom`() =
         assertEquals(0, checker.read("SpecialFunctionPosition1"))
 
     @Test
-    fun `Overridden class before function`() =
-        assertEquals(1, checker.read("SpecialFunctionPosition2"))
+    fun `Special function not at the function`() =
+        assertEquals(2, checker.read("SpecialFunctionPosition2"))
 
     @Test
-    fun `Grouping overridden functions`() =
-        assertEquals(0, checker.read("SpecialFunctionPosition3"))
+    fun `Grouped overridden functions`() = assertEquals(0, checker.read("SpecialFunctionPosition3"))
 
     @Test
     fun `Skip static members`() = assertEquals(0, checker.read("SpecialFunctionPosition4"))

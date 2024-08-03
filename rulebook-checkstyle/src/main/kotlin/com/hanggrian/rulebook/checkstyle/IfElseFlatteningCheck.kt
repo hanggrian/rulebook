@@ -22,10 +22,9 @@ public class IfElseFlatteningCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // skip recursive if-else
-        val parent = node.parent
-        if (parent?.type == LITERAL_IF || parent?.type == LITERAL_ELSE) {
-            return
-        }
+        node.parent
+            ?.takeUnless { it.type == LITERAL_IF || it.type == LITERAL_ELSE }
+            ?: return
 
         // get last if
         var `if`: DetailAST? = null

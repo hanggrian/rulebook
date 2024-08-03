@@ -4,6 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.stmt.BlockStatement
+import org.codehaus.groovy.ast.stmt.DoWhileStatement
 import org.codehaus.groovy.ast.stmt.ForStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.Statement
@@ -21,6 +22,12 @@ public class IfElseFlatteningRule : Rule() {
     internal companion object {
         const val MSG_INVERT = "if.else.flattening.invert"
         const val MSG_LIFT = "if.else.flattening.lift"
+
+        private fun Statement.hasMultipleLines() =
+            (this as? BlockStatement)
+                ?.statements
+                ?.let { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
+                ?: false
     }
 
     public class Visitor : AbstractAstVisitor() {
@@ -31,6 +38,11 @@ public class IfElseFlatteningRule : Rule() {
 
         override fun visitWhileLoop(node: WhileStatement) {
             super.visitWhileLoop(node)
+            process(node.loopBlock as? BlockStatement ?: return)
+        }
+
+        override fun visitDoWhileLoop(node: DoWhileStatement) {
+            super.visitDoWhileLoop(node)
             process(node.loopBlock as? BlockStatement ?: return)
         }
 
@@ -60,14 +72,6 @@ public class IfElseFlatteningRule : Rule() {
                 .takeIf { it.hasMultipleLines() }
                 ?: return
             addViolation(`if`, Messages[MSG_INVERT])
-        }
-
-        private companion object {
-            fun Statement.hasMultipleLines() =
-                (this as? BlockStatement)
-                    ?.statements
-                    ?.let { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
-                    ?: false
         }
     }
 }

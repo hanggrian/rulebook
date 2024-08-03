@@ -60,9 +60,9 @@ public class QualifierConsistencyRule : Rule("qualifier-consistency") {
 
     override fun afterVisitChildNodes(node: ASTNode, emit: Emit) {
         // only trigger once
-        if (!node.isRoot()) {
-            return
-        }
+        node
+            .takeIf { it.isRoot() }
+            ?: return
 
         // checks for violation
         targetNodes.forEach { `class`, method ->

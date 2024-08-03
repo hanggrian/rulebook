@@ -4,9 +4,16 @@ public class SpecialFunctionPosition {
     public class Foo {
         @Override
         public String toString() {
-            return "baz";
+            return "foo";
         }
 
         public void bar() {}
+
+        @Override
+        public int hashCode() {
+            return 0;
+        }
+
+        public void baz() {}
     }
 }

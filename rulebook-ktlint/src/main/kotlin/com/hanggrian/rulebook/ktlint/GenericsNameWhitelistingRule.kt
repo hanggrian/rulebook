@@ -67,9 +67,9 @@ public class GenericsNameWhitelistingRule :
         private fun ASTNode.hasParentWithGenerics(): Boolean {
             var next = treeParent
             while (next != null) {
-                if (TYPE_PARAMETER_LIST in next) {
-                    return true
-                }
+                next
+                    .takeUnless { TYPE_PARAMETER_LIST in it }
+                    ?: return true
                 next = next.treeParent
             }
             return false

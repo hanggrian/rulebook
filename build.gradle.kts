@@ -40,8 +40,8 @@ subprojects {
             pom {
                 name.set(project.name)
                 description.set(releaseDescription)
-                inceptionYear.set("2024")
                 url.set(releaseUrl)
+                inceptionYear.set("2024")
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")

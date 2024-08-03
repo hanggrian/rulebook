@@ -17,17 +17,17 @@ public class ElseFlatteningCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // skip single if
-        if (LITERAL_ELSE !in node) {
-            return
-        }
+        node
+            .takeIf { LITERAL_ELSE in it }
+            ?: return
 
         // checks for violation
         var lastElse: DetailAST? = null
         var currentIf: DetailAST? = node
         while (currentIf != null) {
-            if (!currentIf.hasReturnOrThrow()) {
-                return
-            }
+            currentIf
+                .takeIf { it.hasReturnOrThrow() }
+                ?: return
             lastElse = currentIf.findFirstToken(LITERAL_ELSE)
             currentIf = lastElse?.findFirstToken(LITERAL_IF)
         }

@@ -32,6 +32,7 @@ public class RulebookRuleSet : RuleSetProviderV3(Rule.ID) {
             RuleProvider { InnerClassPositionRule() },
             RuleProvider { KotlinApiPriorityRule() },
             RuleProvider { NullStructuralEqualityRule() },
+            RuleProvider { OverloadFunctionPositionRule() },
             RuleProvider { PropertyNameJavaInteroperabilityRule() },
             RuleProvider { QualifierConsistencyRule() },
             RuleProvider { SpecialFunctionPositionRule() },

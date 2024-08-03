@@ -34,9 +34,9 @@ public class ClassOrganizationRule : Rule() {
 
             for (field in node.fields) {
                 // in Groovy, static members have specific keyword
-                if (field.isStatic) {
-                    continue
-                }
+                field
+                    .takeUnless { it.isStatic }
+                    ?: return
 
                 // checks for violation
                 when {

@@ -1,7 +1,7 @@
 package com.example.groovy
 
-class UtilityClassConstructorHiding {
-    static class Foo {
+class UtilityClassInstanceHiding {
+    final static class Foo {
         private Foo() {}
 
         static void bar() {}

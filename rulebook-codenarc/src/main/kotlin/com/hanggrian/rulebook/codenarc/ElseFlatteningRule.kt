@@ -35,9 +35,9 @@ public class ElseFlatteningRule : Rule() {
                 var lastElse: Statement? = null
                 var currentIf: IfStatement? = `if`
                 while (currentIf != null) {
-                    if (!currentIf.hasReturnOrThrow()) {
-                        return
-                    }
+                    currentIf
+                        .takeIf { it.hasReturnOrThrow() }
+                        ?: return
                     lastElse = currentIf.elseBlock
                     currentIf = lastElse as? IfStatement
                 }

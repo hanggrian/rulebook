@@ -17,46 +17,63 @@ class SpecialFunctionPositionRuleTest : AbstractRuleTestCase<SpecialFunctionPosi
     }
 
     @Test
-    fun `Overridden function at the bottom`() =
+    fun `Special function at the bottom`() =
         assertNoViolations(
             """
             class Foo {
                 void bar() {}
 
+                void baz() {}
+
                 @Override
                 String toString() {
-                    return "baz"
+                    return "foo"
+                }
+
+                @Override
+                int hashCode() {
+                    return 0
                 }
             }
             """.trimIndent(),
         )
 
     @Test
-    fun `Overridden class before function`() =
-        assertSingleViolation(
+    fun `Special function not at the function`() =
+        assertTwoViolations(
             """
             class Foo {
                 @Override
                 String toString() {
-                    return "baz"
+                    return "foo"
                 }
 
                 void bar() {}
+
+                @Override
+                int hashCode() {
+                    return 0
+                }
+
+                void baz() {}
             }
             """.trimIndent(),
             3,
             "String toString() {",
             Messages.get(MSG, "toString"),
+            10,
+            "int hashCode() {",
+            Messages.get(MSG, "hashCode"),
         )
 
     @Test
-    fun `Grouping overridden functions`() =
+    fun `Grouped overridden functions`() =
         assertNoViolations(
             """
             class Foo {
                 @Override
                 String toString() {
-                    return "baz"
+                    return "foo"
                 }
 
                 @Override
@@ -79,7 +96,7 @@ class SpecialFunctionPositionRuleTest : AbstractRuleTestCase<SpecialFunctionPosi
             class Foo {
                 @Override
                 String toString() {
-                    return "bar"
+                    return "foo"
                 }
 
                 public static void baz() {}

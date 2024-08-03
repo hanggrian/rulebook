@@ -68,12 +68,10 @@ public class BlockTagPunctuationRule :
                 propertyWriter = { it.joinToString() },
             )
 
-        private fun String.trimComment(): String {
-            val index = indexOf("//")
-            if (index == -1) {
-                return this
-            }
-            return substring(0, index).trimEnd()
-        }
+        private fun String.trimComment(): String =
+            indexOf("//")
+                .takeUnless { it == -1 }
+                ?.let { substring(0, it).trimEnd() }
+                ?: this
     }
 }

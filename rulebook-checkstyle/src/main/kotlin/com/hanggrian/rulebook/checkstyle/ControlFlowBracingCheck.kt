@@ -25,12 +25,13 @@ public class ControlFlowBracingCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // skip control flows that are already braced
-        if (node.type != LITERAL_IF && SLIST in node) {
-            return
-        }
-        if (node.type == LITERAL_IF && node.isIfStatementAllBraced()) {
-            return
-        }
+        node
+            .takeUnless {
+                when (node.type) {
+                    LITERAL_IF -> node.isIfStatementAllBraced()
+                    else -> SLIST in node
+                }
+            } ?: return
 
         // checks for violation
         node
@@ -45,11 +46,11 @@ public class ControlFlowBracingCheck : Check() {
         private fun DetailAST.isIfStatementAllBraced(): Boolean {
             var current = this
             while (LITERAL_ELSE in current) {
-                if (SLIST !in current) {
-                    return false
-                }
-
-                current = current.findFirstToken(LITERAL_ELSE)!!
+                current =
+                    current
+                        .takeIf { SLIST in it }
+                        ?.findFirstToken(LITERAL_ELSE)
+                        ?: return false
                 if (LITERAL_IF in current) {
                     current = current.findFirstToken(LITERAL_IF)!!
                 }

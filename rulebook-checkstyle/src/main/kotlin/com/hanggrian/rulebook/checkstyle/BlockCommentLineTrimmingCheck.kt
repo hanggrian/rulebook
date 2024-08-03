@@ -19,13 +19,11 @@ public class BlockCommentLineTrimmingCheck : JavadocCheck() {
 
     override fun visitJavadocToken(node: DetailNode) {
         // allow blank comment
-        if (node.children
-                .filterNot { it.type == LEADING_ASTERISK || it.type == EOF }
-                .joinToString("") { it.text }
-                .isBlank()
-        ) {
-            return
-        }
+        node.children
+            .filterNot { it.type == LEADING_ASTERISK || it.type == EOF }
+            .joinToString("") { it.text }
+            .takeUnless { it.isBlank() }
+            ?: return
 
         // initial node is always newline
         var children = node.filterEmpty()

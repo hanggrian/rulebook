@@ -56,9 +56,9 @@ public class GenericsNameWhitelistingCheck : Check() {
         private fun DetailAST.hasParentWithGenerics(): Boolean {
             var next = parent
             while (next != null) {
-                if (TYPE_PARAMETERS in next) {
-                    return true
-                }
+                next
+                    .takeUnless { TYPE_PARAMETERS in it }
+                    ?: return true
                 next = next.parent
             }
             return false

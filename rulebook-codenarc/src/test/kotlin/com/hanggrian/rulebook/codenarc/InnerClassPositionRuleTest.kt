@@ -17,7 +17,7 @@ class InnerClassPositionRuleTest : AbstractRuleTestCase<InnerClassPositionRule>(
     }
 
     @Test
-    fun `Inner class at the bottom`() =
+    fun `Inner classes at the bottom`() =
         assertNoViolations(
             """
             class Foo {
@@ -31,57 +31,34 @@ class InnerClassPositionRuleTest : AbstractRuleTestCase<InnerClassPositionRule>(
 
                 void baz() {}
 
-                class Bar {}
+                class Inner {}
+
+                class AnotherInner {}
             }
             """.trimIndent(),
         )
 
     @Test
-    fun `Inner class before property`() =
-        assertSingleViolation(
+    fun `Inner classes before members`() =
+        assertTwoViolations(
             """
             class Foo {
-                class Bar {}
+                class Inner {}
 
                 int bar = 0
-            }
-            """.trimIndent(),
-            2,
-            "class Bar {}",
-            Messages[MSG],
-        )
 
-    @Test
-    fun `Inner class before constructor`() =
-        assertSingleViolation(
-            """
-            class Foo {
-                class Bar {}
+                class AnotherInner {}
 
-                Foo(int a) {}
-
-                Foo() {
-                  this(0)
+                void baz() {
+                    print(0)
                 }
             }
             """.trimIndent(),
             2,
-            "class Bar {}",
+            "class Inner {}",
             Messages[MSG],
-        )
-
-    @Test
-    fun `Inner class before method`() =
-        assertSingleViolation(
-            """
-            class Foo {
-                class Bar {}
-
-                void baz() {}
-            }
-            """.trimIndent(),
-            2,
-            "class Bar {}",
+            6,
+            "class AnotherInner {}",
             Messages[MSG],
         )
 }

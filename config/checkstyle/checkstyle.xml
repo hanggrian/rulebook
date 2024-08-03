@@ -21,6 +21,8 @@
     - Add 'OneStatementPerLine'.
     - Remove 'MissingSwitchDefault'.
     - Remove 'HiddenField'.
+    - Remove 'MagicNumber'.
+    - Add 'OverloadMethodsDeclarationOrder'.
   - Modify 'Javadoc Comments':
     - Remove 'MissingJavadocMethod'.
     - Remove 'JavadocPackage'.
@@ -173,7 +175,6 @@
     <module name="EqualsHashCode"/>
     <module name="IllegalInstantiation"/>
     <module name="InnerAssignment"/>
-    <module name="MagicNumber"/>
     <module name="MultipleVariableDeclarations"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
@@ -225,6 +226,7 @@
     </module>
 
     <module name="InnerTypeLast"/>
+    <module name="OverloadMethodsDeclarationOrder"/>
 
     <!-- Third-party rules -->
     <module name="AssignmentWrapping"/>

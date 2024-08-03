@@ -16,12 +16,10 @@ public class InnerClassPositionRule : Rule() {
     internal companion object {
         const val MSG = "inner.class.position"
 
-        private fun List<ASTNode>.isAnyAfter(other: ASTNode): Boolean {
-            if (isEmpty()) {
-                return false
-            }
-            return first().lineNumber > other.lineNumber
-        }
+        private fun List<ASTNode>.isAnyAfter(other: ASTNode): Boolean =
+            takeUnless { it.isEmpty() }
+                ?.let { it.first().lineNumber > other.lineNumber }
+                ?: false
     }
 
     public class Visitor : AbstractAstVisitor() {
@@ -30,11 +28,12 @@ public class InnerClassPositionRule : Rule() {
 
             // checks for violation
             for (`class` in node.innerClasses) {
-                node.takeIf {
-                    it.fields.isAnyAfter(`class`) ||
-                        it.declaredConstructors.isAnyAfter(`class`) ||
-                        it.methods.isAnyAfter(`class`)
-                } ?: continue
+                node
+                    .takeIf {
+                        it.fields.isAnyAfter(`class`) ||
+                            it.declaredConstructors.isAnyAfter(`class`) ||
+                            it.methods.isAnyAfter(`class`)
+                    } ?: continue
                 addViolation(`class`, Messages[MSG])
             }
         }

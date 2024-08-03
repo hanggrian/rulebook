@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.ktlint
 import com.hanggrian.rulebook.ktlint.SpecialFunctionPositionRule.Companion.MSG
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class SpecialFunctionPositionRuleTest {
@@ -12,35 +13,46 @@ class SpecialFunctionPositionRuleTest {
     fun `Rule properties`() = SpecialFunctionPositionRule().assertProperties()
 
     @Test
-    fun `Overridden function at the bottom`() =
+    fun `Special function at the bottom`() =
         assertThatCode(
             """
             class Foo {
                 fun bar() {}
 
-                override fun toString() = "baz"
+                fun baz() {}
+
+                override fun toString() = "foo"
+
+                override fun hashCode() = 0
             }
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `Overridden class before function`() =
+    fun `Special function not at the function`() =
         assertThatCode(
             """
             class Foo {
-                override fun toString() = "baz"
+                override fun toString() = "foo"
 
                 fun bar() {}
+
+                override fun hashCode() = 0
+
+                fun baz() {}
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages.get(MSG, "toString"))
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(2, 5, Messages.get(MSG, "toString")),
+            LintViolation(6, 5, Messages.get(MSG, "hashCode")),
+        )
 
     @Test
-    fun `Grouping overridden functions`() =
+    fun `Grouped overridden functions`() =
         assertThatCode(
             """
             class Foo(a: Int) {
-                override fun toString() = "baz"
+                override fun toString() = "foo"
 
                 override fun hashCode() = 0
 

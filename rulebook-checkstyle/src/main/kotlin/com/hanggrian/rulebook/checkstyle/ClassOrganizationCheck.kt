@@ -36,9 +36,9 @@ public class ClassOrganizationCheck : Check() {
                 it.type == METHOD_DEF
         }) {
             // in Java, static members have specific keyword
-            if (child.hasModifier(LITERAL_STATIC)) {
-                continue
-            }
+            child
+                .takeUnless { it.hasModifier(LITERAL_STATIC) }
+                ?: return
 
             // checks for violation
             if (ELEMENT_POSITIONS.getOrDefault(lastType, -1) > ELEMENT_POSITIONS[child.type]!!) {

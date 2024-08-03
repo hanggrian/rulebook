@@ -13,8 +13,8 @@ class TestInnerClassPositionChecker(CheckerTestCase):
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
 
-    def test_inner_class_at_the_bottom(self):
-        node1, node2 = \
+    def test_inner_classes_at_the_bottom(self):
+        node1, node2, node3 = \
             extract_node(
                 '''
                 class Foo:  #@
@@ -26,29 +26,40 @@ class TestInnerClassPositionChecker(CheckerTestCase):
 
                     class Inner:  #@
                         print()
+
+                    class AnotherInner:  #@
+                        print()
                 ''',
             )
         with self.assertNoMessages():
             self.checker.visit_classdef(node1)
             self.checker.visit_classdef(node2)
+            self.checker.visit_classdef(node3)
 
-    def test_inner_class_before_constructor(self):
-        node1, node2 = \
+    def test_inner_classes_before_members(self):
+        node1, node2, node3 = \
             extract_node(
                 '''
                 class Foo:  #@
                     class Inner:  #@
                         print()
 
-                    def __init__(self):
+                    bar = 0
+
+                    class AnotherInner:  #@
+                        print()
+
+                    def baz():
                         print()
                 ''',
             )
         with self.assertAddsMessages(
             msg(InnerClassPositionChecker.MSG, (3, 4, 15), node2),
+            msg(InnerClassPositionChecker.MSG, (8, 4, 22), node3),
         ):
             self.checker.visit_classdef(node1)
             self.checker.visit_classdef(node2)
+            self.checker.visit_classdef(node3)
 
 
 if __name__ == '__main__':

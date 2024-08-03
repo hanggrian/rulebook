@@ -16,9 +16,9 @@ public class CommentLineJoiningRule : Rule("comment-line-joining") {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip comment with content
-        if (!node.isEolCommentEmpty()) {
-            return
-        }
+        node
+            .takeIf { it.isEolCommentEmpty() }
+            ?: return
 
         // find matching sibling
         val next =

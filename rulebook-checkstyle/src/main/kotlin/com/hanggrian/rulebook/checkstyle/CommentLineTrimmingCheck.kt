@@ -15,12 +15,11 @@ public class CommentLineTrimmingCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // continue if this comment is first line
-        val prev = node.previousSibling
-        if (prev?.lineNo == node.lineNo - 1 &&
-            prev.type == SINGLE_LINE_COMMENT
-        ) {
-            return
-        }
+        node.previousSibling
+            .takeUnless {
+                it?.lineNo == node.lineNo - 1 &&
+                    it.type == SINGLE_LINE_COMMENT
+            } ?: return
 
         // iterate to find last
         var current = node
@@ -31,9 +30,9 @@ public class CommentLineTrimmingCheck : Check() {
         }
 
         // skip blank comment
-        if (current === node) {
-            return
-        }
+        current
+            .takeUnless { it === node }
+            ?: return
 
         // checks for violation
         if (node.isEolCommentEmpty()) {

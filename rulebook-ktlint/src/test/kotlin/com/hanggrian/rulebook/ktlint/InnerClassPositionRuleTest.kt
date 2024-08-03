@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.ktlint
 import com.hanggrian.rulebook.ktlint.InnerClassPositionRule.Companion.MSG
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class InnerClassPositionRuleTest {
@@ -12,7 +13,7 @@ class InnerClassPositionRuleTest {
     fun `Rule properties`() = InnerClassPositionRule().assertProperties()
 
     @Test
-    fun `Inner class at the bottom`() =
+    fun `Inner classes at the bottom`() =
         assertThatCode(
             """
             class Foo(a: Int) {
@@ -23,43 +24,28 @@ class InnerClassPositionRuleTest {
                 fun baz() = print(0)
 
                 class Inner
+
+                class AnotherInner
             }
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `Inner class before property`() =
+    fun `Inner classes before members`() =
         assertThatCode(
             """
             class Foo(a: Int) {
                 class Inner
 
                 val bar = 0
-            }
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG])
 
-    @Test
-    fun `Inner class before constructor`() =
-        assertThatCode(
-            """
-            class Foo(a: Int) {
-                class Inner {}
-
-                constructor() : this(0)
-            }
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG])
-
-    @Test
-    fun `Inner class before method`() =
-        assertThatCode(
-            """
-            class Foo(a: Int) {
-                class Inner
+                class AnotherInner
 
                 fun baz() = print(0)
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG])
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(2, 5, Messages[MSG]),
+            LintViolation(6, 5, Messages[MSG]),
+        )
 }

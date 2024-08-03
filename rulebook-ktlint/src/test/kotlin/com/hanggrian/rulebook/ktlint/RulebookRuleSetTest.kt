@@ -39,6 +39,7 @@ class RulebookRuleSetTest {
             InnerClassPositionRule::class,
             KotlinApiPriorityRule::class,
             NullStructuralEqualityRule::class,
+            OverloadFunctionPositionRule::class,
             PropertyNameJavaInteroperabilityRule::class,
             QualifierConsistencyRule::class,
             SpecialFunctionPositionRule::class,

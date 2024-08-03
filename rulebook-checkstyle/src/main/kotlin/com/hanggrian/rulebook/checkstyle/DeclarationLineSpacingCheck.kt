@@ -36,9 +36,9 @@ public class DeclarationLineSpacingCheck : Check() {
 
         for ((i, child) in children.withIndex()) {
             // skip first
-            if (i == 0) {
-                continue
-            }
+            i
+                .takeUnless { it == 0 }
+                ?: continue
 
             // block comment starts earlier
             val childLine = child.orComment.lineNo

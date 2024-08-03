@@ -4,7 +4,7 @@ public class SpecialFunctionPosition {
     public class Foo {
         @Override
         public String toString() {
-            return "bar";
+            return "foo";
         }
 
         public static void baz() {}

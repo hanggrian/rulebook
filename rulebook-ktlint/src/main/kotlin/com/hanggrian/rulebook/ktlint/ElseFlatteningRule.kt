@@ -17,17 +17,17 @@ public class ElseFlatteningRule : Rule("else-flattening") {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip single if
-        if (ELSE !in node) {
-            return
-        }
+        node
+            .takeIf { ELSE in node }
+            ?: return
 
         // checks for violation
         var lastElse: ASTNode? = null
         var currentIf: ASTNode? = node
         while (currentIf != null) {
-            if (!currentIf.hasReturnOrThrow()) {
-                return
-            }
+            currentIf
+                .takeIf { it.hasReturnOrThrow() }
+                ?: return
             lastElse = currentIf.findChildByType(ELSE_KEYWORD)
             currentIf = currentIf.findChildByType(ELSE)?.findChildByType(IF)
         }
