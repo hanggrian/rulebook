@@ -34,8 +34,21 @@ class EmptyCodeBlockConcisenessRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 11, Messages[MSG]),
-            LintViolation(3, 11, Messages[MSG]),
-            LintViolation(6, 11, Messages[MSG]),
+            LintViolation(1, 12, Messages[MSG]),
+            LintViolation(3, 12, Messages[MSG]),
+            LintViolation(6, 12, Messages[MSG]),
+        )
+
+    @Test
+    fun `Code block in parameter default value declaration`() =
+        assertThatCode(
+            """
+            class Foo(
+                val bar: (Int) -> Unit = {},
+                val baz: (Int) -> Unit = { },
+            )
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(3, 31, Messages[MSG]),
         )
 }

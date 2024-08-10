@@ -100,11 +100,11 @@ class IfElseFlatteningRuleTest {
         ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_INVERT])
 
     @Test
-    fun `Skip recursive if-else`() =
+    fun `Skip init block`() =
         assertThatCode(
             """
-            fun foo() {
-                if (true) {
+            class Foo {
+                init {
                     if (true) {
                         baz()
                         baz()
@@ -112,19 +112,18 @@ class IfElseFlatteningRuleTest {
                 }
             }
 
-            fun bar() {
-                if (true) {
-                    baz()
-                } else {
+            class Bar {
+                init {
                     if (true) {
                         baz()
-                        baz()
+                    } else {
+                        if (true) {
+                            baz()
+                            baz()
+                        }
                     }
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 5, Messages[MSG_INVERT]),
-            LintViolation(13, 7, Messages[MSG_LIFT]),
-        )
+        ).hasNoLintViolations()
 }

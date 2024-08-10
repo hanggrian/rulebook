@@ -4,6 +4,7 @@ import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
 import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_INITIALIZER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
@@ -14,6 +15,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.children
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -24,9 +26,9 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
     override val tokens: TokenSet = TokenSet.create(BLOCK)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip recursive if-else
-        node.treeParent
-            ?.takeUnless { it.elementType == THEN || it.elementType == ELSE }
+        // skip init block
+        node
+            .takeIf { n -> n.parent { it.elementType == CLASS_INITIALIZER } == null }
             ?: return
 
         // get last if
@@ -67,8 +69,8 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
         private fun ASTNode.hasMultipleLines() =
             findChildByType(BLOCK)
                 ?.children()
-                ?.filter {
-                    it.elementType != LBRACE && it.elementType != RBRACE && !it.isWhiteSpace()
+                ?.filterNot {
+                    it.elementType == LBRACE || it.elementType == RBRACE || it.isWhiteSpace()
                 }?.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
                 ?: false
     }

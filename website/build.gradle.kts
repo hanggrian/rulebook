@@ -11,11 +11,11 @@ plugins {
 }
 
 pages {
-    resources.from("$rootDir/build/dokka/")
-    styles.add("https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css")
+    resources.from("src", "$rootDir/build/dokka/")
+    styles.add("styles/prism-tomorrow.css")
     scripts.addAll(
         "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js",
-        "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-groovy.min.js", // replacement for gradle
+        "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-gradle.min.js",
     )
     minimal {
         authorName = developerName
@@ -37,7 +37,7 @@ tasks {
     register(LifecycleBasePlugin.CLEAN_TASK_NAME) {
         delete(layout.buildDirectory)
     }
-    deployPages {
+    deployResources {
         dependsOn(":dokkaHtmlMultiModule")
     }
 }

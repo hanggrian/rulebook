@@ -1,8 +1,11 @@
 package com.example.kotlin
 
 class IfElseFlattening {
-    fun foo(condition: Boolean) {
-        if (condition) {
+    fun foo() {
+        if (false) {
+            return
+        }
+        if (false) {
             return
         }
         println()

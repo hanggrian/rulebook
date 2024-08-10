@@ -19,6 +19,9 @@ class IfElseFlatteningChecker(Checker):
     name: str = 'if-else-flattening'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_INVERT, MSG_LIFT)
 
+    def visit_if(self, node: For) -> None:
+        self._process(node.body)
+
     def visit_for(self, node: For) -> None:
         self._process(node.body)
 

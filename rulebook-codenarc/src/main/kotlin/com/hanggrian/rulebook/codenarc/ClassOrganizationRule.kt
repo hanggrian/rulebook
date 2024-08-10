@@ -29,7 +29,7 @@ public class ClassOrganizationRule : Rule() {
                     .minOfOrNull { it.lineNumber }
             val firstFunctionIndex =
                 node.methods
-                    .filter { !it.isStatic }
+                    .filterNot { it.isStatic }
                     .minOfOrNull { it.lineNumber }
 
             for (field in node.fields) {

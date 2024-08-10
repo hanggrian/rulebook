@@ -56,6 +56,7 @@ public class IdentifierNameBlacklistingRule :
                     ),
                 defaultValue =
                     setOf(
+                        "any",
                         "boolean",
                         "byte",
                         "char",
@@ -65,10 +66,12 @@ public class IdentifierNameBlacklistingRule :
                         "integer",
                         "long",
                         "short",
+                        "array",
                         "string",
                         "list",
                         "set",
                         "map",
+                        "collection",
                     ),
                 propertyWriter = { it.joinToString() },
             )

@@ -21,11 +21,6 @@ public class IfElseFlatteningCheck : Check() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // skip recursive if-else
-        node.parent
-            ?.takeUnless { it.type == LITERAL_IF || it.type == LITERAL_ELSE }
-            ?: return
-
         // get last if
         var `if`: DetailAST? = null
         for (child in node.children.asIterable().reversed()) {
@@ -63,7 +58,7 @@ public class IfElseFlatteningCheck : Check() {
         private fun DetailAST.hasMultipleLines() =
             findFirstToken(SLIST)
                 ?.children
-                ?.filter { it.type != RCURLY && it.type != SEMI }
+                ?.filterNot { it.type == RCURLY || it.type == SEMI }
                 ?.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
                 ?: false
     }

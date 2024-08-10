@@ -97,32 +97,6 @@ class TestIfElseFlatteningChecker(CheckerTestCase):
         ):
             self.checker.visit_functiondef(node1)
 
-    def test_skip_recursive_if_else(self):
-        node1, node2 = \
-            extract_node(
-                '''
-                def foo():  #@
-                    if True:
-                        if True:
-                            baz()
-                            baz()
-
-                def bar():  #@
-                    if True:
-                        baz()
-                    else:
-                        if True:
-                            baz()
-                            baz()
-                ''',
-            )
-        # `bar` deliberately miss the check because it coincides with `elif test`
-        with self.assertAddsMessages(
-            msg(IfElseFlatteningChecker.MSG_INVERT, (3, 4, 6, 17), node1.body[0]),
-        ):
-            self.checker.visit_functiondef(node1)
-            self.checker.visit_functiondef(node2)
-
 
 if __name__ == '__main__':
     main()

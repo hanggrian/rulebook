@@ -8,7 +8,17 @@ import org.codenarc.rule.AbstractAstVisitor
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#identifier-name-blacklisting)
  */
 public class IdentifierNameBlacklistingRule : Rule() {
-    internal var names = setOf("integer", "string", "list", "set", "map")
+    internal var names =
+        setOf(
+            "object",
+            "integer",
+            "string",
+            "array",
+            "list",
+            "set",
+            "map",
+            "collection",
+        )
 
     public fun setNames(names: String) {
         this.names = names.split(", ").toSet()

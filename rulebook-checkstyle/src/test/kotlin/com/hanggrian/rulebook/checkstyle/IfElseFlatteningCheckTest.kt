@@ -25,7 +25,4 @@ class IfElseFlatteningCheckTest {
 
     @Test
     fun `Capture trailing non-ifs`() = assertEquals(1, checker.read("IfElseFlattening5"))
-
-    @Test
-    fun `Skip recursive if-else`() = assertEquals(2, checker.read("IfElseFlattening6"))
 }

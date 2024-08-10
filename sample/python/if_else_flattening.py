@@ -12,3 +12,11 @@ def bar(condition: bool):
         print(
             0,
         )
+
+def baz(condition: bool):
+    if condition:
+        if condition:
+            print()
+            return
+        else:
+            print()
