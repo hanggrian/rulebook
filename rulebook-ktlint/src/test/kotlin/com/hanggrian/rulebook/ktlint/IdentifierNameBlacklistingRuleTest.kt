@@ -80,4 +80,14 @@ class IdentifierNameBlacklistingRuleTest {
             LintViolation(2, 10, Messages[MSG]),
             LintViolation(2, 15, Messages[MSG]),
         )
+
+    @Test
+    fun `Find backticked identifier`() =
+        assertThatCode(
+            """
+            class Foo {
+                val `int` = 0
+            }
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(2, 9, Messages[MSG])
 }

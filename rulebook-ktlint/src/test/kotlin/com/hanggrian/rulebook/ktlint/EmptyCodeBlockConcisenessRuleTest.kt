@@ -40,6 +40,25 @@ class EmptyCodeBlockConcisenessRuleTest {
         )
 
     @Test
+    fun `Control flows with multi-blocks`() =
+        assertThatCode(
+            """
+            fun foo() {
+                try {
+                } catch (e: Exception) {
+                }
+            }
+
+            fun bar() {
+                if (true) {
+                } else if (false) {
+                } else {
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
     fun `Code block in parameter default value declaration`() =
         assertThatCode(
             """
@@ -48,7 +67,5 @@ class EmptyCodeBlockConcisenessRuleTest {
                 val baz: (Int) -> Unit = { },
             )
             """.trimIndent(),
-        ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 31, Messages[MSG]),
-        )
+        ).hasLintViolationWithoutAutoCorrect(3, 31, Messages[MSG])
 }

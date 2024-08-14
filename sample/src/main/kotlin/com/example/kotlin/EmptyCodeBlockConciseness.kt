@@ -3,5 +3,12 @@ package com.example.kotlin
 class EmptyCodeBlockConciseness {
     fun foo() {}
 
-    class Bar(val baz: (Int) -> Unit = {})
+    fun bar() {
+        if (true) {
+        } else if (false) {
+        } else {
+        }
+    }
+
+    class Baz(val baz: (Int) -> Unit = {})
 }

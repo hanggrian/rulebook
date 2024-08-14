@@ -38,8 +38,12 @@ public class IdentifierNameBlacklistingRule :
         val identifier =
             node
                 .findChildByType(IDENTIFIER)
-                ?.takeIf { it.text in names }
-                ?: return
+                ?.takeIf {
+                    when {
+                        !it.text.startsWith('`') || !it.text.endsWith('`') -> it.text
+                        else -> it.text.substring(1, it.text.lastIndex)
+                    } in names
+                } ?: return
         emit(identifier.startOffset, Messages[MSG], false)
     }
 

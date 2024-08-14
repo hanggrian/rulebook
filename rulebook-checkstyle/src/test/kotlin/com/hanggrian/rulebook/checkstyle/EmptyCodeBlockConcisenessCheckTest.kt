@@ -23,4 +23,8 @@ class EmptyCodeBlockConcisenessCheckTest {
     @Test
     fun `Unwrapped empty function block`() =
         assertEquals(3, checker.read("EmptyCodeBlockConciseness4"))
+
+    @Test
+    fun `Control flows with multi-blocks`() =
+        assertEquals(0, checker.read("EmptyCodeBlockConciseness5"))
 }

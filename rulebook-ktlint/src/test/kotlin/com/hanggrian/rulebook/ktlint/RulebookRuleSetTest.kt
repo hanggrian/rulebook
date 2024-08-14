@@ -29,7 +29,6 @@ class RulebookRuleSetTest {
             ElvisWrappingRule::class,
             EmptyCodeBlockConcisenessRule::class,
             ExceptionExtendingRule::class,
-            ExceptionSubclassCatchingRule::class,
             ExceptionSubclassThrowingRule::class,
             FileInitialLineTrimmingRule::class,
             FileSizeLimitationRule::class,

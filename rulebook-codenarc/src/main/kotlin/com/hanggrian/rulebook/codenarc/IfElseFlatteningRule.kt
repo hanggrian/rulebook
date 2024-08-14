@@ -4,7 +4,6 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
-import org.codehaus.groovy.ast.stmt.Statement
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
@@ -18,12 +17,6 @@ public class IfElseFlatteningRule : Rule() {
     internal companion object {
         const val MSG_INVERT = "if.else.flattening.invert"
         const val MSG_LIFT = "if.else.flattening.lift"
-
-        private fun Statement.hasMultipleLines() =
-            (this as? BlockStatement)
-                ?.statements
-                ?.let { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
-                ?: false
     }
 
     public class Visitor : AbstractAstVisitor() {

@@ -2,9 +2,13 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CATCH
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUNCTION_LITERAL
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.TRY
 import com.pinterest.ktlint.rule.engine.core.api.children
 import com.pinterest.ktlint.rule.engine.core.api.isLeaf
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
@@ -18,6 +22,12 @@ public class EmptyCodeBlockConcisenessRule : Rule("empty-code-block-conciseness"
     override val tokens: TokenSet = TokenSet.create(BLOCK, FUNCTION_LITERAL)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
+        // skip control flows that can have multi-blocks
+        node.treeParent
+            .elementType
+            .takeUnless { it == TRY || it == CATCH || it == THEN || it == ELSE }
+            ?: return
+
         // checks for violation
         val children =
             node

@@ -16,7 +16,6 @@
     - Add 'InnerTypeLast'.
   - Modify 'Coding':
     - Add 'IllegalThrows' that includes 'Exception', 'Error' and 'Throwable'.
-    - Add 'IllegalCatch' that includes 'Exception', 'Error' and 'Throwable'.
     - Add 'ArrayTrailingComma'.
     - Add 'OneStatementPerLine'.
     - Remove 'MissingSwitchDefault'.
@@ -201,11 +200,6 @@
 
     <module name="IllegalThrows">
       <property name="ignoreOverriddenMethods" value="false"/>
-      <property
-        name="illegalClassNames"
-        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
-    </module>
-    <module name="IllegalCatch">
       <property
         name="illegalClassNames"
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>

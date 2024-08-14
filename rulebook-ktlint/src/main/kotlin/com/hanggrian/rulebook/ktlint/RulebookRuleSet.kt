@@ -22,7 +22,6 @@ public class RulebookRuleSet : RuleSetProviderV3(Rule.ID) {
             RuleProvider { ElvisWrappingRule() },
             RuleProvider { EmptyCodeBlockConcisenessRule() },
             RuleProvider { ExceptionExtendingRule() },
-            RuleProvider { ExceptionSubclassCatchingRule() },
             RuleProvider { ExceptionSubclassThrowingRule() },
             RuleProvider { FileInitialLineTrimmingRule() },
             RuleProvider { FileSizeLimitationRule() },
