@@ -39,7 +39,7 @@ class SpecialFunctionPositionRuleTest : AbstractRuleTestCase<SpecialFunctionPosi
         )
 
     @Test
-    fun `Special function not at the function`() =
+    fun `Special function not at the bottom`() =
         assertTwoViolations(
             """
             class Foo {

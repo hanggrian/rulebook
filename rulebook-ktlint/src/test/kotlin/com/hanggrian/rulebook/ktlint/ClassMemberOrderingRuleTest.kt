@@ -1,18 +1,18 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.ClassOrganizationRule.Companion.MSG
+import com.hanggrian.rulebook.ktlint.ClassMemberOrderingRule.Companion.MSG
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class ClassOrganizationRuleTest {
-    private val assertThatCode = assertThatRule { ClassOrganizationRule() }
+class ClassMemberOrderingRuleTest {
+    private val assertThatCode = assertThatRule { ClassMemberOrderingRule() }
 
     @Test
-    fun `Rule properties`() = ClassOrganizationRule().assertProperties()
+    fun `Rule properties`() = ClassMemberOrderingRule().assertProperties()
 
     @Test
-    fun `Correct organization`() =
+    fun `Correct member organization`() =
         assertThatCode(
             """
             class Foo(a: Int) {
@@ -32,7 +32,7 @@ class ClassOrganizationRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Property after initializer block`() =
+    fun `Member property after initializer block`() =
         assertThatCode(
             """
             class Foo(a: Int) {
@@ -48,7 +48,7 @@ class ClassOrganizationRuleTest {
         )
 
     @Test
-    fun `Initializer block after constructor`() =
+    fun `Member initializer block after constructor`() =
         assertThatCode(
             """
             class Foo(a: Int) {
@@ -64,7 +64,7 @@ class ClassOrganizationRuleTest {
         )
 
     @Test
-    fun `Constructor after function`() =
+    fun `Member constructor after function`() =
         assertThatCode(
             """
             class Foo(a: Int) {
@@ -76,7 +76,7 @@ class ClassOrganizationRuleTest {
         ).hasLintViolationWithoutAutoCorrect(4, 5, Messages.get(MSG, "constructor", "function"))
 
     @Test
-    fun `Function after companion object`() =
+    fun `Member function after companion object`() =
         assertThatCode(
             """
             class Foo(a: Int) {

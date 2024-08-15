@@ -26,27 +26,28 @@ public class ElvisWrappingRule : Rule("elvis-wrapping") {
                 ?: return
 
         // checks for violation
-        val prevLastChild =
+        val sibling =
             operationReference
                 .prevCodeSibling()
                 ?.lastMostChild
                 ?: return
-        if (prevLastChild.elementType == RBRACE &&
-            prevLastChild.treePrev.isWhiteSpaceWithNewline()
+        if (sibling.elementType == RBRACE &&
+            sibling.treePrev.isWhiteSpaceWithNewline()
         ) {
             operationReference.treePrev
                 .takeIf { it.isWhiteSpaceWithNewline() }
                 ?: return
-            emit(node.startOffset, Messages[MSG], false)
+            emit(node.startOffset, Messages[MSG_UNEXPECTED], false)
             return
         }
         operationReference.treePrev
             .takeIf { it.isWhiteSpaceWithoutNewline() }
             ?: return
-        emit(node.startOffset, Messages[MSG], false)
+        emit(node.startOffset, Messages[MSG_MISSING], false)
     }
 
     internal companion object {
-        const val MSG = "elvis.wrapping"
+        const val MSG_MISSING = "elvis.wrapping.missing"
+        const val MSG_UNEXPECTED = "elvis.wrapping.unexpected"
     }
 }

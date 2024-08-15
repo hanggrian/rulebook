@@ -30,10 +30,12 @@ public class BlockTagPunctuationRule :
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // only enforce certain tags
-        node
-            .findChildByType(KDOC_TAG_NAME)
-            ?.takeIf { it.text in punctuatedTags }
-            ?: return
+        val blockTag =
+            node
+                .findChildByType(KDOC_TAG_NAME)
+                ?.text
+                ?.takeIf { it in punctuatedTags }
+                ?: return
 
         // long descriptions have multiple lines, take only the last one
         val kdocText =
@@ -48,7 +50,7 @@ public class BlockTagPunctuationRule :
             .lastOrNull()
             ?.takeUnless { it in END_PUNCTUATIONS }
             ?: return
-        emit(kdocText.endOffset, Messages.get(MSG, punctuatedTags.joinToString()), false)
+        emit(kdocText.endOffset, Messages.get(MSG, blockTag), false)
     }
 
     internal companion object {
@@ -64,7 +66,14 @@ public class BlockTagPunctuationRule :
                         "Block tags that have to end with a period.",
                         CommaSeparatedListValueParser(),
                     ),
-                defaultValue = setOf("@param", "@return"),
+                defaultValue =
+                    setOf(
+                        "@constructor",
+                        "@receiver",
+                        "@property",
+                        "@param",
+                        "@return",
+                    ),
                 propertyWriter = { it.joinToString() },
             )
 

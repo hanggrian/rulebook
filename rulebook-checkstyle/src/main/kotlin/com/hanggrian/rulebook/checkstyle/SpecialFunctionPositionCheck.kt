@@ -1,39 +1,45 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
+import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.hasAnnotation
 import com.hanggrian.rulebook.checkstyle.internals.hasModifier
-import com.hanggrian.rulebook.checkstyle.internals.nextSiblings
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_STATIC
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_DEF
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#special-function-position)
  */
 public class SpecialFunctionPositionCheck : Check() {
-    override fun getRequiredTokens(): IntArray = intArrayOf(METHOD_DEF)
+    override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
     override fun visitToken(node: DetailAST) {
-        // target special function
-        val identifier =
+        // collect functions
+        // in Java, static members have specific keyword
+        val functions =
             node
-                .takeIf { it.isSpecialFunction() }
-                ?.findFirstToken(IDENT)
-                ?: return
+                .children
+                .filter { it.type == METHOD_DEF && !it.hasModifier(LITERAL_STATIC) }
+                .toList()
 
-        // checks for violation
-        node.nextSiblings
-            .takeIf { nodes ->
-                // in Java, static members have specific keyword
-                nodes.any {
-                    it.type == METHOD_DEF &&
-                        !it.isSpecialFunction() &&
-                        !it.hasModifier(LITERAL_STATIC)
-                }
-            } ?: return
-        log(node, Messages.get(MSG, identifier.text))
+        for ((i, function) in functions.withIndex()) {
+            // target special function
+            val identifier =
+                function
+                    .takeIf { it.isSpecialFunction() }
+                    ?.findFirstToken(IDENT)
+                    ?: continue
+
+            // checks for violation
+            functions
+                .subList(i, functions.size)
+                .takeIf { nodes -> nodes.any { !it.isSpecialFunction() } }
+                ?: continue
+            log(function, Messages.get(MSG, identifier.text))
+        }
     }
 
     internal companion object {

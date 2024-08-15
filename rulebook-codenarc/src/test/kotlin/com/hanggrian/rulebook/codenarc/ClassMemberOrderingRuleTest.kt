@@ -1,23 +1,23 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.ClassOrganizationRule.Companion.MSG
+import com.hanggrian.rulebook.codenarc.ClassMemberOrderingRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class ClassOrganizationRuleTest : AbstractRuleTestCase<ClassOrganizationRule>() {
-    override fun createRule() = ClassOrganizationRule()
+class ClassMemberOrderingRuleTest : AbstractRuleTestCase<ClassMemberOrderingRule>() {
+    override fun createRule() = ClassMemberOrderingRule()
 
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
 
-        assertIs<ClassOrganizationRule.Visitor>(rule.astVisitor)
+        assertIs<ClassMemberOrderingRule.Visitor>(rule.astVisitor)
     }
 
     @Test
-    fun `Properties, initializers, constructors, and methods`() =
+    fun `Correct member organization`() =
         assertNoViolations(
             """
             class Foo {
@@ -35,7 +35,7 @@ class ClassOrganizationRuleTest : AbstractRuleTestCase<ClassOrganizationRule>() 
         )
 
     @Test
-    fun `Property after constructor`() =
+    fun `Member property after constructor`() =
         assertSingleViolation(
             """
             class Foo {
@@ -54,7 +54,7 @@ class ClassOrganizationRuleTest : AbstractRuleTestCase<ClassOrganizationRule>() 
         )
 
     @Test
-    fun `Constructor after function`() =
+    fun `Member constructor after function`() =
         assertTwoViolations(
             """
             class Foo {

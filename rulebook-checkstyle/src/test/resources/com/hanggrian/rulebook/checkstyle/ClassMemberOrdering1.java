@@ -1,7 +1,7 @@
-package com.example.java;
+package com.hanggrian.rulebook.checkstyle;
 
-public class ClassOrganization {
-    public static class Foo {
+public class ClassMemberOrdering {
+    public class Foo {
         public int bar = 0;
 
         public Foo() {

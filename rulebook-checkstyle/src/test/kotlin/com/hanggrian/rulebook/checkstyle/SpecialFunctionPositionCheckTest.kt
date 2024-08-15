@@ -14,7 +14,7 @@ class SpecialFunctionPositionCheckTest {
         assertEquals(0, checker.read("SpecialFunctionPosition1"))
 
     @Test
-    fun `Special function not at the function`() =
+    fun `Special function not at the bottom`() =
         assertEquals(2, checker.read("SpecialFunctionPosition2"))
 
     @Test

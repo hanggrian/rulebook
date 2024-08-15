@@ -47,8 +47,8 @@ class BlockTagPunctuationRuleTest {
             fun add(num: Int): Int
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 20, Messages.get(MSG, "@param, @return")),
-            LintViolation(3, 23, Messages.get(MSG, "@param, @return")),
+            LintViolation(2, 20, Messages.get(MSG, "@param")),
+            LintViolation(3, 23, Messages.get(MSG, "@return")),
         )
 
     @Test
@@ -64,7 +64,7 @@ class BlockTagPunctuationRuleTest {
             fun add(num: Int): Int
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 11, Messages.get(MSG, "@param, @return")),
-            LintViolation(5, 11, Messages.get(MSG, "@param, @return")),
+            LintViolation(3, 11, Messages.get(MSG, "@param")),
+            LintViolation(5, 11, Messages.get(MSG, "@return")),
         )
 }

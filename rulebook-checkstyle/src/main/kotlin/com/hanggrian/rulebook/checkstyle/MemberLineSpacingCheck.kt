@@ -18,9 +18,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.RECORD_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 
 /**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#declaration-line-spacing)
+ * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#member-line-spacing)
  */
-public class DeclarationLineSpacingCheck : Check() {
+public class MemberLineSpacingCheck : Check() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
     override fun isCommentNodesRequired(): Boolean = true
@@ -55,7 +55,7 @@ public class DeclarationLineSpacingCheck : Check() {
     }
 
     internal companion object {
-        const val MSG = "declaration.line.spacing"
+        const val MSG = "member.line.spacing"
         private const val MSG_PROPERTY = "property"
         private const val MSG_CONSTRUCTOR = "constructor"
         private const val MSG_FUNCTION = "function"

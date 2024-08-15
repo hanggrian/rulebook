@@ -1,9 +1,9 @@
 package com.hanggrian.rulebook.checkstyle;
 
-public class DeclarationLineSpacing {
+public class MemberLineSpacing {
     public int foo;
 
-    public DeclarationLineSpacing() {}
+    public MemberLineSpacing() {}
 
     public void bar() {}
 

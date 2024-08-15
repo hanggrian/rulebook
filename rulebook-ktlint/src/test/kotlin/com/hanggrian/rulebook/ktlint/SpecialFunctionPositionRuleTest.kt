@@ -29,7 +29,7 @@ class SpecialFunctionPositionRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Special function not at the function`() =
+    fun `Special function not at the bottom`() =
         assertThatCode(
             """
             class Foo {

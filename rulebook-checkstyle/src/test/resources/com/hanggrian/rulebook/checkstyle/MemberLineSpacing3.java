@@ -1,13 +1,13 @@
 package com.hanggrian.rulebook.checkstyle;
 
-public class DeclarationLineSpacing {
+public class MemberLineSpacing {
     public int foo;
 
     /**
      * Lorem ipsum.
      */
     @Deprecated
-    public DeclarationLineSpacing() {}
+    public MemberLineSpacing() {}
 
     /**
      * Lorem ipsum.

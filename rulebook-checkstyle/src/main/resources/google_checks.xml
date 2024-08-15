@@ -324,7 +324,7 @@
           RECORD_DEF"/>
     </module>
     <module name="OperatorWrap">
-      <property name="option" value="NL"/>
+      <property name="option" value="EOL"/>
       <property
         name="tokens"
         value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR,
@@ -410,16 +410,16 @@
     <module name="AssignmentWrapping"/>
     <module name="BlockCommentLineJoining"/>
     <module name="BlockCommentLineTrimming"/>
+    <module name="BlockTagOrdering"/>
     <module name="BlockTagPunctuation"/>
     <module name="CaseLineJoining"/>
     <module name="ClassFinalNameBlacklisting"/>
-    <module name="ClassOrganization"/>
+    <module name="ClassMemberOrdering"/>
     <module name="CodeBlockLineTrimming"/>
     <module name="CommentLineJoining"/>
     <module name="CommentLineTrimming"/>
     <module name="CommentSpacing"/>
     <module name="ControlFlowBracing"/>
-    <module name="DeclarationLineSpacing"/>
     <module name="DefaultFlattening"/>
     <module name="ElseFlattening"/>
     <module name="EmptyCodeBlockConciseness"/>
@@ -427,6 +427,7 @@
     <module name="FileInitialLineTrimming"/>
     <module name="GenericsNameWhitelisting"/>
     <module name="IfElseFlattening"/>
+    <module name="MemberLineSpacing"/>
     <module name="QualifierConsistency"/>
     <module name="SpecialFunctionPosition"/>
     <module name="SwitchMultipleBranching"/>

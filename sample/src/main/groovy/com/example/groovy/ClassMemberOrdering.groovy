@@ -1,6 +1,6 @@
 package com.example.groovy
 
-class ClassOrganization {
+class ClassMemberOrdering {
     static class Foo {
         int bar = 0
 

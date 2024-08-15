@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.ElvisWrappingRule.Companion.MSG
+import com.hanggrian.rulebook.ktlint.ElvisWrappingRule.Companion.MSG_MISSING
+import com.hanggrian.rulebook.ktlint.ElvisWrappingRule.Companion.MSG_UNEXPECTED
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
@@ -30,7 +31,7 @@ class ElvisWrappingRuleTest {
                     .takeIf { it.isEmpty() } ?: return
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 34, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(3, 34, Messages[MSG_MISSING])
 
     @Test
     fun `Elvis in last line of multiline statement`() =
@@ -49,4 +50,18 @@ class ElvisWrappingRuleTest {
             }
             """.trimIndent(),
         ).hasNoLintViolations()
+
+    @Test
+    fun `Elvis after newline in multiline statement with code block`() =
+        assertThatCode(
+            """
+            fun foo() {
+                ""
+                    .takeIf {
+                        it.isEmpty()
+                    }
+                    ?: return
+            }
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(6, 9, Messages[MSG_UNEXPECTED])
 }

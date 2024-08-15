@@ -34,24 +34,22 @@ public class SpecialFunctionPositionRule : Rule() {
         override fun visitClassComplete(node: ClassNode) {
             super.visitClassComplete(node)
 
-            val methods = node.methods
-            for ((i, method) in methods.withIndex()) {
+            // collect functions
+            // in Groovy, static members have specific keyword
+            val functions = node.methods.filter { !it.isStatic }
+
+            for ((i, function) in functions.withIndex()) {
                 // target special function
-                method
+                function
                     .takeIf { it.isSpecialFunction() }
                     ?: continue
 
                 // checks for violation
-                methods
-                    .subList(i, node.methods.size)
-                    .takeIf { nodes ->
-                        // in Groovy, static members have specific keyword
-                        nodes.any {
-                            !it.isSpecialFunction() &&
-                                !it.isStatic
-                        }
-                    } ?: continue
-                addViolation(method, Messages.get(MSG, method.name))
+                functions
+                    .subList(i, functions.size)
+                    .takeIf { nodes -> nodes.any { !it.isSpecialFunction() } }
+                    ?: continue
+                addViolation(function, Messages.get(MSG, function.name))
             }
         }
     }

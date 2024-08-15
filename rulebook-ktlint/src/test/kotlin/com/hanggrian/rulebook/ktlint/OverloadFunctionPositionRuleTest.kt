@@ -38,4 +38,16 @@ class OverloadFunctionPositionRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(6, 5, Messages.get(MSG, "bar"))
+
+    @Test
+    fun `Overload function not next to each other in root`() =
+        assertThatCode(
+            """
+            fun bar(a: Int) {}
+
+            fun baz() {}
+
+            fun bar(a: String) {}
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(5, 1, Messages.get(MSG, "bar"))
 }

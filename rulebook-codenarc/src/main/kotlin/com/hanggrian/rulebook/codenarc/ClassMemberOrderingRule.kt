@@ -5,15 +5,15 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 
 /**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-organization)
+ * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-member-ordering)
  */
-public class ClassOrganizationRule : Rule() {
-    override fun getName(): String = "ClassOrganization"
+public class ClassMemberOrderingRule : Rule() {
+    override fun getName(): String = "ClassMemberOrdering"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
     internal companion object {
-        const val MSG = "class.organization"
+        const val MSG = "class.member.ordering"
         private const val MSG_PROPERTY = "property"
         private const val MSG_CONSTRUCTOR = "constructor"
         private const val MSG_FUNCTION = "function"

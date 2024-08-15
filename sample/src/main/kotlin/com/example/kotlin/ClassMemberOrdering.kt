@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-class ClassOrganization {
+class ClassMemberOrdering {
     class Foo(a: Int) {
         val bar = 0
 

@@ -20,13 +20,16 @@ public class OverloadFunctionPositionRule : Rule() {
         override fun visitClassComplete(node: ClassNode) {
             super.visitClassComplete(node)
 
+            // collect functions
+            val functions = node.methods.filter { !it.isStatic }
+
             val declaredIdentifiers = mutableSetOf<String>()
             var lastIdentifier: String? = null
-            for (method in node.methods) {
+            for (function in functions) {
                 // checks for violation
-                val name = method.name
+                val name = function.name
                 if (lastIdentifier != name && !declaredIdentifiers.add(name)) {
-                    addViolation(method, Messages.get(MSG, name))
+                    addViolation(function, Messages.get(MSG, name))
                 }
 
                 // keep variable instead iterating set until last

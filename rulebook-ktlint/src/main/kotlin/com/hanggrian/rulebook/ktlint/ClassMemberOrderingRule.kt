@@ -17,20 +17,22 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-organization)
+ * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-member-ordering)
  */
-public class ClassOrganizationRule : Rule("class-organization") {
+public class ClassMemberOrderingRule : Rule("class-member-ordering") {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         var lastType: IElementType? = null
-        for (child in node.children().filter {
-            it.elementType == PROPERTY ||
-                it.elementType == CLASS_INITIALIZER ||
-                it.elementType == SECONDARY_CONSTRUCTOR ||
-                it.elementType == FUN ||
-                it.elementType == OBJECT_DECLARATION
-        }) {
+        for (child in node
+            .children()
+            .filter {
+                it.elementType == PROPERTY ||
+                    it.elementType == CLASS_INITIALIZER ||
+                    it.elementType == SECONDARY_CONSTRUCTOR ||
+                    it.elementType == FUN ||
+                    it.elementType == OBJECT_DECLARATION
+            }) {
             // in Kotlin, static members belong in companion object
             val currentType =
                 when {
@@ -47,13 +49,13 @@ public class ClassOrganizationRule : Rule("class-organization") {
                 }
 
             // checks for violation
-            if (ELEMENT_POSITIONS.getOrDefault(lastType, -1) > ELEMENT_POSITIONS[currentType]!!) {
+            if (MEMBER_POSITIONS.getOrDefault(lastType, -1) > MEMBER_POSITIONS[currentType]!!) {
                 emit(
                     child.startOffset,
                     Messages.get(
                         MSG,
-                        ELEMENT_ARGUMENTS[currentType]!!,
-                        ELEMENT_ARGUMENTS[lastType]!!,
+                        MEMBER_ARGUMENTS[currentType]!!,
+                        MEMBER_ARGUMENTS[lastType]!!,
                     ),
                     false,
                 )
@@ -64,14 +66,14 @@ public class ClassOrganizationRule : Rule("class-organization") {
     }
 
     internal companion object {
-        const val MSG = "class.organization"
+        const val MSG = "class.member.ordering"
         private const val MSG_PROPERTY = "property"
         private const val MSG_INITIALIZER = "initializer"
         private const val MSG_CONSTRUCTOR = "constructor"
         private const val MSG_FUNCTION = "function"
         private const val MSG_COMPANION = "companion"
 
-        private val ELEMENT_POSITIONS =
+        private val MEMBER_POSITIONS =
             mapOf(
                 PROPERTY to 0,
                 CLASS_INITIALIZER to 1,
@@ -80,7 +82,7 @@ public class ClassOrganizationRule : Rule("class-organization") {
                 OBJECT_DECLARATION to 4,
             )
 
-        private val ELEMENT_ARGUMENTS =
+        private val MEMBER_ARGUMENTS =
             mapOf(
                 PROPERTY to Messages[MSG_PROPERTY],
                 CLASS_INITIALIZER to Messages[MSG_INITIALIZER],
