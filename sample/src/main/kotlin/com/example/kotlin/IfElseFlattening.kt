@@ -21,4 +21,14 @@ class IfElseFlattening {
             println()
         }
     }
+
+    fun baz(): Int {
+        println()
+        return if (true) {
+            println()
+            0
+        } else {
+            0
+        }
+    }
 }

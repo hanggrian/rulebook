@@ -66,4 +66,19 @@ class ElseFlatteningRuleTest : AbstractRuleTestCase<ElseFlatteningRule>() {
             }
             """.trimIndent(),
         )
+
+    @Test
+    fun `Consider if-else without blocks`() =
+        assertSingleViolation(
+            """
+            void foo() {
+                if (true) throw new Exception()
+                else if (false) return
+                else baz()
+            }
+            """.trimIndent(),
+            4,
+            "else baz()",
+            Messages[MSG],
+        )
 }

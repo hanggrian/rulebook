@@ -4,6 +4,7 @@ import com.hanggrian.rulebook.ktlint.ElvisWrappingRule.Companion.MSG_MISSING
 import com.hanggrian.rulebook.ktlint.ElvisWrappingRule.Companion.MSG_UNEXPECTED
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class ElvisWrappingRuleTest {
@@ -64,4 +65,33 @@ class ElvisWrappingRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(6, 9, Messages[MSG_UNEXPECTED])
+
+    @Test
+    fun `Consider multiple elvis operators in a statement`() =
+        assertThatCode(
+            """
+            fun foo() {
+                ""
+                    .takeIf { it.isEmpty() } ?: ""
+                    .takeIf { it.isEmpty() } ?: return
+            }
+
+            fun bar() {
+                ""
+                    .takeIf {
+                        it.isEmpty()
+                    }
+                    ?: ""
+                        .takeIf {
+                            it.isEmpty()
+                        }
+                    ?: return
+            }
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(3, 34, Messages[MSG_MISSING]),
+            LintViolation(4, 34, Messages[MSG_MISSING]),
+            LintViolation(12, 9, Messages[MSG_UNEXPECTED]),
+            LintViolation(16, 9, Messages[MSG_UNEXPECTED]),
+        )
 }

@@ -126,4 +126,19 @@ class IfElseFlatteningRuleTest {
             }
             """.trimIndent(),
         ).hasNoLintViolations()
+
+    @Test
+    fun `If-else with return statement`() =
+        assertThatCode(
+            """
+            fun foo(): Int {
+                return if (true) {
+                    baz()
+                } else {
+                    baz()
+                    baz()
+                }
+            }
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(4, 7, Messages[MSG_LIFT])
 }

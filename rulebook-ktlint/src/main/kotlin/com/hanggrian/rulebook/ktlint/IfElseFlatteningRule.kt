@@ -11,6 +11,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.children
@@ -37,6 +38,10 @@ public class IfElseFlatteningRule : Rule("if-else-flattening") {
             when (child.elementType) {
                 IF -> {
                     `if` = child
+                    break
+                }
+                RETURN -> {
+                    `if` = child.findChildByType(IF) ?: return
                     break
                 }
                 WHITE_SPACE, RBRACE, EOL_COMMENT -> continue

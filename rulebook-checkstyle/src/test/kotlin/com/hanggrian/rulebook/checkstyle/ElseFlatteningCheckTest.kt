@@ -18,4 +18,7 @@ class ElseFlatteningCheckTest {
     @Test
     fun `Skip if not all if blocks have return or throw`() =
         assertEquals(0, checker.read("ElseFlattening3"))
+
+    @Test
+    fun `Consider if-else without blocks`() = assertEquals(0, checker.read("ElseFlattening4"))
 }

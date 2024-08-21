@@ -51,9 +51,9 @@ public class ControlFlowBracingCheck : Check() {
                         .takeIf { SLIST in it }
                         ?.findFirstToken(LITERAL_ELSE)
                         ?: return false
-                if (LITERAL_IF in current) {
-                    current = current.findFirstToken(LITERAL_IF)!!
-                }
+                current
+                    .findFirstToken(LITERAL_IF)
+                    ?.let { current = it }
             }
             return true
         }

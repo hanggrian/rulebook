@@ -148,7 +148,7 @@ disable=
   # custom
   missing-module-docstring,
   missing-class-docstring,
-  missing-type-doc
+  missing-type-doc,
 
 [REPORTS]
 
@@ -277,7 +277,7 @@ good-names=i,j,k,ex,Run,_
 good-names-rgxs=
 
 # Bad variable names which should always be refused, separated by a comma
-bad-names=integer,string
+bad-names=object,integer,string,integers,strings
 
 # Bad variable names regexes, separated by a comma. If names match any regex,
 # they will always be refused

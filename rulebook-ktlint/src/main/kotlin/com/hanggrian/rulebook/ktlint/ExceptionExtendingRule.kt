@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
-import com.hanggrian.rulebook.ktlint.internals.contains
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONSTRUCTOR_CALLEE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
@@ -23,19 +22,18 @@ public class ExceptionExtendingRule : Rule("exception-extending") {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // get identifier from supertype declared with or without constructor callee
         val superTypeList = node.findChildByType(SUPER_TYPE_LIST) ?: return
+        val typeReference =
+            superTypeList
+                .findChildByType(SUPER_TYPE_CALL_ENTRY)
+                ?.findChildByType(CONSTRUCTOR_CALLEE)
+                ?.findChildByType(TYPE_REFERENCE)
+                ?: superTypeList
+                    .findChildByType(SUPER_TYPE_ENTRY)
+                    ?.findChildByType(TYPE_REFERENCE)
+                ?: return
         val identifier =
-            when {
-                SUPER_TYPE_CALL_ENTRY in superTypeList ->
-                    superTypeList
-                        .findChildByType(SUPER_TYPE_CALL_ENTRY)
-                        ?.findChildByType(CONSTRUCTOR_CALLEE)
-                        ?.findChildByType(TYPE_REFERENCE)
-                SUPER_TYPE_ENTRY in superTypeList ->
-                    superTypeList
-                        .findChildByType(SUPER_TYPE_ENTRY)
-                        ?.findChildByType(TYPE_REFERENCE)
-                else -> null
-            }?.findChildByType(USER_TYPE)
+            typeReference
+                .findChildByType(USER_TYPE)
                 ?.findChildByType(REFERENCE_EXPRESSION)
                 ?.findChildByType(IDENTIFIER)
                 ?: return

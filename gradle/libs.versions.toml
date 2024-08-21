@@ -12,7 +12,7 @@ codenarc = "3.5.0"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.8.2"
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.8.3"
 ktlint = "org.jlleitschuh.gradle.ktlint:12.1.1"
 maven-publish = "com.vanniktech.maven.publish.base:0.29.0"
 git-publish = "org.ajoberstar.git-publish:4.2.2"
@@ -27,8 +27,8 @@ ktlint-cli-ruleset-core = { module = "com.pinterest.ktlint:ktlint-cli-ruleset-co
 ktlint-ruleset-standard = { module = "com.pinterest.ktlint:ktlint-ruleset-standard", version.ref = "ktlint" }
 checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 codenarc = { module = "org.codenarc:CodeNarc", version.ref = "codenarc" }
-guava = "com.google.guava:guava:33.2.1-jre"
+guava = "com.google.guava:guava:33.3.0-jre"
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
 truth = "com.google.truth:truth:1.4.4"
-logback = "ch.qos.logback:logback-classic:1.5.6"
+logback = "ch.qos.logback:logback-classic:1.5.7"

@@ -58,4 +58,16 @@ class ElseFlatteningRuleTest {
             }
             """.trimIndent(),
         ).hasNoLintViolations()
+
+    @Test
+    fun `Consider if-else without blocks`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) throw Exception()
+                else if (false) return
+                else baz()
+            }
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(4, 5, Messages[MSG])
 }

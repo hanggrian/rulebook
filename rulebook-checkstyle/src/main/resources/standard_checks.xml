@@ -215,7 +215,7 @@
     <module name="IllegalIdentifierName">
       <property
         name="format"
-        value="(?i)^(?!(object|integer|string|array|list|set|map|collection|_)$).+$"/>
+        value="(?i)^(?!(object|integer|string|integers|strings|_)$).+$"/>
       <property
         name="tokens"
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_COMPONENT_DEF"/>

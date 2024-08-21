@@ -36,25 +36,13 @@ internal val DetailAST.lastMostChild: DetailAST
 internal val DetailAST.children: Sequence<DetailAST>
     get() = generateSequence(firstChild) { node -> node.nextSibling }
 
-internal val DetailAST.nextSiblings: Sequence<DetailAST>
-    get() = generateSequence(nextSibling) { it.nextSibling }
-
 internal val DetailAST.orComment: DetailAST
     get() {
-        if (SINGLE_LINE_COMMENT in this) {
-            return findFirstToken(SINGLE_LINE_COMMENT)
-        }
-        if (BLOCK_COMMENT_BEGIN in this) {
-            return findFirstToken(BLOCK_COMMENT_BEGIN)
-        }
-        if (TYPE in this) {
-            val type = findFirstToken(TYPE)!!
-            val comment =
-                type.findFirstToken(SINGLE_LINE_COMMENT)
-                    ?: type.findFirstToken(BLOCK_COMMENT_BEGIN)
-            if (comment != null) {
-                return comment
-            }
+        findFirstToken(SINGLE_LINE_COMMENT)?.let { return it }
+        findFirstToken(BLOCK_COMMENT_BEGIN)?.let { return it }
+        findFirstToken(TYPE)?.run {
+            (findFirstToken(SINGLE_LINE_COMMENT) ?: findFirstToken(BLOCK_COMMENT_BEGIN))
+                ?.let { return it }
         }
 
         var current = this
@@ -72,20 +60,21 @@ internal val DetailAST.orComment: DetailAST
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 
 internal fun DetailAST.hasModifier(type: Int): Boolean =
-    MODIFIERS in this &&
-        type in findFirstToken(MODIFIERS)!!
+    findFirstToken(MODIFIERS)
+        ?.let { type in it }
+        ?: false
 
 internal fun DetailAST.hasAnnotation(name: String): Boolean =
-    MODIFIERS in this &&
-        findFirstToken(MODIFIERS)
-            .children
-            .any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
+    findFirstToken(MODIFIERS)
+        ?.children
+        ?.any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
+        ?: false
 
 internal fun DetailAST.hasReturnOrThrow(): Boolean {
     var statements = this
-    if (SLIST in statements) {
-        statements = statements.findFirstToken(SLIST)!!
-    }
+    statements
+        .findFirstToken(SLIST)
+        ?.let { statements = it }
     return LITERAL_RETURN in statements || LITERAL_THROW in statements
 }
 

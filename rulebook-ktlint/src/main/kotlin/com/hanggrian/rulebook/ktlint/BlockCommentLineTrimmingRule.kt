@@ -31,7 +31,7 @@ public class BlockCommentLineTrimmingRule : Rule("block-comment-line-trimming") 
                         KDOC_TAG ->
                             n
                                 .findChildByType(KDOC_LEADING_ASTERISK)
-                                .takeIf { n.lastChildNode === it }
+                                ?.takeIf { n.lastChildNode === it }
                         else -> null
                     }
                 }?.takeIf { it.treePrev?.isWhiteSpace() == true }

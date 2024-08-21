@@ -42,7 +42,9 @@ internal fun ASTNode.siblingsUntil(type: IElementType): List<ASTNode> {
 }
 
 internal fun ASTNode.hasModifier(type: IElementType): Boolean =
-    MODIFIER_LIST in this && type in findChildByType(MODIFIER_LIST)!!
+    findChildByType(MODIFIER_LIST)
+        ?.let { type in it }
+        ?: false
 
 internal fun ASTNode.hasReturnOrThrow(): Boolean {
     var statements =
@@ -51,9 +53,9 @@ internal fun ASTNode.hasReturnOrThrow(): Boolean {
             WHEN_ENTRY -> this
             else -> return false
         }
-    if (BLOCK in statements) {
-        statements = statements.findChildByType(BLOCK)!!
-    }
+    statements
+        .findChildByType(BLOCK)
+        ?.let { statements = it }
     return RETURN in statements || THROW in statements
 }
 

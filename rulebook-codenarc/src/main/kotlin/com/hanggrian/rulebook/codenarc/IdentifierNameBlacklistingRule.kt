@@ -13,11 +13,8 @@ public class IdentifierNameBlacklistingRule : Rule() {
             "object",
             "integer",
             "string",
-            "array",
-            "list",
-            "set",
-            "map",
-            "collection",
+            "integers",
+            "strings",
         )
 
     public fun setNames(names: String) {
