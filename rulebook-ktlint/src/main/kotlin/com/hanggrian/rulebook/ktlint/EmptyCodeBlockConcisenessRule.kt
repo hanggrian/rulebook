@@ -42,7 +42,7 @@ public class EmptyCodeBlockConcisenessRule : Rule("empty-code-block-conciseness"
                     removeLast()
                     removeIf {
                         when (it.elementType) {
-                            BLOCK -> it.children().count() == 0
+                            BLOCK -> it.isLeaf()
                             else -> false
                         }
                     }

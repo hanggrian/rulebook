@@ -1,7 +1,7 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
-import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
+import com.hanggrian.rulebook.checkstyle.internals.maxLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 
@@ -15,7 +15,7 @@ public class CaseLineJoiningCheck : Check() {
         // checks for violation
         node.previousSibling
             ?.takeIf { it.type == CASE_GROUP }
-            ?.takeUnless { it.lastMostChild.lineNo + 1 == node.firstChild.lineNo }
+            ?.takeUnless { it.maxLineNo + 1 == node.firstChild.lineNo }
             ?: return
         log(node, Messages[MSG])
     }

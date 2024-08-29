@@ -1,8 +1,8 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
-import com.hanggrian.rulebook.checkstyle.internals.firstMostChild
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
+import com.hanggrian.rulebook.checkstyle.internals.minLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ASSIGN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
@@ -23,8 +23,8 @@ public class AssignmentWrappingCheck : Check() {
 
         // checks for violation
         val expression =
-            assign.firstMostChild
-                .takeUnless { it.lineNo == assign.lineNo + 1 }
+            assign
+                .takeUnless { it.minLineNo == assign.lineNo + 1 }
                 ?: return
         log(expression, Messages[MSG])
     }

@@ -12,6 +12,7 @@
     - Add 'HideUtilityClassConstructor'.
   - Modify 'Coding':
     - Add 'IllegalThrows' that includes 'Exception', 'Error' and 'Throwable'.
+    - Add 'IllegalCatch' that includes 'Exception', 'Error' and 'Throwable'.
     - Add 'ArrayTrailingComma'.
     - Remove 'MissingSwitchDefault'.
   - Modify 'Javadoc Comments':
@@ -324,7 +325,7 @@
           RECORD_DEF"/>
     </module>
     <module name="OperatorWrap">
-      <property name="option" value="EOL"/>
+      <property name="option" value="NL"/>
       <property
         name="tokens"
         value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR,
@@ -385,6 +386,11 @@
 
     <module name="IllegalThrows">
       <property name="ignoreOverriddenMethods" value="false"/>
+      <property
+        name="illegalClassNames"
+        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
+    </module>
+    <module name="IllegalCatch">
       <property
         name="illegalClassNames"
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>

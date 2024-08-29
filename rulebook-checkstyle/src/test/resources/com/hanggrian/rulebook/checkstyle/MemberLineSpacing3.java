@@ -3,6 +3,8 @@ package com.hanggrian.rulebook.checkstyle;
 public class MemberLineSpacing {
     public int foo;
 
+    static {}
+
     /**
      * Lorem ipsum.
      */

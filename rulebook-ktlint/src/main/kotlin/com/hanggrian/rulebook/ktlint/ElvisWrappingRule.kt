@@ -2,7 +2,6 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.isMultiline
-import com.hanggrian.rulebook.ktlint.internals.lastMostChild
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELVIS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
@@ -49,5 +48,14 @@ public class ElvisWrappingRule : Rule("elvis-wrapping") {
     internal companion object {
         const val MSG_MISSING = "elvis.wrapping.missing"
         const val MSG_UNEXPECTED = "elvis.wrapping.unexpected"
+
+        private val ASTNode.lastMostChild: ASTNode
+            get() {
+                var last = this
+                while (last.lastChildNode != null) {
+                    last = last.lastChildNode
+                }
+                return last
+            }
     }
 }

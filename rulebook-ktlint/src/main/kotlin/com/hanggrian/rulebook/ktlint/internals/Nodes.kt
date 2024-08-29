@@ -20,15 +20,6 @@ internal val ASTNode.endOffset: Int
 internal val ASTNode.qualifierName: String
     get() = text.substringBefore('<').substringBefore('?')
 
-internal val ASTNode.lastMostChild: ASTNode
-    get() {
-        var last = this
-        while (last.lastChildNode != null) {
-            last = last.lastChildNode
-        }
-        return last
-    }
-
 internal operator fun ASTNode.contains(type: IElementType): Boolean = findChildByType(type) != null
 
 internal fun ASTNode.siblingsUntil(type: IElementType): List<ASTNode> {

@@ -15,22 +15,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 
-internal val DetailAST.firstMostChild: DetailAST
+internal val DetailAST.maxLineNo: Int
     get() {
-        var last = this
-        while (last.firstChild != null) {
-            last = last.firstChild
+        if (isLeaf()) {
+            return lineNo
         }
-        return last
+        return children.maxOf { it.maxLineNo }
     }
 
-internal val DetailAST.lastMostChild: DetailAST
+internal val DetailAST.minLineNo: Int
     get() {
-        var last = this
-        while (last.lastChild != null) {
-            last = last.lastChild
+        if (isLeaf()) {
+            return lineNo
         }
-        return last
+        return children.minOf { it.minLineNo }
     }
 
 internal val DetailAST.children: Sequence<DetailAST>
@@ -80,7 +78,7 @@ internal fun DetailAST.hasReturnOrThrow(): Boolean {
 
 internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 
-internal fun DetailAST.isMultiline(): Boolean = lastMostChild.lineNo > lineNo
+internal fun DetailAST.isMultiline(): Boolean = maxLineNo > lineNo
 
 internal fun DetailAST.isEolCommentEmpty(): Boolean =
     type == SINGLE_LINE_COMMENT &&
@@ -88,10 +86,9 @@ internal fun DetailAST.isEolCommentEmpty(): Boolean =
 
 /** In Checkstyle, nodes with children do not have text. */
 internal fun DetailAST.joinText(separator: String = "", excludeType: Int = 0): String {
-    val children = children
     val result =
         when {
-            children.count() == 0 -> text
+            isLeaf() -> text
             else ->
                 buildString {
                     for (child in children) {

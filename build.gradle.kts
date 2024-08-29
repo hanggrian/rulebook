@@ -78,6 +78,9 @@ subprojects {
         withType<JavaCompile>().configureEach {
             options.release = jreVersion.asInt()
         }
+        withType<GroovyCompile>().configureEach {
+            options.release = jreVersion.asInt()
+        }
         withType<KotlinCompile>().configureEach {
             compilerOptions.jvmTarget
                 .set(JvmTarget.fromTarget(JavaVersion.toVersion(jreVersion).toString()))

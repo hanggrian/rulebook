@@ -13,7 +13,7 @@ class MemberLineSpacingCheckTest {
     fun `Declarations with newline`() = assertEquals(0, checker.read("MemberLineSpacing1"))
 
     @Test
-    fun `Declarations without newline`() = assertEquals(3, checker.read("MemberLineSpacing2"))
+    fun `Declarations without newline`() = assertEquals(4, checker.read("MemberLineSpacing2"))
 
     @Test
     fun `Block comment and annotations in declarations`() =

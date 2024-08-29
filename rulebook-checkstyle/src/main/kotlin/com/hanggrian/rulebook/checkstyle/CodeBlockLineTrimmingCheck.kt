@@ -1,8 +1,8 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
-import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
-import com.hanggrian.rulebook.checkstyle.internals.orComment
+import com.hanggrian.rulebook.checkstyle.internals.maxLineNo
+import com.hanggrian.rulebook.checkstyle.internals.minLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
@@ -20,7 +20,7 @@ public class CodeBlockLineTrimmingCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // right brace is persistent
         val rightBrace = node.lastChild.takeIf { it.type == RCURLY } ?: return
-        val rightBraceSibling = rightBrace.previousSibling?.lastMostChild ?: return
+        val rightBraceSibling = rightBrace.previousSibling ?: return
 
         // left brace is conditional
         val (leftBrace, leftBraceSibling) =
@@ -28,22 +28,19 @@ public class CodeBlockLineTrimmingCheck : Check() {
                 OBJBLOCK -> {
                     // get first two nodes to compare
                     val leftBrace = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                    val leftBraceSibling = leftBrace.nextSibling?.orComment ?: return
+                    val leftBraceSibling = leftBrace.nextSibling ?: return
                     leftBrace to leftBraceSibling
                 }
                 else ->
                     // the first node is slist itself
-                    node.firstChild
-                        ?.orComment
-                        ?.let { node to it }
-                        ?: return
+                    node to node.firstChild
             }
 
         // checks for violation
-        if (leftBraceSibling.lineNo - leftBrace.lineNo > 1) {
+        if (leftBraceSibling.minLineNo - leftBrace.lineNo > 1) {
             log(leftBraceSibling, Messages[MSG_FIRST])
         }
-        if (rightBrace.lineNo - rightBraceSibling.lineNo > 1) {
+        if (rightBrace.lineNo - rightBraceSibling.maxLineNo > 1) {
             log(rightBraceSibling, Messages[MSG_LAST])
         }
     }
