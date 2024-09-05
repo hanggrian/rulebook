@@ -419,23 +419,23 @@
     <module name="BlockTagOrdering"/>
     <module name="BlockTagPunctuation"/>
     <module name="CaseLineJoining"/>
-    <module name="ClassFinalNameBlacklisting"/>
+    <module name="ClassFinalNameDisallowing"/>
     <module name="ClassMemberOrdering"/>
     <module name="CodeBlockLineTrimming"/>
     <module name="CommentLineJoining"/>
     <module name="CommentLineTrimming"/>
     <module name="CommentSpacing"/>
     <module name="ControlFlowBracing"/>
-    <module name="DefaultFlattening"/>
-    <module name="ElseFlattening"/>
-    <module name="EmptyCodeBlockConciseness"/>
+    <module name="DefaultDenesting"/>
+    <module name="ElseDenesting"/>
+    <module name="EmptyCodeBlockUnwrapping"/>
     <module name="ExceptionExtending"/>
     <module name="FileInitialLineTrimming"/>
-    <module name="GenericsNameWhitelisting"/>
-    <module name="IfElseFlattening"/>
+    <module name="GenericsNameAllowing"/>
+    <module name="IfElseDenesting"/>
     <module name="MemberLineSpacing"/>
     <module name="QualifierConsistency"/>
     <module name="SpecialFunctionPosition"/>
-    <module name="SwitchMultipleBranching"/>
+    <module name="SwitchCaseBranching"/>
   </module>
 </module>

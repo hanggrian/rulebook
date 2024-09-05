@@ -8,7 +8,7 @@ from .tests import assert_properties, msg
 
 
 # pylint: disable=todo-comment-styling-keyword,todo-comment-styling-separator
-class TestTodoCommentFormattingChecker(CheckerTestCase):
+class TestTodoCommentStylingChecker(CheckerTestCase):
     CHECKER_CLASS = TodoCommentStylingChecker
 
     def test_rule_properties(self):

@@ -136,19 +136,19 @@
 
   <!-- Third-party rules -->
   <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameBlacklistingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameDisallowingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ClassMemberOrderingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.GenericsNameWhitelistingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.IdentifierNameBlacklistingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.DefaultFlatteningRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ElseFlatteningRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.IfElseFlatteningRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.GenericsNameAllowingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IdentifierNameDisallowingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.DefaultDenestingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ElseDenestingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IfElseDenestingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.SwitchMultipleBranchingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.SwitchCaseBranchingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
 </ruleset>

@@ -178,10 +178,10 @@
     <module name="BlockTagPunctuation">
       <property name="blockTags" value="@exception"/>
     </module>
-    <module name="ClassFinalNameBlacklisting">
+    <module name="ClassFinalNameDisallowing">
       <property name="names" value="Hello, World"/>
     </module>
-    <module name="GenericsNameWhitelisting">
+    <module name="GenericsNameAllowing">
       <property name="names" value="A"/>
     </module>
   </module>
