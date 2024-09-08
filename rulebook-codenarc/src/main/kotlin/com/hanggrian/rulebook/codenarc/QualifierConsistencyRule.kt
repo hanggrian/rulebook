@@ -38,8 +38,8 @@ public class QualifierConsistencyRule : Rule() {
             process(node, node.type.name)
         }
 
-        override fun visitMethodEx(node: MethodNode) {
-            super.visitMethodEx(node)
+        override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
+            super.visitConstructorOrMethod(node, isConstructor)
 
             // checks for violation
             process(node, node.returnType.name)

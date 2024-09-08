@@ -32,7 +32,7 @@ public class MemberLineSpacingCheck : Check() {
             node.children
                 .filter { it.type in DECLARATION_ARGUMENTS.keys }
                 .toList()
-                .takeIf { it.isNotEmpty() }
+                .takeUnless { it.isEmpty() }
                 ?: return
 
         for ((i, child) in children.withIndex()) {

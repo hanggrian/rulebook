@@ -433,7 +433,9 @@
     <module name="FileInitialLineTrimming"/>
     <module name="GenericsNameAllowing"/>
     <module name="IfElseDenesting"/>
+    <module name="LambdaWrapping"/>
     <module name="MemberLineSpacing"/>
+    <module name="ParameterWrapping"/>
     <module name="QualifierConsistency"/>
     <module name="SpecialFunctionPosition"/>
     <module name="SwitchCaseBranching"/>

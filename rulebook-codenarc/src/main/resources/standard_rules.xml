@@ -146,6 +146,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.IfElseDenestingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ParameterWrappingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>

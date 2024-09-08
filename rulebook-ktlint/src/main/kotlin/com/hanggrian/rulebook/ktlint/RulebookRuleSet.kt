@@ -31,6 +31,7 @@ public class RulebookRuleSet : RuleSetProviderV3(Rule.ID) {
             RuleProvider { IfElseDenestingRule() },
             RuleProvider { InfixCallWrappingRule() },
             RuleProvider { InnerClassPositionRule() },
+            RuleProvider { KotlinContractFunctionInliningRule() },
             RuleProvider { KotlinPropertyNameInteroperabilityRule() },
             RuleProvider { KotlinTypePriorityRule() },
             RuleProvider { NullStructuralEqualityRule() },

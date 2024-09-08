@@ -44,6 +44,7 @@ load-plugins=
   rulebook_pylint.generics_name_allowing_checker,
   rulebook_pylint.if_else_denesting_checker,
   rulebook_pylint.inner_class_position_checker,
+  rulebook_pylint.parameter_wrapping_checker,
   rulebook_pylint.special_function_position_checker,
   rulebook_pylint.string_single_quoting_checker,
   rulebook_pylint.switch_case_branching_checker,

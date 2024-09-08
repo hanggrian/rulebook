@@ -27,7 +27,7 @@ class TestGenericsNameAllowingChecker(CheckerTestCase):
             self.checker.visit_assign(node1)
 
     def test_uncommon_generic_type_in_class_alike(self):
-        node2 = \
+        node1 = \
             extract_node(
                 '''
                 X = TypeVar('X')  #@
@@ -37,9 +37,9 @@ class TestGenericsNameAllowingChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(GenericsNameAllowingChecker.MSG, (2, 0, 1), node2.targets[0], 'X'),
+            msg(GenericsNameAllowingChecker.MSG, (2, 0, 1), node1.targets[0], 'X'),
         ):
-            self.checker.visit_assign(node2)
+            self.checker.visit_assign(node1)
 
 
 if __name__ == '__main__':

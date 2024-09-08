@@ -2,18 +2,18 @@ package com.example.kotlin
 
 class ElvisWrapping {
     fun foo() {
-        "".takeIf { it.isNotEmpty() } ?: return
+        "".takeUnless { it.isEmpty() } ?: return
     }
 
     fun bar() {
         ""
-            .takeIf { it.isNotEmpty() }
+            .takeUnless { it.isEmpty() }
             ?: return
     }
 
     fun baz() {
-        "".takeIf {
-            it.isNotEmpty()
+        "".takeUnless {
+            it.isEmpty()
         } ?: return
     }
 }

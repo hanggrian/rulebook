@@ -38,6 +38,7 @@ class RulebookRuleSetTest {
             IfElseDenestingRule::class,
             InfixCallWrappingRule::class,
             InnerClassPositionRule::class,
+            KotlinContractFunctionInliningRule::class,
             KotlinPropertyNameInteroperabilityRule::class,
             KotlinTypePriorityRule::class,
             NullStructuralEqualityRule::class,

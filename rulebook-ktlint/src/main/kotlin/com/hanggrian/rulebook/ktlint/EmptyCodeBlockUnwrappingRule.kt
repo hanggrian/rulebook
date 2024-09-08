@@ -38,8 +38,8 @@ public class EmptyCodeBlockUnwrappingRule : Rule("empty-code-block-unwrapping") 
                 }?.children()
                 ?.toMutableList()
                 ?.apply {
-                    removeFirst()
-                    removeLast()
+                    removeAt(0)
+                    removeAt(lastIndex)
                     removeIf {
                         when (it.elementType) {
                             BLOCK -> it.isLeaf()

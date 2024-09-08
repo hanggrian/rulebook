@@ -5,7 +5,6 @@ package com.hanggrian.rulebook.checkstyle.internals
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
@@ -13,7 +12,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 
 internal val DetailAST.maxLineNo: Int
     get() {
@@ -33,27 +31,6 @@ internal val DetailAST.minLineNo: Int
 
 internal val DetailAST.children: Sequence<DetailAST>
     get() = generateSequence(firstChild) { node -> node.nextSibling }
-
-internal val DetailAST.orComment: DetailAST
-    get() {
-        findFirstToken(SINGLE_LINE_COMMENT)?.let { return it }
-        findFirstToken(BLOCK_COMMENT_BEGIN)?.let { return it }
-        findFirstToken(TYPE)?.run {
-            (findFirstToken(SINGLE_LINE_COMMENT) ?: findFirstToken(BLOCK_COMMENT_BEGIN))
-                ?.let { return it }
-        }
-
-        var current = this
-        while (!current.isLeaf()) {
-            if (current.type == SINGLE_LINE_COMMENT ||
-                current.type == BLOCK_COMMENT_BEGIN
-            ) {
-                return current
-            }
-            current = current.firstChild
-        }
-        return this
-    }
 
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 
@@ -78,7 +55,7 @@ internal fun DetailAST.hasReturnOrThrow(): Boolean {
 
 internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 
-internal fun DetailAST.isMultiline(): Boolean = maxLineNo > lineNo
+internal fun DetailAST.isMultiline(): Boolean = maxLineNo > minLineNo
 
 internal fun DetailAST.isEolCommentEmpty(): Boolean =
     type == SINGLE_LINE_COMMENT &&
