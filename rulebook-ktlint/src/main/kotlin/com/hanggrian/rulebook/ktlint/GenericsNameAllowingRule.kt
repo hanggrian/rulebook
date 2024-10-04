@@ -56,7 +56,7 @@ public class GenericsNameAllowingRule :
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
-                        "rulebook_allowed_generics_names",
+                        "rulebook_allow_generics_names",
                         "A set of common generics.",
                         CommaSeparatedListValueParser(),
                     ),

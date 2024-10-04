@@ -5,28 +5,7 @@
   Rulebook: https://github.com/hanggrian/rulebook/
   Checkstyle: https://checkstyle.sourceforge.io/
   Google Java Style Guide: https://google.github.io/styleguide/javaguide.html
-  Source template: https://github.com/checkstyle/checkstyle/blob/005fba53352456515cfdcdf5dcd3dea351661f2b/src/main/resources/google_checks.xml
-
-  - Modify 'Class design':
-    - Add 'InnerTypeLast'.
-    - Add 'HideUtilityClassConstructor'.
-  - Modify 'Coding':
-    - Add 'IllegalThrows' that includes 'Exception', 'Error' and 'Throwable'.
-    - Add 'IllegalCatch' that includes 'Exception', 'Error' and 'Throwable'.
-    - Add 'ArrayTrailingComma'.
-    - Remove 'MissingSwitchDefault'.
-  - Modify 'Javadoc Comments':
-    - Remove 'SummaryJavadoc'.
-    - Remove 'MissingJavadocMethod'.
-    - Remove 'MissingJavadocType'.
-    - Add 'JavadocMissingWhitespaceAfterAsterisk'.
-  - Modify 'Miscellaneous':
-    - Add 'TodoComment' with capturing 'TODO' and 'FIXME'.
-  - Modify 'Naming Conventions':
-    - Add 'IllegalIdentifierName' with Java object and collection type names.
-  - Modify 'Whitespace':
-    - Remove 'WhitespaceAround'.
-  - Configure 'AbbreviationAsWordInName#allowedAbbreviationLength' from 0 to 2.
+  Source template: https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml
 -->
 <!DOCTYPE module PUBLIC
   "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
@@ -35,14 +14,14 @@
 <module name="Checker">
   <property name="charset" value="UTF-8"/>
 
-  <property name="severity" value="warning"/>
+  <property name="severity" value="${org.checkstyle.google.severity}" default="warning"/>
 
   <property name="fileExtensions" value="java, properties, xml"/>
-  <!-- Excludes all 'module-info.java' files -->
-  <!-- See https://checkstyle.org/config_filefilters.html -->
+  <!-- https://checkstyle.org/config_filefilters.html -->
   <module name="BeforeExecutionExclusionFileFilter">
     <property name="fileNamePattern" value="module\-info\.java$"/>
   </module>
+
   <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
   <module name="SuppressionFilter">
     <property
@@ -52,8 +31,16 @@
     <property name="optional" value="true"/>
   </module>
 
-  <!-- Checks for whitespace -->
-  <!-- See http://checkstyle.org/config_whitespace.html -->
+  <!-- https://checkstyle.org/filters/suppresswithnearbytextfilter.html -->
+  <module name="SuppressWithNearbyTextFilter">
+    <property
+      name="nearbyTextPattern"
+      value="CHECKSTYLE.SUPPRESS\: (\w+) for ([+-]\d+) lines"/>
+    <property name="checkPattern" value="$1"/>
+    <property name="lineRange" value="$2"/>
+  </module>
+
+  <!-- http://checkstyle.org/config_whitespace.html -->
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
   </module>
@@ -62,11 +49,6 @@
     <property name="fileExtensions" value="java"/>
     <property name="max" value="100"/>
     <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
-  </module>
-
-  <!-- Third-party rules -->
-  <module name="FileLength">
-    <property name="max" value="1000"/>
   </module>
 
   <module name="TreeWalker">
@@ -330,7 +312,7 @@
         name="tokens"
         value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR,
           LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR, METHOD_REF,
-          TYPE_EXTENSION_AND "/>
+          TYPE_EXTENSION_AND"/>
     </module>
     <module name="AnnotationLocation">
       <property name="id" value="AnnotationLocationMostCases"/>
@@ -384,22 +366,56 @@
       <property name="optional" value="true"/>
     </module>
 
+    <!-- General -->
+    <module name="BlockTagPunctuation"/>
+    <module name="FileLength">
+      <property name="max" value="1000"/>
+    </module>
+    <module name="QualifierConsistency"/>
+    <module name="TodoComment">
+      <property name="format" value="todo|fixme"/>
+    </module>
+    <module name="ArrayTrailingComma"/>
+    <module name="HideUtilityClassConstructor"/>
+
+    <!-- Error -->
+    <module name="IllegalCatch">
+      <property
+        name="illegalClassNames"
+        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
+    </module>
+    <module name="ExceptionExtending"/>
     <module name="IllegalThrows">
       <property name="ignoreOverriddenMethods" value="false"/>
       <property
         name="illegalClassNames"
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
     </module>
-    <module name="IllegalCatch">
-      <property
-        name="illegalClassNames"
-        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
-    </module>
-    <module name="ArrayTrailingComma"/>
-    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
-    <module name="TodoComment">
-      <property name="format" value="todo|fixme"/>
-    </module>
+
+    <!-- Flow -->
+    <module name="ControlFlowBracing"/>
+    <module name="DefaultFlattening"/>
+    <module name="ElseFlattening"/>
+    <module name="IfElseFlattening"/>
+    <module name="SwitchCaseBranching"/>
+
+    <!-- Fold -->
+    <module name="AssignmentWrapping"/>
+    <module name="EmptyCodeBlockUnwrapping"/>
+    <module name="LambdaWrapping"/>
+    <module name="ParameterWrapping"/>
+
+    <!-- Layout -->
+    <module name="BlockTagOrdering"/>
+    <module name="BuiltinFunctionPosition"/>
+    <module name="ClassMemberOrdering"/>
+    <module name="InnerTypeLast"/>
+
+    <!-- Name -->
+    <module name="ClassFinalNameDisallowing"/>
+    <module name="ConstantName"/>
+    <module name="LocalFinalVariableName"/>
+    <module name="StaticVariableName"/>
     <module name="IllegalIdentifierName">
       <property
         name="format"
@@ -409,35 +425,15 @@
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_COMPONENT_DEF"/>
     </module>
 
-    <module name="InnerTypeLast"/>
-    <module name="HideUtilityClassConstructor"/>
-
-    <!-- Third-party rules -->
-    <module name="AssignmentWrapping"/>
+    <!-- Whitespace -->
     <module name="BlockCommentLineJoining"/>
     <module name="BlockCommentLineTrimming"/>
-    <module name="BlockTagOrdering"/>
-    <module name="BlockTagPunctuation"/>
+    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="CaseLineJoining"/>
-    <module name="ClassFinalNameDisallowing"/>
-    <module name="ClassMemberOrdering"/>
     <module name="CodeBlockLineTrimming"/>
     <module name="CommentLineJoining"/>
     <module name="CommentLineTrimming"/>
     <module name="CommentSpacing"/>
-    <module name="ControlFlowBracing"/>
-    <module name="DefaultDenesting"/>
-    <module name="ElseDenesting"/>
-    <module name="EmptyCodeBlockUnwrapping"/>
-    <module name="ExceptionExtending"/>
     <module name="FileInitialLineTrimming"/>
-    <module name="GenericsNameAllowing"/>
-    <module name="IfElseDenesting"/>
-    <module name="LambdaWrapping"/>
-    <module name="MemberLineSpacing"/>
-    <module name="ParameterWrapping"/>
-    <module name="QualifierConsistency"/>
-    <module name="SpecialFunctionPosition"/>
-    <module name="SwitchCaseBranching"/>
   </module>
 </module>

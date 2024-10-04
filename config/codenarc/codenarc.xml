@@ -5,39 +5,6 @@
   Rulebook: https://github.com/hanggrian/rulebook/
   CodeNarc: https://codenarc.org/
   Source template: https://github.com/google/protobuf-gradle-plugin/blob/master/config/codenarc/codenarc.xml
-
-  Modifications:
-
-  - Remove 'logging.xml':
-  - Modify 'convention.xml':
-    - Remove 'CompileStatic'.
-    - Add 'PublicMethodsBeforeNonPublicMethods'.
-  - Modify 'formatting.xml':
-    - Remove 'SpaceAfterOpeningBrace'.
-    - Remove 'SpaceBeforeClosingBrace'.
-    - Add 'Indentation'.
-  - Modify 'unused.xml':
-    - Remove 'EmptyCatchBlock'.
-    - Remove 'EmptyClass'.
-    - Remove 'EmptyElseBlock'.
-    - Remove 'EmptyFinallyBlock'.
-    - Remove 'EmptyForStatement'.
-    - Remove 'EmptyIfStatement'.
-    - Remove 'EmptyInstanceInitializer'.
-    - Remove 'EmptyMethod'.
-    - Remove 'EmptyStaticInitializer'.
-    - Remove 'EmptySwitchStatement'.
-    - Remove 'EmptySynchronizedStatement'.
-    - Remove 'EmptyTryBlock'.
-    - Remove 'EmptyWhileStatement'.
-  - Modify 'unnecessary.xml':
-    - Remove 'UnnecessaryConstructor'.
-  - Configure 'LineLength#length' from 120 to 100.
-  - Add 'SpaceBeforeCommentDelimiter'.
-  - Add 'SpaceAfterCommentDelimiter'.
-  - Add 'JavadocConsecutiveEmptyLines'.
-  - Add 'JavadocEmptyFirstLine'.
-  - Add 'JavadocEmptyLastLine'.
 -->
 <ruleset
   xmlns="http://codenarc.org/ruleset/1.0"
@@ -62,53 +29,72 @@
     <exclude name="EmptyTryBlock"/>
     <exclude name="EmptyWhileStatement"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/braces.xml"/>
+
   <ruleset-ref path="rulesets/concurrency.xml"/>
+
   <ruleset-ref path="rulesets/convention.xml">
     <exclude name="CompileStatic"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/design.xml">
     <exclude name="Instanceof"/>
     <exclude name="ImplementationAsType"/>
     <exclude name="BuilderMethodWithSideEffects"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/dry.xml">
     <exclude name="DuplicateStringLiteral"/>
     <exclude name="DuplicateNumberLiteral"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/exceptions.xml"/>
+
   <ruleset-ref path="rulesets/formatting.xml">
     <exclude name="ClassEndsWithBlankLine"/>
     <exclude name="ClassStartsWithBlankLine"/>
+    <exclude name="Indentation"/>
     <exclude name="SpaceAfterOpeningBrace"/>
     <exclude name="SpaceBeforeClosingBrace"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/generic.xml"/>
+
   <ruleset-ref path="rulesets/grails.xml"/>
+
   <ruleset-ref path="rulesets/groovyism.xml"/>
+
   <ruleset-ref path="rulesets/imports.xml"/>
+
   <ruleset-ref path="rulesets/jdbc.xml"/>
+
   <ruleset-ref path="rulesets/junit.xml">
     <exclude name="JUnitTestMethodWithoutAssert"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/naming.xml">
     <exclude name="ConfusingMethodName"/>
-    <!-- unit tests have arbitrary names -->
-    <exclude name="MethodName"/>
+    <!--exclude name="MethodName"/-->
     <exclude name="FactoryMethodName"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/security.xml">
     <exclude name="JavaIoPackageAccess"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/serialization.xml"/>
+
   <ruleset-ref path="rulesets/size.xml">
-    <!-- AbcMetric, CrapMetric and CyclomaticComplexity require external libs -->
     <exclude name="AbcMetric"/>
     <exclude name="CrapMetric"/>
     <exclude name="CyclomaticComplexity"/>
     <exclude name="NestedBlockDepth"/>
     <exclude name="MethodCount"/>
   </ruleset-ref>
+
+  <!--ruleset-ref path='rulesets/unused.xml'/-->
+
   <ruleset-ref path="rulesets/unnecessary.xml">
     <exclude name="UnnecessaryCollectCall"/>
     <exclude name="UnnecessaryGetter"/>
@@ -118,38 +104,45 @@
     <exclude name="UnnecessaryPublicModifier"/>
     <exclude name="UnnecessaryReturnKeyword"/>
 
-    <!-- Poor suggestion when using static typing -->
     <exclude name="UnnecessaryObjectReferences"/>
     <!-- Clash with 'UtilityClassInstanceHiding' -->
     <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
+  <!-- General -->
   <rule class="org.codenarc.rule.formatting.LineLengthRule">
     <property name="length" value="100"/>
   </rule>
+  <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
 
+  <!-- Flow -->
+  <rule class="com.hanggrian.rulebook.codenarc.DefaultFlatteningRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ElseFlatteningRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IfElseFlatteningRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.SwitchCaseBranchingRule"/>
+
+  <!-- Fold -->
+  <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ParameterWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
+
+  <!-- Layout -->
+  <rule class="com.hanggrian.rulebook.codenarc.BuiltinFunctionPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ClassMemberOrderingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
+
+  <!-- Name -->
+  <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameDisallowingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.GenericsNameAllowingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.VariableNameDisallowingRule"/>
+
+  <!-- Whitespace -->
   <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>
   <rule class="org.codenarc.rule.comments.JavadocEmptyFirstLineRule"/>
   <rule class="org.codenarc.rule.comments.JavadocEmptyLastLineRule"/>
   <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
   <rule class="org.codenarc.rule.comments.SpaceBeforeCommentDelimiterRule"/>
-
-  <!-- Third-party rules -->
-  <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameDisallowingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ClassMemberOrderingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.GenericsNameAllowingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.IdentifierNameDisallowingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.DefaultDenestingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ElseDenestingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.IfElseDenestingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ParameterWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.SpecialFunctionPositionRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.SwitchCaseBranchingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
 </ruleset>

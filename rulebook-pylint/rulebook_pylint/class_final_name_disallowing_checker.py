@@ -28,7 +28,7 @@ class ClassFinalNameDisallowingChecker(Checker):
     options: Options = \
         (
             (
-                'rulebook-disallowed-class-final-names',
+                'rulebook-disallow-class-final-names',
                 {
                     'default': ('Util', 'Utility', 'Helper', 'Manager', 'Wrapper'),
                     'type': 'csv',
@@ -42,7 +42,7 @@ class ClassFinalNameDisallowingChecker(Checker):
         # checks for violation
         for match in self.TITLE_CASE_REGEX.findall(node.name):
             word = match[0]
-            if word not in self.linter.config.rulebook_disallowed_class_final_names:
+            if word not in self.linter.config.rulebook_disallow_class_final_names:
                 continue
 
             if word in {'Util', 'Utility'}:

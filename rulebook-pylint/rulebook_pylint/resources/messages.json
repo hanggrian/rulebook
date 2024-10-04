@@ -1,23 +1,23 @@
 {
   "file-size-limitation": "Reduce file size to %d.",
-  "string-single-quoting": "Use single quotes.",
-  "todo-comment-styling-keyword": "Illegal keyword %s.",
-  "todo-comment-styling-separator": "Illegal separator %s.",
-  "trailing-comma-insertion": "Put trailing comma.",
+  "todo-comment-formatting-keyword": "Illegal keyword %s.",
+  "todo-comment-formatting-separator": "Illegal separator %s.",
+  "trailing-comma-arrangement-single": "Remove trailing comma.",
+  "trailing-comma-arrangement-multi": "Put trailing comma.",
 
   "exception-extending": "Extend from Exception class.",
 
   "assignment-wrapping": "Break assignment into newline.",
   "parameter-wrapping-argument": "Each parameter should have a newline.",
 
-  "default-denesting": "Remove redundant 'case _'.",
-  "if-else-denesting-invert": "Invert 'if' condition.",
-  "if-else-denesting-lift": "Lift 'else' and add 'return' in 'if'.",
+  "default-flattening": "Remove redundant 'case _'.",
+  "if-else-flattening-invert": "Invert 'if' condition.",
+  "if-else-flattening-lift": "Lift 'else' and add 'return' in 'if'.",
   "switch-case-branching": "Replace 'match' with 'if'.",
 
+  "builtin-function-position": "Put %s last.",
   "class-organization": "Put %s before %s.",
   "inner-class-position": "Put inner class at the bottom.",
-  "special-function-position": "Put %s last.",
 
   "class-name-acronym-capitalization": "Rename acronym to %s.",
   "class-final-name-disallowing-all": "Avoid meaningless word %s.",
@@ -32,6 +32,8 @@
   "comment-line-trimming": "Unexpected newline after #.",
   "code-block-line-trimming": "Unexpected newline after :.",
   "file-initial-line-trimming": "Unexpected newline at the beginning.",
+
+  "string-literal-quoting": "Use single quotes.",
 
   "constructor": "constructor",
   "function": "function"

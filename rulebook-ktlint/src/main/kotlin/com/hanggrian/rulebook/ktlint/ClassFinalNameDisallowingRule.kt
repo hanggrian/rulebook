@@ -63,7 +63,7 @@ public class ClassFinalNameDisallowingRule :
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
-                        "rulebook_disallowed_class_final_names",
+                        "rulebook_disallow_class_final_names",
                         "A set of banned words.",
                         CommaSeparatedListValueParser(),
                     ),

@@ -51,6 +51,7 @@ load-plugins=
   pylint.extensions.consider_refactoring_into_while_condition,
   rulebook_pylint.block_comment_line_joining_checker,
   rulebook_pylint.block_comment_line_trimming_checker,
+  rulebook_pylint.builtin_function_position_checker,
   rulebook_pylint.case_line_joining_checker,
   rulebook_pylint.class_final_name_disallowing_checker,
   rulebook_pylint.class_name_acronym_capitalization_checker,
@@ -58,19 +59,18 @@ load-plugins=
   rulebook_pylint.code_block_line_trimming_checker,
   rulebook_pylint.comment_line_joining_checker,
   rulebook_pylint.comment_line_trimming_checker,
-  rulebook_pylint.default_denesting_checker,
+  rulebook_pylint.default_flattening_checker,
   rulebook_pylint.exception_extending_checker,
   rulebook_pylint.file_initial_line_trimming_checker,
   rulebook_pylint.file_size_limitation_checker,
   rulebook_pylint.generics_name_allowing_checker,
-  rulebook_pylint.if_else_denesting_checker,
+  rulebook_pylint.if_else_flattening_checker,
   rulebook_pylint.inner_class_position_checker,
   rulebook_pylint.parameter_wrapping_checker,
-  rulebook_pylint.special_function_position_checker,
-  rulebook_pylint.string_single_quoting_checker,
+  rulebook_pylint.string_literal_quoting_checker,
   rulebook_pylint.switch_case_branching_checker,
-  rulebook_pylint.todo_comment_styling_checker,
-  rulebook_pylint.trailing_comma_insertion_checker,
+  rulebook_pylint.todo_comment_formatting_checker,
+  rulebook_pylint.trailing_comma_arrangement_checker,
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
 # number of processors available to use.
@@ -278,7 +278,7 @@ good-names=i,j,k,ex,Run,_
 good-names-rgxs=
 
 # Bad variable names which should always be refused, separated by a comma
-bad-names=object,integer,string,integers,strings
+bad-names=object,integer,string,objects,integers,strings
 
 # Bad variable names regexes, separated by a comma. If names match any regex,
 # they will always be refused

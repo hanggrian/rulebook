@@ -62,7 +62,7 @@ public class BlockTagPunctuationRule :
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
-                        "rulebook_punctuated_block_tags",
+                        "rulebook_punctuate_block_tags",
                         "Block tags that have to end with a period.",
                         CommaSeparatedListValueParser(),
                     ),

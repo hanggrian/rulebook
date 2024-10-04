@@ -1,6 +1,6 @@
 [*.kt]
-rulebook_punctuated_block_tags = @constructor
-rulebook_allowed_generics_names = A
-rulebook_disallowed_class_final_names = Hello, World
-rulebook_disallowed_identifier_names = mString, mList
+rulebook_punctuate_block_tags = @constructor
+rulebook_allow_generics_names = A
+rulebook_disallow_class_final_names = Hello, World
+rulebook_disallow_identifier_names = mString, mList
 rulebook_limit_file_size = 10

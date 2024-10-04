@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The standard Rulebook CodeNarc configuration.
+
+  Rulebook: https://github.com/hanggrian/rulebook/
+  CodeNarc: https://codenarc.org/
+  Source template: https://github.com/google/protobuf-gradle-plugin/blob/master/config/codenarc/codenarc.xml
+-->
 <ruleset
   xmlns="http://codenarc.org/ruleset/1.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -22,53 +29,72 @@
     <exclude name="EmptyTryBlock"/>
     <exclude name="EmptyWhileStatement"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/braces.xml"/>
+
   <ruleset-ref path="rulesets/concurrency.xml"/>
+
   <ruleset-ref path="rulesets/convention.xml">
     <exclude name="CompileStatic"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/design.xml">
     <exclude name="Instanceof"/>
     <exclude name="ImplementationAsType"/>
     <exclude name="BuilderMethodWithSideEffects"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/dry.xml">
     <exclude name="DuplicateStringLiteral"/>
     <exclude name="DuplicateNumberLiteral"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/exceptions.xml"/>
+
   <ruleset-ref path="rulesets/formatting.xml">
     <exclude name="ClassEndsWithBlankLine"/>
     <exclude name="ClassStartsWithBlankLine"/>
+    <exclude name="Indentation"/>
     <exclude name="SpaceAfterOpeningBrace"/>
     <exclude name="SpaceBeforeClosingBrace"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/generic.xml"/>
+
   <ruleset-ref path="rulesets/grails.xml"/>
+
   <ruleset-ref path="rulesets/groovyism.xml"/>
+
   <ruleset-ref path="rulesets/imports.xml"/>
+
   <ruleset-ref path="rulesets/jdbc.xml"/>
+
   <ruleset-ref path="rulesets/junit.xml">
     <exclude name="JUnitTestMethodWithoutAssert"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/naming.xml">
     <exclude name="ConfusingMethodName"/>
-    <!-- unit tests have arbitrary names -->
-    <exclude name="MethodName"/>
+    <!--exclude name="MethodName"/-->
     <exclude name="FactoryMethodName"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/security.xml">
     <exclude name="JavaIoPackageAccess"/>
   </ruleset-ref>
+
   <ruleset-ref path="rulesets/serialization.xml"/>
+
   <ruleset-ref path="rulesets/size.xml">
-    <!-- AbcMetric, CrapMetric and CyclomaticComplexity require external libs -->
     <exclude name="AbcMetric"/>
     <exclude name="CrapMetric"/>
     <exclude name="CyclomaticComplexity"/>
     <exclude name="NestedBlockDepth"/>
     <exclude name="MethodCount"/>
   </ruleset-ref>
+
+  <!--ruleset-ref path='rulesets/unused.xml'/-->
+
   <ruleset-ref path="rulesets/unnecessary.xml">
     <exclude name="UnnecessaryCollectCall"/>
     <exclude name="UnnecessaryGetter"/>
@@ -78,33 +104,20 @@
     <exclude name="UnnecessaryPublicModifier"/>
     <exclude name="UnnecessaryReturnKeyword"/>
 
-    <!-- Poor suggestion when using static typing -->
     <exclude name="UnnecessaryObjectReferences"/>
     <!-- Clash with 'UtilityClassInstanceHiding' -->
     <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
-  <rule class="org.codenarc.rule.formatting.LineLengthRule">
-    <property name="length" value="100"/>
-  </rule>
-
-  <rule class="org.codenarc.rule.comments.SpaceBeforeCommentDelimiterRule"/>
-  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
-  <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>
-  <rule class="org.codenarc.rule.comments.JavadocEmptyFirstLineRule"/>
-  <rule class="org.codenarc.rule.comments.JavadocEmptyLastLineRule"/>
-
-  <!-- Third-party rules -->
-  <rule class="org.codenarc.rule.size.ClassSizeRule">
-    <property name="maxLines" value="10"/>
-  </rule>
   <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameDisallowingRule">
     <property name="names" value="Hello, World"/>
   </rule>
-  <rule class="com.hanggrian.rulebook.codenarc.IdentifierNameDisallowingRule">
-    <property name="names" value="mString, mList"/>
-  </rule>
+
   <rule class="com.hanggrian.rulebook.codenarc.GenericsNameAllowingRule">
     <property name="names" value="A"/>
+  </rule>
+
+  <rule class="com.hanggrian.rulebook.codenarc.VariableNameDisallowingRule">
+    <property name="names" value="mString, mList"/>
   </rule>
 </ruleset>

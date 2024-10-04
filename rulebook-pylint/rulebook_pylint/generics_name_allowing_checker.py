@@ -20,7 +20,7 @@ class GenericsNameAllowingChecker(Checker):
     options: Options = \
         (
             (
-                'rulebook-allowed-generics-names',
+                'rulebook-allow-generics-names',
                 {
                     'default': ('E', 'K', 'N', 'T', 'V'),
                     'type': 'csv',
@@ -44,9 +44,13 @@ class GenericsNameAllowingChecker(Checker):
             return
 
         # checks for violation
-        if target.name in self.linter.config.rulebook_allowed_generics_names:
+        if target.name in self.linter.config.rulebook_allow_generics_names:
             return
-        self.add_message(self.MSG, node=target, args=target.name)
+        self.add_message(
+            self.MSG,
+            node=target,
+            args=', '.join(self.linter.config.rulebook_allow_generics_names),
+        )
 
 
 def register(linter: 'PyLinter') -> None:

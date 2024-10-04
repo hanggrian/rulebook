@@ -408,7 +408,7 @@ valid-metaclass-classmethod-first-arg=mcs
 
 [OTHERS]
 
-rulebook-allowed-generics-names=A
-rulebook-disallowed-class-final-names=Hello, World
-rulebook-disallowed-identifier-names=m_str, m_list
+rulebook-allow-generics-names=A
+rulebook-disallow-class-final-names=Hello, World
+rulebook-disallow-identifier-names=m_str, m_list
 rulebook-limit-file-size=10

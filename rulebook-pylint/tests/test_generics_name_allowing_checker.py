@@ -37,7 +37,7 @@ class TestGenericsNameAllowingChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(GenericsNameAllowingChecker.MSG, (2, 0, 1), node1.targets[0], 'X'),
+            msg(GenericsNameAllowingChecker.MSG, (2, 0, 1), node1.targets[0], 'E, K, N, T, V'),
         ):
             self.checker.visit_assign(node1)
 
