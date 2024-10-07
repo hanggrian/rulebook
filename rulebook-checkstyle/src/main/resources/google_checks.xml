@@ -425,6 +425,9 @@
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_COMPONENT_DEF"/>
     </module>
 
+    <!-- Value -->
+    <module name="FloatLiteralTagging"/>
+
     <!-- Whitespace -->
     <module name="BlockCommentLineJoining"/>
     <module name="BlockCommentLineTrimming"/>

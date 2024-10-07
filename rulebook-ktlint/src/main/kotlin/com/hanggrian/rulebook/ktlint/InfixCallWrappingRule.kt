@@ -31,13 +31,13 @@ public class InfixCallWrappingRule : Rule("infix-call-wrapping") {
 
         // checks for violation
         if (node.treePrev.isWhiteSpaceWithNewline()) {
-            emit(node.startOffset, Messages[MSG_UNEXPECTED], false)
+            emit(node.startOffset, Messages.get(MSG_UNEXPECTED, node.text), false)
             return
         }
         node.treeNext
             .takeIf { it.isWhiteSpaceWithoutNewline() }
             ?: return
-        emit(parent.lastChildNode.startOffset, Messages[MSG_MISSING], false)
+        emit(parent.lastChildNode.startOffset, Messages.get(MSG_MISSING, node.text), false)
     }
 
     internal companion object {

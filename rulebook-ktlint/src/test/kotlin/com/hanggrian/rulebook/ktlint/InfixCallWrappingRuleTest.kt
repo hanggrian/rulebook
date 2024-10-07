@@ -14,64 +14,64 @@ class InfixCallWrappingRuleTest {
     fun `Rule properties`() = InfixCallWrappingRule().assertProperties()
 
     @Test
-    fun `Infix parameter in single line statement`() =
+    fun `Operators in single-line statement`() =
         assertThatCode(
             """
             fun foo() {
-                println(0 or 1)
+                println(1 and 2 or 3)
             }
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `Wrapping infix functions`() =
+    fun `NL-wrapped operators in multi-line statement`() =
         assertThatCode(
             """
             fun foo() {
                 println(
-                    0
-                        or 1
-                        or 2,
+                    1
+                        and 2
+                        or 3,
                 )
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(4, 13, Messages[MSG_UNEXPECTED]),
-            LintViolation(5, 13, Messages[MSG_UNEXPECTED]),
+            LintViolation(4, 13, Messages.get(MSG_UNEXPECTED, "and")),
+            LintViolation(5, 13, Messages.get(MSG_UNEXPECTED, "or")),
         )
 
     @Test
-    fun `Wrapping infix parameters`() =
+    fun `EOL-wrapped operators in multi-line statement`() =
         assertThatCode(
             """
             fun foo() {
                 println(
-                    0 or
-                        1 or
-                        2,
+                    1 and
+                        2 or
+                        3,
                 )
             }
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `Multiline parameter need to be wrapped`() =
+    fun `Multiline operand need to be wrapped`() =
         assertThatCode(
             """
             fun foo() {
                 println(
-                    0 or maxOf(
-                        1,
+                    1 and minOf(
                         2,
-                    ) or minOf(
-                        1,
-                        2,
+                        3,
+                    ) or maxOf(
+                        4,
+                        5,
                     ),
                 )
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 14, Messages[MSG_MISSING]),
-            LintViolation(6, 14, Messages[MSG_MISSING]),
+            LintViolation(3, 15, Messages.get(MSG_MISSING, "and")),
+            LintViolation(6, 14, Messages.get(MSG_MISSING, "or")),
         )
 }

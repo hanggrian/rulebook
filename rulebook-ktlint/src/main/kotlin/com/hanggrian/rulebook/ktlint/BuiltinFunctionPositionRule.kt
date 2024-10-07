@@ -29,14 +29,14 @@ public class BuiltinFunctionPositionRule : Rule("builtin-function-position") {
             // target special function
             val identifier =
                 function
-                    .takeIf { it.isSpecialFunction() }
+                    .takeIf { it.isBuiltinFunction() }
                     ?.findChildByType(IDENTIFIER)
                     ?: continue
 
             // checks for violation
             functions
                 .subList(i, functions.size)
-                .takeIf { nodes -> nodes.any { !it.isSpecialFunction() } }
+                .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
                 ?: continue
             emit(function.startOffset, Messages.get(MSG, identifier.text), false)
         }
@@ -45,15 +45,15 @@ public class BuiltinFunctionPositionRule : Rule("builtin-function-position") {
     internal companion object {
         const val MSG = "builtin.function.position"
 
-        private val SPECIAL_FUNCTIONS =
+        private val BUILTIN_FUNCTIONS =
             setOf(
                 "toString",
                 "hashCode",
                 "equals",
             )
 
-        private fun ASTNode.isSpecialFunction() =
+        private fun ASTNode.isBuiltinFunction() =
             hasModifier(OVERRIDE_KEYWORD) &&
-                findChildByType(IDENTIFIER)?.text in SPECIAL_FUNCTIONS
+                findChildByType(IDENTIFIER)?.text in BUILTIN_FUNCTIONS
     }
 }

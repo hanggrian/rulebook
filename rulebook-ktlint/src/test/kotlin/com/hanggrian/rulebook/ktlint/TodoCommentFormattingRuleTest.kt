@@ -42,8 +42,8 @@ class TodoCommentFormattingRuleTest {
             // FIXME1 fix bug
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 1, Messages.get(MSG_SEPARATOR, ":")),
-            LintViolation(2, 1, Messages.get(MSG_SEPARATOR, "1")),
+            LintViolation(1, 1, Messages.get(MSG_SEPARATOR, ':')),
+            LintViolation(2, 1, Messages.get(MSG_SEPARATOR, '1')),
         )
 
     @Test
@@ -58,7 +58,7 @@ class TodoCommentFormattingRuleTest {
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 4, Messages.get(MSG_KEYWORD, "todo")),
-            LintViolation(4, 2, Messages.get(MSG_SEPARATOR, ":")),
+            LintViolation(4, 2, Messages.get(MSG_SEPARATOR, ':')),
         )
 
     @Test
@@ -69,6 +69,6 @@ class TodoCommentFormattingRuleTest {
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 1, Messages.get(MSG_KEYWORD, "Todo")),
-            LintViolation(1, 1, Messages.get(MSG_SEPARATOR, ":")),
+            LintViolation(1, 1, Messages.get(MSG_SEPARATOR, ':')),
         )
 }

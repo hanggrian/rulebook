@@ -17,7 +17,7 @@ public class BuiltinFunctionPositionRule : Rule() {
     internal companion object {
         const val MSG = "builtin.function.position"
 
-        private val SPECIAL_FUNCTIONS =
+        private val BUILTIN_FUNCTIONS =
             setOf(
                 "toString",
                 "hashCode",
@@ -26,8 +26,8 @@ public class BuiltinFunctionPositionRule : Rule() {
                 "finalize",
             )
 
-        private fun MethodNode.isSpecialFunction() =
-            hasAnnotation("Override") && name in SPECIAL_FUNCTIONS
+        private fun MethodNode.isBuiltinFunction() =
+            hasAnnotation("Override") && name in BUILTIN_FUNCTIONS
     }
 
     public class Visitor : AbstractAstVisitor() {
@@ -41,13 +41,13 @@ public class BuiltinFunctionPositionRule : Rule() {
             for ((i, function) in functions.withIndex()) {
                 // target special function
                 function
-                    .takeIf { it.isSpecialFunction() }
+                    .takeIf { it.isBuiltinFunction() }
                     ?: continue
 
                 // checks for violation
                 functions
                     .subList(i, functions.size)
-                    .takeIf { nodes -> nodes.any { !it.isSpecialFunction() } }
+                    .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
                     ?: continue
                 addViolation(function, Messages.get(MSG, function.name))
             }

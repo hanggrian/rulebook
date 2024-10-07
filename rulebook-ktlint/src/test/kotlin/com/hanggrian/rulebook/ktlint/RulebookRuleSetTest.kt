@@ -36,6 +36,7 @@ class RulebookRuleSetTest {
             ExceptionThrowingRule::class,
             FileInitialLineTrimmingRule::class,
             FileSizeLimitationRule::class,
+            FloatLiteralTaggingRule::class,
             GenericsNameAllowingRule::class,
             IfElseFlatteningRule::class,
             InfixCallWrappingRule::class,

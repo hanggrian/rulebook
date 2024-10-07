@@ -1,7 +1,7 @@
 {
-  "file-size-limitation": "Reduce file size to %d.",
-  "todo-comment-formatting-keyword": "Illegal keyword %s.",
-  "todo-comment-formatting-separator": "Illegal separator %s.",
+  "file-size-limitation": "Reduce file size to '%d'.",
+  "todo-comment-formatting-keyword": "Illegal keyword '%s'.",
+  "todo-comment-formatting-separator": "Illegal separator '%s'.",
   "trailing-comma-arrangement-single": "Remove trailing comma.",
   "trailing-comma-arrangement-multi": "Put trailing comma.",
 
@@ -15,25 +15,26 @@
   "if-else-flattening-lift": "Lift 'else' and add 'return' in 'if'.",
   "switch-case-branching": "Replace 'match' with 'if'.",
 
-  "builtin-function-position": "Put %s last.",
-  "class-organization": "Put %s before %s.",
+  "builtin-function-position": "Put '%s' last.",
+  "class-organization": "Put '%s' before '%s'.",
   "inner-class-position": "Put inner class at the bottom.",
 
-  "class-name-acronym-capitalization": "Rename acronym to %s.",
-  "class-final-name-disallowing-all": "Avoid meaningless word %s.",
-  "class-final-name-disallowing-util": "Utility class should be named %s.",
-  "generics-name-allowing": "Use common generics %s.",
+  "class-name-acronym-capitalization": "Rename acronym to '%s'.",
+  "class-final-name-disallowing-all": "Avoid meaningless word '%s'.",
+  "class-final-name-disallowing-util": "Utility class should be named '%s'.",
+  "generics-name-allowing": "Use common generics '%s'.",
 
-  "block-comment-line-joining": "Unexpected consecutive newline in \"\"\".",
-  "block-comment-line-trimming-first": "Unexpected newline after \"\"\".",
-  "block-comment-line-trimming-last": "Unexpected newline before \"\"\".",
+  "block-comment-line-joining": "Unexpected consecutive newline in '\"\"\"'.",
+  "block-comment-line-trimming-first": "Unexpected newline after '\"\"\"'.",
+  "block-comment-line-trimming-last": "Unexpected newline before '\"\"\"'.",
   "case-line-joining": "Unexpected newline between branches.",
-  "comment-line-joining": "Unexpected consecutive newline after #.",
-  "comment-line-trimming": "Unexpected newline after #.",
-  "code-block-line-trimming": "Unexpected newline after :.",
+  "comment-line-joining": "Unexpected consecutive newline after '#'.",
+  "comment-line-trimming": "Unexpected newline after '#'.",
+  "code-block-line-trimming": "Unexpected newline after ':'.",
   "file-initial-line-trimming": "Unexpected newline at the beginning.",
 
-  "string-literal-quoting": "Use single quotes.",
+  "string-literal-quotation-single": "Use single quotes ''.",
+  "string-literal-quotation-double": "Use double quotes \"\".",
 
   "constructor": "constructor",
   "function": "function"

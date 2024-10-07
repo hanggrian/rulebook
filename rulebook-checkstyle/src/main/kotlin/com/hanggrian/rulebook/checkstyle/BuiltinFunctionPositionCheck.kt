@@ -29,14 +29,14 @@ public class BuiltinFunctionPositionCheck : Check() {
             // target special function
             val identifier =
                 function
-                    .takeIf { it.isSpecialFunction() }
+                    .takeIf { it.isBuiltinFunction() }
                     ?.findFirstToken(IDENT)
                     ?: continue
 
             // checks for violation
             functions
                 .subList(i, functions.size)
-                .takeIf { nodes -> nodes.any { !it.isSpecialFunction() } }
+                .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
                 ?: continue
             log(function, Messages.get(MSG, identifier.text))
         }
@@ -45,7 +45,7 @@ public class BuiltinFunctionPositionCheck : Check() {
     internal companion object {
         const val MSG = "builtin.function.position"
 
-        private val SPECIAL_FUNCTIONS =
+        private val BUILTIN_FUNCTIONS =
             setOf(
                 "toString",
                 "hashCode",
@@ -54,8 +54,8 @@ public class BuiltinFunctionPositionCheck : Check() {
                 "finalize",
             )
 
-        private fun DetailAST.isSpecialFunction() =
+        private fun DetailAST.isBuiltinFunction() =
             hasAnnotation("Override") &&
-                findFirstToken(IDENT)?.text in SPECIAL_FUNCTIONS
+                findFirstToken(IDENT)?.text in BUILTIN_FUNCTIONS
     }
 }

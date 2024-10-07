@@ -29,6 +29,7 @@ public class RulebookRuleSet : RuleSetProviderV3(Rule.ID) {
             RuleProvider { ExceptionThrowingRule() },
             RuleProvider { FileInitialLineTrimmingRule() },
             RuleProvider { FileSizeLimitationRule() },
+            RuleProvider { FloatLiteralTaggingRule() },
             RuleProvider { GenericsNameAllowingRule() },
             RuleProvider { IfElseFlatteningRule() },
             RuleProvider { InfixCallWrappingRule() },

@@ -23,7 +23,7 @@ class ParameterWrappingChecker(Checker):
         args: list[AssignName] = node.args.args
         if len(args) == 0:
             return
-        if args[len(args) - 1].lineno == node.lineno:
+        if args[0].lineno == args[len(args) - 1].end_lineno:
             return
 
         # checks for violation

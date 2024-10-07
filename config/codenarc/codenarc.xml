@@ -36,6 +36,8 @@
 
   <ruleset-ref path="rulesets/convention.xml">
     <exclude name="CompileStatic"/>
+    <exclude name="NoDouble"/>
+    <exclude name="NoFloat"/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/design.xml">
@@ -124,6 +126,7 @@
 
   <!-- Fold -->
   <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.OperatorWrappingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ParameterWrappingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
 
@@ -138,6 +141,9 @@
   <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.GenericsNameAllowingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.VariableNameDisallowingRule"/>
+
+  <!-- Value -->
+  <rule class="com.hanggrian.rulebook.codenarc.FloatLiteralTaggingRule"/>
 
   <!-- Whitespace -->
   <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>

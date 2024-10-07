@@ -46,7 +46,7 @@ load-plugins=
   rulebook_pylint.if_else_flattening_checker,
   rulebook_pylint.inner_class_position_checker,
   rulebook_pylint.parameter_wrapping_checker,
-  rulebook_pylint.string_literal_quoting_checker,
+  rulebook_pylint.string_literal_quotation_checker,
   rulebook_pylint.switch_case_branching_checker,
   rulebook_pylint.todo_comment_formatting_checker,
   rulebook_pylint.trailing_comma_arrangement_checker,

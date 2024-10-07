@@ -55,18 +55,20 @@ class TestParameterWrappingChecker(CheckerTestCase):
                 '''
                 def foo(  #@
                     a, b,
+                    c,
                 ):
                     print()
 
                 def bar():
                     foo(  #@
                         0, 1,
+                        2,
                     )
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ParameterWrappingChecker.MSG_ARGUMENT, (3, 7, 3, 8), node1.args.args[1]),
-            msg(ParameterWrappingChecker.MSG_ARGUMENT, (9, 11, 9, 12), node2.args[1]),
+            msg(ParameterWrappingChecker.MSG_ARGUMENT, (3, 7, 8), node1.args.args[1]),
+            msg(ParameterWrappingChecker.MSG_ARGUMENT, (10, 11, 12), node2.args[1]),
         ):
             self.checker.visit_functiondef(node1)
             self.checker.visit_call(node2)
