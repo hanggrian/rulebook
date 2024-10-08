@@ -19,7 +19,8 @@ public class BlockCommentLineTrimmingCheck : JavadocCheck() {
 
     override fun visitJavadocToken(node: DetailNode) {
         // allow blank comment
-        node.children
+        node
+            .children
             .filterNot { it.type == LEADING_ASTERISK || it.type == EOF }
             .joinToString("") { it.text }
             .takeUnless { it.isBlank() }

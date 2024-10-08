@@ -16,14 +16,16 @@ public class BlockCommentLineJoiningRule : Rule("block-comment-line-joining") {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // find matching sibling
         val next =
-            node.treeNext
+            node
+                .treeNext
                 ?.takeIf { it.isWhiteSpaceWithNewline() }
                 ?.treeNext
                 ?.takeIf { it.elementType == KDOC_LEADING_ASTERISK }
                 ?: return
 
         // checks for violation
-        next.treeNext
+        next
+            .treeNext
             ?.takeIf { it.isWhiteSpaceWithNewline() }
             ?: return
         emit(next.endOffset, Messages[MSG], false)

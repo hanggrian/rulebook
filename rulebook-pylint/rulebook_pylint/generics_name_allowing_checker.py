@@ -1,7 +1,5 @@
-from typing import TYPE_CHECKING
-
 from astroid import Assign, Call, Name, AssignName
-from pylint.typing import MessageDefinitionTuple, Options
+from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
 from rulebook_pylint.checkers import Checker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import get_assignname

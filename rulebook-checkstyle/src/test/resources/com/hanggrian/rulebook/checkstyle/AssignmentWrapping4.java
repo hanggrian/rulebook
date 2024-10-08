@@ -1,15 +1,9 @@
-package com.example.java;
+package com.hanggrian.rulebook.checkstyle;
 
 public class AssignmentWrapping {
     public void foo(Bar bar) {
         bar
-            .baz =
-            0 +
-                1;
-
-        int a =
-            1 +
-                2;
+            .baz = 0;
     }
 
     public static class Bar {

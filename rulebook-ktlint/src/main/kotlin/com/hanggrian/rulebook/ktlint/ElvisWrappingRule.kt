@@ -20,7 +20,8 @@ public class ElvisWrappingRule : Rule("elvis-wrapping") {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // target multiline statement
         val operationReference =
-            node.treeParent
+            node
+                .treeParent
                 .takeIf { it.elementType == OPERATION_REFERENCE && it.treeParent.isMultiline() }
                 ?: return
 

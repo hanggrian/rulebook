@@ -25,7 +25,8 @@ public class InfixCallWrappingRule : Rule("infix-call-wrapping") {
 
         // target multiline statement
         val parent =
-            node.treeParent
+            node
+                .treeParent
                 .takeIf { it.elementType == BINARY_EXPRESSION && it.isMultiline() }
                 ?: return
 
@@ -34,7 +35,8 @@ public class InfixCallWrappingRule : Rule("infix-call-wrapping") {
             emit(node.startOffset, Messages.get(MSG_UNEXPECTED, node.text), false)
             return
         }
-        node.treeNext
+        node
+            .treeNext
             .takeIf { it.isWhiteSpaceWithoutNewline() }
             ?: return
         emit(parent.lastChildNode.startOffset, Messages.get(MSG_MISSING, node.text), false)

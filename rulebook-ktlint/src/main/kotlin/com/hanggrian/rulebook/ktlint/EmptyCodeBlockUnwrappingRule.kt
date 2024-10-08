@@ -23,7 +23,8 @@ public class EmptyCodeBlockUnwrappingRule : Rule("empty-code-block-unwrapping") 
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip control flows that can have multi-blocks
-        node.treeParent
+        node
+            .treeParent
             .elementType
             .takeUnless { it == TRY || it == CATCH || it == THEN || it == ELSE }
             ?: return

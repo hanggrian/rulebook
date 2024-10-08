@@ -54,6 +54,10 @@
   <ruleset-ref path="rulesets/exceptions.xml"/>
 
   <ruleset-ref path="rulesets/formatting.xml">
+    <rule-config name="LineLength">
+      <property name="length" value="100"/>
+    </rule-config>
+
     <exclude name="ClassEndsWithBlankLine"/>
     <exclude name="ClassStartsWithBlankLine"/>
     <exclude name="Indentation"/>
@@ -67,7 +71,11 @@
 
   <ruleset-ref path="rulesets/groovyism.xml"/>
 
-  <ruleset-ref path="rulesets/imports.xml"/>
+  <ruleset-ref path="rulesets/imports.xml">
+    <rule-config name="MisorderedStaticImports">
+      <property name="comesBefore" value="false"/>
+    </rule-config>
+  </ruleset-ref>
 
   <ruleset-ref path="rulesets/jdbc.xml"/>
 
@@ -88,6 +96,7 @@
   <ruleset-ref path="rulesets/serialization.xml"/>
 
   <ruleset-ref path="rulesets/size.xml">
+    <!-- AbcMetric, CrapMetric and CyclomaticComplexity require external libs -->
     <exclude name="AbcMetric"/>
     <exclude name="CrapMetric"/>
     <exclude name="CyclomaticComplexity"/>
@@ -106,15 +115,14 @@
     <exclude name="UnnecessaryPublicModifier"/>
     <exclude name="UnnecessaryReturnKeyword"/>
 
+    <!-- Poor suggestion when using static typing -->
     <exclude name="UnnecessaryObjectReferences"/>
+
     <!-- Clash with 'UtilityClassInstanceHiding' -->
     <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
   <!-- General -->
-  <rule class="org.codenarc.rule.formatting.LineLengthRule">
-    <property name="length" value="100"/>
-  </rule>
   <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
 
@@ -133,6 +141,7 @@
   <!-- Layout -->
   <rule class="com.hanggrian.rulebook.codenarc.BuiltinFunctionPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ClassMemberOrderingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ImportOrderingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
 

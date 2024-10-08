@@ -13,7 +13,8 @@ public class CaseLineJoiningCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // checks for violation
-        node.previousSibling
+        node
+            .previousSibling
             ?.takeIf { it.type == CASE_GROUP }
             ?.takeUnless { it.maxLineNo + 1 == node.firstChild.lineNo }
             ?: return

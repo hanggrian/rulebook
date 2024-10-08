@@ -19,4 +19,8 @@ class AssignmentWrappingCheckTest {
     @Test
     fun `Multiline assignment with non-breaking assignee`() =
         assertEquals(1, checker.read("AssignmentWrapping3"))
+
+    @Test
+    fun `Multiline variable but single-line value`() =
+        assertEquals(0, checker.read("AssignmentWrapping4"))
 }

@@ -1,7 +1,6 @@
 from tokenize import TokenInfo, OP, NL, COMMENT
-from typing import TYPE_CHECKING
 
-from pylint.typing import MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import TokenChecker
 from rulebook_pylint.internals.messages import Messages
 
@@ -22,7 +21,6 @@ class TrailingCommaArrangementChecker(TokenChecker):
         # filter out comments
         tokens = [t for t in tokens if t.type != COMMENT]
 
-        token: TokenInfo
         for i, token in enumerate(tokens):
             # find closing parenthesis
             if token.type != OP or token.string != ')':

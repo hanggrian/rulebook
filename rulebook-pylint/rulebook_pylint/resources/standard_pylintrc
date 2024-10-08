@@ -2,15 +2,7 @@
 #
 # Rulebook: https://github.com/hanggrian/rulebook/
 # Pylint: https://pypi.org/project/pylint/
-# Source template: https://github.com/pylint-dev/pylint/blob/b738d233e2df7651abae847e2331e2621482e5fb/pylintrc/
-#
-# Modifications:
-#
-# - Configure 'bad-names' to 'integer,string'.
-# - Modify 'disable':
-#   - Add 'missing-module-docstring'.
-#   - Add 'missing-class-docstring'.
-#   - Add 'missing-type-doc'.
+# Source template: https://github.com/pylint-dev/pylint/blob/main/pylintrc/
 
 [MAIN]
 
@@ -90,7 +82,7 @@ unsafe-load-any-extension=no
 extension-pkg-allow-list=
 
 # Minimum supported python version
-py-version = 3.8.0
+py-version = 3.9.0
 
 # Control the amount of potential inferred values when inferring a single
 # object. This can help the performance when dealing with large functions or
@@ -145,11 +137,11 @@ disable=
   # We anticipate #3512 where it will become optional
   fixme,
   consider-using-assignment-expr,
-  possibly-used-before-assignment,
   # custom
   missing-module-docstring,
   missing-class-docstring,
   missing-type-doc,
+
 
 [REPORTS]
 
@@ -278,7 +270,7 @@ good-names=i,j,k,ex,Run,_
 good-names-rgxs=
 
 # Bad variable names which should always be refused, separated by a comma
-bad-names=object,integer,string,objects,integers,strings
+bad-names=objs,ints,strs
 
 # Bad variable names regexes, separated by a comma. If names match any regex,
 # they will always be refused
@@ -426,6 +418,7 @@ missing-member-hint-distance=1
 # showing a hint for a missing member.
 missing-member-max-choices=1
 
+
 [SPELLING]
 
 # Spelling dictionary name. Available dictionaries: none. To make it working
@@ -440,7 +433,7 @@ spelling-ignore-words=
 spelling-ignore-comment-directives=fmt: on,fmt: off,noqa:,noqa,nosec,isort:skip,mypy:,pragma:,# noinspection
 
 # A path to a file that contains private dictionary; one word per line.
-spelling-private-dict-file=.pyenchant_pylint_custom_dict.txt
+spelling-private-dict-file=custom_dict.txt
 
 # Tells whether to store unknown words to indicated private dictionary in
 # --spelling-private-dict-file option instead of raising a message.
@@ -473,6 +466,10 @@ max-attributes=11
 # Maximum number of statements in a try-block
 max-try-statements = 7
 
+# Maximum number of positional arguments (see R0917).
+max-positional-arguments = 12
+
+
 [CLASSES]
 
 # List of method names used to declare (i.e. assign) instance attributes.
@@ -490,6 +487,7 @@ exclude-protected=_asdict,_fields,_replace,_source,_make
 
 # Warn about protected attribute access inside special methods
 check-protected-access-in-special-methods=no
+
 
 [IMPORTS]
 
@@ -525,7 +523,7 @@ int-import-graph=
 
 # Force import order to recognize a module as part of the standard
 # compatibility libraries.
-known-standard-library=
+known-standard-library=_string
 
 # Force import order to recognize a module as part of a third party library.
 known-third-party=enchant

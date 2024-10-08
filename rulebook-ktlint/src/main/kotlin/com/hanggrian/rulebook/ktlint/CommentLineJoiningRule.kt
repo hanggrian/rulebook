@@ -22,7 +22,8 @@ public class CommentLineJoiningRule : Rule("comment-line-joining") {
 
         // find matching sibling
         val next =
-            node.treeNext
+            node
+                .treeNext
                 ?.takeIf { it.isWhitespaceWithSingleNewline() }
                 ?.treeNext
                 ?.takeIf { it.elementType == EOL_COMMENT }

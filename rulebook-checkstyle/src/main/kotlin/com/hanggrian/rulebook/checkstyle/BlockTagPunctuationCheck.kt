@@ -25,7 +25,8 @@ public class BlockTagPunctuationCheck : JavadocCheck() {
     override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
         val blockTag =
-            node.children
+            node
+                .children
                 .first()
                 .text
                 .takeIf { it in blockTags }
@@ -33,14 +34,16 @@ public class BlockTagPunctuationCheck : JavadocCheck() {
 
         // long descriptions have multiple lines, take only the last one
         val text =
-            node.children
+            node
+                .children
                 ?.firstOrNull { it.type == DESCRIPTION }
                 ?.children
                 ?.lastOrNull { it.type == TEXT && it.text.isNotBlank() }
                 ?: return
 
         // checks for violation
-        text.text
+        text
+            .text
             .trimComment()
             .trimEnd()
             .lastOrNull()

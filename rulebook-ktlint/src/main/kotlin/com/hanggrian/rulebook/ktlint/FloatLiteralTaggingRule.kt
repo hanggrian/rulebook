@@ -16,7 +16,8 @@ public class FloatLiteralTaggingRule : Rule("float-literal-tagging") {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // find trailing tag
         val character =
-            node.text
+            node
+                .text
                 .last()
                 .takeIf { it.lowercaseChar() == 'f' }
                 ?: return

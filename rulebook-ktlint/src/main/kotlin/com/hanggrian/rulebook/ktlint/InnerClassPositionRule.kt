@@ -22,7 +22,8 @@ public class InnerClassPositionRule : Rule("inner-class-position") {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // consider only inner class
-        node.treeParent
+        node
+            .treeParent
             .takeIf { it.elementType == CLASS_BODY }
             ?.treeParent
             ?.takeIf { it.elementType == CLASS }

@@ -51,4 +51,19 @@ class AssignmentWrappingRuleTest : AbstractRuleTestCase<AssignmentWrappingRule>(
             "int bar = 1 +",
             Messages[MSG],
         )
+
+    @Test
+    fun `Multiline variable but single-line value`() =
+        assertNoViolations(
+            """
+            void foo(Bar bar) {
+                bar
+                    .baz = 1;
+            }
+
+            class Bar {
+                int baz;
+            }
+            """.trimIndent(),
+        )
 }

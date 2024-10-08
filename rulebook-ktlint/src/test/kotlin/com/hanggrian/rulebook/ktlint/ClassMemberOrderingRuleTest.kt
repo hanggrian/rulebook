@@ -12,7 +12,7 @@ class ClassMemberOrderingRuleTest {
     fun `Rule properties`() = ClassMemberOrderingRule().assertProperties()
 
     @Test
-    fun `Correct member organization`() =
+    fun `Correct member layout`() =
         assertThatCode(
             """
             class Foo(a: Int) {

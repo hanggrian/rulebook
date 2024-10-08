@@ -20,12 +20,9 @@ public class LambdaWrappingCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // target multiline lambda
         val expression =
-            node
-                .takeIf { it.isMultiline() }
-                ?.let {
-                    it.findFirstToken(EXPR)
-                        ?: it.findFirstToken(SLIST).findFirstToken(EXPR)
-                } ?: return
+            (node.findFirstToken(EXPR) ?: node.findFirstToken(SLIST).findFirstToken(EXPR))
+                ?.takeIf { it.isMultiline() }
+                ?: return
         val parameters =
             node.findFirstToken(IDENT)
                 ?: node.findFirstToken(PARAMETERS)

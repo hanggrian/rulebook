@@ -43,6 +43,22 @@ class TestStringLiteralQuotationChecker(CheckerTestCase):
         with self.assertNoMessages():
             self.checker.process_tokens(tokens)
 
+    def test_skip_docstring(self):
+        tokens = \
+            _tokenize_str(
+                '''
+                """
+                Lorem ipsum.
+                """
+
+                def foo():
+                    """Lorem ipsum."""
+                    print()
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.process_tokens(tokens)
+
     def test_flag_content_with_backslashed_quotes(self):
         tokens = \
             _tokenize_str(
@@ -54,6 +70,20 @@ class TestStringLiteralQuotationChecker(CheckerTestCase):
         with self.assertAddsMessages(
             msg(StringLiteralQuotationChecker.MSG_SINGLE, (2, 22, 30)),
             msg(StringLiteralQuotationChecker.MSG_SINGLE, (2, 35, 37)),
+        ):
+            self.checker.process_tokens(tokens)
+
+    def test_flag_content_with_letter_prefix(self):
+        tokens = \
+            _tokenize_str(
+                '''
+                foo = f"aa bb {0}"
+                bar = r"Hello {0}"
+                ''',
+            )
+        with self.assertAddsMessages(
+            msg(StringLiteralQuotationChecker.MSG_SINGLE, (2, 22, 34)),
+            msg(StringLiteralQuotationChecker.MSG_SINGLE, (3, 22, 34)),
         ):
             self.checker.process_tokens(tokens)
 

@@ -21,7 +21,8 @@ public class BlockTagInitialLineSpacingRule : Rule("block-tag-initial-line-spaci
         val kdocTag = node.findChildByType(KDOC_TAG) ?: return
 
         // checks for violation
-        kdocTag.prevKdocLeadingAsterisk
+        kdocTag
+            .prevKdocLeadingAsterisk
             ?.prevKdocLeadingAsterisk
             ?.siblingsUntil(KDOC_LEADING_ASTERISK)
             ?.takeUnless { it.size == 1 && it.single().isWhiteSpaceWithNewline() }

@@ -17,14 +17,15 @@ public class SwitchCaseBranchingRule : Rule() {
     }
 
     public class Visitor : AbstractAstVisitor() {
-        override fun visitSwitch(none: SwitchStatement) {
-            super.visitSwitch(none)
+        override fun visitSwitch(node: SwitchStatement) {
+            super.visitSwitch(node)
 
             // checks for violation
-            none.caseStatements
+            node
+                .caseStatements
                 .takeIf { it.size == 1 }
                 ?: return
-            addViolation(none, Messages[MSG])
+            addViolation(node, Messages[MSG])
         }
     }
 }

@@ -24,7 +24,8 @@ public class BlockCommentLineTrimmingRule : Rule("block-comment-line-trimming") 
 
         // final node may be asterisk or tag
         val lastChild =
-            node.lastChildNode
+            node
+                .lastChildNode
                 .let { n ->
                     when (n.elementType) {
                         KDOC_LEADING_ASTERISK -> n

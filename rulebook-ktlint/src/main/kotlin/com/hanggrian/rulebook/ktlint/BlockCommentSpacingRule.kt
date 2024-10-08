@@ -18,7 +18,8 @@ public class BlockCommentSpacingRule : Rule("block-comment-spacing") {
         when (node.elementType) {
             KDOC_SECTION -> {
                 // only target single line
-                node.treeParent
+                node
+                    .treeParent
                     .takeUnless { '\n' in it.text }
                     ?: return
 

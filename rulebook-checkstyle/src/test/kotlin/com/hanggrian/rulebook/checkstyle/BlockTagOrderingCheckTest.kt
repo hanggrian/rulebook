@@ -10,8 +10,8 @@ class BlockTagOrderingCheckTest {
     fun `Rule properties`() = BlockTagOrderingCheck().assertProperties()
 
     @Test
-    fun `Correct tag organization`() = assertEquals(0, checker.read("BlockTagOrdering1"))
+    fun `Correct tag layout`() = assertEquals(0, checker.read("BlockTagOrdering1"))
 
     @Test
-    fun `Incorrect tag organization`() = assertEquals(2, checker.read("BlockTagOrdering2"))
+    fun `Incorrect tag layout`() = assertEquals(2, checker.read("BlockTagOrdering2"))
 }

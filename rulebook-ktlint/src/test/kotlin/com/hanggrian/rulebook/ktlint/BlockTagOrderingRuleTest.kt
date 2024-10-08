@@ -13,7 +13,7 @@ class BlockTagOrderingRuleTest {
     fun `Rule properties`() = BlockTagOrderingRule().assertProperties()
 
     @Test
-    fun `Correct tag organization`() =
+    fun `Correct tag layout`() =
         assertThatCode(
             """
             /**
@@ -26,7 +26,7 @@ class BlockTagOrderingRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Incorrect tag organization`() =
+    fun `Incorrect tag layout`() =
         assertThatCode(
             """
             /**

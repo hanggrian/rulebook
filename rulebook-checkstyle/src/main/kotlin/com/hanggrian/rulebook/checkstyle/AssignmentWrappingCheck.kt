@@ -5,27 +5,26 @@ import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.hanggrian.rulebook.checkstyle.internals.minLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ASSIGN
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.EXPR
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#assignment-wrapping)
  */
 public class AssignmentWrappingCheck : Check() {
-    override fun getRequiredTokens(): IntArray = intArrayOf(VARIABLE_DEF)
+    override fun getRequiredTokens(): IntArray = intArrayOf(ASSIGN)
 
     override fun visitToken(node: DetailAST) {
         // target multiline assignment
-        val assign =
-            node
-                .findFirstToken(ASSIGN)
+        val expression =
+            (node.findFirstToken(EXPR) ?: node.findFirstToken(DOT)?.nextSibling)
                 ?.takeIf { it.isMultiline() }
                 ?: return
 
         // checks for violation
-        val expression =
-            assign
-                .takeUnless { it.minLineNo == assign.lineNo + 1 }
-                ?: return
+        expression
+            .takeUnless { it.minLineNo == node.lineNo + 1 }
+            ?: return
         log(expression, Messages[MSG])
     }
 

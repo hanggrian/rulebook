@@ -1,8 +1,8 @@
 from tokenize import TokenInfo, COMMENT
-from typing import TYPE_CHECKING
 
-from pylint.typing import MessageDefinitionTuple
-from regex import regex, Pattern
+import regex
+from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from regex import Pattern
 from rulebook_pylint.checkers import TokenChecker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import is_comment_empty
@@ -23,7 +23,6 @@ class CommentLineJoiningChecker(TokenChecker):
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         last_empty_token: TokenInfo | None = None
-        token: TokenInfo
         for token in tokens:
             # target comment
             if token.type != COMMENT:

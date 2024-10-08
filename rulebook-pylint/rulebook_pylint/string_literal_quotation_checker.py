@@ -1,7 +1,7 @@
-from tokenize import TokenInfo, STRING
-from typing import TYPE_CHECKING
+from tokenize import TokenInfo, STRING, FSTRING_START, FSTRING_MIDDLE, FSTRING_END
 
-from pylint.typing import MessageDefinitionTuple
+from astroid.nodes import Position
+from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import TokenChecker
 from rulebook_pylint.internals.messages import Messages
 
@@ -19,43 +19,74 @@ class StringLiteralQuotationChecker(TokenChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_SINGLE)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
-        token: TokenInfo
+        # collect from regular and f-string
+        literals: dict[Position, str] = {}
+        fstr_token: TokenInfo | None = None
+        fstr: str | None = None
         for token in tokens:
-            # target string
-            if token.type != STRING:
+            if token.type == STRING:
+                literals[
+                    Position(
+                        token.start[0],
+                        token.start[1],
+                        token.end[0],
+                        token.end[1],
+                    )
+                ] = token.string
+            elif token.type == FSTRING_START:
+                fstr_token = token
+                fstr = token.string
+            elif token.type == FSTRING_MIDDLE:
+                fstr += token.string
+            elif token.type == FSTRING_END:
+                literals[
+                    Position(
+                        fstr_token.start[0],
+                        fstr_token.start[1],
+                        token.end[0],
+                        token.end[1],
+                    )
+                ] = fstr + token.string
+
+        for position, literal in literals.items():
+            # ignore docstring
+            if literal.startswith('"""') or literal.startswith("'''"):
                 continue
 
-            # ignore docstring
-            content: str = token.string
-            if self._is_surrounded_by(content, '"""') or self._is_surrounded_by(content, "'''"):
-                continue
+            # determine quote characters
+            quotes: str
+            content: str
+            if literal.startswith('r') or \
+                literal.startswith('u') or \
+                literal.startswith('b') or \
+                literal.startswith('f'):
+                quotes = literal[1]
+                content = literal[2:-1]
+            else:
+                quotes = literal[0]
+                content = literal[1:-1]
 
             # checks for violation
-            if self._is_surrounded_by(content, '"'):
-                if "'" in content[1:-1]:
+            if quotes == '"':
+                if "'" in content:
                     continue
                 self.add_message(
                     self.MSG_SINGLE,
-                    line=token.start[0],
-                    col_offset=token.start[1],
-                    end_lineno=token.end[0],
-                    end_col_offset=token.end[1],
+                    line=position.lineno,
+                    col_offset=position.col_offset,
+                    end_lineno=position.end_lineno,
+                    end_col_offset=position.end_col_offset,
                 )
                 continue
-            if "'" not in content[1:-1]:
+            if "'" not in content:
                 continue
             self.add_message(
                 self.MSG_DOUBLE,
-                line=token.start[0],
-                col_offset=token.start[1],
-                end_lineno=token.end[0],
-                end_col_offset=token.end[1],
+                line=position.lineno,
+                col_offset=position.col_offset,
+                end_lineno=position.end_lineno,
+                end_col_offset=position.end_col_offset,
             )
-
-    @staticmethod
-    def _is_surrounded_by(text: str, prefix_suffix: str) -> bool:
-        return text.startswith(prefix_suffix) and \
-            text.endswith(prefix_suffix)
 
 
 def register(linter: 'PyLinter') -> None:

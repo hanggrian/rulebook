@@ -17,7 +17,7 @@ class ClassMemberOrderingRuleTest : AbstractRuleTestCase<ClassMemberOrderingRule
     }
 
     @Test
-    fun `Correct member organization`() =
+    fun `Correct member layout`() =
         assertNoViolations(
             """
             class Foo {

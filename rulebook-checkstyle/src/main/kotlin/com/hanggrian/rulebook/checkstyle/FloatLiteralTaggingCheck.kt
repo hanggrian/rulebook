@@ -14,7 +14,8 @@ public class FloatLiteralTaggingCheck : Check() {
     override fun visitToken(node: DetailAST) {
         // find trailing tag
         val character =
-            node.text
+            node
+                .text
                 .last()
                 .takeIf { it.lowercaseChar() == 'f' }
                 ?: return

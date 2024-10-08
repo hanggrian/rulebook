@@ -1,7 +1,6 @@
 from tokenize import TokenInfo, NAME, NL, INDENT, DEDENT
-from typing import TYPE_CHECKING
 
-from pylint.typing import MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import TokenChecker
 from rulebook_pylint.internals.messages import Messages
 
@@ -19,7 +18,6 @@ class CaseLineJoiningChecker(TokenChecker):
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         prev_token: TokenInfo | None = None
-        token: TokenInfo
         for token in tokens:
             # checks for violation
             if token.type == NAME and token.string == 'case' and prev_token.type == NL:

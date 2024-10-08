@@ -25,10 +25,12 @@ public class ClassMemberOrderingRule : Rule() {
 
             // get indices of first members
             val firstConstructorIndex =
-                node.declaredConstructors
+                node
+                    .declaredConstructors
                     .minOfOrNull { it.lineNumber }
             val firstFunctionIndex =
-                node.methods
+                node
+                    .methods
                     .filterNot { it.isStatic }
                     .minOfOrNull { it.lineNumber }
 
@@ -52,9 +54,11 @@ public class ClassMemberOrderingRule : Rule() {
                         )
                 }
             }
+
             // checks for violation
             firstFunctionIndex ?: return
-            node.declaredConstructors
+            node
+                .declaredConstructors
                 .filter { it.lineNumber > firstFunctionIndex }
                 .forEach {
                     addViolation(

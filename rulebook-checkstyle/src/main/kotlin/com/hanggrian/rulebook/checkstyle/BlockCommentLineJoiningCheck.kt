@@ -15,14 +15,16 @@ public class BlockCommentLineJoiningCheck : JavadocCheck() {
     override fun visitJavadocToken(node: DetailNode) {
         // find matching sibling
         val next =
-            node.next
+            node
+                .next
                 ?.takeIf { it.type == NEWLINE }
                 ?.next
                 ?.takeIf { it.type == LEADING_ASTERISK }
                 ?: return
 
         // checks for violation
-        next.next
+        next
+            .next
             ?.takeIf { it.type == NEWLINE }
             ?: return
         log(next.lineNumber, next.columnNumber, Messages[MSG])

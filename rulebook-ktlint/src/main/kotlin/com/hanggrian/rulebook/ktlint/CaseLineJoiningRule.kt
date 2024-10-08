@@ -16,7 +16,8 @@ public class CaseLineJoiningRule : Rule("case-line-joining") {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // checks for violation
         val whitespace =
-            node.treePrev
+            node
+                .treePrev
                 ?.takeIf { it.isWhitespaceWithMultipleNewlines() }
                 ?: return
         emit(whitespace.endOffset, Messages[MSG], false)

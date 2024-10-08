@@ -13,6 +13,7 @@ public class VariableNameDisallowingRule : Rule() {
             "object",
             "integer",
             "string",
+            "objects",
             "integers",
             "strings",
         )

@@ -27,13 +27,15 @@ public class FloatLiteralTaggingRule : Rule() {
             }
 
             // skip other literals
-            node.type
+            node
+                .type
                 .takeIf { it == int_TYPE || it == float_TYPE }
                 ?: return
 
             // find trailing tag
             val character =
-                node.tag
+                node
+                    .tag
                     ?.takeIf { it.lowercaseChar() == 'f' }
                     ?: return
 

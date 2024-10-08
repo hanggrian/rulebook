@@ -22,7 +22,8 @@ public class EmptyCodeBlockUnwrappingCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // skip control flows that can have multi-blocks
-        node.parent
+        node
+            .parent
             .type
             .takeUnless {
                 it == LITERAL_TRY ||
@@ -52,7 +53,8 @@ public class EmptyCodeBlockUnwrappingCheck : Check() {
                         ?: return
 
                     // function block only have right brace
-                    node.lastChild
+                    node
+                        .lastChild
                         .takeIf { it.type == RCURLY }
                         ?.let { node to it }
                         ?: return

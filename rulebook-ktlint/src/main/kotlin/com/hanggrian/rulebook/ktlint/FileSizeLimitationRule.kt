@@ -27,7 +27,8 @@ public class FileSizeLimitationRule :
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // checks for violation
-        node.text
+        node
+            .text
             .lines()
             .takeIf { (if (it.last().isEmpty()) it.lastIndex else it.size) > maxFileLength }
             ?: return

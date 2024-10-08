@@ -16,12 +16,12 @@
 
   <property name="fileExtensions" value="java, properties, xml"/>
 
-  <!-- https://checkstyle.org/config_filefilters.html -->
+  <!-- https://checkstyle.org/filefilters/index.html -->
   <module name="BeforeExecutionExclusionFileFilter">
     <property name="fileNamePattern" value="module\-info\.java$"/>
   </module>
 
-  <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
+  <!-- https://checkstyle.org/filters/suppressionfilter.html -->
   <module name="SuppressionFilter">
     <property
       name="file" value="${org.checkstyle.sun.suppressionfilter.config}"
@@ -32,25 +32,28 @@
   <!-- https://checkstyle.org/checks/javadoc/javadocpackage.html#JavadocPackage -->
   <!--module name="JavadocPackage"/-->
 
-  <!-- https://checkstyle.org/config_misc.html#NewlineAtEndOfFile -->
+  <!-- https://checkstyle.org/checks/misc/newlineatendoffile.html -->
   <module name="NewlineAtEndOfFile"/>
 
-  <!-- https://checkstyle.org/config_misc.html#Translation -->
+  <!-- https://checkstyle.org/checks/misc/translation.html -->
   <module name="Translation"/>
 
-  <!-- https://checkstyle.org/config_sizes.html -->
+  <!-- https://checkstyle.org/checks/sizes/index.html -->
   <module name="FileLength">
     <property name="max" value="1000"/>
   </module>
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
     <property name="max" value="100"/>
+    <property
+      name="ignorePattern"
+      value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
   </module>
 
-  <!-- https://checkstyle.org/config_whitespace.html -->
+  <!-- https://checkstyle.org/checks/whitespace/index.html -->
   <module name="FileTabCharacter"/>
 
-  <!-- https://checkstyle.org/config_misc.html -->
+  <!-- https://checkstyle.org/checks/misc/index.html -->
   <module name="RegexpSingleline">
     <property name="format" value="\s+$"/>
     <property name="minimum" value="0"/>
@@ -58,14 +61,14 @@
     <property name="message" value="Line has trailing spaces."/>
   </module>
 
-  <!-- https://checkstyle.org/config_header.html  -->
+  <!-- https://checkstyle.org/checks/header/index.html -->
   <!--module name="Header">
     <property name="headerFile" value="${checkstyle.header.file}"/>
     <property name="fileExtensions" value="java"/>
   </module-->
 
   <module name="TreeWalker">
-    <!-- https://checkstyle.org/config_javadoc.html -->
+    <!-- https://checkstyle.org/checks/javadoc/index.html -->
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocMethod">
       <property name="allowMissingParamTags" value="true"/>
@@ -78,7 +81,7 @@
     <module name="JavadocStyle"/>
     <!--module name="MissingJavadocMethod"/-->
 
-    <!-- https://checkstyle.org/config_naming.html -->
+    <!-- https://checkstyle.org/checks/naming/index.html -->
     <module name="ConstantName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName"/>
@@ -89,7 +92,7 @@
     <module name="StaticVariableName"/>
     <module name="TypeName"/>
 
-    <!-- https://checkstyle.org/config_imports.html -->
+    <!-- https://checkstyle.org/checks/imports/index.html -->
     <module name="AvoidStarImport"/>
     <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
     <module name="RedundantImport"/>
@@ -97,11 +100,11 @@
       <property name="processJavadoc" value="false"/>
     </module>
 
-    <!-- https://checkstyle.org/config_sizes.html -->
+    <!-- https://checkstyle.org/checks/sizes/index.html -->
     <module name="MethodLength"/>
     <module name="ParameterNumber"/>
 
-    <!-- https://checkstyle.org/config_whitespace.html -->
+    <!-- https://checkstyle.org/checks/whitespace/index.html -->
     <module name="EmptyForIteratorPad"/>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
@@ -121,18 +124,18 @@
     <module name="WhitespaceAfter"/>
     <!--module name="WhitespaceAround"/-->
 
-    <!-- https://checkstyle.org/config_modifiers.html -->
+    <!-- https://checkstyle.org/checks/modifier/index.html -->
     <module name="ModifierOrder"/>
     <module name="RedundantModifier"/>
 
-    <!-- https://checkstyle.org/config_blocks.html -->
+    <!-- https://checkstyle.org/checks/blocks/index.html -->
     <module name="AvoidNestedBlocks"/>
     <module name="EmptyBlock"/>
     <module name="LeftCurly"/>
     <module name="NeedBraces"/>
     <module name="RightCurly"/>
 
-    <!-- https://checkstyle.org/config_coding.html -->
+    <!-- https://checkstyle.org/checks/coding/index.html -->
     <module name="EmptyStatement"/>
     <module name="EqualsHashCode"/>
     <!--module name="HiddenField"/-->
@@ -144,14 +147,14 @@
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
 
-    <!-- https://checkstyle.org/config_design.html -->
+    <!-- https://checkstyle.org/checks/design/index.html -->
     <!--module name="DesignForExtension"/-->
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="InterfaceIsType"/>
     <!--module name="VisibilityModifier"/-->
 
-    <!-- https://checkstyle.org/config_misc.html -->
+    <!-- https://checkstyle.org/checks/misc/index.html -->
     <module name="ArrayTypeStyle"/>
     <!--module name="FinalParameters"/-->
     <module name="TodoComment">
@@ -159,7 +162,7 @@
     </module>
     <module name="UpperEll"/>
 
-    <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
+    <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property
         name="file" value="${org.checkstyle.sun.suppressionxpathfilter.config}"
@@ -206,6 +209,12 @@
     <module name="ClassMemberOrdering"/>
     <module name="InnerTypeLast"/>
     <module name="OverloadMethodsDeclarationOrder"/>
+    <module name="CustomImportOrder">
+      <property name="sortImportsInGroupAlphabetically" value="true"/>
+      <property name="separateLineBetweenGroups" value="true"/>
+      <property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>
+      <property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
+    </module>
 
     <!-- Name -->
     <module name="AbbreviationAsWordInName">
@@ -232,7 +241,7 @@
     <module name="IllegalIdentifierName">
       <property
         name="format"
-        value="(?i)^(?!(object|integer|string|integers|strings|_)$).+$"/>
+        value="(?i)^(?!(object|integer|string|objects|integers|strings|_)$).+$"/>
       <property
         name="tokens"
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_COMPONENT_DEF"/>

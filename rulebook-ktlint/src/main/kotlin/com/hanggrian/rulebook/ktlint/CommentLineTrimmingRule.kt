@@ -15,7 +15,8 @@ public class CommentLineTrimmingRule : Rule("comment-line-trimming") {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // continue if this comment is first line
-        node.treePrev
+        node
+            .treePrev
             .takeUnless {
                 it?.isWhitespaceWithSingleNewline() == true &&
                     it.treePrev?.elementType == EOL_COMMENT

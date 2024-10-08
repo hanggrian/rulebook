@@ -39,7 +39,8 @@ public class OperatorWrappingRule : Rule() {
                 addViolation(leftExpression, Messages.get(MSG_UNEXPECTED, operation.text))
                 return
             }
-            node.rightExpression
+            node
+                .rightExpression
                 .takeIf { it.lineNumber == operation.startLine }
                 ?: return
             addViolation(node.rightExpression, Messages.get(MSG_MISSING, operation.text))

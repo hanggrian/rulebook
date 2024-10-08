@@ -1,7 +1,5 @@
-from typing import TYPE_CHECKING
-
 from astroid import Module
-from pylint.typing import MessageDefinitionTuple, Options
+from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
 from rulebook_pylint.checkers import RawChecker
 from rulebook_pylint.internals.messages import Messages
 

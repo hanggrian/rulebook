@@ -4,14 +4,6 @@
 # Pylint: https://pypi.org/project/pylint/
 # Google Python Style Guide: https://google.github.io/styleguide/pyguide.html
 # Source template: https://github.com/google/styleguide/blob/gh-pages/pylintrc/
-#
-# Modifications:
-#
-# - Revert jobs from 4 to 1 processes, multiple jobs can report duplicate errors.
-# - Modify 'disable':
-#   - Add 'missing-module-docstring'.
-#   - Add 'missing-class-docstring'.
-#   - Add 'missing-type-doc'.
 
 [MAIN]
 
@@ -194,7 +186,7 @@ evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / stateme
 good-names=main,_
 
 # Bad variable names which should always be refused, separated by a comma
-bad-names=object,integer,string,objects,integers,strings
+bad-names=objs,ints,strs
 
 # Colon-delimited sets of names that determine each other's naming style when
 # the name regexes allow several styles.
@@ -273,7 +265,7 @@ generated-members=
 [FORMAT]
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=80
 
 # TODO(https://github.com/pylint-dev/pylint/issues/3352): Direct pylint to exempt
 # lines made too long by directives to pytype.
@@ -288,7 +280,10 @@ single-line-if-stmt=yes
 # Maximum number of lines in a module
 max-module-lines=99999
 
-# String used as indentation unit.
+# String used as indentation unit.  The internal Google style guide mandates 2
+# spaces.  Google's externaly-published style guide says 4, consistent with
+# PEP 8.  Here, we use 2 spaces, for conformity with many open-sourced Google
+# projects (like TensorFlow).
 indent-string='  '
 
 # Number of spaces of indent required inside a hanging  or continued line.

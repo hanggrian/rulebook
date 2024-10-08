@@ -1,9 +1,8 @@
 from codecs import decode
-from typing import TYPE_CHECKING
 
 import regex
 from astroid import Module
-from pylint.typing import MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from regex import Pattern, Match, IGNORECASE
 from rulebook_pylint.checkers import RawChecker
 from rulebook_pylint.internals.messages import Messages

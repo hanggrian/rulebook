@@ -19,7 +19,8 @@ public class ClassMemberOrderingCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         var lastType = -1
-        for (child in node.children
+        for (child in node
+            .children
             .filter {
                 it.type == VARIABLE_DEF ||
                     it.type == CTOR_DEF ||

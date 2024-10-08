@@ -1,8 +1,6 @@
-from typing import TYPE_CHECKING
-
 import regex
 from astroid import ClassDef
-from pylint.typing import MessageDefinitionTuple, Options
+from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
 from regex import Pattern
 from rulebook_pylint.checkers import Checker
 from rulebook_pylint.internals.messages import Messages

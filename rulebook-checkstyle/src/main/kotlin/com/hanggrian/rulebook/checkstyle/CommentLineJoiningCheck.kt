@@ -21,7 +21,8 @@ public class CommentLineJoiningCheck : Check() {
 
         // find matching sibling
         val next =
-            node.nextSibling
+            node
+                .nextSibling
                 ?.takeIf { it.type == SINGLE_LINE_COMMENT && it.isEolCommentEmpty() }
                 ?: return
 

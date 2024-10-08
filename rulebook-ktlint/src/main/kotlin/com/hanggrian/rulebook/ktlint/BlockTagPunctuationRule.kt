@@ -45,7 +45,8 @@ public class BlockTagPunctuationRule :
                 ?: return
 
         // checks for violation
-        kdocText.text
+        kdocText
+            .text
             .trimComment()
             .lastOrNull()
             ?.takeUnless { it in END_PUNCTUATIONS }

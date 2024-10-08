@@ -14,7 +14,8 @@ public class FileInitialLineTrimmingRule : Rule("file-initial-line-trimming") {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // checks for violation
-        node.firstChildNode
+        node
+            .firstChildNode
             ?.takeIf { it.isWhiteSpaceWithNewline() }
             ?: return
         emit(node.startOffset, Messages[MSG], false)

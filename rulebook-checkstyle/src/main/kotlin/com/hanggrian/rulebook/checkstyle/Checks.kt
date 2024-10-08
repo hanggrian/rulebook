@@ -10,4 +10,5 @@ public abstract class Check : AbstractCheck() {
     final override fun getAcceptableTokens(): IntArray = requiredTokens
 }
 
+/** An alias of base javadoc check. */
 public typealias JavadocCheck = AbstractJavadocCheck

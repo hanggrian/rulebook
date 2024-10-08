@@ -15,7 +15,8 @@ public class CommentLineTrimmingCheck : Check() {
 
     override fun visitToken(node: DetailAST) {
         // continue if this comment is first line
-        node.previousSibling
+        node
+            .previousSibling
             .takeUnless {
                 it?.lineNo == node.lineNo - 1 &&
                     it.type == SINGLE_LINE_COMMENT

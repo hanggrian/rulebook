@@ -24,13 +24,15 @@ public class AssignmentWrappingRule : Rule() {
 
             // target multiline assignment
             val assign =
-                node.operation
-                    .takeIf { it.type == ASSIGN && node.isMultiline() }
+                node
+                    .operation
+                    .takeIf { it.type == ASSIGN && node.rightExpression.isMultiline() }
                     ?: return
 
             // checks for violation
             val expression =
-                node.rightExpression
+                node
+                    .rightExpression
                     .takeUnless { it.lineNumber == assign.startLine + 1 }
                     ?: return
             addViolation(expression, Messages[MSG])
