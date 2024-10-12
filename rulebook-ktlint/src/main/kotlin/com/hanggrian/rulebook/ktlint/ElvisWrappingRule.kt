@@ -5,6 +5,7 @@ import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELVIS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline
 import com.pinterest.ktlint.rule.engine.core.api.prevCodeSibling
@@ -14,7 +15,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#elvis-wrapping)
  */
-public class ElvisWrappingRule : Rule("elvis-wrapping") {
+public class ElvisWrappingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(ELVIS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -47,6 +48,8 @@ public class ElvisWrappingRule : Rule("elvis-wrapping") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:elvis-wrapping")
+
         const val MSG_MISSING = "elvis.wrapping.missing"
         const val MSG_UNEXPECTED = "elvis.wrapping.unexpected"
 

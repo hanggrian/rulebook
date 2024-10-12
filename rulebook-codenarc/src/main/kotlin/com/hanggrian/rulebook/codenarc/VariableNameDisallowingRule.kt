@@ -7,7 +7,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#variable-name-disallowing)
  */
-public class VariableNameDisallowingRule : Rule() {
+public class VariableNameDisallowingRule : RulebookRule() {
     internal var names =
         setOf(
             "object",

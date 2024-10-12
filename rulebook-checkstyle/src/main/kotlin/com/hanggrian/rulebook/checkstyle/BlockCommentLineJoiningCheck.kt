@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.NEWLINE
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-line-joining)
  */
-public class BlockCommentLineJoiningCheck : JavadocCheck() {
+public class BlockCommentLineJoiningCheck : RulebookJavadocCheck() {
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(LEADING_ASTERISK)
 
     override fun visitJavadocToken(node: DetailNode) {

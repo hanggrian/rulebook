@@ -7,7 +7,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching)
  */
-public class SwitchCaseBranchingRule : Rule() {
+public class SwitchCaseBranchingRule : RulebookRule() {
     override fun getName(): String = "SwitchCaseBranching"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

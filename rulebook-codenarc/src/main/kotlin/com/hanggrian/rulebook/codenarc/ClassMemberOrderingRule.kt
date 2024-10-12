@@ -7,7 +7,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-member-ordering)
  */
-public class ClassMemberOrderingRule : Rule() {
+public class ClassMemberOrderingRule : RulebookRule() {
     override fun getName(): String = "ClassMemberOrdering"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

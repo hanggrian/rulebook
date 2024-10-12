@@ -7,6 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -15,7 +16,7 @@ import kotlin.text.RegexOption.IGNORE_CASE
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#todo-comment-formatting)
  */
-public class TodoCommentFormattingRule : Rule("todo-comment-formatting") {
+public class TodoCommentFormattingRule : RulebookRule(ID) {
     override val tokens: TokenSet =
         TokenSet.create(
             EOL_COMMENT,
@@ -58,6 +59,8 @@ public class TodoCommentFormattingRule : Rule("todo-comment-formatting") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:todo-comment-formatting")
+
         const val MSG_KEYWORD = "todo.comment.formatting.keyword"
         const val MSG_SEPARATOR = "todo.comment.formatting.separator"
 

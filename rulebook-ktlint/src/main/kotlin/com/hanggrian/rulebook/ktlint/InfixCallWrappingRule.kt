@@ -6,6 +6,7 @@ import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BINARY_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
@@ -14,7 +15,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#infix-call-wrapping)
  */
-public class InfixCallWrappingRule : Rule("infix-call-wrapping") {
+public class InfixCallWrappingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(OPERATION_REFERENCE)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -43,6 +44,8 @@ public class InfixCallWrappingRule : Rule("infix-call-wrapping") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:infix-call-wrapping")
+
         const val MSG_MISSING = "infix.call.wrapping.missing"
         const val MSG_UNEXPECTED = "infix.call.wrapping.unexpected"
     }

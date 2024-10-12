@@ -3,7 +3,7 @@ from tokenize import TokenInfo, COMMENT
 import regex
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from regex import Pattern
-from rulebook_pylint.checkers import TokenChecker
+from rulebook_pylint.checkers import RulebookTokenChecker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import is_comment_empty
 
@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class CommentLineJoiningChecker(TokenChecker):
+class CommentLineJoiningChecker(RulebookTokenChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-joining
     """
     MSG: str = 'comment-line-joining'

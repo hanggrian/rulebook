@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#lambda-wrapping)
  */
-public class LambdaWrappingCheck : Check() {
+public class LambdaWrappingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LAMBDA)
 
     override fun visitToken(node: DetailAST) {
@@ -30,7 +30,7 @@ public class LambdaWrappingCheck : Check() {
 
         // checks for violation
         expression
-            .takeUnless { it.minLineNo == parameters.maxLineNo + 1 }
+            .takeUnless { parameters.maxLineNo + 1 == it.minLineNo }
             ?: return
         log(expression, Messages[MSG])
     }

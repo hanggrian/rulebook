@@ -8,7 +8,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position)
  */
-public class InnerClassPositionRule : Rule() {
+public class InnerClassPositionRule : RulebookRule() {
     override fun getName(): String = "InnerClassPosition"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

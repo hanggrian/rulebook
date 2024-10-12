@@ -7,6 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_PARAMETER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_PARAMETER_LIST
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
@@ -18,11 +19,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing)
  */
-public class GenericsNameAllowingRule :
-    Rule(
-        "generics-name-allowing",
-        setOf(NAMES_PROPERTY),
-    ) {
+public class GenericsNameAllowingRule : RulebookRule(ID, setOf(NAMES_PROPERTY)) {
     private var names = NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(CLASS, FUN)
@@ -50,8 +47,7 @@ public class GenericsNameAllowingRule :
     }
 
     internal companion object {
-        const val MSG = "generics.name.allowing"
-
+        val ID = RuleId("${RulebookRuleSet.ID.value}:generics-name-allowing")
         val NAMES_PROPERTY =
             EditorConfigProperty(
                 type =
@@ -63,6 +59,8 @@ public class GenericsNameAllowingRule :
                 defaultValue = setOf("E", "K", "N", "T", "V"),
                 propertyWriter = { it.joinToString() },
             )
+
+        const val MSG = "generics.name.allowing"
 
         private fun ASTNode.hasParentWithGenerics(): Boolean {
             var next = treeParent

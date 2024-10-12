@@ -10,20 +10,16 @@ class EmptyCodeBlockUnwrappingCheckTest {
     fun `Rule properties`() = EmptyCodeBlockUnwrappingCheck().assertProperties()
 
     @Test
-    fun `Wrapped empty class block`() = assertEquals(0, checker.read("EmptyCodeBlockUnwrapping1"))
+    fun `Wrapped empty block`() = assertEquals(0, checker.read("EmptyCodeBlockUnwrapping1"))
 
     @Test
-    fun `Unwrapped empty class block`() = assertEquals(3, checker.read("EmptyCodeBlockUnwrapping2"))
-
-    @Test
-    fun `Wrapped empty function block`() =
-        assertEquals(0, checker.read("EmptyCodeBlockUnwrapping3"))
-
-    @Test
-    fun `Unwrapped empty function block`() =
-        assertEquals(3, checker.read("EmptyCodeBlockUnwrapping4"))
+    fun `Unwrapped empty block`() = assertEquals(2, checker.read("EmptyCodeBlockUnwrapping2"))
 
     @Test
     fun `Control flows with multi-blocks`() =
-        assertEquals(0, checker.read("EmptyCodeBlockUnwrapping5"))
+        assertEquals(0, checker.read("EmptyCodeBlockUnwrapping3"))
+
+    @Test
+    fun `Allow code block with comment`() =
+        assertEquals(0, checker.read("EmptyCodeBlockUnwrapping4"))
 }

@@ -1,14 +1,14 @@
 from tokenize import TokenInfo, OP, NEWLINE, NL
 
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import TokenChecker
+from rulebook_pylint.checkers import RulebookTokenChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class CodeBlockLineTrimmingChecker(TokenChecker):
+class CodeBlockLineTrimmingChecker(RulebookTokenChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#code-block-line-trimming
     """
     MSG: str = 'code-block-line-trimming'

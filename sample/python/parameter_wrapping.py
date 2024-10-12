@@ -1,6 +1,8 @@
 def foo(
     a, b,
+    c,
 ):
     print(
-        a, b
+        a, b,
+        c,
     )

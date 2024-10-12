@@ -1,13 +1,13 @@
 from astroid import NodeNG, ClassDef, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import Checker
+from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class InnerClassPositionChecker(Checker):
+class InnerClassPositionChecker(RulebookChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position
     """
     MSG: str = 'inner-class-position'

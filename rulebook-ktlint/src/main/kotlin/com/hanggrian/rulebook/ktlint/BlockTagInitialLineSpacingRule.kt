@@ -5,6 +5,7 @@ import com.hanggrian.rulebook.ktlint.internals.siblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import com.pinterest.ktlint.rule.engine.core.api.prevSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
@@ -13,7 +14,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-initial-line-spacing)
  */
-public class BlockTagInitialLineSpacingRule : Rule("block-tag-initial-line-spacing") {
+public class BlockTagInitialLineSpacingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(KDOC_SECTION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -31,6 +32,8 @@ public class BlockTagInitialLineSpacingRule : Rule("block-tag-initial-line-spaci
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:block-tag-initial-line-spacing")
+
         const val MSG = "block.tag.initial.line.spacing"
 
         private val ASTNode.prevKdocLeadingAsterisk: ASTNode?

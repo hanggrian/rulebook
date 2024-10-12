@@ -10,6 +10,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SECONDARY_CONSTRUCTOR
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
@@ -17,7 +18,7 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position)
  */
-public class InnerClassPositionRule : Rule("inner-class-position") {
+public class InnerClassPositionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -53,6 +54,8 @@ public class InnerClassPositionRule : Rule("inner-class-position") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:inner-class-position")
+
         const val MSG = "inner.class.position"
     }
 }

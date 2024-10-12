@@ -2,13 +2,15 @@ package com.hanggrian.rulebook.ktlint
 
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
+import com.pinterest.ktlint.rule.engine.core.api.RuleSetId
 
-public class RulebookRuleSet : RuleSetProviderV3(Rule.ID) {
+public class RulebookRuleSet : RuleSetProviderV3(ID) {
     override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
             RuleProvider { BlockCommentLineJoiningRule() },
             RuleProvider { BlockCommentLineTrimmingRule() },
             RuleProvider { BlockCommentSpacingRule() },
+            RuleProvider { BlockTagIndentationRule() },
             RuleProvider { BlockTagInitialLineSpacingRule() },
             RuleProvider { BlockTagOrderingRule() },
             RuleProvider { BlockTagPunctuationRule() },
@@ -41,4 +43,8 @@ public class RulebookRuleSet : RuleSetProviderV3(Rule.ID) {
             RuleProvider { TodoCommentFormattingRule() },
             RuleProvider { VariableNameDisallowingRule() },
         )
+
+    public companion object {
+        public val ID: RuleSetId = RuleSetId("rulebook")
+    }
 }

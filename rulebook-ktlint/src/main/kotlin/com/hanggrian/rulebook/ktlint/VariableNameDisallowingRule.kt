@@ -5,6 +5,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLA
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
@@ -15,11 +16,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#variable-name-disallowing)
  */
-public class VariableNameDisallowingRule :
-    Rule(
-        "variable-name-disallowing",
-        setOf(NAMES_PROPERTY),
-    ) {
+public class VariableNameDisallowingRule : RulebookRule(ID, setOf(NAMES_PROPERTY)) {
     private var names = NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet =
@@ -48,8 +45,7 @@ public class VariableNameDisallowingRule :
     }
 
     internal companion object {
-        const val MSG = "variable.name.disallowing"
-
+        val ID = RuleId("${RulebookRuleSet.ID.value}:variable-name-disallowing")
         val NAMES_PROPERTY =
             EditorConfigProperty(
                 type =
@@ -83,5 +79,7 @@ public class VariableNameDisallowingRule :
                     ),
                 propertyWriter = { it.joinToString() },
             )
+
+        const val MSG = "variable.name.disallowing"
     }
 }

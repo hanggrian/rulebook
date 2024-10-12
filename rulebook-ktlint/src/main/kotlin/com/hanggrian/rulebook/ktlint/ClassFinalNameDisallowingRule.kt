@@ -6,6 +6,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
@@ -16,11 +17,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing)
  */
-public class ClassFinalNameDisallowingRule :
-    Rule(
-        "class-final-name-disallowing",
-        setOf(FINAL_NAMES_PROPERTY),
-    ) {
+public class ClassFinalNameDisallowingRule : RulebookRule(ID, setOf(FINAL_NAMES_PROPERTY)) {
     private var names = FINAL_NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION, FILE)
@@ -54,11 +51,7 @@ public class ClassFinalNameDisallowingRule :
     }
 
     internal companion object {
-        const val MSG_ALL = "class.final.name.disallowing.all"
-        const val MSG_UTIL = "class.final.name.disallowing.util"
-
-        private val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
-
+        val ID = RuleId("${RulebookRuleSet.ID.value}:class-final-name-disallowing")
         val FINAL_NAMES_PROPERTY =
             EditorConfigProperty(
                 type =
@@ -70,5 +63,10 @@ public class ClassFinalNameDisallowingRule :
                 defaultValue = setOf("Util", "Utility", "Helper", "Manager", "Wrapper"),
                 propertyWriter = { it.joinToString() },
             )
+
+        const val MSG_ALL = "class.final.name.disallowing.all"
+        const val MSG_UTIL = "class.final.name.disallowing.util"
+
+        private val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
     }
 }

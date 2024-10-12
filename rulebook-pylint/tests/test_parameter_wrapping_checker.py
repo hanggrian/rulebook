@@ -21,7 +21,7 @@ class TestParameterWrappingChecker(CheckerTestCase):
                     print()
 
                 def bar():
-                    foo(0, 1)  #@
+                    foo('Hello' + 'World', 0)  #@
                 ''',
             )
         with self.assertNoMessages():
@@ -40,8 +40,9 @@ class TestParameterWrappingChecker(CheckerTestCase):
 
                 def bar():
                     foo(  #@
+                        'Hello' + \
+                            'World',
                         0,
-                        1,
                     )
                 ''',
             )

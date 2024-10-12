@@ -8,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining)
  */
-public class CaseLineJoiningCheck : Check() {
+public class CaseLineJoiningCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CASE_GROUP)
 
     override fun visitToken(node: DetailAST) {

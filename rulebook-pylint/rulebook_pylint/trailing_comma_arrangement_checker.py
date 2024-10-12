@@ -1,14 +1,14 @@
 from tokenize import TokenInfo, OP, NL, COMMENT
 
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import TokenChecker
+from rulebook_pylint.checkers import RulebookTokenChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class TrailingCommaArrangementChecker(TokenChecker):
+class TrailingCommaArrangementChecker(RulebookTokenChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#trailing-comma-arrangement
     """
     MSG_SINGLE: str = 'trailing-comma-arrangement-single'

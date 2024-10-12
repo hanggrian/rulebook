@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-member-ordering)
  */
-public class ClassMemberOrderingCheck : Check() {
+public class ClassMemberOrderingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
     override fun visitToken(node: DetailAST) {

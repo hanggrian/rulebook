@@ -2,14 +2,14 @@ import regex
 from astroid import ClassDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
 from regex import Pattern
-from rulebook_pylint.checkers import Checker
+from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class ClassFinalNameDisallowingChecker(Checker):
+class ClassFinalNameDisallowingChecker(RulebookChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing
     """
     MSG_ALL: str = 'class-final-name-disallowing-all'

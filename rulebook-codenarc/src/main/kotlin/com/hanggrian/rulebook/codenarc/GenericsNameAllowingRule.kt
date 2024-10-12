@@ -10,7 +10,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing)
  */
-public class GenericsNameAllowingRule : Rule() {
+public class GenericsNameAllowingRule : RulebookRule() {
     internal var names = setOf("E", "K", "N", "T", "V")
 
     public fun setNames(names: String) {

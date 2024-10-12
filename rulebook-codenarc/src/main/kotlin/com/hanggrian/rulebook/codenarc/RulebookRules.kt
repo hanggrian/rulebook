@@ -4,7 +4,7 @@ import org.codenarc.rule.AbstractAstVisitorRule
 import org.codenarc.rule.imports.AbstractImportRule
 
 /** A CodeNarc rule with immutable name and priority. */
-public abstract class Rule : AbstractAstVisitorRule() {
+public abstract class RulebookRule : AbstractAstVisitorRule() {
     final override fun getPriority(): Int = 3
 
     final override fun setName(name: String?): Nothing = throw UnsupportedOperationException()
@@ -13,7 +13,7 @@ public abstract class Rule : AbstractAstVisitorRule() {
 }
 
 /** An alias of base import rule. */
-public abstract class ImportRule : AbstractImportRule() {
+public abstract class RulebookImportRule : AbstractImportRule() {
     final override fun getPriority(): Int = 3
 
     final override fun setName(name: String?): Nothing = throw UnsupportedOperationException()

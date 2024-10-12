@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing)
  */
-public class ClassFinalNameDisallowingCheck : Check() {
+public class ClassFinalNameDisallowingCheck : RulebookCheck() {
     internal var names = setOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 
     public fun setNames(vararg names: String) {

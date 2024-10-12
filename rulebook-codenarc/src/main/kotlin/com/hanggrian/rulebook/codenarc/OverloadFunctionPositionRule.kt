@@ -7,7 +7,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#overload-function-position)
  */
-public class OverloadFunctionPositionRule : Rule() {
+public class OverloadFunctionPositionRule : RulebookRule() {
     override fun getName(): String = "OverloadFunctionPosition"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

@@ -6,13 +6,14 @@ import com.hanggrian.rulebook.ktlint.internals.hasReturnOrThrow
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#else-flattening)
  */
-public class ElseFlatteningRule : Rule("else-flattening") {
+public class ElseFlatteningRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(IF)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -36,6 +37,8 @@ public class ElseFlatteningRule : Rule("else-flattening") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:else-flattening")
+
         const val MSG = "else.flattening"
     }
 }

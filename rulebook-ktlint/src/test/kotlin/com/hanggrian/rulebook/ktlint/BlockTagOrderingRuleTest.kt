@@ -18,10 +18,10 @@ class BlockTagOrderingRuleTest {
             """
             /**
              * @constructor lorem ipsum.
-             * @param lorem ipsum.
+             * @property bar lorem ipsum.
              * @see http://some.url/
              */
-            data class Foo(bar: Int)
+            data class Foo(val bar: Int)
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -34,7 +34,7 @@ class BlockTagOrderingRuleTest {
              * @property bar lorem ipsum.
              * @constructor lorem ipsum.
              */
-            data class Foo(bar: Int)
+            data class Foo(val bar: Int)
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(3, 4, Messages.get(MSG, "@property", "@see")),

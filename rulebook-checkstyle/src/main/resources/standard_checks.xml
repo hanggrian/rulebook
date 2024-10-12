@@ -204,7 +204,9 @@
     <module name="OneStatementPerLine"/>
 
     <!-- Layout -->
-    <module name="BlockTagOrdering"/>
+    <module name="AtclauseOrder">
+      <property name="tagOrder" value="@param, @return, @throws, @see"/>
+    </module>
     <module name="BuiltinFunctionPosition"/>
     <module name="ClassMemberOrdering"/>
     <module name="InnerTypeLast"/>
@@ -254,6 +256,7 @@
     <module name="BlockCommentLineJoining"/>
     <module name="BlockCommentLineTrimming"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+    <module name="JavadocTagContinuationIndentation"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
     <module name="CaseLineJoining"/>
     <module name="CodeBlockLineTrimming"/>

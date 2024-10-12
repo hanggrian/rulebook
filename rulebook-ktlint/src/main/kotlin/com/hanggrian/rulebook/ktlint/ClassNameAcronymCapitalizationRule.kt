@@ -6,13 +6,14 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-name-acronym-capitalization)
  */
-public class ClassNameAcronymCapitalizationRule : Rule("class-name-acronym-capitalization") {
+public class ClassNameAcronymCapitalizationRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION, FILE)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -49,6 +50,8 @@ public class ClassNameAcronymCapitalizationRule : Rule("class-name-acronym-capit
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:class-name-acronym-capitalization")
+
         const val MSG = "class.name.acronym.capitalization"
 
         private val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")

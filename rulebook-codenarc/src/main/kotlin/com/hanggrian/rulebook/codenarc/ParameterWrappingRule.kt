@@ -13,7 +13,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#parameter-wrapping)
  */
-public class ParameterWrappingRule : Rule() {
+public class ParameterWrappingRule : RulebookRule() {
     override fun getName(): String = "ParameterWrapping"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
@@ -87,7 +87,7 @@ public class ParameterWrappingRule : Rule() {
                     ?: continue
 
                 parameters[i - 1]
-                    .takeUnless { it.lineNumber + 1 == parameter.lineNumber }
+                    .takeUnless { it.lastLineNumber + 1 == parameter.lineNumber }
                     ?: continue
                 addViolation(parameter, Messages[MSG_ARGUMENT])
             }

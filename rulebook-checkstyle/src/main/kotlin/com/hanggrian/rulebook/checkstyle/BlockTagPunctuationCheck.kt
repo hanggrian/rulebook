@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation)
  */
-public class BlockTagPunctuationCheck : JavadocCheck() {
+public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
     internal var blockTags =
         setOf(
             "@param",

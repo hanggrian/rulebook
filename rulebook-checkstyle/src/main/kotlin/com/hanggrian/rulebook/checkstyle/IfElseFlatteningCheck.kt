@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening)
  */
-public class IfElseFlatteningCheck : Check() {
+public class IfElseFlatteningCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SLIST)
 
     override fun isCommentNodesRequired(): Boolean = true

@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser.LITERAL_T
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#empty-code-block-unwrapping)
  */
-public class EmptyCodeBlockUnwrappingCheck : Check() {
+public class EmptyCodeBlockUnwrappingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK, SLIST)
 
     override fun isCommentNodesRequired(): Boolean = true
@@ -33,7 +33,7 @@ public class EmptyCodeBlockUnwrappingCheck : Check() {
             } ?: return
 
         // obtain corresponding braces
-        val (leftBrace, rightBrace) =
+        val (lcurcly, rcurcly) =
             when (node.type) {
                 OBJBLOCK -> {
                     // skip non-empty content
@@ -42,9 +42,9 @@ public class EmptyCodeBlockUnwrappingCheck : Check() {
                         ?: return
 
                     // class block have left and right braces
-                    val leftBrace = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                    val rightBrace = node.lastChild.takeIf { it.type == RCURLY } ?: return
-                    leftBrace to rightBrace
+                    val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
+                    val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
+                    lcurly to rcurly
                 }
                 else -> {
                     // skip non-empty content
@@ -62,12 +62,12 @@ public class EmptyCodeBlockUnwrappingCheck : Check() {
             }
 
         // checks for violation
-        leftBrace
+        lcurcly
             .takeUnless {
-                it.lineNo == rightBrace.lineNo &&
-                    leftBrace.columnNo + 1 == rightBrace.columnNo
+                it.lineNo == rcurcly.lineNo &&
+                    lcurcly.columnNo + 1 == rcurcly.columnNo
             } ?: return
-        log(leftBrace, Messages[MSG])
+        log(lcurcly, Messages[MSG])
     }
 
     internal companion object {

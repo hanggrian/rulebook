@@ -10,13 +10,14 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.SUPER_TYPE_ENTRY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SUPER_TYPE_LIST
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.USER_TYPE
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending)
  */
-public class ExceptionExtendingRule : Rule("exception-extending") {
+public class ExceptionExtendingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -46,6 +47,8 @@ public class ExceptionExtendingRule : Rule("exception-extending") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:exception-extending")
+
         const val MSG = "exception.extending"
 
         private val NON_APPLICATION_EXCEPTIONS =

@@ -8,13 +8,14 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.INLINE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.REFERENCE_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#contract-function-inlining)
  */
-public class ContractFunctionInliningRule : Rule("contract-function-inlining") {
+public class ContractFunctionInliningRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FUN)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -38,6 +39,8 @@ public class ContractFunctionInliningRule : Rule("contract-function-inlining") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:contract-function-inlining")
+
         const val MSG = "contract.function.inlining"
     }
 }

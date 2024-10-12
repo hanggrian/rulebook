@@ -5,6 +5,7 @@ import com.hanggrian.rulebook.ktlint.internals.qualifierName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_DIRECTIVE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.KtImportDirective
@@ -12,7 +13,7 @@ import org.jetbrains.kotlin.psi.KtImportDirective
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-type-priority)
  */
-public class BuiltinTypePriorityRule : Rule("builtin-type-priority") {
+public class BuiltinTypePriorityRule : RulebookRule(ID) {
     private var isTestClass = false
 
     override val tokens: TokenSet = TokenSet.create(IMPORT_DIRECTIVE, TYPE_REFERENCE)
@@ -62,6 +63,8 @@ public class BuiltinTypePriorityRule : Rule("builtin-type-priority") {
             }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:builtin-type-priority")
+
         const val MSG = "builtin.type.priority"
 
         private val COLLECTIONS_REPLACEMENT =

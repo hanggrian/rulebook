@@ -11,6 +11,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY_ACCESSOR
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SECONDARY_CONSTRUCTOR
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
@@ -19,7 +20,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-member-ordering)
  */
-public class ClassMemberOrderingRule : Rule("class-member-ordering") {
+public class ClassMemberOrderingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -66,6 +67,8 @@ public class ClassMemberOrderingRule : Rule("class-member-ordering") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:class-member-ordering")
+
         const val MSG = "class.member.ordering"
         private const val MSG_PROPERTY = "property"
         private const val MSG_INITIALIZER = "initializer"

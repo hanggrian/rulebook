@@ -1,14 +1,14 @@
 from tokenize import TokenInfo, NAME, NL, INDENT, DEDENT
 
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import TokenChecker
+from rulebook_pylint.checkers import RulebookTokenChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class CaseLineJoiningChecker(TokenChecker):
+class CaseLineJoiningChecker(RulebookTokenChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining
     """
     MSG: str = 'case-line-joining'

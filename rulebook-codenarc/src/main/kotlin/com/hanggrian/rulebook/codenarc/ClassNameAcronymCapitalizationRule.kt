@@ -9,7 +9,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-name-acronym-capitalization)
  */
-public class ClassNameAcronymCapitalizationRule : Rule() {
+public class ClassNameAcronymCapitalizationRule : RulebookRule() {
     override fun getName(): String = "ClassNameAcronymCapitalization"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

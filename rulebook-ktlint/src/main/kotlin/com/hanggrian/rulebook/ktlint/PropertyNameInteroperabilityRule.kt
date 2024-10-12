@@ -22,6 +22,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VALUE_PARAMETER_LIST
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VAL_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VAR_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -29,7 +30,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#property-name-interoperability)
  */
-public class PropertyNameInteroperabilityRule : Rule("property-name-interoperability") {
+public class PropertyNameInteroperabilityRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -84,6 +85,8 @@ public class PropertyNameInteroperabilityRule : Rule("property-name-interoperabi
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:property-name-interoperability")
+
         const val MSG = "property.name.interoperability"
 
         private fun ASTNode.hasAnnotation(name: String): Boolean =

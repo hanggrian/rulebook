@@ -7,7 +7,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing)
  */
-public class ClassFinalNameDisallowingRule : Rule() {
+public class ClassFinalNameDisallowingRule : RulebookRule() {
     internal var names = setOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 
     public fun setNames(names: String) {

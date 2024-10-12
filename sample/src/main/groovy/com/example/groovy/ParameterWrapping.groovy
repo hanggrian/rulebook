@@ -2,13 +2,14 @@ package com.example.groovy
 
 class ParameterWrapping {
     void foo(
-        int a,
+        String a,
         int b
     ) {}
 
     void bar() {
         foo(
-            0,
+            new StringBuilder()
+                .toString(),
             1
         )
     }

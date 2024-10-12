@@ -4,7 +4,6 @@ import com.pinterest.ktlint.rule.engine.core.api.AutocorrectDecision
 import com.pinterest.ktlint.rule.engine.core.api.Rule
 import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
-import com.pinterest.ktlint.rule.engine.core.api.RuleSetId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -15,12 +14,12 @@ public typealias Emit = (
     canBeAutoCorrected: Boolean,
 ) -> AutocorrectDecision
 
-public abstract class Rule(
-    id: String,
-    final override val usesEditorConfigProperties: Set<EditorConfigProperty<*>> = emptySet(),
-    final override val visitorModifiers: Set<VisitorModifier> = emptySet(),
+public abstract class RulebookRule(
+    public override val ruleId: RuleId,
+    public override val usesEditorConfigProperties: Set<EditorConfigProperty<*>> = emptySet(),
+    public override val visitorModifiers: Set<VisitorModifier> = emptySet(),
 ) : Rule(
-        RuleId("${ID.value}:$id"),
+        ruleId,
         About(
             maintainer = "Hendra Anggrian",
             repositoryUrl = "https://github.com/hanggrian/rulebook",
@@ -38,9 +37,5 @@ public abstract class Rule(
         if (node.elementType in tokens) {
             visitToken(node, emit)
         }
-    }
-
-    public companion object {
-        public val ID: RuleSetId = RuleSetId("rulebook")
     }
 }

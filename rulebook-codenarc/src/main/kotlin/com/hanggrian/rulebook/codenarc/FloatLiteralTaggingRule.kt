@@ -9,7 +9,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#float-literal-tagging)
  */
-public class FloatLiteralTaggingRule : Rule() {
+public class FloatLiteralTaggingRule : RulebookRule() {
     override fun getName(): String = "FloatLiteralTagging"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

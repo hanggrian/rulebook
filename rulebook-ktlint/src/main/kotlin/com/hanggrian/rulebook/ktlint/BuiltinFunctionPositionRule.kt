@@ -6,6 +6,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_BODY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OVERRIDE_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.children
@@ -13,7 +14,7 @@ import org.jetbrains.kotlin.psi.psiUtil.children
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-function-position)
  */
-public class BuiltinFunctionPositionRule : Rule("builtin-function-position") {
+public class BuiltinFunctionPositionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -43,6 +44,8 @@ public class BuiltinFunctionPositionRule : Rule("builtin-function-position") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:builtin-function-position")
+
         const val MSG = "builtin.function.position"
 
         private val BUILTIN_FUNCTIONS =

@@ -1,6 +1,6 @@
 from astroid import NodeNG, FunctionDef, Call, AssignName
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import Checker
+from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import is_multiline
 
@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class ParameterWrappingChecker(Checker):
+class ParameterWrappingChecker(RulebookChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#parameter-wrapping
     """
     MSG_ARGUMENT: str = 'parameter-wrapping-argument'
@@ -42,8 +42,9 @@ class ParameterWrappingChecker(Checker):
             if i == 0:
                 continue
 
-            if parameters[i - 1].lineno + 1 != parameter.lineno:
-                self.add_message(self.MSG_ARGUMENT, node=parameter)
+            if parameters[i - 1].end_lineno + 1 == parameter.lineno:
+                continue
+            self.add_message(self.MSG_ARGUMENT, node=parameter)
 
 
 def register(linter: 'PyLinter') -> None:

@@ -1,6 +1,6 @@
 from astroid import NodeNG, If, For, While, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import Checker
+from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import is_multiline
 
@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class IfElseFlatteningChecker(Checker):
+class IfElseFlatteningChecker(RulebookChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening
     """
     MSG_INVERT: str = 'if-else-flattening-invert'

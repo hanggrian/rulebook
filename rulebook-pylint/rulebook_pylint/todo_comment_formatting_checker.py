@@ -4,7 +4,7 @@ import regex
 from astroid import Module
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from regex import Pattern, Match, IGNORECASE
-from rulebook_pylint.checkers import RawChecker
+from rulebook_pylint.checkers import RulebookRawChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 
 # pylint: disable=todo-comment-styling-keyword,todo-comment-formatting-separator
-class TodoCommentFormattingChecker(RawChecker):
+class TodoCommentFormattingChecker(RulebookRawChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#todo-comment-formatting
     """
     MSG_KEYWORD: str = 'todo-comment-formatting-keyword'

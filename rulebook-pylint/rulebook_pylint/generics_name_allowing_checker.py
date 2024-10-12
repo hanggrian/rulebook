@@ -1,6 +1,6 @@
 from astroid import Assign, Call, Name, AssignName
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
-from rulebook_pylint.checkers import Checker
+from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import get_assignname
 
@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class GenericsNameAllowingChecker(Checker):
+class GenericsNameAllowingChecker(RulebookChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing
     """
     MSG: str = 'generics-name-allowing'

@@ -12,7 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#qualifier-consistency)
  */
-public class QualifierConsistencyCheck : Check() {
+public class QualifierConsistencyCheck : RulebookCheck() {
     private val importPaths = mutableSetOf<String>()
     private val targetNodes = mutableSetOf<DetailAST>()
 

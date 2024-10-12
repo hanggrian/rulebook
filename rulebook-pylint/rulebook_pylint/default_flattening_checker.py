@@ -1,13 +1,13 @@
 from astroid import Match, MatchAs, MatchCase, Return, Raise, Break
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import Checker
+from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class DefaultFlatteningChecker(Checker):
+class DefaultFlatteningChecker(RulebookChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#default-flattening
     """
     MSG: str = 'default-flattening'

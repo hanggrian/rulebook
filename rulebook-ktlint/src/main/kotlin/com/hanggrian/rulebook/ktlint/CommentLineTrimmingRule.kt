@@ -4,13 +4,14 @@ import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.isEolCommentEmpty
 import com.hanggrian.rulebook.ktlint.internals.isWhitespaceWithSingleNewline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-trimming)
  */
-public class CommentLineTrimmingRule : Rule("comment-line-trimming") {
+public class CommentLineTrimmingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(EOL_COMMENT)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -45,6 +46,8 @@ public class CommentLineTrimmingRule : Rule("comment-line-trimming") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:comment-line-trimming")
+
         const val MSG = "comment.line.trimming"
     }
 }

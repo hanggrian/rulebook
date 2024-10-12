@@ -2,14 +2,14 @@ import re
 
 from astroid import Const, Module, ClassDef, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import Checker
+from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class BlockCommentLineTrimmingChecker(Checker):
+class BlockCommentLineTrimmingChecker(RulebookChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-line-trimming
     """
     MSG_FIRST: str = 'block-comment-line-trimming-first'

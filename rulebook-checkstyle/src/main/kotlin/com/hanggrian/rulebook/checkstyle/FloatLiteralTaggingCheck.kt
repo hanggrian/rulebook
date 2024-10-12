@@ -8,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.NUM_INT
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#float-literal-tagging)
  */
-public class FloatLiteralTaggingCheck : Check() {
+public class FloatLiteralTaggingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(NUM_FLOAT, NUM_INT)
 
     override fun visitToken(node: DetailAST) {

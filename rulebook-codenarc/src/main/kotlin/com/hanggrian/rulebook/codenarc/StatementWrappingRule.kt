@@ -11,7 +11,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#statement-wrapping)
  */
-public class StatementWrappingRule : Rule() {
+public class StatementWrappingRule : RulebookRule() {
     override fun getName(): String = "StatementWrapping"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.WS
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-line-trimming)
  */
-public class BlockCommentLineTrimmingCheck : JavadocCheck() {
+public class BlockCommentLineTrimmingCheck : RulebookJavadocCheck() {
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC)
 
     override fun visitJavadocToken(node: DetailNode) {

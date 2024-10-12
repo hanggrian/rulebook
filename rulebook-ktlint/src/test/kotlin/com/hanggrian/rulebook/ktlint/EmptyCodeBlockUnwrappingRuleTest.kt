@@ -16,7 +16,9 @@ class EmptyCodeBlockUnwrappingRuleTest {
     fun `Wrapped empty block`() =
         assertThatCode(
             """
-            fun foo() {}
+            class Foo {}
+
+            fun bar() {}
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -24,19 +26,14 @@ class EmptyCodeBlockUnwrappingRuleTest {
     fun `Unwrapped empty block`() =
         assertThatCode(
             """
-            fun foo() { }
+            class Foo { }
 
             fun bar() {
-            }
-
-            fun baz() {
-
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 12, Messages[MSG]),
             LintViolation(3, 12, Messages[MSG]),
-            LintViolation(6, 12, Messages[MSG]),
         )
 
     @Test
@@ -47,13 +44,21 @@ class EmptyCodeBlockUnwrappingRuleTest {
                 try {
                 } catch (e: Exception) {
                 }
-            }
 
-            fun bar() {
                 if (true) {
                 } else if (false) {
                 } else {
                 }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Allow code block with comment`() =
+        assertThatCode(
+            """
+            class Foo {
+                // Lorem ipsum.
             }
             """.trimIndent(),
         ).hasNoLintViolations()

@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
 import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
@@ -12,11 +13,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-size-limitation)
  */
-public class FileSizeLimitationRule :
-    Rule(
-        "file-size-limitation",
-        setOf(MAX_FILE_LENGTH_PROPERTY),
-    ) {
+public class FileSizeLimitationRule : RulebookRule(ID, setOf(MAX_FILE_LENGTH_PROPERTY)) {
     private var maxFileLength = MAX_FILE_LENGTH_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(FILE)
@@ -36,8 +33,7 @@ public class FileSizeLimitationRule :
     }
 
     internal companion object {
-        const val MSG = "file.size.limitation"
-
+        val ID = RuleId("${RulebookRuleSet.ID.value}:file-size-limitation")
         val MAX_FILE_LENGTH_PROPERTY =
             EditorConfigProperty(
                 type =
@@ -48,5 +44,7 @@ public class FileSizeLimitationRule :
                     ),
                 defaultValue = 1000,
             )
+
+        const val MSG = "file.size.limitation"
     }
 }

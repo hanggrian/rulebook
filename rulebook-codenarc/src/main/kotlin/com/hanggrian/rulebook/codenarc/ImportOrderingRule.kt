@@ -8,7 +8,7 @@ import org.codenarc.source.SourceCode
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#import-ordering)
  */
-public class ImportOrderingRule : ImportRule() {
+public class ImportOrderingRule : RulebookImportRule() {
     override fun getName(): String = "ImportOrdering"
 
     override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>): Unit =

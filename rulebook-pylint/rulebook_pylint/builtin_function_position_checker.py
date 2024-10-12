@@ -1,6 +1,6 @@
 from astroid import NodeNG, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import Checker
+from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import has_decorator
 
@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class BuiltinFunctionPositionChecker(Checker):
+class BuiltinFunctionPositionChecker(RulebookChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-function-position
     """
     MSG: str = 'builtin-function-position'

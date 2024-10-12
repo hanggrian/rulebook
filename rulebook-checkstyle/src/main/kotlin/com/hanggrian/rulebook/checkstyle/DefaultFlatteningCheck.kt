@@ -12,7 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#default-flattening)
  */
-public class DefaultFlatteningCheck : Check() {
+public class DefaultFlatteningCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 
     override fun isCommentNodesRequired(): Boolean = true

@@ -9,7 +9,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-function-position)
  */
-public class BuiltinFunctionPositionRule : Rule() {
+public class BuiltinFunctionPositionRule : RulebookRule() {
     override fun getName(): String = "BuiltinFunctionPosition"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

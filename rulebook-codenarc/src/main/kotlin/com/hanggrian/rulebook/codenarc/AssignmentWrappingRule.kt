@@ -9,7 +9,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#assignment-wrapping)
  */
-public class AssignmentWrappingRule : Rule() {
+public class AssignmentWrappingRule : RulebookRule() {
     override fun getName(): String = "AssignmentWrapping"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

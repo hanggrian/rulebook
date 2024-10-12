@@ -11,7 +11,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#qualifier-consistency)
  */
-public class QualifierConsistencyRule : Rule() {
+public class QualifierConsistencyRule : RulebookRule() {
     override fun getName(): String = "QualifierConsistency"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

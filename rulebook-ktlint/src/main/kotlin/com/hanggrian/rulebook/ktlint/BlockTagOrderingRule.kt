@@ -5,6 +5,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG_NAME
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -12,7 +13,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-ordering)
  */
-public class BlockTagOrderingRule : Rule("block-tag-ordering") {
+public class BlockTagOrderingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(KDOC)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -33,6 +34,8 @@ public class BlockTagOrderingRule : Rule("block-tag-ordering") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:block-tag-ordering")
+
         const val MSG = "block.tag.ordering"
 
         private val MEMBER_POSITIONS =

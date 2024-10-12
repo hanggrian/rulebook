@@ -13,7 +13,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-function-position)
  */
-public class BuiltinFunctionPositionCheck : Check() {
+public class BuiltinFunctionPositionCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
     override fun visitToken(node: DetailAST) {

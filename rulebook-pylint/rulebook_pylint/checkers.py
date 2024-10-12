@@ -3,13 +3,13 @@ from abc import ABC
 from pylint.checkers import BaseChecker, BaseTokenChecker, BaseRawFileChecker
 
 
-class Checker(BaseChecker):
-    """No custom implementation."""
+class RulebookChecker(BaseChecker):
+    """Standard checker with `visit_` prefix functions."""
 
 
-class TokenChecker(BaseTokenChecker, ABC):
-    """No custom implementation."""
+class RulebookTokenChecker(BaseTokenChecker, ABC):
+    """Override `process_tokens` to iterate each token."""
 
 
-class RawChecker(BaseRawFileChecker, ABC):
-    """No custom implementation."""
+class RulebookRawChecker(BaseRawFileChecker, ABC):
+    """Override `process_module` to capture file at once."""

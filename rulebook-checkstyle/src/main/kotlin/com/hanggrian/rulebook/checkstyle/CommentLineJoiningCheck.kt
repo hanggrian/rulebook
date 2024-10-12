@@ -8,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-joining)
  */
-public class CommentLineJoiningCheck : Check() {
+public class CommentLineJoiningCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
 
     override fun isCommentNodesRequired(): Boolean = true

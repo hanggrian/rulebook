@@ -8,7 +8,7 @@ import java.lang.reflect.Modifier
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#utility-class-instance-hiding)
  */
-public class UtilityClassInstanceHidingRule : Rule() {
+public class UtilityClassInstanceHidingRule : RulebookRule() {
     override fun getName(): String = "UtilityClassInstanceHiding"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

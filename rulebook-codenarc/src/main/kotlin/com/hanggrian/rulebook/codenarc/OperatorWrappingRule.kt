@@ -8,7 +8,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#operator-wrapping)
  */
-public class OperatorWrappingRule : Rule() {
+public class OperatorWrappingRule : RulebookRule() {
     override fun getName(): String = "OperatorWrapping"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

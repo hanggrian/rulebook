@@ -8,7 +8,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#default-flattening)
  */
-public class DefaultFlatteningRule : Rule() {
+public class DefaultFlatteningRule : RulebookRule() {
     override fun getName(): String = "DefaultFlattening"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

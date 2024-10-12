@@ -12,24 +12,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#code-block-line-trimming)
  */
-public class CodeBlockLineTrimmingCheck : Check() {
+public class CodeBlockLineTrimmingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK, SLIST)
 
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
         // right brace is persistent
-        val rightBrace = node.lastChild.takeIf { it.type == RCURLY } ?: return
-        val rightBraceSibling = rightBrace.previousSibling ?: return
+        val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
+        val rcurlySibling = rcurly.previousSibling ?: return
 
         // left brace is conditional
-        val (leftBrace, leftBraceSibling) =
+        val (lcurly, lcurlySibling) =
             when (node.type) {
                 OBJBLOCK -> {
                     // get first two nodes to compare
-                    val leftBrace = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                    val leftBraceSibling = leftBrace.nextSibling ?: return
-                    leftBrace to leftBraceSibling
+                    val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
+                    val lcurlySibling = lcurly.nextSibling ?: return
+                    lcurly to lcurlySibling
                 }
                 else ->
                     // the first node is slist itself
@@ -37,11 +37,11 @@ public class CodeBlockLineTrimmingCheck : Check() {
             }
 
         // checks for violation
-        if (leftBraceSibling.minLineNo - leftBrace.lineNo > 1) {
-            log(leftBraceSibling, Messages[MSG_FIRST])
+        if (lcurlySibling.minLineNo - lcurly.lineNo > 1) {
+            log(lcurlySibling, Messages[MSG_FIRST])
         }
-        if (rightBrace.lineNo - rightBraceSibling.maxLineNo > 1) {
-            log(rightBraceSibling, Messages[MSG_LAST])
+        if (rcurly.lineNo - rcurlySibling.maxLineNo > 1) {
+            log(rcurlySibling, Messages[MSG_LAST])
         }
     }
 

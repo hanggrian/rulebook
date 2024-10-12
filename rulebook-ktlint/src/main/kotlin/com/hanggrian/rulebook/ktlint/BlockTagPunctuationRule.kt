@@ -5,6 +5,7 @@ import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG_NAME
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
@@ -15,11 +16,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation)
  */
-public class BlockTagPunctuationRule :
-    Rule(
-        "block-tag-punctuation",
-        setOf(PUNCTUATED_BLOCK_TAGS_PROPERTY),
-    ) {
+public class BlockTagPunctuationRule : RulebookRule(ID, setOf(PUNCTUATED_BLOCK_TAGS_PROPERTY)) {
     private var punctuatedTags = PUNCTUATED_BLOCK_TAGS_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(KDOC_TAG)
@@ -55,10 +52,7 @@ public class BlockTagPunctuationRule :
     }
 
     internal companion object {
-        const val MSG = "block.tag.punctuation"
-
-        private val END_PUNCTUATIONS = setOf('.', ')')
-
+        val ID = RuleId("${RulebookRuleSet.ID.value}:block-tag-punctuation")
         val PUNCTUATED_BLOCK_TAGS_PROPERTY =
             EditorConfigProperty(
                 type =
@@ -77,6 +71,10 @@ public class BlockTagPunctuationRule :
                     ),
                 propertyWriter = { it.joinToString() },
             )
+
+        const val MSG = "block.tag.punctuation"
+
+        private val END_PUNCTUATIONS = setOf('.', ')')
 
         private fun String.trimComment(): String =
             indexOf("//")

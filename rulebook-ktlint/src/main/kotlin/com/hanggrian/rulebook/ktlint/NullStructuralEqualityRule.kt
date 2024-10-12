@@ -6,13 +6,14 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.EQEQEQ
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EXCLEQEQEQ
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.NULL
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#null-structural-equality)
  */
-public class NullStructuralEqualityRule : Rule("null-structural-equality") {
+public class NullStructuralEqualityRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(BINARY_EXPRESSION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -36,6 +37,8 @@ public class NullStructuralEqualityRule : Rule("null-structural-equality") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:null-structural-equality")
+
         const val MSG = "null.structural.equality"
     }
 }

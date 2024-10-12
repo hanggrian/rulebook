@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.EXPR
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#assignment-wrapping)
  */
-public class AssignmentWrappingCheck : Check() {
+public class AssignmentWrappingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(ASSIGN)
 
     override fun visitToken(node: DetailAST) {

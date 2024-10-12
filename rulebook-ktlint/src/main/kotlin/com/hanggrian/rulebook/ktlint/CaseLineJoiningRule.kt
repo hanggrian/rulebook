@@ -4,13 +4,14 @@ import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.hanggrian.rulebook.ktlint.internals.isWhitespaceWithMultipleNewlines
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining)
  */
-public class CaseLineJoiningRule : Rule("case-line-joining") {
+public class CaseLineJoiningRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN_ENTRY)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -24,6 +25,8 @@ public class CaseLineJoiningRule : Rule("case-line-joining") {
     }
 
     internal companion object {
+        val ID = RuleId("${RulebookRuleSet.ID.value}:case-line-joining")
+
         const val MSG = "case.line.joining"
     }
 }

@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching)
  */
-public class SwitchCaseBranchingCheck : Check() {
+public class SwitchCaseBranchingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 
     override fun visitToken(node: DetailAST) {

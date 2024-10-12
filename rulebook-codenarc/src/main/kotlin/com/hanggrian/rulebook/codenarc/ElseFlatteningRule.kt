@@ -10,7 +10,7 @@ import org.codenarc.rule.AbstractAstVisitor
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#else-flattening)
  */
-public class ElseFlatteningRule : Rule() {
+public class ElseFlatteningRule : RulebookRule() {
     override fun getName(): String = "ElseFlattening"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java

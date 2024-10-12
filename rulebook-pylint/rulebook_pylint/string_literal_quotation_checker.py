@@ -2,14 +2,14 @@ from tokenize import TokenInfo, STRING, FSTRING_START, FSTRING_MIDDLE, FSTRING_E
 
 from astroid.nodes import Position
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import TokenChecker
+from rulebook_pylint.checkers import RulebookTokenChecker
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class StringLiteralQuotationChecker(TokenChecker):
+class StringLiteralQuotationChecker(RulebookTokenChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#string-literal-quotation
     """
     MSG_SINGLE: str = 'string-literal-quotation-single'

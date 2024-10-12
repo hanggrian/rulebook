@@ -20,10 +20,10 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
     fun `Single-line parameters`() =
         assertNoViolations(
             """
-            void foo(int a, int b) {}
+            void foo(String a, int b) {}
 
             void bar() {
-                foo(0, 1);
+                foo(new StringBuilder().toString(), 0);
             }
             """.trimIndent(),
         )
@@ -33,14 +33,15 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
         assertNoViolations(
             """
             void foo(
-                int a,
+                String a,
                 int b
             ) {}
 
             void bar() {
                 foo(
-                    0,
-                    1
+                    new StringBuilder()
+                        .toString(),
+                    0
                 );
             }
             """.trimIndent(),
@@ -51,20 +52,21 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
         assertTwoViolations(
             """
             void foo(
-                int a, int b
+                String a, int b
             ) {}
 
             void bar() {
                 foo(
-                    0, 1
+                    new StringBuilder()
+                        .toString(), 0
                 );
             }
             """.trimIndent(),
             2,
-            "int a, int b",
+            "String a, int b",
             Messages[MSG_ARGUMENT],
-            7,
-            "0, 1",
+            8,
+            ".toString(), 0",
             Messages[MSG_ARGUMENT],
         )
 }

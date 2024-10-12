@@ -9,7 +9,7 @@ import kotlin.math.min
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-initial-line-trimming)
  */
-public class FileInitialLineTrimmingCheck : Check() {
+public class FileInitialLineTrimmingCheck : RulebookCheck() {
     private var minIndex = Int.MAX_VALUE
 
     override fun getRequiredTokens(): IntArray =

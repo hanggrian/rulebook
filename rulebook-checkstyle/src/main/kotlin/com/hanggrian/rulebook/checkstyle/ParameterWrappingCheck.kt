@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#parameter-wrapping)
  */
-public class ParameterWrappingCheck : Check() {
+public class ParameterWrappingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(PARAMETERS, ELIST)
 
     override fun visitToken(node: DetailAST) {
@@ -56,7 +56,7 @@ public class ParameterWrappingCheck : Check() {
                 ?: continue
 
             parameters[i - 1]
-                .takeUnless { it.lineNo + 1 == parameter.lineNo }
+                .takeUnless { it.maxLineNo + 1 == parameter.minLineNo }
                 ?: continue
             log(parameter, Messages[MSG_ARGUMENT])
         }

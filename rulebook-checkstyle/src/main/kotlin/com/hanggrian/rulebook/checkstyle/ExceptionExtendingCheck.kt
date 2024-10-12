@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending)
  */
-public class ExceptionExtendingCheck : Check() {
+public class ExceptionExtendingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CLASS_DEF)
 
     override fun visitToken(node: DetailAST) {

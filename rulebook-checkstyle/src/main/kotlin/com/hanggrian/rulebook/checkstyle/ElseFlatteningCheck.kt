@@ -10,7 +10,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
 /**
  * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#else-flattening)
  */
-public class ElseFlatteningCheck : Check() {
+public class ElseFlatteningCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_IF)
 
     override fun isCommentNodesRequired(): Boolean = true
