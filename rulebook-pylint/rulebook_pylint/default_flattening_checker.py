@@ -1,15 +1,15 @@
-from astroid import Match, MatchAs, MatchCase, Return, Raise, Break
+from astroid import Match, MatchAs, MatchCase
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
+from rulebook_pylint.internals.nodes import has_jump_statement
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
 class DefaultFlatteningChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#default-flattening
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#default-flattening"""
     MSG: str = 'default-flattening'
 
     name: str = 'default-flattening'
@@ -25,9 +25,8 @@ class DefaultFlatteningChecker(RulebookChecker):
             return
 
         # checks for violation
-        for case in cases[:-1]:
-            if not any(isinstance(node, (Return, Raise)) for node in case.body):
-                return
+        if not all(has_jump_statement(node) for node in cases[:-1]):
+            return
         self.add_message(self.MSG, node=default)
 
 

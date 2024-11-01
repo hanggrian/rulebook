@@ -10,6 +10,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BlockCommentLineJoiningRule() },
             RuleProvider { BlockCommentLineTrimmingRule() },
             RuleProvider { BlockCommentSpacingRule() },
+            RuleProvider { BlockCommentWrappingRule() },
             RuleProvider { BlockTagIndentationRule() },
             RuleProvider { BlockTagInitialLineSpacingRule() },
             RuleProvider { BlockTagOrderingRule() },
@@ -44,7 +45,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { VariableNameDisallowingRule() },
         )
 
-    public companion object {
-        public val ID: RuleSetId = RuleSetId("rulebook")
+    internal companion object {
+        val ID: RuleSetId = RuleSetId("rulebook")
     }
 }

@@ -12,8 +12,8 @@ class BlockTagPunctuationCheckTest {
         val check = BlockTagPunctuationCheck()
         check.assertProperties()
 
-        check.setBlockTags("@author", "@see")
-        assertThat(check.blockTags).containsExactly("@author", "@see")
+        check.setTags("@author", "@see")
+        assertThat(check.tags).containsExactly("@author", "@see")
     }
 
     @Test

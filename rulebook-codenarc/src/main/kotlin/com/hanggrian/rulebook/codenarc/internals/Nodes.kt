@@ -3,7 +3,9 @@ package com.hanggrian.rulebook.codenarc.internals
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.AnnotatedNode
 import org.codehaus.groovy.ast.stmt.BlockStatement
+import org.codehaus.groovy.ast.stmt.BreakStatement
 import org.codehaus.groovy.ast.stmt.CaseStatement
+import org.codehaus.groovy.ast.stmt.ContinueStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.ReturnStatement
 import org.codehaus.groovy.ast.stmt.Statement
@@ -12,7 +14,7 @@ import org.codehaus.groovy.ast.stmt.ThrowStatement
 internal fun AnnotatedNode.hasAnnotation(name: String): Boolean =
     annotations.any { it.classNode.name == name }
 
-internal fun Statement.hasReturnOrThrow(): Boolean {
+internal fun Statement.hasJumpStatement(): Boolean {
     val statements =
         when (this) {
             is IfStatement -> ifBlock
@@ -24,7 +26,12 @@ internal fun Statement.hasReturnOrThrow(): Boolean {
     }
     return (statements as BlockStatement)
         .statements
-        .any { it is ReturnStatement || it is ThrowStatement }
+        .any {
+            it is ReturnStatement ||
+                it is ThrowStatement ||
+                it is BreakStatement ||
+                it is ContinueStatement
+        }
 }
 
 internal fun ASTNode.isMultiline(): Boolean = lastLineNumber > lineNumber

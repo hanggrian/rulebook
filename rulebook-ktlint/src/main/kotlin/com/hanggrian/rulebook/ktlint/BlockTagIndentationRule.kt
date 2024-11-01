@@ -15,9 +15,7 @@ import com.pinterest.ktlint.rule.engine.core.api.editorconfig.INDENT_STYLE_PROPE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-indentation)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-indentation) */
 public class BlockTagIndentationRule :
     RulebookRule(
         ID,
@@ -29,12 +27,12 @@ public class BlockTagIndentationRule :
             ),
         ),
     ) {
-    private var config = IndentConfig.DEFAULT_INDENT_CONFIG
+    private var indentConfig = IndentConfig.DEFAULT_INDENT_CONFIG
 
     override val tokens: TokenSet = TokenSet.create(KDOC_LEADING_ASTERISK)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        config =
+        indentConfig =
             IndentConfig(
                 indentStyle = editorConfig[INDENT_STYLE_PROPERTY],
                 tabWidth = editorConfig[INDENT_SIZE_PROPERTY],
@@ -56,16 +54,16 @@ public class BlockTagIndentationRule :
             .takeIf {
                 it.isNotEmpty() &&
                     it.first().isWhitespace() &&
-                    !it.startsWith(config.indent)
+                    !it.startsWith(indentConfig.indent)
             } ?: return
         emit(
             node.endOffset,
             Messages.get(
                 MSG,
                 when {
-                    config.indentStyle == TAB -> "a tab"
-                    config.tabWidth == 1 -> "a space"
-                    else -> "${config.tabWidth} spaces"
+                    indentConfig.indentStyle == TAB -> "a tab"
+                    indentConfig.tabWidth == 1 -> "a space"
+                    else -> "${indentConfig.tabWidth} spaces"
                 },
             ),
             false,

@@ -8,9 +8,7 @@ import org.codehaus.groovy.ast.ModuleNode
 import org.codehaus.groovy.ast.expr.MethodCallExpression
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#qualifier-consistency)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#qualifier-consistency) */
 public class QualifierConsistencyRule : RulebookRule() {
     override fun getName(): String = "QualifierConsistency"
 

@@ -7,9 +7,7 @@ import org.codehaus.groovy.ast.GenericsType
 import org.codehaus.groovy.ast.MethodNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing) */
 public class GenericsNameAllowingRule : RulebookRule() {
     internal var names = setOf("E", "K", "N", "T", "V")
 

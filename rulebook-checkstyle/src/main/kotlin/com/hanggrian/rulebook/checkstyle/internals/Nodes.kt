@@ -7,6 +7,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_BREAK
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CONTINUE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
@@ -45,13 +47,14 @@ internal fun DetailAST.hasAnnotation(name: String): Boolean =
         ?.any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
         ?: false
 
-internal fun DetailAST.hasReturnOrThrow(): Boolean {
-    var statements = this
-    statements
-        .findFirstToken(SLIST)
-        ?.let { statements = it }
-    return LITERAL_RETURN in statements || LITERAL_THROW in statements
-}
+internal fun DetailAST.hasJumpStatement(): Boolean =
+    (findFirstToken(SLIST) ?: this)
+        .let {
+            LITERAL_RETURN in it ||
+                LITERAL_THROW in it ||
+                LITERAL_BREAK in it ||
+                LITERAL_CONTINUE in it
+        }
 
 internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 

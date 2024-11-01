@@ -6,18 +6,16 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation) */
 public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
-    internal var blockTags =
+    internal var tags =
         setOf(
             "@param",
             "@return",
         )
 
-    public fun setBlockTags(vararg blockTags: String) {
-        this.blockTags = blockTags.toSet()
+    public fun setTags(vararg tags: String) {
+        this.tags = tags.toSet()
     }
 
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
@@ -29,7 +27,7 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
                 .children
                 .first()
                 .text
-                .takeIf { it in blockTags }
+                .takeIf { it in tags }
                 ?: return
 
         // long descriptions have multiple lines, take only the last one

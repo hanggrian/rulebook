@@ -13,16 +13,14 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation)
- */
-public class BlockTagPunctuationRule : RulebookRule(ID, setOf(PUNCTUATED_BLOCK_TAGS_PROPERTY)) {
-    private var punctuatedTags = PUNCTUATED_BLOCK_TAGS_PROPERTY.defaultValue
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation) */
+public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PROPERTY) {
+    private var punctuateBlockTags = PUNCTUATE_BLOCK_TAGS_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(KDOC_TAG)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        punctuatedTags = editorConfig[PUNCTUATED_BLOCK_TAGS_PROPERTY]
+        punctuateBlockTags = editorConfig[PUNCTUATE_BLOCK_TAGS_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -31,7 +29,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, setOf(PUNCTUATED_BLOCK_T
             node
                 .findChildByType(KDOC_TAG_NAME)
                 ?.text
-                ?.takeIf { it in punctuatedTags }
+                ?.takeIf { it in punctuateBlockTags }
                 ?: return
 
         // long descriptions have multiple lines, take only the last one
@@ -53,7 +51,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, setOf(PUNCTUATED_BLOCK_T
 
     internal companion object {
         val ID = RuleId("${RulebookRuleSet.ID.value}:block-tag-punctuation")
-        val PUNCTUATED_BLOCK_TAGS_PROPERTY =
+        val PUNCTUATE_BLOCK_TAGS_PROPERTY =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(

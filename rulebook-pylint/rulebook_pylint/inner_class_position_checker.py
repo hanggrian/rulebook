@@ -8,8 +8,7 @@ if TYPE_CHECKING:
 
 
 class InnerClassPositionChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position"""
     MSG: str = 'inner-class-position'
 
     name: str = 'inner-class-position'

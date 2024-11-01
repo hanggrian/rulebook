@@ -10,16 +10,14 @@ import org.ec4j.core.model.PropertyType.PropertyValueParser.POSITIVE_INT_VALUE_P
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-size-limitation)
- */
-public class FileSizeLimitationRule : RulebookRule(ID, setOf(MAX_FILE_LENGTH_PROPERTY)) {
-    private var maxFileLength = MAX_FILE_LENGTH_PROPERTY.defaultValue
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-size-limitation) */
+public class FileSizeLimitationRule : RulebookRule(ID, LIMIT_FILE_SIZE_PROPERTY) {
+    private var limitFileSize = LIMIT_FILE_SIZE_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(FILE)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        maxFileLength = editorConfig[MAX_FILE_LENGTH_PROPERTY]
+        limitFileSize = editorConfig[LIMIT_FILE_SIZE_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -27,18 +25,18 @@ public class FileSizeLimitationRule : RulebookRule(ID, setOf(MAX_FILE_LENGTH_PRO
         node
             .text
             .lines()
-            .takeIf { (if (it.last().isEmpty()) it.lastIndex else it.size) > maxFileLength }
+            .takeIf { (if (it.last().isEmpty()) it.lastIndex else it.size) > limitFileSize }
             ?: return
-        emit(node.startOffset, Messages.get(MSG, maxFileLength), false)
+        emit(node.startOffset, Messages.get(MSG, limitFileSize), false)
     }
 
     internal companion object {
         val ID = RuleId("${RulebookRuleSet.ID.value}:file-size-limitation")
-        val MAX_FILE_LENGTH_PROPERTY =
+        val LIMIT_FILE_SIZE_PROPERTY =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
-                        "rulebook_max_file_size",
+                        "rulebook_limit_file_size",
                         "Max lines of code that is allowed.",
                         POSITIVE_INT_VALUE_PARSER,
                     ),

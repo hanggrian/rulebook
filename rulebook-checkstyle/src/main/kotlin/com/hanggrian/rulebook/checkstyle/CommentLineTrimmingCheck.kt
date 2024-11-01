@@ -5,9 +5,7 @@ import com.hanggrian.rulebook.checkstyle.internals.isEolCommentEmpty
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-trimming)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-trimming) */
 public class CommentLineTrimmingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
 

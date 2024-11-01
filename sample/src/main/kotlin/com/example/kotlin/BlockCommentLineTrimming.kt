@@ -8,9 +8,7 @@ class BlockCommentLineTrimming {
      */
     fun foo(): Int = 0
 
-    /**
-     * Foo is awesome.
-     */
+    /** Foo is awesome. */
     fun bar(): Int = 0
 
     /**

@@ -5,9 +5,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#comment-spacing)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#comment-spacing) */
 public class CommentSpacingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
 

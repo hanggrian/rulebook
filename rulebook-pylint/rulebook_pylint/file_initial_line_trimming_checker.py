@@ -9,8 +9,7 @@ if TYPE_CHECKING:
 
 
 class FileInitialLineTrimmingChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#file-initial-line-trimming
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#file-initial-line-trimming"""
     MSG: str = 'file-initial-line-trimming'
 
     name: str = 'file-initial-line-trimming'

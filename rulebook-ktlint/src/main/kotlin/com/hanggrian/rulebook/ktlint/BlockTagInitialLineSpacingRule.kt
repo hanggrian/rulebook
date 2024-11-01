@@ -11,9 +11,7 @@ import com.pinterest.ktlint.rule.engine.core.api.prevSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-initial-line-spacing)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-initial-line-spacing) */
 public class BlockTagInitialLineSpacingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(KDOC_SECTION)
 

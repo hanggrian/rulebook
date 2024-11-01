@@ -8,9 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#float-literal-tagging)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#float-literal-tagging) */
 public class FloatLiteralTaggingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FLOAT_LITERAL, INTEGER_LITERAL)
 

@@ -4,9 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codehaus.groovy.ast.FieldNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#variable-name-disallowing)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#variable-name-disallowing) */
 public class VariableNameDisallowingRule : RulebookRule() {
     internal var names =
         setOf(

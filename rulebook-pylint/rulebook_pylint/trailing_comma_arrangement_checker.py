@@ -9,8 +9,7 @@ if TYPE_CHECKING:
 
 
 class TrailingCommaArrangementChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#trailing-comma-arrangement
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#trailing-comma-arrangement"""
     MSG_SINGLE: str = 'trailing-comma-arrangement-single'
     MSG_MULTI: str = 'trailing-comma-arrangement-multi'
 

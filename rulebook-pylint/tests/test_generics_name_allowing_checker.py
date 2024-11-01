@@ -19,6 +19,7 @@ class TestGenericsNameAllowingChecker(CheckerTestCase):
                 '''
                 T = TypeVar('T')  #@
 
+
                 class MyClass(T):
                     print()
                 ''',
@@ -31,6 +32,7 @@ class TestGenericsNameAllowingChecker(CheckerTestCase):
             extract_node(
                 '''
                 X = TypeVar('X')  #@
+
 
                 class MyClass(T):
                     print()

@@ -6,9 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.CLASS_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.EXTENDS_CLAUSE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending) */
 public class ExceptionExtendingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CLASS_DEF)
 

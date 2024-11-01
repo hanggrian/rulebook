@@ -9,8 +9,7 @@ if TYPE_CHECKING:
 
 
 class CaseLineJoiningChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining"""
     MSG: str = 'case-line-joining'
 
     name: str = 'case-line-joining'

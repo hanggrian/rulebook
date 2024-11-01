@@ -9,7 +9,6 @@ public class DefaultFlattening {
                 return;
             default:
                 baz();
-                break;
         }
     }
 

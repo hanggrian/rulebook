@@ -6,9 +6,7 @@ import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.syntax.Types.ASSIGN
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#assignment-wrapping)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#assignment-wrapping) */
 public class AssignmentWrappingRule : RulebookRule() {
     override fun getName(): String = "AssignmentWrapping"
 

@@ -5,13 +5,10 @@ public class DefaultFlattening {
         switch (bar) {
             case 0:
                 baz();
-                break;
             case 1:
                 baz();
-                break;
             default:
                 baz();
-                break;
         }
     }
 

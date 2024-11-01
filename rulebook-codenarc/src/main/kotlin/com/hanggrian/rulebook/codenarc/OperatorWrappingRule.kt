@@ -5,9 +5,7 @@ import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#operator-wrapping)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#operator-wrapping) */
 public class OperatorWrappingRule : RulebookRule() {
     override fun getName(): String = "OperatorWrapping"
 

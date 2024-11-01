@@ -8,9 +8,7 @@ import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.WhileStatement
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#statement-wrapping)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#statement-wrapping) */
 public class StatementWrappingRule : RulebookRule() {
     override fun getName(): String = "StatementWrapping"
 

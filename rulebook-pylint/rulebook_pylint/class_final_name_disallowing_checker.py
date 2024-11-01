@@ -10,8 +10,7 @@ if TYPE_CHECKING:
 
 
 class ClassFinalNameDisallowingChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing"""
     MSG_ALL: str = 'class-final-name-disallowing-all'
     MSG_UTIL: str = 'class-final-name-disallowing-util'
 

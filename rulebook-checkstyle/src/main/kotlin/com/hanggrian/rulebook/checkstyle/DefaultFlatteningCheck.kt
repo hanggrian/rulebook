@@ -3,15 +3,13 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.contains
-import com.hanggrian.rulebook.checkstyle.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.checkstyle.internals.hasJumpStatement
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_DEFAULT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#default-flattening)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#default-flattening) */
 public class DefaultFlatteningCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 
@@ -26,7 +24,7 @@ public class DefaultFlatteningCheck : RulebookCheck() {
         cases
             .toList()
             .dropLast(1)
-            .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }
+            .takeIf { cases2 -> cases2.all { it.hasJumpStatement() } }
             ?: return
         log(default, Messages[MSG])
     }

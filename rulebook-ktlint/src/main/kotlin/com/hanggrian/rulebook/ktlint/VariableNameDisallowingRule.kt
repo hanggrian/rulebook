@@ -13,11 +13,9 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#variable-name-disallowing)
- */
-public class VariableNameDisallowingRule : RulebookRule(ID, setOf(NAMES_PROPERTY)) {
-    private var names = NAMES_PROPERTY.defaultValue
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#variable-name-disallowing) */
+public class VariableNameDisallowingRule : RulebookRule(ID, DISALLOW_VARIABLE_NAMES_PROPERTY) {
+    private var disallowVariableNames = DISALLOW_VARIABLE_NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet =
         TokenSet.create(
@@ -27,7 +25,7 @@ public class VariableNameDisallowingRule : RulebookRule(ID, setOf(NAMES_PROPERTY
         )
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        names = editorConfig[NAMES_PROPERTY]
+        disallowVariableNames = editorConfig[DISALLOW_VARIABLE_NAMES_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -39,14 +37,14 @@ public class VariableNameDisallowingRule : RulebookRule(ID, setOf(NAMES_PROPERTY
                     when {
                         !it.text.startsWith('`') || !it.text.endsWith('`') -> it.text
                         else -> it.text.substring(1, it.text.lastIndex)
-                    } in names
+                    } in disallowVariableNames
                 } ?: return
         emit(identifier.startOffset, Messages[MSG], false)
     }
 
     internal companion object {
         val ID = RuleId("${RulebookRuleSet.ID.value}:variable-name-disallowing")
-        val NAMES_PROPERTY =
+        val DISALLOW_VARIABLE_NAMES_PROPERTY =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(

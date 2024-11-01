@@ -9,8 +9,7 @@ if TYPE_CHECKING:
 
 
 class BuiltinFunctionPositionChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-function-position
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-function-position"""
     MSG: str = 'builtin-function-position'
 
     SPECIAL_FUNCTIONS: set[str] = \

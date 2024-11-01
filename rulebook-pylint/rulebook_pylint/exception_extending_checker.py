@@ -8,8 +8,7 @@ if TYPE_CHECKING:
 
 
 class ExceptionExtendingChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending"""
     MSG: str = 'exception-extending'
 
     name: str = 'exception-extending'

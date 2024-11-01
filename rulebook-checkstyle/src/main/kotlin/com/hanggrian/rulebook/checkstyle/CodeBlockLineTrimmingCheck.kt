@@ -9,9 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#code-block-line-trimming)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#code-block-line-trimming) */
 public class CodeBlockLineTrimmingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK, SLIST)
 

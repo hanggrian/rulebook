@@ -31,6 +31,9 @@ public abstract class RulebookRule(
     RuleAutocorrectApproveHandler {
     public abstract val tokens: TokenSet
 
+    public constructor(ruleId: RuleId, vararg usesEditorConfigProperties: EditorConfigProperty<*>) :
+        this(ruleId, setOf(*usesEditorConfigProperties))
+
     public abstract fun visitToken(node: ASTNode, emit: Emit)
 
     final override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {

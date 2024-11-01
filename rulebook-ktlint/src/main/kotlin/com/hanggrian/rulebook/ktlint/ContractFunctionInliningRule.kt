@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
-import com.hanggrian.rulebook.ktlint.internals.hasModifier
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CALL_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
@@ -9,12 +8,11 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.INLINE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.REFERENCE_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#contract-function-inlining)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#contract-function-inlining) */
 public class ContractFunctionInliningRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FUN)
 

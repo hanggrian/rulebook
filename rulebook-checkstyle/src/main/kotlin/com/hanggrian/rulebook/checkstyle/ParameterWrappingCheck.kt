@@ -11,9 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LPAREN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.PARAMETERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#parameter-wrapping)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#parameter-wrapping) */
 public class ParameterWrappingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(PARAMETERS, ELIST)
 

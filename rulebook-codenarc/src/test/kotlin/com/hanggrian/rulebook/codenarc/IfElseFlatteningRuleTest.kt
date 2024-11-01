@@ -95,6 +95,19 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
         )
 
     @Test
+    fun `Skip block with jump statement`() =
+        assertNoViolations(
+            """
+            void foo() {
+                if (true) {
+                    baz()
+                    return
+                }
+            }
+            """.trimIndent(),
+        )
+
+    @Test
     fun `Capture trailing non-ifs`() =
         assertSingleViolation(
             """

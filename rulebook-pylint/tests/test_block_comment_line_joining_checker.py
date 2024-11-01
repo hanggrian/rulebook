@@ -38,6 +38,7 @@ class TestBlockCommentLineJoiningChecker(CheckerTestCase):
                     """
                     print()
 
+
                 def bar():  #@
                     """
                     Lorem ipsum
@@ -80,6 +81,7 @@ class TestBlockCommentLineJoiningChecker(CheckerTestCase):
                     """
                     print()
 
+
                 def bar():  #@
                     """
                     Lorem ipsum
@@ -92,7 +94,7 @@ class TestBlockCommentLineJoiningChecker(CheckerTestCase):
             )
         with self.assertAddsMessages(
             msg(BlockCommentLineJoiningChecker.MSG, (3, 4, 8, 7), node1.doc_node),
-            msg(BlockCommentLineJoiningChecker.MSG, (12, 4, 17, 7), node2.doc_node),
+            msg(BlockCommentLineJoiningChecker.MSG, (13, 4, 18, 7), node2.doc_node),
         ):
             self.checker.visit_classdef(node1)
             self.checker.visit_functiondef(node2)

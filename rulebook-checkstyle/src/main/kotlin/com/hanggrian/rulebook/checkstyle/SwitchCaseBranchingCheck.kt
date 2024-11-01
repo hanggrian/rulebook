@@ -6,9 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching) */
 public class SwitchCaseBranchingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 

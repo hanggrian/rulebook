@@ -8,14 +8,13 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class ClassOrganizationChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-organization
-    """
-    MSG: str = 'class-organization'
+class ClassMemberOrderingChecker(RulebookChecker):
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-member-ordering"""
+    MSG: str = 'class-member-ordering'
     MSG_CONSTRUCTOR: str = 'constructor'
     MSG_FUNCTION: str = 'function'
 
-    name: str = 'class-organization'
+    name: str = 'class-member-ordering'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
@@ -40,4 +39,4 @@ class ClassOrganizationChecker(RulebookChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(ClassOrganizationChecker(linter))
+    linter.register_checker(ClassMemberOrganizationChecker(linter))

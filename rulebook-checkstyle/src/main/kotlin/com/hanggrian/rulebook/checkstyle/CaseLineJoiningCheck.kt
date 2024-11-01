@@ -5,9 +5,7 @@ import com.hanggrian.rulebook.checkstyle.internals.maxLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining) */
 public class CaseLineJoiningCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CASE_GROUP)
 

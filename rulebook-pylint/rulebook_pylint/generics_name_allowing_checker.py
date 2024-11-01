@@ -9,8 +9,7 @@ if TYPE_CHECKING:
 
 
 class GenericsNameAllowingChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing"""
     MSG: str = 'generics-name-allowing'
 
     name: str = 'generics-name-allowing'

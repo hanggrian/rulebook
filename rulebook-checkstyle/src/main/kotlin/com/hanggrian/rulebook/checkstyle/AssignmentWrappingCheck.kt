@@ -8,9 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.ASSIGN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.EXPR
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#assignment-wrapping)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#assignment-wrapping) */
 public class AssignmentWrappingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(ASSIGN)
 

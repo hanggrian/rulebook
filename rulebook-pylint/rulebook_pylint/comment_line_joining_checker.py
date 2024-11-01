@@ -12,8 +12,7 @@ if TYPE_CHECKING:
 
 
 class CommentLineJoiningChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-joining
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-joining"""
     MSG: str = 'comment-line-joining'
 
     EMPTY_COMMENT_REGEX: Pattern = regex.compile('#\s*$')

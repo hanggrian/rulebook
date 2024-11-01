@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.contains
+import com.hanggrian.rulebook.checkstyle.internals.hasJumpStatement
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
@@ -12,9 +13,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening) */
 public class IfElseFlatteningCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SLIST)
 
@@ -30,8 +29,8 @@ public class IfElseFlatteningCheck : RulebookCheck() {
                     break
                 }
                 SEMI, RCURLY, SINGLE_LINE_COMMENT -> continue
-                else -> return
             }
+            return
         }
         `if` ?: return
 
@@ -46,7 +45,8 @@ public class IfElseFlatteningCheck : RulebookCheck() {
             return
         }
         `if`
-            .takeIf { it.hasMultipleLines() }
+            .takeUnless { it.hasJumpStatement() }
+            ?.takeIf { it.hasMultipleLines() }
             ?: return
         log(`if`, Messages[MSG_INVERT])
     }

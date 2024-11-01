@@ -85,6 +85,19 @@ class IfElseFlatteningRuleTest {
         ).hasNoLintViolations()
 
     @Test
+    fun `Skip block with jump statement`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) {
+                    baz()
+                    return
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
     fun `Capture trailing non-ifs`() =
         assertThatCode(
             """

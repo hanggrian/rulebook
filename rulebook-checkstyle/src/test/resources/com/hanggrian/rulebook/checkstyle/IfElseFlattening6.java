@@ -4,8 +4,10 @@ public class IfElseFlattening {
     public void foo() {
         if (true) {
             baz();
-            return;
+            baz();
         }
+
+        // Lorem ipsum.
     }
 
     public void baz() {}

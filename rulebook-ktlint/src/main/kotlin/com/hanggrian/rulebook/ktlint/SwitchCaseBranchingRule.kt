@@ -8,9 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.children
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching) */
 public class SwitchCaseBranchingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN)
 

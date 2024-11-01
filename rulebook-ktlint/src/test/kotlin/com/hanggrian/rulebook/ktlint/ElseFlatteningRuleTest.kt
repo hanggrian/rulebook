@@ -44,7 +44,7 @@ class ElseFlatteningRuleTest {
         ).hasLintViolationWithoutAutoCorrect(6, 7, Messages[MSG])
 
     @Test
-    fun `Skip if not all if blocks have return or throw`() =
+    fun `Skip if not all if blocks have jump statement`() =
         assertThatCode(
             """
             fun foo() {

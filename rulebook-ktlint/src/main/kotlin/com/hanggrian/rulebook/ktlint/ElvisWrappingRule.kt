@@ -12,9 +12,7 @@ import com.pinterest.ktlint.rule.engine.core.api.prevCodeSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#elvis-wrapping)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#elvis-wrapping) */
 public class ElvisWrappingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(ELVIS)
 

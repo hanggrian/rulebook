@@ -24,13 +24,10 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
                 switch (bar) {
                     case 0:
                         baz()
-                        break
                     case 1:
                         baz()
-                        break
                     default:
                         baz()
-                        break
                 }
             }
             """.trimIndent(),
@@ -48,7 +45,6 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
                         return
                     default:
                         baz()
-                        break
                 }
             }
             """.trimIndent(),
@@ -58,7 +54,7 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
         )
 
     @Test
-    fun `Skip if not all case blocks have return or throw`() =
+    fun `Skip if not all case blocks have jump statement`() =
         assertNoViolations(
             """
             void foo() {
@@ -67,10 +63,8 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
                         return
                     case 1:
                         baz()
-                        break
                     default:
                         baz()
-                        break
                 }
             }
             """.trimIndent(),

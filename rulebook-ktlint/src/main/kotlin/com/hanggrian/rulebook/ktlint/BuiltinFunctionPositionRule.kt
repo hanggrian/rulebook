@@ -1,19 +1,17 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
-import com.hanggrian.rulebook.ktlint.internals.hasModifier
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_BODY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OVERRIDE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.children
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-function-position)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-function-position) */
 public class BuiltinFunctionPositionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
 

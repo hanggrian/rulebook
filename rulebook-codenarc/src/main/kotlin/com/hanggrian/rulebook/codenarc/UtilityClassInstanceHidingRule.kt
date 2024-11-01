@@ -5,9 +5,7 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 import java.lang.reflect.Modifier
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#utility-class-instance-hiding)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#utility-class-instance-hiding) */
 public class UtilityClassInstanceHidingRule : RulebookRule() {
     override fun getName(): String = "UtilityClassInstanceHiding"
 

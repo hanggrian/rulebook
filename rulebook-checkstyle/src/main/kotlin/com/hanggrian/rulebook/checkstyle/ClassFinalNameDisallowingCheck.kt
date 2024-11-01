@@ -8,9 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.ENUM_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing) */
 public class ClassFinalNameDisallowingCheck : RulebookCheck() {
     internal var names = setOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 

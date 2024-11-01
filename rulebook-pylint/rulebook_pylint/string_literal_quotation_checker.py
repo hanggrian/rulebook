@@ -10,8 +10,7 @@ if TYPE_CHECKING:
 
 
 class StringLiteralQuotationChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#string-literal-quotation
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#string-literal-quotation"""
     MSG_SINGLE: str = 'string-literal-quotation-single'
     MSG_DOUBLE: str = 'string-literal-quotation-double'
 

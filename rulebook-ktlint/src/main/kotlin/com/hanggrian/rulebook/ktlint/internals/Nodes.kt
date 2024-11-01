@@ -1,9 +1,10 @@
 package com.hanggrian.rulebook.ktlint.internals
 
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.BREAK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.MODIFIER_LIST
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
@@ -23,31 +24,24 @@ internal val ASTNode.qualifierName: String
 internal operator fun ASTNode.contains(type: IElementType): Boolean = findChildByType(type) != null
 
 internal fun ASTNode.siblingsUntil(type: IElementType): List<ASTNode> {
-    val list = mutableListOf<ASTNode>()
     var next = treeNext
-    while (next != null && next.elementType != type) {
-        list += next
-        next = next.treeNext
+    return buildList {
+        while (next != null && next.elementType != type) {
+            add(next)
+            next = next.treeNext
+        }
     }
-    return list
 }
 
-internal fun ASTNode.hasModifier(type: IElementType): Boolean =
-    findChildByType(MODIFIER_LIST)
-        ?.let { type in it }
-        ?: false
-
-internal fun ASTNode.hasReturnOrThrow(): Boolean {
-    var statements =
+internal fun ASTNode.hasJumpStatement(): Boolean {
+    val statements =
         when (elementType) {
             IF -> findChildByType(THEN)!!
             WHEN_ENTRY -> this
             else -> return false
         }
-    statements
-        .findChildByType(BLOCK)
-        ?.let { statements = it }
-    return RETURN in statements || THROW in statements
+    return (statements.findChildByType(BLOCK) ?: statements)
+        .let { RETURN in it || THROW in it || BREAK in it || CONTINUE in it }
 }
 
 internal fun ASTNode.isMultiline(): Boolean {

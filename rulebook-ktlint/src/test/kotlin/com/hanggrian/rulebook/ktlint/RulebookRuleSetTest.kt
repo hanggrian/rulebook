@@ -16,6 +16,7 @@ class RulebookRuleSetTest {
             BlockCommentLineJoiningRule::class,
             BlockCommentLineTrimmingRule::class,
             BlockCommentSpacingRule::class,
+            BlockCommentWrappingRule::class,
             BlockTagIndentationRule::class,
             BlockTagInitialLineSpacingRule::class,
             BlockTagOrderingRule::class,

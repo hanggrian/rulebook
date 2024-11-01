@@ -24,5 +24,8 @@ class IfElseFlatteningCheckTest {
     fun `Skip else if`() = assertEquals(0, checker.read("IfElseFlattening4"))
 
     @Test
-    fun `Capture trailing non-ifs`() = assertEquals(1, checker.read("IfElseFlattening5"))
+    fun `Skip block with jump statement`() = assertEquals(0, checker.read("IfElseFlattening5"))
+
+    @Test
+    fun `Capture trailing non-ifs`() = assertEquals(1, checker.read("IfElseFlattening6"))
 }

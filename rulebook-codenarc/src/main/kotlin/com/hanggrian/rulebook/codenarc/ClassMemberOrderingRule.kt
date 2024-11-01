@@ -4,9 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-member-ordering)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-member-ordering) */
 public class ClassMemberOrderingRule : RulebookRule() {
     override fun getName(): String = "ClassMemberOrdering"
 

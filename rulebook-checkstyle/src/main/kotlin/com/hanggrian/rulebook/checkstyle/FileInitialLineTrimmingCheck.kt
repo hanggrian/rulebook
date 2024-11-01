@@ -6,9 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import kotlin.math.min
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-initial-line-trimming)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-initial-line-trimming) */
 public class FileInitialLineTrimmingCheck : RulebookCheck() {
     private var minIndex = Int.MAX_VALUE
 

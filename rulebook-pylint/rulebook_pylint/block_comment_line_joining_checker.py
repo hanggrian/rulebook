@@ -8,8 +8,7 @@ if TYPE_CHECKING:
 
 
 class BlockCommentLineJoiningChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-line-joining
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-line-joining"""
     MSG: str = 'block-comment-line-joining'
 
     name: str = 'block-comment-line-joining'
@@ -26,7 +25,9 @@ class BlockCommentLineJoiningChecker(RulebookChecker):
 
     def _process(self, docstring: Const | None) -> None:
         # checks for violation
-        if not docstring or '\n\n\n' not in docstring.value:
+        if not docstring:
+            return
+        if '\n\n\n' not in docstring.value:
             return
         self.add_message(self.MSG, node=docstring)
 

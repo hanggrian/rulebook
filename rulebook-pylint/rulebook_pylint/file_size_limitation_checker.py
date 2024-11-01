@@ -8,8 +8,7 @@ if TYPE_CHECKING:
 
 
 class FileSizeLimitationChecker(RulebookRawChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#file-size-limitation
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#file-size-limitation"""
     MSG: str = 'file-size-limitation'
 
     name: str = 'file-size-limitation'

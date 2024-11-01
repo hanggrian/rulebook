@@ -80,6 +80,19 @@ class TestIfElseFlatteningChecker(CheckerTestCase):
         with self.assertNoMessages():
             self.checker.visit_functiondef(node1)
 
+    def test_skip_block_with_jump_statement(self):
+        node1 = \
+            extract_node(
+                '''
+                def foo():  #@
+                    if True:
+                        baz()
+                        return
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.visit_functiondef(node1)
+
     def test_capture_trailing_non_ifs(self):
         node1 = \
             extract_node(

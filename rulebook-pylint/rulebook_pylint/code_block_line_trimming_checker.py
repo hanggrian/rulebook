@@ -9,8 +9,7 @@ if TYPE_CHECKING:
 
 
 class CodeBlockLineTrimmingChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#code-block-line-trimming
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#code-block-line-trimming"""
     MSG: str = 'code-block-line-trimming'
 
     name: str = 'code-block-line-trimming'

@@ -14,9 +14,7 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#exception-extending) */
 public class ExceptionExtendingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 

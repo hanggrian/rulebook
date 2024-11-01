@@ -11,9 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LAMBDA
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.PARAMETERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#lambda-wrapping)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#lambda-wrapping) */
 public class LambdaWrappingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LAMBDA)
 

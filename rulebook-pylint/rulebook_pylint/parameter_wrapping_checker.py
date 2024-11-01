@@ -9,8 +9,7 @@ if TYPE_CHECKING:
 
 
 class ParameterWrappingChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#parameter-wrapping
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#parameter-wrapping"""
     MSG_ARGUMENT: str = 'parameter-wrapping-argument'
 
     name: str = 'parameter-wrapping'

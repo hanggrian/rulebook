@@ -40,7 +40,7 @@ class DefaultFlatteningRuleTest {
         ).hasLintViolationWithoutAutoCorrect(5, 9, Messages[MSG])
 
     @Test
-    fun `Skip if not all case blocks have return or throw`() =
+    fun `Skip if not all case blocks have jump statement`() =
         assertThatCode(
             """
             fun foo() {

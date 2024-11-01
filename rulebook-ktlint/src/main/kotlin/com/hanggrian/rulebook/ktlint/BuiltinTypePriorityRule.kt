@@ -10,9 +10,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.KtImportDirective
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-type-priority)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#builtin-type-priority) */
 public class BuiltinTypePriorityRule : RulebookRule(ID) {
     private var isTestClass = false
 

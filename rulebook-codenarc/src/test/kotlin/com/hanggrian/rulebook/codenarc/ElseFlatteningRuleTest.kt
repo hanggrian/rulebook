@@ -52,7 +52,7 @@ class ElseFlatteningRuleTest : AbstractRuleTestCase<ElseFlatteningRule>() {
         )
 
     @Test
-    fun `Skip if not all if blocks have return or throw`() =
+    fun `Skip if not all if blocks have jump statement`() =
         assertNoViolations(
             """
             void foo() {

@@ -1,5 +1,4 @@
-import re
-
+import regex
 from astroid import Const, Module, ClassDef, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import RulebookChecker
@@ -10,8 +9,7 @@ if TYPE_CHECKING:
 
 
 class BlockCommentLineTrimmingChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-line-trimming
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-line-trimming"""
     MSG_FIRST: str = 'block-comment-line-trimming-first'
     MSG_LAST: str = 'block-comment-line-trimming-last'
 
@@ -33,7 +31,7 @@ class BlockCommentLineTrimmingChecker(RulebookChecker):
             return
         if docstring.value.startswith('\n\n'):
             self.add_message(self.MSG_FIRST, node=docstring)
-        if re.search(r'\n\n\s*$', docstring.value):
+        if regex.search(r'\n\n\s*$', docstring.value):
             self.add_message(self.MSG_LAST, node=docstring)
 
 

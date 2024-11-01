@@ -13,9 +13,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import kotlin.text.RegexOption.IGNORE_CASE
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#todo-comment-formatting)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#todo-comment-formatting) */
 public class TodoCommentFormattingRule : RulebookRule(ID) {
     override val tokens: TokenSet =
         TokenSet.create(

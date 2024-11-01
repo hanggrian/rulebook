@@ -11,8 +11,7 @@ if TYPE_CHECKING:
 
 
 class CommentLineTrimmingChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-trimming
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#comment-line-trimming"""
     MSG: str = 'comment-line-trimming'
 
     EMPTY_COMMENT_REGEX: Pattern = regex.compile('#\s*$')

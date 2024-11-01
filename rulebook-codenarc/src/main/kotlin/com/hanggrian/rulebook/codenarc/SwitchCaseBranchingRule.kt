@@ -4,9 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codehaus.groovy.ast.stmt.SwitchStatement
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching) */
 public class SwitchCaseBranchingRule : RulebookRule() {
     override fun getName(): String = "SwitchCaseBranching"
 

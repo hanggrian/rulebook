@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
-import com.hanggrian.rulebook.ktlint.internals.hasModifier
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_BODY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_INITIALIZER
@@ -11,13 +10,12 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SECONDARY_CONSTRUCTOR
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position) */
 public class InnerClassPositionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 

@@ -8,9 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#case-line-joining) */
 public class CaseLineJoiningRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN_ENTRY)
 

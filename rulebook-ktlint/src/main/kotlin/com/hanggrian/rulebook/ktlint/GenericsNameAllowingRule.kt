@@ -16,16 +16,14 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing)
- */
-public class GenericsNameAllowingRule : RulebookRule(ID, setOf(NAMES_PROPERTY)) {
-    private var names = NAMES_PROPERTY.defaultValue
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#generics-name-allowing) */
+public class GenericsNameAllowingRule : RulebookRule(ID, ALLOW_GENERICS_NAMES_PROPERTY) {
+    private var allowGenericsNames = ALLOW_GENERICS_NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(CLASS, FUN)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        names = editorConfig[NAMES_PROPERTY]
+        allowGenericsNames = editorConfig[ALLOW_GENERICS_NAMES_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -41,14 +39,14 @@ public class GenericsNameAllowingRule : RulebookRule(ID, setOf(NAMES_PROPERTY)) 
         val identifier =
             typeParameter
                 .findChildByType(IDENTIFIER)
-                ?.takeUnless { node.hasParentWithGenerics() || it.text in names }
+                ?.takeUnless { node.hasParentWithGenerics() || it.text in allowGenericsNames }
                 ?: return
-        emit(identifier.startOffset, Messages.get(MSG, names.joinToString()), false)
+        emit(identifier.startOffset, Messages.get(MSG, allowGenericsNames.joinToString()), false)
     }
 
     internal companion object {
         val ID = RuleId("${RulebookRuleSet.ID.value}:generics-name-allowing")
-        val NAMES_PROPERTY =
+        val ALLOW_GENERICS_NAMES_PROPERTY =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(

@@ -6,9 +6,7 @@ import org.codehaus.groovy.ast.ClassHelper.int_TYPE
 import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#float-literal-tagging)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#float-literal-tagging) */
 public class FloatLiteralTaggingRule : RulebookRule() {
     override fun getName(): String = "FloatLiteralTagging"
 

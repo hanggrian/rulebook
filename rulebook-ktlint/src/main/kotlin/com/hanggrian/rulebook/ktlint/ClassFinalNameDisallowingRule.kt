@@ -14,16 +14,14 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing)
- */
-public class ClassFinalNameDisallowingRule : RulebookRule(ID, setOf(FINAL_NAMES_PROPERTY)) {
-    private var names = FINAL_NAMES_PROPERTY.defaultValue
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#class-final-name-disallowing) */
+public class ClassFinalNameDisallowingRule : RulebookRule(ID, DISALLOW_CLASS_FINAL_NAMES_PROPERTY) {
+    private var disallowClassFinalNames = DISALLOW_CLASS_FINAL_NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION, FILE)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        names = editorConfig[FINAL_NAMES_PROPERTY]
+        disallowClassFinalNames = editorConfig[DISALLOW_CLASS_FINAL_NAMES_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -36,7 +34,7 @@ public class ClassFinalNameDisallowingRule : RulebookRule(ID, setOf(FINAL_NAMES_
 
         // checks for violation
         val finalName =
-            names
+            disallowClassFinalNames
                 .singleOrNull { fullName.endsWith(it) }
                 ?: return
         if (finalName in UTILITY_FINAL_NAMES) {
@@ -52,7 +50,7 @@ public class ClassFinalNameDisallowingRule : RulebookRule(ID, setOf(FINAL_NAMES_
 
     internal companion object {
         val ID = RuleId("${RulebookRuleSet.ID.value}:class-final-name-disallowing")
-        val FINAL_NAMES_PROPERTY =
+        val DISALLOW_CLASS_FINAL_NAMES_PROPERTY =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(

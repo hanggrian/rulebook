@@ -8,8 +8,7 @@ if TYPE_CHECKING:
 
 
 class SwitchCaseBranchingChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#switch-case-branching"""
     MSG: str = 'switch-case-branching'
 
     name: str = 'switch-case-branching'

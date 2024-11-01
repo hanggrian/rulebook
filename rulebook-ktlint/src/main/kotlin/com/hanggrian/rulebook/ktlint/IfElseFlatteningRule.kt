@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
+import com.hanggrian.rulebook.ktlint.internals.hasJumpStatement
 import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_INITIALIZER
@@ -21,9 +22,7 @@ import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening) */
 public class IfElseFlatteningRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(BLOCK)
 
@@ -46,8 +45,8 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
                     break
                 }
                 WHITE_SPACE, RBRACE, EOL_COMMENT -> continue
-                else -> return
             }
+            return
         }
         `if` ?: return
 
@@ -62,7 +61,8 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
             return
         }
         `if`
-            .findChildByType(THEN)
+            .takeUnless { it.hasJumpStatement() }
+            ?.findChildByType(THEN)
             ?.takeIf { it.hasMultipleLines() }
             ?: return
         emit(`if`.startOffset, Messages[MSG_INVERT], false)

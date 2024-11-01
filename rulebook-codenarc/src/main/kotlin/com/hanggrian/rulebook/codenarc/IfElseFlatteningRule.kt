@@ -1,14 +1,14 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
+import com.hanggrian.rulebook.codenarc.internals.hasJumpStatement
 import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
+import org.codehaus.groovy.ast.stmt.Statement
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening) */
 public class IfElseFlatteningRule : RulebookRule() {
     override fun getName(): String = "IfElseFlattening"
 
@@ -17,6 +17,12 @@ public class IfElseFlatteningRule : RulebookRule() {
     internal companion object {
         const val MSG_INVERT = "if.else.flattening.invert"
         const val MSG_LIFT = "if.else.flattening.lift"
+
+        private fun Statement.hasMultipleLines() =
+            (this as? BlockStatement)
+                ?.statements
+                ?.let { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
+                ?: false
     }
 
     public class Visitor : AbstractAstVisitor() {
@@ -35,9 +41,10 @@ public class IfElseFlatteningRule : RulebookRule() {
                 addViolation(`else`, Messages[MSG_LIFT])
                 return
             }
-            (`if`.ifBlock as? BlockStatement)
-                ?.statements
-                ?.takeIf { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
+            `if`
+                .takeUnless { it.hasJumpStatement() }
+                ?.ifBlock
+                ?.takeIf { it.hasMultipleLines() }
                 ?: return
             addViolation(`if`, Messages[MSG_INVERT])
         }

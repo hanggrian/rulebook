@@ -12,9 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser.LITERAL_IF
 import com.puppycrawl.tools.checkstyle.grammar.java.JavaLanguageParser.LITERAL_TRY
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#empty-code-block-unwrapping)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#empty-code-block-unwrapping) */
 public class EmptyCodeBlockUnwrappingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK, SLIST)
 

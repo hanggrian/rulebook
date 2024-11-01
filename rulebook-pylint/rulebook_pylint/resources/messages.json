@@ -7,6 +7,8 @@
 
   "exception-extending": "Extend from Exception class.",
 
+  "block-comment-wrapping-join": "Convert into single-line.",
+  "block-comment-wrapping-split": "Convert into multiple lines.",
   "assignment-wrapping": "Break assignment into newline.",
   "parameter-wrapping-argument": "Each parameter should have a newline.",
 
@@ -16,7 +18,7 @@
   "switch-case-branching": "Replace 'match' with 'if'.",
 
   "builtin-function-position": "Put '%s' last.",
-  "class-organization": "Put '%s' before '%s'.",
+  "class-member-ordering": "Put '%s' before '%s'.",
   "inner-class-position": "Put inner class at the bottom.",
 
   "class-name-acronym-capitalization": "Rename acronym to '%s'.",

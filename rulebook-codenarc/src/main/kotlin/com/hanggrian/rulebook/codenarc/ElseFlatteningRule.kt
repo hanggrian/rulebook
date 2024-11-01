@@ -1,15 +1,13 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import com.hanggrian.rulebook.codenarc.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.codenarc.internals.hasJumpStatement
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.Statement
 import org.codenarc.rule.AbstractAstVisitor
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#else-flattening)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#else-flattening) */
 public class ElseFlatteningRule : RulebookRule() {
     override fun getName(): String = "ElseFlattening"
 
@@ -36,7 +34,7 @@ public class ElseFlatteningRule : RulebookRule() {
                 var currentIf: IfStatement? = `if`
                 while (currentIf != null) {
                     currentIf
-                        .takeIf { it.hasReturnOrThrow() }
+                        .takeIf { it.hasJumpStatement() }
                         ?: return
                     lastElse = currentIf.elseBlock
                     currentIf = lastElse as? IfStatement

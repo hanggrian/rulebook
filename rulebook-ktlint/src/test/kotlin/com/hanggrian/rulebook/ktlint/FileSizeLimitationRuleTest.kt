@@ -1,6 +1,6 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.FileSizeLimitationRule.Companion.MAX_FILE_LENGTH_PROPERTY
+import com.hanggrian.rulebook.ktlint.FileSizeLimitationRule.Companion.LIMIT_FILE_SIZE_PROPERTY
 import com.hanggrian.rulebook.ktlint.FileSizeLimitationRule.Companion.MSG
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
@@ -20,7 +20,7 @@ class FileSizeLimitationRuleTest {
 
             import namespace.one.*
             """.trimIndent(),
-        ).withEditorConfigOverride(MAX_FILE_LENGTH_PROPERTY to 3)
+        ).withEditorConfigOverride(LIMIT_FILE_SIZE_PROPERTY to 3)
             .hasNoLintViolations()
 
     @Test
@@ -32,6 +32,6 @@ class FileSizeLimitationRuleTest {
             import namespace.one.*
             import namespace.two.*
             """.trimIndent(),
-        ).withEditorConfigOverride(MAX_FILE_LENGTH_PROPERTY to 3)
+        ).withEditorConfigOverride(LIMIT_FILE_SIZE_PROPERTY to 3)
             .hasLintViolationWithoutAutoCorrect(1, 1, Messages.get(MSG, 3))
 }

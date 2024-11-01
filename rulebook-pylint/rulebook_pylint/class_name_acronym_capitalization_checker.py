@@ -10,8 +10,7 @@ if TYPE_CHECKING:
 
 
 class ClassNameAcronymCapitalizationChecker(RulebookChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-name-acronym-capitalization
-    """
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#class-name-acronym-capitalization"""
     MSG: str = 'class-name-acronym-capitalization'
 
     ABBREVIATION_REGEX: Pattern = regex.compile(r'[A-Z]{3,}')

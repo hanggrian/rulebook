@@ -7,9 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-initial-line-trimming)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#file-initial-line-trimming) */
 public class FileInitialLineTrimmingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FILE)
 

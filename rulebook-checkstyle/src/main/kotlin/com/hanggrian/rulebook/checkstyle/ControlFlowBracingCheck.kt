@@ -11,9 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_WHILE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-/**
- * [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#control-flow-bracing)
- */
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#control-flow-bracing) */
 public class ControlFlowBracingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray =
         intArrayOf(
