@@ -1,7 +1,7 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import com.hanggrian.rulebook.codenarc.internals.hasJumpStatement
+import com.hanggrian.rulebook.codenarc.internals.hasReturnOrThrow
 import org.codehaus.groovy.ast.stmt.SwitchStatement
 import org.codenarc.rule.AbstractAstVisitor
 
@@ -25,7 +25,7 @@ public class DefaultFlatteningRule : RulebookRule() {
             // checks for violation
             node
                 .caseStatements
-                .takeIf { cases2 -> cases2.all { it.hasJumpStatement() } }
+                .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }
                 ?: return
             addViolation(default, Messages[MSG])
         }

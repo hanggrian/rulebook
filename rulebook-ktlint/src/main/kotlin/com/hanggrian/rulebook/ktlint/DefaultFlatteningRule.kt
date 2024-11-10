@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
-import com.hanggrian.rulebook.ktlint.internals.hasJumpStatement
+import com.hanggrian.rulebook.ktlint.internals.hasReturnOrThrow
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
@@ -24,7 +24,7 @@ public class DefaultFlatteningRule : RulebookRule(ID) {
         cases
             .toList()
             .dropLast(1)
-            .takeIf { cases2 -> cases2.all { it.hasJumpStatement() } }
+            .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }
             ?: return
         emit(default.startOffset, Messages[MSG], false)
     }

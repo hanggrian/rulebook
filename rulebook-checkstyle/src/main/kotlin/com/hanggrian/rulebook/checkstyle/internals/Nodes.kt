@@ -7,8 +7,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_BREAK
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CONTINUE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
@@ -36,6 +34,17 @@ internal val DetailAST.children: Sequence<DetailAST>
 
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 
+internal fun DetailAST.nextSibling(predicate: (DetailAST) -> Boolean): DetailAST? {
+    var n = nextSibling
+    while (n != null) {
+        if (predicate(n)) {
+            return n
+        }
+        n = n.nextSibling
+    }
+    return null
+}
+
 internal fun DetailAST.hasModifier(type: Int): Boolean =
     findFirstToken(MODIFIERS)
         ?.let { type in it }
@@ -47,14 +56,9 @@ internal fun DetailAST.hasAnnotation(name: String): Boolean =
         ?.any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
         ?: false
 
-internal fun DetailAST.hasJumpStatement(): Boolean =
+internal fun DetailAST.hasReturnOrThrow(): Boolean =
     (findFirstToken(SLIST) ?: this)
-        .let {
-            LITERAL_RETURN in it ||
-                LITERAL_THROW in it ||
-                LITERAL_BREAK in it ||
-                LITERAL_CONTINUE in it
-        }
+        .let { LITERAL_RETURN in it || LITERAL_THROW in it }
 
 internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 

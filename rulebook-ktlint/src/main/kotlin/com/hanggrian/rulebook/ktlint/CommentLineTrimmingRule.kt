@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.isEolCommentEmpty
-import com.hanggrian.rulebook.ktlint.internals.isWhitespaceWithSingleNewline
+import com.hanggrian.rulebook.ktlint.internals.isWhitespaceSingleLine
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
@@ -17,13 +17,13 @@ public class CommentLineTrimmingRule : RulebookRule(ID) {
         node
             .treePrev
             .takeUnless {
-                it?.isWhitespaceWithSingleNewline() == true &&
+                it?.isWhitespaceSingleLine() == true &&
                     it.treePrev?.elementType == EOL_COMMENT
             } ?: return
 
         // iterate to find last
         var current = node
-        while (current.treeNext?.isWhitespaceWithSingleNewline() == true &&
+        while (current.treeNext?.isWhitespaceSingleLine() == true &&
             current.treeNext?.treeNext?.elementType == EOL_COMMENT
         ) {
             current = current.treeNext.treeNext

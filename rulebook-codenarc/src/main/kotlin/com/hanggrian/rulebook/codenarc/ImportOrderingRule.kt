@@ -27,6 +27,7 @@ public class ImportOrderingRule : RulebookImportRule() {
                             line.matches(IMPORT_REGEX) -> line.substringAfter("import ") to false
                             line.matches(STATIC_IMPORT_REGEX) ->
                                 line.substringAfter("import static ") to true
+
                             else -> return
                         }
 

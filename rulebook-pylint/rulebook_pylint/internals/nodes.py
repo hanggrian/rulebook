@@ -1,15 +1,7 @@
 from tokenize import TokenInfo, COMMENT
 
-from astroid import NodeNG, Name, Assign, AnnAssign, AssignName, FunctionDef, ClassDef, If, MatchCase, Return, Raise, Break, Continue
-
-
-def has_decorator(node: FunctionDef | ClassDef, name: str) -> bool:
-    if node.decorators:
-        decorator: NodeNG
-        for decorator in node.decorators.nodes:
-            if isinstance(decorator, Name) and decorator.name == name:
-                return True
-    return False
+from astroid import NodeNG, Name, Assign, AnnAssign, AssignName, FunctionDef, ClassDef, If, \
+    MatchCase, Return, Raise
 
 
 def get_assignname(node: Assign) -> AssignName | None:
@@ -26,7 +18,16 @@ def get_assignname(node: Assign) -> AssignName | None:
     return None
 
 
-def has_jump_statement(node: NodeNG) -> bool:
+def has_decorator(node: FunctionDef | ClassDef, name: str) -> bool:
+    if node.decorators:
+        decorator: NodeNG
+        for decorator in node.decorators.nodes:
+            if isinstance(decorator, Name) and decorator.name == name:
+                return True
+    return False
+
+
+def has_return_or_raise(node: NodeNG) -> bool:
     body: list[NodeNG]
     if isinstance(node, If):
         body = node.body
@@ -34,7 +35,7 @@ def has_jump_statement(node: NodeNG) -> bool:
         body = node.body
     else:
         return False
-    return any(isinstance(node, (Return, Raise, Break, Continue)) for node in body)
+    return any(isinstance(node, (Return, Raise)) for node in body)
 
 
 def is_multiline(node: NodeNG) -> bool:

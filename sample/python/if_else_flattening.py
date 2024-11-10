@@ -1,8 +1,6 @@
 def foo(condition: bool):
     if condition:
         print()
-    else:
-        print()
         print()
 
 

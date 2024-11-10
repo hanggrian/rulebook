@@ -30,6 +30,7 @@ public class BlockCommentSpacingRule : RulebookRule(ID) {
                     emit(node.endOffset, Messages[MSG_SINGLE_END], false)
                 }
             }
+
             else -> {
                 // take non-whitespace sibling
                 val next = node.treeNext?.takeUnless { it.isWhiteSpace() } ?: return

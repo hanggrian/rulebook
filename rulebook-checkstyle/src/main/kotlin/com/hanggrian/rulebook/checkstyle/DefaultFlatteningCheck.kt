@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.contains
-import com.hanggrian.rulebook.checkstyle.internals.hasJumpStatement
+import com.hanggrian.rulebook.checkstyle.internals.hasReturnOrThrow
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_DEFAULT
@@ -24,7 +24,7 @@ public class DefaultFlatteningCheck : RulebookCheck() {
         cases
             .toList()
             .dropLast(1)
-            .takeIf { cases2 -> cases2.all { it.hasJumpStatement() } }
+            .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }
             ?: return
         log(default, Messages[MSG])
     }

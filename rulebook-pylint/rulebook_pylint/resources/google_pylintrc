@@ -23,7 +23,7 @@ load-plugins=
   rulebook_pylint.block_comment_line_joining_checker,
   rulebook_pylint.block_comment_line_trimming_checker,
   rulebook_pylint.builtin_function_position_checker,
-  rulebook_pylint.case_line_joining_checker,
+  rulebook_pylint.case_line_spacing_checker,
   rulebook_pylint.class_final_name_disallowing_checker,
   rulebook_pylint.class_member_ordering_checker,
   rulebook_pylint.class_name_acronym_capitalization_checker,

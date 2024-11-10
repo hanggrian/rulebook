@@ -530,7 +530,7 @@
     <module name="BlockCommentLineJoining"/>
     <module name="BlockCommentLineTrimming"/>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
-    <module name="CaseLineJoining"/>
+    <module name="CaseLineSpacing"/>
     <module name="CodeBlockLineTrimming"/>
     <module name="CommentLineJoining"/>
     <module name="CommentLineTrimming"/>

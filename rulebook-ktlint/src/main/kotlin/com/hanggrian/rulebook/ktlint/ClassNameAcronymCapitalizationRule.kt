@@ -25,6 +25,7 @@ public class ClassNameAcronymCapitalizationRule : RulebookRule(ID) {
                         .findChildByType(IDENTIFIER)
                         ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
                         ?.let { it to it.text }
+
                 else ->
                     getFileName(node)
                         ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }

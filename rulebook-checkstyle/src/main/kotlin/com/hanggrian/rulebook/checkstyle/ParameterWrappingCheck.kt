@@ -24,6 +24,7 @@ public class ParameterWrappingCheck : RulebookCheck() {
                     val rparen = node.nextSibling?.takeIf { it.type == RPAREN } ?: return
                     lparen to rparen
                 }
+
                 else -> {
                     val rparen = node.nextSibling?.takeIf { it.type == RPAREN } ?: return
                     node.parent to rparen

@@ -50,6 +50,7 @@ public class BlockCommentLineTrimmingCheck : RulebookJavadocCheck() {
                             children = description.filterEmpty()
                             return@let children.lastOrNull { it.type == NEWLINE }
                         }
+
                         else -> null
                     }
                 }?.takeIf { n ->

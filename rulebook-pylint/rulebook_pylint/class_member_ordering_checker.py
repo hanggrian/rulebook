@@ -39,4 +39,4 @@ class ClassMemberOrderingChecker(RulebookChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(ClassMemberOrganizationChecker(linter))
+    linter.register_checker(ClassMemberOrderingChecker(linter))

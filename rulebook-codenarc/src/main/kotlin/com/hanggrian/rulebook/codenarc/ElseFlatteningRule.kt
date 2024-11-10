@@ -1,7 +1,7 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import com.hanggrian.rulebook.codenarc.internals.hasJumpStatement
+import com.hanggrian.rulebook.codenarc.internals.hasReturnOrThrow
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.Statement
@@ -34,7 +34,7 @@ public class ElseFlatteningRule : RulebookRule() {
                 var currentIf: IfStatement? = `if`
                 while (currentIf != null) {
                     currentIf
-                        .takeIf { it.hasJumpStatement() }
+                        .takeIf { it.hasReturnOrThrow() }
                         ?: return
                     lastElse = currentIf.elseBlock
                     currentIf = lastElse as? IfStatement

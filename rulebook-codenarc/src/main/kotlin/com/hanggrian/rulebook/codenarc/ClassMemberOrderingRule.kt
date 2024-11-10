@@ -45,6 +45,7 @@ public class ClassMemberOrderingRule : RulebookRule() {
                             field,
                             Messages.get(MSG, Messages[MSG_PROPERTY], Messages[MSG_CONSTRUCTOR]),
                         )
+
                     firstFunctionIndex != null && field.lineNumber > firstFunctionIndex ->
                         addViolation(
                             field,

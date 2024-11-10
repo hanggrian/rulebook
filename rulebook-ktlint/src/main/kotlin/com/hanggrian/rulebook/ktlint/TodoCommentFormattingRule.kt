@@ -32,6 +32,7 @@ public class TodoCommentFormattingRule : RulebookRule(ID) {
                         .takeUnless { KDOC_LEADING_ASTERISK in node }
                         ?.findChildByType(KDOC_TEXT)
                         ?.text
+
                 else ->
                     node
                         .siblingsUntil(KDOC_LEADING_ASTERISK)

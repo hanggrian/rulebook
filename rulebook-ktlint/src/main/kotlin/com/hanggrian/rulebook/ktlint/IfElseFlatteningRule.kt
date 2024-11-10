@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
-import com.hanggrian.rulebook.ktlint.internals.hasJumpStatement
+import com.hanggrian.rulebook.ktlint.internals.hasReturnOrThrow
 import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_INITIALIZER
@@ -40,13 +40,15 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
                     `if` = child
                     break
                 }
+
                 RETURN -> {
                     `if` = child.findChildByType(IF) ?: return
                     break
                 }
+
                 WHITE_SPACE, RBRACE, EOL_COMMENT -> continue
+                else -> return
             }
-            return
         }
         `if` ?: return
 
@@ -61,7 +63,7 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
             return
         }
         `if`
-            .takeUnless { it.hasJumpStatement() }
+            .takeUnless { it.hasReturnOrThrow() }
             ?.findChildByType(THEN)
             ?.takeIf { it.hasMultipleLines() }
             ?: return

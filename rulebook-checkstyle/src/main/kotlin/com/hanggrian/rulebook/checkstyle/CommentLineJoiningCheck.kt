@@ -28,10 +28,10 @@ public class CommentLineJoiningCheck : RulebookCheck() {
         next
             .takeIf { it.type == SINGLE_LINE_COMMENT && it.isEolCommentEmpty() }
             ?: return
-        log(next, Messages[MSG_EOL])
+        log(next, Messages[MSG])
     }
 
     internal companion object {
-        const val MSG_EOL = "comment.line.joining"
+        const val MSG = "comment.line.joining"
     }
 }

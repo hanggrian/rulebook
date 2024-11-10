@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.contains
-import com.hanggrian.rulebook.checkstyle.internals.hasJumpStatement
+import com.hanggrian.rulebook.checkstyle.internals.hasReturnOrThrow
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
@@ -28,9 +28,10 @@ public class IfElseFlatteningCheck : RulebookCheck() {
                     `if` = child
                     break
                 }
+
                 SEMI, RCURLY, SINGLE_LINE_COMMENT -> continue
+                else -> return
             }
-            return
         }
         `if` ?: return
 
@@ -45,7 +46,7 @@ public class IfElseFlatteningCheck : RulebookCheck() {
             return
         }
         `if`
-            .takeUnless { it.hasJumpStatement() }
+            .takeUnless { it.hasReturnOrThrow() }
             ?.takeIf { it.hasMultipleLines() }
             ?: return
         log(`if`, Messages[MSG_INVERT])

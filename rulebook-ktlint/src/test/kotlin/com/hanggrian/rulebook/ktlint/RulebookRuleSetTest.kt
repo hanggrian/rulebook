@@ -23,7 +23,7 @@ class RulebookRuleSetTest {
             BlockTagPunctuationRule::class,
             BuiltinFunctionPositionRule::class,
             BuiltinTypePriorityRule::class,
-            CaseLineJoiningRule::class,
+            CaseLineSpacingRule::class,
             ClassFinalNameDisallowingRule::class,
             ClassMemberOrderingRule::class,
             ClassNameAcronymCapitalizationRule::class,

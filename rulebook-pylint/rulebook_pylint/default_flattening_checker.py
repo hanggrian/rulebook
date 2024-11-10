@@ -2,7 +2,7 @@ from astroid import Match, MatchAs, MatchCase
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
-from rulebook_pylint.internals.nodes import has_jump_statement
+from rulebook_pylint.internals.nodes import has_return_or_raise
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -25,7 +25,7 @@ class DefaultFlatteningChecker(RulebookChecker):
             return
 
         # checks for violation
-        if not all(has_jump_statement(node) for node in cases[:-1]):
+        if not all(has_return_or_raise(node) for node in cases[:-1]):
             return
         self.add_message(self.MSG, node=default)
 

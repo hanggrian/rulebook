@@ -1,8 +1,6 @@
 package com.hanggrian.rulebook.ktlint.internals
 
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.BREAK
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
@@ -33,7 +31,7 @@ internal fun ASTNode.siblingsUntil(type: IElementType): List<ASTNode> {
     }
 }
 
-internal fun ASTNode.hasJumpStatement(): Boolean {
+internal fun ASTNode.hasReturnOrThrow(): Boolean {
     val statements =
         when (elementType) {
             IF -> findChildByType(THEN)!!
@@ -41,7 +39,7 @@ internal fun ASTNode.hasJumpStatement(): Boolean {
             else -> return false
         }
     return (statements.findChildByType(BLOCK) ?: statements)
-        .let { RETURN in it || THROW in it || BREAK in it || CONTINUE in it }
+        .let { RETURN in it || THROW in it }
 }
 
 internal fun ASTNode.isMultiline(): Boolean {
@@ -51,10 +49,10 @@ internal fun ASTNode.isMultiline(): Boolean {
     return children().any { it.isMultiline() }
 }
 
-internal fun ASTNode.isWhitespaceWithSingleNewline(): Boolean =
+internal fun ASTNode.isWhitespaceSingleLine(): Boolean =
     elementType == WHITE_SPACE && text.count { it == '\n' } == 1
 
-internal fun ASTNode.isWhitespaceWithMultipleNewlines(): Boolean =
+internal fun ASTNode.isWhitespaceMultiline(): Boolean =
     elementType == WHITE_SPACE && text.count { it == '\n' } > 1
 
 internal fun ASTNode.isEolCommentEmpty(): Boolean =

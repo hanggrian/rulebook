@@ -2,7 +2,8 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.class_name_acronym_capitalization_checker import ClassNameAcronymCapitalizationChecker
+from rulebook_pylint.class_name_acronym_capitalization_checker import \
+    ClassNameAcronymCapitalizationChecker
 
 from .tests import assert_properties, msg
 

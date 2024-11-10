@@ -1,7 +1,7 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import com.hanggrian.rulebook.codenarc.internals.hasJumpStatement
+import com.hanggrian.rulebook.codenarc.internals.hasReturnOrThrow
 import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
@@ -42,7 +42,7 @@ public class IfElseFlatteningRule : RulebookRule() {
                 return
             }
             `if`
-                .takeUnless { it.hasJumpStatement() }
+                .takeUnless { it.hasReturnOrThrow() }
                 ?.ifBlock
                 ?.takeIf { it.hasMultipleLines() }
                 ?: return

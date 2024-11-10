@@ -44,6 +44,7 @@ public class EmptyCodeBlockUnwrappingCheck : RulebookCheck() {
                     val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
                     lcurly to rcurly
                 }
+
                 else -> {
                     // skip non-empty content
                     node

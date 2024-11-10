@@ -258,7 +258,7 @@
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
-    <module name="CaseLineJoining"/>
+    <module name="CaseLineSpacing"/>
     <module name="CodeBlockLineTrimming"/>
     <module name="CommentLineJoining"/>
     <module name="CommentLineTrimming"/>

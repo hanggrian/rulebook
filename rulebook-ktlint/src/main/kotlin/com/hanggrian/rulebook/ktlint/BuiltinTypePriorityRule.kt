@@ -34,6 +34,7 @@ public class BuiltinTypePriorityRule : RulebookRule(ID) {
                         ?.let { it to path }
                         ?: return
                 }
+
                 else -> node to node.qualifierName
             }
 
@@ -55,6 +56,7 @@ public class BuiltinTypePriorityRule : RulebookRule(ID) {
                     } catch (e: ClassNotFoundException) {
                         null
                     }
+
                 startsWith("java.util.") -> COLLECTIONS_REPLACEMENT[this]
                 isTestClass && startsWith("org.junit") -> TEST_ANNOTATIONS_REPLACEMENT[this]
                 else -> null

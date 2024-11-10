@@ -17,7 +17,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BlockTagPunctuationRule() },
             RuleProvider { BuiltinFunctionPositionRule() },
             RuleProvider { BuiltinTypePriorityRule() },
-            RuleProvider { CaseLineJoiningRule() },
+            RuleProvider { CaseLineSpacingRule() },
             RuleProvider { ClassFinalNameDisallowingRule() },
             RuleProvider { ClassMemberOrderingRule() },
             RuleProvider { ClassNameAcronymCapitalizationRule() },

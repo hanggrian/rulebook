@@ -29,6 +29,7 @@ public class CodeBlockLineTrimmingCheck : RulebookCheck() {
                     val lcurlySibling = lcurly.nextSibling ?: return
                     lcurly to lcurlySibling
                 }
+
                 else ->
                     // the first node is slist itself
                     node to node.firstChild

@@ -11,6 +11,8 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.IndentConfig
+import com.pinterest.ktlint.rule.engine.core.api.Rule.VisitorModifier.RunAfterRule
+import com.pinterest.ktlint.rule.engine.core.api.Rule.VisitorModifier.RunAfterRule.Mode.REGARDLESS_WHETHER_RUN_AFTER_RULE_IS_LOADED_OR_DISABLED
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
@@ -25,9 +27,13 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 public class BlockCommentWrappingRule :
     RulebookRule(
         ID,
-        INDENT_SIZE_PROPERTY,
-        INDENT_STYLE_PROPERTY,
-        MAX_LINE_LENGTH_PROPERTY,
+        setOf(INDENT_SIZE_PROPERTY, INDENT_STYLE_PROPERTY, MAX_LINE_LENGTH_PROPERTY),
+        setOf(
+            RunAfterRule(
+                BlockCommentSpacingRule.ID,
+                REGARDLESS_WHETHER_RUN_AFTER_RULE_IS_LOADED_OR_DISABLED,
+            ),
+        ),
     ) {
     private var indentConfig = IndentConfig.DEFAULT_INDENT_CONFIG
     private var maxLineLength = MAX_LINE_LENGTH_PROPERTY.defaultValue
@@ -55,6 +61,8 @@ public class BlockCommentWrappingRule :
                     it.elementType == KDOC_TEXT ||
                         it.elementType == KDOC_MARKDOWN_INLINE_LINK
                 } ?: return
+
+        // allow empty content
         val text =
             children
                 .joinToString("") { it.text }
@@ -62,17 +70,32 @@ public class BlockCommentWrappingRule :
                 ?: return
 
         // checks for violation
-        val textLength =
-            node.indentLevel *
-                indentConfig.indent.length +
-                text.length
-        when {
-            node.isMultiline() && textLength + SINGLELINE_TEMPLATE.length <= maxLineLength ->
-                emit(children.first().startOffset, Messages[MSG_JOIN], false)
-            !node.isMultiline() && textLength + MULTILINE_PREFIX.length > maxLineLength ->
-                emit(children.first().startOffset, Messages[MSG_SPLIT], false)
+        val textLength = node.indentLength + text.length
+        if (node.isMultiline()) {
+            textLength
+                .takeIf { it + SINGLELINE_TEMPLATE.length <= maxLineLength }
+                ?: return
+            emit(children.first().startOffset, Messages[MSG_JOIN], false)
+            return
         }
+        textLength
+            .takeIf { it + MULTILINE_PREFIX.length > maxLineLength }
+            ?: return
+        emit(children.first().startOffset, Messages[MSG_SPLIT], false)
     }
+
+    private val ASTNode.indentLength: Int
+        get() {
+            var result = 0
+            var current = this
+            while (!current.isRoot()) {
+                current = current.treeParent
+                if (current.elementType == CLASS_BODY) {
+                    result++
+                }
+            }
+            return result * indentConfig.indent.length
+        }
 
     internal companion object {
         val ID = RuleId("${RulebookRuleSet.ID.value}:block-comment-wrapping")
@@ -82,18 +105,5 @@ public class BlockCommentWrappingRule :
 
         private const val SINGLELINE_TEMPLATE = "/** */"
         private const val MULTILINE_PREFIX = " *"
-
-        private val ASTNode.indentLevel: Int
-            get() {
-                var result = 0
-                var current = this
-                while (!current.isRoot()) {
-                    current = current.treeParent
-                    if (current.elementType == CLASS_BODY) {
-                        result++
-                    }
-                }
-                return result
-            }
     }
 }
