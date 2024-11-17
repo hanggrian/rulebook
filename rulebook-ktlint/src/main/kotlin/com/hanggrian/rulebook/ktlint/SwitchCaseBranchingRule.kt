@@ -1,6 +1,8 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
+import com.hanggrian.rulebook.ktlint.internals.contains
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.COMMA
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -13,10 +15,16 @@ public class SwitchCaseBranchingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
+        // target single entry
+        val case =
+            node
+                .children()
+                .singleOrNull { it.elementType == WHEN_ENTRY }
+                ?: return
+
         // checks for violation
-        node
-            .children()
-            .takeIf { nodes -> nodes.count { it.elementType == WHEN_ENTRY } == 1 }
+        case
+            .takeUnless { COMMA in it }
             ?: return
         emit(node.startOffset, Messages[MSG], false)
     }

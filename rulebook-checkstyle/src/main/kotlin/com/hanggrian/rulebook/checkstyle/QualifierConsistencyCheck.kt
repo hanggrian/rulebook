@@ -25,6 +25,7 @@ public class QualifierConsistencyCheck : RulebookCheck() {
         when (node.type) {
             // keep class qualifier
             TYPE -> targetNodes += node
+
             // keep class qualifier and calling method
             else -> {
                 val dot =

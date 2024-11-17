@@ -1,6 +1,6 @@
 package com.hanggrian.rulebook.checkstyle;
 
-public class ClassOrganization {
+public class ClassMemberOrdering {
     public class Foo {
         public static void bar() {}
 

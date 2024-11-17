@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
+import com.hanggrian.rulebook.ktlint.internals.isComment
 import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.hanggrian.rulebook.ktlint.internals.isWhitespaceMultiline
 import com.hanggrian.rulebook.ktlint.internals.isWhitespaceSingleLine
@@ -24,7 +25,12 @@ public class CaseLineSpacingRule : RulebookRule(ID) {
                 ?: return
 
         // checks for violation
-        if (node.isMultiline()) {
+        if (node.isMultiline() ||
+            node.treePrev?.let {
+                it.isWhitespaceSingleLine() &&
+                    it.treePrev?.isComment() == true
+            } == true
+        ) {
             whitespace
                 .takeIf { it.isWhitespaceSingleLine() }
                 ?: return

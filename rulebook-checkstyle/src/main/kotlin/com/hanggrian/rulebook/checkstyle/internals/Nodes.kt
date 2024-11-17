@@ -5,6 +5,7 @@ package com.hanggrian.rulebook.checkstyle.internals
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
@@ -63,6 +64,9 @@ internal fun DetailAST.hasReturnOrThrow(): Boolean =
 internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 
 internal fun DetailAST.isMultiline(): Boolean = maxLineNo > minLineNo
+
+internal fun DetailAST.isComment(): Boolean =
+    type == SINGLE_LINE_COMMENT || type == BLOCK_COMMENT_BEGIN
 
 internal fun DetailAST.isEolCommentEmpty(): Boolean =
     type == SINGLE_LINE_COMMENT &&

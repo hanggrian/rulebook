@@ -9,8 +9,8 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
         setOf(
             RuleProvider { BlockCommentLineJoiningRule() },
             RuleProvider { BlockCommentLineTrimmingRule() },
+            RuleProvider { BlockCommentSignatureRule() },
             RuleProvider { BlockCommentSpacingRule() },
-            RuleProvider { BlockCommentWrappingRule() },
             RuleProvider { BlockTagIndentationRule() },
             RuleProvider { BlockTagInitialLineSpacingRule() },
             RuleProvider { BlockTagOrderingRule() },

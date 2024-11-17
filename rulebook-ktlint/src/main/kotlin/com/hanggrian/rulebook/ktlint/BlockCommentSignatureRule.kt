@@ -23,8 +23,8 @@ import com.pinterest.ktlint.rule.engine.core.api.isRoot
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-wrapping) */
-public class BlockCommentWrappingRule :
+/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-comment-signature) */
+public class BlockCommentSignatureRule :
     RulebookRule(
         ID,
         setOf(INDENT_SIZE_PROPERTY, INDENT_STYLE_PROPERTY, MAX_LINE_LENGTH_PROPERTY),
@@ -79,7 +79,7 @@ public class BlockCommentWrappingRule :
             return
         }
         textLength
-            .takeIf { it + MULTILINE_PREFIX.length > maxLineLength }
+            .takeIf { it + SINGLELINE_TEMPLATE.length > maxLineLength + 1 }
             ?: return
         emit(children.first().startOffset, Messages[MSG_SPLIT], false)
     }
@@ -98,12 +98,11 @@ public class BlockCommentWrappingRule :
         }
 
     internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:block-comment-wrapping")
+        val ID = RuleId("${RulebookRuleSet.ID.value}:block-comment-signature")
 
-        const val MSG_JOIN = "block.comment.wrapping.join"
-        const val MSG_SPLIT = "block.comment.wrapping.split"
+        const val MSG_JOIN = "block.comment.signature.join"
+        const val MSG_SPLIT = "block.comment.signature.split"
 
         private const val SINGLELINE_TEMPLATE = "/** */"
-        private const val MULTILINE_PREFIX = " *"
     }
 }

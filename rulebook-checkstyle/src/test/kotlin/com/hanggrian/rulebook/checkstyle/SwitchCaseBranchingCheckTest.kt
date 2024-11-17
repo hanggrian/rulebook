@@ -14,4 +14,8 @@ class SwitchCaseBranchingCheckTest {
 
     @Test
     fun `Single switch branch`() = assertEquals(1, checker.read("SwitchCaseBranching2"))
+
+    @Test
+    fun `Skip single branch if it has fall through condition`() =
+        assertEquals(0, checker.read("SwitchCaseBranching3"))
 }

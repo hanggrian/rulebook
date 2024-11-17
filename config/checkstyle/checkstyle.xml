@@ -24,7 +24,8 @@
   <!-- https://checkstyle.org/filters/suppressionfilter.html -->
   <module name="SuppressionFilter">
     <property
-      name="file" value="${org.checkstyle.sun.suppressionfilter.config}"
+      name="file"
+      value="${org.checkstyle.sun.suppressionfilter.config}"
       default="checkstyle-suppressions.xml"/>
     <property name="optional" value="true"/>
   </module>
@@ -111,13 +112,15 @@
     <module name="NoWhitespaceAfter"/>
     <module name="NoWhitespaceBefore"/>
     <module name="OperatorWrap">
-      <property name="option" value="EOL"/>
+      <property name="option" value="NL"/>
+      <property name="tokens" value="QUESTION, COLON"/>
     </module>
     <module name="OperatorWrap">
-      <property name="option" value="NL"/>
+      <property name="option" value="EOL"/>
       <property
         name="tokens"
-        value="QUESTION, COLON"/>
+        value="EQUAL, NOT_EQUAL, DIV, PLUS, MINUS, STAR, MOD, SR, BSR, GE, GT, SL, LE, LT, BXOR,
+          BOR, LOR, BAND, LAND, TYPE_EXTENSION_AND, LITERAL_INSTANCEOF"/>
     </module>
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
@@ -132,7 +135,16 @@
     <module name="AvoidNestedBlocks"/>
     <module name="EmptyBlock"/>
     <module name="LeftCurly"/>
-    <module name="NeedBraces"/>
+    <module name="NeedBraces">
+      <property name="allowEmptyLoopBody" value="true"/>
+      <property name="allowSingleLineStatement" value="true"/>
+      <property
+        name="tokens"
+        value="LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
+    </module>
+    <module name="NeedBraces">
+      <property name="tokens" value="LITERAL_DO"/>
+    </module>
     <module name="RightCurly"/>
 
     <!-- https://checkstyle.org/checks/coding/index.html -->
@@ -165,7 +177,8 @@
     <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
     <module name="SuppressionXpathFilter">
       <property
-        name="file" value="${org.checkstyle.sun.suppressionxpathfilter.config}"
+        name="file"
+        value="${org.checkstyle.sun.suppressionxpathfilter.config}"
         default="checkstyle-xpath-suppressions.xml"/>
       <property name="optional" value="true"/>
     </module>
@@ -179,18 +192,19 @@
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"
-        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
+        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
+          java.lang.Throwable"/>
     </module>
     <module name="ExceptionExtending"/>
     <module name="IllegalThrows">
       <property name="ignoreOverriddenMethods" value="false"/>
       <property
         name="illegalClassNames"
-        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception, java.lang.Throwable"/>
+        value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
+          java.lang.Throwable"/>
     </module>
 
     <!-- Flow -->
-    <module name="ControlFlowBracing"/>
     <module name="DefaultFlattening"/>
     <module name="ElseFlattening"/>
     <module name="IfElseFlattening"/>
@@ -198,7 +212,11 @@
 
     <!-- Fold -->
     <module name="AssignmentWrapping"/>
-    <module name="EmptyCodeBlockUnwrapping"/>
+    <module name="ChainCallContinuation"/>
+    <module name="RegexpSinglelineJava">
+      <property name="format" value="\{[ ]+\}"/>
+      <property name="message" value="Unexpected whitespace between '{}'."/>
+    </module>
     <module name="LambdaWrapping"/>
     <module name="ParameterWrapping"/>
     <module name="OneStatementPerLine"/>
@@ -214,7 +232,9 @@
     <module name="CustomImportOrder">
       <property name="sortImportsInGroupAlphabetically" value="true"/>
       <property name="separateLineBetweenGroups" value="true"/>
-      <property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>
+      <property
+        name="customImportOrderRules"
+        value="STATIC###THIRD_PARTY_PACKAGE"/>
       <property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
     </module>
 
@@ -246,7 +266,8 @@
         value="(?i)^(?!(object|integer|string|objects|integers|strings|_)$).+$"/>
       <property
         name="tokens"
-        value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF, RECORD_COMPONENT_DEF"/>
+        value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF,
+          RECORD_COMPONENT_DEF"/>
     </module>
 
     <!-- Value -->

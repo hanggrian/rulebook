@@ -1,6 +1,8 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
+import com.hanggrian.rulebook.checkstyle.internals.children
+import com.hanggrian.rulebook.checkstyle.internals.isComment
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.hanggrian.rulebook.checkstyle.internals.maxLineNo
 import com.hanggrian.rulebook.checkstyle.internals.minLineNo
@@ -13,13 +15,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 public class CaseLineSpacingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CASE_GROUP)
 
+    override fun isCommentNodesRequired(): Boolean = true
+
     override fun visitToken(node: DetailAST) {
         // skip last branch
         val caseGroup = node.nextSibling { it.type == CASE_GROUP } ?: return
 
         // checks for violation
         val slist = node.findFirstToken(SLIST) ?: return
-        if (slist.isMultiline()) {
+        if (slist.isMultiline() ||
+            node.children.any { it.isComment() }
+        ) {
             caseGroup
                 .takeIf { it.minLineNo != slist.maxLineNo + 2 }
                 ?: return

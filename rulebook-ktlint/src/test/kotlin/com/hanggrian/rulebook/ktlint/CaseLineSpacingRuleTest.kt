@@ -4,6 +4,7 @@ import com.hanggrian.rulebook.ktlint.CaseLineSpacingRule.Companion.MSG_MISSING
 import com.hanggrian.rulebook.ktlint.CaseLineSpacingRule.Companion.MSG_UNEXPECTED
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class CaseLineSpacingRuleTest {
@@ -62,4 +63,26 @@ class CaseLineSpacingRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(7, 9, Messages[MSG_MISSING])
+
+    @Test
+    fun `Branches with comment are always multiline`() =
+        assertThatCode(
+            """
+            fun foo(bar: Int) {
+                when (bar) {
+                    // Lorem ipsum.
+                    0 -> baz()
+                    /* Lorem ipsum. */
+                    1 -> baz()
+                    /** Lorem ipsum. */
+                    2 -> baz()
+                    else -> baz()
+                }
+            }
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(5, 9, Messages[MSG_MISSING]),
+            LintViolation(7, 9, Messages[MSG_MISSING]),
+            LintViolation(9, 9, Messages[MSG_MISSING]),
+        )
 }

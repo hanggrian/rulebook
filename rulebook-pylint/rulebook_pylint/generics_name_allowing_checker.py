@@ -27,6 +27,11 @@ class GenericsNameAllowingChecker(RulebookChecker):
             ),
         )
 
+    _allow_generics_names: list[str]
+
+    def open(self) -> None:
+        self._allow_generics_names = self.linter.config.rulebook_allow_generics_names
+
     def visit_assign(self, node: Assign) -> None:
         # only target TypeVar declaration
         if not isinstance(node.value, Call):
@@ -41,12 +46,12 @@ class GenericsNameAllowingChecker(RulebookChecker):
             return
 
         # checks for violation
-        if target.name in self.linter.config.rulebook_allow_generics_names:
+        if target.name in self._allow_generics_names:
             return
         self.add_message(
             self.MSG,
             node=target,
-            args=', '.join(self.linter.config.rulebook_allow_generics_names),
+            args=', '.join(self._allow_generics_names),
         )
 
 

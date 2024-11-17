@@ -1,6 +1,8 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
+import org.codehaus.groovy.ast.stmt.BlockStatement
+import org.codehaus.groovy.ast.stmt.BreakStatement
 import org.codehaus.groovy.ast.stmt.SwitchStatement
 import org.codenarc.rule.AbstractAstVisitor
 
@@ -18,11 +20,17 @@ public class SwitchCaseBranchingRule : RulebookRule() {
         override fun visitSwitch(node: SwitchStatement) {
             super.visitSwitch(node)
 
+            // target single entry
+            val case =
+                node
+                    .caseStatements
+                    .singleOrNull()
+                    ?: return
+
             // checks for violation
-            node
-                .caseStatements
-                .takeIf { it.size == 1 }
-                ?: return
+            (case.code as? BlockStatement)
+                ?.statements
+                ?.takeUnless { it.last() is BreakStatement }
             addViolation(node, Messages[MSG])
         }
     }

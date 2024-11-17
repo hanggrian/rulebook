@@ -1,16 +1,16 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BlockCommentWrappingRule.Companion.MSG_JOIN
-import com.hanggrian.rulebook.ktlint.BlockCommentWrappingRule.Companion.MSG_SPLIT
+import com.hanggrian.rulebook.ktlint.BlockCommentSignatureRule.Companion.MSG_JOIN
+import com.hanggrian.rulebook.ktlint.BlockCommentSignatureRule.Companion.MSG_SPLIT
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class BlockCommentWrappingRuleTest {
-    private val assertThatCode = assertThatRule { BlockCommentWrappingRule() }
+class BlockCommentSignatureRuleTest {
+    private val assertThatCode = assertThatRule { BlockCommentSignatureRule() }
 
     @Test
-    fun `Rule properties`() = BlockCommentWrappingRule().assertProperties()
+    fun `Rule properties`() = BlockCommentSignatureRule().assertProperties()
 
     @Test
     fun `Correct block comments`() =
@@ -65,7 +65,7 @@ class BlockCommentWrappingRuleTest {
             /**
              *
              */
-            fun foo(bar: Int) {}
+            fun foo() {}
             """.trimIndent(),
         ).hasNoLintViolations()
 }

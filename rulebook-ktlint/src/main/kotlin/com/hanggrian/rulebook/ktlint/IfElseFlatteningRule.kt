@@ -3,12 +3,12 @@ package com.hanggrian.rulebook.ktlint
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
 import com.hanggrian.rulebook.ktlint.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.ktlint.internals.isComment
 import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_INITIALIZER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
@@ -35,18 +35,21 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
         // get last if
         var `if`: ASTNode? = null
         for (child in node.children().asIterable().reversed()) {
-            when (child.elementType) {
-                IF -> {
+            when {
+                child.elementType == IF -> {
                     `if` = child
                     break
                 }
 
-                RETURN -> {
+                child.elementType == RETURN -> {
                     `if` = child.findChildByType(IF) ?: return
                     break
                 }
 
-                WHITE_SPACE, RBRACE, EOL_COMMENT -> continue
+                child.elementType == WHITE_SPACE ||
+                    child.elementType == RBRACE ||
+                    child.isComment() -> continue
+
                 else -> return
             }
         }

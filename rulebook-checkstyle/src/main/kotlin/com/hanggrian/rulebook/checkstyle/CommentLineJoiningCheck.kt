@@ -21,12 +21,12 @@ public class CommentLineJoiningCheck : RulebookCheck() {
         val next =
             node
                 .nextSibling
-                ?.takeIf { it.type == SINGLE_LINE_COMMENT && it.isEolCommentEmpty() }
+                ?.takeIf { it.isEolCommentEmpty() }
                 ?: return
 
         // checks for violation
         next
-            .takeIf { it.type == SINGLE_LINE_COMMENT && it.isEolCommentEmpty() }
+            .takeIf { it.isEolCommentEmpty() }
             ?: return
         log(next, Messages[MSG])
     }

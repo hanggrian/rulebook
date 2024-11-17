@@ -4,13 +4,13 @@ import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.contains
 import com.hanggrian.rulebook.checkstyle.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.checkstyle.internals.isComment
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
 /** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#if-else-flattening) */
@@ -23,13 +23,16 @@ public class IfElseFlatteningCheck : RulebookCheck() {
         // get last if
         var `if`: DetailAST? = null
         for (child in node.children.asIterable().reversed()) {
-            when (child.type) {
-                LITERAL_IF -> {
+            when {
+                child.type == LITERAL_IF -> {
                     `if` = child
                     break
                 }
 
-                SEMI, RCURLY, SINGLE_LINE_COMMENT -> continue
+                child.type == SEMI ||
+                    child.type == RCURLY ||
+                    child.isComment() -> continue
+
                 else -> return
             }
         }

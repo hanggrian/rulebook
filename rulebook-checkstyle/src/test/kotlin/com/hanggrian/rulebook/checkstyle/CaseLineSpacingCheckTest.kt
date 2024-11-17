@@ -18,4 +18,8 @@ class CaseLineSpacingCheckTest {
 
     @Test
     fun `No line break after multiline branch`() = assertEquals(1, checker.read("CaseLineSpacing3"))
+
+    @Test
+    fun `Branches with comment are always multiline`() =
+        assertEquals(3, checker.read("CaseLineSpacing4"))
 }

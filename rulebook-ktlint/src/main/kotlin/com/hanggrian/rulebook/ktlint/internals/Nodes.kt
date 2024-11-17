@@ -1,8 +1,10 @@
 package com.hanggrian.rulebook.ktlint.internals
 
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
@@ -48,6 +50,9 @@ internal fun ASTNode.isMultiline(): Boolean {
     }
     return children().any { it.isMultiline() }
 }
+
+internal fun ASTNode.isComment(): Boolean =
+    elementType == EOL_COMMENT || elementType == BLOCK_COMMENT || elementType == KDOC
 
 internal fun ASTNode.isWhitespaceSingleLine(): Boolean =
     elementType == WHITE_SPACE && text.count { it == '\n' } == 1

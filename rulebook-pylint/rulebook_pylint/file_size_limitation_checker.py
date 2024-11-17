@@ -26,14 +26,18 @@ class FileSizeLimitationChecker(RulebookRawChecker):
             ),
         )
 
+    _limit_file_size: int
+
+    def open(self) -> None:
+        self._limit_file_size = self.linter.config.rulebook_limit_file_size
+
     def process_module(self, node: Module) -> None:
         # checks for violation
         with node.stream() as stream:
             size: int = len(stream.readlines())
-            max_size: int = self.linter.config.rulebook_limit_file_size
-            if size < max_size:
+            if size < self._limit_file_size:
                 return
-            self.add_message(self.MSG, line=0, args=max_size)
+            self.add_message(self.MSG, line=0, args=self._limit_file_size)
 
 
 def register(linter: 'PyLinter') -> None:

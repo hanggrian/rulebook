@@ -7,15 +7,13 @@
 
   "exception-extending": "Extend from Exception class.",
 
-  "block-comment-wrapping-join": "Convert into single-line.",
-  "block-comment-wrapping-split": "Convert into multiple lines.",
-  "assignment-wrapping": "Break assignment into newline.",
-  "parameter-wrapping-argument": "Each parameter should have a newline.",
-
   "default-flattening": "Remove redundant 'case _'.",
   "if-else-flattening-invert": "Invert 'if' condition.",
   "if-else-flattening-lift": "Lift 'else' and add 'return' in 'if'.",
   "switch-case-branching": "Replace 'match' with 'if'.",
+
+  "assignment-wrapping": "Break assignment into newline.",
+  "parameter-wrapping-argument": "Each parameter should have a newline.",
 
   "builtin-function-position": "Put '%s' last.",
   "class-member-ordering": "Put '%s' before '%s'.",

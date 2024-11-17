@@ -35,4 +35,16 @@ class SwitchCaseBranchingRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG])
+
+    @Test
+    fun `Skip single branch if it has fall through condition`() =
+        assertThatCode(
+            """
+            fun foo() {
+                when (bar) {
+                    1, 2 -> baz()
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
 }

@@ -35,11 +35,16 @@ class ClassFinalNameDisallowingChecker(RulebookChecker):
             ),
         )
 
+    _disallow_class_final_names: list[str]
+
+    def open(self) -> None:
+        self._disallow_class_final_names = self.linter.config.rulebook_disallow_class_final_names
+
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
         for match in self.TITLE_CASE_REGEX.findall(node.name):
             word = match[0]
-            if word not in self.linter.config.rulebook_disallow_class_final_names:
+            if word not in self._disallow_class_final_names:
                 continue
 
             if word in {'Util', 'Utility'}:

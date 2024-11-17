@@ -49,4 +49,19 @@ class SwitchCaseBranchingRuleTest : AbstractRuleTestCase<SwitchCaseBranchingRule
             "switch (bar) {",
             Messages[MSG],
         )
+
+    @Test
+    fun `Skip single branch if it has fall through condition`() =
+        assertNoViolations(
+            """
+            void foo() {
+                switch (bar) {
+                    case 0:
+                    case 1:
+                        baz()
+                        break
+                }
+            }
+            """.trimIndent(),
+        )
 }
