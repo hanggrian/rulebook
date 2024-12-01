@@ -102,8 +102,8 @@
     </module>
 
     <!-- https://checkstyle.org/checks/sizes/index.html -->
-    <module name="MethodLength"/>
-    <module name="ParameterNumber"/>
+    <!--module name="MethodLength"/-->
+    <!--module name="ParameterNumber"/-->
 
     <!-- https://checkstyle.org/checks/whitespace/index.html -->
     <module name="EmptyForIteratorPad"/>

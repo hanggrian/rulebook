@@ -2,17 +2,24 @@ package com.example.java;
 
 public class ChainCallContinuation {
     public void foo() {
-        Bar bar =
-            new Bar()
+        new StringBuilder(
+            "Lorem ipsum"
+        ).append(0)
+            .append(1);
+    }
+
+    public void bar() {
+        Baz bar =
+            new Baz()
                 .baz()
                 .baz
                 .baz();
     }
 
-    public static class Bar {
-        public Bar baz = this;
+    public static class Baz {
+        public Baz baz = this;
 
-        public Bar baz() {
+        public Baz baz() {
             return this;
         }
     }

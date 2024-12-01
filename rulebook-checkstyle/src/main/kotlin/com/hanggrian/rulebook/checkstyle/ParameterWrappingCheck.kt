@@ -48,12 +48,7 @@ public class ParameterWrappingCheck : RulebookCheck() {
         if (rightParenthesis.lineNo != parameters.last().maxLineNo + 1) {
             log(rightParenthesis, Messages[MSG_PARENTHESIS])
         }
-        for ((i, parameter) in parameters.withIndex()) {
-            // skip first
-            i
-                .takeUnless { it == 0 }
-                ?: continue
-
+        for ((i, parameter) in parameters.withIndex().drop(1)) {
             parameters[i - 1]
                 .takeUnless { it.maxLineNo + 1 == parameter.minLineNo }
                 ?: continue

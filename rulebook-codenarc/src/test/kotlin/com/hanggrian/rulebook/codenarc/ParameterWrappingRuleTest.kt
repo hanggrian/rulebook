@@ -23,7 +23,7 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
             void foo(String a, int b) {}
 
             void bar() {
-                foo(new StringBuilder().toString(), 0);
+                foo(new StringBuilder().toString(), 0)
             }
             """.trimIndent(),
         )
@@ -42,7 +42,7 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
                     new StringBuilder()
                         .toString(),
                     0
-                );
+                )
             }
             """.trimIndent(),
         )
@@ -59,7 +59,7 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
                 foo(
                     new StringBuilder()
                         .toString(), 0
-                );
+                )
             }
             """.trimIndent(),
             2,

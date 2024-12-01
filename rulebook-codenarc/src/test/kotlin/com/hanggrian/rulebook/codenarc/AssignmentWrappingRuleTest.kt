@@ -58,11 +58,11 @@ class AssignmentWrappingRuleTest : AbstractRuleTestCase<AssignmentWrappingRule>(
             """
             void foo(Bar bar) {
                 bar
-                    .baz = 1;
+                    .baz = 1
             }
 
             class Bar {
-                int baz;
+                int baz
             }
             """.trimIndent(),
         )

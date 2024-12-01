@@ -30,6 +30,15 @@ internal val DetailAST.minLineNo: Int
         return children.minOf { it.minLineNo }
     }
 
+internal val DetailAST.lastMostChild: DetailAST
+    get() {
+        var last = this
+        while (last.lastChild != null) {
+            last = last.lastChild
+        }
+        return last
+    }
+
 internal val DetailAST.children: Sequence<DetailAST>
     get() = generateSequence(firstChild) { node -> node.nextSibling }
 

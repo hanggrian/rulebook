@@ -78,12 +78,7 @@ public class ParameterWrappingRule : RulebookRule() {
         }
 
         private fun process(parameters: List<ASTNode>) {
-            for ((i, parameter) in parameters.withIndex()) {
-                // skip first
-                i
-                    .takeUnless { it == 0 }
-                    ?: continue
-
+            for ((i, parameter) in parameters.withIndex().drop(1)) {
                 parameters[i - 1]
                     .takeUnless { it.lastLineNumber + 1 == parameter.lineNumber }
                     ?: continue

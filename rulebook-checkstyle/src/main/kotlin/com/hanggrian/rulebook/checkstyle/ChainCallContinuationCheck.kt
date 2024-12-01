@@ -2,9 +2,13 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
+import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
+import com.hanggrian.rulebook.checkstyle.internals.maxLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_CALL
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN
 
 /** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#chain-call-continuation) */
 public class ChainCallContinuationCheck : RulebookCheck() {
@@ -17,13 +21,20 @@ public class ChainCallContinuationCheck : RulebookCheck() {
             ?: return
 
         // checks for violation
-        var prevDotColumn = -1
         var dot = node.findFirstToken(DOT)
         while (dot != null) {
-            if (prevDotColumn > -1 && dot.columnNo != prevDotColumn) {
-                log(dot, Messages[MSG])
+            val dotSibling = dot.firstChild.lastMostChild
+            if ((dotSibling.type == RPAREN || dotSibling.type == RCURLY) &&
+                dotSibling.lineNo != dotSibling.previousSibling?.maxLineNo
+            ) {
+                if (dot.lineNo != dotSibling.lineNo) {
+                    log(dot, Messages[MSG_UNEXPECTED])
+                }
+            } else {
+                if (dot.lineNo != dotSibling.lineNo + 1) {
+                    log(dot, Messages[MSG_MISSING])
+                }
             }
-            prevDotColumn = dot.columnNo
             dot =
                 dot.findFirstToken(DOT)
                     ?: dot.findFirstToken(METHOD_CALL)?.findFirstToken(DOT)
@@ -31,6 +42,7 @@ public class ChainCallContinuationCheck : RulebookCheck() {
     }
 
     internal companion object {
-        const val MSG = "chain.call.continuation"
+        const val MSG_MISSING = "chain.call.continuation.missing"
+        const val MSG_UNEXPECTED = "chain.call.continuation.unexpected"
     }
 }
