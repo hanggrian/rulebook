@@ -19,7 +19,7 @@ public class OverloadFunctionPositionRule : RulebookRule() {
             super.visitClassComplete(node)
 
             // collect functions
-            val functions = node.methods.filter { !it.isStatic }
+            val functions = node.methods.filterNot { it.isStatic }
 
             val declaredIdentifiers = mutableSetOf<String>()
             var lastIdentifier: String? = null

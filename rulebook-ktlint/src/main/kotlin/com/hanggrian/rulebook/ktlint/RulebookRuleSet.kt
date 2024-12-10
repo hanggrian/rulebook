@@ -39,6 +39,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { InnerClassPositionRule() },
             RuleProvider { NullStructuralEqualityRule() },
             RuleProvider { OverloadFunctionPositionRule() },
+            RuleProvider { PredicateCallPositivityRule() },
             RuleProvider { PropertyNameInteroperabilityRule() },
             RuleProvider { SwitchCaseBranchingRule() },
             RuleProvider { TodoCommentFormattingRule() },

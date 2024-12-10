@@ -34,7 +34,7 @@ public class BuiltinFunctionPositionRule : RulebookRule() {
 
             // collect functions
             // in Groovy, static members have specific keyword
-            val functions = node.methods.filter { !it.isStatic }
+            val functions = node.methods.filterNot { it.isStatic }
 
             for ((i, function) in functions.withIndex()) {
                 // target special function

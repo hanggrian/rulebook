@@ -45,6 +45,7 @@ class RulebookRuleSetTest {
             InnerClassPositionRule::class,
             NullStructuralEqualityRule::class,
             OverloadFunctionPositionRule::class,
+            PredicateCallPositivityRule::class,
             PropertyNameInteroperabilityRule::class,
             SwitchCaseBranchingRule::class,
             TodoCommentFormattingRule::class,
