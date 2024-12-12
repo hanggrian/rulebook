@@ -17,16 +17,23 @@ public class DefaultFlatteningRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip no default
-        val cases = node.children().filter { it.elementType == WHEN_ENTRY }
-        val default = cases.lastOrNull()?.takeIf { ELSE_KEYWORD in it } ?: return
+        val whenEntries =
+            node
+                .children()
+                .filter { it.elementType == WHEN_ENTRY }
+        val `else` =
+            whenEntries
+                .lastOrNull()
+                ?.takeIf { ELSE_KEYWORD in it }
+                ?: return
 
         // checks for violation
-        cases
+        whenEntries
             .toList()
             .dropLast(1)
             .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }
             ?: return
-        emit(default.startOffset, Messages[MSG], false)
+        emit(`else`.startOffset, Messages[MSG], false)
     }
 
     internal companion object {

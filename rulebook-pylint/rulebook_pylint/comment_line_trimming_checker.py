@@ -20,6 +20,7 @@ class CommentLineTrimmingChecker(RulebookTokenChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
+        token: TokenInfo
         for i, token in enumerate(tokens):
             # target comment
             if token.type != COMMENT:

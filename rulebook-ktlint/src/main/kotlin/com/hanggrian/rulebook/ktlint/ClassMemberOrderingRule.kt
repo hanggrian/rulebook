@@ -22,7 +22,7 @@ public class ClassMemberOrderingRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        var lastType: IElementType? = null
+        var lastChildType: IElementType? = null
         for (child in node
             .children()
             .filter {
@@ -33,34 +33,36 @@ public class ClassMemberOrderingRule : RulebookRule(ID) {
                     it.elementType == OBJECT_DECLARATION
             }) {
             // in Kotlin, static members belong in companion object
-            val currentType =
+            val childType =
                 when {
                     child.elementType == PROPERTY && PROPERTY_ACCESSOR in child ->
                         // property with getter and setter is essentially a function
                         FUN
+
                     child.elementType == OBJECT_DECLARATION ->
                         // companion object must have appropriate keyword
                         when {
                             child.hasModifier(COMPANION_KEYWORD) -> OBJECT_DECLARATION
                             else -> continue
                         }
+
                     else -> child.elementType
                 }
 
             // checks for violation
-            if (MEMBER_POSITIONS.getOrDefault(lastType, -1) > MEMBER_POSITIONS[currentType]!!) {
+            if (MEMBER_POSITIONS.getOrDefault(lastChildType, -1) > MEMBER_POSITIONS[childType]!!) {
                 emit(
                     child.startOffset,
                     Messages.get(
                         MSG,
-                        MEMBER_ARGUMENTS[currentType]!!,
-                        MEMBER_ARGUMENTS[lastType]!!,
+                        MEMBER_ARGUMENTS[childType]!!,
+                        MEMBER_ARGUMENTS[lastChildType]!!,
                     ),
                     false,
                 )
             }
 
-            lastType = currentType
+            lastChildType = childType
         }
     }
 

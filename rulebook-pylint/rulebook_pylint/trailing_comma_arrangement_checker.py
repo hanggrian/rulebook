@@ -20,6 +20,7 @@ class TrailingCommaArrangementChecker(RulebookTokenChecker):
         # filter out comments
         tokens = [t for t in tokens if t.type != COMMENT]
 
+        token: TokenInfo
         for i, token in enumerate(tokens):
             # find closing parenthesis
             if token.type != OP or token.string != ')':

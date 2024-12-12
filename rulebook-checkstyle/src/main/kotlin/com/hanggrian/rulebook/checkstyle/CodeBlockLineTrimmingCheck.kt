@@ -17,7 +17,11 @@ public class CodeBlockLineTrimmingCheck : RulebookCheck() {
 
     override fun visitToken(node: DetailAST) {
         // right brace is persistent
-        val rcurly = node.lastChild.takeIf { it.type == RCURLY } ?: return
+        val rcurly =
+            node
+                .lastChild
+                .takeIf { it.type == RCURLY }
+                ?: return
         val rcurlySibling = rcurly.previousSibling ?: return
 
         // left brace is conditional
@@ -25,9 +29,12 @@ public class CodeBlockLineTrimmingCheck : RulebookCheck() {
             when (node.type) {
                 OBJBLOCK -> {
                     // get first two nodes to compare
-                    val lcurly = node.firstChild.takeIf { it.type == LCURLY } ?: return
-                    val lcurlySibling = lcurly.nextSibling ?: return
-                    lcurly to lcurlySibling
+                    val lcurly =
+                        node
+                            .firstChild
+                            .takeIf { it.type == LCURLY }
+                            ?: return
+                    lcurly to (lcurly.nextSibling ?: return)
                 }
 
                 else ->

@@ -21,7 +21,7 @@ public class AssignmentWrappingRule : RulebookRule() {
             super.visitBinaryExpression(node)
 
             // target multiline assignment
-            val assign =
+            val operation =
                 node
                     .operation
                     .takeIf { it.type == ASSIGN && node.rightExpression.isMultiline() }
@@ -31,7 +31,7 @@ public class AssignmentWrappingRule : RulebookRule() {
             val expression =
                 node
                     .rightExpression
-                    .takeUnless { it.lineNumber == assign.startLine + 1 }
+                    .takeUnless { it.lineNumber == operation.startLine + 1 }
                     ?: return
             addViolation(expression, Messages[MSG])
         }

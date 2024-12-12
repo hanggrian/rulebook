@@ -13,14 +13,14 @@ public class SwitchCaseBranchingCheck : RulebookCheck() {
 
     override fun visitToken(node: DetailAST) {
         // target single entry
-        val case =
+        val caseGroup =
             node
                 .children
                 .singleOrNull { it.type == CASE_GROUP }
                 ?: return
 
         // checks for violation
-        case
+        caseGroup
             .children
             .takeUnless { cases2 -> cases2.count { it.type == LITERAL_CASE } > 1 }
             ?: return

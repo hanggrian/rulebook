@@ -22,6 +22,7 @@ class StringLiteralQuotationChecker(RulebookTokenChecker):
         literals: dict[Position, str] = {}
         fstr_token: TokenInfo | None = None
         fstr: str | None = None
+        token: TokenInfo
         for token in tokens:
             if token.type == STRING:
                 literals[

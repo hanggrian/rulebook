@@ -33,7 +33,11 @@ public class BlockCommentSpacingRule : RulebookRule(ID) {
 
             else -> {
                 // take non-whitespace sibling
-                val next = node.treeNext?.takeUnless { it.isWhiteSpace() } ?: return
+                val next =
+                    node
+                        .treeNext
+                        ?.takeUnless { it.isWhiteSpace() }
+                        ?: return
 
                 // checks for violation
                 next

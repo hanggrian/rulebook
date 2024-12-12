@@ -22,7 +22,7 @@ public class GenericsNameAllowingRule : RulebookRule() {
     internal companion object {
         const val MSG = "generics.name.allowing"
 
-        private fun ASTNode.hasParentWithGenerics(): Boolean =
+        private fun ASTNode.hasParentWithGenerics() =
             when (this) {
                 is MethodNode -> declaringClass.outerClasses + declaringClass
                 else -> (this as ClassNode).outerClasses
@@ -44,7 +44,10 @@ public class GenericsNameAllowingRule : RulebookRule() {
 
         private fun process(node: ASTNode, genericTypes: Array<GenericsType>?) {
             // filter out multiple generics
-            val genericsType = genericTypes?.singleOrNull() ?: return
+            val genericsType =
+                genericTypes
+                    ?.singleOrNull()
+                    ?: return
 
             // checks for violation
             val names = (rule as GenericsNameAllowingRule).names

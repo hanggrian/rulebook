@@ -14,7 +14,7 @@ public class InnerClassPositionRule : RulebookRule() {
     internal companion object {
         const val MSG = "inner.class.position"
 
-        private fun List<ASTNode>.isAnyAfter(other: ASTNode): Boolean =
+        private fun List<ASTNode>.isAnyAfter(other: ASTNode) =
             takeUnless { it.isEmpty() }
                 ?.let { it.first().lineNumber > other.lineNumber }
                 ?: false

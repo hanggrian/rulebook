@@ -22,6 +22,7 @@ class CommentLineJoiningChecker(RulebookTokenChecker):
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         last_empty_token: TokenInfo | None = None
+        token: TokenInfo
         for token in tokens:
             # target comment
             if token.type != COMMENT:

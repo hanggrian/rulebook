@@ -29,10 +29,8 @@ public class BuiltinTypePriorityRule : RulebookRule(ID) {
                         isTestClass = true
                     }
 
-                    node
-                        .findChildByType(DOT_QUALIFIED_EXPRESSION)
-                        ?.let { it to path }
-                        ?: return
+                    (node.findChildByType(DOT_QUALIFIED_EXPRESSION) ?: return) to
+                        path
                 }
 
                 else -> node to node.qualifierName
@@ -43,7 +41,7 @@ public class BuiltinTypePriorityRule : RulebookRule(ID) {
         emit(node2.startOffset, Messages.get(MSG, replacement), false)
     }
 
-    private val String.kotlinClassReplacement: String?
+    private val String.kotlinClassReplacement
         get() =
             when {
                 startsWith("java.lang.") ->

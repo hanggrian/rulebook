@@ -22,13 +22,13 @@ public class ElseFlatteningRule : RulebookRule(ID) {
 
         // checks for violation
         var lastElse: ASTNode? = null
-        var currentIf: ASTNode? = node
-        while (currentIf != null) {
-            currentIf
+        var `if`: ASTNode? = node
+        while (`if` != null) {
+            `if`
                 .takeIf { it.hasReturnOrThrow() }
                 ?: return
-            lastElse = currentIf.findChildByType(ELSE_KEYWORD)
-            currentIf = currentIf.findChildByType(ELSE)?.findChildByType(IF)
+            lastElse = `if`.findChildByType(ELSE_KEYWORD)
+            `if` = `if`.findChildByType(ELSE)?.findChildByType(IF)
         }
         lastElse ?: return
         emit(lastElse.startOffset, Messages[MSG], false)

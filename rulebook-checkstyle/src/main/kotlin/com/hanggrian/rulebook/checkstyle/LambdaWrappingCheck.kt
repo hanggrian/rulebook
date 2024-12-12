@@ -17,7 +17,7 @@ public class LambdaWrappingCheck : RulebookCheck() {
 
     override fun visitToken(node: DetailAST) {
         // target multiline lambda
-        val expression =
+        val expr =
             (node.findFirstToken(EXPR) ?: node.findFirstToken(SLIST).findFirstToken(EXPR))
                 ?.takeIf { it.isMultiline() }
                 ?: return
@@ -27,10 +27,10 @@ public class LambdaWrappingCheck : RulebookCheck() {
                 ?: return
 
         // checks for violation
-        expression
+        expr
             .takeUnless { parameters.maxLineNo + 1 == it.minLineNo }
             ?: return
-        log(expression, Messages[MSG])
+        log(expr, Messages[MSG])
     }
 
     internal companion object {

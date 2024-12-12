@@ -16,7 +16,7 @@ public class ClassMemberOrderingCheck : RulebookCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
     override fun visitToken(node: DetailAST) {
-        var lastType = -1
+        var lastChildType: Int? = null
         for (child in node
             .children
             .filter {
@@ -31,18 +31,18 @@ public class ClassMemberOrderingCheck : RulebookCheck() {
                 ?: return
 
             // checks for violation
-            if (MEMBER_POSITIONS.getOrDefault(lastType, -1) > MEMBER_POSITIONS[child.type]!!) {
+            if (MEMBER_POSITIONS.getOrDefault(lastChildType, -1) > MEMBER_POSITIONS[child.type]!!) {
                 log(
                     child,
                     Messages.get(
                         MSG,
                         MEMBER_ARGUMENTS[child.type]!!,
-                        MEMBER_ARGUMENTS[lastType]!!,
+                        MEMBER_ARGUMENTS[lastChildType]!!,
                     ),
                 )
             }
 
-            lastType = child.type
+            lastChildType = child.type
         }
     }
 

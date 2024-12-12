@@ -17,26 +17,26 @@ public class BuiltinFunctionPositionCheck : RulebookCheck() {
     override fun visitToken(node: DetailAST) {
         // collect functions
         // in Java, static members have specific keyword
-        val functions =
+        val methods =
             node
                 .children
                 .filter { it.type == METHOD_DEF && !it.hasModifier(LITERAL_STATIC) }
                 .toList()
 
-        for ((i, function) in functions.withIndex()) {
+        for ((i, method) in methods.withIndex()) {
             // target special function
             val identifier =
-                function
+                method
                     .takeIf { it.isBuiltinFunction() }
                     ?.findFirstToken(IDENT)
                     ?: continue
 
             // checks for violation
-            functions
-                .subList(i, functions.size)
+            methods
+                .subList(i, methods.size)
                 .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
                 ?: continue
-            log(function, Messages.get(MSG, identifier.text))
+            log(method, Messages.get(MSG, identifier.text))
         }
     }
 

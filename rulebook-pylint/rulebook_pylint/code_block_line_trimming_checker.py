@@ -16,6 +16,7 @@ class CodeBlockLineTrimmingChecker(RulebookTokenChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
+        token: TokenInfo
         for i, token in enumerate(tokens):
             # target colon operator
             if token.type != OP or token.string != ':':

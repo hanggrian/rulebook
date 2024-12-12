@@ -25,8 +25,8 @@ public class ContractFunctionInliningRule : RulebookRule(ID) {
                 n
                     .findChildByType(REFERENCE_EXPRESSION)
                     ?.findChildByType(IDENTIFIER)
-                    ?.text
-                    .let { it == "contract" || it == "kotlin.contract" }
+                    ?.let { it.text == "contract" || it.text == "kotlin.contract" }
+                    ?: return
             } ?: return
 
         // checks for violation

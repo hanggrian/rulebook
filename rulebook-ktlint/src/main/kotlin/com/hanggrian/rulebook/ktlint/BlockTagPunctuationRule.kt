@@ -25,11 +25,10 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // only enforce certain tags
-        val blockTag =
+        val kdocTagName =
             node
                 .findChildByType(KDOC_TAG_NAME)
-                ?.text
-                ?.takeIf { it in punctuateBlockTags }
+                ?.takeIf { it.text in punctuateBlockTags }
                 ?: return
 
         // long descriptions have multiple lines, take only the last one
@@ -41,12 +40,9 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
 
         // checks for violation
         kdocText
-            .text
-            .trimComment()
-            .lastOrNull()
-            ?.takeUnless { it in END_PUNCTUATIONS }
+            .takeUnless { it.text.trimComment().lastOrNull() in END_PUNCTUATIONS }
             ?: return
-        emit(kdocText.endOffset, Messages.get(MSG, blockTag), false)
+        emit(kdocText.endOffset, Messages.get(MSG, kdocTagName.text), false)
     }
 
     internal companion object {
@@ -74,7 +70,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
 
         private val END_PUNCTUATIONS = setOf('.', ')')
 
-        private fun String.trimComment(): String =
+        private fun String.trimComment() =
             indexOf("//")
                 .takeUnless { it == -1 }
                 ?.let { substring(0, it).trimEnd() }

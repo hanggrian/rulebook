@@ -20,17 +20,23 @@ public class ClassNameAcronymCapitalizationRule : RulebookRule(ID) {
         // obtain class name
         val (node2, name) =
             when (node.elementType) {
-                CLASS, OBJECT_DECLARATION ->
-                    node
-                        .findChildByType(IDENTIFIER)
-                        ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
-                        ?.let { it to it.text }
+                CLASS, OBJECT_DECLARATION -> {
+                    val identifier =
+                        node
+                            .findChildByType(IDENTIFIER)
+                            ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
+                            ?: return
+                    identifier to identifier.text
+                }
 
                 else ->
-                    getFileName(node)
-                        ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
-                        ?.let { node to it }
-            } ?: return
+                    node to
+                        (
+                            getFileName(node)
+                                ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
+                                ?: return
+                        )
+            }
 
         // checks for violation
         val transformation =

@@ -27,7 +27,7 @@ class ClassNameAcronymCapitalizationChecker(RulebookChecker):
     @staticmethod
     def _transform(name: str) -> str:
         def replace_match(match):
-            group_value = match.group()
+            group_value: str = match.group()
             if match.end() == len(name):
                 return group_value[0] + group_value[1:].lower()
             return group_value[0] + group_value[1:-1].lower() + group_value[-1]

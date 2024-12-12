@@ -34,8 +34,16 @@ public class EmptyCodeBlockUnwrappingRule : RulebookRule(ID) {
         node
             .takeUnless { it.isLeaf() }
             ?: return
-        val lbrace = node.firstChildNode.takeIf { it.elementType == LBRACE } ?: return
-        val rbrace = node.lastChildNode.takeIf { it.elementType == RBRACE } ?: return
+        val lbrace =
+            node
+                .firstChildNode
+                .takeIf { it.elementType == LBRACE }
+                ?: return
+        val rbrace =
+            node
+                .lastChildNode
+                .takeIf { it.elementType == RBRACE }
+                ?: return
 
         // checks for violation
         lbrace

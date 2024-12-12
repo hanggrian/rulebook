@@ -87,7 +87,7 @@ public class PropertyNameInteroperabilityRule : RulebookRule(ID) {
 
         const val MSG = "property.name.interoperability"
 
-        private fun ASTNode.hasAnnotation(name: String): Boolean =
+        private fun ASTNode.hasAnnotation(name: String) =
             findChildByType(MODIFIER_LIST)
                 ?.children()
                 ?.filter { it.elementType == ANNOTATION_ENTRY }

@@ -16,6 +16,7 @@ class FileInitialLineTrimmingChecker(RulebookTokenChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
+        token: TokenInfo
         for token in tokens:
             # skip metadata
             type2: int = token.type

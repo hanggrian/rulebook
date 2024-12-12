@@ -20,7 +20,7 @@ class CaseLineSpacingChecker(RulebookChecker):
         if not isinstance(node.parent, Match):
             return
         match_cases: list[MatchCase] = node.parent.cases
-        match_case_index = match_cases.index(node) + 1
+        match_case_index: int = match_cases.index(node) + 1
         if len(match_cases) <= match_case_index:
             return
         match_case: MatchCase = match_cases[match_case_index]

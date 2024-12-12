@@ -34,14 +34,14 @@ public class ElvisWrappingRule : RulebookRule(ID) {
         if (sibling.elementType == RBRACE &&
             sibling.treePrev.isWhiteSpaceWithNewline()
         ) {
-            operationReference.treePrev
-                .takeIf { it.isWhiteSpaceWithNewline() }
+            operationReference
+                .takeIf { it.treePrev.isWhiteSpaceWithNewline() }
                 ?: return
             emit(node.startOffset, Messages[MSG_UNEXPECTED], false)
             return
         }
-        operationReference.treePrev
-            .takeIf { it.isWhiteSpaceWithoutNewline() }
+        operationReference
+            .takeIf { it.treePrev.isWhiteSpaceWithoutNewline() }
             ?: return
         emit(node.startOffset, Messages[MSG_MISSING], false)
     }

@@ -20,7 +20,7 @@ Java | [Checkstyle](https://checkstyle.org/) | [Sun Style](https://checkstyle.so
 Groovy | [CodeNarc](https://codenarc.org/) | [Groovy Style](https://groovy-lang.org/style-guide.html)
 Python | [Pylint](https://pylint.org/) | [Pylint Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or [Google Python Style](https://google.github.io/styleguide/pyguide.html)
 
-[View all rules](https://github.com/hanggrian/rulebook/wiki/)
+[View all rules](https://github.com/hanggrian/rulebook/wiki/Compatibility-Table)
 
 ## Download
 

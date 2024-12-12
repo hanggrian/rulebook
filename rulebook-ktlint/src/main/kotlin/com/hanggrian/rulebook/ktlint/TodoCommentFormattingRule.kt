@@ -29,16 +29,18 @@ public class TodoCommentFormattingRule : RulebookRule(ID) {
                 EOL_COMMENT -> node.text
                 KDOC_SECTION ->
                     node
-                        .takeUnless { KDOC_LEADING_ASTERISK in node }
+                        .takeUnless { KDOC_LEADING_ASTERISK in it }
                         ?.findChildByType(KDOC_TEXT)
                         ?.text
+                        ?: return
 
                 else ->
                     node
                         .siblingsUntil(KDOC_LEADING_ASTERISK)
                         .takeUnless { nodes -> nodes.all { it.isWhiteSpace() } }
                         ?.joinToString("") { it.text }
-            } ?: return
+                        ?: return
+            }
 
         // checks for violation
         if (KEYWORD_REGEX.containsMatchIn(text)) {

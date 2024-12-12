@@ -17,7 +17,10 @@ public class BlockTagInitialLineSpacingRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // only allow first tag
-        val kdocTag = node.findChildByType(KDOC_TAG) ?: return
+        val kdocTag =
+            node
+                .findChildByType(KDOC_TAG)
+                ?: return
 
         // checks for violation
         kdocTag
@@ -34,7 +37,7 @@ public class BlockTagInitialLineSpacingRule : RulebookRule(ID) {
 
         const val MSG = "block.tag.initial.line.spacing"
 
-        private val ASTNode.prevKdocLeadingAsterisk: ASTNode?
+        private val ASTNode.prevKdocLeadingAsterisk
             get() = prevSibling { it.elementType == KDOC_LEADING_ASTERISK }
     }
 }

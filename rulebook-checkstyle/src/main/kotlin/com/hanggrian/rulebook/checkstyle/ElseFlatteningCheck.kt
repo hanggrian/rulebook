@@ -21,13 +21,13 @@ public class ElseFlatteningCheck : RulebookCheck() {
 
         // checks for violation
         var lastElse: DetailAST? = null
-        var currentIf: DetailAST? = node
-        while (currentIf != null) {
-            currentIf
+        var `if`: DetailAST? = node
+        while (`if` != null) {
+            `if`
                 .takeIf { it.hasReturnOrThrow() }
                 ?: return
-            lastElse = currentIf.findFirstToken(LITERAL_ELSE)
-            currentIf = lastElse?.findFirstToken(LITERAL_IF)
+            lastElse = `if`.findFirstToken(LITERAL_ELSE)
+            `if` = lastElse?.findFirstToken(LITERAL_IF)
         }
         lastElse ?: return
         log(lastElse, Messages[MSG])

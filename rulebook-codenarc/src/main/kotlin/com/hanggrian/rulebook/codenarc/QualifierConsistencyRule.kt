@@ -50,7 +50,7 @@ public class QualifierConsistencyRule : RulebookRule() {
             // checks for violation
             val `class` = node.objectExpression
             process(`class`, `class`.text)
-            process(`class`, `class`.text + '.' + node.method.text)
+            process(`class`, "${`class`.text}.${node.method.text}")
         }
 
         private fun process(node: ASTNode, text: String) {

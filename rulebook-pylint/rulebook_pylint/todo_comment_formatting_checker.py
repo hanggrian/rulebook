@@ -28,7 +28,7 @@ class TodoCommentFormattingChecker(RulebookRawChecker):
             line: bytes
             for i, line in enumerate(stream):
                 # obtain comment content
-                line_no = i + 1
+                line_no: int = i + 1
                 parts: list[bytes] = line.split(b'#', 1)
                 if len(parts) < 2:
                     continue

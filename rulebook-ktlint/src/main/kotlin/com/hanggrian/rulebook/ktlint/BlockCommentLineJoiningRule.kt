@@ -14,7 +14,7 @@ public class BlockCommentLineJoiningRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // find matching sibling
-        val next =
+        val nextKdocLeadingAsterisk =
             node
                 .treeNext
                 ?.takeIf { it.isWhiteSpaceWithNewline() }
@@ -23,11 +23,10 @@ public class BlockCommentLineJoiningRule : RulebookRule(ID) {
                 ?: return
 
         // checks for violation
-        next
-            .treeNext
-            ?.takeIf { it.isWhiteSpaceWithNewline() }
+        nextKdocLeadingAsterisk
+            .takeIf { it.treeNext.isWhiteSpaceWithNewline() }
             ?: return
-        emit(next.endOffset, Messages[MSG], false)
+        emit(nextKdocLeadingAsterisk.endOffset, Messages[MSG], false)
     }
 
     internal companion object {

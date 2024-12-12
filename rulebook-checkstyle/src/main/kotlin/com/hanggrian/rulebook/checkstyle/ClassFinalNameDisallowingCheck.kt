@@ -26,19 +26,19 @@ public class ClassFinalNameDisallowingCheck : RulebookCheck() {
 
     override fun visitToken(node: DetailAST) {
         // checks for violation
-        val identifier = node.findFirstToken(IDENT) ?: return
+        val ident = node.findFirstToken(IDENT) ?: return
         val finalName =
             names
-                .singleOrNull { identifier.text.endsWith(it) }
+                .singleOrNull { ident.text.endsWith(it) }
                 ?: return
         if (finalName in UTILITY_FINAL_NAMES) {
             log(
-                identifier,
-                Messages.get(MSG_UTIL, identifier.text.substringBefore(finalName) + 's'),
+                ident,
+                Messages.get(MSG_UTIL, ident.text.substringBefore(finalName) + 's'),
             )
             return
         }
-        log(identifier, Messages.get(MSG_ALL, finalName))
+        log(ident, Messages.get(MSG_ALL, finalName))
     }
 
     internal companion object {

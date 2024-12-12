@@ -14,16 +14,16 @@ public class AssignmentWrappingCheck : RulebookCheck() {
 
     override fun visitToken(node: DetailAST) {
         // target multiline assignment
-        val expression =
+        val expr =
             (node.findFirstToken(EXPR) ?: node.findFirstToken(DOT)?.nextSibling)
                 ?.takeIf { it.isMultiline() }
                 ?: return
 
         // checks for violation
-        expression
+        expr
             .takeUnless { it.minLineNo == node.lineNo + 1 }
             ?: return
-        log(expression, Messages[MSG])
+        log(expr, Messages[MSG])
     }
 
     internal companion object {

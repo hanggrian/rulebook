@@ -12,13 +12,13 @@ public class ExceptionExtendingCheck : RulebookCheck() {
 
     override fun visitToken(node: DetailAST) {
         // checks for violation
-        val identifier =
+        val ident =
             node
                 .findFirstToken(EXTENDS_CLAUSE)
                 ?.findFirstToken(IDENT)
                 ?.takeIf { it.text in NON_APPLICATION_EXCEPTIONS }
                 ?: return
-        log(identifier, Messages[MSG])
+        log(ident, Messages[MSG])
     }
 
     internal companion object {

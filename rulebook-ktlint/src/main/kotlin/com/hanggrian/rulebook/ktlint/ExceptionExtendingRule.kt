@@ -20,7 +20,10 @@ public class ExceptionExtendingRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // get identifier from supertype declared with or without constructor callee
-        val superTypeList = node.findChildByType(SUPER_TYPE_LIST) ?: return
+        val superTypeList =
+            node
+                .findChildByType(SUPER_TYPE_LIST)
+                ?: return
         val typeReference =
             superTypeList
                 .findChildByType(SUPER_TYPE_CALL_ENTRY)

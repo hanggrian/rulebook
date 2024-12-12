@@ -17,24 +17,21 @@ public class ParameterWrappingCheck : RulebookCheck() {
 
     override fun visitToken(node: DetailAST) {
         // collect parentheses
-        val (leftParenthesis, rightParenthesis) =
+        val (lparen, rparen) =
             when (node.type) {
-                PARAMETERS -> {
-                    val lparen = node.previousSibling?.takeIf { it.type == LPAREN } ?: return
-                    val rparen = node.nextSibling?.takeIf { it.type == RPAREN } ?: return
-                    lparen to rparen
-                }
+                PARAMETERS ->
+                    (node.previousSibling?.takeIf { it.type == LPAREN } ?: return) to
+                        (node.nextSibling?.takeIf { it.type == RPAREN } ?: return)
 
-                else -> {
-                    val rparen = node.nextSibling?.takeIf { it.type == RPAREN } ?: return
-                    node.parent to rparen
-                }
+                else ->
+                    node.parent to
+                        (node.nextSibling?.takeIf { it.type == RPAREN } ?: return)
             }
 
         // target multiline parameters
         val parameters =
             node
-                .takeIf { rightParenthesis.lineNo > leftParenthesis.lineNo }
+                .takeIf { rparen.lineNo > lparen.lineNo }
                 ?.children
                 ?.filterNot { it.type == COMMA }
                 ?.toList()
@@ -42,11 +39,11 @@ public class ParameterWrappingCheck : RulebookCheck() {
                 ?: return
 
         // checks for violation
-        if (leftParenthesis.lineNo != parameters.first().minLineNo - 1) {
-            log(leftParenthesis, Messages[MSG_PARENTHESIS])
+        if (lparen.lineNo != parameters.first().minLineNo - 1) {
+            log(lparen, Messages[MSG_PARENTHESIS])
         }
-        if (rightParenthesis.lineNo != parameters.last().maxLineNo + 1) {
-            log(rightParenthesis, Messages[MSG_PARENTHESIS])
+        if (rparen.lineNo != parameters.last().maxLineNo + 1) {
+            log(rparen, Messages[MSG_PARENTHESIS])
         }
         for ((i, parameter) in parameters.withIndex().drop(1)) {
             parameters[i - 1]

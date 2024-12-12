@@ -18,26 +18,26 @@ public class BuiltinFunctionPositionRule : RulebookRule(ID) {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // collect functions
         // in Kotlin, static members belong in companion object
-        val functions =
+        val funs =
             node
                 .children()
                 .filter { it.elementType == FUN }
                 .toList()
 
-        for ((i, function) in functions.withIndex()) {
+        for ((i, `fun`) in funs.withIndex()) {
             // target special function
             val identifier =
-                function
+                `fun`
                     .takeIf { it.isBuiltinFunction() }
                     ?.findChildByType(IDENTIFIER)
                     ?: continue
 
             // checks for violation
-            functions
-                .subList(i, functions.size)
+            funs
+                .subList(i, funs.size)
                 .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
                 ?: continue
-            emit(function.startOffset, Messages.get(MSG, identifier.text), false)
+            emit(`fun`.startOffset, Messages.get(MSG, identifier.text), false)
         }
     }
 

@@ -16,19 +16,24 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // collect functions
-        val functions = node.children().filter { it.elementType == FUN }
+        val funs =
+            node
+                .children()
+                .filter { it.elementType == FUN }
 
         val declaredIdentifiers = mutableSetOf<String>()
-        var lastIdentifier: String? = null
-        for (function in functions) {
+        var lastIdentifier: ASTNode? = null
+        for (`fun` in funs) {
             // checks for violation
-            val name = function.findChildByType(IDENTIFIER)!!.text
-            if (lastIdentifier != name && !declaredIdentifiers.add(name)) {
-                emit(function.startOffset, Messages.get(MSG, name), false)
+            val identifier = `fun`.findChildByType(IDENTIFIER)!!
+            if (lastIdentifier?.text != identifier.text &&
+                !declaredIdentifiers.add(identifier.text)
+            ) {
+                emit(`fun`.startOffset, Messages.get(MSG, identifier.text), false)
             }
 
             // keep variable instead iterating set until last
-            lastIdentifier = name
+            lastIdentifier = identifier
         }
     }
 

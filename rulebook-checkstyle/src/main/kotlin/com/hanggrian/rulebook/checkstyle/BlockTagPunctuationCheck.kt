@@ -22,12 +22,11 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
 
     override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
-        val blockTag =
+        val tagLiteral =
             node
                 .children
                 .first()
-                .text
-                .takeIf { it in tags }
+                .takeIf { it.text in tags }
                 ?: return
 
         // long descriptions have multiple lines, take only the last one
@@ -41,13 +40,9 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
 
         // checks for violation
         text
-            .text
-            .trimComment()
-            .trimEnd()
-            .lastOrNull()
-            ?.takeUnless { it in END_PUNCTUATIONS }
+            .takeUnless { it.text.trimComment().trimEnd().lastOrNull() in END_PUNCTUATIONS }
             ?: return
-        log(text.lineNumber, text.columnNumber, Messages.get(MSG, blockTag))
+        log(text.lineNumber, text.columnNumber, Messages.get(MSG, tagLiteral.text))
     }
 
     internal companion object {
@@ -55,7 +50,7 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
 
         private val END_PUNCTUATIONS = setOf('.', ')')
 
-        private fun String.trimComment(): String =
+        private fun String.trimComment() =
             indexOf("//")
                 .takeUnless { it == -1 }
                 ?.let { substring(0, it).trimEnd() }

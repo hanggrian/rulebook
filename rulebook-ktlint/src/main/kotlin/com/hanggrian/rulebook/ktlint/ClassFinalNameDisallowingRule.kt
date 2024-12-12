@@ -28,9 +28,16 @@ public class ClassFinalNameDisallowingRule : RulebookRule(ID, DISALLOW_CLASS_FIN
         // obtain corresponding full and final name
         val (node2, fullName) =
             when (node.elementType) {
-                CLASS, OBJECT_DECLARATION -> node.findChildByType(IDENTIFIER)?.let { it to it.text }
-                else -> getFileName(node)?.let { node to it }
-            } ?: return
+                CLASS, OBJECT_DECLARATION -> {
+                    val identifier =
+                        node
+                            .findChildByType(IDENTIFIER)
+                            ?: return
+                    identifier to identifier.text
+                }
+
+                else -> node to (getFileName(node) ?: return)
+            }
 
         // checks for violation
         val finalName =

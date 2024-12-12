@@ -9,7 +9,7 @@ class Messages:
     counter: int = 7531  # arbitrary number to distinguish from PEP
 
     with open(join(dirname(__file__), FILENAME), 'r', encoding='UTF-8') as file:
-        bundle: object = load(file)
+        bundle: dict = load(file)
 
     @staticmethod
     def get(key: str) -> str:

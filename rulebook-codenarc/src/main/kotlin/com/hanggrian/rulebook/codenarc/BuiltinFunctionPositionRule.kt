@@ -34,20 +34,23 @@ public class BuiltinFunctionPositionRule : RulebookRule() {
 
             // collect functions
             // in Groovy, static members have specific keyword
-            val functions = node.methods.filterNot { it.isStatic }
+            val methods =
+                node
+                    .methods
+                    .filterNot { it.isStatic }
 
-            for ((i, function) in functions.withIndex()) {
+            for ((i, method) in methods.withIndex()) {
                 // target special function
-                function
+                method
                     .takeIf { it.isBuiltinFunction() }
                     ?: continue
 
                 // checks for violation
-                functions
-                    .subList(i, functions.size)
+                methods
+                    .subList(i, methods.size)
                     .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
                     ?: continue
-                addViolation(function, Messages.get(MSG, function.name))
+                addViolation(method, Messages.get(MSG, method.name))
             }
         }
     }

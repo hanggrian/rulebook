@@ -12,7 +12,7 @@ public class BlockCommentLineJoiningCheck : RulebookJavadocCheck() {
 
     override fun visitJavadocToken(node: DetailNode) {
         // find matching sibling
-        val next =
+        val nextLeadingAsterisk =
             node
                 .next
                 ?.takeIf { it.type == NEWLINE }
@@ -21,11 +21,10 @@ public class BlockCommentLineJoiningCheck : RulebookJavadocCheck() {
                 ?: return
 
         // checks for violation
-        next
-            .next
-            ?.takeIf { it.type == NEWLINE }
+        nextLeadingAsterisk
+            .takeIf { it.next?.type == NEWLINE }
             ?: return
-        log(next.lineNumber, next.columnNumber, Messages[MSG])
+        log(nextLeadingAsterisk.lineNumber, nextLeadingAsterisk.columnNumber, Messages[MSG])
     }
 
     internal companion object {

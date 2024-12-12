@@ -16,14 +16,14 @@ public class SwitchCaseBranchingRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // target single entry
-        val case =
+        val whenEntry =
             node
                 .children()
                 .singleOrNull { it.elementType == WHEN_ENTRY }
                 ?: return
 
         // checks for violation
-        case
+        whenEntry
             .takeUnless { COMMA in it }
             ?: return
         emit(node.startOffset, Messages[MSG], false)

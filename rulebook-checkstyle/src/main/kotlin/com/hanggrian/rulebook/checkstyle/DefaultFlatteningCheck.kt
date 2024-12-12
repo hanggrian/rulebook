@@ -17,11 +17,18 @@ public class DefaultFlatteningCheck : RulebookCheck() {
 
     override fun visitToken(node: DetailAST) {
         // skip no default
-        val cases = node.children.filter { it.type == CASE_GROUP }
-        val default = cases.lastOrNull()?.takeIf { LITERAL_DEFAULT in it } ?: return
+        val caseGroups =
+            node
+                .children
+                .filter { it.type == CASE_GROUP }
+        val default =
+            caseGroups
+                .lastOrNull()
+                ?.takeIf { LITERAL_DEFAULT in it }
+                ?: return
 
         // checks for violation
-        cases
+        caseGroups
             .toList()
             .dropLast(1)
             .takeIf { cases2 -> cases2.all { it.hasReturnOrThrow() } }

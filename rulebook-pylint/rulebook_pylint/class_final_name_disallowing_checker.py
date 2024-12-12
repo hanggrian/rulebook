@@ -43,7 +43,7 @@ class ClassFinalNameDisallowingChecker(RulebookChecker):
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
         for match in self.TITLE_CASE_REGEX.findall(node.name):
-            word = match[0]
+            word: str = match[0]
             if word not in self._disallow_class_final_names:
                 continue
 
