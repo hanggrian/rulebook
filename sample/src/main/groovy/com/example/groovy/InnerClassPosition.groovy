@@ -6,7 +6,7 @@ class InnerClassPosition {
             this(0)
         }
 
-        Foo(int a) {}
+        Foo(var a) {}
 
         static class Bar {}
     }

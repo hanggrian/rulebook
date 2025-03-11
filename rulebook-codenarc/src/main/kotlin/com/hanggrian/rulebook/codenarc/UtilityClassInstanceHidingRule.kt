@@ -21,12 +21,16 @@ public class UtilityClassInstanceHidingRule : RulebookRule() {
         override fun visitClassEx(node: ClassNode) {
             super.visitClassEx(node)
 
-            // skip empty class or contains all non-static members
+            // skip empty class, inheritance or containing non-static members
             node
                 .takeUnless { it.methods.isEmpty() && node.fields.isEmpty() }
-                ?.takeUnless { n ->
-                    n.methods.any { !it.isStatic } ||
-                        n.fields.any { !it.isStatic }
+                ?.takeIf { n ->
+                    println(n.interfaces.isEmpty())
+                    println(n.superClass)
+                    n.interfaces.isEmpty() &&
+                        n.superClass.name == "java.lang.Object" &&
+                        n.methods.all { it.isStatic } &&
+                        n.fields.all { it.isStatic }
                 } ?: return
 
             // checks for violation

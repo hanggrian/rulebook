@@ -21,15 +21,15 @@ class InnerClassPositionRuleTest : AbstractRuleTestCase<InnerClassPositionRule>(
         assertNoViolations(
             """
             class Foo {
-                int bar = 0
+                var bar = 0
 
-                Foo(int a) {}
+                Foo(var a) {}
 
                 Foo() {
                     this(0)
                 }
 
-                void baz() {}
+                def baz() {}
 
                 class Inner {}
 
@@ -43,22 +43,37 @@ class InnerClassPositionRuleTest : AbstractRuleTestCase<InnerClassPositionRule>(
         assertTwoViolations(
             """
             class Foo {
-                class Inner {}
+                interface Inner {}
 
-                int bar = 0
+                var bar = 0
 
                 class AnotherInner {}
 
-                void baz() {
+                def baz() {
                     print(0)
                 }
             }
             """.trimIndent(),
             2,
-            "class Inner {}",
+            "interface Inner {}",
             Messages[MSG],
             6,
             "class AnotherInner {}",
             Messages[MSG],
+        )
+
+    @Test
+    fun `Skip enum members with initialization (Groovy only)`() =
+        assertNoViolations(
+            """
+            enum Foo {
+                BAR {
+                    @Override
+                    def baz() {}
+                };
+
+                abstract def baz()
+            }
+            """.trimIndent(),
         )
 }

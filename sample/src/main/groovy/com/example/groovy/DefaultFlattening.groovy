@@ -1,7 +1,7 @@
 package com.example.groovy
 
 class DefaultFlattening {
-    void foo(int bar) {
+    def foo(var bar) {
         switch (bar) {
             case 0:
                 throw new IllegalStateException()

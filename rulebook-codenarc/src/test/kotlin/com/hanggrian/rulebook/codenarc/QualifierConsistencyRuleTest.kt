@@ -25,10 +25,10 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
             class QualifierConsistency {
                 String property = new String()
 
-                void parameter(String param) {}
+                def parameter(String param) {}
 
-                void call() {
-                    String.format("%s", "Hello World")
+                def call() {
+                    String.format('%s', 'Hello World')
                 }
             }
             """.trimIndent(),
@@ -43,16 +43,16 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
             class QualifierConsistency {
                 java.lang.String property = new java.lang.String()
 
-                void parameter(java.lang.String param) {}
+                def parameter(java.lang.String param) {}
 
-                void call() {
-                    java.lang.String.format("%s", "Hello World")
+                def call() {
+                    java.lang.String.format('%s', 'Hello World')
                 }
             }
             """.trimIndent(),
             violationOf(4, "java.lang.String property = new java.lang.String()", Messages[MSG]),
-            violationOf(6, "void parameter(java.lang.String param) {}", Messages[MSG]),
-            violationOf(9, "java.lang.String.format(\"%s\", \"Hello World\")", Messages[MSG]),
+            violationOf(6, "def parameter(java.lang.String param) {}", Messages[MSG]),
+            violationOf(9, "java.lang.String.format('%s', 'Hello World')", Messages[MSG]),
         )
 
     @Test
@@ -63,10 +63,10 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
             import java.lang.String.format
 
             class QualifierConsistency {
-                String property = String.format("%s", "Hello World")
+                String property = String.format('%s', 'Hello World')
 
-                void call() {
-                    format("%s", "Hello World")
+                def call() {
+                    format('%s', 'Hello World')
                 }
             }
             """.trimIndent(),
@@ -79,18 +79,18 @@ class QualifierConsistencyRuleTest : AbstractRuleTestCase<QualifierConsistencyRu
             import java.lang.String.format
 
             class QualifierConsistency {
-                String property = java.lang.String.format("%s", "Hello World")
+                String property = java.lang.String.format('%s', 'Hello World')
 
-                void call() {
-                    java.lang.String.format("%s", "Hello World")
+                def call() {
+                    java.lang.String.format('%s', 'Hello World')
                 }
             }
             """.trimIndent(),
             4,
-            "String property = java.lang.String.format(\"%s\", \"Hello World\")",
+            "String property = java.lang.String.format('%s', 'Hello World')",
             Messages[MSG],
             7,
-            "java.lang.String.format(\"%s\", \"Hello World\")",
+            "java.lang.String.format('%s', 'Hello World')",
             Messages[MSG],
         )
 }

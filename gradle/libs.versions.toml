@@ -2,20 +2,20 @@
 jdk = "21"
 jre = "8"
 # kotlin
-kotlin = "1.9.20"
+kotlin = "2.0.0"
 ktlint = "1.3.1"
 # java
-checkstyle = "10.18.1"
+checkstyle = "10.21.4"
 # groovy
-groovy = "3.0.22"
-codenarc = "3.5.0"
+groovy = "3.0.24"
+codenarc = "3.6.0"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.8.3"
-ktlint = "org.jlleitschuh.gradle.ktlint:12.1.1"
-maven-publish = "com.vanniktech.maven.publish.base:0.29.0"
-git-publish = "org.ajoberstar.git-publish:4.2.2"
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.1"
+ktlint = "org.jlleitschuh.gradle.ktlint:12.2.0"
+maven-publish = "com.vanniktech.maven.publish.base:0.31.0"
+git-publish = "org.ajoberstar.git-publish:5.1.1"
 pages = "com.hanggrian.pages:0.1"
 
 [libraries]
@@ -30,4 +30,4 @@ codenarc = { module = "org.codenarc:CodeNarc", version.ref = "codenarc" }
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
 truth = "com.google.truth:truth:1.4.4"
-logback = "ch.qos.logback:logback-classic:1.5.7"
+logback = "ch.qos.logback:logback-classic:1.5.17"

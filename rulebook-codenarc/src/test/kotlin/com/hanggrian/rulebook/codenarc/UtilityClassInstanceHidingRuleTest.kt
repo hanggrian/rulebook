@@ -20,35 +20,41 @@ class UtilityClassInstanceHidingRuleTest :
     }
 
     @Test
-    fun `Utility class with private constructor and final modifier`() =
+    fun `Utility class With private constructor and final modifier`() =
         assertNoViolations(
             """
             final class Foo {
                 private Foo() {}
 
-                static void bar() {}
+                static foo() {}
             }
             """.trimIndent(),
         )
 
     @Test
-    fun `Utility class without modifier and constructor`() =
+    fun `Utility classes missing private constructor or final modifier`() =
         assertTwoViolations(
             """
-            class Foo {
-                static void bar() {}
+            final class Foo {
+                static foo() {}
+            }
+
+            class Bar {
+                private Bar() {}
+
+                static bar() {}
             }
             """.trimIndent(),
             1,
-            "class Foo {",
-            Messages[MSG_MODIFIER],
-            1,
-            "class Foo {",
+            "final class Foo {",
             Messages[MSG_CONSTRUCTOR],
+            5,
+            "class Bar {",
+            Messages[MSG_MODIFIER],
         )
 
     @Test
-    fun `Utility class with non-private constructors`() =
+    fun `Flag non-private constructors`() =
         assertTwoViolations(
             """
             final class Foo {
@@ -56,7 +62,7 @@ class UtilityClassInstanceHidingRuleTest :
 
                 public Foo(int a, int b) {}
 
-                static void bar() {}
+                static bar() {}
             }
             """.trimIndent(),
             2,
@@ -65,5 +71,41 @@ class UtilityClassInstanceHidingRuleTest :
             4,
             "public Foo(int a, int b) {}",
             Messages[MSG_CONSTRUCTOR_MODIFIER],
+        )
+
+    @Test
+    fun `Skip when class has non-static members`() =
+        assertNoViolations(
+            """
+            interface Foo {}
+
+            class Bar implements Foo {
+                static bar() {}
+            }
+
+            class Baz {
+                var baz = 0
+
+                static baz() {}
+            }
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Skip when class is inheriting others`() =
+        assertNoViolations(
+            """
+            interface Foo {}
+
+            class Bar {}
+
+            class Baz implements Foo {
+                static baz() {}
+            }
+
+            class Qux extends Bar {
+                static qux() {}
+            }
+            """.trimIndent(),
         )
 }

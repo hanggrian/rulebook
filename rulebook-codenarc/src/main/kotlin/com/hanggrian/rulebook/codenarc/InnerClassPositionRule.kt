@@ -14,10 +14,8 @@ public class InnerClassPositionRule : RulebookRule() {
     internal companion object {
         const val MSG = "inner.class.position"
 
-        private fun List<ASTNode>.isAnyAfter(other: ASTNode) =
-            takeUnless { it.isEmpty() }
-                ?.let { it.first().lineNumber > other.lineNumber }
-                ?: false
+        private infix fun List<ASTNode>.areAnyAfter(other: ASTNode) =
+            any { it.lineNumber > other.lineNumber }
     }
 
     public class Visitor : AbstractAstVisitor() {
@@ -27,10 +25,11 @@ public class InnerClassPositionRule : RulebookRule() {
             // checks for violation
             for (`class` in node.innerClasses) {
                 node
-                    .takeIf {
-                        it.fields.isAnyAfter(`class`) ||
-                            it.declaredConstructors.isAnyAfter(`class`) ||
-                            it.methods.isAnyAfter(`class`)
+                    .takeUnless { `class`.isEnum }
+                    ?.takeIf {
+                        it.fields areAnyAfter `class` ||
+                            it.declaredConstructors areAnyAfter `class` ||
+                            it.methods areAnyAfter `class`
                     } ?: continue
                 addViolation(`class`, Messages[MSG])
             }

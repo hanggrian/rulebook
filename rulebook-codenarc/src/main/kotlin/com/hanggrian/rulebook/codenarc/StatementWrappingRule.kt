@@ -47,6 +47,7 @@ public class StatementWrappingRule : RulebookRule() {
                 sourceLine(statement)
                     .takeIf { s ->
                         ';' in s &&
+                            "for" !in s &&
                             s.substringAfter(';').let { it.isNotEmpty() && "//" !in it }
                     } ?: continue
                 addViolation(statement, Messages.get(MSG, ';'))

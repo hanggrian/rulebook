@@ -21,11 +21,11 @@ class OverloadFunctionPositionRuleTest : AbstractRuleTestCase<OverloadFunctionPo
         assertNoViolations(
             """
             class Foo {
-                void bar(int a) {}
+                def bar(int a) {}
 
-                void bar(String a) {}
+                def bar(String a) {}
 
-                void baz() {}
+                def baz() {}
             }
             """.trimIndent(),
         )
@@ -35,15 +35,15 @@ class OverloadFunctionPositionRuleTest : AbstractRuleTestCase<OverloadFunctionPo
         assertSingleViolation(
             """
             class Foo {
-                void bar(int a) {}
+                def bar(int a) {}
 
-                void baz() {}
+                def baz() {}
 
-                void bar(String a) {}
+                def bar(String a) {}
             }
             """.trimIndent(),
             6,
-            "void bar(String a) {}",
+            "def bar(String a) {}",
             Messages.get(MSG, "bar"),
         )
 }

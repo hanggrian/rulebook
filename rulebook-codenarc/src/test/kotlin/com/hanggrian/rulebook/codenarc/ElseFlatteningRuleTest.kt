@@ -20,7 +20,7 @@ class ElseFlatteningRuleTest : AbstractRuleTestCase<ElseFlatteningRule>() {
     fun `No throw or return in if`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                     baz()
                 } else if (false) {
@@ -36,7 +36,7 @@ class ElseFlatteningRuleTest : AbstractRuleTestCase<ElseFlatteningRule>() {
     fun `Lift else when if has return`() =
         assertSingleViolation(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                     throw new Exception()
                 } else if (false) {
@@ -55,7 +55,7 @@ class ElseFlatteningRuleTest : AbstractRuleTestCase<ElseFlatteningRule>() {
     fun `Skip if not all if blocks have jump statement`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                     return
                 } else if (false) {
@@ -71,7 +71,7 @@ class ElseFlatteningRuleTest : AbstractRuleTestCase<ElseFlatteningRule>() {
     fun `Consider if-else without blocks`() =
         assertSingleViolation(
             """
-            void foo() {
+            def foo() {
                 if (true) throw new Exception()
                 else if (false) return
                 else baz()

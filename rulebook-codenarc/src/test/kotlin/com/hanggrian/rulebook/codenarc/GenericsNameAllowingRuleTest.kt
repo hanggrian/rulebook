@@ -69,11 +69,9 @@ class GenericsNameAllowingRuleTest : AbstractRuleTestCase<GenericsNameAllowingRu
         assertNoViolations(
             """
             class Foo<T> {
-                class Bar<X> {
-                }
+                class Bar<X> {}
 
-                <Y> void bar() {
-                }
+                <Y> void bar() {}
             }
             """.trimIndent(),
         )

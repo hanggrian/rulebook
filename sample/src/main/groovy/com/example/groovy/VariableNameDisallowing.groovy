@@ -1,7 +1,7 @@
 package com.example.groovy
 
 class VariableNameDisallowing {
-    String name = ""
+    var name = ''
 
     List<Person> people = []
 

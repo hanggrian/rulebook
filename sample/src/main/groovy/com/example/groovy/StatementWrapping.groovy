@@ -1,8 +1,8 @@
 package com.example.groovy
 
 class StatementWrapping {
-    void foo() {
-        int bar = 1
-        int baz = 2
+    def foo() {
+        var bar = 1
+        var baz = 2
     }
 }

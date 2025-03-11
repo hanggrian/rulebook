@@ -1,7 +1,7 @@
 package com.example.groovy
 
 class SwitchCaseBranching {
-    public SwitchCaseBranching(int foo, Runnable bar) {
+    public SwitchCaseBranching(var foo, var bar) {
         if (foo) {
             bar.run()
         }

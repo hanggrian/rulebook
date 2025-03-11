@@ -21,12 +21,12 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
     fun `Empty or one statement in if statement`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                 }
             }
 
-            void bar() {
+            def bar() {
                 if (true) {
                     baz()
                 }
@@ -38,14 +38,14 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
     fun `Invert if with multiline statement or two statements`() =
         assertTwoViolations(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                     baz()
                     baz()
                 }
             }
 
-            void bar() {
+            def bar() {
                 if (true) {
                     baz(
                         0
@@ -65,7 +65,7 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
     fun `Lift else when there is no else if`() =
         assertSingleViolation(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                     baz()
                 } else {
@@ -83,7 +83,7 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
     fun `Skip else if`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                     baz()
                     baz()
@@ -98,7 +98,7 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
     fun `Skip block with jump statement`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                     baz()
                     return
@@ -111,7 +111,7 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
     fun `Capture trailing non-ifs`() =
         assertSingleViolation(
             """
-            void foo() {
+            def foo() {
                 if (true) {
                     baz()
                     baz()

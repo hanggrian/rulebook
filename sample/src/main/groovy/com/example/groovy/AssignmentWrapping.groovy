@@ -1,8 +1,8 @@
 package com.example.groovy
 
 class AssignmentWrapping {
-    void foo() {
-        int bar =
+    def foo() {
+        var bar =
             1 +
                 2
     }

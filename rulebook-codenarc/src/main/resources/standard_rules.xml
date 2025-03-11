@@ -38,6 +38,13 @@
     <exclude name="CompileStatic"/>
     <exclude name="NoDouble"/>
     <exclude name="NoFloat"/>
+    <exclude name="NoDef"/>
+    <exclude name="VariableTypeRequired"/>
+    <exclude name="FieldTypeRequired"/>
+    <exclude name="MethodParameterTypeRequired"/>
+    <exclude name="MethodReturnTypeRequired"/>
+    <exclude name="ParameterReassignment"/>
+    <exclude name="InvertedIfElse"/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/design.xml">
@@ -110,7 +117,7 @@
     <exclude name="UnnecessaryCollectCall"/>
     <exclude name="UnnecessaryGetter"/>
 
-    <exclude name="UnnecessaryGString"/>
+    <!--exclude name="UnnecessaryGString"/-->
     <exclude name="UnnecessarySetter"/>
     <exclude name="UnnecessaryPublicModifier"/>
     <exclude name="UnnecessaryReturnKeyword"/>

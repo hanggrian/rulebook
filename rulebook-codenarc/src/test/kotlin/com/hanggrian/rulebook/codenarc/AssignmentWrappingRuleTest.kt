@@ -20,8 +20,8 @@ class AssignmentWrappingRuleTest : AbstractRuleTestCase<AssignmentWrappingRule>(
     fun `Single-line assignment`() =
         assertNoViolations(
             """
-            void foo() {
-                int bar = 1 + 2
+            def foo() {
+                var bar = 1 + 2
             }
             """.trimIndent(),
         )
@@ -30,8 +30,8 @@ class AssignmentWrappingRuleTest : AbstractRuleTestCase<AssignmentWrappingRule>(
     fun `Multiline assignment with breaking assignee`() =
         assertNoViolations(
             """
-            void foo() {
-                int bar =
+            def foo() {
+                var bar =
                     1 +
                         2
             }
@@ -42,13 +42,13 @@ class AssignmentWrappingRuleTest : AbstractRuleTestCase<AssignmentWrappingRule>(
     fun `Multiline assignment with non-breaking assignee`() =
         assertSingleViolation(
             """
-            void foo() {
-                int bar = 1 +
+            def foo() {
+                var bar = 1 +
                     2
             }
             """.trimIndent(),
             2,
-            "int bar = 1 +",
+            "var bar = 1 +",
             Messages[MSG],
         )
 
@@ -56,13 +56,13 @@ class AssignmentWrappingRuleTest : AbstractRuleTestCase<AssignmentWrappingRule>(
     fun `Multiline variable but single-line value`() =
         assertNoViolations(
             """
-            void foo(Bar bar) {
+            def foo(var bar) {
                 bar
                     .baz = 1
             }
 
             class Bar {
-                int baz
+                var baz
             }
             """.trimIndent(),
         )

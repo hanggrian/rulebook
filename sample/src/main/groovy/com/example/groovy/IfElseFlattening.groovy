@@ -1,7 +1,7 @@
 package com.example.groovy
 
 class IfElseFlattening {
-    void foo(boolean condition) {
+    def foo(var condition) {
         if (!condition) {
             return
         }

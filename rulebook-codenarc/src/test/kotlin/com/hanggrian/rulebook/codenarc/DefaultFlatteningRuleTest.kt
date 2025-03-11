@@ -20,7 +20,7 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
     fun `No throw or return in case`() =
         assertNoViolations(
             """
-            void foo(int bar) {
+            def foo(var bar) {
                 switch (bar) {
                     case 0:
                         baz()
@@ -37,7 +37,7 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
     fun `Lift else when case has return`() =
         assertSingleViolation(
             """
-            void foo() {
+            def foo(var bar) {
                 switch (bar) {
                     case 0:
                         throw new Exception()
@@ -57,7 +57,7 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
     fun `Skip if not all case blocks have jump statement`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo(var bar) {
                 switch (bar) {
                     case 0:
                         return

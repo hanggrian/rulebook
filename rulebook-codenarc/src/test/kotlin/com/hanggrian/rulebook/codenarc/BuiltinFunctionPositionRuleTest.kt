@@ -21,13 +21,13 @@ class BuiltinFunctionPositionRuleTest : AbstractRuleTestCase<BuiltinFunctionPosi
         assertNoViolations(
             """
             class Foo {
-                void bar() {}
+                def bar() {}
 
-                void baz() {}
+                def baz() {}
 
                 @Override
-                String toString() {
-                    return "foo"
+                def toString() {
+                    return 'foo'
                 }
 
                 @Override
@@ -45,17 +45,17 @@ class BuiltinFunctionPositionRuleTest : AbstractRuleTestCase<BuiltinFunctionPosi
             class Foo {
                 @Override
                 String toString() {
-                    return "foo"
+                    return 'foo'
                 }
 
-                void bar() {}
+                def bar() {}
 
                 @Override
                 int hashCode() {
                     return 0
                 }
 
-                void baz() {}
+                def baz() {}
             }
             """.trimIndent(),
             3,
@@ -73,7 +73,7 @@ class BuiltinFunctionPositionRuleTest : AbstractRuleTestCase<BuiltinFunctionPosi
             class Foo {
                 @Override
                 String toString() {
-                    return "foo"
+                    return 'foo'
                 }
 
                 @Override
@@ -82,7 +82,7 @@ class BuiltinFunctionPositionRuleTest : AbstractRuleTestCase<BuiltinFunctionPosi
                 }
 
                 @Override
-                boolean equals(Object other) {
+                boolean equals(var other) {
                     return false
                 }
             }
@@ -96,10 +96,10 @@ class BuiltinFunctionPositionRuleTest : AbstractRuleTestCase<BuiltinFunctionPosi
             class Foo {
                 @Override
                 String toString() {
-                    return "foo"
+                    return 'foo'
                 }
 
-                public static void baz() {}
+                static baz() {}
             }
             """.trimIndent(),
         )

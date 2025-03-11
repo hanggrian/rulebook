@@ -21,7 +21,7 @@ class OperatorWrappingRuleTest : AbstractRuleTestCase<OperatorWrappingRule>() {
     fun `Operators in single-line statement`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 println(1 + 2 - 3)
             }
             """.trimIndent(),
@@ -31,7 +31,7 @@ class OperatorWrappingRuleTest : AbstractRuleTestCase<OperatorWrappingRule>() {
     fun `NL-wrapped operators in multi-line statement`() =
         assertTwoViolations(
             """
-            void foo() {
+            def foo() {
                 println(
                     1
                         + 2
@@ -51,7 +51,7 @@ class OperatorWrappingRuleTest : AbstractRuleTestCase<OperatorWrappingRule>() {
     fun `EOL-wrapped operators in multi-line statement`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 println(
                     1 +
                         2 -
@@ -65,7 +65,7 @@ class OperatorWrappingRuleTest : AbstractRuleTestCase<OperatorWrappingRule>() {
     fun `Multiline operand need to be wrapped`() =
         assertTwoViolations(
             """
-            void foo() {
+            def foo() {
                 println(
                     1 + Math.min(
                         2,

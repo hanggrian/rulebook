@@ -1,7 +1,7 @@
 package com.example.groovy
 
 class OperatorWrapping {
-    void foo() {
+    def foo() {
         println(
             0 +
                 1 -

@@ -22,7 +22,7 @@ class ImportOrderingRuleTest : AbstractRuleTestCase<ImportOrderingRule>() {
             import java.util.List
 
             class Foo {
-                void bar(List<User> list) {}
+                def bar(List<User> list) {}
             }
             """.trimIndent(),
         )
@@ -35,7 +35,7 @@ class ImportOrderingRuleTest : AbstractRuleTestCase<ImportOrderingRule>() {
             import com.example.User
 
             class Foo {
-                void bar(List<User> list) {}
+                def bar(List<User> list) {}
             }
             """.trimIndent(),
             2,
@@ -52,7 +52,7 @@ class ImportOrderingRuleTest : AbstractRuleTestCase<ImportOrderingRule>() {
             import java.util.List
 
             class Foo {
-                void bar(List<User> list) {}
+                def bar(List<User> list) {}
             }
             """.trimIndent(),
             3,
@@ -71,7 +71,7 @@ class ImportOrderingRuleTest : AbstractRuleTestCase<ImportOrderingRule>() {
             import static java.lang.System.arraycopy
 
             class Foo {
-                void bar(List<User> list) {
+                def bar(List<User> list) {
                     arraycopy(new int[]{0})
                     exit(0)
                 }

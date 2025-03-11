@@ -1,6 +1,6 @@
 package com.example.groovy
 
 class FloatLiteralTagging {
-    float foo = 123f
-    float bar = 0x123F
+    var foo = 123f
+    var bar = 0x123F
 }

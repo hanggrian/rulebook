@@ -20,9 +20,9 @@ class StatementWrappingRuleTest : AbstractRuleTestCase<StatementWrappingRule>() 
     fun `Single statement`() =
         assertNoViolations(
             """
-            void foo() {
-                int bar = 1
-                int baz = 2
+            def foo() {
+                var bar = 1
+                var baz = 2
             }
             """.trimIndent(),
         )
@@ -31,15 +31,15 @@ class StatementWrappingRuleTest : AbstractRuleTestCase<StatementWrappingRule>() 
     fun `Joined statements`() =
         assertTwoViolations(
             """
-            void foo() {
-                int bar = 1; int baz = 2
+            def foo() {
+                var bar = 1; var baz = 2
             }
             """.trimIndent(),
             2,
-            "int bar = 1; int baz = 2",
+            "var bar = 1; var baz = 2",
             Messages.get(MSG, ';'),
             2,
-            "int bar = 1; int baz = 2",
+            "var bar = 1; var baz = 2",
             Messages.get(MSG, ';'),
         )
 
@@ -47,7 +47,7 @@ class StatementWrappingRuleTest : AbstractRuleTestCase<StatementWrappingRule>() 
     fun `Single statement in block`() =
         assertViolations(
             """
-            void foo() {
+            def foo() {
                 if (baz) { println(it) }
                 for (baz in [1, 2, 3]) { println(it) }
                 while (true) { println(it) }
@@ -58,5 +58,17 @@ class StatementWrappingRuleTest : AbstractRuleTestCase<StatementWrappingRule>() 
             violationOf(3, "for (baz in [1, 2, 3]) { println(it) }", Messages.get(MSG, '{')),
             violationOf(4, "while (true) { println(it) }", Messages.get(MSG, '{')),
             violationOf(5, "do { println(it) } while (true)", Messages.get(MSG, '{')),
+        )
+
+    @Test
+    fun `Skip semicolons found in for command`() =
+        assertNoViolations(
+            """
+            def foo() {
+                for (int bar = 0; bar < 10; bar++) {
+                    int baz = bar
+                }
+            }
+            """.trimIndent(),
         )
 }

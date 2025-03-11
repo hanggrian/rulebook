@@ -21,15 +21,15 @@ class ClassMemberOrderingRuleTest : AbstractRuleTestCase<ClassMemberOrderingRule
         assertNoViolations(
             """
             class Foo {
-                int bar = 0
+                var bar = 0
 
                 Foo() {
                     this(0)
                 }
 
-                Foo(int a) {}
+                Foo(var a) {}
 
-                void baz() {}
+                def baz() {}
             }
             """.trimIndent(),
         )
@@ -43,13 +43,13 @@ class ClassMemberOrderingRuleTest : AbstractRuleTestCase<ClassMemberOrderingRule
                     this(0)
                 }
 
-                Foo(int a) {}
+                Foo(var a) {}
 
-                int bar = 0
+                var bar = 0
             }
             """.trimIndent(),
             8,
-            "int bar = 0",
+            "var bar = 0",
             Messages.get(MSG, "property", "constructor"),
         )
 
@@ -58,20 +58,20 @@ class ClassMemberOrderingRuleTest : AbstractRuleTestCase<ClassMemberOrderingRule
         assertTwoViolations(
             """
             class Foo {
-                void baz() {}
+                def baz() {}
 
                 Foo() {
                     this(0)
                 }
 
-                Foo(int a) {}
+                Foo(var a) {}
             }
             """.trimIndent(),
             4,
             "Foo() {",
             Messages.get(MSG, "constructor", "function"),
             8,
-            "Foo(int a) {}",
+            "Foo(var a) {}",
             Messages.get(MSG, "constructor", "function"),
         )
 
@@ -80,9 +80,9 @@ class ClassMemberOrderingRuleTest : AbstractRuleTestCase<ClassMemberOrderingRule
         assertNoViolations(
             """
             class Foo {
-                static void baz() {}
+                static baz() {}
 
-                static baz = 0
+                static var baz = 0
 
                 Foo() {}
             }

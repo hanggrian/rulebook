@@ -35,7 +35,7 @@ class InnerClassPositionRuleTest {
         assertThatCode(
             """
             class Foo(a: Int) {
-                class Inner
+                interface Inner
 
                 val bar = 0
 

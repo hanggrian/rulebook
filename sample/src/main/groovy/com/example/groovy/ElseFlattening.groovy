@@ -1,7 +1,7 @@
 package com.example.groovy
 
 class ElseFlattening {
-    void foo(boolean condition) {
+    def foo(var condition) {
         if (condition) {
             throw new IllegalStateException()
         } else if (!condition) {

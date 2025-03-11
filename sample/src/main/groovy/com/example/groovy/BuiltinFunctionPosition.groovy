@@ -2,11 +2,11 @@ package com.example.groovy
 
 class BuiltinFunctionPosition {
     static class Foo {
-        void bar() {}
+        def bar() {}
 
         @Override
         String toString() {
-            return "baz"
+            return 'baz'
         }
 
         @Override
@@ -15,7 +15,7 @@ class BuiltinFunctionPosition {
         }
 
         @Override
-        boolean equals(Object obj) {
+        boolean equals(var obj) {
             return false
         }
     }

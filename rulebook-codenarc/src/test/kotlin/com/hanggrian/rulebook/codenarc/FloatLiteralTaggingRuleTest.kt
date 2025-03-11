@@ -21,9 +21,9 @@ class FloatLiteralTaggingRuleTest : AbstractRuleTestCase<FloatLiteralTaggingRule
     fun `Lowercase literal floats`() =
         assertNoViolations(
             """
-            float foo = 0f
+            var foo = 0f
 
-            void bar() {
+            def bar() {
                 println(123f)
             }
             """.trimIndent(),
@@ -33,14 +33,14 @@ class FloatLiteralTaggingRuleTest : AbstractRuleTestCase<FloatLiteralTaggingRule
     fun `Uppercase literal floats`() =
         assertTwoViolations(
             """
-            float foo = 0F
+            var foo = 0F
 
-            void bar() {
+            def bar() {
                 println(123F)
             }
             """.trimIndent(),
             1,
-            "float foo = 0F",
+            "var foo = 0F",
             Messages[MSG_NUM],
             4,
             "println(123F)",
@@ -51,14 +51,14 @@ class FloatLiteralTaggingRuleTest : AbstractRuleTestCase<FloatLiteralTaggingRule
     fun `Lowercase literal hexadecimals`() =
         assertTwoViolations(
             """
-            float foo = 0x00f
+            var foo = 0x00f
 
-            void bar() {
+            def bar() {
                 println(0x123f)
             }
             """.trimIndent(),
             1,
-            "float foo = 0x00f",
+            "var foo = 0x00f",
             Messages[MSG_HEX],
             4,
             "println(0x123f)",
@@ -69,9 +69,9 @@ class FloatLiteralTaggingRuleTest : AbstractRuleTestCase<FloatLiteralTaggingRule
     fun `Uppercase literal hexadecimals`() =
         assertNoViolations(
             """
-            float foo = 0x00F
+            var foo = 0x00F
 
-            void bar() {
+            def bar() {
                 println(0x123F)
             }
             """.trimIndent(),

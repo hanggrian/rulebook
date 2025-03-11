@@ -26,7 +26,7 @@ class VariableNameDisallowingRuleTest : AbstractRuleTestCase<VariableNameDisallo
         assertNoViolations(
             """
             class Foo {
-                String name = ""
+                var name = ''
             }
             """.trimIndent(),
         )
@@ -36,11 +36,11 @@ class VariableNameDisallowingRuleTest : AbstractRuleTestCase<VariableNameDisallo
         assertSingleViolation(
             """
             class Foo {
-                String string = ""
+                var string = ''
             }
             """.trimIndent(),
             2,
-            "String string = \"\"",
+            "var string = ''",
             Messages[MSG],
         )
 }

@@ -20,7 +20,7 @@ class SwitchCaseBranchingRuleTest : AbstractRuleTestCase<SwitchCaseBranchingRule
     fun `Multiple switch branches`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 switch (bar) {
                     case 0:
                         baz()
@@ -37,7 +37,7 @@ class SwitchCaseBranchingRuleTest : AbstractRuleTestCase<SwitchCaseBranchingRule
     fun `Single switch branch`() =
         assertSingleViolation(
             """
-            void foo() {
+            def foo() {
                 switch (bar) {
                     case 0:
                         baz()
@@ -54,7 +54,7 @@ class SwitchCaseBranchingRuleTest : AbstractRuleTestCase<SwitchCaseBranchingRule
     fun `Skip single branch if it has fall through condition`() =
         assertNoViolations(
             """
-            void foo() {
+            def foo() {
                 switch (bar) {
                     case 0:
                     case 1:
