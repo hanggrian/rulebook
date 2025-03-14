@@ -486,16 +486,21 @@
       <property name="format" value="todo|fixme"/>
     </module>
     <module name="ArrayTrailingComma"/>
+
+    <!-- Class design -->
+    <module name="AbstractClassFunctionAbstraction"/>
+    <module name="ExceptionExtending"/>
     <module name="HideUtilityClassConstructor"/>
 
-    <!-- Error -->
+    <!-- Control flow -->
+    <module name="DefaultFlattening"/>
+    <module name="ElseFlattening"/>
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
           java.lang.Throwable"/>
     </module>
-    <module name="ExceptionExtending"/>
     <module name="IllegalThrows">
       <property name="ignoreOverriddenMethods" value="false"/>
       <property
@@ -503,24 +508,24 @@
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
           java.lang.Throwable"/>
     </module>
-
-    <!-- Flow -->
-    <module name="DefaultFlattening"/>
-    <module name="ElseFlattening"/>
     <module name="IfElseFlattening"/>
     <module name="SwitchCaseBranching"/>
-
-    <!-- Fold -->
-    <module name="AssignmentWrapping"/>
-    <module name="ChainCallContinuation"/>
-    <module name="LambdaWrapping"/>
-    <module name="ParameterWrapping"/>
 
     <!-- Layout -->
     <module name="BlockTagOrdering"/>
     <module name="BuiltinFunctionPosition"/>
     <module name="ClassMemberOrdering"/>
     <module name="InnerTypeLast"/>
+
+    <!-- Literal -->
+    <module name="DoubleSuffixLowercasing"/>
+    <module name="FloatSuffixLowercasing"/>
+
+    <!-- Line break -->
+    <module name="AssignmentWrapping"/>
+    <module name="ChainCallContinuation"/>
+    <module name="LambdaWrapping"/>
+    <module name="ParameterWrapping"/>
 
     <!-- Name -->
     <module name="ClassFinalNameDisallowing"/>
@@ -536,9 +541,6 @@
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF,
           RECORD_COMPONENT_DEF"/>
     </module>
-
-    <!-- Value -->
-    <module name="FloatLiteralTagging"/>
 
     <!-- Whitespace -->
     <module name="BlockCommentLineJoining"/>

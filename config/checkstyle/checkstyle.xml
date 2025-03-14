@@ -188,14 +188,19 @@
     <module name="QualifierConsistency"/>
     <module name="ArrayTrailingComma"/>
 
-    <!-- Error -->
+    <!-- Class design -->
+    <module name="AbstractClassFunctionAbstraction"/>
+    <module name="ClassExceptionExtending"/>
+
+    <!-- Control flow -->
+    <module name="DefaultFlattening"/>
+    <module name="ElseFlattening"/>
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
           java.lang.Throwable"/>
     </module>
-    <module name="ExceptionExtending"/>
     <module name="IllegalThrows">
       <property name="ignoreOverriddenMethods" value="false"/>
       <property
@@ -203,23 +208,8 @@
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
           java.lang.Throwable"/>
     </module>
-
-    <!-- Flow -->
-    <module name="DefaultFlattening"/>
-    <module name="ElseFlattening"/>
     <module name="IfElseFlattening"/>
     <module name="SwitchCaseBranching"/>
-
-    <!-- Fold -->
-    <module name="AssignmentWrapping"/>
-    <module name="ChainCallContinuation"/>
-    <module name="RegexpSinglelineJava">
-      <property name="format" value="\{[ ]+\}"/>
-      <property name="message" value="Unexpected whitespace between '{}'."/>
-    </module>
-    <module name="LambdaWrapping"/>
-    <module name="ParameterWrapping"/>
-    <module name="OneStatementPerLine"/>
 
     <!-- Layout -->
     <module name="AtclauseOrder">
@@ -237,6 +227,21 @@
         value="STATIC###THIRD_PARTY_PACKAGE"/>
       <property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
     </module>
+
+    <!-- Literal -->
+    <module name="DoubleSuffixLowercasing"/>
+    <module name="FloatSuffixLowercasing"/>
+
+    <!-- Line break -->
+    <module name="AssignmentWrapping"/>
+    <module name="ChainCallContinuation"/>
+    <module name="RegexpSinglelineJava">
+      <property name="format" value="\{[ ]+\}"/>
+      <property name="message" value="Unexpected whitespace between '{}'."/>
+    </module>
+    <module name="LambdaWrapping"/>
+    <module name="ParameterWrapping"/>
+    <module name="OneStatementPerLine"/>
 
     <!-- Name -->
     <module name="AbbreviationAsWordInName">
@@ -269,9 +274,6 @@
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF,
           RECORD_COMPONENT_DEF"/>
     </module>
-
-    <!-- Value -->
-    <module name="FloatLiteralTagging"/>
 
     <!-- Whitespace -->
     <module name="BlockCommentLineJoining"/>

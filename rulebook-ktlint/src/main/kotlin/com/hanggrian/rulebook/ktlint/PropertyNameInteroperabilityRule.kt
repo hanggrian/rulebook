@@ -90,8 +90,9 @@ public class PropertyNameInteroperabilityRule : RulebookRule(ID) {
         private fun ASTNode.hasAnnotation(name: String) =
             findChildByType(MODIFIER_LIST)
                 ?.children()
-                ?.filter { it.elementType == ANNOTATION_ENTRY }
-                ?.any {
+                .orEmpty()
+                .filter { it.elementType == ANNOTATION_ENTRY }
+                .any {
                     it
                         .findChildByType(CONSTRUCTOR_CALLEE)
                         ?.findChildByType(TYPE_REFERENCE)
@@ -99,6 +100,6 @@ public class PropertyNameInteroperabilityRule : RulebookRule(ID) {
                         ?.findChildByType(REFERENCE_EXPRESSION)
                         ?.findChildByType(IDENTIFIER)
                         ?.text == name
-                } ?: false
+                }
     }
 }

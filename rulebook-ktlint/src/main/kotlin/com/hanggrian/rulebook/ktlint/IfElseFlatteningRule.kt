@@ -82,9 +82,9 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
         private fun ASTNode.hasMultipleLines() =
             findChildByType(BLOCK)
                 ?.children()
-                ?.filterNot {
+                .orEmpty()
+                .filterNot {
                     it.elementType == LBRACE || it.elementType == RBRACE || it.isWhiteSpace()
-                }?.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
-                ?: false
+                }.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
     }
 }

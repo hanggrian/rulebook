@@ -75,13 +75,9 @@ public class BlockCommentSignatureRule :
             textLength
                 .takeIf { it + SINGLELINE_TEMPLATE.length <= maxLineLength }
                 ?: return
-            emit(children.first().startOffset, Messages[MSG_JOIN], false)
+            emit(children.first().startOffset, Messages[MSG], false)
             return
         }
-        textLength
-            .takeIf { it + SINGLELINE_TEMPLATE.length > maxLineLength + 1 }
-            ?: return
-        emit(children.first().startOffset, Messages[MSG_SPLIT], false)
     }
 
     private val ASTNode.indentLength: Int
@@ -100,8 +96,7 @@ public class BlockCommentSignatureRule :
     internal companion object {
         val ID = RuleId("${RulebookRuleSet.ID.value}:block-comment-signature")
 
-        const val MSG_JOIN = "block.comment.signature.join"
-        const val MSG_SPLIT = "block.comment.signature.split"
+        const val MSG = "block.comment.signature"
 
         private const val SINGLELINE_TEMPLATE = "/** */"
     }

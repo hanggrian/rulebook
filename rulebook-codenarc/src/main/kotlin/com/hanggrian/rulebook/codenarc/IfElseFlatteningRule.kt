@@ -21,8 +21,8 @@ public class IfElseFlatteningRule : RulebookRule() {
         private fun Statement.hasMultipleLines() =
             (this as? BlockStatement)
                 ?.statements
-                ?.let { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
-                ?: false
+                .orEmpty()
+                .let { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
     }
 
     public class Visitor : AbstractAstVisitor() {

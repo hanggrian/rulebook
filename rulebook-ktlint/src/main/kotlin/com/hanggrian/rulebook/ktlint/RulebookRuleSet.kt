@@ -7,6 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleSetId
 public class RulebookRuleSet : RuleSetProviderV3(ID) {
     override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
+            RuleProvider { AbstractClassFunctionAbstractionRule() },
             RuleProvider { BlockCommentLineJoiningRule() },
             RuleProvider { BlockCommentLineTrimmingRule() },
             RuleProvider { BlockCommentSignatureRule() },
@@ -18,6 +19,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BuiltinFunctionPositionRule() },
             RuleProvider { BuiltinTypePriorityRule() },
             RuleProvider { CaseLineSpacingRule() },
+            RuleProvider { ClassExceptionExtendingRule() },
             RuleProvider { ClassFinalNameDisallowingRule() },
             RuleProvider { ClassMemberOrderingRule() },
             RuleProvider { ClassNameAcronymCapitalizationRule() },
@@ -28,11 +30,10 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { ElseFlatteningRule() },
             RuleProvider { ElvisWrappingRule() },
             RuleProvider { EmptyCodeBlockUnwrappingRule() },
-            RuleProvider { ExceptionExtendingRule() },
-            RuleProvider { ExceptionThrowingRule() },
+            RuleProvider { ExceptionSubclassThrowingRule() },
             RuleProvider { FileInitialLineTrimmingRule() },
             RuleProvider { FileSizeLimitationRule() },
-            RuleProvider { FloatLiteralTaggingRule() },
+            RuleProvider { FloatSuffixLowercasingRule() },
             RuleProvider { GenericsNameAllowingRule() },
             RuleProvider { IfElseFlatteningRule() },
             RuleProvider { InfixCallWrappingRule() },

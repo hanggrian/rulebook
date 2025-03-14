@@ -131,19 +131,15 @@
 
   <!-- General -->
   <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
+
+  <!-- Code design -->
   <rule class="com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
 
-  <!-- Flow -->
+  <!-- Control flow -->
   <rule class="com.hanggrian.rulebook.codenarc.DefaultFlatteningRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ElseFlatteningRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.IfElseFlatteningRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.SwitchCaseBranchingRule"/>
-
-  <!-- Fold -->
-  <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.OperatorWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ParameterWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
 
   <!-- Layout -->
   <rule class="com.hanggrian.rulebook.codenarc.BuiltinFunctionPositionRule"/>
@@ -152,14 +148,22 @@
   <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
 
+  <!-- Literal -->
+  <rule class="com.hanggrian.rulebook.codenarc.DoubleSuffixLowercasingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.FloatSuffixLowercasingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IntegerSuffixLowercasingRule"/>
+
+  <!-- Line break -->
+  <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.OperatorWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ParameterWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
+
   <!-- Name -->
   <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameDisallowingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.GenericsNameAllowingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.VariableNameDisallowingRule"/>
-
-  <!-- Value -->
-  <rule class="com.hanggrian.rulebook.codenarc.FloatLiteralTaggingRule"/>
 
   <!-- Whitespace -->
   <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>

@@ -62,8 +62,8 @@ public class IfElseFlatteningCheck : RulebookCheck() {
         private fun DetailAST.hasMultipleLines() =
             findFirstToken(SLIST)
                 ?.children
-                ?.filterNot { it.type == RCURLY || it.type == SEMI }
-                ?.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
-                ?: false
+                .orEmpty()
+                .filterNot { it.type == RCURLY || it.type == SEMI }
+                .let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
     }
 }

@@ -63,8 +63,8 @@ internal fun DetailAST.hasModifier(type: Int): Boolean =
 internal fun DetailAST.hasAnnotation(name: String): Boolean =
     findFirstToken(MODIFIERS)
         ?.children
-        ?.any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
-        ?: false
+        .orEmpty()
+        .any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
 
 internal fun DetailAST.hasReturnOrThrow(): Boolean =
     (findFirstToken(SLIST) ?: this)
