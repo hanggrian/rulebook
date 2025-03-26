@@ -1,9 +1,12 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import com.hanggrian.rulebook.codenarc.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.codenarc.internals.hasJumpStatement
 import com.hanggrian.rulebook.codenarc.internals.isMultiline
+import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.stmt.BlockStatement
+import org.codehaus.groovy.ast.stmt.DoWhileStatement
+import org.codehaus.groovy.ast.stmt.ForStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.Statement
 import org.codenarc.rule.AbstractAstVisitor
@@ -26,12 +29,29 @@ public class IfElseFlatteningRule : RulebookRule() {
     }
 
     public class Visitor : AbstractAstVisitor() {
-        override fun visitBlockStatement(node: BlockStatement) {
-            super.visitBlockStatement(node)
+        override fun visitForLoop(node: ForStatement) {
+            super.visitForLoop(node)
 
+            process(node.loopBlock as? BlockStatement ?: return)
+        }
+
+        override fun visitDoWhileLoop(node: DoWhileStatement) {
+            super.visitDoWhileLoop(node)
+
+            process(node.loopBlock as? BlockStatement ?: return)
+        }
+
+        override fun visitMethodEx(node: MethodNode) {
+            super.visitMethodEx(node)
+
+            process(node.code as? BlockStatement ?: return)
+        }
+
+        private fun process(node: BlockStatement) {
             // get last if
             val `if` =
-                node.statements.lastOrNull() as? IfStatement
+                node.statements.lastOrNull()
+                    as? IfStatement
                     ?: return
 
             // checks for violation
@@ -42,7 +62,7 @@ public class IfElseFlatteningRule : RulebookRule() {
                 return
             }
             `if`
-                .takeUnless { it.hasReturnOrThrow() }
+                .takeUnless { it.hasJumpStatement() }
                 ?.ifBlock
                 ?.takeIf { it.hasMultipleLines() }
                 ?: return

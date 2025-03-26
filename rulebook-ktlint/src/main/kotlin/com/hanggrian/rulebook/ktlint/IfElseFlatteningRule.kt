@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
-import com.hanggrian.rulebook.ktlint.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.ktlint.internals.hasJumpStatement
 import com.hanggrian.rulebook.ktlint.internals.isComment
 import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
@@ -12,7 +12,6 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -27,9 +26,10 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(BLOCK)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip init block
+        // skip recursive if-else and init block
         node
-            .takeIf { n -> n.parent { it.elementType == CLASS_INITIALIZER } == null }
+            .takeUnless { it.treeParent.elementType == THEN }
+            ?.takeIf { n -> n.parent { it.elementType == CLASS_INITIALIZER } == null }
             ?: return
 
         // get last if
@@ -38,11 +38,6 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
             when {
                 child.elementType == IF -> {
                     `if` = child
-                    break
-                }
-
-                child.elementType == RETURN -> {
-                    `if` = child.findChildByType(IF) ?: return
                     break
                 }
 
@@ -66,7 +61,7 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
             return
         }
         `if`
-            .takeUnless { it.hasReturnOrThrow() }
+            .takeUnless { it.hasJumpStatement() }
             ?.findChildByType(THEN)
             ?.takeIf { it.hasMultipleLines() }
             ?: return

@@ -24,10 +24,13 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
                 switch (bar) {
                     case 0:
                         baz()
+                        break
                     case 1:
                         baz()
+                        break
                     default:
                         baz()
+                        break
                 }
             }
             """.trimIndent(),
@@ -45,6 +48,7 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
                         return
                     default:
                         baz()
+                        break
                 }
             }
             """.trimIndent(),
@@ -63,8 +67,10 @@ class DefaultFlatteningRuleTest : AbstractRuleTestCase<DefaultFlatteningRule>() 
                         return
                     case 1:
                         baz()
+                        break
                     default:
                         baz()
+                        break
                 }
             }
             """.trimIndent(),

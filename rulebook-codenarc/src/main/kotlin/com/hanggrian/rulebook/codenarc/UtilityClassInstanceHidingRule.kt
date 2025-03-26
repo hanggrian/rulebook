@@ -25,8 +25,6 @@ public class UtilityClassInstanceHidingRule : RulebookRule() {
             node
                 .takeUnless { it.methods.isEmpty() && node.fields.isEmpty() }
                 ?.takeIf { n ->
-                    println(n.interfaces.isEmpty())
-                    println(n.superClass)
                     n.interfaces.isEmpty() &&
                         n.superClass.name == "java.lang.Object" &&
                         n.methods.all { it.isStatic } &&

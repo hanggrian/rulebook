@@ -124,4 +124,20 @@ class IfElseFlatteningRuleTest : AbstractRuleTestCase<IfElseFlatteningRule>() {
             "if (true) {",
             Messages[MSG_INVERT],
         )
+
+    @Test
+    fun `Skip recursive if-else because it is not safe to return in inner blocks`() =
+        assertNoViolations(
+            """
+            def foo() {
+                if (true) {
+                    if (true) {
+                        baz()
+                        baz()
+                    }
+                }
+                baz()
+            }
+            """.trimIndent(),
+        )
 }

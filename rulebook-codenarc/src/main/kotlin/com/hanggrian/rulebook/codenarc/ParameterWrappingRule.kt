@@ -6,8 +6,9 @@ import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
 import org.codehaus.groovy.ast.expr.ConstructorCallExpression
+import org.codehaus.groovy.ast.expr.Expression
+import org.codehaus.groovy.ast.expr.MethodCall
 import org.codehaus.groovy.ast.expr.MethodCallExpression
-import org.codehaus.groovy.ast.expr.StaticMethodCallExpression
 import org.codenarc.rule.AbstractAstVisitor
 
 /** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#parameter-wrapping) */
@@ -21,6 +22,16 @@ public class ParameterWrappingRule : RulebookRule() {
     }
 
     public class Visitor : AbstractAstVisitor() {
+        override fun visitConstructorCallExpression(node: ConstructorCallExpression) {
+            super.visitConstructorCallExpression(node)
+            visitCallExpression(node)
+        }
+
+        override fun visitMethodCallExpression(node: MethodCallExpression) {
+            super.visitMethodCallExpression(node)
+            visitCallExpression(node)
+        }
+
         override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
             super.visitConstructorOrMethod(node, isConstructor)
 
@@ -35,46 +46,17 @@ public class ParameterWrappingRule : RulebookRule() {
             process(parameters.asList())
         }
 
-        override fun visitConstructorCallExpression(node: ConstructorCallExpression) {
-            super.visitConstructorCallExpression(node)
-
+        private fun <T> visitCallExpression(node: T) where T : Expression, T : MethodCall {
             // target multiline parameters
             val arguments =
                 node
                     .takeIf { it.isMultiline() }
                     ?.arguments
+                    as? ArgumentListExpression
                     ?: return
 
             // checks for violation
-            process((arguments as? ArgumentListExpression)?.expressions ?: return)
-        }
-
-        override fun visitMethodCallExpression(node: MethodCallExpression) {
-            super.visitMethodCallExpression(node)
-
-            // target multiline parameters
-            val arguments =
-                node
-                    .takeIf { it.isMultiline() }
-                    ?.arguments
-                    ?: return
-
-            // checks for violation
-            process((arguments as? ArgumentListExpression)?.expressions ?: return)
-        }
-
-        override fun visitStaticMethodCallExpression(node: StaticMethodCallExpression) {
-            super.visitStaticMethodCallExpression(node)
-
-            // target multiline parameters
-            val arguments =
-                node
-                    .takeIf { it.isMultiline() }
-                    ?.arguments
-                    ?: return
-
-            // checks for violation
-            process((arguments as? ArgumentListExpression)?.expressions ?: return)
+            process(arguments.expressions)
         }
 
         private fun process(parameters: List<ASTNode>) {

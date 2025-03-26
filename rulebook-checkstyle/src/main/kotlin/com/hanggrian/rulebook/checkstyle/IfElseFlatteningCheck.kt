@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.contains
-import com.hanggrian.rulebook.checkstyle.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.checkstyle.internals.hasJumpStatement
 import com.hanggrian.rulebook.checkstyle.internals.isComment
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.puppycrawl.tools.checkstyle.api.DetailAST
@@ -20,6 +20,11 @@ public class IfElseFlatteningCheck : RulebookCheck() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
+        // skip recursive if-else
+        node
+            .takeUnless { it.parent.type == LITERAL_IF || it.parent.type == LITERAL_ELSE }
+            ?: return
+
         // get last if
         var `if`: DetailAST? = null
         for (child in node.children.asIterable().reversed()) {
@@ -32,9 +37,8 @@ public class IfElseFlatteningCheck : RulebookCheck() {
                 child.type == SEMI ||
                     child.type == RCURLY ||
                     child.isComment() -> continue
-
-                else -> return
             }
+            return
         }
         `if` ?: return
 
@@ -49,7 +53,7 @@ public class IfElseFlatteningCheck : RulebookCheck() {
             return
         }
         `if`
-            .takeUnless { it.hasReturnOrThrow() }
+            .takeUnless { it.hasJumpStatement() }
             ?.takeIf { it.hasMultipleLines() }
             ?: return
         log(`if`, Messages[MSG_INVERT])

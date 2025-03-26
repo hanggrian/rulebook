@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.contains
-import com.hanggrian.rulebook.checkstyle.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.checkstyle.internals.hasJumpStatement
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
@@ -24,7 +24,7 @@ public class ElseFlatteningCheck : RulebookCheck() {
         var `if`: DetailAST? = node
         while (`if` != null) {
             `if`
-                .takeIf { it.hasReturnOrThrow() }
+                .takeIf { it.hasJumpStatement() }
                 ?: return
             lastElse = `if`.findFirstToken(LITERAL_ELSE)
             `if` = lastElse?.findFirstToken(LITERAL_IF)

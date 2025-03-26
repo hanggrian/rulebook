@@ -8,6 +8,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_BREAK
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CONTINUE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
@@ -15,20 +17,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
 internal val DetailAST.maxLineNo: Int
-    get() {
+    get() =
         if (isLeaf()) {
-            return lineNo
+            lineNo
+        } else {
+            children.maxOf { it.maxLineNo }
         }
-        return children.maxOf { it.maxLineNo }
-    }
 
 internal val DetailAST.minLineNo: Int
-    get() {
+    get() =
         if (isLeaf()) {
-            return lineNo
+            lineNo
+        } else {
+            children.minOf { it.minLineNo }
         }
-        return children.minOf { it.minLineNo }
-    }
 
 internal val DetailAST.lastMostChild: DetailAST
     get() {
@@ -66,9 +68,13 @@ internal fun DetailAST.hasAnnotation(name: String): Boolean =
         .orEmpty()
         .any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
 
-internal fun DetailAST.hasReturnOrThrow(): Boolean =
-    (findFirstToken(SLIST) ?: this)
-        .let { LITERAL_RETURN in it || LITERAL_THROW in it }
+internal fun DetailAST.hasJumpStatement(): Boolean =
+    (findFirstToken(SLIST) ?: this).let {
+        LITERAL_RETURN in it ||
+            LITERAL_THROW in it ||
+            LITERAL_BREAK in it ||
+            LITERAL_CONTINUE in it
+    }
 
 internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 

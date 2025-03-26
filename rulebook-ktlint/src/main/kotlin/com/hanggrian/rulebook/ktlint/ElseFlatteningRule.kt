@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.contains
-import com.hanggrian.rulebook.ktlint.internals.hasReturnOrThrow
+import com.hanggrian.rulebook.ktlint.internals.hasJumpStatement
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
@@ -25,7 +25,7 @@ public class ElseFlatteningRule : RulebookRule(ID) {
         var `if`: ASTNode? = node
         while (`if` != null) {
             `if`
-                .takeIf { it.hasReturnOrThrow() }
+                .takeIf { it.hasJumpStatement() }
                 ?: return
             lastElse = `if`.findChildByType(ELSE_KEYWORD)
             `if` = `if`.findChildByType(ELSE)?.findChildByType(IF)

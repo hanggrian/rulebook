@@ -18,6 +18,8 @@ public class QualifierConsistencyRule : RulebookRule() {
         const val MSG = "qualifier.consistency"
     }
 
+    // TODO capturing `ConstructorCallExpression` is disabled because
+    //   `visitConstructorCallExpression` is called twice, find out why
     public class Visitor : AbstractAstVisitor() {
         private val importPaths = mutableSetOf<String>()
         private val targetNodes = mutableSetOf<ASTNode>()
@@ -50,15 +52,16 @@ public class QualifierConsistencyRule : RulebookRule() {
             // checks for violation
             val `class` = node.objectExpression
             process(`class`, `class`.text)
-            process(`class`, "${`class`.text}.${node.method.text}")
+            process(`class`, "${`class`.text}.${node.methodAsString}")
         }
 
         private fun process(node: ASTNode, text: String) {
-            targetNodes +=
-                node
-                    .takeIf { it !in targetNodes && text in importPaths }
-                    ?: return
-            addViolation(node, Messages[MSG])
+            node
+                .takeIf { text in importPaths }
+                ?: return
+            if (targetNodes.add(node)) {
+                addViolation(node, Messages[MSG])
+            }
         }
     }
 }

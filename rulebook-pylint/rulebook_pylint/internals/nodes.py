@@ -1,7 +1,7 @@
 from tokenize import TokenInfo, COMMENT
 
 from astroid import NodeNG, Name, Assign, AnnAssign, AssignName, FunctionDef, ClassDef, If, \
-    MatchCase, Return, Raise
+    MatchCase, Return, Raise, Break, Continue
 
 
 def get_assignname(node: Assign) -> AssignName | None:
@@ -27,7 +27,7 @@ def has_decorator(node: FunctionDef | ClassDef, name: str) -> bool:
     return False
 
 
-def has_return_or_raise(node: NodeNG) -> bool:
+def has_jump_statement(node: NodeNG) -> bool:
     body: list[NodeNG]
     if isinstance(node, If):
         body = node.body
@@ -35,7 +35,7 @@ def has_return_or_raise(node: NodeNG) -> bool:
         body = node.body
     else:
         return False
-    return any(isinstance(node, (Return, Raise)) for node in body)
+    return any(isinstance(node, (Return, Raise, Break, Continue)) for node in body)
 
 
 def is_multiline(node: NodeNG) -> bool:

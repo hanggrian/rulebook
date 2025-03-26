@@ -45,6 +45,9 @@
     <exclude name="MethodReturnTypeRequired"/>
     <exclude name="ParameterReassignment"/>
     <exclude name="InvertedIfElse"/>
+    <exclude name="AbstractClassWithPublicConstructor"/>
+    <exclude name="PublicMethodsBeforeNonPublicMethods"/>
+    <exclude name="StaticMethodsBeforeInstanceMethods"/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/design.xml">

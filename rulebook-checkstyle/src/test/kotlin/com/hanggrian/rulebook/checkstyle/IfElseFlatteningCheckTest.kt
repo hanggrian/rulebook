@@ -28,4 +28,8 @@ class IfElseFlatteningCheckTest {
 
     @Test
     fun `Capture trailing non-ifs`() = assertEquals(1, checker.read("IfElseFlattening6"))
+
+    @Test
+    fun `Skip recursive if-else because it is not safe to return in inner blocks`() =
+        assertEquals(0, checker.read("IfElseFlattening7"))
 }

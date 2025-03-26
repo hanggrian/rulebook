@@ -61,6 +61,16 @@ class StatementWrappingRuleTest : AbstractRuleTestCase<StatementWrappingRule>() 
         )
 
     @Test
+    fun `Distinguish between code and inline comment`() =
+        assertNoViolations(
+            """
+            def foo() {
+                var bar = 1 // ;
+            }
+            """.trimIndent(),
+        )
+
+    @Test
     fun `Skip semicolons found in for command`() =
         assertNoViolations(
             """

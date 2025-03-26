@@ -113,7 +113,23 @@ class IfElseFlatteningRuleTest {
         ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_INVERT])
 
     @Test
-    fun `Skip init block`() =
+    fun `Skip recursive if-else because it is not safe to return in inner blocks`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) {
+                    if (true) {
+                        baz()
+                        baz()
+                    }
+                }
+                baz()
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Skip initializer because you can't return in init block`() =
         assertThatCode(
             """
             class Foo {
@@ -127,9 +143,7 @@ class IfElseFlatteningRuleTest {
 
             class Bar {
                 init {
-                    if (true) {
-                        baz()
-                    } else {
+                    while (true) {
                         if (true) {
                             baz()
                             baz()
@@ -141,7 +155,7 @@ class IfElseFlatteningRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `If-else with return statement`() =
+    fun `Skip if-else with return statement`() =
         assertThatCode(
             """
             fun foo(): Int {
@@ -153,5 +167,5 @@ class IfElseFlatteningRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(4, 7, Messages[MSG_LIFT])
+        ).hasNoLintViolations()
 }

@@ -2,7 +2,7 @@ from astroid import NodeNG, If, For, While, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
-from rulebook_pylint.internals.nodes import has_return_or_raise, is_multiline
+from rulebook_pylint.internals.nodes import has_jump_statement, is_multiline
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -15,9 +15,6 @@ class IfElseFlatteningChecker(RulebookChecker):
 
     name: str = 'if-else-flattening'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_INVERT, MSG_LIFT)
-
-    def visit_if(self, node: For) -> None:
-        self._process(node.body)
 
     def visit_for(self, node: For) -> None:
         self._process(node.body)
@@ -51,17 +48,14 @@ class IfElseFlatteningChecker(RulebookChecker):
             if self._has_multiple_lines(else2):
                 self.add_message(self.MSG_LIFT, node=else_first_child)
             return
-        if has_return_or_raise(if2):
+        if has_jump_statement(if2):
             return
         if self._has_multiple_lines(if2.body):
             self.add_message(self.MSG_INVERT, node=if2)
 
     @staticmethod
     def _else_has_if(nodes: list[NodeNG]) -> bool:
-        for node in nodes:
-            if isinstance(node, If):
-                return True
-        return False
+        return any(isinstance(node, If) for node in nodes)
 
     @staticmethod
     def _has_multiple_lines(nodes: list[NodeNG]) -> bool:

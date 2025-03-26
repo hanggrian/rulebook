@@ -25,6 +25,10 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
             void bar() {
                 foo(new StringBuilder().toString(), 0)
             }
+
+            def baz() {
+                new Foo(new StringBuilder().toString(), 0)
+            }
             """.trimIndent(),
         )
 
@@ -44,12 +48,20 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
                     0
                 )
             }
+
+            def baz() {
+                new Foo(
+                    new StringBuilder()
+                        .toString(),
+                    0,
+                )
+            }
             """.trimIndent(),
         )
 
     @Test
     fun `Multiline parameters each without newline`() =
-        assertTwoViolations(
+        assertViolations(
             """
             def foo(
                 var a, var b
@@ -61,12 +73,16 @@ class ParameterWrappingRuleTest : AbstractRuleTestCase<ParameterWrappingRule>() 
                         .toString(), 0
                 )
             }
+
+            def baz() {
+                new Foo(
+                    new StringBuilder()
+                        .toString(), 0
+                )
+            }
             """.trimIndent(),
-            2,
-            "var a, var b",
-            Messages[MSG_ARGUMENT],
-            8,
-            ".toString(), 0",
-            Messages[MSG_ARGUMENT],
+            violationOf(2, "var a, var b", Messages[MSG_ARGUMENT]),
+            violationOf(8, ".toString(), 0", Messages[MSG_ARGUMENT]),
+            violationOf(15, ".toString(), 0", Messages[MSG_ARGUMENT]),
         )
 }

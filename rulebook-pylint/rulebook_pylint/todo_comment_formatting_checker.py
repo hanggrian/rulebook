@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-# pylint: disable=todo-comment-styling-keyword,todo-comment-formatting-separator
+# pylint: disable=todo-comment-formatting-keyword,todo-comment-formatting-separator
 class TodoCommentFormattingChecker(RulebookRawChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#todo-comment-formatting"""
     MSG_KEYWORD: str = 'todo-comment-formatting-keyword'
