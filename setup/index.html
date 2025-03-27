@@ -12,11 +12,13 @@
         <meta name="author" content="Hendra Anggrian">
       
       
-        <link rel="canonical" href="https://hanggrian.github.io/rulebook/rationales/">
+        <link rel="canonical" href="https://hanggrian.github.io/rulebook/setup/">
       
       
-        <link rel="prev" href="../rules/naming_convention/">
+        <link rel="prev" href="../compatibility_table/">
       
+      
+        <link rel="next" href="editorconfig_file/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +26,7 @@
     
     
       
-        <title>Rationale details - Rulebook</title>
+        <title>IDE settings - Rulebook</title>
       
     
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#abstraction-not-needed" class="md-skip">
+        <a href="#ktlint-style" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rationale details
+              IDE settings
             
           </span>
         </div>
@@ -236,11 +238,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../setup/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   Setup
@@ -272,13 +276,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../rationales/" class="md-tabs__link">
           
   
   Rationales
@@ -438,27 +440,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -470,7 +475,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -481,10 +486,29 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../setup/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    IDE settings
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -494,6 +518,42 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ktlint-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ktlint Style
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#google-java-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Java Style
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -506,7 +566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/editorconfig_file/" class="md-nav__link">
+      <a href="editorconfig_file/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -626,30 +686,27 @@
       
   
   
-    
   
   
-  
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -661,7 +718,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Rationales
@@ -672,29 +729,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Rationale details
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../rationales/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -704,78 +742,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#abstraction-not-needed" class="md-nav__link">
-    <span class="md-ellipsis">
-      Abstraction not needed
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#business-logic-first" class="md-nav__link">
-    <span class="md-ellipsis">
-      Business logic first
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clean-comment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Clean comment
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#imports-not-optimized" class="md-nav__link">
-    <span class="md-ellipsis">
-      Imports not optimized
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#purposeful-name" class="md-nav__link">
-    <span class="md-ellipsis">
-      Purposeful name
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trailing-elvis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Trailing elvis
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -813,54 +779,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#abstraction-not-needed" class="md-nav__link">
+  <a href="#ktlint-style" class="md-nav__link">
     <span class="md-ellipsis">
-      Abstraction not needed
+      Ktlint Style
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#business-logic-first" class="md-nav__link">
+  <a href="#google-java-style" class="md-nav__link">
     <span class="md-ellipsis">
-      Business logic first
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clean-comment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Clean comment
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#imports-not-optimized" class="md-nav__link">
-    <span class="md-ellipsis">
-      Imports not optimized
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#purposeful-name" class="md-nav__link">
-    <span class="md-ellipsis">
-      Purposeful name
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trailing-elvis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Trailing elvis
+      Google Java Style
     </span>
   </a>
   
@@ -885,79 +815,25 @@
   
 
 
-  <h1>Rationale details</h1>
+  <h1>IDE settings</h1>
 
-<h3 id="abstraction-not-needed">Abstraction not needed<a class="headerlink" href="#abstraction-not-needed" title="Permanent link">&para;</a></h3>
-<p>Abstract modifier in a class is unnecessary if the class has no abstract
-methods.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Message</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">send</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="c1">// implementation</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="business-logic-first">Business logic first<a class="headerlink" href="#business-logic-first" title="Permanent link">&para;</a></h3>
-<p>Built-in methods like <code>toString</code>, <code>hashCode</code> and <code>equals</code> are often placed at
-the end of the class. They are unrelated to the rest of the class and can be
-distracting when reading the source code.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">firstName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">lastName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">isAdmin</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">toString</span><span class="p">():</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;</span><span class="si">$</span><span class="n">lastName</span><span class="s">, </span><span class="si">$</span><span class="n">firstName</span><span class="s">&quot;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">hashCode</span><span class="p">():</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Objects</span><span class="p">.</span><span class="na">hash</span><span class="p">(</span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">lastName</span><span class="p">)</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">equals</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="w"> </span><span class="kt">Any?</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">!is</span><span class="w"> </span><span class="n">Robot</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">firstName</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="na">firstName</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">lastName</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="na">lastName</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">promote</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="n">isAdmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="clean-comment">Clean comment<a class="headerlink" href="#clean-comment" title="Permanent link">&para;</a></h3>
-<p>Comment and block comment bodies should not have leading or trailing blank
-lines. No consecutive blank lines are allowed in the comment body.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cm">/**</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="cm"> *</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="cm"> * The main function.</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="cm"> *</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="cm"> */</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="c1">// initialize the logger</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="c1">//</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="c1">//</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="c1">// and print the starting message</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Logger</span><span class="p">()</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Starting the application&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="imports-not-optimized">Imports not optimized<a class="headerlink" href="#imports-not-optimized" title="Permanent link">&para;</a></h3>
-<p>Ommit imports that are not used in the file.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.lang.String</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kd">val</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayListOf</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="purposeful-name">Purposeful name<a class="headerlink" href="#purposeful-name" title="Permanent link">&para;</a></h3>
-<p>When declaring string and primitive variables, it is tempting to use simple
-names based on their type. In fact, they are usually recommendations given by
-the IDE. But these names are not descriptive and hard to understand what their
-purpose is.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kd">val</span><span class="w"> </span><span class="nv">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
-</code></pre></div>
-<h3 id="trailing-elvis">Trailing elvis<a class="headerlink" href="#trailing-elvis" title="Permanent link">&para;</a></h3>
-<p>In a multiline statement, the elvis operator should align with chained method
-calls instead of the same column.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">bananas</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">fruits</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BANANA</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="p">.</span><span class="na">takeUnless</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="k">return</span>
-</code></pre></div>
+<p>Presuming the IDE is <em>IntelliJ IDEA</em> or <em>PyCharm</em>, consider applying the linter
+style to it.</p>
+<h3 id="ktlint-style">Ktlint Style<a class="headerlink" href="#ktlint-style" title="Permanent link">&para;</a></h3>
+<p>Explained in <a href="https://pinterest.github.io/ktlint/0.49.1/rules/configuration-intellij-idea/">Ktlint IntelliJ IDEA Configuration</a>,
+using standard <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a>
+is enough:</p>
+<ul>
+<li>In <strong>File &gt; Settings &gt; Editor &gt; Code Style &gt; Kotlin</strong>, set from
+  <strong>Kotlin style guide</strong>.</li>
+<li>Append <code>kotlin.code.style=official</code> to root <code>gradle.properties</code>.</li>
+</ul>
+<h3 id="google-java-style">Google Java Style<a class="headerlink" href="#google-java-style" title="Permanent link">&para;</a></h3>
+<p>Explained in <a href="https://github.com/google/google-java-format/">Google Java Format</a>:</p>
+<ul>
+<li>In <strong>File &gt; Settings &gt; Editor &gt; Code Style &gt; Java</strong>, import
+  <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml">IntelliJ Java Google Style file</a>.</li>
+</ul>
 
 
 
