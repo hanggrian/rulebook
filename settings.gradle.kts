@@ -8,4 +8,3 @@ rootProject.name = "rulebook"
 
 include("rulebook-checkstyle", "rulebook-ktlint", "rulebook-codenarc")
 include("sample", "sample-configured")
-include("website")

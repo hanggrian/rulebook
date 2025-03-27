@@ -44,9 +44,8 @@ public class IfElseFlatteningRule : RulebookRule(ID) {
                 child.elementType == WHITE_SPACE ||
                     child.elementType == RBRACE ||
                     child.isComment() -> continue
-
-                else -> return
             }
+            return
         }
         `if` ?: return
 

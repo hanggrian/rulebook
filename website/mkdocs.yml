@@ -1,0 +1,91 @@
+site_name: Rulebook
+site_url: https://hanggrian.github.io/rulebook/
+site_author: Hendra Anggrian
+site_description: >-
+  Extended lint rules for JVM and Python
+
+repo_name: hanggrian/rulebook
+repo_url: https://github.com/hanggrian/rulebook
+
+copyright: <a href="https://hanggrian.github.io">About me</a>
+
+theme:
+  name: material
+  # favicon: assets/favicon.ico
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: c2e7fd
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: 011d32
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: material/github
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+
+nav:
+  - Home:
+    - Compatibility table: compatibility_table.md
+    - About: index.md
+  - Rules:
+    - Rule details: rules/index.md
+    - EditorConfig file: rules/editorconfig_file.md
+    - Naming convention: rules/naming_convention.md
+  - Rationales:
+    - Rationale details: rationales/index.md
+
+plugins:
+  - search
+
+hooks:
+  - hooks/archive.py
+
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    absolute_links: warn
+    unrecognized_links: warn
+
+# extra:
+#   analytics:
+#     provider: google
+#     property: !ENV GOOGLE_ANALYTICS_KEY
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true

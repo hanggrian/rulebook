@@ -20,5 +20,5 @@ __pycache__/
 .coverage
 dist/
 
-# VSCode
-bin/
+# MkDocs
+site/

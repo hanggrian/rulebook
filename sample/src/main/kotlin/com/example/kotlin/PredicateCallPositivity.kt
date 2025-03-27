@@ -2,7 +2,7 @@ package com.example.kotlin
 
 class PredicateCallPositivity {
     fun foo() {
-        "".none { it == null }
+        "".filter { it == null }
     }
 
     fun bar() {
