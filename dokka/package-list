@@ -1,9 +1,0 @@
-$dokka.format:html-v1
-$dokka.linkExtension:html
-
-module:rulebook-checkstyle
-com.hanggrian.rulebook.checkstyle
-module:rulebook-codenarc
-com.hanggrian.rulebook.codenarc
-module:rulebook-ktlint
-com.hanggrian.rulebook.ktlint
