@@ -21,10 +21,9 @@ class Messages:
         key: str
         for key in keys:
             Messages.counter = Messages.counter + 1
-            result[f'E{Messages.counter:04d}'] = \
-                (
-                    Messages.bundle[key],
-                    key,
-                    'https://github.com/hanggrian/rulebook',
-                )
+            result[f'E{Messages.counter:04d}'] = (
+                Messages.bundle[key],
+                key,
+                'https://github.com/hanggrian/rulebook',
+            )
         return result

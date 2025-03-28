@@ -5,7 +5,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class BlockTagPunctuationCheckTest {
-    private val checker = checkerOf<BlockTagPunctuationCheck>()
+    private val checker = treeWalkerCheckerOf<BlockTagPunctuationCheck>()
 
     @Test
     fun `Rule properties`() {

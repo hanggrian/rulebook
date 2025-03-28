@@ -6,7 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 
-/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-punctuation) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#block-tag-punctuation) */
 public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
     internal var tags =
         setOf(
@@ -50,10 +50,6 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
 
         private val END_PUNCTUATIONS = setOf('.', ')')
 
-        private fun String.trimComment() =
-            indexOf("//")
-                .takeUnless { it == -1 }
-                ?.let { substring(0, it).trimEnd() }
-                ?: this
+        private fun String.trimComment() = substringBefore("//").trimEnd()
     }
 }

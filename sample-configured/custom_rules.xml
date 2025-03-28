@@ -109,15 +109,15 @@
     <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
-  <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameDisallowingRule">
+  <rule class="com.hanggrian.rulebook.codenarc.IllegalClassFinalNameRule">
     <property name="names" value="Hello, World"/>
   </rule>
 
-  <rule class="com.hanggrian.rulebook.codenarc.GenericsNameAllowingRule">
-    <property name="names" value="A"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IllegalVariableNameRule">
+    <property name="names" value="mString, mList"/>
   </rule>
 
-  <rule class="com.hanggrian.rulebook.codenarc.VariableNameDisallowingRule">
-    <property name="names" value="mString, mList"/>
+  <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericNameRule">
+    <property name="names" value="A"/>
   </rule>
 </ruleset>

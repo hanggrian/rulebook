@@ -11,5 +11,5 @@ class RulebookTokenChecker(BaseTokenChecker, ABC):
     """Override `process_tokens` to iterate each token."""
 
 
-class RulebookRawChecker(BaseRawFileChecker, ABC):
+class RulebookFileChecker(BaseRawFileChecker, ABC):
     """Override `process_module` to capture file at once."""

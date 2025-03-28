@@ -15,14 +15,14 @@ import com.pinterest.ktlint.rule.engine.core.api.editorconfig.INDENT_STYLE_PROPE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#block-tag-indentation) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#block-tag-indentation) */
 public class BlockTagIndentationRule :
     RulebookRule(
         ID,
         setOf(INDENT_SIZE_PROPERTY, INDENT_STYLE_PROPERTY),
         setOf(
             RunAfterRule(
-                BlockCommentSpacingRule.ID,
+                BlockCommentSpacesRule.ID,
                 REGARDLESS_WHETHER_RUN_AFTER_RULE_IS_LOADED_OR_DISABLED,
             ),
         ),

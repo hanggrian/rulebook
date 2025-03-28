@@ -23,9 +23,9 @@ persistent=no
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
 load-plugins=
-  rulebook_pylint.class_final_name_disallowing_checker,
-  rulebook_pylint.file_size_limitation_checker,
-  rulebook_pylint.generics_name_allowing_checker,
+  rulebook_pylint.file_size,
+  rulebook_pylint.illegal_class_final_name,
+  rulebook_pylint.required_generic_name,
 
 # Use multiple processes to speed up Pylint.
 jobs=1
@@ -408,7 +408,7 @@ valid-metaclass-classmethod-first-arg=mcs
 
 [OTHERS]
 
-rulebook-allow-generics-names=A
-rulebook-disallow-class-final-names=Hello, World
-rulebook-disallow-identifier-names=m_str, m_list
-rulebook-limit-file-size=10
+rulebook-illegal-class-final-names=Hello, World
+rulebook-illegal-identifier-names=m_str, m_list
+rulebook-max-file-size=10
+rulebook-required-generic-names=A

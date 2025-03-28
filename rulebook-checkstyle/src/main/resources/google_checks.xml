@@ -17,7 +17,7 @@
   <property
     name="severity"
     value="${org.checkstyle.google.severity}"
-    default="warning"/>
+    default="error"/>
 
   <property name="fileExtensions" value="java, properties, xml"/>
   <!-- https://checkstyle.org/filefilters/index.html -->
@@ -57,6 +57,13 @@
       name="ignorePattern"
       value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
   </module>
+
+  <module name="FileLength">
+    <property name="max" value="1000"/>
+  </module>
+
+  <!-- Spacing -->
+  <module name="DuplicateBlankLine"/>
 
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
@@ -136,6 +143,7 @@
       <property name="allowEmptyMethods" value="true"/>
       <property name="allowEmptyTypes" value="true"/>
       <property name="allowEmptyLoops" value="true"/>
+      <property name="allowEmptySwitchBlockStatements" value="true"/>
       <property name="ignoreEnhancedForColon" value="false"/>
       <property
         name="tokens"
@@ -314,6 +322,13 @@
       <property name="lineWrappingIndentation" value="4"/>
       <property name="arrayInitIndent" value="2"/>
     </module>
+    <!-- Suppression for block code until we find a way to detect them properly
+         until https://github.com/checkstyle/checkstyle/issues/15769 -->
+    <module name="SuppressionXpathSingleFilter">
+      <property name="checks" value="Indentation"/>
+      <property name="query" value="//SLIST[not(parent::CASE_GROUP)]/SLIST
+                                   | //SLIST[not(parent::CASE_GROUP)]/SLIST/RCURLY"/>
+    </module>
     <module name="AbbreviationAsWordInName">
       <property name="ignoreFinal" value="false"/>
       <property name="allowedAbbreviationLength" value="2"/>
@@ -476,25 +491,56 @@
       <property name="influenceFormat" value="1"/>
     </module>
 
-    <!-- General -->
+    <!-- Basic -->
     <module name="BlockTagPunctuation"/>
-    <module name="FileLength">
-      <property name="max" value="1000"/>
-    </module>
-    <module name="QualifierConsistency"/>
+    <module name="RedundantQualifier"/>
     <module name="TodoComment">
       <property name="format" value="todo|fixme"/>
     </module>
     <module name="ArrayTrailingComma"/>
+    <module name="UnusedImports"/>
 
-    <!-- Class design -->
-    <module name="AbstractClassFunctionAbstraction"/>
-    <module name="ExceptionExtending"/>
+    <!-- Declaring -->
+    <module name="NumberSuffixForDouble"/>
+    <module name="NumberSuffixForFloat"/>
+
+    <!-- Defining -->
+    <module name="AbstractClassDefinition"/>
+    <module name="ExceptionInheritance"/>
     <module name="HideUtilityClassConstructor"/>
 
-    <!-- Control flow -->
-    <module name="DefaultFlattening"/>
-    <module name="ElseFlattening"/>
+    <!-- Naming -->
+    <module name="ConstantName"/>
+    <module name="LocalFinalVariableName"/>
+    <module name="StaticVariableName"/>
+    <module name="IllegalClassFinalName"/>
+    <module name="IllegalIdentifierName">
+      <property
+        name="format"
+        value="(?i)^(?!(object|integer|string|objects|integers|strings|_)$).+$"/>
+      <property
+        name="tokens"
+        value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF,
+          RECORD_COMPONENT_DEF"/>
+    </module>
+
+    <!-- Ordering -->
+    <module name="BuiltInFunctionPosition"/>
+    <module name="InnerTypeLast"/>
+    <module name="MemberOrder"/>
+
+    <!-- Spacing -->
+    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+    <module name="BlockCommentTrim"/>
+    <module name="CaseSeparator"/>
+    <module name="CodeBlockTrim"/>
+    <module name="CommentSpaces"/>
+    <module name="CommentTrim"/>
+    <module name="DuplicateBlankLineInBlockComment"/>
+    <module name="DuplicateBlankLineInComment"/>
+    <module name="UnexpectedBlankLineBeforePackage"/>
+
+    <!-- Stating -->
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"
@@ -508,49 +554,15 @@
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
           java.lang.Throwable"/>
     </module>
-    <module name="IfElseFlattening"/>
-    <module name="SwitchCaseBranching"/>
+    <module name="NestedIfElse"/>
+    <module name="RedundantDefault"/>
+    <module name="RedundantElse"/>
+    <module name="UnnecessarySwitch"/>
 
-    <!-- Layout -->
-    <module name="BlockTagOrdering"/>
-    <module name="BuiltinFunctionPosition"/>
-    <module name="ClassMemberOrdering"/>
-    <module name="InnerTypeLast"/>
-
-    <!-- Literal -->
-    <module name="DoubleSuffixLowercasing"/>
-    <module name="FloatSuffixLowercasing"/>
-
-    <!-- Line break -->
-    <module name="AssignmentWrapping"/>
-    <module name="ChainCallContinuation"/>
-    <module name="LambdaWrapping"/>
-    <module name="ParameterWrapping"/>
-
-    <!-- Name -->
-    <module name="ClassFinalNameDisallowing"/>
-    <module name="ConstantName"/>
-    <module name="LocalFinalVariableName"/>
-    <module name="StaticVariableName"/>
-    <module name="IllegalIdentifierName">
-      <property
-        name="format"
-        value="(?i)^(?!(object|integer|string|objects|integers|strings|_)$).+$"/>
-      <property
-        name="tokens"
-        value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF,
-          RECORD_COMPONENT_DEF"/>
-    </module>
-
-    <!-- Whitespace -->
-    <module name="BlockCommentLineJoining"/>
-    <module name="BlockCommentLineTrimming"/>
-    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
-    <module name="CaseLineSpacing"/>
-    <module name="CodeBlockLineTrimming"/>
-    <module name="CommentLineJoining"/>
-    <module name="CommentLineTrimming"/>
-    <module name="CommentSpacing"/>
-    <module name="FileInitialLineTrimming"/>
+    <!-- Wrapping -->
+    <module name="AssignmentWrap"/>
+    <module name="ChainCallWrap"/>
+    <module name="LambdaWrap"/>
+    <module name="ParameterWrap"/>
   </module>
 </module>

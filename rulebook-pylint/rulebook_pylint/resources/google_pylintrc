@@ -20,28 +20,37 @@ persistent=no
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
 load-plugins=
-  rulebook_pylint.block_comment_line_joining_checker,
-  rulebook_pylint.block_comment_line_trimming_checker,
-  rulebook_pylint.builtin_function_position_checker,
-  rulebook_pylint.case_line_spacing_checker,
-  rulebook_pylint.class_exception_extending_checker,
-  rulebook_pylint.class_final_name_disallowing_checker,
-  rulebook_pylint.class_member_ordering_checker,
-  rulebook_pylint.class_name_acronym_capitalization_checker,
-  rulebook_pylint.code_block_line_trimming_checker,
-  rulebook_pylint.comment_line_joining_checker,
-  rulebook_pylint.comment_line_trimming_checker,
-  rulebook_pylint.default_flattening_checker,
-  rulebook_pylint.file_initial_line_trimming_checker,
-  rulebook_pylint.file_size_limitation_checker,
-  rulebook_pylint.generics_name_allowing_checker,
-  rulebook_pylint.if_else_flattening_checker,
-  rulebook_pylint.inner_class_position_checker,
-  rulebook_pylint.parameter_wrapping_checker,
-  rulebook_pylint.string_quotation_checker,
-  rulebook_pylint.switch_case_branching_checker,
-  rulebook_pylint.todo_comment_formatting_checker,
-  rulebook_pylint.trailing_comma_arrangement_checker,
+  # Basic
+  rulebook_pylint.file_size,
+  rulebook_pylint.todo_comment,
+  rulebook_pylint.trailing_comma_in_call,
+  # Declaring
+  rulebook_pylint.string_quotes,
+  # Defining
+  rulebook_pylint.exception_inheritance,
+  # Naming
+  rulebook_pylint.class_name_acronym,
+  rulebook_pylint.illegal_class_final_name,
+  rulebook_pylint.required_generic_name,
+  # Ordering
+  rulebook_pylint.built_in_function_position,
+  rulebook_pylint.inner_class_position,
+  rulebook_pylint.member_order,
+  # Spacing
+  rulebook_pylint.block_comment_trim,
+  rulebook_pylint.case_separator,
+  rulebook_pylint.code_block_trim,
+  rulebook_pylint.comment_trim,
+  rulebook_pylint.duplicate_blank_line,
+  rulebook_pylint.duplicate_blank_line_in_block_comment,
+  rulebook_pylint.duplicate_blank_line_in_comment,
+  rulebook_pylint.unexpected_blank_line_before_package,
+  # Stating
+  rulebook_pylint.nested_if_else,
+  rulebook_pylint.redundant_default,
+  rulebook_pylint.unnecessary_switch,
+  # Wrapping
+  rulebook_pylint.parameter_wrap,
 
 # Use multiple processes to speed up Pylint.
 jobs=1

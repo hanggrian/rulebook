@@ -171,7 +171,7 @@
       <property name="tags" value="@exception"/>
     </module>
 
-    <module name="ClassFinalNameDisallowing">
+    <module name="IllegalClassFinalName">
       <property name="names" value="Hello, World"/>
     </module>
   </module>

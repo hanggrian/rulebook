@@ -1,8 +1,7 @@
 site_name: Rulebook
 site_url: https://hanggrian.github.io/rulebook/
 site_author: Hendra Anggrian
-site_description: >-
-  Extended lint rules for JVM and Python
+site_description: Extended lint rules for JVM and Python
 
 repo_name: hanggrian/rulebook
 repo_url: https://github.com/hanggrian/rulebook
@@ -39,17 +38,25 @@ theme:
 
 nav:
   - Home:
-    - Compatibility table: compatibility_table.md
     - About: index.md
+    - FAQ: faq.md
+    - Developing:
+      - Print AST: developing.md
+  - Setup:
+    - IDE settings: setup/index.md
+    - EditorConfig file: setup/editorconfig-file.md
   - Rules:
-    - Rule details: rules/index.md
-    - EditorConfig file: rules/editorconfig_file.md
-    - Naming convention: rules/naming_convention.md
-  - Rationales:
-    - Rationale details: rationales/index.md
+    - Compatibility table: rules/index.md
+    - All rules: rules/all.md
+    - Common rationales: rules/rationales.md
+    - Naming convention: rules/naming-convention.md
+  - Glossary: glossary/index.md
 
 plugins:
   - search
+
+extra_css:
+  - stylesheets/extra.css
 
 hooks:
   - hooks/archive.py
@@ -89,3 +96,5 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true

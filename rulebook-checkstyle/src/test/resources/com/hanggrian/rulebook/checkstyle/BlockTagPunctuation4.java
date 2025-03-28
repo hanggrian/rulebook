@@ -1,12 +1,12 @@
 package com.hanggrian.rulebook.checkstyle;
 
-public class BlockTagPunctuation {
+class BlockTagPunctuation {
     /**
      * @param num value
      * @return total
      * value
      */
-    public int add(int num) {
+    int add(int num) {
         return num;
     }
 }

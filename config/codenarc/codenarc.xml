@@ -70,7 +70,7 @@
 
     <exclude name="ClassEndsWithBlankLine"/>
     <exclude name="ClassStartsWithBlankLine"/>
-    <exclude name="Indentation"/>
+    <!--exclude name="Indentation"/-->
     <exclude name="SpaceAfterOpeningBrace"/>
     <exclude name="SpaceBeforeClosingBrace"/>
   </ruleset-ref>
@@ -132,46 +132,49 @@
     <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
-  <!-- General -->
-  <rule class="com.hanggrian.rulebook.codenarc.QualifierConsistencyRule"/>
+  <!-- Basic -->
+  <rule class="com.hanggrian.rulebook.codenarc.RedundantQualifierRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.TrailingCommaInCallRule"/>
 
-  <!-- Code design -->
-  <rule class="com.hanggrian.rulebook.codenarc.UtilityClassInstanceHidingRule"/>
+  <!-- Declaring -->
+  <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForDoubleRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForFloatRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForIntegerRule"/>
 
-  <!-- Control flow -->
-  <rule class="com.hanggrian.rulebook.codenarc.DefaultFlatteningRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ElseFlatteningRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.IfElseFlatteningRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.SwitchCaseBranchingRule"/>
+  <!-- Defining -->
+  <rule class="com.hanggrian.rulebook.codenarc.UtilityClassDefinitionRule"/>
 
-  <!-- Layout -->
-  <rule class="com.hanggrian.rulebook.codenarc.BuiltinFunctionPositionRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ClassMemberOrderingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ImportOrderingRule"/>
+  <!-- Naming -->
+  <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IllegalClassFinalNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.IllegalVariableNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericNameRule"/>
+
+  <!-- Ordering -->
+  <rule class="com.hanggrian.rulebook.codenarc.BuiltInFunctionPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ImportOrderRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.MemberOrderRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
 
-  <!-- Literal -->
-  <rule class="com.hanggrian.rulebook.codenarc.DoubleSuffixLowercasingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.FloatSuffixLowercasingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.IntegerSuffixLowercasingRule"/>
-
-  <!-- Line break -->
-  <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.OperatorWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ParameterWrappingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.StatementWrappingRule"/>
-
-  <!-- Name -->
-  <rule class="com.hanggrian.rulebook.codenarc.ClassFinalNameDisallowingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymCapitalizationRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.GenericsNameAllowingRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.VariableNameDisallowingRule"/>
-
-  <!-- Whitespace -->
-  <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>
-  <rule class="org.codenarc.rule.comments.JavadocEmptyFirstLineRule"/>
-  <rule class="org.codenarc.rule.comments.JavadocEmptyLastLineRule"/>
+  <!-- Spacing -->
   <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
   <rule class="org.codenarc.rule.comments.SpaceBeforeCommentDelimiterRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocEmptyFirstLineRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocEmptyLastLineRule"/>
+  <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.CommentTrimRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.DuplicateBlankLineInCommentRule"/>
+
+  <!-- Stating -->
+  <rule class="com.hanggrian.rulebook.codenarc.NestedIfElseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.RedundantDefaultRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.RedundantElseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.UnnecessarySwitchRule"/>
+
+  <!-- Wrapping -->
+  <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.OperatorWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ParameterWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.StatementWrapRule"/>
 </ruleset>

@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
-/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#inner-class-position) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#inner-class-position) */
 public class InnerClassPositionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 

@@ -13,6 +13,18 @@ internal inline fun <reified T> checkerOf(): Checker {
     checker.setModuleClassLoader(Thread.currentThread().contextClassLoader)
     checker.configure(
         DefaultConfiguration("Checks").apply {
+            addChild(DefaultConfiguration(T::class.java.canonicalName))
+        },
+    )
+    return checker
+}
+
+@Throws(CheckstyleException::class)
+internal inline fun <reified T> treeWalkerCheckerOf(): Checker {
+    val checker = Checker()
+    checker.setModuleClassLoader(Thread.currentThread().contextClassLoader)
+    checker.configure(
+        DefaultConfiguration("Checks").apply {
             addChild(
                 DefaultConfiguration("TreeWalker").apply {
                     addChild(DefaultConfiguration(T::class.java.canonicalName))
@@ -29,10 +41,13 @@ internal fun Checker.read(resource: String): Int {
     return process(listOf(testFile))
 }
 
-internal fun RulebookCheck.assertProperties() {
+internal fun RulebookAstCheck.assertProperties() {
     val requiredTokens = requiredTokens.asList()
     assertThat(defaultTokens).asList().containsExactlyElementsIn(requiredTokens)
     assertThat(acceptableTokens).asList().containsExactlyElementsIn(requiredTokens)
 }
+
+internal fun RulebookFileCheck.assertProperties() =
+    assertThat(fileExtensions).asList().contains(".java")
 
 internal fun AbstractJavadocCheck.assertProperties() = assertThat(defaultJavadocTokens).isNotEmpty()

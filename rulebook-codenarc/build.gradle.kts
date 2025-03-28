@@ -15,7 +15,7 @@ dependencies {
     ktlintRuleset(project(":$releaseArtifact-ktlint"))
 
     implementation(libs.groovy)
-    implementation(libs.codenarc)
+    api(libs.codenarc)
 
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
     testImplementation(libs.ktlint.test)

@@ -1,0 +1,34 @@
+.large {
+  font-size: 3em;
+}
+.small {
+  font-size: 1.5em;
+}
+
+.link {
+  text-decoration: underline;
+}
+#oracle {
+  color: #f80000;
+}
+#kotlin {
+  color: #7f52ff;
+}
+#google {
+  color: #4285f4;
+}
+#jetbrains {
+  color: #666;
+}
+#python {
+  color: #ffde57;
+}
+#common {
+  color: #aaa;
+}
+#groovy {
+  color: #4298b8;
+}
+#android {
+  color: #34a853;
+}

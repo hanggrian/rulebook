@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.children
 
-/** [See wiki](https://github.com/hanggrian/rulebook/wiki/Rules/#overload-function-position) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#overload-function-position) */
 public class OverloadFunctionPositionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FILE, CLASS_BODY)
 
