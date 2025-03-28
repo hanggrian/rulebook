@@ -12,13 +12,11 @@
         <meta name="author" content="Hendra Anggrian">
       
       
-        <link rel="canonical" href="https://hanggrian.github.io/rulebook/usage/">
+        <link rel="canonical" href="https://hanggrian.github.io/rulebook/glossary/">
       
       
-        <link rel="prev" href="../download/">
+        <link rel="prev" href="../rules/naming-convention/">
       
-      
-        <link rel="next" href="../developing/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Usage - Rulebook</title>
+        <title>Glossary - Rulebook</title>
       
     
     
@@ -51,6 +49,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ktlint" class="md-skip">
+        <a href="#declaration" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Usage
+              Glossary
             
           </span>
         </div>
@@ -220,12 +220,10 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href=".." class="md-tabs__link">
           
   
@@ -270,6 +268,25 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
   
 
       
@@ -328,30 +345,27 @@
       
   
   
-    
   
   
-  
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -363,7 +377,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Home
@@ -399,11 +413,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../download/" class="md-nav__link">
+      <a href="../faq/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Download
+    FAQ
     
   </span>
   
@@ -418,101 +432,6 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Usage
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Usage
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#ktlint" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ktlint
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#checkstyle" class="md-nav__link">
-    <span class="md-ellipsis">
-      Checkstyle
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#codenarc" class="md-nav__link">
-    <span class="md-ellipsis">
-      CodeNarc
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pylint" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pylint
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     
@@ -521,22 +440,19 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_3" >
         
           
-          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -548,8 +464,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
             <span class="md-nav__icon md-icon"></span>
             Developing
           </label>
@@ -824,6 +740,127 @@
   
 
     
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Function
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifier
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#property" class="md-nav__link">
+    <span class="md-ellipsis">
+      Property
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -849,36 +886,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ktlint" class="md-nav__link">
+  <a href="#declaration" class="md-nav__link">
     <span class="md-ellipsis">
-      Ktlint
+      Declaration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#checkstyle" class="md-nav__link">
+  <a href="#definition" class="md-nav__link">
     <span class="md-ellipsis">
-      Checkstyle
+      Definition
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#codenarc" class="md-nav__link">
+  <a href="#class" class="md-nav__link">
     <span class="md-ellipsis">
-      CodeNarc
+      Class
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pylint" class="md-nav__link">
+  <a href="#function" class="md-nav__link">
     <span class="md-ellipsis">
-      Pylint
+      Function
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifier
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#property" class="md-nav__link">
+    <span class="md-ellipsis">
+      Property
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variable
     </span>
   </a>
   
@@ -903,66 +967,37 @@
   
 
 
-  <h1>Usage</h1>
+  <h1>Glossary</h1>
 
-<h3 id="ktlint">Ktlint<a class="headerlink" href="#ktlint" title="Permanent link">&para;</a></h3>
+<p>This section hopes to clarify some ambiguous terms used in rule names.</p>
+<h3 id="declaration">Declaration<a class="headerlink" href="#declaration" title="Permanent link">&para;</a></h3>
+<p>Declaring that a class, function or property exists. The implementation details
+are considered to be <a href="#definition">definition</a>.</p>
+<h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
+<p>Define how a class, function or property is implemented. Because of this, a
+definition is a more complete description than a <a href="#declaration">declaration</a>.</p>
+<h3 id="class">Class<a class="headerlink" href="#class" title="Permanent link">&para;</a></h3>
+<p>In this library, a class means a class-like structure, which can be:</p>
 <ul>
-<li>Apply <a href="https://pinterest.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration">Ktlint Integration</a>
-  to Gradle project.</li>
-<li>Using configuration <code>ktlint</code>, add this project as dependency.</li>
+<li>Class</li>
+<li>Interface</li>
+<li>Enum</li>
+<li>Kotlin-specific constructs:<ul>
+<li>Data class</li>
+<li>Sealed class</li>
+<li>Object</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">configurations</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">ktlint</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">}</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">ktlint</span><span class="w"> </span><span class="s2">&quot;com.hanggrian.rulebook:rulebook-ktlint:$libraryVersion&quot;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="o">}</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">// the rest of ktlint tasks&#39; configuration</span>
-</code></pre></div>
-<h3 id="checkstyle">Checkstyle<a class="headerlink" href="#checkstyle" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Gradle Plugin</a>.</li>
-<li>Using configuration <code>checkstyle</code>, add this project as dependency.</li>
-<li>Point to local config file or put in <code>/config/checkstyle/codenarc.xml</code>.</li>
+</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">checkstyle</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">}</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">checkstyle</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">toolVersion</span><span class="w"> </span><span class="s2">&quot;$checkstyleVersion&quot;</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">configFile</span><span class="w"> </span><span class="s2">&quot;path/to/rulebook_checkstyle.xml&quot;</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="o">}</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="n">checkstyle</span><span class="w"> </span><span class="s2">&quot;com.hanggrian.rulebook:rulebook-checkstyle:$libraryVersion&quot;</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="o">}</span>
-</code></pre></div>
-<h3 id="codenarc">CodeNarc<a class="headerlink" href="#codenarc" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Apply <a href="https://docs.gradle.org/current/userguide/codenarc_plugin.html">CodeNarc Gradle Plugin</a>.</li>
-<li>Using configuration <code>codenarc</code>, add this project as dependency.</li>
-<li>Point to local config file or put in <code>/config/codenarc/codenarc.xml</code>.</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">codenarc</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">}</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">codenarc</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">toolVersion</span><span class="w"> </span><span class="s2">&quot;$codenarcVersion&quot;</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">configFile</span><span class="w"> </span><span class="s2">&quot;path/to/rulebook_codenarc.xml&quot;</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="o">}</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="n">codenarc</span><span class="w"> </span><span class="s2">&quot;com.hanggrian.rulebook:rulebook-codenarc:$libraryVersion&quot;</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="o">}</span>
-</code></pre></div>
-<h3 id="pylint">Pylint<a class="headerlink" href="#pylint" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Point config file to local <code>pylintrc</code>.</li>
-</ul>
+<h3 id="function">Function<a class="headerlink" href="#function" title="Permanent link">&para;</a></h3>
+<p>Also referred to as method.</p>
+<h3 id="identifier">Identifier<a class="headerlink" href="#identifier" title="Permanent link">&para;</a></h3>
+<p>A unique name given to a class, function, or variable.</p>
+<h3 id="property">Property<a class="headerlink" href="#property" title="Permanent link">&para;</a></h3>
+<p>Also referred to as field.</p>
+<h3 id="variable">Variable<a class="headerlink" href="#variable" title="Permanent link">&para;</a></h3>
+<p>A variable is a local-scoped property in most programming languages. However,
+in this library, a variable refers to a property and parameter.</p>
 
 
 
