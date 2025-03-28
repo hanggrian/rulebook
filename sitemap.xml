@@ -2,30 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://hanggrian.github.io/rulebook/</loc>
-         <lastmod>2025-03-27</lastmod>
+         <lastmod>2025-03-28</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/compatibility_table/</loc>
-         <lastmod>2025-03-27</lastmod>
+         <loc>https://hanggrian.github.io/rulebook/developing/</loc>
+         <lastmod>2025-03-28</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/rationales/</loc>
-         <lastmod>2025-03-27</lastmod>
+         <loc>https://hanggrian.github.io/rulebook/download/</loc>
+         <lastmod>2025-03-28</lastmod>
+    </url>
+    <url>
+         <loc>https://hanggrian.github.io/rulebook/usage/</loc>
+         <lastmod>2025-03-28</lastmod>
     </url>
     <url>
          <loc>https://hanggrian.github.io/rulebook/rules/</loc>
-         <lastmod>2025-03-27</lastmod>
+         <lastmod>2025-03-28</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/rules/naming_convention/</loc>
-         <lastmod>2025-03-27</lastmod>
+         <loc>https://hanggrian.github.io/rulebook/rules/all/</loc>
+         <lastmod>2025-03-28</lastmod>
+    </url>
+    <url>
+         <loc>https://hanggrian.github.io/rulebook/rules/naming-convention/</loc>
+         <lastmod>2025-03-28</lastmod>
+    </url>
+    <url>
+         <loc>https://hanggrian.github.io/rulebook/rules/rationales/</loc>
+         <lastmod>2025-03-28</lastmod>
     </url>
     <url>
          <loc>https://hanggrian.github.io/rulebook/setup/</loc>
-         <lastmod>2025-03-27</lastmod>
+         <lastmod>2025-03-28</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/setup/editorconfig_file/</loc>
-         <lastmod>2025-03-27</lastmod>
+         <loc>https://hanggrian.github.io/rulebook/setup/editorconfig-file/</loc>
+         <lastmod>2025-03-28</lastmod>
     </url>
 </urlset>

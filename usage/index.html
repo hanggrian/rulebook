@@ -12,13 +12,13 @@
         <meta name="author" content="Hendra Anggrian">
       
       
-        <link rel="canonical" href="https://hanggrian.github.io/rulebook/setup/">
+        <link rel="canonical" href="https://hanggrian.github.io/rulebook/usage/">
       
       
-        <link rel="prev" href="../developing/">
+        <link rel="prev" href="../download/">
       
       
-        <link rel="next" href="editorconfig-file/">
+        <link rel="next" href="../developing/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>IDE settings - Rulebook</title>
+        <title>Usage - Rulebook</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ktlint-style" class="md-skip">
+        <a href="#ktlint" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              IDE settings
+              Usage
             
           </span>
         </div>
@@ -220,10 +220,12 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href=".." class="md-tabs__link">
           
   
@@ -238,13 +240,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../setup/" class="md-tabs__link">
           
   
   Setup
@@ -328,27 +328,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -360,7 +363,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Home
@@ -415,10 +418,29 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../usage/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -428,6 +450,60 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ktlint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ktlint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkstyle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checkstyle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codenarc" class="md-nav__link">
+    <span class="md-ellipsis">
+      CodeNarc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pylint
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -445,10 +521,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -457,7 +536,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_4" >
         
           
-          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -517,30 +596,27 @@
       
   
   
-    
   
   
-  
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -552,7 +628,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -563,29 +639,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    IDE settings
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -595,42 +652,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#ktlint-style" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ktlint Style
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#google-java-style" class="md-nav__link">
-    <span class="md-ellipsis">
-      Google Java Style
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -643,7 +664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="editorconfig-file/" class="md-nav__link">
+      <a href="../setup/editorconfig-file/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -828,18 +849,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ktlint-style" class="md-nav__link">
+  <a href="#ktlint" class="md-nav__link">
     <span class="md-ellipsis">
-      Ktlint Style
+      Ktlint
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#google-java-style" class="md-nav__link">
+  <a href="#checkstyle" class="md-nav__link">
     <span class="md-ellipsis">
-      Google Java Style
+      Checkstyle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codenarc" class="md-nav__link">
+    <span class="md-ellipsis">
+      CodeNarc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pylint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pylint
     </span>
   </a>
   
@@ -864,24 +903,65 @@
   
 
 
-  <h1>IDE settings</h1>
+  <h1>Usage</h1>
 
-<p>Presuming the IDE is <em>IntelliJ IDEA</em> or <em>PyCharm</em>, consider applying the linter
-style to it.</p>
-<h3 id="ktlint-style">Ktlint Style<a class="headerlink" href="#ktlint-style" title="Permanent link">&para;</a></h3>
-<p>Explained in <a href="https://pinterest.github.io/ktlint/0.49.1/rules/configuration-intellij-idea/">Ktlint IntelliJ IDEA Configuration</a>,
-using standard <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a>
-is enough:</p>
+<h3 id="ktlint">Ktlint<a class="headerlink" href="#ktlint" title="Permanent link">&para;</a></h3>
 <ul>
-<li>In <strong>File &gt; Settings &gt; Editor &gt; Code Style &gt; Kotlin</strong>, set from
-  <strong>Kotlin style guide</strong>.</li>
-<li>Append <code>kotlin.code.style=official</code> to root <code>gradle.properties</code>.</li>
+<li>Apply <a href="https://pinterest.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration">Ktlint Integration</a>
+  to Gradle project.</li>
+<li>Using configuration <code>ktlint</code>, add this project as dependency.</li>
 </ul>
-<h3 id="google-java-style">Google Java Style<a class="headerlink" href="#google-java-style" title="Permanent link">&para;</a></h3>
-<p>Explained in <a href="https://github.com/google/google-java-format/">Google Java Format</a>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">configurations</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">ktlint</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">}</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">ktlint</span><span class="w"> </span><span class="s2">&quot;com.hanggrian.rulebook:rulebook-ktlint:$libraryVersion&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="o">}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">// the rest of ktlint tasks&#39; configuration</span>
+</code></pre></div>
+<h3 id="checkstyle">Checkstyle<a class="headerlink" href="#checkstyle" title="Permanent link">&para;</a></h3>
 <ul>
-<li>In <strong>File &gt; Settings &gt; Editor &gt; Code Style &gt; Java</strong>, import
-  <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml">IntelliJ Java Google Style file</a>.</li>
+<li>Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Gradle Plugin</a>.</li>
+<li>Using configuration <code>checkstyle</code>, add this project as dependency.</li>
+<li>Point to local config file or put in <code>/config/checkstyle/codenarc.xml</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">checkstyle</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">}</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">checkstyle</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">toolVersion</span><span class="w"> </span><span class="s2">&quot;$checkstyleVersion&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">configFile</span><span class="w"> </span><span class="s2">&quot;path/to/rulebook_checkstyle.xml&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="o">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="n">checkstyle</span><span class="w"> </span><span class="s2">&quot;com.hanggrian.rulebook:rulebook-checkstyle:$libraryVersion&quot;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="codenarc">CodeNarc<a class="headerlink" href="#codenarc" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Apply <a href="https://docs.gradle.org/current/userguide/codenarc_plugin.html">CodeNarc Gradle Plugin</a>.</li>
+<li>Using configuration <code>codenarc</code>, add this project as dependency.</li>
+<li>Point to local config file or put in <code>/config/codenarc/codenarc.xml</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">plugins</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">codenarc</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">}</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">codenarc</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">toolVersion</span><span class="w"> </span><span class="s2">&quot;$codenarcVersion&quot;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">configFile</span><span class="w"> </span><span class="s2">&quot;path/to/rulebook_codenarc.xml&quot;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="o">}</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">dependencies</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="n">codenarc</span><span class="w"> </span><span class="s2">&quot;com.hanggrian.rulebook:rulebook-codenarc:$libraryVersion&quot;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="pylint">Pylint<a class="headerlink" href="#pylint" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Point config file to local <code>pylintrc</code>.</li>
 </ul>
 
 
