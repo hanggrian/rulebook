@@ -1,13 +1,15 @@
+/* Sizes for check badges */
 .large {
   font-size: 3em;
+}
+.medium {
+  font-size: 2em;
 }
 .small {
   font-size: 1.5em;
 }
 
-.link {
-  text-decoration: underline;
-}
+/* Brand colors for hyperlinks and labels */
 #oracle {
   color: #f80000;
 }
