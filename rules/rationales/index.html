@@ -931,7 +931,7 @@
 
   <h1>Common rationales</h1>
 
-<h3 id="abstraction-not-needed">Abstraction not needed<a class="headerlink" href="#abstraction-not-needed" title="Permanent link">&para;</a></h3>
+<h2 id="abstraction-not-needed">Abstraction not needed<a class="headerlink" href="#abstraction-not-needed" title="Permanent link">&para;</a></h2>
 <p>Abstract modifier in a class is unnecessary if the class has no abstract
 methods.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Message</span><span class="w"> </span><span class="p">{</span>
@@ -940,7 +940,7 @@ methods.</p>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="business-logic-first">Business logic first<a class="headerlink" href="#business-logic-first" title="Permanent link">&para;</a></h3>
+<h2 id="business-logic-first">Business logic first<a class="headerlink" href="#business-logic-first" title="Permanent link">&para;</a></h2>
 <p>Built-in methods like <code>toString</code>, <code>hashCode</code> and <code>equals</code> are often placed at
 the end of the class. They are unrelated to the rest of the class and can be
 distracting when reading the source code.</p>
@@ -962,7 +962,7 @@ distracting when reading the source code.</p>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="clean-comment">Clean comment<a class="headerlink" href="#clean-comment" title="Permanent link">&para;</a></h3>
+<h2 id="clean-comment">Clean comment<a class="headerlink" href="#clean-comment" title="Permanent link">&para;</a></h2>
 <p>Comment and block comment bodies should not have leading or trailing blank
 lines. No consecutive blank lines are allowed in the comment body.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cm">/**</span>
@@ -979,13 +979,13 @@ lines. No consecutive blank lines are allowed in the comment body.</p>
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Starting the application&quot;</span><span class="p">)</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="imports-not-optimized">Imports not optimized<a class="headerlink" href="#imports-not-optimized" title="Permanent link">&para;</a></h3>
+<h2 id="imports-not-optimized">Imports not optimized<a class="headerlink" href="#imports-not-optimized" title="Permanent link">&para;</a></h2>
 <p>Ommit imports that are not used in the file.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">import</span><span class="w"> </span><span class="nn">java.lang.String</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kd">val</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayListOf</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="purposeful-name">Purposeful name<a class="headerlink" href="#purposeful-name" title="Permanent link">&para;</a></h3>
+<h2 id="purposeful-name">Purposeful name<a class="headerlink" href="#purposeful-name" title="Permanent link">&para;</a></h2>
 <p>When declaring string and primitive variables, it is tempting to use simple
 names based on their type. In fact, they are usually recommendations given by
 the IDE. But these names are not descriptive and hard to understand what their
@@ -994,7 +994,7 @@ purpose is.</p>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kd">val</span><span class="w"> </span><span class="nv">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
 </code></pre></div>
-<h3 id="trailing-elvis">Trailing elvis<a class="headerlink" href="#trailing-elvis" title="Permanent link">&para;</a></h3>
+<h2 id="trailing-elvis">Trailing elvis<a class="headerlink" href="#trailing-elvis" title="Permanent link">&para;</a></h2>
 <p>In a multiline statement, the elvis operator should align with chained method
 calls instead of the same column.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">bananas</span><span class="w"> </span><span class="o">=</span>
