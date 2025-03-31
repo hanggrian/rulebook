@@ -5,15 +5,7 @@
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/developer_guide/</loc>
-         <lastmod>2025-03-31</lastmod>
-    </url>
-    <url>
-         <loc>https://hanggrian.github.io/rulebook/about/</loc>
-         <lastmod>2025-03-31</lastmod>
-    </url>
-    <url>
-         <loc>https://hanggrian.github.io/rulebook/about/glossary/</loc>
+         <loc>https://hanggrian.github.io/rulebook/rationales/</loc>
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
@@ -21,19 +13,23 @@
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/rules/all/</loc>
+         <loc>https://hanggrian.github.io/rulebook/contributing/</loc>
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/rules/rationales/</loc>
+         <loc>https://hanggrian.github.io/rulebook/contributing/glossary/</loc>
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/setup/</loc>
+         <loc>https://hanggrian.github.io/rulebook/getting-started/</loc>
          <lastmod>2025-03-31</lastmod>
     </url>
     <url>
-         <loc>https://hanggrian.github.io/rulebook/setup/editorconfig-file/</loc>
+         <loc>https://hanggrian.github.io/rulebook/getting-started/editorconfig-file/</loc>
+         <lastmod>2025-03-31</lastmod>
+    </url>
+    <url>
+         <loc>https://hanggrian.github.io/rulebook/getting-started/ide-settings/</loc>
          <lastmod>2025-03-31</lastmod>
     </url>
 </urlset>
