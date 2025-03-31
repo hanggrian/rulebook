@@ -27,14 +27,14 @@ public class BuiltInFunctionPositionCheck : RulebookAstCheck() {
             // target special function
             val identifier =
                 method
-                    .takeIf { it.isBuiltinFunction() }
+                    .takeIf { it.isBuiltInFunction() }
                     ?.findFirstToken(IDENT)
                     ?: continue
 
             // checks for violation
             methods
                 .subList(i, methods.size)
-                .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
+                .takeIf { nodes -> nodes.any { !it.isBuiltInFunction() } }
                 ?: continue
             log(method, Messages.get(MSG, identifier.text))
         }
@@ -52,7 +52,7 @@ public class BuiltInFunctionPositionCheck : RulebookAstCheck() {
                 "finalize",
             )
 
-        private fun DetailAST.isBuiltinFunction() =
+        private fun DetailAST.isBuiltInFunction() =
             hasAnnotation("Override") &&
                 findFirstToken(IDENT)?.text in BUILTIN_FUNCTIONS
     }

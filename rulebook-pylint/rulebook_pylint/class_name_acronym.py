@@ -22,7 +22,12 @@ class ClassNameAcronymChecker(RulebookChecker):
         # checks for violation
         if not bool(self.ABBREVIATION_REGEX.search(node.name)):
             return
-        self.add_message(self.MSG, node=node, args=self._transform(node.name))
+        self.add_message(
+            self.MSG,
+            node=node,
+            args=self._transform(node.name),
+            col_offset=node.col_offset + 6,
+        )
 
     @staticmethod
     def _transform(name: str) -> str:

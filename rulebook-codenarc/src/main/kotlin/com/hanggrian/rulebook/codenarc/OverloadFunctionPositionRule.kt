@@ -15,23 +15,24 @@ public class OverloadFunctionPositionRule : RulebookAstRule() {
     }
 
     public class Visitor : AbstractAstVisitor() {
-        override fun visitClassComplete(node: ClassNode) {
-            super.visitClassComplete(node)
+        override fun visitClassEx(node: ClassNode) {
+            super.visitClassEx(node)
 
             // collect functions
-            val functions = node.methods.filterNot { it.isStatic }
+            val functions =
+                node
+                    .methods
+                    .filterNot { it.isStatic }
 
+            // checks for violation
             val declaredIdentifiers = mutableSetOf<String>()
-            var lastIdentifier: String? = null
-            for (function in functions) {
-                // checks for violation
+            for ((i, function) in functions.withIndex()) {
                 val name = function.name
-                if (lastIdentifier != name && !declaredIdentifiers.add(name)) {
+                if (functions.getOrNull(i - 1)?.name != name &&
+                    !declaredIdentifiers.add(name)
+                ) {
                     addViolation(function, Messages.get(MSG, name))
                 }
-
-                // keep variable instead iterating set until last
-                lastIdentifier = name
             }
         }
     }

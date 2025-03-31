@@ -1,4 +1,4 @@
-### Abstraction not needed
+## Abstraction not needed
 
 Abstract modifier in a class is unnecessary if the class has no abstract
 methods.
@@ -11,7 +11,7 @@ abstract class Message {
 }
 ```
 
-### Business logic first
+## Business logic first
 
 Built-in methods like `toString`, `hashCode` and `equals` are often placed at
 the end of the class. They are unrelated to the rest of the class and can be
@@ -37,7 +37,7 @@ class User(val firstName: String, val lastName: String) {
 }
 ```
 
-### Clean comment
+## Clean comment
 
 Comment and block comment bodies should not have leading or trailing blank
 lines. No consecutive blank lines are allowed in the comment body.
@@ -58,7 +58,7 @@ fun main() {
 }
 ```
 
-### Imports not optimized
+## Imports not optimized
 
 Ommit imports that are not used in the file.
 
@@ -68,7 +68,7 @@ import java.lang.String
 val names = arrayListOf<String>()
 ```
 
-### Purposeful name
+## Purposeful name
 
 When declaring string and primitive variables, it is tempting to use simple
 names based on their type. In fact, they are usually recommendations given by
@@ -81,7 +81,7 @@ val string = "Alice"
 val int = 30
 ```
 
-### Trailing elvis
+## Trailing elvis
 
 In a multiline statement, the elvis operator should align with chained method
 calls instead of the same column.

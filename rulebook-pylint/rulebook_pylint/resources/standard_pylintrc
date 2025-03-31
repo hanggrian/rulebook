@@ -46,9 +46,8 @@ load-plugins=
   rulebook_pylint.todo_comment,
   rulebook_pylint.trailing_comma_in_call,
   # Declaring
-  rulebook_pylint.string_quotes,
-  # Defining
   rulebook_pylint.exception_inheritance,
+  rulebook_pylint.string_quotes,
   # Naming
   rulebook_pylint.class_name_acronym,
   rulebook_pylint.illegal_class_final_name,
@@ -65,6 +64,7 @@ load-plugins=
   rulebook_pylint.duplicate_blank_line,
   rulebook_pylint.duplicate_blank_line_in_block_comment,
   rulebook_pylint.duplicate_blank_line_in_comment,
+  rulebook_pylint.member_separator,
   rulebook_pylint.unexpected_blank_line_before_package,
   # Stating
   rulebook_pylint.nested_if_else,
@@ -91,7 +91,7 @@ unsafe-load-any-extension=no
 extension-pkg-allow-list=
 
 # Minimum supported python version
-py-version = 3.9.0
+py-version = 3.10.0
 
 # Control the amount of potential inferred values when inferring a single
 # object. This can help the performance when dealing with large functions or

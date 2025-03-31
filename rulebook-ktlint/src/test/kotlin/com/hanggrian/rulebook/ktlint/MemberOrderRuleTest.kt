@@ -44,7 +44,7 @@ class MemberOrderRuleTest {
         ).hasLintViolationWithoutAutoCorrect(
             4,
             5,
-            Messages.get(MSG, "property", "initializer block"),
+            Messages.get(MSG, "property", "initializer"),
         )
 
     @Test
@@ -60,7 +60,7 @@ class MemberOrderRuleTest {
         ).hasLintViolationWithoutAutoCorrect(
             4,
             5,
-            Messages.get(MSG, "initializer block", "constructor"),
+            Messages.get(MSG, "initializer", "constructor"),
         )
 
     @Test
@@ -88,7 +88,7 @@ class MemberOrderRuleTest {
         ).hasLintViolationWithoutAutoCorrect(
             4,
             5,
-            Messages.get(MSG, "function", "companion object"),
+            Messages.get(MSG, "function", "companion"),
         )
 
     @Test

@@ -33,7 +33,7 @@ class TestIllegalClassFinalNameChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(IllegalClassFinalNameChecker.MSG_ALL, (2, 0, 22), node1, 'Manager'),
+            msg(IllegalClassFinalNameChecker.MSG_ALL, (2, 6, 22), node1, 'Manager'),
         ):
             self.checker.visit_classdef(node1)
 
@@ -46,7 +46,7 @@ class TestIllegalClassFinalNameChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(IllegalClassFinalNameChecker.MSG_UTIL, (2, 0, 19), node1, 'Spaceships'),
+            msg(IllegalClassFinalNameChecker.MSG_UTIL, (2, 6, 19), node1, 'Spaceships'),
         ):
             self.checker.visit_classdef(node1)
 

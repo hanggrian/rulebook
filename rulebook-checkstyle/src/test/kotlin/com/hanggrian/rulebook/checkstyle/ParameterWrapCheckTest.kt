@@ -22,4 +22,7 @@ class ParameterWrapCheckTest {
     @Test
     fun `Multiline parameters each hugging parenthesis`() =
         assertEquals(4, checker.read("ParameterWrap4"))
+
+    @Test
+    fun `Skip chained single-line calls`() = assertEquals(0, checker.read("ParameterWrap5"))
 }

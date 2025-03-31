@@ -33,7 +33,7 @@ class TestClassNameAcronymChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ClassNameAcronymChecker.MSG, (2, 0, 16), node1, 'MySqlClass'),
+            msg(ClassNameAcronymChecker.MSG, (2, 6, 16), node1, 'MySqlClass'),
         ):
             self.checker.visit_classdef(node1)
 

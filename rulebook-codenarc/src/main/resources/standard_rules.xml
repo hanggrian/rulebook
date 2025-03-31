@@ -132,6 +132,21 @@
     <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
+  <ruleset-ref path="rulesets/comments.xml">
+    <exclude name="ClassJavadoc"/>
+    <exclude name="JavadocEmptyAuthorTag"/>
+    <exclude name="JavadocEmptyExceptionTag"/>
+    <exclude name="JavadocEmptyParamTag"/>
+    <exclude name="JavadocEmptyReturnTag"/>
+    <exclude name="JavadocEmptySeeTag"/>
+    <exclude name="JavadocEmptySinceTag"/>
+    <exclude name="JavadocEmptyThrowsTag"/>
+    <exclude name="JavadocEmptyVersionTag"/>
+    <exclude name="JavadocMissingExceptionDescription"/>
+    <exclude name="JavadocMissingParamDescription"/>
+    <exclude name="JavadocMissingThrowsDescription"/>
+  </ruleset-ref>
+
   <!-- Basic -->
   <rule class="com.hanggrian.rulebook.codenarc.RedundantQualifierRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.TrailingCommaInCallRule"/>
@@ -140,8 +155,6 @@
   <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForDoubleRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForFloatRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForIntegerRule"/>
-
-  <!-- Defining -->
   <rule class="com.hanggrian.rulebook.codenarc.UtilityClassDefinitionRule"/>
 
   <!-- Naming -->
@@ -158,13 +171,10 @@
   <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
 
   <!-- Spacing -->
-  <rule class="org.codenarc.rule.comments.SpaceAfterCommentDelimiterRule"/>
-  <rule class="org.codenarc.rule.comments.SpaceBeforeCommentDelimiterRule"/>
-  <rule class="org.codenarc.rule.comments.JavadocEmptyFirstLineRule"/>
-  <rule class="org.codenarc.rule.comments.JavadocEmptyLastLineRule"/>
-  <rule class="org.codenarc.rule.comments.JavadocConsecutiveEmptyLinesRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.CaseSeparatorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.CommentTrimRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.DuplicateBlankLineInCommentRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.MemberSeparatorRule"/>
 
   <!-- Stating -->
   <rule class="com.hanggrian.rulebook.codenarc.NestedIfElseRule"/>

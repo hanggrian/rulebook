@@ -15,11 +15,10 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { NullEqualityRule() },
             RuleProvider { TodoCommentRule() },
             // Declaring
-            RuleProvider { NumberSuffixForFloatRule() },
-            // Defining
             RuleProvider { AbstractClassDefinitionRule() },
             RuleProvider { ContractFunctionDefinitionRule() },
             RuleProvider { ExceptionInheritanceRule() },
+            RuleProvider { NumberSuffixForFloatRule() },
             // Naming
             RuleProvider { ClassNameAcronymRule() },
             RuleProvider { IllegalClassFinalNameRule() },

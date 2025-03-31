@@ -15,6 +15,7 @@ class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/all/#duplicate-blank-line-in-comment"""
     MSG: str = 'duplicate-blank-line-in-comment'
 
+    # pylint: disable=anomalous-backslash-in-string
     EMPTY_COMMENT_REGEX: Pattern = regex.compile('#\s*$')
 
     name: str = 'duplicate-blank-line-in-comment'

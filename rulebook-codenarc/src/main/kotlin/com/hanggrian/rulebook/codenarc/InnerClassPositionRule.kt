@@ -19,8 +19,8 @@ public class InnerClassPositionRule : RulebookAstRule() {
     }
 
     public class Visitor : AbstractAstVisitor() {
-        override fun visitClassComplete(node: ClassNode) {
-            super.visitClassComplete(node)
+        override fun visitClassEx(node: ClassNode) {
+            super.visitClassEx(node)
 
             // checks for violation
             for (`class` in node.innerClasses) {

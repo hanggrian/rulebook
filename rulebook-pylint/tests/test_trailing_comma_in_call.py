@@ -32,8 +32,8 @@ class TestTrailingCommaInCallChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(TrailingCommaInCallChecker.MSG_SINGLE, (2, 43)),
-            msg(TrailingCommaInCallChecker.MSG_SINGLE, (3, 31)),
+            msg(TrailingCommaInCallChecker.MSG_SINGLE, (2, 42, 43)),
+            msg(TrailingCommaInCallChecker.MSG_SINGLE, (3, 30, 31)),
         ):
             self.checker.process_tokens(tokens)
 
@@ -52,8 +52,8 @@ class TestTrailingCommaInCallChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(TrailingCommaInCallChecker.MSG_MULTI, (4, 28)),
-            msg(TrailingCommaInCallChecker.MSG_MULTI, (8, 25)),
+            msg(TrailingCommaInCallChecker.MSG_MULTI, (4, 25, 28)),
+            msg(TrailingCommaInCallChecker.MSG_MULTI, (8, 24, 25)),
         ):
             self.checker.process_tokens(tokens)
 

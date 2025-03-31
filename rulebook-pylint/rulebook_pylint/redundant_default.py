@@ -21,7 +21,7 @@ class RedundantDefault(RulebookChecker):
         if len(cases) == 0:
             return
         default: MatchCase = cases[-1]
-        if (not isinstance(default.pattern, MatchAs)) or default.pattern.name is not None:
+        if not isinstance(default.pattern, MatchAs) or default.pattern.name is not None:
             return
 
         # checks for violation

@@ -1,7 +1,7 @@
 Configuration starts with standard preset from [EditorConfig Wiki](https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties).
 Then, apply code snippets from sub-section according to which lint tools.
 
-```ini
+```ini title="Base configuration"
 root = true
 
 [*]
@@ -13,9 +13,9 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 ```
 
-## Ktlint Official Style
+## Kotlin configuration
 
-```ini
+```ini title="Ktlint Official Style"
 [*.kt]
 indent_size = 4
 max_line_length = 100
@@ -28,9 +28,9 @@ ktlint_function_signature_rule_force_multiline_when_parameter_count_greater_or_e
 ktlint_chain_method_rule_force_multiline_when_chain_operator_count_greater_or_equal_than = unset
 ```
 
-## Sun Java Style
+## Java configuration
 
-```ini
+```ini title="Sun Java Style"
 [*.java]
 indent_size = 4
 max_line_length = 100
@@ -39,9 +39,18 @@ ij_java_class_count_to_use_import_on_demand = 99
 ij_java_names_count_to_use_import_on_demand = 99
 ```
 
-## Groovy Style
+```ini title="Google Java Style"
+[*.java]
+indent_size = 4
+max_line_length = 100
+ij_java_use_single_class_imports = true
+ij_java_class_count_to_use_import_on_demand = 99
+ij_java_names_count_to_use_import_on_demand = 99
+```
 
-```ini
+## Groovy configuration
+
+```ini title="Groovy Style"
 [*.groovy]
 indent_size = 4
 max_line_length = 100
@@ -50,9 +59,9 @@ ij_groovy_class_count_to_use_import_on_demand = 99
 ij_groovy_names_count_to_use_import_on_demand = 99
 ```
 
-## Python Style
+## Python configuration
 
-```ini
+```ini title="Pylint Style and Google Python Style"
 [*.groovy]
 indent_size = 4
 max_line_length = 100

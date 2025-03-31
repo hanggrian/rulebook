@@ -16,41 +16,37 @@ public class MemberOrderCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
     override fun visitToken(node: DetailAST) {
+        // in Java, static members have specific keyword
         var lastChildType: Int? = null
-        for (child in node
+        node
             .children
             .filter {
                 it.type == VARIABLE_DEF ||
                     it.type == CTOR_DEF ||
                     it.type == COMPACT_CTOR_DEF ||
                     it.type == METHOD_DEF
-            }) {
-            // in Java, static members have specific keyword
-            child
-                .takeUnless { it.hasModifier(LITERAL_STATIC) }
-                ?: return
+            }.filterNot { it.hasModifier(LITERAL_STATIC) }
+            .forEach {
+                // checks for violation
+                if (MEMBER_POSITIONS.getOrDefault(lastChildType, -1) >
+                    MEMBER_POSITIONS[it.type]!!
+                ) {
+                    log(
+                        it,
+                        Messages.get(
+                            MSG,
+                            MEMBER_ARGUMENTS[it.type]!!,
+                            MEMBER_ARGUMENTS[lastChildType]!!,
+                        ),
+                    )
+                }
 
-            // checks for violation
-            if (MEMBER_POSITIONS.getOrDefault(lastChildType, -1) > MEMBER_POSITIONS[child.type]!!) {
-                log(
-                    child,
-                    Messages.get(
-                        MSG,
-                        MEMBER_ARGUMENTS[child.type]!!,
-                        MEMBER_ARGUMENTS[lastChildType]!!,
-                    ),
-                )
+                lastChildType = it.type
             }
-
-            lastChildType = child.type
-        }
     }
 
     internal companion object {
         const val MSG = "member.order"
-        private const val MSG_PROPERTY = "property"
-        private const val MSG_CONSTRUCTOR = "constructor"
-        private const val MSG_FUNCTION = "function"
 
         private val MEMBER_POSITIONS =
             mapOf(
@@ -62,10 +58,10 @@ public class MemberOrderCheck : RulebookAstCheck() {
 
         private val MEMBER_ARGUMENTS =
             mapOf(
-                VARIABLE_DEF to Messages[MSG_PROPERTY],
-                CTOR_DEF to Messages[MSG_CONSTRUCTOR],
-                COMPACT_CTOR_DEF to Messages[MSG_CONSTRUCTOR],
-                METHOD_DEF to Messages[MSG_FUNCTION],
+                VARIABLE_DEF to "property",
+                CTOR_DEF to "constructor",
+                COMPACT_CTOR_DEF to "constructor",
+                METHOD_DEF to "function",
             )
     }
 }

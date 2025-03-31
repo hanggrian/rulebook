@@ -1,10 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/build/gh/hanggrian/rulebook)](https://app.circleci.com/pipelines/github/hanggrian/rulebook/)
-[![Codecov](https://img.shields.io/codecov/c/gh/hanggrian/rulebook)](https://app.codecov.io/gh/hanggrian/rulebook/)<br>
-[![Maven Central](https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/)
-[![Java](https://img.shields.io/badge/java-8+-informational)](https://docs.oracle.com/javase/8/)<br>
-[![Package Index](https://shields.io/pypi/v/rulebook-pylint)](https://pypi.org/project/rulebook-pylint/)
-[![Package Index Test](https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org)](https://test.pypi.org/project/rulebook-pylint/)
-[![Python](https://img.shields.io/badge/python-3+-informational)](https://docs.python.org/3/)
+![The Rulebook logo.](https://github.com/hanggrian/rulebook/raw/assets/logo.svg)
 
 Third-party rules for JVM and Python lint tools, meant to be used in conjunction
 with official ones. Most of the rules are opinionated personal code styles.

@@ -5,6 +5,7 @@ public class RedundantDefault {
         switch (bar) {
             case 0:
                 throw new RuntimeException();
+
             case 1:
                 return;
         }

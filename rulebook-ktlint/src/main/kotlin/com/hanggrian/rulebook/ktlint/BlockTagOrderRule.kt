@@ -15,25 +15,31 @@ public class BlockTagOrderRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(KDOC)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        var lastKdocTagName: ASTNode? = null
-        for (child in node
-            .children()
-            .filter { it.elementType == KDOC_SECTION }
-            .mapNotNull { it.findChildByType(KDOC_TAG) }) {
-            val kdocTagName = child.findChildByType(KDOC_TAG_NAME)!!
+        // collect block tags
+        val kdocTags =
+            node
+                .children()
+                .filter { it.elementType == KDOC_SECTION }
+                .mapNotNull { it.findChildByType(KDOC_TAG) }
+                .toList()
 
-            // checks for violation
-            if (MEMBER_POSITIONS.getOrDefault(lastKdocTagName?.text, -1) >
+        // checks for violation
+        for ((i, kdocTag) in kdocTags.withIndex()) {
+            val lastKdocTagName =
+                kdocTags
+                    .getOrNull(i - 1)
+                    ?.findChildByType(KDOC_TAG_NAME)
+                    ?: continue
+            val kdocTagName = kdocTag.findChildByType(KDOC_TAG_NAME)!!
+            if (MEMBER_POSITIONS.getOrDefault(lastKdocTagName.text, -1) >
                 MEMBER_POSITIONS[kdocTagName.text]!!
             ) {
                 emit(
-                    child.startOffset,
-                    Messages.get(MSG, kdocTagName.text, lastKdocTagName!!.text),
+                    kdocTag.startOffset,
+                    Messages.get(MSG, kdocTagName.text, lastKdocTagName.text),
                     false,
                 )
             }
-
-            lastKdocTagName = kdocTagName
         }
     }
 

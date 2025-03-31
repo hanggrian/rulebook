@@ -1,13 +1,11 @@
 package com.hanggrian.rulebook.checkstyle;
 
 class CaseSeparator {
-    foo(int bar) {
+    void foo(int bar) {
         switch (bar) {
-            case 0:
-                baz();
+            case 0: baz();
 
-            default:
-                baz();
+            default: baz();
         }
     }
 

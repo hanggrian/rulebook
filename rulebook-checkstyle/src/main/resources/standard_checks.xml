@@ -192,12 +192,10 @@
     <module name="ArrayTrailingComma"/>
 
     <!-- Declaring -->
-    <module name="NumberSuffixForDouble"/>
-    <module name="NumberSuffixForFloat"/>
-
-    <!-- Defining -->
     <module name="AbstractClassDefinition"/>
     <module name="ExceptionInheritance"/>
+    <module name="NumberSuffixForDouble"/>
+    <module name="NumberSuffixForFloat"/>
 
     <!-- Naming -->
     <module name="AbbreviationAsWordInName">

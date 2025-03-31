@@ -30,9 +30,9 @@ class BlockCommentTrimChecker(RulebookChecker):
         if not docstring:
             return
         if docstring.value.startswith('\n\n'):
-            self.add_message(self.MSG_FIRST, node=docstring)
+            self.add_message(self.MSG_FIRST,  node=docstring,  line=docstring.lineno)
         if regex.search(r'\n\n\s*$', docstring.value):
-            self.add_message(self.MSG_LAST, node=docstring)
+            self.add_message(self.MSG_LAST, node=docstring, line=docstring.end_lineno)
 
 
 def register(linter: 'PyLinter') -> None:

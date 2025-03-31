@@ -6,7 +6,7 @@ from pylint.typing import MessageDefinitionTuple
 
 class Messages:
     FILENAME: str = '../resources/messages.json'
-    counter: int = 7531  # arbitrary number to distinguish from PEP
+    counter: int = 6142  # arbitrary number to distinguish from PEP
 
     with open(join(dirname(__file__), FILENAME), 'r', encoding='UTF-8') as file:
         bundle: dict = load(file)

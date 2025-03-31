@@ -28,14 +28,14 @@ public class BuiltInFunctionPositionRule : RulebookRule(ID) {
             // target special function
             val identifier =
                 `fun`
-                    .takeIf { it.isBuiltinFunction() }
+                    .takeIf { it.isBuiltInFunction() }
                     ?.findChildByType(IDENTIFIER)
                     ?: continue
 
             // checks for violation
             funs
                 .subList(i, funs.size)
-                .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
+                .takeIf { nodes -> nodes.any { !it.isBuiltInFunction() } }
                 ?: continue
             emit(`fun`.startOffset, Messages.get(MSG, identifier.text), false)
         }
@@ -53,7 +53,7 @@ public class BuiltInFunctionPositionRule : RulebookRule(ID) {
                 "equals",
             )
 
-        private fun ASTNode.isBuiltinFunction() =
+        private fun ASTNode.isBuiltInFunction() =
             hasModifier(OVERRIDE_KEYWORD) &&
                 findChildByType(IDENTIFIER)?.text in BUILTIN_FUNCTIONS
     }

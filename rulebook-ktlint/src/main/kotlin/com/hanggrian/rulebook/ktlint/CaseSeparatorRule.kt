@@ -17,7 +17,7 @@ public class CaseSeparatorRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN_ENTRY)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip last branch
+        // targeting case, skip last branch
         val whitespace =
             node
                 .takeUnless { n -> n.nextSibling { it.elementType == WHEN_ENTRY } == null }
@@ -34,13 +34,13 @@ public class CaseSeparatorRule : RulebookRule(ID) {
             whitespace
                 .takeIf { it.isWhitespaceSingleLine() }
                 ?: return
-            emit(whitespace.endOffset, Messages[MSG_MISSING], false)
+            emit(node.endOffset, Messages[MSG_MISSING], false)
             return
         }
         whitespace
             .takeIf { it.isWhitespaceMultiline() }
             ?: return
-        emit(whitespace.endOffset, Messages[MSG_UNEXPECTED], false)
+        emit(node.endOffset, Messages[MSG_UNEXPECTED], false)
     }
 
     internal companion object {

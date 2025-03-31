@@ -81,8 +81,19 @@ class ParameterWrapRuleTest : AbstractRuleTestCase<ParameterWrapRule>() {
                 )
             }
             """.trimIndent(),
-            violationOf(2, "var a, var b", Messages[MSG_ARGUMENT]),
             violationOf(8, ".toString(), 0", Messages[MSG_ARGUMENT]),
             violationOf(15, ".toString(), 0", Messages[MSG_ARGUMENT]),
+        )
+
+    @Test
+    fun `Skip chained single-line calls`() =
+        assertNoViolations(
+            """
+            def foo() {
+                new StringBuilder()
+                    .append(1)
+                    .append("Hello", 1, 2)
+            }
+            """.trimIndent(),
         )
 }

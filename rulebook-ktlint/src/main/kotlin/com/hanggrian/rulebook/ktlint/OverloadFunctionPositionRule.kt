@@ -20,20 +20,17 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
             node
                 .children()
                 .filter { it.elementType == FUN }
+                .toList()
 
+        // checks for violation
         val declaredIdentifiers = mutableSetOf<String>()
-        var lastIdentifier: ASTNode? = null
-        for (`fun` in funs) {
-            // checks for violation
+        for ((i, `fun`) in funs.withIndex()) {
             val identifier = `fun`.findChildByType(IDENTIFIER)!!
-            if (lastIdentifier?.text != identifier.text &&
+            if (funs.getOrNull(i - 1)?.findChildByType(IDENTIFIER)?.text != identifier.text &&
                 !declaredIdentifiers.add(identifier.text)
             ) {
                 emit(`fun`.startOffset, Messages.get(MSG, identifier.text), false)
             }
-
-            // keep variable instead iterating set until last
-            lastIdentifier = identifier
         }
     }
 

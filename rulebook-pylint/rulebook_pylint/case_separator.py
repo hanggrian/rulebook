@@ -1,6 +1,7 @@
-from astroid import NodeNG, Match, MatchCase
+from astroid import NodeNG, Match, MatchCase, Module
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import RulebookChecker
+from rulebook_pylint.internals.files import get_fromlineno_after
 from rulebook_pylint.internals.messages import Messages
 
 if TYPE_CHECKING:
@@ -15,28 +16,43 @@ class CaseSeparatorChecker(RulebookChecker):
     name: str = 'case-separator'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_MISSING, MSG_UNEXPECTED)
 
-    def visit_matchcase(self, node: MatchCase) -> None:
-        # skip last branch
-        if not isinstance(node.parent, Match):
-            return
-        match_cases: list[MatchCase] = node.parent.cases
-        match_case_index: int = match_cases.index(node) + 1
-        if len(match_cases) <= match_case_index:
-            return
-        match_case: MatchCase = match_cases[match_case_index]
+    def visit_match(self, node: Match) -> None:
+        # collect source code
+        root: NodeNG = node
+        while not isinstance(root, Module):
+            root = root.parent
+        root: Module
+        lines: list[str]
+        with root.stream() as stream:
+            lines = [s.strip() for s in stream.readlines()]
 
-        # checks for violation
-        body: list[NodeNG] = node.body
-        body_length: int = len(body)
-        last_body: NodeNG = body[body_length - 1]
-        if body_length > 1:
-            if match_case.fromlineno == last_body.end_lineno + 2:
-                return
-            self.add_message(self.MSG_MISSING, node=node, line=last_body.end_lineno)
-            return
-        if match_case.fromlineno == last_body.end_lineno + 1:
-            return
-        self.add_message(self.MSG_UNEXPECTED, node=node, line=last_body.end_lineno)
+        # collect cases
+        match_cases: list[MatchCase] = node.cases
+
+        for (i, match_case) in enumerate(match_cases):
+            # targeting switch, skip first branch
+            if i == 0:
+                continue
+            last_match_case: MatchCase = match_cases[i - 1]
+            match_case_fromlineno = get_fromlineno_after(lines, match_case, last_match_case)
+            last_match_case_fromlineno = \
+                get_fromlineno_after(
+                    lines,
+                    last_match_case,
+                    match_cases[i - 2] \
+                        if i - 2 > -1 \
+                        else node.subject,
+                )
+            last_body = last_match_case.body[len(last_match_case.body) - 1]
+
+            # checks for violation
+            if last_body.tolineno - 1 > last_match_case_fromlineno:
+                if last_body.tolineno - 1 != match_case_fromlineno - 2:
+                    self.add_message(self.MSG_MISSING, node=last_body)
+                continue
+            if last_body.tolineno - 1 == match_case_fromlineno - 1:
+                continue
+            self.add_message(self.MSG_UNEXPECTED, node=last_body)
 
 
 def register(linter: 'PyLinter') -> None:

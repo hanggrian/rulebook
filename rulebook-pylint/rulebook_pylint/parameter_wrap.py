@@ -16,25 +16,19 @@ class ParameterWrapChecker(RulebookChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_ARGUMENT)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
-        # target multiline parameters
-        args: list[AssignName] = node.args.args
-        if len(args) == 0:
-            return
-        if args[0].lineno == args[len(args) - 1].end_lineno:
-            return
-
-        # checks for violation
-        self._process(args)
+        self._process(node.args.args)
 
     def visit_call(self, node: Call) -> None:
-        # target multiline parameters
-        if not is_multiline(node):
-            return
-
-        # checks for violation
         self._process(node.args)
 
     def _process(self, parameters: list[NodeNG]) -> None:
+        # target multiline parameters
+        if len(parameters) == 0:
+            return
+        if parameters[0].lineno == parameters[len(parameters) - 1].end_lineno:
+            return
+
+        # checks for violation
         for i, parameter in enumerate(parameters):
             # skip first
             if i == 0:

@@ -1,43 +1,40 @@
 {
   "file-size": "Reduce file size to '%d'.",
-  "todo-comment-keyword": "Illegal keyword '%s'.",
-  "todo-comment-separator": "Illegal separator '%s'.",
-  "trailing-comma-in-call-single": "Remove trailing comma.",
+  "todo-comment-keyword": "Capitalize keyword '%s'.",
+  "todo-comment-separator": "Omit separator '%s'.",
+  "trailing-comma-in-call-single": "Omit trailing comma.",
   "trailing-comma-in-call-multi": "Put trailing comma.",
 
+  "exception-inheritance": "Extend from class 'Exception'.",
   "string-quotes-single": "Use single quotes ''.",
   "string-quotes-double": "Use double quotes \"\".",
 
-  "exception-inheritance": "Extend from Exception class.",
-
   "class-name-acronym": "Rename acronym to '%s'.",
   "illegal-class-final-name-all": "Avoid meaningless word '%s'.",
-  "illegal-class-final-name-util": "Utility class should be named '%s'.",
+  "illegal-class-final-name-util": "Rename utility class to '%s'.",
   "required-generic-name": "Use common generics '%s'.",
 
-  "built-in-function-position": "Put '%s' last.",
-  "member-order": "Put '%s' before '%s'.",
-  "inner-class-position": "Put inner class at the bottom.",
+  "built-in-function-position": "Move '%s' last.",
+  "member-order": "Arrange '%s' before '%s'.",
+  "inner-class-position": "Move inner class at the bottom.",
 
-  "block-comment-trim-first": "Unexpected newline after '\"\"\"'.",
-  "block-comment-trim-last": "Unexpected newline before '\"\"\"'.",
-  "code-block-trim": "Unexpected newline after ':'.",
-  "case-separator-missing": "Missing newline after multiline branch.",
-  "case-separator-unexpected": "Unexpected newline after single-line branch.",
-  "comment-trim": "Unexpected newline after '#'.",
-  "duplicate-blank-line": "Unexpected consecutive newline.",
-  "duplicate-blank-line-in-block-comment": "Unexpected consecutive newline in '\"\"\"'.",
-  "duplicate-blank-line-in-comment": "Unexpected consecutive newline after '#'.",
-  "unexpected-blank-line-before-package": "Unexpected newline at the beginning.",
+  "block-comment-trim-first": "Remove blank line after '\"\"\"'.",
+  "block-comment-trim-last": "Remove blank line before '\"\"\"'.",
+  "code-block-trim": "Remove blank line after ':'.",
+  "case-separator-missing": "Add blank line after multiline branch.",
+  "case-separator-unexpected": "Remove blank line after single-line branch.",
+  "comment-trim": "Remove blank line after '#'.",
+  "duplicate-blank-line": "Remove consecutive blank line.",
+  "duplicate-blank-line-in-block-comment": "Remove consecutive blank line in '\"\"\"'.",
+  "duplicate-blank-line-in-comment": "Remove consecutive blank line after '#'.",
+  "member-separator": "Add blank line after '%s'.",
+  "unexpected-blank-line-before-package": "Remove blank line at the beginning.",
 
   "nested-if-else-invert": "Invert 'if' condition.",
-  "nested-if-else-lift": "Lift 'else' and add 'return' in 'if'.",
-  "redundant-default": "Remove redundant 'case _'.",
-  "unnecessary-switch": "Replace 'match' with 'if'.",
+  "nested-if-else-lift": "Lift 'else' and add 'return' in 'if' block.",
+  "redundant-default": "Omit redundant 'case _' condition.",
+  "unnecessary-switch": "Replace 'match' with 'if' condition.",
 
   "assignment-wrap": "Break assignment into newline.",
-  "parameter-wrap-argument": "Each parameter should have a newline.",
-
-  "constructor": "constructor",
-  "function": "function"
+  "parameter-wrap-argument": "Break each parameter into newline."
 }

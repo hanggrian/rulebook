@@ -35,7 +35,6 @@ public class AssignmentWrapRule : RulebookAstRule() {
                     .takeUnless { it is ListExpression }
                     ?.takeUnless { it.lineNumber == operation.startLine + 1 }
                     ?: return
-            println(expression)
             addViolation(expression, Messages[MSG])
         }
     }

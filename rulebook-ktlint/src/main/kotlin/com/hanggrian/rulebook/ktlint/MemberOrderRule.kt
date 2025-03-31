@@ -22,6 +22,7 @@ public class MemberOrderRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
+        // in Kotlin, static members belong in companion object
         var lastChildType: IElementType? = null
         for (child in node
             .children()
@@ -32,7 +33,6 @@ public class MemberOrderRule : RulebookRule(ID) {
                     it.elementType == FUN ||
                     it.elementType == OBJECT_DECLARATION
             }) {
-            // in Kotlin, static members belong in companion object
             val childType =
                 when {
                     child.elementType == PROPERTY && PROPERTY_ACCESSOR in child ->
@@ -70,11 +70,6 @@ public class MemberOrderRule : RulebookRule(ID) {
         val ID = RuleId("${RulebookRuleSet.ID.value}:member-order")
 
         const val MSG = "member.order"
-        private const val MSG_PROPERTY = "property"
-        private const val MSG_INITIALIZER = "initializer"
-        private const val MSG_CONSTRUCTOR = "constructor"
-        private const val MSG_FUNCTION = "function"
-        private const val MSG_COMPANION = "companion"
 
         private val MEMBER_POSITIONS =
             mapOf(
@@ -87,11 +82,11 @@ public class MemberOrderRule : RulebookRule(ID) {
 
         private val MEMBER_ARGUMENTS =
             mapOf(
-                PROPERTY to Messages[MSG_PROPERTY],
-                CLASS_INITIALIZER to Messages[MSG_INITIALIZER],
-                SECONDARY_CONSTRUCTOR to Messages[MSG_CONSTRUCTOR],
-                FUN to Messages[MSG_FUNCTION],
-                OBJECT_DECLARATION to Messages[MSG_COMPANION],
+                PROPERTY to "property",
+                CLASS_INITIALIZER to "initializer",
+                SECONDARY_CONSTRUCTOR to "constructor",
+                FUN to "function",
+                OBJECT_DECLARATION to "companion",
             )
     }
 }

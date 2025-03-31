@@ -51,9 +51,10 @@ class IllegalClassFinalNameChecker(RulebookChecker):
                     self.MSG_UTIL,
                     node=node,
                     args=node.name[:node.name.index(word)] + 's',
+                    col_offset=node.col_offset + 6,
                 )
                 return
-            self.add_message(self.MSG_ALL, node=node, args=word)
+            self.add_message(self.MSG_ALL, node=node, args=word, col_offset=node.col_offset + 6)
 
 
 def register(linter: 'PyLinter') -> None:

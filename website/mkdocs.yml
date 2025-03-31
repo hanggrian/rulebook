@@ -6,31 +6,73 @@ site_description: Extended lint rules for JVM and Python
 repo_name: hanggrian/rulebook
 repo_url: https://github.com/hanggrian/rulebook
 
-copyright: <a href="https://hanggrian.github.io">About me</a>
+copyright: >
+  <a href="https://app.circleci.com/pipelines/github/hanggrian/rulebook/">
+    <img
+      src="https://img.shields.io/circleci/build/gh/hanggrian/rulebook"
+      alt="CircleCI"/>
+  </a>
+  <a href="https://app.codecov.io/gh/hanggrian/rulebook/">
+    <img
+      src="https://img.shields.io/codecov/c/gh/hanggrian/rulebook"
+      alt="Codecov"/>
+  </a>
+  &emsp;
+  <a href="https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/">
+    <img
+      src="https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint"
+      alt="Maven Central"/>
+  </a>
+  <a href="https://docs.oracle.com/javase/8/">
+    <img
+      src="https://img.shields.io/badge/java-8+-informational"
+      alt="Java"/>
+  </a>
+  &emsp;
+  <a href="https://pypi.org/project/rulebook-pylint/">
+    <img
+      src="https://shields.io/pypi/v/rulebook-pylint"
+      alt="Package Index"/>
+  </a>
+  <a href="https://test.pypi.org/project/rulebook-pylint/">
+    <img
+      src="https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org"
+      alt="Package Index Test"/>
+  </a>
+  <a href="https://docs.python.org/3/">
+    <img
+      src="https://img.shields.io/badge/python-3+-informational"
+      alt="Python"/>
+  </a>
 
 theme:
   name: material
-  # favicon: assets/favicon.ico
+  custom_dir: overrides
+  favicon: images/favicon.ico
+  logo: images/icon.svg
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: c2e7fd
+      primary: blue
+      accent: amber
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: 011d32
+      primary: light blue
+      accent: amber
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
   icon:
     repo: material/github
   features:
+    - navigation.instant
     - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
+    - navigation.top
     - search.suggest
     - search.share
     - content.code.copy
@@ -38,10 +80,8 @@ theme:
 
 nav:
   - Home:
-    - About: index.md
-    - FAQ: faq.md
-    - Developing:
-      - Print AST: developing.md
+    - Getting started: index.md
+    - Developer guide: developer_guide.md
   - Setup:
     - IDE settings: setup/index.md
     - EditorConfig file: setup/editorconfig-file.md
@@ -49,14 +89,15 @@ nav:
     - Compatibility table: rules/index.md
     - All rules: rules/all.md
     - Common rationales: rules/rationales.md
-    - Naming convention: rules/naming-convention.md
-  - Glossary: glossary/index.md
+  - About:
+    - FAQ: about/index.md
+    - Glossary: about/glossary.md
 
 plugins:
   - search
 
 extra_css:
-  - stylesheets/extra.css
+  - styles/extra.css
 
 hooks:
   - hooks/archive.py
@@ -81,8 +122,8 @@ markdown_extensions:
       permalink: true
   - admonition
   - pymdownx.emoji:
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.mark

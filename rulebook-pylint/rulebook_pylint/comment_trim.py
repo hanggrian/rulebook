@@ -14,6 +14,7 @@ class CommentTrimChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/all/#comment-trim"""
     MSG: str = 'comment-trim'
 
+    # pylint: disable=anomalous-backslash-in-string
     EMPTY_COMMENT_REGEX: Pattern = regex.compile('#\s*$')
 
     name: str = 'comment-trim'

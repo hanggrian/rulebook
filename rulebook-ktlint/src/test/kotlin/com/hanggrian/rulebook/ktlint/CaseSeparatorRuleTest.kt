@@ -43,7 +43,7 @@ class CaseSeparatorRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(5, 9, Messages[MSG_UNEXPECTED])
+        ).hasLintViolationWithoutAutoCorrect(3, 19, Messages[MSG_UNEXPECTED])
 
     @Test
     fun `No line break after multiline branch`() =
@@ -62,7 +62,7 @@ class CaseSeparatorRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(7, 9, Messages[MSG_MISSING])
+        ).hasLintViolationWithoutAutoCorrect(6, 10, Messages[MSG_MISSING])
 
     @Test
     fun `Branches with comment are always multiline`() =
@@ -81,8 +81,8 @@ class CaseSeparatorRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(5, 9, Messages[MSG_MISSING]),
-            LintViolation(7, 9, Messages[MSG_MISSING]),
-            LintViolation(9, 9, Messages[MSG_MISSING]),
+            LintViolation(4, 19, Messages[MSG_MISSING]),
+            LintViolation(6, 19, Messages[MSG_MISSING]),
+            LintViolation(8, 19, Messages[MSG_MISSING]),
         )
 }

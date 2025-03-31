@@ -11,28 +11,19 @@ if TYPE_CHECKING:
 class MemberOrderChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/all/#member-order"""
     MSG: str = 'member-order'
-    MSG_CONSTRUCTOR: str = 'constructor'
-    MSG_FUNCTION: str = 'function'
 
     name: str = 'member-order'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
+        # in Python, static members have are annotated
         last_method: FunctionDef | None = None
-        for method in node.mymethods():
-            # in Python, static members have are annotated
-            if has_decorator(method, 'staticmethod'):
-                continue
-
+        for method in [m for m in node.mymethods() if not has_decorator(m, 'staticmethod')]:
             # checks for violation
             if last_method is not None and \
                 last_method.name != '__init__' and \
                 method.name == '__init__':
-                self.add_message(
-                    self.MSG,
-                    node=method,
-                    args=(Messages.get(self.MSG_CONSTRUCTOR), Messages.get(self.MSG_FUNCTION)),
-                )
+                self.add_message(self.MSG, node=method, args=('constructor', 'function'))
 
             last_method = method
 

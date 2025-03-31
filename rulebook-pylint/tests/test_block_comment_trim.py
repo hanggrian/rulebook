@@ -42,7 +42,7 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
             )
         with self.assertAddsMessages(
             msg(BlockCommentTrimChecker.MSG_FIRST, (3, 4, 7, 7), node1.doc_node),
-            msg(BlockCommentTrimChecker.MSG_LAST, (3, 4, 7, 7), node1.doc_node),
+            msg(BlockCommentTrimChecker.MSG_LAST, (7, 4, 7, 7), node1.doc_node),
         ):
             self.checker.visit_classdef(node1)
 

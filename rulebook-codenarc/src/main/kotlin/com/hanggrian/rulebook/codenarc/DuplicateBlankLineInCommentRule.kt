@@ -5,7 +5,7 @@ import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/all/#duplicate-blank-line-in-comment) */
-public class DuplicateBlankLineInCommentRule : RulebookRule() {
+public class DuplicateBlankLineInCommentRule : RulebookFileRule() {
     override fun getName(): String = "DuplicateBlankLineInComment"
 
     override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
@@ -14,11 +14,12 @@ public class DuplicateBlankLineInCommentRule : RulebookRule() {
             REGEX
                 .findAll(sourceCode.text)
                 .map {
-                    violationOf(
-                        sourceCode.getLineNumberForCharacterIndex(it.range.last),
-                        "//",
-                        Messages[MSG],
-                    )
+                    Violation().apply {
+                        rule = this@DuplicateBlankLineInCommentRule
+                        lineNumber = sourceCode.getLineNumberForCharacterIndex(it.range.last)
+                        sourceLine = "//"
+                        message = Messages[MSG]
+                    }
                 }
     }
 

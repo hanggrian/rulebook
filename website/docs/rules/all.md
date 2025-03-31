@@ -732,6 +732,140 @@ Remove unused import statements.
 
 ## Declaring
 
+### Abstract class definition
+
+Abstract classes need at least one abstract function.
+
+**Before**
+
+=== "Kotlin"
+    ```kotlin
+    abstract class Vehicle {
+        fun start() {}
+    }
+    ```
+=== "Java"
+    ```java
+    abstract class Vehicle {
+        void start() {}
+    }
+    ```
+=== "Groovy"
+    ```groovy
+    abstract class Vehicle {
+        def start() {}
+    }
+    ```
+=== "Python"
+    ```python
+    from abc import ABC
+
+    class Vehicle(ABC):
+        def start(self):
+            pass
+    ```
+
+**After**
+
+=== "Kotlin"
+    ```kotlin
+    abstract class Vehicle {
+        abstract fun start()
+    }
+    ```
+=== "Java"
+    ```java
+    abstract class Vehicle {
+        abstract void start();
+    }
+    ```
+=== "Groovy"
+    ```groovy
+    abstract class Vehicle {
+        abstract def start()
+    }
+    ```
+=== "Python"
+    ```python
+    from abc import ABC, abstractmethod
+
+    class Vehicle(ABC):
+        @abstractmethod
+        def start(self):
+            pass
+    ```
+
+### Contract function definition
+
+Kotlin contract functions that carry a runnable parameter should have `inline`
+modifier. Without the modifier, user cannot assign a global variable within the
+code block.
+
+**Before**
+
+=== "Kotlin"
+    ```kotlin
+    fun action(block: () -> Unit) {
+        contract { callsInPlace(block, EXACTLY_ONCE) }
+        block()
+    }
+    ```
+
+**After**
+
+=== "Kotlin"
+    ```kotlin
+    inline fun action(block: () -> Unit) {
+        contract { callsInPlace(block, EXACTLY_ONCE) }
+        block()
+    }
+    ```
+
+### Exception inheritance
+
+Use `Exception` as superclass of custom exceptions. Most applications should not
+extend `Error` or `Throwable`.
+
+**Before**
+
+=== "Kotlin"
+    ```kotlin
+    class PurchaseException : Error()
+    ```
+=== "Java"
+    ```java
+    class PurchaseException extends Error {}
+    ```
+=== "Groovy"
+    ```groovy
+    class PurchaseException extends Error {}
+    ```
+=== "Python"
+    ```python
+    class PurchaseException(BaseException):
+        pass
+    ```
+
+**After**
+
+=== "Kotlin"
+    ```kotlin
+    class PurchaseException : Exception()
+    ```
+=== "Java"
+    ```java
+    class PurchaseException extends Exception {}
+    ```
+=== "Groovy"
+    ```groovy
+    class PurchaseException extends Exception {}
+    ```
+=== "Python"
+    ```python
+    class PurchaseException(Exception):
+        pass
+    ```
+
 ### Number suffix for double
 
 Double floating point literals should be suffixed with lowercase `d`, which is
@@ -871,142 +1005,6 @@ Use single quotes for string literals, unless the string contains single quotes.
     name = 'John Doe'
 
     print("G'day, " + name)
-    ```
-
-## Defining
-
-### Abstract class definition
-
-Abstract classes need at least one abstract function.
-
-**Before**
-
-=== "Kotlin"
-    ```kotlin
-    abstract class Vehicle {
-        fun start() {}
-    }
-    ```
-=== "Java"
-    ```java
-    abstract class Vehicle {
-        void start() {}
-    }
-    ```
-=== "Groovy"
-    ```groovy
-    abstract class Vehicle {
-        def start() {}
-    }
-    ```
-=== "Python"
-    ```python
-    from abc import ABC
-
-    class Vehicle(ABC):
-        def start(self):
-            pass
-    ```
-
-**After**
-
-=== "Kotlin"
-    ```kotlin
-    abstract class Vehicle {
-        abstract fun start()
-    }
-    ```
-=== "Java"
-    ```java
-    abstract class Vehicle {
-        abstract void start();
-    }
-    ```
-=== "Groovy"
-    ```groovy
-    abstract class Vehicle {
-        abstract def start()
-    }
-    ```
-=== "Python"
-    ```python
-    from abc import ABC, abstractmethod
-
-    class Vehicle(ABC):
-        @abstractmethod
-        def start(self):
-            pass
-    ```
-
-### Contract function definition
-
-Kotlin contract functions that carry a runnable parameter should have `inline`
-modifier. Without the modifier, user cannot assign a global variable within the
-code block.
-
-**Before**
-
-=== "Kotlin"
-    ```kotlin
-    fun action(block: () -> Unit) {
-        contract { callsInPlace(block, EXACTLY_ONCE) }
-        block()
-    }
-    ```
-
-**After**
-
-=== "Kotlin"
-    ```kotlin
-    inline fun action(block: () -> Unit) {
-        contract { callsInPlace(block, EXACTLY_ONCE) }
-        block()
-    }
-    ```
-
-### Exception inheritance
-
-Use `Exception` as superclass of custom exceptions. Most applications should not
-extend `Error` or `Throwable`.
-
-**Before**
-
-=== "Kotlin"
-    ```kotlin
-    class PurchaseException : Error()
-    ```
-=== "Java"
-    ```java
-    class PurchaseException extends Error {}
-    ```
-=== "Groovy"
-    ```groovy
-    class PurchaseException extends Error {}
-    ```
-=== "Python"
-    ```python
-    class PurchaseException(BaseException):
-        pass
-    ```
-
-**After**
-
-=== "Kotlin"
-    ```kotlin
-    class PurchaseException : Exception()
-    ```
-=== "Java"
-    ```java
-    class PurchaseException extends Exception {}
-    ```
-=== "Groovy"
-    ```groovy
-    class PurchaseException extends Exception {}
-    ```
-=== "Python"
-    ```python
-    class PurchaseException(Exception):
-        pass
     ```
 
 ### Utility class definition

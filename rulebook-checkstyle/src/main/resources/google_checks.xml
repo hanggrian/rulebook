@@ -501,13 +501,11 @@
     <module name="UnusedImports"/>
 
     <!-- Declaring -->
-    <module name="NumberSuffixForDouble"/>
-    <module name="NumberSuffixForFloat"/>
-
-    <!-- Defining -->
     <module name="AbstractClassDefinition"/>
     <module name="ExceptionInheritance"/>
     <module name="HideUtilityClassConstructor"/>
+    <module name="NumberSuffixForDouble"/>
+    <module name="NumberSuffixForFloat"/>
 
     <!-- Naming -->
     <module name="ConstantName"/>

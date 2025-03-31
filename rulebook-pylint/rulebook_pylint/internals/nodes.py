@@ -20,22 +20,15 @@ def get_assignname(node: Assign) -> AssignName | None:
 
 def has_decorator(node: FunctionDef | ClassDef, name: str) -> bool:
     if node.decorators:
-        decorator: NodeNG
-        for decorator in node.decorators.nodes:
-            if isinstance(decorator, Name) and decorator.name == name:
-                return True
+        if any(isinstance(n, Name) and n.name == name for n in node.decorators.nodes):
+            return True
     return False
 
 
 def has_jump_statement(node: NodeNG) -> bool:
-    body: list[NodeNG]
-    if isinstance(node, If):
-        body = node.body
-    elif isinstance(node, MatchCase):
-        body = node.body
-    else:
+    if not isinstance(node, (If, MatchCase)):
         return False
-    return any(isinstance(node, (Return, Raise, Break, Continue)) for node in body)
+    return any(isinstance(n, (Return, Raise, Break, Continue)) for n in node.body)
 
 
 def is_multiline(node: NodeNG) -> bool:

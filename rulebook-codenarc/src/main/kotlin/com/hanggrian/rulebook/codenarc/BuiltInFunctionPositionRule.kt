@@ -24,13 +24,13 @@ public class BuiltInFunctionPositionRule : RulebookAstRule() {
                 "finalize",
             )
 
-        private fun MethodNode.isBuiltinFunction() =
+        private fun MethodNode.isBuiltInFunction() =
             hasAnnotation("Override") && name in BUILTIN_FUNCTIONS
     }
 
     public class Visitor : AbstractAstVisitor() {
-        override fun visitClassComplete(node: ClassNode) {
-            super.visitClassComplete(node)
+        override fun visitClassEx(node: ClassNode) {
+            super.visitClassEx(node)
 
             // collect functions
             // in Groovy, static members have specific keyword
@@ -42,13 +42,13 @@ public class BuiltInFunctionPositionRule : RulebookAstRule() {
             for ((i, method) in methods.withIndex()) {
                 // target special function
                 method
-                    .takeIf { it.isBuiltinFunction() }
+                    .takeIf { it.isBuiltInFunction() }
                     ?: continue
 
                 // checks for violation
                 methods
                     .subList(i, methods.size)
-                    .takeIf { nodes -> nodes.any { !it.isBuiltinFunction() } }
+                    .takeIf { nodes -> nodes.any { !it.isBuiltInFunction() } }
                     ?: continue
                 addViolation(method, Messages.get(MSG, method.name))
             }

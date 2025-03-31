@@ -39,11 +39,11 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
                 )
             }
             """.trimIndent(),
-            3,
-            "1",
-            Messages.get(MSG_UNEXPECTED, '+'),
             4,
             "+ 2",
+            Messages.get(MSG_UNEXPECTED, '+'),
+            5,
+            "- 3",
             Messages.get(MSG_UNEXPECTED, '-'),
         )
 

@@ -34,7 +34,9 @@ class TrailingCommaInCallChecker(RulebookTokenChecker):
                 self.add_message(
                     self.MSG_SINGLE,
                     line=prev_token.start[0],
-                    col_offset=prev_token.end[1],
+                    end_lineno=prev_token.end[0],
+                    col_offset=prev_token.start[1],
+                    end_col_offset=prev_token.end[1],
                 )
                 continue
             if prev_token.type != NL or \
@@ -44,7 +46,9 @@ class TrailingCommaInCallChecker(RulebookTokenChecker):
             self.add_message(
                 self.MSG_MULTI,
                 line=prev_token2.start[0],
-                col_offset=prev_token2.end[1],
+                end_lineno=prev_token2.end[0],
+                col_offset=prev_token2.start[1],
+                end_col_offset=prev_token2.end[1],
             )
 
 

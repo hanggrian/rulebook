@@ -8,6 +8,8 @@
 
 # Rulebook
 
+![The Rulebook logo.](https://github.com/hanggrian/rulebook/raw/assets/logo.svg)
+
 Third-party rules for JVM and Python lint tools, meant to be used in conjunction
 with official ones. Most of the rules are opinionated personal code styles.
 However, some already exists in other linters, providing the same experience

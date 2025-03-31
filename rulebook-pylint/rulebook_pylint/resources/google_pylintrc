@@ -25,9 +25,8 @@ load-plugins=
   rulebook_pylint.todo_comment,
   rulebook_pylint.trailing_comma_in_call,
   # Declaring
-  rulebook_pylint.string_quotes,
-  # Defining
   rulebook_pylint.exception_inheritance,
+  rulebook_pylint.string_quotes,
   # Naming
   rulebook_pylint.class_name_acronym,
   rulebook_pylint.illegal_class_final_name,
@@ -44,6 +43,7 @@ load-plugins=
   rulebook_pylint.duplicate_blank_line,
   rulebook_pylint.duplicate_blank_line_in_block_comment,
   rulebook_pylint.duplicate_blank_line_in_comment,
+  rulebook_pylint.member_separator,
   rulebook_pylint.unexpected_blank_line_before_package,
   # Stating
   rulebook_pylint.nested_if_else,
@@ -58,6 +58,9 @@ jobs=1
 # Allow loading of arbitrary C extensions. Extensions are imported into the
 # active Python interpreter and may run arbitrary code.
 unsafe-load-any-extension=no
+
+# Minimum supported python version
+py-version = 3.10.0
 
 
 [MESSAGES CONTROL]

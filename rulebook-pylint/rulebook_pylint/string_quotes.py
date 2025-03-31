@@ -15,7 +15,7 @@ class StringQuotesChecker(RulebookTokenChecker):
     MSG_DOUBLE: str = 'string-quotes-double'
 
     name: str = 'string-quotes'
-    msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_SINGLE)
+    msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_SINGLE, MSG_DOUBLE)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         # collect from regular and f-string

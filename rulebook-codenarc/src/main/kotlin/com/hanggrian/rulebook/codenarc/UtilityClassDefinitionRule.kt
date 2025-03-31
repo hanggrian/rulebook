@@ -39,11 +39,10 @@ public class UtilityClassDefinitionRule : RulebookAstRule() {
                 addViolation(node, Messages[MSG_CONSTRUCTOR])
                 return
             }
-            for (constructor in node.declaredConstructors) {
-                if (!constructor.isPrivate) {
-                    addViolation(constructor, Messages[MSG_CONSTRUCTOR_MODIFIER])
-                }
-            }
+            node
+                .declaredConstructors
+                .filterNot { it.isPrivate }
+                .forEach { addViolation(it, Messages[MSG_CONSTRUCTOR_MODIFIER]) }
         }
     }
 }

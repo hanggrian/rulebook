@@ -5,6 +5,7 @@ import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.syntax.Types.ASSIGN
 import org.codenarc.rule.AbstractAstVisitor
+import org.codenarc.rule.Violation
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/all/#operator-wrap) */
 public class OperatorWrapRule : RulebookAstRule() {
@@ -36,14 +37,26 @@ public class OperatorWrapRule : RulebookAstRule() {
 
             // checks for violation
             if (leftExpression.lastLineNumber < operation.startLine) {
-                addViolation(leftExpression, Messages.get(MSG_UNEXPECTED, operation.text))
+                violations +=
+                    Violation().apply {
+                        rule = this@Visitor.rule
+                        lineNumber = operation.startLine
+                        sourceLine = sourceLine(node.rightExpression)
+                        message = Messages.get(MSG_UNEXPECTED, operation.text)
+                    }
                 return
             }
             node
                 .rightExpression
                 .takeIf { it.lineNumber == operation.startLine }
                 ?: return
-            addViolation(node.rightExpression, Messages.get(MSG_MISSING, operation.text))
+            violations +=
+                Violation().apply {
+                    rule = this@Visitor.rule
+                    lineNumber = operation.startLine
+                    sourceLine = sourceLine(node.rightExpression)
+                    message = Messages.get(MSG_MISSING, operation.text)
+                }
         }
     }
 }

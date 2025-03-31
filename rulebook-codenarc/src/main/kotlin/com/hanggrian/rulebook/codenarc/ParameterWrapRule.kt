@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
@@ -34,32 +33,21 @@ public class ParameterWrapRule : RulebookAstRule() {
 
         override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
             super.visitConstructorOrMethod(node, isConstructor)
-
-            // target multiline parameters
-            val parameters =
-                node
-                    .parameters
-                    ?.takeIf { it.isNotEmpty() && it.last().lineNumber > node.lineNumber }
-                    ?: return
-
-            // checks for violation
-            process(parameters.asList())
+            process(node.parameters.asList())
         }
 
         private fun <T> visitCallExpression(node: T) where T : Expression, T : MethodCall {
-            // target multiline parameters
-            val arguments =
-                node
-                    .takeIf { it.isMultiline() }
-                    ?.arguments
-                    as? ArgumentListExpression
-                    ?: return
-
-            // checks for violation
+            val arguments = node.arguments as? ArgumentListExpression ?: return
             process(arguments.expressions)
         }
 
         private fun process(parameters: List<ASTNode>) {
+            // target multiline parameters
+            parameters
+                .takeIf { it.isNotEmpty() && it.last().lineNumber > parameters.first().lineNumber }
+                ?: return
+
+            // checks for violation
             for ((i, parameter) in parameters.withIndex().drop(1)) {
                 parameters[i - 1]
                     .takeUnless { it.lastLineNumber + 1 == parameter.lineNumber }
