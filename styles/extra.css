@@ -1,3 +1,9 @@
+/* MkDocs base colors */
+#accent {
+  color: var(--md-accent-fg-color);
+}
+
+/* Brand colors */
 #oracle {
   color: #f80000;
 }
