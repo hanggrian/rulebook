@@ -32,4 +32,14 @@ class ContractFunctionDefinitionRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationWithoutAutoCorrect(1, 1, Messages[MSG])
+
+    @Test
+    fun `Skip function without callsInPlace`() =
+        assertThatCode(
+            """
+            fun foo() {
+                contract { returns }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
 }

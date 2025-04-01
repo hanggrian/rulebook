@@ -1,15 +1,16 @@
-from astroid import NodeNG, Match, MatchCase, Module
+from astroid import NodeNG, Match, MatchCase
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import RulebookChecker
-from rulebook_pylint.internals.files import get_fromlineno_after
+from rulebook_pylint.checkers import RulebookFileChecker
+from rulebook_pylint.internals.files import get_fromlineno_before, has_comment_above
 from rulebook_pylint.internals.messages import Messages
+from rulebook_pylint.internals.nodes import is_multiline
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class CaseSeparatorChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#case-separator"""
+class CaseSeparatorChecker(RulebookFileChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#case-separator"""
     MSG_MISSING: str = 'case-separator-missing'
     MSG_UNEXPECTED: str = 'case-separator-unexpected'
 
@@ -17,15 +18,6 @@ class CaseSeparatorChecker(RulebookChecker):
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_MISSING, MSG_UNEXPECTED)
 
     def visit_match(self, node: Match) -> None:
-        # collect source code
-        root: NodeNG = node
-        while not isinstance(root, Module):
-            root = root.parent
-        root: Module
-        lines: list[str]
-        with root.stream() as stream:
-            lines = [s.strip() for s in stream.readlines()]
-
         # collect cases
         match_cases: list[MatchCase] = node.cases
 
@@ -34,25 +26,30 @@ class CaseSeparatorChecker(RulebookChecker):
             if i == 0:
                 continue
             last_match_case: MatchCase = match_cases[i - 1]
-            match_case_fromlineno = get_fromlineno_after(lines, match_case, last_match_case)
-            last_match_case_fromlineno = \
-                get_fromlineno_after(
-                    lines,
-                    last_match_case,
-                    match_cases[i - 2] \
-                        if i - 2 > -1 \
-                        else node.subject,
-                )
-            last_body = last_match_case.body[len(last_match_case.body) - 1]
+            match_case_fromlineno: int = \
+                get_fromlineno_before(self.lines, match_case, last_match_case)
+            last_body: NodeNG = last_match_case.body[-1]
 
             # checks for violation
-            if last_body.tolineno - 1 > last_match_case_fromlineno:
+            if is_multiline(last_match_case) or has_comment_above(self.lines, last_match_case):
                 if last_body.tolineno - 1 != match_case_fromlineno - 2:
-                    self.add_message(self.MSG_MISSING, node=last_body)
+                    self.add_message(
+                        self.MSG_MISSING,
+                        line=last_body.lineno,
+                        end_lineno=last_body.end_lineno,
+                        col_offset=last_body.col_offset,
+                        end_col_offset=last_body.end_col_offset,
+                    )
                 continue
             if last_body.tolineno - 1 == match_case_fromlineno - 1:
                 continue
-            self.add_message(self.MSG_UNEXPECTED, node=last_body)
+            self.add_message(
+                self.MSG_UNEXPECTED,
+                line=last_body.lineno,
+                end_lineno=last_body.end_lineno,
+                col_offset=last_body.col_offset,
+                end_col_offset=last_body.end_col_offset,
+            )
 
 
 def register(linter: 'PyLinter') -> None:

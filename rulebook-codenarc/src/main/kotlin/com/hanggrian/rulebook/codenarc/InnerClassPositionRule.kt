@@ -5,7 +5,7 @@ import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#inner-class-position) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#inner-class-position) */
 public class InnerClassPositionRule : RulebookAstRule() {
     override fun getName(): String = "InnerClassPosition"
 

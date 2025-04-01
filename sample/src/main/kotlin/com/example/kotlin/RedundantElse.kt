@@ -4,7 +4,8 @@ class RedundantElse {
     fun foo(condition: Boolean) {
         if (condition) {
             throw RuntimeException()
-        } else if (!condition) {
+        }
+        if (!condition) {
             return
         }
         println()

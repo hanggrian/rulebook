@@ -70,9 +70,10 @@
 
     <exclude name="ClassEndsWithBlankLine"/>
     <exclude name="ClassStartsWithBlankLine"/>
-    <!--exclude name="Indentation"/-->
+    <exclude name="Indentation"/>
     <exclude name="SpaceAfterOpeningBrace"/>
     <exclude name="SpaceBeforeClosingBrace"/>
+    <exclude name="SpaceAroundMapEntryColon"/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/generic.xml"/>
@@ -155,6 +156,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForDoubleRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForFloatRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForIntegerRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.UnnecessaryParenthesesInLambdaRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.UtilityClassDefinitionRule"/>
 
   <!-- Naming -->

@@ -10,7 +10,7 @@ import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#block-comment-trim) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-comment-trim) */
 public class BlockCommentTrimRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(KDOC_SECTION)
 

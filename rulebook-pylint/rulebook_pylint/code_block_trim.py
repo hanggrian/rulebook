@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class CodeBlockTrim(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#code-block-trim"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#code-block-trim"""
     MSG: str = 'code-block-trim'
 
     name: str = 'code-block-trim'

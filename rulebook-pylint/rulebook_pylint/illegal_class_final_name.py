@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class IllegalClassFinalNameChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#illegal-class-final-name"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name"""
     MSG_ALL: str = 'illegal-class-final-name-all'
     MSG_UTIL: str = 'illegal-class-final-name-util'
 
@@ -41,11 +41,10 @@ class IllegalClassFinalNameChecker(RulebookChecker):
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
-        for match in self.TITLE_CASE_REGEX.findall(node.name):
-            word: str = match[0]
-            if word not in self._illegal_class_final_names:
-                continue
-
+        for word in [
+            m[0] for m in self.TITLE_CASE_REGEX.findall(node.name) \
+            if m[0] in self._illegal_class_final_names
+        ]:
             if word in {'Util', 'Utility'}:
                 self.add_message(
                     self.MSG_UTIL,

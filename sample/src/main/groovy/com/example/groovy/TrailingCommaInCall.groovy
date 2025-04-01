@@ -4,7 +4,8 @@ class TrailingCommaInCall {
     def foo() {
         bar(
             1,
-            2,
+            2 +
+                3,
         )
     }
 

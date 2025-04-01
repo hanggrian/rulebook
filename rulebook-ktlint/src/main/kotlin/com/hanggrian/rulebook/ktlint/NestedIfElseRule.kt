@@ -21,7 +21,7 @@ import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#nested-if-else) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#nested-if-else) */
 public class NestedIfElseRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(BLOCK)
 

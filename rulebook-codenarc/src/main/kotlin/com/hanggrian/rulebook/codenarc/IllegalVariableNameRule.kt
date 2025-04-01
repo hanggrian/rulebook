@@ -4,7 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codehaus.groovy.ast.FieldNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#illegal-variable-name) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-variable-name) */
 public class IllegalVariableNameRule : RulebookAstRule() {
     internal var names =
         setOf(

@@ -1,5 +1,6 @@
 from abc import ABC
 
+from astroid import Module
 from pylint.checkers import BaseChecker, BaseTokenChecker, BaseRawFileChecker
 
 
@@ -12,4 +13,13 @@ class RulebookTokenChecker(BaseTokenChecker, ABC):
 
 
 class RulebookFileChecker(BaseRawFileChecker, ABC):
-    """Override `process_module` to capture file at once."""
+    """
+    Override `process_module` to capture file at once.
+
+    When not overriden, the source code will be collected as a list of bytes.
+    """
+    lines: list[bytes]
+
+    def process_module(self, node: Module) -> None:
+        with node.stream() as stream:
+            self.lines = [s.strip() for s in stream.readlines()]

@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_CALL
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#redundant-qualifier) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-qualifier) */
 public class RedundantQualifierCheck : RulebookAstCheck() {
     private val importPaths = mutableSetOf<String>()
     private val targetNodes = mutableSetOf<DetailAST>()

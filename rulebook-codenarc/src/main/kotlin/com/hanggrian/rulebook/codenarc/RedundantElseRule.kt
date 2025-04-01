@@ -4,10 +4,9 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import com.hanggrian.rulebook.codenarc.internals.hasJumpStatement
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
-import org.codehaus.groovy.ast.stmt.Statement
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#redundant-else) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-else) */
 public class RedundantElseRule : RulebookAstRule() {
     override fun getName(): String = "RedundantElse"
 
@@ -30,16 +29,16 @@ public class RedundantElseRule : RulebookAstRule() {
                         ?: continue
 
                 // checks for violation
-                var lastElse: Statement? = null
                 while (`if` != null) {
-                    `if`
-                        .takeIf { it.hasJumpStatement() }
-                        ?: return
-                    lastElse = `if`.elseBlock
+                    if (!`if`.hasJumpStatement()) {
+                        return
+                    }
+                    val lastElse = `if`.elseBlock
+                    if (lastElse != null) {
+                        addViolation(lastElse, Messages[MSG])
+                    }
                     `if` = lastElse as? IfStatement
                 }
-                lastElse ?: return
-                addViolation(lastElse, Messages[MSG])
             }
         }
     }

@@ -6,7 +6,7 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.MethodNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#class-name-acronym) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#class-name-acronym) */
 public class ClassNameAcronymRule : RulebookAstRule() {
     override fun getName(): String = "ClassNameAcronym"
 

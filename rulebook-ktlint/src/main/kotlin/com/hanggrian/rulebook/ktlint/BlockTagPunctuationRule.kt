@@ -13,7 +13,7 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#block-tag-punctuation) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation) */
 public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PROPERTY) {
     private var punctuateBlockTags = PUNCTUATE_BLOCK_TAGS_PROPERTY.defaultValue
 

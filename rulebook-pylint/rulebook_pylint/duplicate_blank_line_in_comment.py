@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 
 class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#duplicate-blank-line-in-comment"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment"""
     MSG: str = 'duplicate-blank-line-in-comment'
 
     # pylint: disable=anomalous-backslash-in-string
@@ -23,14 +23,8 @@ class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         last_empty_token: TokenInfo | None = None
-        for token in tokens:
-            # target comment
-            if token.type != COMMENT:
-                continue
-
-            # checks for violation
-            if not is_comment_empty(token):
-                continue
+        # checks for violation
+        for token in [t for t in tokens if t.type == COMMENT and is_comment_empty(t)]:
             if not last_empty_token:
                 last_empty_token = token
                 continue

@@ -6,7 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.CLASS_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.EXTENDS_CLAUSE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#exception-inheritance) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#exception-inheritance) */
 public class ExceptionInheritanceCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CLASS_DEF)
 

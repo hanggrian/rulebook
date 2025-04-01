@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class NestedIfElseChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#nested-if-else"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#nested-if-else"""
     MSG_INVERT: str = 'nested-if-else-invert'
     MSG_LIFT: str = 'nested-if-else-lift'
 
@@ -35,7 +35,7 @@ class NestedIfElseChecker(RulebookChecker):
                 if2 = child
                 break
             return
-        if if2 is None:
+        if not if2:
             return
 
         # checks for violation

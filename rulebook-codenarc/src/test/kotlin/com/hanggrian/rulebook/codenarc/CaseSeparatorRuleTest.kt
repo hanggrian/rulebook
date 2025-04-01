@@ -23,12 +23,14 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
             """
             def foo(int bar) {
                 switch (bar) {
-                    case 0: baz()
+                    case 0:
+                        baz()
                     case 1:
                         baz()
                         break
 
-                    default: baz()
+                    default:
+                        baz()
                 }
             }
             """.trimIndent(),
@@ -40,14 +42,16 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
             """
             def foo(int bar) {
                 switch (bar) {
-                    case 0: baz()
+                    case 0:
+                        baz()
 
-                    default: baz()
+                    default:
+                        baz()
                 }
             }
             """.trimIndent(),
-            3,
-            "case 0: baz()",
+            4,
+            "baz()",
             Messages[MSG_UNEXPECTED],
         )
 
@@ -78,17 +82,21 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
             def foo(int bar) {
                 switch (bar) {
                     // Lorem ipsum.
-                    case 0: baz()
+                    case 0:
+                        baz()
                     /* Lorem ipsum. */
-                    case 1: baz()
+                    case 1:
+                        baz()
                     /** Lorem ipsum. */
-                    case 2: baz()
-                    default: baz()
+                    case 2:
+                        baz()
+                    default:
+                        baz()
                 }
             }
             """.trimIndent(),
-            violationOf(4, "case 0: baz()", Messages[MSG_MISSING]),
-            violationOf(6, "case 1: baz()", Messages[MSG_MISSING]),
-            violationOf(8, "case 2: baz()", Messages[MSG_MISSING]),
+            violationOf(5, "baz()", Messages[MSG_MISSING]),
+            violationOf(8, "baz()", Messages[MSG_MISSING]),
+            violationOf(11, "baz()", Messages[MSG_MISSING]),
         )
 }

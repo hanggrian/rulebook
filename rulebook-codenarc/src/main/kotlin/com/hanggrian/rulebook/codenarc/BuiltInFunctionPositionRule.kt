@@ -6,7 +6,7 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.MethodNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#built-in-function-position) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#built-in-function-position) */
 public class BuiltInFunctionPositionRule : RulebookAstRule() {
     override fun getName(): String = "BuiltInFunctionPosition"
 

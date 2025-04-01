@@ -10,7 +10,7 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#redundant-else) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-else) */
 public class RedundantElseRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(IF)
 
@@ -21,17 +21,17 @@ public class RedundantElseRule : RulebookRule(ID) {
             ?: return
 
         // checks for violation
-        var lastElse: ASTNode? = null
         var `if`: ASTNode? = node
         while (`if` != null) {
-            `if`
-                .takeIf { it.hasJumpStatement() }
-                ?: return
-            lastElse = `if`.findChildByType(ELSE_KEYWORD)
+            if (!`if`.hasJumpStatement()) {
+                return
+            }
+            val lastElse = `if`.findChildByType(ELSE_KEYWORD)
+            if (lastElse != null) {
+                emit(lastElse.startOffset, Messages[MSG], false)
+            }
             `if` = `if`.findChildByType(ELSE)?.findChildByType(IF)
         }
-        lastElse ?: return
-        emit(lastElse.startOffset, Messages[MSG], false)
     }
 
     internal companion object {

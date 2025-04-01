@@ -1,5 +1,7 @@
-def foo(
-    bar: int,
-    baz: int
-):
-    print(bar, baz,)
+def foo():
+    print(1, 2, )
+    print(
+        3,
+        4 + \
+        5
+    )

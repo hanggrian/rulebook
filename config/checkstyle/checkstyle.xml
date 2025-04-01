@@ -196,6 +196,7 @@
     <module name="ExceptionInheritance"/>
     <module name="NumberSuffixForDouble"/>
     <module name="NumberSuffixForFloat"/>
+    <module name="UnnecessaryParenthesesInLambda"/>
 
     <!-- Naming -->
     <module name="AbbreviationAsWordInName">

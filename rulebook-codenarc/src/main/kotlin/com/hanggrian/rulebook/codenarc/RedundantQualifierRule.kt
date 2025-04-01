@@ -8,7 +8,7 @@ import org.codehaus.groovy.ast.ModuleNode
 import org.codehaus.groovy.ast.expr.MethodCallExpression
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#redundant-qualifier) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-qualifier) */
 public class RedundantQualifierRule : RulebookAstRule() {
     override fun getName(): String = "RedundantQualifier"
 

@@ -68,13 +68,34 @@ class AssignmentWrapRuleTest : AbstractRuleTestCase<AssignmentWrapRule>() {
         )
 
     @Test
-    fun `Skip collection assignment`() =
+    fun `Skip lambda initializers`() =
+        assertNoViolations(
+            """
+            def foo() {
+                var bar = (a) -> {
+                    println(a)
+                }
+
+                var baz = { a ->
+                    println(a)
+                }
+            }
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Skip collection initializers`() =
         assertNoViolations(
             """
             def foo() {
                 var bar = [
                     1,
                     2,
+                ]
+
+                var baz = [
+                    a: 1,
+                    b: 2,
                 ]
             }
             """.trimIndent(),

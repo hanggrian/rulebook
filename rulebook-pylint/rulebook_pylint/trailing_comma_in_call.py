@@ -1,55 +1,56 @@
-from tokenize import TokenInfo, OP, NL, COMMENT
-
+from astroid import Call, NodeNG
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from rulebook_pylint.checkers import RulebookTokenChecker
+from rulebook_pylint.checkers import RulebookFileChecker
+from rulebook_pylint.internals.files import strip_comment
 from rulebook_pylint.internals.messages import Messages
+from rulebook_pylint.internals.nodes import is_multiline
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class TrailingCommaInCallChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#trailing-comma-in-call"""
+class TrailingCommaInCallChecker(RulebookFileChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#trailing-comma-in-call"""
     MSG_SINGLE: str = 'trailing-comma-in-call-single'
     MSG_MULTI: str = 'trailing-comma-in-call-multi'
 
     name: str = 'trailing-comma-in-call'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_SINGLE, MSG_MULTI)
 
-    def process_tokens(self, tokens: list[TokenInfo]) -> None:
-        # filter out comments
-        tokens = [t for t in tokens if t.type != COMMENT]
+    def visit_call(self, node: Call) -> None:
+        # find last parameter
+        if not node.args:
+            return
+        arg: NodeNG = [n for n in node.args if n][-1]
 
-        for i, token in enumerate(tokens):
-            # find closing parenthesis
-            if token.type != OP or token.string != ')':
-                continue
-
-            # checks for violation
-            if i - 2 < 0:
-                continue
-            prev_token: TokenInfo = tokens[i - 1]
-            prev_token2: TokenInfo = tokens[i - 2]
-            if prev_token.type == OP and prev_token.string == ',':
-                self.add_message(
-                    self.MSG_SINGLE,
-                    line=prev_token.start[0],
-                    end_lineno=prev_token.end[0],
-                    col_offset=prev_token.start[1],
-                    end_col_offset=prev_token.end[1],
-                )
-                continue
-            if prev_token.type != NL or \
-                prev_token2.type == OP or \
-                prev_token2.string == ',':
-                continue
+        # checks for violation
+        if not is_multiline(node):
+            line: bytes = strip_comment(self.lines, arg)
+            if not line.endswith(b')'):
+                return
+            line = line.split(b')', 1)[0].rstrip()
+            if not line.endswith(b','):
+                return
             self.add_message(
-                self.MSG_MULTI,
-                line=prev_token2.start[0],
-                end_lineno=prev_token2.end[0],
-                col_offset=prev_token2.start[1],
-                end_col_offset=prev_token2.end[1],
+                self.MSG_SINGLE,
+                line=arg.lineno,
+                end_lineno=arg.end_lineno,
+                col_offset=arg.end_col_offset,
+                end_col_offset=arg.end_col_offset + 1,
             )
+            return
+        # skip single multiline arg only in call
+        if len(node.args) == 1:
+            return
+        if strip_comment(self.lines, arg).endswith(b','):
+            return
+        self.add_message(
+            self.MSG_MULTI,
+            line=arg.end_lineno,
+            end_lineno=arg.end_lineno,
+            col_offset=arg.col_offset,
+            end_col_offset=arg.end_col_offset,
+        )
 
 
 def register(linter: 'PyLinter') -> None:

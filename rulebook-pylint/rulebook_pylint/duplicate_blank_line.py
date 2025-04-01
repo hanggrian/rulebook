@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class DuplicateBlankLineChecker(RulebookFileChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#duplicate-blank-line"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line"""
     MSG: str = 'duplicate-blank-line'
 
     name: str = 'duplicate-blank-line'
@@ -19,10 +19,7 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
         counter: int = 0
         with node.stream() as stream:
             for (i, line) in enumerate(stream.readlines()):
-                if not line.strip():
-                    counter += 1
-                else:
-                    counter = 0
+                counter = counter + 1 if not line.strip() else 0
                 if counter < 3:
                     continue
                 self.add_message(self.MSG, line=i + 1)

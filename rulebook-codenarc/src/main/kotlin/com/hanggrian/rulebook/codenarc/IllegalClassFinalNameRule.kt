@@ -4,7 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#illegal-class-final-name) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
 public class IllegalClassFinalNameRule : RulebookAstRule() {
     internal var names = setOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 

@@ -8,7 +8,7 @@ import org.codenarc.rule.AbstractAstVisitor
  * This function replace `lineNumber` because it cannot accurately produce the first index
  * if component has a block comment.
  */
-internal fun AbstractAstVisitor.getLineNumberAfter(current: ASTNode, previous: ASTNode): Int {
+internal fun AbstractAstVisitor.getLineNumberBefore(current: ASTNode, previous: ASTNode): Int {
     var index = current.lineNumber - 1
     while (index > 0) {
         if (sourceCode.line(index).isBlank() || index == previous.lastLineNumber - 1) {
@@ -17,6 +17,24 @@ internal fun AbstractAstVisitor.getLineNumberAfter(current: ASTNode, previous: A
         index--
     }
     return current.lineNumber - 1
+}
+
+internal fun AbstractAstVisitor.hasCommentAbove(current: ASTNode): Boolean {
+    var index = current.lineNumber - 1
+    while (index > 0) {
+        val line = sourceCode.line(index).trim()
+        if (line.isBlank()) {
+            return false
+        }
+        if (line.startsWith("//") ||
+            line.startsWith("/*") ||
+            line.startsWith("*")
+        ) {
+            return true
+        }
+        index--
+    }
+    return false
 }
 
 /**

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class StringQuotesChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#string-quotes"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#string-quotes"""
     MSG_SINGLE: str = 'string-quotes-single'
     MSG_DOUBLE: str = 'string-quotes-double'
 
@@ -47,11 +47,12 @@ class StringQuotesChecker(RulebookTokenChecker):
                     )
                 ] = fstr + token.string
 
-        for position, literal in literals.items():
-            # ignore docstring
-            if literal.startswith('"""') or literal.startswith("'''"):
-                continue
-
+        # ignore docstring
+        for position, literal in [
+            (p, l) for (p, l) in literals.items() \
+            if not l.startswith('"""') and \
+               not l.startswith("'''")
+        ]:
             # determine quote characters
             if literal.startswith('r') or \
                 literal.startswith('u') or \

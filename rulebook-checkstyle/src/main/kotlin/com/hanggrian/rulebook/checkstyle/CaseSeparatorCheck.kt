@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.children
 import com.hanggrian.rulebook.checkstyle.internals.isComment
+import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.hanggrian.rulebook.checkstyle.internals.maxLineNo
 import com.hanggrian.rulebook.checkstyle.internals.minLineNo
 import com.hanggrian.rulebook.checkstyle.internals.nextSibling
@@ -10,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#case-separator) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#case-separator) */
 public class CaseSeparatorCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CASE_GROUP)
 
@@ -25,7 +26,7 @@ public class CaseSeparatorCheck : RulebookAstCheck() {
 
         // checks for violation
         val slist = node.findFirstToken(SLIST) ?: return
-        if (slist.maxLineNo > node.minLineNo ||
+        if (slist.isMultiline() ||
             node.children.any { it.isComment() }
         ) {
             caseGroup

@@ -12,7 +12,7 @@ import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#infix-call-wrap) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#infix-call-wrap) */
 public class InfixCallWrapRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(OPERATION_REFERENCE)
 

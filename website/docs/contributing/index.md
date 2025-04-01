@@ -6,7 +6,7 @@ graph LR
   B --> |No| C[Is it achievable<br>using AST?];
   C --> |No| D[<b>AbstractFileSetCheck</b>];
   C --> |Yes| E[<b>AbstractCheck</b>];
-  B ---> |Yes| F[<b>AbstractJavadocCheck</b>];
+  B --> |Yes| F[<b>AbstractJavadocCheck</b>];
 ```
 
 ```mermaid
@@ -15,7 +15,7 @@ graph LR
   B --> |No| C[Is it achievable<br>using AST?];
   C --> |No| D[<b>AbstractRule</b>];
   C --> |Yes| E[<b>AbstractAstVisitorRule</b>];
-  B ---> |Yes| F[<b>AbstractImportRule</b>];
+  B --> |Yes| F[<b>AbstractImportRule</b>];
 ```
 
 ```mermaid
@@ -29,7 +29,7 @@ graph LR
   B --> |No| C[Is it achievable<br>using tokens?];
   C --> |No| D[<b>BaseRawFileChecker</b>];
   C --> |Yes| E[<b>BaseTokenChecker</b>];
-  B ---> |Yes| F[<b>BaseChecker</b>];
+  B --> |Yes| F[<b>BaseChecker</b>];
 ```
 
 ## Debugging

@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class RedundantDefault(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#redundant-default"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#redundant-default"""
     MSG: str = 'redundant-default'
 
     name: str = 'redundant-default'
@@ -18,10 +18,10 @@ class RedundantDefault(RulebookChecker):
     def visit_match(self, node: Match) -> None:
         # skip no default
         cases: list[MatchCase] = node.cases
-        if len(cases) == 0:
+        if not cases:
             return
         default: MatchCase = cases[-1]
-        if not isinstance(default.pattern, MatchAs) or default.pattern.name is not None:
+        if not isinstance(default.pattern, MatchAs) or default.pattern.name:
             return
 
         # checks for violation

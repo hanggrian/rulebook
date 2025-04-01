@@ -86,7 +86,7 @@ class ParameterWrapRuleTest : AbstractRuleTestCase<ParameterWrapRule>() {
         )
 
     @Test
-    fun `Skip chained single-line calls`() =
+    fun `Aware of chained single-line calls`() =
         assertNoViolations(
             """
             def foo() {

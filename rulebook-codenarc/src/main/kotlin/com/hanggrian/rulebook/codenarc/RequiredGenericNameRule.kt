@@ -7,7 +7,7 @@ import org.codehaus.groovy.ast.GenericsType
 import org.codehaus.groovy.ast.MethodNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#required-generic-name) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#required-generic-name) */
 public class RequiredGenericNameRule : RulebookAstRule() {
     internal var names = setOf("E", "K", "N", "T", "V")
 

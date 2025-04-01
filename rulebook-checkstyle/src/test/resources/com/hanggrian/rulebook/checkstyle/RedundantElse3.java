@@ -2,13 +2,9 @@ package com.hanggrian.rulebook.checkstyle;
 
 class RedundantElse {
     void foo() {
-        if (true) {
-            return;
-        } else if (false) {
-            baz();
-        } else {
-            baz();
-        }
+        if (true) throw new Exception();
+        else if (false) return;
+        else baz();
     }
 
     void baz() {}

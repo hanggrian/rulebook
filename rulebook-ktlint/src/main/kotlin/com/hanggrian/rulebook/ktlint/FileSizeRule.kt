@@ -10,7 +10,7 @@ import org.ec4j.core.model.PropertyType.PropertyValueParser.POSITIVE_INT_VALUE_P
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#file-size) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#file-size) */
 public class FileSizeRule : RulebookRule(ID, LIMIT_FILE_SIZE_PROPERTY) {
     private var limitFileSize = LIMIT_FILE_SIZE_PROPERTY.defaultValue
 

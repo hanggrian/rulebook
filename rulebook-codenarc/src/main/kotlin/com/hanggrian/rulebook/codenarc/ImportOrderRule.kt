@@ -5,7 +5,7 @@ import groovy.lang.Closure
 import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#import-order) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#import-order) */
 public class ImportOrderRule : RulebookImportRule() {
     override fun getName(): String = "ImportOrder"
 

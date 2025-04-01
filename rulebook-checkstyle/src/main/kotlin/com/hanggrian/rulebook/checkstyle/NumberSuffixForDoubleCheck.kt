@@ -4,7 +4,7 @@ import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.NUM_DOUBLE
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#number-suffix-for-double) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#number-suffix-for-double) */
 public class NumberSuffixForDoubleCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(NUM_DOUBLE)
 

@@ -4,7 +4,8 @@ public class RedundantElse {
     public void foo() {
         if (true) {
             throw new RuntimeException();
-        } else if (false) {
+        }
+        if (false) {
             return;
         }
         System.out.println();

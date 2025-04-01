@@ -4,7 +4,7 @@
 [![Java](https://img.shields.io/badge/java-8+-informational)](https://docs.oracle.com/javase/8/) \
 [![Package Index](https://shields.io/pypi/v/rulebook-pylint)](https://pypi.org/project/rulebook-pylint/)
 [![Package Index Test](https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org)](https://test.pypi.org/project/rulebook-pylint/)
-[![Python](https://img.shields.io/badge/python-3+-informational)](https://docs.python.org/3/)
+[![Python](https://img.shields.io/badge/python-3.10+-informational)](https://docs.python.org/3.10/)
 
 # Rulebook
 

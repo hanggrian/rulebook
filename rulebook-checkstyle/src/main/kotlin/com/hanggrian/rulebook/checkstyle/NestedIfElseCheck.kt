@@ -13,7 +13,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#nested-if-else) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#nested-if-else) */
 public class NestedIfElseCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SLIST)
 

@@ -1,14 +1,14 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import com.hanggrian.rulebook.codenarc.internals.getLineNumberAfter
+import com.hanggrian.rulebook.codenarc.internals.getLineNumberBefore
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.ConstructorNode
 import org.codehaus.groovy.ast.FieldNode
 import org.codenarc.rule.AbstractAstVisitor
 import org.codenarc.rule.Violation
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#member-separator) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#member-separator) */
 public class MemberSeparatorRule : RulebookAstRule() {
     override fun getName(): String = "MemberSeparator"
 
@@ -37,7 +37,7 @@ public class MemberSeparatorRule : RulebookAstRule() {
                     lastMember is FieldNode && member is FieldNode -> {}
 
                     // checks for violation
-                    lastMember.lastLineNumber == getLineNumberAfter(member, lastMember) ->
+                    lastMember.lastLineNumber == getLineNumberBefore(member, lastMember) ->
                         violations +=
                             Violation().apply {
                                 rule = this@Visitor.rule

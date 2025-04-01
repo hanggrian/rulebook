@@ -7,7 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#unexpected-blank-line-before-package) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#unexpected-blank-line-before-package) */
 public class UnexpectedBlankLineBeforePackageRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FILE)
 

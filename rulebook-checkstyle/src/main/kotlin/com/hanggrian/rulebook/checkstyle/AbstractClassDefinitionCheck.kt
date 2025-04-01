@@ -13,7 +13,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#abstract-class-definition) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#abstract-class-definition) */
 public class AbstractClassDefinitionCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CLASS_DEF)
 

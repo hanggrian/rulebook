@@ -4,7 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#overload-function-position) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#overload-function-position) */
 public class OverloadFunctionPositionRule : RulebookAstRule() {
     override fun getName(): String = "OverloadFunctionPosition"
 

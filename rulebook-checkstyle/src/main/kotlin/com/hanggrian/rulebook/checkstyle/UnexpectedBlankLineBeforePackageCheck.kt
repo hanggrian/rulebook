@@ -6,7 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import kotlin.math.min
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#unexpected-blank-line-before-package) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#unexpected-blank-line-before-package) */
 public class UnexpectedBlankLineBeforePackageCheck : RulebookAstCheck() {
     private var minIndex = Int.MAX_VALUE
 

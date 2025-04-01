@@ -6,8 +6,9 @@ import com.hanggrian.rulebook.codenarc.internals.trimComment
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
 import org.codehaus.groovy.ast.expr.MethodCallExpression
 import org.codenarc.rule.AbstractAstVisitor
+import org.codenarc.rule.Violation
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#trailing-comma-in-call) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#trailing-comma-in-call) */
 public class TrailingCommaInCallRule : RulebookAstRule() {
     override fun getName(): String = "TrailingCommaInCall"
 
@@ -22,24 +23,28 @@ public class TrailingCommaInCallRule : RulebookAstRule() {
         override fun visitMethodCallExpression(node: MethodCallExpression) {
             super.visitMethodCallExpression(node)
 
-            // find parameters
-            val expressions =
-                (node.arguments as? ArgumentListExpression)
-                    ?.expressions
-                    ?: return
+            // find last parameter
+            val arguments = node.arguments as? ArgumentListExpression ?: return
+            val expression = arguments.expressions?.lastOrNull() ?: return
 
             // checks for violation
-            if (expressions.isNotEmpty() && !node.isMultiline()) {
-                val expression = expressions.last()
+            if (!arguments.isMultiline()) {
                 sourceLine(expression)
                     .takeIf { it.trimComment().endsWith(",)") }
                     ?: return
                 addViolation(expression, Messages[MSG_SINGLE])
                 return
             }
-            expressions
-                .filterNot { lastSourceLine(it).trimComment().endsWith(',') }
-                .forEach { addViolation(it, Messages[MSG_MULTI]) }
+            lastSourceLine(expression)
+                .takeUnless { it.trimComment().endsWith(',') }
+                ?: return
+            violations +=
+                Violation().apply {
+                    rule = this@Visitor.rule
+                    lineNumber = expression.lastLineNumber
+                    sourceLine = lastSourceLine(expression)
+                    message = Messages[MSG_MULTI]
+                }
         }
     }
 }

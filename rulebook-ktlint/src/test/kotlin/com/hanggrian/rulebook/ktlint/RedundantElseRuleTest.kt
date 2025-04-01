@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.ktlint
 import com.hanggrian.rulebook.ktlint.RedundantElseRule.Companion.MSG
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class RedundantElseRuleTest {
@@ -41,23 +42,10 @@ class RedundantElseRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(6, 7, Messages[MSG])
-
-    @Test
-    fun `Skip if not all if blocks have jump statement`() =
-        assertThatCode(
-            """
-            fun foo() {
-                if (true) {
-                    return
-                } else if (false) {
-                    baz()
-                } else {
-                    baz()
-                }
-            }
-            """.trimIndent(),
-        ).hasNoLintViolations()
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(4, 7, Messages[MSG]),
+            LintViolation(6, 7, Messages[MSG]),
+        )
 
     @Test
     fun `Consider if-else without blocks`() =
@@ -69,5 +57,8 @@ class RedundantElseRuleTest {
                 else baz()
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(4, 5, Messages[MSG])
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(3, 5, Messages[MSG]),
+            LintViolation(4, 5, Messages[MSG]),
+        )
 }

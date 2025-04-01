@@ -81,4 +81,18 @@ class TrailingCommaInCallRuleTest : AbstractRuleTestCase<TrailingCommaInCallRule
             }
             """.trimIndent(),
         )
+
+    @Test
+    fun `Aware of chained single-line calls`() =
+        assertNoViolations(
+            """
+            def foo() {
+                bar(1)
+                    .bar(2)
+                    .bar(
+                        3,
+                    )
+            }
+            """.trimIndent(),
+        )
 }

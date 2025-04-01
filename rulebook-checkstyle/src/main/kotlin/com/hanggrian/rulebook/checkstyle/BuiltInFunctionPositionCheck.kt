@@ -10,7 +10,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_STATIC
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#built-in-function-position) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#built-in-function-position) */
 public class BuiltInFunctionPositionCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 

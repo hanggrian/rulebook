@@ -14,7 +14,7 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#illegal-class-final-name) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
 public class IllegalClassFinalNameRule : RulebookRule(ID, DISALLOW_CLASS_FINAL_NAMES_PROPERTY) {
     private var disallowClassFinalNames = DISALLOW_CLASS_FINAL_NAMES_PROPERTY.defaultValue
 

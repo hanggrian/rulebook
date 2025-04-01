@@ -1,15 +1,14 @@
-from astroid import NodeNG, FunctionDef, Call, AssignName
+from astroid import NodeNG, FunctionDef, Call
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers import RulebookChecker
 from rulebook_pylint.internals.messages import Messages
-from rulebook_pylint.internals.nodes import is_multiline
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
 class ParameterWrapChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#parameter-wrap"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#parameter-wrap"""
     MSG_ARGUMENT: str = 'parameter-wrap-argument'
 
     name: str = 'parameter-wrap'
@@ -23,18 +22,14 @@ class ParameterWrapChecker(RulebookChecker):
 
     def _process(self, parameters: list[NodeNG]) -> None:
         # target multiline parameters
-        if len(parameters) == 0:
-            return
-        if parameters[0].lineno == parameters[len(parameters) - 1].end_lineno:
+        if not parameters or \
+            parameters[0].lineno == parameters[-1].end_lineno:
             return
 
         # checks for violation
         for i, parameter in enumerate(parameters):
-            # skip first
-            if i == 0:
-                continue
-
-            if parameters[i - 1].end_lineno + 1 == parameter.lineno:
+            if i == 0 or \
+                parameters[i - 1].end_lineno + 1 == parameter.lineno:
                 continue
             self.add_message(self.MSG_ARGUMENT, node=parameter)
 

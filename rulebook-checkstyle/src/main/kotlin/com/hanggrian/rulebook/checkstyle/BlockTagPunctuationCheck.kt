@@ -6,7 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#block-tag-punctuation) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation) */
 public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
     internal var tags =
         setOf(

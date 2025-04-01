@@ -7,7 +7,7 @@ import org.codehaus.groovy.syntax.Types.ASSIGN
 import org.codenarc.rule.AbstractAstVisitor
 import org.codenarc.rule.Violation
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#operator-wrap) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#operator-wrap) */
 public class OperatorWrapRule : RulebookAstRule() {
     override fun getName(): String = "OperatorWrap"
 

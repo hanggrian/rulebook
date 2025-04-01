@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#empty-code-block-unwrap) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#empty-code-block-unwrap) */
 public class EmptyCodeBlockUnwrapRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY, BLOCK, FUNCTION_LITERAL)
 

@@ -45,7 +45,7 @@ class TestRedundantDefault(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(RedundantDefault.MSG, 8, node1.body[0].cases[2]),
+            msg(RedundantDefault.MSG, 8, node1.body[0].cases[-1]),
         ):
             self.checker.visit_match(node1.body[0])
 

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class ClassNameAcronymChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#class-name-acronym"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#class-name-acronym"""
     MSG: str = 'class-name-acronym'
 
     ABBREVIATION_REGEX: Pattern = regex.compile(r'[A-Z]{3,}')
@@ -33,9 +33,9 @@ class ClassNameAcronymChecker(RulebookChecker):
     def _transform(name: str) -> str:
         def replace_match(match):
             group_value: str = match.group()
-            if match.end() == len(name):
-                return group_value[0] + group_value[1:].lower()
-            return group_value[0] + group_value[1:-1].lower() + group_value[-1]
+            return group_value[0] + group_value[1:].lower() \
+                if match.end() == len(name) \
+                else group_value[0] + group_value[1:-1].lower() + group_value[-1]
 
         return ClassNameAcronymChecker.ABBREVIATION_REGEX.sub(replace_match, name)
 

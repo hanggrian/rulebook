@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#member-order) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#member-order) */
 public class MemberOrderCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 

@@ -16,7 +16,7 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#required-generic-name) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#required-generic-name) */
 public class RequiredGenericNameRule : RulebookRule(ID, ALLOW_GENERICS_NAMES_PROPERTY) {
     private var allowGenericsNames = ALLOW_GENERICS_NAMES_PROPERTY.defaultValue
 

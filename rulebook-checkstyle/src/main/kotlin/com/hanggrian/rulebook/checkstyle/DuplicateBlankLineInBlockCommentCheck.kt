@@ -6,7 +6,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.LEADING_ASTERISK
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.NEWLINE
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#duplicate-blank-line-in-block-comment) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment) */
 public class DuplicateBlankLineInBlockCommentCheck : RulebookJavadocCheck() {
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(LEADING_ASTERISK)
 

@@ -1,12 +1,9 @@
-/* Sizes for check badges */
-.large {
-  font-size: 3em;
-}
-.mini {
-  font-size: 1.5em;
+/* MkDocs base colors */
+#accent {
+  color: var(--md-accent-fg-color);
 }
 
-/* Brand colors for hyperlinks and labels */
+/* Brand colors */
 #oracle {
   color: #f80000;
 }

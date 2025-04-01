@@ -1,7 +1,9 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import com.hanggrian.rulebook.codenarc.internals.getLineNumberAfter
+import com.hanggrian.rulebook.codenarc.internals.getLineNumberBefore
+import com.hanggrian.rulebook.codenarc.internals.hasCommentAbove
+import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.CaseStatement
 import org.codehaus.groovy.ast.stmt.Statement
@@ -9,7 +11,7 @@ import org.codehaus.groovy.ast.stmt.SwitchStatement
 import org.codenarc.rule.AbstractAstVisitor
 import org.codenarc.rule.Violation
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#case-separator) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#case-separator) */
 public class CaseSeparatorRule : RulebookAstRule() {
     override fun getName(): String = "CaseSeparator"
 
@@ -37,21 +39,16 @@ public class CaseSeparatorRule : RulebookAstRule() {
             for ((i, statement) in statements.withIndex()) {
                 // targeting switch, skip first branch
                 val lastStatement = statements.getOrNull(i - 1) ?: continue
-                val statementLineNumber = getLineNumberAfter(statement, lastStatement)
-                val lastStatementLineNumber =
-                    getLineNumberAfter(
-                        lastStatement,
-                        statements.getOrNull(i - 2) ?: node.expression,
-                    )
-                val lastStatementLastLineNumber =
+                val lastBody =
                     ((lastStatement as CaseStatement).code as BlockStatement)
                         .statements
                         .last()
-                        .lastLineNumber - 1
+                val lastStatementLastLineNumber = lastBody.lastLineNumber - 1
 
                 // checks for violation
+                val statementLineNumber = getLineNumberBefore(statement, lastBody)
                 when {
-                    lastStatementLastLineNumber > lastStatementLineNumber ->
+                    lastStatement.isMultiline() || hasCommentAbove(lastStatement) ->
                         if (lastStatementLastLineNumber != statementLineNumber - 2) {
                             violations +=
                                 Violation().apply {

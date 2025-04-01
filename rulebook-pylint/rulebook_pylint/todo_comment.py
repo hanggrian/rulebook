@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 # pylint: disable=todo-comment-keyword,todo-comment-separator
 class TodoCommentChecker(RulebookFileChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#todo-comment"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#todo-comment"""
     MSG_KEYWORD: str = 'todo-comment-keyword'
     MSG_SEPARATOR: str = 'todo-comment-separator'
 
@@ -25,7 +25,6 @@ class TodoCommentChecker(RulebookFileChecker):
 
     def process_module(self, node: Module) -> None:
         with node.stream() as stream:
-            line: bytes
             for i, line in enumerate(stream):
                 # obtain comment content
                 line_no: int = i + 1

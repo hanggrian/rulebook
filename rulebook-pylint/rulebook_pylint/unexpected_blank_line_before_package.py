@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class UnexpectedBlankLineBeforePackageChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#unexpected-blank-line-before-package"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#unexpected-blank-line-before-package"""
     MSG: str = 'unexpected-blank-line-before-package'
 
     name: str = 'unexpected-blank-line-before-package'

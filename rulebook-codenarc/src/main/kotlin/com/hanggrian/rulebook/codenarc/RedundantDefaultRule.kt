@@ -9,7 +9,7 @@ import org.codehaus.groovy.ast.stmt.SwitchStatement
 import org.codehaus.groovy.ast.stmt.ThrowStatement
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#redundant-default) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-default) */
 public class RedundantDefaultRule : RulebookAstRule() {
     override fun getName(): String = "RedundantDefault"
 

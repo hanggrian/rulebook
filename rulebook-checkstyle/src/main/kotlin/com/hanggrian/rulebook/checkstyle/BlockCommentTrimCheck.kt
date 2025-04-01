@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.NEWLINE
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.WS
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#block-comment-trim) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-comment-trim) */
 public class BlockCommentTrimCheck : RulebookJavadocCheck() {
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC)
 

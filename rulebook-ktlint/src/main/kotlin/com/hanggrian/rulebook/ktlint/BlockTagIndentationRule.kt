@@ -15,7 +15,7 @@ import com.pinterest.ktlint.rule.engine.core.api.editorconfig.INDENT_STYLE_PROPE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#block-tag-indentation) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-indentation) */
 public class BlockTagIndentationRule :
     RulebookRule(
         ID,

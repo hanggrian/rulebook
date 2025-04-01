@@ -3,11 +3,13 @@ package com.hanggrian.rulebook.codenarc
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.expr.BinaryExpression
+import org.codehaus.groovy.ast.expr.ClosureExpression
 import org.codehaus.groovy.ast.expr.ListExpression
+import org.codehaus.groovy.ast.expr.MapExpression
 import org.codehaus.groovy.syntax.Types.ASSIGN
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#assignment-wrap) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#assignment-wrap) */
 public class AssignmentWrapRule : RulebookAstRule() {
     override fun getName(): String = "AssignmentWrap"
 
@@ -32,8 +34,11 @@ public class AssignmentWrapRule : RulebookAstRule() {
             val expression =
                 node
                     .rightExpression
-                    .takeUnless { it is ListExpression }
-                    ?.takeUnless { it.lineNumber == operation.startLine + 1 }
+                    .takeUnless {
+                        it is ListExpression ||
+                            it is MapExpression ||
+                            it is ClosureExpression
+                    }?.takeUnless { it.lineNumber == operation.startLine + 1 }
                     ?: return
             addViolation(expression, Messages[MSG])
         }

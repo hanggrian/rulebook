@@ -12,7 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#redundant-default) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-default) */
 public class RedundantDefaultCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 

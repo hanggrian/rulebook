@@ -34,7 +34,7 @@ class RedundantElseRuleTest : AbstractRuleTestCase<RedundantElseRule>() {
 
     @Test
     fun `Lift else when if has return`() =
-        assertSingleViolation(
+        assertTwoViolations(
             """
             def foo() {
                 if (true) {
@@ -46,30 +46,17 @@ class RedundantElseRuleTest : AbstractRuleTestCase<RedundantElseRule>() {
                 }
             }
             """.trimIndent(),
+            4,
+            "} else if (false) {",
+            Messages[MSG],
             6,
             "} else {",
             Messages[MSG],
         )
 
     @Test
-    fun `Skip if not all if blocks have jump statement`() =
-        assertNoViolations(
-            """
-            def foo() {
-                if (true) {
-                    return
-                } else if (false) {
-                    baz()
-                } else {
-                    baz()
-                }
-            }
-            """.trimIndent(),
-        )
-
-    @Test
     fun `Consider if-else without blocks`() =
-        assertSingleViolation(
+        assertTwoViolations(
             """
             def foo() {
                 if (true) throw new Exception()
@@ -77,6 +64,9 @@ class RedundantElseRuleTest : AbstractRuleTestCase<RedundantElseRule>() {
                 else baz()
             }
             """.trimIndent(),
+            3,
+            "else if (false) return",
+            Messages[MSG],
             4,
             "else baz()",
             Messages[MSG],

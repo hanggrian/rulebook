@@ -11,4 +11,9 @@ class ContractFunctionDefinition {
         contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
         block()
     }
+
+    fun bar() {
+        contract { returns() }
+        println()
+    }
 }

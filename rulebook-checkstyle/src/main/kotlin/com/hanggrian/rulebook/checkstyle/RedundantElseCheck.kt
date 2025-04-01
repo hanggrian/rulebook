@@ -7,7 +7,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#redundant-else) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-else) */
 public class RedundantElseCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_IF)
 
@@ -20,17 +20,17 @@ public class RedundantElseCheck : RulebookAstCheck() {
             ?: return
 
         // checks for violation
-        var lastElse: DetailAST? = null
         var `if`: DetailAST? = node
         while (`if` != null) {
-            `if`
-                .takeIf { it.hasJumpStatement() }
-                ?: return
-            lastElse = `if`.findFirstToken(LITERAL_ELSE)
+            if (!`if`.hasJumpStatement()) {
+                return
+            }
+            val lastElse = `if`.findFirstToken(LITERAL_ELSE)
+            if (lastElse != null) {
+                log(lastElse, Messages[MSG])
+            }
             `if` = lastElse?.findFirstToken(LITERAL_IF)
         }
-        lastElse ?: return
-        log(lastElse, Messages[MSG])
     }
 
     internal companion object {

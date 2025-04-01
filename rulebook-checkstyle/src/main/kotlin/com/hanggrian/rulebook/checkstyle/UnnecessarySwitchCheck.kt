@@ -7,7 +7,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CASE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#unnecessary-switch) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#unnecessary-switch) */
 public class UnnecessarySwitchCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 

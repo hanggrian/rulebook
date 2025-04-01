@@ -23,7 +23,7 @@ import com.pinterest.ktlint.rule.engine.core.api.isRoot
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#block-comment-unwrap) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-comment-unwrap) */
 public class BlockCommentUnwrapRule :
     RulebookRule(
         ID,

@@ -4,7 +4,7 @@ import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.NUM_FLOAT
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#number-suffix-for-float) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#number-suffix-for-float) */
 public class NumberSuffixForFloatCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(NUM_FLOAT)
 

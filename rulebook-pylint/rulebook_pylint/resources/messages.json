@@ -1,10 +1,14 @@
 {
+  "built-in-types": "Use built-in type ''{0}''.",
   "file-size": "Reduce file size to '%d'.",
   "todo-comment-keyword": "Capitalize keyword '%s'.",
   "todo-comment-separator": "Omit separator '%s'.",
   "trailing-comma-in-call-single": "Omit trailing comma.",
   "trailing-comma-in-call-multi": "Put trailing comma.",
+  "trailing-comma-in-declaration-single": "Omit trailing comma.",
+  "trailing-comma-in-declaration-multi": "Put trailing comma.",
 
+  "abstract-class-definition": "Omit 'abstract' modifier.",
   "exception-inheritance": "Extend from class 'Exception'.",
   "string-quotes-single": "Use single quotes ''.",
   "string-quotes-double": "Use double quotes \"\".",

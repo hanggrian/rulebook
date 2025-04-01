@@ -6,7 +6,7 @@ import org.codehaus.groovy.ast.ClassHelper.double_TYPE
 import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#number-suffix-for-double) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#number-suffix-for-double) */
 public class NumberSuffixForDoubleRule : RulebookAstRule() {
     override fun getName(): String = "NumberSuffixForDouble"
 

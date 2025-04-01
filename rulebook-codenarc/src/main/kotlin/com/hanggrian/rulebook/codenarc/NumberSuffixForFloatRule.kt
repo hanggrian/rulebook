@@ -6,7 +6,7 @@ import org.codehaus.groovy.ast.ClassHelper.float_TYPE
 import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#number-suffix-for-float) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#number-suffix-for-float) */
 public class NumberSuffixForFloatRule : RulebookAstRule() {
     override fun getName(): String = "NumberSuffixForFloat"
 

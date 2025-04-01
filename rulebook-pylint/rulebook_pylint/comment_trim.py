@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 class CommentTrimChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#comment-trim"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#comment-trim"""
     MSG: str = 'comment-trim'
 
     # pylint: disable=anomalous-backslash-in-string
@@ -33,7 +33,7 @@ class CommentTrimChecker(RulebookTokenChecker):
                 return
 
             # iterate to find last
-            j = i
+            j: int = i
             while j + 2 < len(tokens) and \
                 tokens[j + 1].type == NL and \
                 tokens[j + 2].type == COMMENT:

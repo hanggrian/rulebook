@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class BlockCommentTrimChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#block-comment-trim"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#block-comment-trim"""
     MSG_FIRST: str = 'block-comment-trim-first'
     MSG_LAST: str = 'block-comment-trim-last'
 
@@ -30,7 +30,7 @@ class BlockCommentTrimChecker(RulebookChecker):
         if not docstring:
             return
         if docstring.value.startswith('\n\n'):
-            self.add_message(self.MSG_FIRST,  node=docstring,  line=docstring.lineno)
+            self.add_message(self.MSG_FIRST, node=docstring, line=docstring.lineno)
         if regex.search(r'\n\n\s*$', docstring.value):
             self.add_message(self.MSG_LAST, node=docstring, line=docstring.end_lineno)
 

@@ -24,7 +24,9 @@ load-plugins=
   rulebook_pylint.file_size,
   rulebook_pylint.todo_comment,
   rulebook_pylint.trailing_comma_in_call,
+  rulebook_pylint.trailing_comma_in_declaration,
   # Declaring
+  rulebook_pylint.abstract_class_definition,
   rulebook_pylint.exception_inheritance,
   rulebook_pylint.string_quotes,
   # Naming

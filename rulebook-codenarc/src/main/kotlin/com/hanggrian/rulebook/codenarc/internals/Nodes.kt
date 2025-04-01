@@ -31,7 +31,23 @@ internal fun Statement.hasJumpStatement(): Boolean {
     }
 }
 
-internal fun ASTNode.isMultiline(): Boolean = lastLineNumber > lineNumber
+internal fun ASTNode.isMultiline(): Boolean =
+    when (this) {
+        is IfStatement ->
+            (elseBlock as? BlockStatement)?.isMultiline()
+                ?: (ifBlock as? BlockStatement)?.isMultiline()
+                ?: booleanExpression.isMultiline()
+
+        is CaseStatement ->
+            (code as? BlockStatement)?.isMultiline()
+                ?: expression.isMultiline()
+
+        is BlockStatement ->
+            statements.isNotEmpty() &&
+                statements.last().lastLineNumber > statements.first().lineNumber
+
+        else -> lastLineNumber > lineNumber
+    }
 
 private fun Statement.isJumpStatement() =
     this is ReturnStatement ||

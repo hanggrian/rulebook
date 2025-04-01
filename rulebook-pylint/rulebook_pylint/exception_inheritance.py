@@ -8,20 +8,18 @@ if TYPE_CHECKING:
 
 
 class ExceptionInheritanceChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#exception-inheritance"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#exception-inheritance"""
     MSG: str = 'exception-inheritance'
 
     name: str = 'exception-inheritance'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
-        for base in node.bases:
-            if not isinstance(base, Name):
-                continue
-
-            # checks for violation
-            if 'BaseException' not in base.name:
-                continue
+        # checks for violation
+        for base in [
+            n for n in node.bases \
+            if isinstance(n, Name) and n.name == 'BaseException'
+        ]:
             self.add_message(self.MSG, node=base)
             return
 

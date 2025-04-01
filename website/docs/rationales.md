@@ -3,7 +3,7 @@
 Abstract modifier in a class is unnecessary if the class has no abstract
 methods.
 
-```kotlin
+```kotlin hl_lines="1"
 abstract class Message {
     fun send() {
         // implementation
@@ -17,7 +17,7 @@ Built-in methods like `toString`, `hashCode` and `equals` are often placed at
 the end of the class. They are unrelated to the rest of the class and can be
 distracting when reading the source code.
 
-```kotlin
+```kotlin hl_lines="4 6 8-12"
 class User(val firstName: String, val lastName: String) {
     var isAdmin: Boolean = false
 
@@ -42,7 +42,7 @@ class User(val firstName: String, val lastName: String) {
 Comment and block comment bodies should not have leading or trailing blank
 lines. No consecutive blank lines are allowed in the comment body.
 
-```kotlin
+```kotlin hl_lines="2 4 9"
 /**
  *
  * The main function.
@@ -62,7 +62,7 @@ fun main() {
 
 Ommit imports that are not used in the file.
 
-```kotlin
+```kotlin hl_lines="1"
 import java.lang.String
 
 val names = arrayListOf<String>()
@@ -86,7 +86,7 @@ val int = 30
 In a multiline statement, the elvis operator should align with chained method
 calls instead of the same column.
 
-```kotlin
+```kotlin hl_lines="4"
 val bananas =
     fruits
         .filter { it.type == BANANA }

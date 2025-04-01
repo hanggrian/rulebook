@@ -10,7 +10,7 @@ import org.codehaus.groovy.ast.expr.MethodCall
 import org.codehaus.groovy.ast.expr.MethodCallExpression
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#parameter-wrap) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#parameter-wrap) */
 public class ParameterWrapRule : RulebookAstRule() {
     override fun getName(): String = "ParameterWrap"
 

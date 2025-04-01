@@ -17,7 +17,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#member-order) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#member-order) */
 public class MemberOrderRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
 

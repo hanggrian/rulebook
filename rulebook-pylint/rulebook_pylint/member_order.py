@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class MemberOrderChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#member-order"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#member-order"""
     MSG: str = 'member-order'
 
     name: str = 'member-order'
@@ -20,7 +20,7 @@ class MemberOrderChecker(RulebookChecker):
         last_method: FunctionDef | None = None
         for method in [m for m in node.mymethods() if not has_decorator(m, 'staticmethod')]:
             # checks for violation
-            if last_method is not None and \
+            if last_method and \
                 last_method.name != '__init__' and \
                 method.name == '__init__':
                 self.add_message(self.MSG, node=method, args=('constructor', 'function'))

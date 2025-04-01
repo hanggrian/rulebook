@@ -23,4 +23,7 @@ class AssignmentWrapCheckTest {
     @Test
     fun `Multiline variable but single-line value`() =
         assertEquals(0, checker.read("AssignmentWrap4"))
+
+    @Test
+    fun `Skip lambda initializers`() = assertEquals(0, checker.read("AssignmentWrap5"))
 }

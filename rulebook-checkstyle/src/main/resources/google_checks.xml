@@ -506,6 +506,7 @@
     <module name="HideUtilityClassConstructor"/>
     <module name="NumberSuffixForDouble"/>
     <module name="NumberSuffixForFloat"/>
+    <module name="UnnecessaryParenthesesInLambda"/>
 
     <!-- Naming -->
     <module name="ConstantName"/>

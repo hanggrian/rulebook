@@ -11,7 +11,7 @@ import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.Statement
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#nested-if-else) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#nested-if-else) */
 public class NestedIfElseRule : RulebookAstRule() {
     override fun getName(): String = "NestedIfElse"
 

@@ -8,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.ENUM_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#illegal-class-final-name) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
 public class IllegalClassFinalNameCheck : RulebookAstCheck() {
     internal var names = setOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 

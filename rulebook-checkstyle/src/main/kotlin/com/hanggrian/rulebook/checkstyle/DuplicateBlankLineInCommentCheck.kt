@@ -5,7 +5,7 @@ import com.hanggrian.rulebook.checkstyle.internals.isEolCommentEmpty
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#duplicate-blank-line-in-comment) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment) */
 public class DuplicateBlankLineInCommentCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
 

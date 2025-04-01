@@ -4,7 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#duplicate-blank-line-in-comment) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment) */
 public class DuplicateBlankLineInCommentRule : RulebookFileRule() {
     override fun getName(): String = "DuplicateBlankLineInComment"
 

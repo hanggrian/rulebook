@@ -9,7 +9,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#code-block-trim) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#code-block-trim) */
 public class CodeBlockTrimCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK, SLIST)
 

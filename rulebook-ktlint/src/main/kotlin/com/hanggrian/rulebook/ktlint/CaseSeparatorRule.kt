@@ -12,7 +12,7 @@ import com.pinterest.ktlint.rule.engine.core.api.nextSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#case-separator) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#case-separator) */
 public class CaseSeparatorRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN_ENTRY)
 

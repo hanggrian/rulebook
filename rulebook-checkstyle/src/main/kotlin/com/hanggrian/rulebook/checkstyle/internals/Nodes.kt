@@ -69,12 +69,13 @@ internal fun DetailAST.hasAnnotation(name: String): Boolean =
         .any { it.type == ANNOTATION && it.findFirstToken(IDENT)?.text.orEmpty() == name }
 
 internal fun DetailAST.hasJumpStatement(): Boolean =
-    (findFirstToken(SLIST) ?: this).let {
-        LITERAL_RETURN in it ||
-            LITERAL_THROW in it ||
-            LITERAL_BREAK in it ||
-            LITERAL_CONTINUE in it
-    }
+    findFirstToken(SLIST)?.hasJumpStatement()
+        ?: (
+            LITERAL_RETURN in this ||
+                LITERAL_THROW in this ||
+                LITERAL_BREAK in this ||
+                LITERAL_CONTINUE in this
+        )
 
 internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 

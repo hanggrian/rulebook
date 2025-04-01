@@ -6,7 +6,7 @@ import org.codehaus.groovy.ast.stmt.BreakStatement
 import org.codehaus.groovy.ast.stmt.SwitchStatement
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#unnecessary-switch) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#unnecessary-switch) */
 public class UnnecessarySwitchRule : RulebookAstRule() {
     override fun getName(): String = "UnnecessarySwitch"
 

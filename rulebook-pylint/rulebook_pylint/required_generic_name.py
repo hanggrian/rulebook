@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class RequiredGenericNameChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#required-generic-name"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#required-generic-name"""
     MSG: str = 'required-generic-name'
 
     name: str = 'required-generic-name'

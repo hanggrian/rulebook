@@ -4,12 +4,16 @@ class CaseSeparator {
     void foo(int bar) {
         switch (bar) {
             // Lorem ipsum.
-            case 0: baz();
+            case 0:
+                baz();
             /* Lorem ipsum. */
-            case 1: baz();
+            case 1:
+                baz();
             /** Lorem ipsum. */
-            case 2: baz();
-            default: baz();
+            case 2:
+                baz();
+            default:
+                baz();
         }
     }
 

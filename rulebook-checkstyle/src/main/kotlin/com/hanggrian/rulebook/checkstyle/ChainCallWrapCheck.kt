@@ -10,7 +10,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_CALL
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#chain-call-wrap) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#chain-call-wrap) */
 public class ChainCallWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(METHOD_CALL)
 

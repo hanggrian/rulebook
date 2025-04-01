@@ -7,7 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#number-suffix-for-float) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#number-suffix-for-float) */
 public class NumberSuffixForFloatRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FLOAT_LITERAL)
 

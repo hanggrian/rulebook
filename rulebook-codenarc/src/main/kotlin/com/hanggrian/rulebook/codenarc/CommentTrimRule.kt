@@ -4,7 +4,7 @@ import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#comment-trim) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#comment-trim) */
 public class CommentTrimRule : RulebookFileRule() {
     override fun getName(): String = "CommentTrim"
 

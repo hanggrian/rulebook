@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class InnerClassPositionChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#inner-class-position"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#inner-class-position"""
     MSG: str = 'inner-class-position'
 
     name: str = 'inner-class-position'
@@ -16,11 +16,11 @@ class InnerClassPositionChecker(RulebookChecker):
 
     def visit_classdef(self, node: ClassDef) -> None:
         # consider only inner class
-        if node.parent is not None and not isinstance(node.parent, ClassDef):
+        if node.parent and not isinstance(node.parent, ClassDef):
             return
 
         current: NodeNG = node
-        while current is not None:
+        while current:
             # checks for violation
             if isinstance(current, FunctionDef):
                 self.add_message(self.MSG, node=node)

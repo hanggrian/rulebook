@@ -10,7 +10,7 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.KtImportDirective
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#built-in-types) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#built-in-types) */
 public class BuiltInTypesRule : RulebookRule(ID) {
     private var isTestClass = false
 

@@ -15,7 +15,7 @@ import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#abstract-class-definition) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#abstract-class-definition) */
 public class AbstractClassDefinitionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 

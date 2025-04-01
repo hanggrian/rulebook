@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class BuiltInFunctionPositionChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#built-in-function-position"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#built-in-function-position"""
     MSG: str = 'built-in-function-position'
 
     SPECIAL_FUNCTIONS = (
@@ -38,7 +38,7 @@ class BuiltInFunctionPositionChecker(RulebookChecker):
             return
 
         current: NodeNG = node
-        while current is not None:
+        while current:
             # checks for violation
             if isinstance(current, FunctionDef) and \
                 not has_decorator(current, 'staticmethod') and \

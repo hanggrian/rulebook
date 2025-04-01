@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class DuplicateBlankLineInBlockComment(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#duplicate-blank-line-in-block-comment"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment"""
     MSG: str = 'duplicate-blank-line-in-block-comment'
 
     name: str = 'duplicate-blank-line-in-block-comment'
@@ -25,9 +25,7 @@ class DuplicateBlankLineInBlockComment(RulebookChecker):
 
     def _process(self, docstring: Const | None) -> None:
         # checks for violation
-        if not docstring:
-            return
-        if '\n\n\n' not in docstring.value:
+        if not docstring or '\n\n\n' not in docstring.value:
             return
         self.add_message(self.MSG, node=docstring)
 

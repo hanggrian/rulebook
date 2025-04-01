@@ -29,6 +29,7 @@ class TestMemberSeparatorChecker(CheckerTestCase):
             )
         with self.assertNoMessages():
             self.checker.process_module(node_all)
+            self.checker.visit_classdef(node_all.body[0])
 
     def test_single_line_members_without_separator(self):
         node_all = \
@@ -45,6 +46,7 @@ class TestMemberSeparatorChecker(CheckerTestCase):
             msg(MemberSeparatorChecker.MSG, (4, 24, 31), args='constructor'),
         ):
             self.checker.process_module(node_all)
+            self.checker.visit_classdef(node_all.body[0])
 
     def test_multiline_members_with_separator(self):
         node_all = \
@@ -64,12 +66,13 @@ class TestMemberSeparatorChecker(CheckerTestCase):
             )
         with self.assertNoMessages():
             self.checker.process_module(node_all)
+            self.checker.visit_classdef(node_all.body[0])
 
     def test_multiline_members_without_separator(self):
         node_all = \
             parse(
                 '''
-                class Foo:  #@
+                class Foo:
                     bar = \
                         1 + \
                             2
@@ -84,12 +87,13 @@ class TestMemberSeparatorChecker(CheckerTestCase):
             msg(MemberSeparatorChecker.MSG, (5, 8, 15), args='constructor'),
         ):
             self.checker.process_module(node_all)
+            self.checker.visit_classdef(node_all.body[0])
 
     def test_skip_fields_grouped_together(self):
         node_all = \
             parse(
                 '''
-                class Foo:  #@
+                class Foo:
                     bar = 1
                     baz = 1
                     qux = \
@@ -99,6 +103,7 @@ class TestMemberSeparatorChecker(CheckerTestCase):
             )
         with self.assertNoMessages():
             self.checker.process_module(node_all)
+            self.checker.visit_classdef(node_all.body[0])
 
     def test_capture_members_with_comments(self):
         node_all = \
@@ -122,6 +127,7 @@ class TestMemberSeparatorChecker(CheckerTestCase):
             msg(MemberSeparatorChecker.MSG, (7, 8, 15), args='constructor'),
         ):
             self.checker.process_module(node_all)
+            self.checker.visit_classdef(node_all.body[0])
 
 
 if __name__ == '__main__':

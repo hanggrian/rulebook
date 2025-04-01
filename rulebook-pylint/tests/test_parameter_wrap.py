@@ -74,7 +74,7 @@ class TestParameterWrapChecker(CheckerTestCase):
             self.checker.visit_functiondef(node1)
             self.checker.visit_call(node2)
 
-    def skip_chained_single_line_calls(self):
+    def aware_of_chained_single_line_calls(self):
         node1, node2 = \
             extract_node(
                 '''

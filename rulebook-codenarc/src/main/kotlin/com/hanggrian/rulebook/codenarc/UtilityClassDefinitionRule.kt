@@ -5,7 +5,7 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.AbstractAstVisitor
 import java.lang.reflect.Modifier
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/all/#utility-class-definition) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#utility-class-definition) */
 public class UtilityClassDefinitionRule : RulebookAstRule() {
     override fun getName(): String = "UtilityClassDefinition"
 

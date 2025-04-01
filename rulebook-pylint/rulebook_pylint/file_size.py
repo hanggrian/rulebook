@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class FileSizeChecker(RulebookFileChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/all/#file-size"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#file-size"""
     MSG: str = 'file-size'
 
     name: str = 'file-size'
