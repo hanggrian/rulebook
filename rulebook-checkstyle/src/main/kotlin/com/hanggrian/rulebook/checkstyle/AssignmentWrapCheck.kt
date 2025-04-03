@@ -31,7 +31,7 @@ public class AssignmentWrapCheck : RulebookAstCheck() {
         log(expr, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "assignment.wrap"
     }
 }

@@ -12,10 +12,10 @@ public class BuiltInFunctionPositionRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "built.in.function.position"
 
-        private val BUILTIN_FUNCTIONS =
+        val BUILTIN_FUNCTIONS =
             setOf(
                 "toString",
                 "hashCode",
@@ -24,8 +24,7 @@ public class BuiltInFunctionPositionRule : RulebookAstRule() {
                 "finalize",
             )
 
-        private fun MethodNode.isBuiltInFunction() =
-            hasAnnotation("Override") && name in BUILTIN_FUNCTIONS
+        fun MethodNode.isBuiltInFunction() = hasAnnotation("Override") && name in BUILTIN_FUNCTIONS
     }
 
     public class Visitor : AbstractAstVisitor() {

@@ -35,7 +35,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BlockCommentSpacesRule() },
             RuleProvider { BlockCommentTrimRule() },
             RuleProvider { BlockTagIndentationRule() },
-            RuleProvider { BlockTagSeparatorRule() },
+            RuleProvider { MissingBlankLineBeforeBlockTagsRule() },
             RuleProvider { CaseSeparatorRule() },
             RuleProvider { CommentTrimRule() },
             RuleProvider { DuplicateBlankLineInBlockCommentRule() },
@@ -48,9 +48,9 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { RedundantElseRule() },
             RuleProvider { UnnecessarySwitchRule() },
             // Wrapping
-            RuleProvider { BlockCommentUnwrapRule() },
+            RuleProvider { ShortBlockCommentJoinRule() },
             RuleProvider { ElvisWrapRule() },
-            RuleProvider { EmptyCodeBlockUnwrapRule() },
+            RuleProvider { EmptyCodeBlockJoinRule() },
             RuleProvider { InfixCallWrapRule() },
         )
 

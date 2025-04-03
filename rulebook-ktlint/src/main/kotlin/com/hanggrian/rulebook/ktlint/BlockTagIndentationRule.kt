@@ -4,6 +4,7 @@ import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.hanggrian.rulebook.ktlint.internals.siblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.IndentConfig
 import com.pinterest.ktlint.rule.engine.core.api.IndentConfig.IndentStyle.TAB
 import com.pinterest.ktlint.rule.engine.core.api.Rule.VisitorModifier.RunAfterRule
@@ -40,12 +41,13 @@ public class BlockTagIndentationRule :
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // target leading whitespace
+        // find leading whitespace
         val text =
             node
-                .siblingsUntil(KDOC_LEADING_ASTERISK)
-                .joinToString("") { it.text }
-                .takeIf { it.firstOrNull()?.isWhitespace() ?: false }
+                .takeIf { it.treeParent.elementType == KDOC_TAG }
+                ?.siblingsUntil(KDOC_LEADING_ASTERISK)
+                ?.joinToString("") { it.text }
+                ?.takeIf { it.firstOrNull()?.isWhitespace() ?: false }
                 ?.drop(1)
                 ?: return
 
@@ -70,9 +72,9 @@ public class BlockTagIndentationRule :
         )
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:block-tag-indentation")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-tag-indentation")
 
-        const val MSG = "block.tag.indentation"
+        private const val MSG = "block.tag.indentation"
     }
 }

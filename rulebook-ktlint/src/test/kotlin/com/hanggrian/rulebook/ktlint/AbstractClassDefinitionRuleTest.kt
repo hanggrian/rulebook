@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.AbstractClassDefinitionRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -39,8 +37,8 @@ class AbstractClassDefinitionRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 1, Messages[MSG]),
-            LintViolation(5, 1, Messages[MSG]),
+            LintViolation(1, 1, "Omit 'abstract' modifier."),
+            LintViolation(5, 1, "Omit 'abstract' modifier."),
         )
 
     @Test

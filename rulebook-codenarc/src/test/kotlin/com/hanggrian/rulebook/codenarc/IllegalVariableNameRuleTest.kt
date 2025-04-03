@@ -1,8 +1,6 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.google.common.truth.Truth.assertThat
-import com.hanggrian.rulebook.codenarc.IllegalVariableNameRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -41,6 +39,6 @@ class IllegalVariableNameRuleTest : AbstractRuleTestCase<IllegalVariableNameRule
             """.trimIndent(),
             2,
             "var string = ''",
-            Messages[MSG],
+            "Use descriptive name.",
         )
 }

@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.RedundantElseRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -43,8 +41,8 @@ class RedundantElseRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(4, 7, Messages[MSG]),
-            LintViolation(6, 7, Messages[MSG]),
+            LintViolation(4, 7, "Omit redundant 'else' condition."),
+            LintViolation(6, 7, "Omit redundant 'else' condition."),
         )
 
     @Test
@@ -58,7 +56,7 @@ class RedundantElseRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 5, Messages[MSG]),
-            LintViolation(4, 5, Messages[MSG]),
+            LintViolation(3, 5, "Omit redundant 'else' condition."),
+            LintViolation(4, 5, "Omit redundant 'else' condition."),
         )
 }

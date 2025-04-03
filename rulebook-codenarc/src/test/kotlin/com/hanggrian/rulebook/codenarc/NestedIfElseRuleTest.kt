@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.NestedIfElseRule.Companion.MSG_INVERT
-import com.hanggrian.rulebook.codenarc.NestedIfElseRule.Companion.MSG_LIFT
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -55,10 +52,10 @@ class NestedIfElseRuleTest : AbstractRuleTestCase<NestedIfElseRule>() {
             """.trimIndent(),
             2,
             "if (true) {",
-            Messages[MSG_INVERT],
+            "Invert 'if' condition.",
             9,
             "if (true) {",
-            Messages[MSG_INVERT],
+            "Invert 'if' condition.",
         )
 
     @Test
@@ -76,7 +73,7 @@ class NestedIfElseRuleTest : AbstractRuleTestCase<NestedIfElseRule>() {
             """.trimIndent(),
             4,
             "} else {",
-            Messages[MSG_LIFT],
+            "Lift 'else' and add 'return' in 'if' block.",
         )
 
     @Test
@@ -122,7 +119,7 @@ class NestedIfElseRuleTest : AbstractRuleTestCase<NestedIfElseRule>() {
             """.trimIndent(),
             2,
             "if (true) {",
-            Messages[MSG_INVERT],
+            "Invert 'if' condition.",
         )
 
     @Test
@@ -134,6 +131,30 @@ class NestedIfElseRuleTest : AbstractRuleTestCase<NestedIfElseRule>() {
                     if (true) {
                         baz()
                         baz()
+                    }
+                }
+                baz()
+            }
+
+            def bar() {
+                if (true) {
+                    try {
+                        if (true) {
+                            baz()
+                            baz()
+                        }
+                    } catch(Exception e) {
+                        try {
+                            if (true) {
+                                baz()
+                                baz()
+                            }
+                        } catch(Exception e) {
+                            if (true) {
+                                baz()
+                                baz()
+                            }
+                        }
                     }
                 }
                 baz()

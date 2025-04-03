@@ -6,7 +6,6 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.ConstructorNode
 import org.codehaus.groovy.ast.FieldNode
 import org.codenarc.rule.AbstractAstVisitor
-import org.codenarc.rule.Violation
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#member-separator) */
 public class MemberSeparatorRule : RulebookAstRule() {
@@ -14,7 +13,7 @@ public class MemberSeparatorRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "member.separator"
     }
 
@@ -39,20 +38,18 @@ public class MemberSeparatorRule : RulebookAstRule() {
                     // checks for violation
                     lastMember.lastLineNumber == getLineNumberBefore(member, lastMember) ->
                         violations +=
-                            Violation().apply {
-                                rule = this@Visitor.rule
-                                lineNumber = lastMember.lastLineNumber
-                                sourceLine = sourceCode.line(lastMember.lastLineNumber - 1)
-                                message =
-                                    Messages.get(
-                                        MSG,
-                                        when (lastMember) {
-                                            is FieldNode -> "property"
-                                            is ConstructorNode -> "constructor"
-                                            else -> "function"
-                                        },
-                                    )
-                            }
+                            rule.createViolation(
+                                lastMember.lastLineNumber,
+                                sourceCode.line(lastMember.lastLineNumber - 1),
+                                Messages.get(
+                                    MSG,
+                                    when (lastMember) {
+                                        is FieldNode -> "property"
+                                        is ConstructorNode -> "constructor"
+                                        else -> "function"
+                                    },
+                                ),
+                            )
                 }
             }
         }

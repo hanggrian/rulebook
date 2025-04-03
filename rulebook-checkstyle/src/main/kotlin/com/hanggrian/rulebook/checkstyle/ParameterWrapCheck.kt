@@ -47,13 +47,13 @@ public class ParameterWrapCheck : RulebookAstCheck() {
         }
         for ((i, parameter) in parameters.withIndex().drop(1)) {
             parameters[i - 1]
-                .takeUnless { it.maxLineNo + 1 == parameter.minLineNo }
+                .takeIf { it.maxLineNo == parameter.minLineNo }
                 ?: continue
             log(parameter, Messages[MSG_ARGUMENT])
         }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG_PARENTHESIS = "parameter.wrap.parenthesis"
         const val MSG_ARGUMENT = "parameter.wrap.argument"
     }

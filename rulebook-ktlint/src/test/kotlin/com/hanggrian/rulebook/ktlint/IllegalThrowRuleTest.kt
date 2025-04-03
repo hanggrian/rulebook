@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.IllegalThrowRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -43,9 +41,9 @@ class IllegalThrowRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 11, Messages[MSG]),
-            LintViolation(6, 11, Messages[MSG]),
-            LintViolation(10, 11, Messages[MSG]),
+            LintViolation(2, 11, "Throw a narrower type."),
+            LintViolation(6, 11, "Throw a narrower type."),
+            LintViolation(10, 11, "Throw a narrower type."),
         )
 
     @Test

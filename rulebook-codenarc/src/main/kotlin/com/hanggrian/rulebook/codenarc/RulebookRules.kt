@@ -2,6 +2,8 @@ package com.hanggrian.rulebook.codenarc
 
 import org.codenarc.rule.AbstractAstVisitorRule
 import org.codenarc.rule.AbstractRule
+import org.codenarc.rule.Rule
+import org.codenarc.rule.Violation
 import org.codenarc.rule.imports.AbstractImportRule
 
 /** Rule that uses Groovy AST tree to validate a node. */
@@ -30,3 +32,11 @@ public abstract class RulebookFileRule : AbstractRule() {
 
     final override fun setPriority(priority: Int): Nothing = throw UnsupportedOperationException()
 }
+
+public fun Rule.createViolation(lineNumber: Int, sourceLine: String, message: String): Violation =
+    Violation().also {
+        it.rule = this@createViolation
+        it.lineNumber = lineNumber
+        it.sourceLine = sourceLine.trim()
+        it.message = message
+    }

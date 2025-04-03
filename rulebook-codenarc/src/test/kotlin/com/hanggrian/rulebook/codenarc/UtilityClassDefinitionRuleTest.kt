@@ -1,9 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.UtilityClassDefinitionRule.Companion.MSG_CONSTRUCTOR
-import com.hanggrian.rulebook.codenarc.UtilityClassDefinitionRule.Companion.MSG_CONSTRUCTOR_MODIFIER
-import com.hanggrian.rulebook.codenarc.UtilityClassDefinitionRule.Companion.MSG_MODIFIER
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -46,10 +42,10 @@ class UtilityClassDefinitionRuleTest : AbstractRuleTestCase<UtilityClassDefiniti
             """.trimIndent(),
             1,
             "final class Foo {",
-            Messages[MSG_CONSTRUCTOR],
+            "Add private constructor.",
             5,
             "class Bar {",
-            Messages[MSG_MODIFIER],
+            "Put 'final' modifier.",
         )
 
     @Test
@@ -66,10 +62,10 @@ class UtilityClassDefinitionRuleTest : AbstractRuleTestCase<UtilityClassDefiniti
             """.trimIndent(),
             2,
             "Foo(int a) {}",
-            Messages[MSG_CONSTRUCTOR_MODIFIER],
+            "Omit 'public' modifier from constructor.",
             4,
             "public Foo(int a, int b) {}",
-            Messages[MSG_CONSTRUCTOR_MODIFIER],
+            "Omit 'public' modifier from constructor.",
         )
 
     @Test

@@ -20,9 +20,10 @@ public class UnexpectedBlankLineBeforePackageRule : RulebookRule(ID) {
         emit(node.startOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:unexpected-blank-line-before-package")
+    public companion object {
+        public val ID: RuleId =
+            RuleId("${RulebookRuleSet.ID.value}:unexpected-blank-line-before-package")
 
-        const val MSG = "unexpected.blank.line.before.package"
+        private const val MSG = "unexpected.blank.line.before.package"
     }
 }

@@ -41,10 +41,10 @@ public class BuiltInFunctionPositionRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:built-in-function-position")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:built-in-function-position")
 
-        const val MSG = "built.in.function.position"
+        private const val MSG = "built.in.function.position"
 
         private val BUILTIN_FUNCTIONS =
             setOf(

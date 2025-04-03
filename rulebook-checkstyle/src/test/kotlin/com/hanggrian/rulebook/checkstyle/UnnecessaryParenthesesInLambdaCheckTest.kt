@@ -19,4 +19,7 @@ class UnnecessaryParenthesesInLambdaCheckTest {
 
     @Test
     fun `Multiple parameters`() = assertEquals(0, checker.read("UnnecessaryParenthesesInLambda3"))
+
+    @Test
+    fun `Skip explicit type`() = assertEquals(0, checker.read("UnnecessaryParenthesesInLambda4"))
 }

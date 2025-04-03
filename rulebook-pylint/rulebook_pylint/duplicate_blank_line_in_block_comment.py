@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class DuplicateBlankLineInBlockComment(RulebookChecker):
+class DuplicateBlankLineInBlockCommentChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment"""
     MSG: str = 'duplicate-blank-line-in-block-comment'
 
@@ -31,4 +31,4 @@ class DuplicateBlankLineInBlockComment(RulebookChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(DuplicateBlankLineInBlockComment(linter))
+    linter.register_checker(DuplicateBlankLineInBlockCommentChecker(linter))

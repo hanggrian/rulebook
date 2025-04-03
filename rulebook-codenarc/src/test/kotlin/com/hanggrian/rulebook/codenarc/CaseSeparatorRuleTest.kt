@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.CaseSeparatorRule.Companion.MSG_MISSING
-import com.hanggrian.rulebook.codenarc.CaseSeparatorRule.Companion.MSG_UNEXPECTED
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -52,7 +49,7 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
             """.trimIndent(),
             4,
             "baz()",
-            Messages[MSG_UNEXPECTED],
+            "Remove blank line after single-line branch.",
         )
 
     @Test
@@ -72,7 +69,7 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
             """.trimIndent(),
             5,
             "break",
-            Messages[MSG_MISSING],
+            "Add blank line after multiline branch.",
         )
 
     @Test
@@ -95,8 +92,8 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
                 }
             }
             """.trimIndent(),
-            violationOf(5, "baz()", Messages[MSG_MISSING]),
-            violationOf(8, "baz()", Messages[MSG_MISSING]),
-            violationOf(11, "baz()", Messages[MSG_MISSING]),
+            violationOf(5, "baz()", "Add blank line after multiline branch."),
+            violationOf(8, "baz()", "Add blank line after multiline branch."),
+            violationOf(11, "baz()", "Add blank line after multiline branch."),
         )
 }

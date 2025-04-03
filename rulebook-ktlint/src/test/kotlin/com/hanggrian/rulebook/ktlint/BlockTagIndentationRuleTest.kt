@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BlockTagIndentationRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -39,7 +37,7 @@ class BlockTagIndentationRuleTest {
             data class Foo(val bar: Int)
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 3, Messages.get(MSG, "4 spaces")),
-            LintViolation(5, 3, Messages.get(MSG, "4 spaces")),
+            LintViolation(3, 3, "Indent block tag description by '4 spaces'."),
+            LintViolation(5, 3, "Indent block tag description by '4 spaces'."),
         )
 }

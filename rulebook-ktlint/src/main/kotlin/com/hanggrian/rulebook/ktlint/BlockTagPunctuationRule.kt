@@ -45,9 +45,9 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
         emit(kdocText.endOffset, Messages.get(MSG, kdocTagName.text), false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:block-tag-punctuation")
-        val PUNCTUATE_BLOCK_TAGS_PROPERTY =
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-tag-punctuation")
+        public val PUNCTUATE_BLOCK_TAGS_PROPERTY: EditorConfigProperty<Set<String>> =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
@@ -66,7 +66,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
                 propertyWriter = { it.joinToString() },
             )
 
-        const val MSG = "block.tag.punctuation"
+        private const val MSG = "block.tag.punctuation"
 
         private val END_PUNCTUATIONS = setOf('.', ')')
 

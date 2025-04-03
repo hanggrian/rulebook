@@ -15,10 +15,10 @@ public class RedundantDefaultRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "redundant.default"
 
-        private fun Statement.isJumpStatementExceptBreak() =
+        fun Statement.isJumpStatementExceptBreak() =
             this is ReturnStatement ||
                 this is ThrowStatement ||
                 this is ContinueStatement

@@ -29,9 +29,10 @@ public class DuplicateBlankLineInBlockCommentRule : RulebookRule(ID) {
         emit(nextKdocLeadingAsterisk.endOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:duplicate-blank-line-in-block-comment")
+    public companion object {
+        public val ID: RuleId =
+            RuleId("${RulebookRuleSet.ID.value}:duplicate-blank-line-in-block-comment")
 
-        const val MSG = "duplicate.blank.line.in.block.comment"
+        private const val MSG = "duplicate.blank.line.in.block.comment"
     }
 }

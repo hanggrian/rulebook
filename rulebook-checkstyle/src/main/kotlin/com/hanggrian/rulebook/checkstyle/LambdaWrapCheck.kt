@@ -33,7 +33,7 @@ public class LambdaWrapCheck : RulebookAstCheck() {
         log(expr, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "lambda.wrap"
     }
 }

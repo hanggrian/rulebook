@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.NumberSuffixForFloatRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -40,9 +38,9 @@ class NumberSuffixForFloatRuleTest : AbstractRuleTestCase<NumberSuffixForFloatRu
             """.trimIndent(),
             1,
             "var foo = 0F",
-            Messages[MSG],
+            "Tag float literal by 'f'.",
             4,
             "println(123F)",
-            Messages[MSG],
+            "Tag float literal by 'f'.",
         )
 }

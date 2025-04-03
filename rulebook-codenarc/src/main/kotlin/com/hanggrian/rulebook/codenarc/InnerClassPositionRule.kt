@@ -11,10 +11,10 @@ public class InnerClassPositionRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "inner.class.position"
 
-        private infix fun List<ASTNode>.areAnyAfter(other: ASTNode) =
+        infix fun List<ASTNode>.areAnyAfter(other: ASTNode) =
             any { it.lineNumber > other.lineNumber }
     }
 
@@ -25,7 +25,7 @@ public class InnerClassPositionRule : RulebookAstRule() {
             // checks for violation
             for (`class` in node.innerClasses) {
                 node
-                    .takeUnless { `class`.isEnum }
+                    .takeUnless { `class`.isEnum || `class`.isAnonymous }
                     ?.takeIf {
                         it.fields areAnyAfter `class` ||
                             it.declaredConstructors areAnyAfter `class` ||

@@ -48,11 +48,11 @@ public class BlockCommentSpacesRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:block-comment-spaces")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-comment-spaces")
 
-        const val MSG_SINGLE_START = "block.comment.spaces.single.start"
-        const val MSG_SINGLE_END = "block.comment.spaces.single.end"
-        const val MSG_MULTI = "block.comment.spaces.multi"
+        private const val MSG_SINGLE_START = "block.comment.spaces.single.start"
+        private const val MSG_SINGLE_END = "block.comment.spaces.single.end"
+        private const val MSG_MULTI = "block.comment.spaces.multi"
     }
 }

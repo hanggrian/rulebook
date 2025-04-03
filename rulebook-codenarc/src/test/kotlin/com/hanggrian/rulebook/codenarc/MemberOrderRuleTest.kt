@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.MemberOrderRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -50,7 +48,7 @@ class MemberOrderRuleTest : AbstractRuleTestCase<MemberOrderRule>() {
             """.trimIndent(),
             8,
             "var bar = 0",
-            Messages.get(MSG, "property", "constructor"),
+            "Arrange member 'property' before 'constructor'.",
         )
 
     @Test
@@ -69,10 +67,10 @@ class MemberOrderRuleTest : AbstractRuleTestCase<MemberOrderRule>() {
             """.trimIndent(),
             4,
             "Foo() {",
-            Messages.get(MSG, "constructor", "function"),
+            "Arrange member 'constructor' before 'function'.",
             8,
             "Foo(var a) {}",
-            Messages.get(MSG, "constructor", "function"),
+            "Arrange member 'constructor' before 'function'.",
         )
 
     @Test

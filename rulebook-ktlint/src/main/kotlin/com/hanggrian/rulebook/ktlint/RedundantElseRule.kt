@@ -34,9 +34,9 @@ public class RedundantElseRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:redundant-else")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:redundant-else")
 
-        const val MSG = "redundant.else"
+        private const val MSG = "redundant.else"
     }
 }

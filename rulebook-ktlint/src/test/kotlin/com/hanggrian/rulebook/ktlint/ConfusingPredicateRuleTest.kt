@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.ConfusingPredicateRule.Companion.MSG_EQUALS
-import com.hanggrian.rulebook.ktlint.ConfusingPredicateRule.Companion.MSG_NEGATES
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -48,9 +45,9 @@ class ConfusingPredicateRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 8, Messages.get(MSG_NEGATES, "takeUnless")),
-            LintViolation(6, 18, Messages.get(MSG_EQUALS, "filterNot")),
-            LintViolation(10, 7, Messages.get(MSG_NEGATES, "takeIf")),
+            LintViolation(2, 8, "Omit negation and replace call with 'takeUnless'."),
+            LintViolation(6, 18, "Use equals and replace call with 'filterNot'."),
+            LintViolation(10, 7, "Omit negation and replace call with 'takeIf'."),
         )
 
     @Test

@@ -27,7 +27,7 @@ public class DuplicateBlankLineInBlockCommentCheck : RulebookJavadocCheck() {
         log(nextLeadingAsterisk.lineNumber, nextLeadingAsterisk.columnNumber, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "duplicate.blank.line.in.block.comment"
     }
 }

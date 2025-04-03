@@ -38,7 +38,7 @@ public class AbstractClassDefinitionCheck : RulebookAstCheck() {
         log(abstract, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "abstract.class.definition"
     }
 }

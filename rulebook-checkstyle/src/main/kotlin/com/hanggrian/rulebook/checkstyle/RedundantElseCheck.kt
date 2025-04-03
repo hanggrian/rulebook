@@ -33,7 +33,7 @@ public class RedundantElseCheck : RulebookAstCheck() {
         }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "redundant.else"
     }
 }

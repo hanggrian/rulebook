@@ -41,10 +41,10 @@ public class IllegalClassFinalNameCheck : RulebookAstCheck() {
         log(ident, Messages.get(MSG_ALL, finalName))
     }
 
-    internal companion object {
+    private companion object {
         const val MSG_ALL = "illegal.class.final.name.all"
         const val MSG_UTIL = "illegal.class.final.name.util"
 
-        private val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
+        val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
     }
 }

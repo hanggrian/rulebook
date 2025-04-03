@@ -6,9 +6,12 @@ import com.hanggrian.rulebook.checkstyle.internals.contains
 import com.hanggrian.rulebook.checkstyle.internals.hasJumpStatement
 import com.hanggrian.rulebook.checkstyle.internals.isComment
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
+import com.hanggrian.rulebook.checkstyle.internals.parent
 import com.puppycrawl.tools.checkstyle.api.DetailAST
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CATCH
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_TRY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
@@ -20,10 +23,16 @@ public class NestedIfElseCheck : RulebookAstCheck() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // skip recursive if-else
-        node
-            .takeUnless { it.parent.type == LITERAL_IF || it.parent.type == LITERAL_ELSE }
-            ?: return
+        // skip blocks without exit path
+        val slist =
+            node.takeUnless { it.parent.isTryCatch() }
+                ?: node.parent { it.type == SLIST && !it.parent.isTryCatch() && LITERAL_TRY in it }
+                ?: return
+        slist
+            .takeUnless {
+                it.parent.type == LITERAL_IF ||
+                    it.parent.type == LITERAL_ELSE
+            } ?: return
 
         // get last if
         var `if`: DetailAST? = null
@@ -59,15 +68,17 @@ public class NestedIfElseCheck : RulebookAstCheck() {
         log(`if`, Messages[MSG_INVERT])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG_INVERT = "nested.if.else.invert"
         const val MSG_LIFT = "nested.if.else.lift"
 
-        private fun DetailAST.hasMultipleLines() =
+        fun DetailAST.hasMultipleLines() =
             findFirstToken(SLIST)
                 ?.children
                 .orEmpty()
                 .filterNot { it.type == RCURLY || it.type == SEMI }
                 .let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+
+        fun DetailAST.isTryCatch() = type == LITERAL_TRY || type == LITERAL_CATCH
     }
 }

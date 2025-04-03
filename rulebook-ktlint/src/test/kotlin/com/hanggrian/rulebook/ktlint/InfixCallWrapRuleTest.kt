@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.InfixCallWrapRule.Companion.MSG_MISSING
-import com.hanggrian.rulebook.ktlint.InfixCallWrapRule.Companion.MSG_UNEXPECTED
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -36,8 +33,8 @@ class InfixCallWrapRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(4, 13, Messages.get(MSG_UNEXPECTED, "and")),
-            LintViolation(5, 13, Messages.get(MSG_UNEXPECTED, "or")),
+            LintViolation(4, 13, "Omit newline before call 'and'."),
+            LintViolation(5, 13, "Omit newline before call 'or'."),
         )
 
     @Test
@@ -71,7 +68,7 @@ class InfixCallWrapRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 15, Messages.get(MSG_MISSING, "and")),
-            LintViolation(6, 14, Messages.get(MSG_MISSING, "or")),
+            LintViolation(3, 15, "Put newline before call 'and'."),
+            LintViolation(6, 14, "Put newline before call 'or'."),
         )
 }

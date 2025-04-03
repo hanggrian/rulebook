@@ -23,8 +23,8 @@ import com.pinterest.ktlint.rule.engine.core.api.isRoot
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-comment-unwrap) */
-public class BlockCommentUnwrapRule :
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#short-block-comment-join) */
+public class ShortBlockCommentJoinRule :
     RulebookRule(
         ID,
         setOf(INDENT_SIZE_PROPERTY, INDENT_STYLE_PROPERTY, MAX_LINE_LENGTH_PROPERTY),
@@ -93,10 +93,10 @@ public class BlockCommentUnwrapRule :
             return result * indentConfig.indent.length
         }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:block-comment-unwrap")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:short-block-comment-join")
 
-        const val MSG = "block.comment.unwrap"
+        private const val MSG = "short.block.comment.join"
 
         private const val SINGLELINE_TEMPLATE = "/** */"
     }

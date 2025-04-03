@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.NumberSuffixForIntegerRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -40,10 +38,10 @@ class NumberSuffixForIntegerRuleTest : AbstractRuleTestCase<NumberSuffixForInteg
             """.trimIndent(),
             1,
             "var foo = 0I",
-            Messages[MSG],
+            "Tag integer literal by 'i'.",
             4,
             "println(123I)",
-            Messages[MSG],
+            "Tag integer literal by 'i'.",
         )
 
     @Test

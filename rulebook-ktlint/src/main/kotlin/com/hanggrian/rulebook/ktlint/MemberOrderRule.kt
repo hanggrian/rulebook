@@ -66,10 +66,10 @@ public class MemberOrderRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:member-order")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:member-order")
 
-        const val MSG = "member.order"
+        private const val MSG = "member.order"
 
         private val MEMBER_POSITIONS =
             mapOf(

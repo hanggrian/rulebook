@@ -34,15 +34,9 @@ internal val ASTNode.lastMostChild: ASTNode
 
 internal operator fun ASTNode.contains(type: IElementType): Boolean = findChildByType(type) != null
 
-internal fun ASTNode.siblingsUntil(type: IElementType): List<ASTNode> {
-    var next = treeNext
-    return buildList {
-        while (next != null && next.elementType != type) {
-            add(next)
-            next = next.treeNext
-        }
-    }
-}
+internal fun ASTNode.siblingsUntil(type: IElementType): Sequence<ASTNode> =
+    generateSequence(treeNext) { it.treeNext }
+        .takeWhile { it.elementType != type }
 
 internal fun ASTNode.hasJumpStatement(): Boolean {
     val statements =
@@ -56,10 +50,9 @@ internal fun ASTNode.hasJumpStatement(): Boolean {
 }
 
 internal fun ASTNode.isMultiline(): Boolean =
-    if (isWhiteSpaceWithNewline()) {
-        true
-    } else {
-        children().any { it.isMultiline() }
+    when {
+        isWhiteSpaceWithNewline() -> true
+        else -> children().any { it.isMultiline() }
     }
 
 internal fun ASTNode.isComment(): Boolean =

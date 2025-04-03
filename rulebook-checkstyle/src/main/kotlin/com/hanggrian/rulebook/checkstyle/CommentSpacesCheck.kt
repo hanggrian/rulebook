@@ -26,7 +26,7 @@ public class CommentSpacesCheck : RulebookAstCheck() {
         log(node, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "comment.spaces"
     }
 }

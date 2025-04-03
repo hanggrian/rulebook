@@ -8,11 +8,11 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class UnexpectedBlankLineBeforePackageChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#unexpected-blank-line-before-package"""
-    MSG: str = 'unexpected-blank-line-before-package'
+class UnnecessaryBlankLineBeforePackageChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-blank-line-before-package"""
+    MSG: str = 'unnecessary-blank-line-before-package'
 
-    name: str = 'unexpected-blank-line-before-package'
+    name: str = 'unnecessary-blank-line-before-package'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
@@ -29,4 +29,4 @@ class UnexpectedBlankLineBeforePackageChecker(RulebookTokenChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(UnexpectedBlankLineBeforePackageChecker(linter))
+    linter.register_checker(UnnecessaryBlankLineBeforePackageChecker(linter))

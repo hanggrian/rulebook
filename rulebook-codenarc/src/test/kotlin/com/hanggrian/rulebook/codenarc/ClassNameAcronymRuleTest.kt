@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.ClassNameAcronymRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -42,9 +40,9 @@ class ClassNameAcronymRuleTest : AbstractRuleTestCase<ClassNameAcronymRule>() {
 
             enum MySQLEnum {}
             """.trimIndent(),
-            violationOf(1, "class MySQLClass {}", Messages.get(MSG, "MySqlClass")),
-            violationOf(3, "interface MySQLInterface {}", Messages.get(MSG, "MySqlInterface")),
-            violationOf(5, "@interface MySQLAnnotation {}", Messages.get(MSG, "MySqlAnnotation")),
-            violationOf(7, "enum MySQLEnum {}", Messages.get(MSG, "MySqlEnum")),
+            violationOf(1, "class MySQLClass {}", "Rename acronym to 'MySqlClass'."),
+            violationOf(3, "interface MySQLInterface {}", "Rename acronym to 'MySqlInterface'."),
+            violationOf(5, "@interface MySQLAnnotation {}", "Rename acronym to 'MySqlAnnotation'."),
+            violationOf(7, "enum MySQLEnum {}", "Rename acronym to 'MySqlEnum'."),
         )
 }

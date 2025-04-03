@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.InnerClassPositionRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -56,10 +54,10 @@ class InnerClassPositionRuleTest : AbstractRuleTestCase<InnerClassPositionRule>(
             """.trimIndent(),
             2,
             "interface Inner {}",
-            Messages[MSG],
+            "Move inner class to the bottom.",
             6,
             "class AnotherInner {}",
-            Messages[MSG],
+            "Move inner class to the bottom.",
         )
 
     @Test

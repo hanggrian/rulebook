@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.PropertyNameInteropRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -31,8 +29,8 @@ class PropertyNameInteropRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 15, Messages.get(MSG, "isBar")),
-            LintViolation(2, 9, Messages.get(MSG, "isBaz")),
+            LintViolation(1, 15, "Rename property to 'isBar'."),
+            LintViolation(2, 9, "Rename property to 'isBaz'."),
         )
 
     @Test

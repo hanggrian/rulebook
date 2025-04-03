@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.ImportOrderRule.Companion.MSG_JOIN
-import com.hanggrian.rulebook.codenarc.ImportOrderRule.Companion.MSG_SORT
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 
@@ -40,7 +37,7 @@ class ImportOrderRuleTest : AbstractRuleTestCase<ImportOrderRule>() {
             """.trimIndent(),
             2,
             "import com.example.User",
-            Messages.get(MSG_SORT, "com.example.User", "java.util.List"),
+            "Arrange directive 'com.example.User' before 'java.util.List'.",
         )
 
     @Test
@@ -57,7 +54,7 @@ class ImportOrderRuleTest : AbstractRuleTestCase<ImportOrderRule>() {
             """.trimIndent(),
             3,
             "import java.util.List",
-            Messages.get(MSG_JOIN, "java.util.List"),
+            "Remove blank line before directive 'java.util.List'.",
         )
 
     @Test
@@ -79,6 +76,6 @@ class ImportOrderRuleTest : AbstractRuleTestCase<ImportOrderRule>() {
             """.trimIndent(),
             5,
             "import static java.lang.System.arraycopy",
-            Messages.get(MSG_SORT, "java.lang.System.arraycopy", "java.lang.System.exit"),
+            "Arrange directive 'java.lang.System.arraycopy' before 'java.lang.System.exit'.",
         )
 }

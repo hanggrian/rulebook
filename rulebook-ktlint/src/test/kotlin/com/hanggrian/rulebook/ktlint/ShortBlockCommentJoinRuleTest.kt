@@ -1,15 +1,13 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BlockCommentUnwrapRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class BlockCommentUnwrapRuleTest {
-    private val assertThatCode = assertThatRule { BlockCommentUnwrapRule() }
+class ShortBlockCommentJoinRuleTest {
+    private val assertThatCode = assertThatRule { ShortBlockCommentJoinRule() }
 
     @Test
-    fun `Rule properties`() = BlockCommentUnwrapRule().assertProperties()
+    fun `Rule properties`() = ShortBlockCommentJoinRule().assertProperties()
 
     @Test
     fun `Correct block comments`() =
@@ -35,7 +33,7 @@ class BlockCommentUnwrapRuleTest {
              */
             fun foo() {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 3, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(2, 3, "Convert into single-line.")
 
     @Test
     fun `Skip tagged block comment`() =

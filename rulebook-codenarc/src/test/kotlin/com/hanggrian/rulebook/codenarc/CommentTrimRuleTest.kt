@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.CommentTrimRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 
@@ -33,10 +31,10 @@ class CommentTrimRuleTest : AbstractRuleTestCase<CommentTrimRule>() {
             """.trimIndent(),
             2,
             "//",
-            Messages[MSG],
+            "Remove blank line after '//'.",
             4,
             "//",
-            Messages[MSG],
+            "Remove blank line after '//'.",
         )
 
     @Test

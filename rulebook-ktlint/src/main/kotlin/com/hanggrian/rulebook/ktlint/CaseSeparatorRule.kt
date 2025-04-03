@@ -43,10 +43,10 @@ public class CaseSeparatorRule : RulebookRule(ID) {
         emit(node.endOffset, Messages[MSG_UNEXPECTED], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:case-separator")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:case-separator")
 
-        const val MSG_MISSING = "case.separator.missing"
-        const val MSG_UNEXPECTED = "case.separator.unexpected"
+        private const val MSG_MISSING = "case.separator.missing"
+        private const val MSG_UNEXPECTED = "case.separator.unexpected"
     }
 }

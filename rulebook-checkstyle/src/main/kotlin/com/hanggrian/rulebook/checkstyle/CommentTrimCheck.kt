@@ -42,7 +42,7 @@ public class CommentTrimCheck : RulebookAstCheck() {
         }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "comment.trim"
     }
 }

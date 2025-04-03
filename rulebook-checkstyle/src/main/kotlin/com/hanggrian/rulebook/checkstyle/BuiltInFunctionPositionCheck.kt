@@ -40,10 +40,10 @@ public class BuiltInFunctionPositionCheck : RulebookAstCheck() {
         }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "built.in.function.position"
 
-        private val BUILTIN_FUNCTIONS =
+        val BUILTIN_FUNCTIONS =
             setOf(
                 "toString",
                 "hashCode",
@@ -52,7 +52,7 @@ public class BuiltInFunctionPositionCheck : RulebookAstCheck() {
                 "finalize",
             )
 
-        private fun DetailAST.isBuiltInFunction() =
+        fun DetailAST.isBuiltInFunction() =
             hasAnnotation("Override") &&
                 findFirstToken(IDENT)?.text in BUILTIN_FUNCTIONS
     }

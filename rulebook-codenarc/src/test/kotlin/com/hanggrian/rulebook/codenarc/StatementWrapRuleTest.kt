@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.StatementWrapRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -37,10 +35,10 @@ class StatementWrapRuleTest : AbstractRuleTestCase<StatementWrapRule>() {
             """.trimIndent(),
             2,
             "var bar = 1; var baz = 2",
-            Messages.get(MSG, ';'),
+            "Put newline after ';'.",
             2,
             "var bar = 1; var baz = 2",
-            Messages.get(MSG, ';'),
+            "Put newline after ';'.",
         )
 
     @Test
@@ -54,10 +52,10 @@ class StatementWrapRuleTest : AbstractRuleTestCase<StatementWrapRule>() {
                 do { println(it) } while (true)
             }
             """.trimIndent(),
-            violationOf(2, "if (baz) { println(it) }", Messages.get(MSG, '{')),
-            violationOf(3, "for (baz in [1, 2, 3]) { println(it) }", Messages.get(MSG, '{')),
-            violationOf(4, "while (true) { println(it) }", Messages.get(MSG, '{')),
-            violationOf(5, "do { println(it) } while (true)", Messages.get(MSG, '{')),
+            violationOf(2, "if (baz) { println(it) }", "Put newline after '{'."),
+            violationOf(3, "for (baz in [1, 2, 3]) { println(it) }", "Put newline after '{'."),
+            violationOf(4, "while (true) { println(it) }", "Put newline after '{'."),
+            violationOf(5, "do { println(it) } while (true)", "Put newline after '{'."),
         )
 
     @Test
@@ -71,12 +69,12 @@ class StatementWrapRuleTest : AbstractRuleTestCase<StatementWrapRule>() {
         )
 
     @Test
-    fun `Skip semicolons found in for command`() =
+    fun `Skip semicolons found in for command and string`() =
         assertNoViolations(
             """
             def foo() {
                 for (int bar = 0; bar < 10; bar++) {
-                    int baz = bar
+                    var baz = "${'$'}b;ar"
                 }
             }
             """.trimIndent(),

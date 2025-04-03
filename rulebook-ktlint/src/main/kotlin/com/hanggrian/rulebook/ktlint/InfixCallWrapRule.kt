@@ -41,10 +41,10 @@ public class InfixCallWrapRule : RulebookRule(ID) {
         emit(parent.lastChildNode.startOffset, Messages.get(MSG_MISSING, node.text), false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:infix-call-wrap")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:infix-call-wrap")
 
-        const val MSG_MISSING = "infix.call.wrap.missing"
-        const val MSG_UNEXPECTED = "infix.call.wrap.unexpected"
+        private const val MSG_MISSING = "infix.call.wrap.missing"
+        private const val MSG_UNEXPECTED = "infix.call.wrap.unexpected"
     }
 }

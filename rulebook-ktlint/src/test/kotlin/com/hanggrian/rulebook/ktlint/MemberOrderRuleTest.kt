@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.MemberOrderRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -44,7 +42,7 @@ class MemberOrderRuleTest {
         ).hasLintViolationWithoutAutoCorrect(
             4,
             5,
-            Messages.get(MSG, "property", "initializer"),
+            "Arrange member 'property' before 'initializer'.",
         )
 
     @Test
@@ -60,7 +58,7 @@ class MemberOrderRuleTest {
         ).hasLintViolationWithoutAutoCorrect(
             4,
             5,
-            Messages.get(MSG, "initializer", "constructor"),
+            "Arrange member 'initializer' before 'constructor'.",
         )
 
     @Test
@@ -73,7 +71,11 @@ class MemberOrderRuleTest {
                 constructor() : this(0)
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(4, 5, Messages.get(MSG, "constructor", "function"))
+        ).hasLintViolationWithoutAutoCorrect(
+            4,
+            5,
+            "Arrange member 'constructor' before 'function'.",
+        )
 
     @Test
     fun `Member function after companion object`() =
@@ -88,7 +90,7 @@ class MemberOrderRuleTest {
         ).hasLintViolationWithoutAutoCorrect(
             4,
             5,
-            Messages.get(MSG, "function", "companion"),
+            "Arrange member 'function' before 'companion'.",
         )
 
     @Test
@@ -102,5 +104,9 @@ class MemberOrderRuleTest {
                 constructor() : this(0)
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(5, 5, Messages.get(MSG, "constructor", "function"))
+        ).hasLintViolationWithoutAutoCorrect(
+            5,
+            5,
+            "Arrange member 'constructor' before 'function'.",
+        )
 }

@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.DuplicateBlankLineInBlockCommentRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -36,5 +34,5 @@ class DuplicateBlankLineInBlockCommentRuleTest {
              */
             fun foo() {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(4, 3, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(4, 3, "Remove consecutive blank line after '*'.")
 }

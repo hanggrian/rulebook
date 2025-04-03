@@ -1,6 +1,8 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
+import com.hanggrian.rulebook.codenarc.internals.isMultiline
+import com.hanggrian.rulebook.codenarc.internals.sourceLineNullable
 import com.hanggrian.rulebook.codenarc.internals.trimComment
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.DoWhileStatement
@@ -15,8 +17,11 @@ public class StatementWrapRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "statement.wrap"
+
+        val FOR_REGEX = Regex("for \\(.*?\\)")
+        val STRING_REGEX = Regex("[\"\'].*?[\'\"]")
     }
 
     public class Visitor : AbstractAstVisitor() {
@@ -45,26 +50,22 @@ public class StatementWrapRule : RulebookAstRule() {
 
             for (statement in node.statements) {
                 // checks for violation
-                sourceLine(statement)
-                    .takeIf { s ->
-                        s
-                            .trimComment()
-                            .let { ';' in it && "for" !in it }
-                    } ?: continue
+                sourceLineNullable(statement)
+                    ?.trimComment()
+                    ?.takeIf { ';' in FOR_REGEX.replace(STRING_REGEX.replace(it, ""), "") }
+                    ?: continue
                 addViolation(statement, Messages.get(MSG, ';'))
             }
         }
 
         private fun processControlFlow(blockStatement: BlockStatement) {
-            val statement =
-                blockStatement
-                    .statements
-                    ?.singleOrNull()
-                    ?: return
-            sourceLine(statement)
-                .takeIf { '{' in it && '}' in it }
+            if (blockStatement.lineNumber < 0 || blockStatement.isMultiline()) {
+                return
+            }
+            sourceLineNullable(blockStatement)
+                ?.takeIf { it.indexOf('{') < it.indexOf('}') }
                 ?: return
-            addViolation(statement, Messages.get(MSG, '{'))
+            addViolation(blockStatement, Messages.get(MSG, '{'))
         }
     }
 }

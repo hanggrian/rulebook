@@ -12,7 +12,7 @@ public class RedundantElseRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "redundant.else"
     }
 

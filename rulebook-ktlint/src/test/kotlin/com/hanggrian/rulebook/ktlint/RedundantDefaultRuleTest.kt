@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.RedundantDefaultRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -37,7 +35,7 @@ class RedundantDefaultRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(5, 9, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(5, 9, "Omit redundant 'else' condition.")
 
     @Test
     fun `Skip if not all case blocks have jump statement`() =

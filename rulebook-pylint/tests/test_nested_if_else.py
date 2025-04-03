@@ -111,7 +111,7 @@ class TestNestedIfElseChecker(CheckerTestCase):
             self.checker.visit_functiondef(node1)
 
     def test_skip_recursive_if_else_because_it_is_not_safe_to_return_in_inner_blocks(self):
-        node1 = \
+        node1, node2 = \
             extract_node(
                 '''
                 def foo():  #@
@@ -120,10 +120,29 @@ class TestNestedIfElseChecker(CheckerTestCase):
                             baz()
                             baz()
                     baz()
+
+                def bar():  #@
+                    if True:
+                        try:
+                            if True:
+                                baz()
+                                baz()
+                        except:
+                            if True:
+                                try:
+                                    if True:
+                                        baz()
+                                        baz()
+                                except:
+                                    if True:
+                                        baz()
+                                        baz()
+                    baz()
                 ''',
             )
         with self.assertNoMessages():
             self.checker.visit_functiondef(node1)
+            self.checker.visit_functiondef(node2)
 
 
 if __name__ == '__main__':

@@ -11,7 +11,7 @@ public class UtilityClassDefinitionRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG_CONSTRUCTOR = "utility.class.definition.constructor"
         const val MSG_CONSTRUCTOR_MODIFIER = "utility.class.definition.constructor.modifier"
         const val MSG_MODIFIER = "utility.class.definition.modifier"

@@ -43,9 +43,9 @@ public class AbstractClassDefinitionRule : RulebookRule(ID) {
         emit(abstractKeyword.startOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:abstract-class-definition")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:abstract-class-definition")
 
-        const val MSG = "abstract.class.definition"
+        private const val MSG = "abstract.class.definition"
     }
 }

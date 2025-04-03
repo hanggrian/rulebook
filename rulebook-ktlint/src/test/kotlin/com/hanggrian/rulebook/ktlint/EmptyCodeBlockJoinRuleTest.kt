@@ -1,16 +1,14 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.EmptyCodeBlockUnwrapRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class EmptyCodeBlockUnwrapRuleTest {
-    private val assertThatCode = assertThatRule { EmptyCodeBlockUnwrapRule() }
+class EmptyCodeBlockJoinRuleTest {
+    private val assertThatCode = assertThatRule { EmptyCodeBlockJoinRule() }
 
     @Test
-    fun `Rule properties`() = EmptyCodeBlockUnwrapRule().assertProperties()
+    fun `Rule properties`() = EmptyCodeBlockJoinRule().assertProperties()
 
     @Test
     fun `Wrapped empty block`() =
@@ -32,8 +30,8 @@ class EmptyCodeBlockUnwrapRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 12, Messages[MSG]),
-            LintViolation(3, 12, Messages[MSG]),
+            LintViolation(1, 12, "Convert into '{}'."),
+            LintViolation(3, 12, "Convert into '{}'."),
         )
 
     @Test
@@ -72,5 +70,5 @@ class EmptyCodeBlockUnwrapRuleTest {
                 val baz: (Int) -> Unit = { },
             )
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 31, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(3, 31, "Convert into '{}'.")
 }

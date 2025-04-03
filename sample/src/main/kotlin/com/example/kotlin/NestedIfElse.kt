@@ -31,4 +31,21 @@ class NestedIfElse {
             0
         }
     }
+
+    fun qux() {
+        if (true) {
+            try {
+                if (false) {
+                    println()
+                    println()
+                }
+            } catch (e: Exception) {
+                if (false) {
+                    println()
+                    println()
+                }
+            }
+        }
+        println()
+    }
 }

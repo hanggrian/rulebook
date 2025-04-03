@@ -6,6 +6,7 @@ import com.hanggrian.rulebook.ktlint.internals.hasJumpStatement
 import com.hanggrian.rulebook.ktlint.internals.isComment
 import com.hanggrian.rulebook.ktlint.internals.isMultiline
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CATCH
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_INITIALIZER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
@@ -13,9 +14,11 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.TRY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.isPartOf
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
 import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
@@ -26,11 +29,19 @@ public class NestedIfElseRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(BLOCK)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip recursive if-else and init block
-        node
-            .takeUnless { it.treeParent.elementType == THEN }
-            ?.takeIf { n -> n.parent { it.elementType == CLASS_INITIALIZER } == null }
-            ?: return
+        // skip blocks without exit path
+        val block =
+            node.takeUnless { it.treeParent.isTryCatch() }
+                ?: node.parent {
+                    it.elementType == BLOCK &&
+                        !it.treeParent.isTryCatch() &&
+                        TRY in it
+                } ?: return
+        block
+            .takeUnless {
+                it.treeParent.elementType == THEN ||
+                    it.isPartOf(CLASS_INITIALIZER)
+            } ?: return
 
         // get last if
         var `if`: ASTNode? = null
@@ -67,11 +78,11 @@ public class NestedIfElseRule : RulebookRule(ID) {
         emit(`if`.startOffset, Messages[MSG_INVERT], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:nested-if-else")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:nested-if-else")
 
-        const val MSG_INVERT = "nested.if.else.invert"
-        const val MSG_LIFT = "nested.if.else.lift"
+        private const val MSG_INVERT = "nested.if.else.invert"
+        private const val MSG_LIFT = "nested.if.else.lift"
 
         private fun ASTNode.hasMultipleLines() =
             findChildByType(BLOCK)
@@ -80,5 +91,7 @@ public class NestedIfElseRule : RulebookRule(ID) {
                 .filterNot {
                     it.elementType == LBRACE || it.elementType == RBRACE || it.isWhiteSpace()
                 }.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+
+        private fun ASTNode.isTryCatch() = elementType == TRY || elementType == CATCH
     }
 }

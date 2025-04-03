@@ -21,10 +21,10 @@ public class ExceptionInheritanceCheck : RulebookAstCheck() {
         log(ident, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "exception.inheritance"
 
-        private val NON_APPLICATION_EXCEPTIONS =
+        val NON_APPLICATION_EXCEPTIONS =
             setOf(
                 "Error",
                 "Throwable",

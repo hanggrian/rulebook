@@ -30,7 +30,7 @@ public class BlockTagOrderRule : RulebookRule(ID) {
                     .getOrNull(i - 1)
                     ?.findChildByType(KDOC_TAG_NAME)
                     ?: continue
-            val kdocTagName = kdocTag.findChildByType(KDOC_TAG_NAME)!!
+            val kdocTagName = kdocTag.findChildByType(KDOC_TAG_NAME) ?: continue
             if (MEMBER_POSITIONS.getOrDefault(lastKdocTagName.text, -1) >
                 MEMBER_POSITIONS[kdocTagName.text]!!
             ) {
@@ -43,10 +43,10 @@ public class BlockTagOrderRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:block-tag-order")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-tag-order")
 
-        const val MSG = "block.tag.order"
+        private const val MSG = "block.tag.order"
 
         private val MEMBER_POSITIONS =
             mapOf(

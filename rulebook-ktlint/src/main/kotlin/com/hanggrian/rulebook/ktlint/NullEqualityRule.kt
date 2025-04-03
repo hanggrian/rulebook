@@ -34,9 +34,9 @@ public class NullEqualityRule : RulebookRule(ID) {
         )
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:null-equality")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:null-equality")
 
-        const val MSG = "null.equality"
+        private const val MSG = "null.equality"
     }
 }

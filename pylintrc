@@ -67,7 +67,7 @@ load-plugins=
   rulebook_pylint.duplicate_blank_line_in_block_comment,
   rulebook_pylint.duplicate_blank_line_in_comment,
   rulebook_pylint.member_separator,
-  rulebook_pylint.unexpected_blank_line_before_package,
+  rulebook_pylint.unnecessary_blank_line_before_package,
   # Stating
   rulebook_pylint.nested_if_else,
   rulebook_pylint.redundant_default,

@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BlockTagPunctuationRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -47,8 +45,8 @@ class BlockTagPunctuationRuleTest {
             fun add(num: Int): Int
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 20, Messages.get(MSG, "@param")),
-            LintViolation(3, 23, Messages.get(MSG, "@return")),
+            LintViolation(2, 20, "End '@param' with a period."),
+            LintViolation(3, 23, "End '@return' with a period."),
         )
 
     @Test
@@ -64,7 +62,7 @@ class BlockTagPunctuationRuleTest {
             fun add(num: Int): Int
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 11, Messages.get(MSG, "@param")),
-            LintViolation(5, 11, Messages.get(MSG, "@return")),
+            LintViolation(3, 11, "End '@param' with a period."),
+            LintViolation(5, 11, "End '@return' with a period."),
         )
 }

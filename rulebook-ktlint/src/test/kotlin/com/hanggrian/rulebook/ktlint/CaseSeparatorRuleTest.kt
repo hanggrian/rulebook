@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.CaseSeparatorRule.Companion.MSG_MISSING
-import com.hanggrian.rulebook.ktlint.CaseSeparatorRule.Companion.MSG_UNEXPECTED
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -43,7 +40,7 @@ class CaseSeparatorRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 19, Messages[MSG_UNEXPECTED])
+        ).hasLintViolationWithoutAutoCorrect(3, 19, "Remove blank line after single-line branch.")
 
     @Test
     fun `No line break after multiline branch`() =
@@ -62,7 +59,7 @@ class CaseSeparatorRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(6, 10, Messages[MSG_MISSING])
+        ).hasLintViolationWithoutAutoCorrect(6, 10, "Add blank line after multiline branch.")
 
     @Test
     fun `Branches with comment are always multiline`() =
@@ -81,8 +78,8 @@ class CaseSeparatorRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(4, 19, Messages[MSG_MISSING]),
-            LintViolation(6, 19, Messages[MSG_MISSING]),
-            LintViolation(8, 19, Messages[MSG_MISSING]),
+            LintViolation(4, 19, "Add blank line after multiline branch."),
+            LintViolation(6, 19, "Add blank line after multiline branch."),
+            LintViolation(8, 19, "Add blank line after multiline branch."),
         )
 }

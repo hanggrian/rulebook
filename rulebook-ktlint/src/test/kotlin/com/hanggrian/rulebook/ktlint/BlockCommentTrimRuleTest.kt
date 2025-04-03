@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BlockCommentTrimRule.Companion.MSG_FIRST
-import com.hanggrian.rulebook.ktlint.BlockCommentTrimRule.Companion.MSG_LAST
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -36,8 +33,8 @@ class BlockCommentTrimRuleTest {
             fun foo()
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 2, Messages[MSG_FIRST]),
-            LintViolation(4, 2, Messages[MSG_LAST]),
+            LintViolation(2, 2, "Remove blank line after '/**'."),
+            LintViolation(4, 2, "Remove blank line before '*/'."),
         )
 
     @Test
@@ -50,7 +47,7 @@ class BlockCommentTrimRuleTest {
              */
             fun foo(): Int
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 2, Messages[MSG_LAST])
+        ).hasLintViolationWithoutAutoCorrect(3, 2, "Remove blank line before '*/'.")
 
     @Test
     fun `Skip single-line block comment`() =

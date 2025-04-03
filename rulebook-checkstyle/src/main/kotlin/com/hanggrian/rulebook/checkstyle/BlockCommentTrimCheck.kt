@@ -62,12 +62,12 @@ public class BlockCommentTrimCheck : RulebookJavadocCheck() {
         log(lastChild.lineNumber, lastChild.columnNumber, Messages[MSG_LAST])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG_FIRST = "block.comment.trim.first"
         const val MSG_LAST = "block.comment.trim.last"
 
         /** Disregard whitespace between asterisk and newline. */
-        private fun DetailNode.filterEmpty() =
+        fun DetailNode.filterEmpty() =
             children.filter {
                 when (it.type) {
                     TEXT -> it.text.isNotBlank()

@@ -6,8 +6,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import kotlin.math.min
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#unexpected-blank-line-before-package) */
-public class UnexpectedBlankLineBeforePackageCheck : RulebookAstCheck() {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#unnecessary-blank-line-before-package) */
+public class UnnecessaryBlankLineBeforePackageCheck : RulebookAstCheck() {
     private var minIndex = Int.MAX_VALUE
 
     override fun getRequiredTokens(): IntArray =
@@ -31,7 +31,7 @@ public class UnexpectedBlankLineBeforePackageCheck : RulebookAstCheck() {
         log(node, Messages[MSG])
     }
 
-    internal companion object {
-        const val MSG = "unexpected.blank.line.before.package"
+    private companion object {
+        const val MSG = "unnecessary.blank.line.before.package"
     }
 }

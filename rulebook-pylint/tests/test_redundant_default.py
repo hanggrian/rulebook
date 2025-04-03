@@ -2,13 +2,13 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.redundant_default import RedundantDefault
+from rulebook_pylint.redundant_default import RedundantDefaultChecker
 
 from .tests import assert_properties, msg
 
 
-class TestRedundantDefault(CheckerTestCase):
-    CHECKER_CLASS = RedundantDefault
+class TestRedundantDefaultChecker(CheckerTestCase):
+    CHECKER_CLASS = RedundantDefaultChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -45,7 +45,7 @@ class TestRedundantDefault(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(RedundantDefault.MSG, 8, node1.body[0].cases[-1]),
+            msg(RedundantDefaultChecker.MSG, 8, node1.body[0].cases[-1]),
         ):
             self.checker.visit_match(node1.body[0])
 

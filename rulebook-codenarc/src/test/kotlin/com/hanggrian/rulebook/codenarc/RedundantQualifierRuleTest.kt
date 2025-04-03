@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.RedundantQualifierRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -50,9 +48,21 @@ class RedundantQualifierRuleTest : AbstractRuleTestCase<RedundantQualifierRule>(
                 }
             }
             """.trimIndent(),
-            violationOf(4, "java.lang.String property = new java.lang.String()", Messages[MSG]),
-            violationOf(6, "def parameter(java.lang.String param) {}", Messages[MSG]),
-            violationOf(9, "java.lang.String.format('%s', 'Hello World')", Messages[MSG]),
+            violationOf(
+                4,
+                "java.lang.String property = new java.lang.String()",
+                "Omit redundant 'java.lang.'.",
+            ),
+            violationOf(
+                6,
+                "def parameter(java.lang.String param) {}",
+                "Omit redundant 'java.lang.'.",
+            ),
+            violationOf(
+                9,
+                "java.lang.String.format('%s', 'Hello World')",
+                "Omit redundant 'java.lang.'.",
+            ),
         )
 
     @Test
@@ -88,9 +98,9 @@ class RedundantQualifierRuleTest : AbstractRuleTestCase<RedundantQualifierRule>(
             """.trimIndent(),
             4,
             "String property = java.lang.String.format('%s', 'Hello World')",
-            Messages[MSG],
+            "Omit redundant 'java.lang.String.'.",
             7,
             "java.lang.String.format('%s', 'Hello World')",
-            Messages[MSG],
+            "Omit redundant 'java.lang.String.'.",
         )
 }

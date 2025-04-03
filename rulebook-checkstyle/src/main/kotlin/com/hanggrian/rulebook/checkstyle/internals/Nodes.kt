@@ -5,7 +5,6 @@ package com.hanggrian.rulebook.checkstyle.internals
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_BREAK
@@ -15,6 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil.isCommentType
 
 internal val DetailAST.maxLineNo: Int
     get() =
@@ -42,7 +42,18 @@ internal val DetailAST.lastMostChild: DetailAST
     }
 
 internal val DetailAST.children: Sequence<DetailAST>
-    get() = generateSequence(firstChild) { node -> node.nextSibling }
+    get() = generateSequence(firstChild) { it.nextSibling }
+
+internal fun DetailAST.parent(predicate: (DetailAST) -> Boolean): DetailAST? {
+    var node: DetailAST? = parent
+    while (node != null) {
+        if (predicate(node)) {
+            return node
+        }
+        node = node.parent
+    }
+    return null
+}
 
 internal operator fun DetailAST.contains(type: Int): Boolean = findFirstToken(type) != null
 
@@ -81,8 +92,7 @@ internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 
 internal fun DetailAST.isMultiline(): Boolean = maxLineNo > minLineNo
 
-internal fun DetailAST.isComment(): Boolean =
-    type == SINGLE_LINE_COMMENT || type == BLOCK_COMMENT_BEGIN
+internal fun DetailAST.isComment(): Boolean = isCommentType(type)
 
 internal fun DetailAST.isEolCommentEmpty(): Boolean =
     type == SINGLE_LINE_COMMENT &&
@@ -104,8 +114,8 @@ internal fun DetailAST.joinText(separator: String = "", excludeType: Int = 0): S
                     }
                 }
         }
-    if (result.endsWith(separator)) {
-        return result.substring(0, result.length - separator.length)
+    return when {
+        result.endsWith(separator) -> result.substring(0, result.length - separator.length)
+        else -> result
     }
-    return result
 }

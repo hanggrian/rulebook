@@ -11,13 +11,13 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#file-size) */
-public class FileSizeRule : RulebookRule(ID, LIMIT_FILE_SIZE_PROPERTY) {
-    private var limitFileSize = LIMIT_FILE_SIZE_PROPERTY.defaultValue
+public class FileSizeRule : RulebookRule(ID, MAX_FILE_SIZE_PROPERTY) {
+    private var maxFileSize = MAX_FILE_SIZE_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(FILE)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        limitFileSize = editorConfig[LIMIT_FILE_SIZE_PROPERTY]
+        maxFileSize = editorConfig[MAX_FILE_SIZE_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -25,14 +25,14 @@ public class FileSizeRule : RulebookRule(ID, LIMIT_FILE_SIZE_PROPERTY) {
         node
             .text
             .lines()
-            .takeIf { (if (it.last().isEmpty()) it.lastIndex else it.size) > limitFileSize }
+            .takeIf { (if (it.last().isEmpty()) it.lastIndex else it.size) > maxFileSize }
             ?: return
-        emit(node.startOffset, Messages.get(MSG, limitFileSize), false)
+        emit(node.startOffset, Messages.get(MSG, maxFileSize), false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:file-size")
-        val LIMIT_FILE_SIZE_PROPERTY =
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:file-size")
+        public val MAX_FILE_SIZE_PROPERTY: EditorConfigProperty<Int> =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
@@ -43,6 +43,6 @@ public class FileSizeRule : RulebookRule(ID, LIMIT_FILE_SIZE_PROPERTY) {
                 defaultValue = 1000,
             )
 
-        const val MSG = "file.size"
+        private const val MSG = "file.size"
     }
 }

@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BlockTagOrderRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -37,7 +35,7 @@ class BlockTagOrderRuleTest {
             data class Foo(val bar: Int)
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 4, Messages.get(MSG, "@property", "@see")),
-            LintViolation(4, 4, Messages.get(MSG, "@constructor", "@property")),
+            LintViolation(3, 4, "Arrange tag '@property' before '@see'."),
+            LintViolation(4, 4, "Arrange tag '@constructor' before '@property'."),
         )
 }

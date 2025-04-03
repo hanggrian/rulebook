@@ -1,14 +1,14 @@
 from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
-from rulebook_pylint.unexpected_blank_line_before_package import \
-    UnexpectedBlankLineBeforePackageChecker
+from rulebook_pylint.unnecessary_blank_line_before_package import \
+    UnnecessaryBlankLineBeforePackageChecker
 
 from .tests import assert_properties, msg
 
 
-class TestUnexpectedBlankLineBeforePackageChecker(CheckerTestCase):
-    CHECKER_CLASS = UnexpectedBlankLineBeforePackageChecker
+class TestUnnecessaryBlankLineBeforePackageChecker(CheckerTestCase):
+    CHECKER_CLASS = UnnecessaryBlankLineBeforePackageChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -29,7 +29,7 @@ class TestUnexpectedBlankLineBeforePackageChecker(CheckerTestCase):
                 import unittest
                 ''',
             )
-        with self.assertAddsMessages(msg(UnexpectedBlankLineBeforePackageChecker.MSG, 0)):
+        with self.assertAddsMessages(msg(UnnecessaryBlankLineBeforePackageChecker.MSG, 0)):
             self.checker.process_tokens(tokens)
 
 

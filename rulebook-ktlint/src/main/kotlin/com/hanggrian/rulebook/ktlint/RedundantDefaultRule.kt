@@ -36,9 +36,9 @@ public class RedundantDefaultRule : RulebookRule(ID) {
         emit(`else`.startOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:redundant-default")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:redundant-default")
 
-        const val MSG = "redundant.default"
+        private const val MSG = "redundant.default"
     }
 }

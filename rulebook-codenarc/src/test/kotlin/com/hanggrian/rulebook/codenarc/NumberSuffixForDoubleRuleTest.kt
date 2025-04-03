@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.NumberSuffixForDoubleRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -40,9 +38,9 @@ class NumberSuffixForDoubleRuleTest : AbstractRuleTestCase<NumberSuffixForDouble
             """.trimIndent(),
             1,
             "var foo = 0D",
-            Messages[MSG],
+            "Tag double literal by 'd'.",
             4,
             "println(123D)",
-            Messages[MSG],
+            "Tag double literal by 'd'.",
         )
 }

@@ -537,7 +537,7 @@
     <module name="CommentTrim"/>
     <module name="DuplicateBlankLineInBlockComment"/>
     <module name="DuplicateBlankLineInComment"/>
-    <module name="UnexpectedBlankLineBeforePackage"/>
+    <module name="UnnecessaryBlankLineBeforePackage"/>
 
     <!-- Stating -->
     <module name="IllegalCatch">

@@ -18,7 +18,7 @@ public class NumberSuffixForFloatCheck : RulebookAstCheck() {
         log(node, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "number.suffix.for.float"
     }
 }

@@ -10,7 +10,7 @@ public class MemberOrderRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "member.order"
     }
 

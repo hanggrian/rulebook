@@ -41,7 +41,7 @@ public class CaseSeparatorCheck : RulebookAstCheck() {
         log(slist.lastChild, Messages[MSG_UNEXPECTED])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG_MISSING = "case.separator.missing"
         const val MSG_UNEXPECTED = "case.separator.unexpected"
     }

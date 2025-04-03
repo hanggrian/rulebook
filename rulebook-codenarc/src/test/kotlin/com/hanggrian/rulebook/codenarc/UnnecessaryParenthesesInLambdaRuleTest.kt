@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.UnnecessaryParenthesesInLambdaRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -41,7 +39,7 @@ class UnnecessaryParenthesesInLambdaRuleTest :
             """.trimIndent(),
             4,
             ".forEach((i) -> {})",
-            Messages[MSG],
+            "Omit parentheses '()'.",
         )
 
     @Test
@@ -52,6 +50,18 @@ class UnnecessaryParenthesesInLambdaRuleTest :
                 Arrays
                     .asList(1, 2)
                     .forEach((i, j) -> {})
+            }
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Skip explicit type`() =
+        assertNoViolations(
+            """
+            def foo() {
+                Arrays
+                    .asList(1, 2)
+                    .forEach((int i) -> {})
             }
             """.trimIndent(),
         )

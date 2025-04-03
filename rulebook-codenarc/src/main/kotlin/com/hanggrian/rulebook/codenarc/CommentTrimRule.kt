@@ -33,32 +33,20 @@ public class CommentTrimRule : RulebookFileRule() {
 
                 // checks for violation
                 if (line.isEolCommentEmpty()) {
-                    violations +=
-                        Violation().apply {
-                            rule = this@CommentTrimRule
-                            lineNumber = start + 1
-                            sourceLine = line
-                            message = Messages[MSG]
-                        }
+                    violations += createViolation(start + 1, line, Messages[MSG])
                 }
                 val endLine =
                     sourceCode
                         .lines[end]
                         .takeIf { it.isEolCommentEmpty() }
                         ?: return
-                violations +=
-                    Violation().apply {
-                        rule = this@CommentTrimRule
-                        lineNumber = end + 1
-                        sourceLine = endLine
-                        message = Messages[MSG]
-                    }
+                violations += createViolation(end + 1, endLine, Messages[MSG])
             }
 
-    internal companion object {
+    private companion object {
         const val MSG = "comment.trim"
 
-        private fun String.isEolCommentEmpty() =
+        fun String.isEolCommentEmpty() =
             substringBefore("//").isBlank() &&
                 substringAfter("//").isBlank()
     }

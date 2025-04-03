@@ -59,11 +59,11 @@ public class TodoCommentRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:todo-comment")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:todo-comment")
 
-        const val MSG_KEYWORD = "todo.comment.keyword"
-        const val MSG_SEPARATOR = "todo.comment.separator"
+        private const val MSG_KEYWORD = "todo.comment.keyword"
+        private const val MSG_SEPARATOR = "todo.comment.separator"
 
         private val KEYWORD_REGEX = Regex("\\b(?i:fixme|todo)(?<!FIXME|TODO)\\b")
         private val SEPARATOR_REGEX = Regex("\\b(todo|fixme)\\S", IGNORE_CASE)

@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class CodeBlockTrim(RulebookTokenChecker):
+class CodeBlockTrimChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#code-block-trim"""
     MSG: str = 'code-block-trim'
 
@@ -32,4 +32,4 @@ class CodeBlockTrim(RulebookTokenChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(CodeBlockTrim(linter))
+    linter.register_checker(CodeBlockTrimChecker(linter))

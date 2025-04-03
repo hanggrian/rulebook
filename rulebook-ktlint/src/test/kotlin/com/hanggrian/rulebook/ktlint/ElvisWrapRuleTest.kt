@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.ElvisWrapRule.Companion.MSG_MISSING
-import com.hanggrian.rulebook.ktlint.ElvisWrapRule.Companion.MSG_UNEXPECTED
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -32,7 +29,7 @@ class ElvisWrapRuleTest {
                     .takeIf { it.isEmpty() } ?: return
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 34, Messages[MSG_MISSING])
+        ).hasLintViolationWithoutAutoCorrect(3, 34, "Put newline before '?:'.")
 
     @Test
     fun `Elvis in last line of multiline statement`() =
@@ -64,7 +61,7 @@ class ElvisWrapRuleTest {
                     ?: return
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(6, 9, Messages[MSG_UNEXPECTED])
+        ).hasLintViolationWithoutAutoCorrect(6, 9, "Omit newline before '?:'.")
 
     @Test
     fun `Consider multiple elvis operators in a statement`() =
@@ -89,9 +86,9 @@ class ElvisWrapRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 34, Messages[MSG_MISSING]),
-            LintViolation(4, 34, Messages[MSG_MISSING]),
-            LintViolation(12, 9, Messages[MSG_UNEXPECTED]),
-            LintViolation(16, 9, Messages[MSG_UNEXPECTED]),
+            LintViolation(3, 34, "Put newline before '?:'."),
+            LintViolation(4, 34, "Put newline before '?:'."),
+            LintViolation(12, 9, "Omit newline before '?:'."),
+            LintViolation(16, 9, "Omit newline before '?:'."),
         )
 }

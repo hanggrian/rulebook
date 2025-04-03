@@ -51,7 +51,7 @@ public class CodeBlockTrimCheck : RulebookAstCheck() {
         }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG_FIRST = "code.block.trim.first"
         const val MSG_LAST = "code.block.trim.last"
     }

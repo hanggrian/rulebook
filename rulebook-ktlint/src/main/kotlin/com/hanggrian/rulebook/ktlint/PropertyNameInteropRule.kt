@@ -35,9 +35,14 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
         // collect fields declared in constructor
         val properties = mutableListOf<ASTNode>()
         if (node.elementType == CLASS) {
-            properties +=
+            val primaryConstructor =
                 node
-                    .findChildByType(PRIMARY_CONSTRUCTOR)
+                    .takeIf { it.isPublic() }
+                    ?.findChildByType(PRIMARY_CONSTRUCTOR)
+                    ?: return
+            properties +=
+                primaryConstructor
+                    .takeIf { it.isPublic() }
                     ?.findChildByType(VALUE_PARAMETER_LIST)
                     ?.children()
                     ?.filter {
@@ -56,11 +61,10 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
         }
 
         // checks for violation
-        for (property in properties.filterNot {
-            it.hasModifier(PRIVATE_KEYWORD) ||
-                it.hasModifier(INTERNAL_KEYWORD) ||
-                it.hasAnnotation("JvmField") ||
-                it.findChildByType(PROPERTY_ACCESSOR)?.hasAnnotation("JvmName") == true
+        for (property in properties.filter {
+            it.isPublic() &&
+                !it.hasAnnotation("JvmField") &&
+                it.findChildByType(PROPERTY_ACCESSOR)?.hasAnnotation("JvmName") != true
         }) {
             val identifier =
                 property
@@ -82,10 +86,10 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:property-name-interop")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:property-name-interop")
 
-        const val MSG = "property.name.interop"
+        private const val MSG = "property.name.interop"
 
         private fun ASTNode.hasAnnotation(name: String) =
             findChildByType(MODIFIER_LIST)
@@ -101,5 +105,9 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
                         ?.findChildByType(IDENTIFIER)
                         ?.text == name
                 }
+
+        private fun ASTNode.isPublic() =
+            !hasModifier(PRIVATE_KEYWORD) &&
+                !hasModifier(INTERNAL_KEYWORD)
     }
 }

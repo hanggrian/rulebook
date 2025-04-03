@@ -19,10 +19,10 @@ public class RequiredGenericNameRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "required.generic.name"
 
-        private fun ASTNode.hasParentWithGenerics() =
+        fun ASTNode.hasParentWithGenerics() =
             when (this) {
                 is MethodNode -> declaringClass.outerClasses + declaringClass
                 else -> (this as ClassNode).outerClasses

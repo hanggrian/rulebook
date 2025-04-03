@@ -18,8 +18,8 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#empty-code-block-unwrap) */
-public class EmptyCodeBlockUnwrapRule : RulebookRule(ID) {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#empty-code-block-join) */
+public class EmptyCodeBlockJoinRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY, BLOCK, FUNCTION_LITERAL)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -58,9 +58,9 @@ public class EmptyCodeBlockUnwrapRule : RulebookRule(ID) {
         emit(lbrace.endOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:empty-code-block-unwrap")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:empty-code-block-join")
 
-        const val MSG = "empty.code.block.unwrap"
+        private const val MSG = "empty.code.block.join"
     }
 }

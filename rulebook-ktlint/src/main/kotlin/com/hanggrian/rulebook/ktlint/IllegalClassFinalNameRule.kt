@@ -15,13 +15,13 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
-public class IllegalClassFinalNameRule : RulebookRule(ID, DISALLOW_CLASS_FINAL_NAMES_PROPERTY) {
-    private var disallowClassFinalNames = DISALLOW_CLASS_FINAL_NAMES_PROPERTY.defaultValue
+public class IllegalClassFinalNameRule : RulebookRule(ID, ILLEGAL_CLASS_FINAL_NAMES_PROPERTY) {
+    private var illegalClassFinalNames = ILLEGAL_CLASS_FINAL_NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION, FILE)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        disallowClassFinalNames = editorConfig[DISALLOW_CLASS_FINAL_NAMES_PROPERTY]
+        illegalClassFinalNames = editorConfig[ILLEGAL_CLASS_FINAL_NAMES_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -41,7 +41,7 @@ public class IllegalClassFinalNameRule : RulebookRule(ID, DISALLOW_CLASS_FINAL_N
 
         // checks for violation
         val finalName =
-            disallowClassFinalNames
+            illegalClassFinalNames
                 .singleOrNull { fullName.endsWith(it) }
                 ?: return
         if (finalName in UTILITY_FINAL_NAMES) {
@@ -55,9 +55,9 @@ public class IllegalClassFinalNameRule : RulebookRule(ID, DISALLOW_CLASS_FINAL_N
         emit(node2.startOffset, Messages.get(MSG_ALL, finalName), false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:illegal-class-final-name")
-        val DISALLOW_CLASS_FINAL_NAMES_PROPERTY =
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:illegal-class-final-name")
+        public val ILLEGAL_CLASS_FINAL_NAMES_PROPERTY: EditorConfigProperty<Set<String>> =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
@@ -69,8 +69,8 @@ public class IllegalClassFinalNameRule : RulebookRule(ID, DISALLOW_CLASS_FINAL_N
                 propertyWriter = { it.joinToString() },
             )
 
-        const val MSG_ALL = "illegal.class.final.name.all"
-        const val MSG_UTIL = "illegal.class.final.name.util"
+        private const val MSG_ALL = "illegal.class.final.name.all"
+        private const val MSG_UTIL = "illegal.class.final.name.util"
 
         private val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
     }

@@ -18,9 +18,9 @@
   "illegal-class-final-name-util": "Rename utility class to '%s'.",
   "required-generic-name": "Use common generics '%s'.",
 
-  "built-in-function-position": "Move '%s' last.",
+  "built-in-function-position": "Move '%s' to last.",
   "member-order": "Arrange '%s' before '%s'.",
-  "inner-class-position": "Move inner class at the bottom.",
+  "inner-class-position": "Move inner class to the bottom.",
 
   "block-comment-trim-first": "Remove blank line after '\"\"\"'.",
   "block-comment-trim-last": "Remove blank line before '\"\"\"'.",
@@ -32,7 +32,7 @@
   "duplicate-blank-line-in-block-comment": "Remove consecutive blank line in '\"\"\"'.",
   "duplicate-blank-line-in-comment": "Remove consecutive blank line after '#'.",
   "member-separator": "Add blank line after '%s'.",
-  "unexpected-blank-line-before-package": "Remove blank line at the beginning.",
+  "unnecessary-blank-line-before-package": "Remove blank line at the beginning.",
 
   "nested-if-else-invert": "Invert 'if' condition.",
   "nested-if-else-lift": "Lift 'else' and add 'return' in 'if' block.",

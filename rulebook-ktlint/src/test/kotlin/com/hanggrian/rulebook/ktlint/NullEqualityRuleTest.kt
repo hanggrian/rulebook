@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.NullEqualityRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -35,7 +33,7 @@ class NullEqualityRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 13, Messages.get(MSG, "==")),
-            LintViolation(3, 20, Messages.get(MSG, "!=")),
+            LintViolation(2, 13, "Use operator '=='."),
+            LintViolation(3, 20, "Use operator '!='."),
         )
 }

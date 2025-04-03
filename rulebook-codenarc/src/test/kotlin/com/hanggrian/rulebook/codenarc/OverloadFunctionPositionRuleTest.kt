@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -44,6 +42,6 @@ class OverloadFunctionPositionRuleTest : AbstractRuleTestCase<OverloadFunctionPo
             """.trimIndent(),
             6,
             "def bar(String a) {}",
-            Messages.get(MSG, "bar"),
+            "Move 'bar' next to each other.",
         )
 }

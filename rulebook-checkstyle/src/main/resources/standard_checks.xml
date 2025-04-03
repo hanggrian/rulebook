@@ -261,7 +261,7 @@
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
-    <module name="UnexpectedBlankLineBeforePackage"/>
+    <module name="UnnecessaryBlankLineBeforePackage"/>
 
     <!-- Stating -->
     <module name="IllegalCatch">

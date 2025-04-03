@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.CommentTrimRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -33,8 +31,8 @@ class CommentTrimRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 5, Messages[MSG]),
-            LintViolation(4, 5, Messages[MSG]),
+            LintViolation(2, 5, "Remove blank line after '//'."),
+            LintViolation(4, 5, "Remove blank line after '//'."),
         )
 
     @Test

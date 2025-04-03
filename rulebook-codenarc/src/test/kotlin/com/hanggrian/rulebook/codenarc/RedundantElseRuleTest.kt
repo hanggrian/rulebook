@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.RedundantElseRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -48,10 +46,10 @@ class RedundantElseRuleTest : AbstractRuleTestCase<RedundantElseRule>() {
             """.trimIndent(),
             4,
             "} else if (false) {",
-            Messages[MSG],
+            "Omit redundant 'else' condition.",
             6,
             "} else {",
-            Messages[MSG],
+            "Omit redundant 'else' condition.",
         )
 
     @Test
@@ -66,9 +64,9 @@ class RedundantElseRuleTest : AbstractRuleTestCase<RedundantElseRule>() {
             """.trimIndent(),
             3,
             "else if (false) return",
-            Messages[MSG],
+            "Omit redundant 'else' condition.",
             4,
             "else baz()",
-            Messages[MSG],
+            "Omit redundant 'else' condition.",
         )
 }

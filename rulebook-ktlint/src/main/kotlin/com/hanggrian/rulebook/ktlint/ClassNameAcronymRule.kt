@@ -54,10 +54,10 @@ public class ClassNameAcronymRule : RulebookRule(ID) {
         emit(node2.startOffset, Messages.get(MSG, transformation), false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:class-name-acronym")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:class-name-acronym")
 
-        const val MSG = "class.name.acronym"
+        private const val MSG = "class.name.acronym"
 
         private val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
     }

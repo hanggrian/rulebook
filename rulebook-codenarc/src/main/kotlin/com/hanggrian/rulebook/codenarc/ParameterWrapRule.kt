@@ -16,7 +16,7 @@ public class ParameterWrapRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG_ARGUMENT = "parameter.wrap.argument"
     }
 
@@ -50,7 +50,7 @@ public class ParameterWrapRule : RulebookAstRule() {
             // checks for violation
             for ((i, parameter) in parameters.withIndex().drop(1)) {
                 parameters[i - 1]
-                    .takeUnless { it.lastLineNumber + 1 == parameter.lineNumber }
+                    .takeIf { it.lastLineNumber == parameter.lineNumber }
                     ?: continue
                 addViolation(parameter, Messages[MSG_ARGUMENT])
             }

@@ -29,7 +29,7 @@ class ParameterWrapChecker(RulebookChecker):
         # checks for violation
         for i, parameter in enumerate(parameters):
             if i == 0 or \
-                parameters[i - 1].end_lineno + 1 == parameter.lineno:
+                parameters[i - 1].end_lineno != parameter.lineno:
                 continue
             self.add_message(self.MSG_ARGUMENT, node=parameter)
 

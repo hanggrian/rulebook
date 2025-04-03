@@ -46,10 +46,10 @@ public class ElvisWrapRule : RulebookRule(ID) {
         emit(node.startOffset, Messages[MSG_MISSING], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:elvis-wrap")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:elvis-wrap")
 
-        const val MSG_MISSING = "elvis.wrap.missing"
-        const val MSG_UNEXPECTED = "elvis.wrap.unexpected"
+        private const val MSG_MISSING = "elvis.wrap.missing"
+        private const val MSG_UNEXPECTED = "elvis.wrap.unexpected"
     }
 }

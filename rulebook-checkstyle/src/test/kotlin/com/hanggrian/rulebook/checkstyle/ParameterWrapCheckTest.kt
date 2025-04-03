@@ -25,4 +25,7 @@ class ParameterWrapCheckTest {
 
     @Test
     fun `Aware of chained single-line calls`() = assertEquals(0, checker.read("ParameterWrap5"))
+
+    @Test
+    fun `Allow comments between parameters`() = assertEquals(0, checker.read("ParameterWrap6"))
 }

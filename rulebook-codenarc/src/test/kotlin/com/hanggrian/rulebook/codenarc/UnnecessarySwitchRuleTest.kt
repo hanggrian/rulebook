@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.UnnecessarySwitchRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -47,7 +45,7 @@ class UnnecessarySwitchRuleTest : AbstractRuleTestCase<UnnecessarySwitchRule>() 
             """.trimIndent(),
             2,
             "switch (bar) {",
-            Messages[MSG],
+            "Replace 'switch' with 'if' condition.",
         )
 
     @Test

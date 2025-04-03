@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.RedundantDefaultRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -54,7 +52,7 @@ class RedundantDefaultRuleTest : AbstractRuleTestCase<RedundantDefaultRule>() {
             """.trimIndent(),
             8,
             "baz()",
-            Messages[MSG],
+            "Omit redundant 'default' condition.",
         )
 
     @Test

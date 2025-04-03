@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.AssignmentWrapRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -49,7 +47,7 @@ class AssignmentWrapRuleTest : AbstractRuleTestCase<AssignmentWrapRule>() {
             """.trimIndent(),
             2,
             "var bar = 1 +",
-            Messages[MSG],
+            "Break assignment into newline.",
         )
 
     @Test

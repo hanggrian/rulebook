@@ -16,11 +16,9 @@ class RulebookRuleSetTest {
             AbstractClassDefinitionRule::class,
             BlockCommentSpacesRule::class,
             BlockCommentTrimRule::class,
-            BlockCommentUnwrapRule::class,
             BlockTagIndentationRule::class,
             BlockTagOrderRule::class,
             BlockTagPunctuationRule::class,
-            BlockTagSeparatorRule::class,
             BuiltInFunctionPositionRule::class,
             BuiltInTypesRule::class,
             CaseSeparatorRule::class,
@@ -31,7 +29,7 @@ class RulebookRuleSetTest {
             DuplicateBlankLineInBlockCommentRule::class,
             DuplicateBlankLineInCommentRule::class,
             ElvisWrapRule::class,
-            EmptyCodeBlockUnwrapRule::class,
+            EmptyCodeBlockJoinRule::class,
             ExceptionInheritanceRule::class,
             FileSizeRule::class,
             IllegalClassFinalNameRule::class,
@@ -40,6 +38,7 @@ class RulebookRuleSetTest {
             InfixCallWrapRule::class,
             InnerClassPositionRule::class,
             MemberOrderRule::class,
+            MissingBlankLineBeforeBlockTagsRule::class,
             NestedIfElseRule::class,
             NullEqualityRule::class,
             NumberSuffixForFloatRule::class,
@@ -48,6 +47,7 @@ class RulebookRuleSetTest {
             RedundantDefaultRule::class,
             RedundantElseRule::class,
             RequiredGenericNameRule::class,
+            ShortBlockCommentJoinRule::class,
             TodoCommentRule::class,
             UnexpectedBlankLineBeforePackageRule::class,
             UnnecessarySwitchRule::class,
@@ -56,7 +56,7 @@ class RulebookRuleSetTest {
 
     @Test
     fun `No overlapping ID`() =
-        assertThat(RulebookRuleSet().getRuleProviders().ids)
+        assertThat(AllRules.ids)
             .containsNoneIn(StandardRuleSetProvider().getRuleProviders().ids)
 
     private val Set<RuleProvider>.ids

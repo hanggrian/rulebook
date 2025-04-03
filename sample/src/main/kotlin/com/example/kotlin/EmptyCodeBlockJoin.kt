@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-class EmptyCodeBlockUnwrap {
+class EmptyCodeBlockJoin {
     fun foo() {}
 
     fun bar() {

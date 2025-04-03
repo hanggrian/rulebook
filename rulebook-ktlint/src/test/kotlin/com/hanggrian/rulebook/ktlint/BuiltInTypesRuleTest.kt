@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BuiltInTypesRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -20,7 +18,7 @@ class BuiltInTypesRuleTest {
     @Test
     fun `Java API in imports`() =
         assertThatCode("import java.lang.String")
-            .hasLintViolationWithoutAutoCorrect(1, 8, Messages.get(MSG, "kotlin.String"))
+            .hasLintViolationWithoutAutoCorrect(1, 8, "Use built-in type 'kotlin.String'.")
 
     @Test
     fun `Kotlin API in type reference`() =
@@ -41,9 +39,9 @@ class BuiltInTypesRuleTest {
             val parameterizedType: java.util.List<Int>
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 11, Messages.get(MSG, "kotlin.String")),
-            LintViolation(2, 19, Messages.get(MSG, "kotlin.Comparable")),
-            LintViolation(3, 24, Messages.get(MSG, "kotlin.collections.List")),
+            LintViolation(1, 11, "Use built-in type 'kotlin.String'."),
+            LintViolation(2, 19, "Use built-in type 'kotlin.Comparable'."),
+            LintViolation(3, 24, "Use built-in type 'kotlin.collections.List'."),
         )
 
     @Test
@@ -61,5 +59,5 @@ class BuiltInTypesRuleTest {
             fun testSomething() {
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 8, Messages.get(MSG, "kotlin.test.Test"))
+        ).hasLintViolationWithoutAutoCorrect(1, 8, "Use built-in type 'kotlin.test.Test'.")
 }

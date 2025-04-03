@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.OperatorWrapRule.Companion.MSG_MISSING
-import com.hanggrian.rulebook.codenarc.OperatorWrapRule.Companion.MSG_UNEXPECTED
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -41,10 +38,10 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
             """.trimIndent(),
             4,
             "+ 2",
-            Messages.get(MSG_UNEXPECTED, '+'),
+            "Omit newline before operator '+'.",
             5,
             "- 3",
-            Messages.get(MSG_UNEXPECTED, '-'),
+            "Omit newline before operator '-'.",
         )
 
     @Test
@@ -79,10 +76,10 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
             """.trimIndent(),
             3,
             "1 + Math.min(",
-            Messages.get(MSG_MISSING, '+'),
+            "Put newline before operator '+'.",
             6,
             ") - Math.max(",
-            Messages.get(MSG_MISSING, '-'),
+            "Put newline before operator '-'.",
         )
 
     @Test

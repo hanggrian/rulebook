@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.UnnecessarySwitchRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -34,7 +32,7 @@ class UnnecessarySwitchRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(2, 5, "Replace 'when' with 'if' condition.")
 
     @Test
     fun `Skip single branch if it has fall through condition`() =

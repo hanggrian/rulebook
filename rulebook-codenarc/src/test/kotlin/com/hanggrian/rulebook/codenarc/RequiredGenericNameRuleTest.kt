@@ -1,8 +1,6 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.google.common.truth.Truth.assertThat
-import com.hanggrian.rulebook.codenarc.RequiredGenericNameRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -41,10 +39,10 @@ class RequiredGenericNameRuleTest : AbstractRuleTestCase<RequiredGenericNameRule
             """.trimIndent(),
             1,
             "class MyClass<X> {}",
-            Messages.get(MSG, "E, K, N, T, V"),
+            "Use common generics 'E, K, N, T, V'.",
             3,
             "interface MyInterface<X> {}",
-            Messages.get(MSG, "E, K, N, T, V"),
+            "Use common generics 'E, K, N, T, V'.",
         )
 
     @Test

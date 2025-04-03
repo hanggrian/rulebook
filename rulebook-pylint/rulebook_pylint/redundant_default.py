@@ -8,7 +8,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class RedundantDefault(RulebookChecker):
+class RedundantDefaultChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#redundant-default"""
     MSG: str = 'redundant-default'
 
@@ -31,4 +31,4 @@ class RedundantDefault(RulebookChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(RedundantDefault(linter))
+    linter.register_checker(RedundantDefaultChecker(linter))

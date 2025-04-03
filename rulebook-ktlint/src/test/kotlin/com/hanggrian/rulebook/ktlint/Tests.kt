@@ -1,9 +1,12 @@
 package com.hanggrian.rulebook.ktlint
 
+import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
-internal inline fun <reified T : RulebookRule> T.assertProperties() {
+object AllRules : Set<RuleProvider> by RulebookRuleSet().getRuleProviders()
+
+inline fun <reified T : RulebookRule> T.assertProperties() {
     assertEquals(
         "rulebook:" +
             T::class

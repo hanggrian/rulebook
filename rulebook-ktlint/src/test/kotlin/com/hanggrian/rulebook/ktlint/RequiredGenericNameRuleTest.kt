@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.RequiredGenericNameRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -43,11 +41,11 @@ class RequiredGenericNameRuleTest {
             interface MyInterface<X>
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 15, Messages.get(MSG, "E, K, N, T, V")),
-            LintViolation(3, 36, Messages.get(MSG, "E, K, N, T, V")),
-            LintViolation(5, 24, Messages.get(MSG, "E, K, N, T, V")),
-            LintViolation(7, 28, Messages.get(MSG, "E, K, N, T, V")),
-            LintViolation(9, 23, Messages.get(MSG, "E, K, N, T, V")),
+            LintViolation(1, 15, "Use common generics 'E, K, N, T, V'."),
+            LintViolation(3, 36, "Use common generics 'E, K, N, T, V'."),
+            LintViolation(5, 24, "Use common generics 'E, K, N, T, V'."),
+            LintViolation(7, 28, "Use common generics 'E, K, N, T, V'."),
+            LintViolation(9, 23, "Use common generics 'E, K, N, T, V'."),
         )
 
     @Test
@@ -64,7 +62,7 @@ class RequiredGenericNameRuleTest {
             """
             fun <X> execute(list: List<X>) {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 6, Messages.get(MSG, "E, K, N, T, V"))
+        ).hasLintViolationWithoutAutoCorrect(1, 6, "Use common generics 'E, K, N, T, V'.")
 
     @Test
     fun `Skip inner generics`() =
@@ -84,5 +82,5 @@ class RequiredGenericNameRuleTest {
             """
             fun <reified X> execute(list: List<X>) {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 14, Messages.get(MSG, "E, K, N, T, V"))
+        ).hasLintViolationWithoutAutoCorrect(1, 14, "Use common generics 'E, K, N, T, V'.")
 }

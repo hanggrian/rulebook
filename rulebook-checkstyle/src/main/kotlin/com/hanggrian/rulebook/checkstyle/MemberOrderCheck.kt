@@ -45,10 +45,10 @@ public class MemberOrderCheck : RulebookAstCheck() {
             }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "member.order"
 
-        private val MEMBER_POSITIONS =
+        val MEMBER_POSITIONS =
             mapOf(
                 VARIABLE_DEF to 0,
                 CTOR_DEF to 1,
@@ -56,7 +56,7 @@ public class MemberOrderCheck : RulebookAstCheck() {
                 METHOD_DEF to 2,
             )
 
-        private val MEMBER_ARGUMENTS =
+        val MEMBER_ARGUMENTS =
             mapOf(
                 VARIABLE_DEF to "property",
                 CTOR_DEF to "constructor",

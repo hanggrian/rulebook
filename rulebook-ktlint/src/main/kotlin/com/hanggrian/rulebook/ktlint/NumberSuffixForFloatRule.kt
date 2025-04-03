@@ -18,12 +18,12 @@ public class NumberSuffixForFloatRule : RulebookRule(ID) {
             .last()
             .takeIf { it == 'F' }
             ?: return
-        emit(node.endOffset, Messages[MSG_NUM], false)
+        emit(node.endOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:number-suffix-for-float")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:number-suffix-for-float")
 
-        const val MSG_NUM = "number.suffix.for.float"
+        private const val MSG = "number.suffix.for.float"
     }
 }

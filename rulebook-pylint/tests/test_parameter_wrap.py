@@ -78,10 +78,28 @@ class TestParameterWrapChecker(CheckerTestCase):
         node1, node2 = \
             extract_node(
                 '''
-                def foo():
+                def foo():  #@
                     bar() \
                         .bar() \
-                        .bar()
+                        .bar()  #@
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.visit_functiondef(node1)
+            self.checker.visit_call(node2)
+
+    def aware_allow_comments_between_parameters(self):
+        node1, node2 = \
+            extract_node(
+                '''
+                def foo(  #@
+                    a,
+                    # Comment
+                    b,
+                    """Block comment"""
+                    c,
+                ):
+                    pass
                 ''',
             )
         with self.assertNoMessages():

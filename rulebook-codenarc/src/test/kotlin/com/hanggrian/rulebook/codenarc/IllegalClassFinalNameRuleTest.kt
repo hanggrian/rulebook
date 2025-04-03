@@ -1,9 +1,6 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.google.common.truth.Truth.assertThat
-import com.hanggrian.rulebook.codenarc.IllegalClassFinalNameRule.Companion.MSG_ALL
-import com.hanggrian.rulebook.codenarc.IllegalClassFinalNameRule.Companion.MSG_UTIL
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -48,10 +45,10 @@ class IllegalClassFinalNameRuleTest : AbstractRuleTestCase<IllegalClassFinalName
 
             enum PlanetManager {}
             """.trimIndent(),
-            violationOf(1, "class SpaceshipManager {}", Messages.get(MSG_ALL, "Manager")),
-            violationOf(3, "interface RocketManager {}", Messages.get(MSG_ALL, "Manager")),
-            violationOf(5, "@interface NavigatorManager {}", Messages.get(MSG_ALL, "Manager")),
-            violationOf(7, "enum PlanetManager {}", Messages.get(MSG_ALL, "Manager")),
+            violationOf(1, "class SpaceshipManager {}", "Avoid meaningless word 'Manager'."),
+            violationOf(3, "interface RocketManager {}", "Avoid meaningless word 'Manager'."),
+            violationOf(5, "@interface NavigatorManager {}", "Avoid meaningless word 'Manager'."),
+            violationOf(7, "enum PlanetManager {}", "Avoid meaningless word 'Manager'."),
         )
 
     @Test
@@ -62,6 +59,6 @@ class IllegalClassFinalNameRuleTest : AbstractRuleTestCase<IllegalClassFinalName
             """.trimIndent(),
             1,
             "class SpaceshipUtil {}",
-            Messages.get(MSG_UTIL, "Spaceships"),
+            "Rename utility class to 'Spaceships'.",
         )
 }

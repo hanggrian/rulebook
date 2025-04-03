@@ -17,13 +17,13 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#required-generic-name) */
-public class RequiredGenericNameRule : RulebookRule(ID, ALLOW_GENERICS_NAMES_PROPERTY) {
-    private var allowGenericsNames = ALLOW_GENERICS_NAMES_PROPERTY.defaultValue
+public class RequiredGenericNameRule : RulebookRule(ID, REQUIRED_GENERIC_NAMES_PROPERTY) {
+    private var requiredGenericNames = REQUIRED_GENERIC_NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(CLASS, FUN)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        allowGenericsNames = editorConfig[ALLOW_GENERICS_NAMES_PROPERTY]
+        requiredGenericNames = editorConfig[REQUIRED_GENERIC_NAMES_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -39,14 +39,14 @@ public class RequiredGenericNameRule : RulebookRule(ID, ALLOW_GENERICS_NAMES_PRO
         val identifier =
             typeParameter
                 .findChildByType(IDENTIFIER)
-                ?.takeUnless { node.hasParentWithGenerics() || it.text in allowGenericsNames }
+                ?.takeUnless { node.hasParentWithGenerics() || it.text in requiredGenericNames }
                 ?: return
-        emit(identifier.startOffset, Messages.get(MSG, allowGenericsNames.joinToString()), false)
+        emit(identifier.startOffset, Messages.get(MSG, requiredGenericNames.joinToString()), false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:required-generic-name")
-        val ALLOW_GENERICS_NAMES_PROPERTY =
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:required-generic-name")
+        public val REQUIRED_GENERIC_NAMES_PROPERTY: EditorConfigProperty<Set<String>> =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
@@ -58,7 +58,7 @@ public class RequiredGenericNameRule : RulebookRule(ID, ALLOW_GENERICS_NAMES_PRO
                 propertyWriter = { it.joinToString() },
             )
 
-        const val MSG = "required.generic.name"
+        private const val MSG = "required.generic.name"
 
         private fun ASTNode.hasParentWithGenerics(): Boolean {
             var next = treeParent

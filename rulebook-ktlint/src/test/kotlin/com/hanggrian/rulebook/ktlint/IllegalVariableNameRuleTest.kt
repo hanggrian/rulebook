@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.IllegalVariableNameRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -29,8 +27,8 @@ class IllegalVariableNameRuleTest {
             val string: String = ""
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 5, Messages[MSG]),
-            LintViolation(2, 5, Messages[MSG]),
+            LintViolation(1, 5, "Use descriptive name."),
+            LintViolation(2, 5, "Use descriptive name."),
         )
 
     @Test
@@ -54,8 +52,8 @@ class IllegalVariableNameRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 9, Messages[MSG]),
-            LintViolation(2, 25, Messages[MSG]),
+            LintViolation(1, 9, "Use descriptive name."),
+            LintViolation(2, 25, "Use descriptive name."),
         )
 
     @Test
@@ -77,8 +75,8 @@ class IllegalVariableNameRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 10, Messages[MSG]),
-            LintViolation(2, 15, Messages[MSG]),
+            LintViolation(2, 10, "Use descriptive name."),
+            LintViolation(2, 15, "Use descriptive name."),
         )
 
     @Test
@@ -89,5 +87,5 @@ class IllegalVariableNameRuleTest {
                 val `int` = 0
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 9, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(2, 9, "Use descriptive name.")
 }

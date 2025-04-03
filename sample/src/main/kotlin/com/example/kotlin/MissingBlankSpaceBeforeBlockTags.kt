@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-class BlockTagSeparator {
+class MissingBlankSpaceBeforeBlockTags {
     /**
      * Returns the absolute value of the given number.
      *

@@ -29,9 +29,9 @@ public class UnnecessarySwitchRule : RulebookRule(ID) {
         emit(node.startOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:unnecessary-switch")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:unnecessary-switch")
 
-        const val MSG = "unnecessary.switch"
+        private const val MSG = "unnecessary.switch"
     }
 }

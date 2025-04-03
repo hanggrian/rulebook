@@ -18,7 +18,7 @@ public class DuplicateBlankLineCheck : RulebookFileCheck() {
         }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "duplicate.blank.line"
     }
 }

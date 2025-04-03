@@ -45,11 +45,11 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
         log(text.lineNumber, text.columnNumber, Messages.get(MSG, tagLiteral.text))
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "block.tag.punctuation"
 
-        private val END_PUNCTUATIONS = setOf('.', ')')
+        val END_PUNCTUATIONS = setOf('.', ')')
 
-        private fun String.trimComment() = substringBefore("//").trimEnd()
+        fun String.trimComment() = substringBefore("//").trimEnd()
     }
 }

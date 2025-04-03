@@ -1,16 +1,14 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BlockTagSeparatorRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class BlockTagSeparatorRuleTest {
-    private val assertThatCode = assertThatRule { BlockTagSeparatorRule() }
+class MissingBlankLineBeforeBlockTagsRuleTest {
+    private val assertThatCode = assertThatRule { MissingBlankLineBeforeBlockTagsRule() }
 
     @Test
-    fun `Rule properties`() = BlockTagSeparatorRule().assertProperties()
+    fun `Rule properties`() = MissingBlankLineBeforeBlockTagsRule().assertProperties()
 
     @Test
     fun `Separate summary and block tag group`() =
@@ -71,8 +69,8 @@ class BlockTagSeparatorRuleTest {
             fun baz(num: Int): Int {}
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(3, 4, Messages[MSG]),
-            LintViolation(10, 4, Messages[MSG]),
-            LintViolation(17, 4, Messages[MSG]),
+            LintViolation(3, 4, "Add blank line before block tag group."),
+            LintViolation(10, 4, "Add blank line before block tag group."),
+            LintViolation(17, 4, "Add blank line before block tag group."),
         )
 }

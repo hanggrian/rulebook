@@ -12,10 +12,10 @@ public class ClassNameAcronymRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "class.name.acronym"
 
-        private val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
+        val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
     }
 
     public class Visitor : AbstractAstVisitor() {

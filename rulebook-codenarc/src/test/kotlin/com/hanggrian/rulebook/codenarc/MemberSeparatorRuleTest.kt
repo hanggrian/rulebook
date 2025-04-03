@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.MemberSeparatorRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -42,10 +40,10 @@ class MemberSeparatorRuleTest : AbstractRuleTestCase<MemberSeparatorRule>() {
             """.trimIndent(),
             2,
             "var bar = 1",
-            Messages.get(MSG, "property"),
+            "Add blank line after 'property'.",
             3,
             "Foo() {}",
-            Messages.get(MSG, "constructor"),
+            "Add blank line after 'constructor'.",
         )
 
     @Test
@@ -86,10 +84,10 @@ class MemberSeparatorRuleTest : AbstractRuleTestCase<MemberSeparatorRule>() {
             """.trimIndent(),
             4,
             "2",
-            Messages.get(MSG, "property"),
+            "Add blank line after 'property'.",
             7,
             "}",
-            Messages.get(MSG, "constructor"),
+            "Add blank line after 'constructor'.",
         )
 
     @Test
@@ -129,9 +127,9 @@ class MemberSeparatorRuleTest : AbstractRuleTestCase<MemberSeparatorRule>() {
             """.trimIndent(),
             5,
             "2",
-            Messages.get(MSG, "property"),
+            "Add blank line after 'property'.",
             9,
             "}",
-            Messages.get(MSG, "constructor"),
+            "Add blank line after 'constructor'.",
         )
 }

@@ -31,7 +31,7 @@ public class DuplicateBlankLineInCommentCheck : RulebookAstCheck() {
         log(next, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "duplicate.blank.line.in.comment"
     }
 }

@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.UnexpectedBlankLineBeforePackageRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -32,7 +30,7 @@ class UnexpectedBlankLineBeforePackageRuleTest {
             class MyClass
             """.trimIndent(),
         ).asFileWithPath("/some/path/MyClass.kt")
-            .hasLintViolationWithoutAutoCorrect(1, 1, Messages[MSG])
+            .hasLintViolationWithoutAutoCorrect(1, 1, "Remove blank line at the beginning.")
 
     @Test
     fun `Skip comment`() =

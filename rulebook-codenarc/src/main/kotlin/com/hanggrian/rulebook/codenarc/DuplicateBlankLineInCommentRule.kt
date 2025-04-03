@@ -14,18 +14,17 @@ public class DuplicateBlankLineInCommentRule : RulebookFileRule() {
             REGEX
                 .findAll(sourceCode.text)
                 .map {
-                    Violation().apply {
-                        rule = this@DuplicateBlankLineInCommentRule
-                        lineNumber = sourceCode.getLineNumberForCharacterIndex(it.range.last)
-                        sourceLine = "//"
-                        message = Messages[MSG]
-                    }
+                    createViolation(
+                        sourceCode.getLineNumberForCharacterIndex(it.range.last),
+                        "//",
+                        Messages[MSG],
+                    )
                 }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "duplicate.blank.line.in.comment"
 
-        private val REGEX = Regex("//\\s*(?=//\\n)")
+        val REGEX = Regex("//\\s*(?=//\\n)")
     }
 }

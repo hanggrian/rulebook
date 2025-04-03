@@ -27,7 +27,7 @@ public class UnnecessarySwitchCheck : RulebookAstCheck() {
         log(node, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "unnecessary.switch"
     }
 }

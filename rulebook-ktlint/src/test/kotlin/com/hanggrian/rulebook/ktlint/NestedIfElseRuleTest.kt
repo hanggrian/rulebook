@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.NestedIfElseRule.Companion.MSG_INVERT
-import com.hanggrian.rulebook.ktlint.NestedIfElseRule.Companion.MSG_LIFT
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -50,8 +47,8 @@ class NestedIfElseRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 5, Messages[MSG_INVERT]),
-            LintViolation(9, 5, Messages[MSG_INVERT]),
+            LintViolation(2, 5, "Invert 'if' condition."),
+            LintViolation(9, 5, "Invert 'if' condition."),
         )
 
     @Test
@@ -67,7 +64,7 @@ class NestedIfElseRuleTest {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(4, 7, Messages[MSG_LIFT])
+        ).hasLintViolationWithoutAutoCorrect(4, 7, "Lift 'else' and add 'return' in 'if' block.")
 
     @Test
     fun `Skip else if`() =
@@ -110,7 +107,7 @@ class NestedIfElseRuleTest {
                 // Lorem ipsum.
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 5, Messages[MSG_INVERT])
+        ).hasLintViolationWithoutAutoCorrect(2, 5, "Invert 'if' condition.")
 
     @Test
     fun `Skip recursive if-else because it is not safe to return in inner blocks`() =
@@ -121,6 +118,30 @@ class NestedIfElseRuleTest {
                     if (true) {
                         baz()
                         baz()
+                    }
+                }
+                baz()
+            }
+
+            fun bar() {
+                if (true) {
+                    try {
+                        if (true) {
+                            baz()
+                            baz()
+                        }
+                    } catch (e: Exception) {
+                        try {
+                            if (true) {
+                                baz()
+                                baz()
+                            }
+                        } catch (e: Exception) {
+                            if (true) {
+                                baz()
+                                baz()
+                            }
+                        }
                     }
                 }
                 baz()

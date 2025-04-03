@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.ContractFunctionDefinitionRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
@@ -31,7 +29,7 @@ class ContractFunctionDefinitionRuleTest {
                 block()
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 1, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(1, 1, "Put 'inline' modifier.")
 
     @Test
     fun `Skip function without callsInPlace`() =

@@ -54,7 +54,7 @@ question mark or exclamation mark.
     * @param num
     * @return the new size of the group.
     */
-    abstract int add(int num)
+    abstract def add(int num)
     ```
 
 ??? Configuration
@@ -108,67 +108,6 @@ calling function can be inverted.
 === "Kotlin"
     ```kotlin
     person.takeUnless { it.name == null }
-    ```
-
-### Explicit import
-
-Import directives must be single-type instead of wildcard imports.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-    ```kotlin hl_lines="1"
-    import com.example.fruit.*
-
-    val fruits = listOf(Apple(), Banana())
-    ```
-=== "Java"
-    ```java hl_lines="1"
-    import com.example.fruit.*;
-
-    List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
-    ```
-=== "Groovy"
-    ```groovy hl_lines="1"
-    import com.example.fruit.*
-
-    ArrayList<Fruit> fruits = [new Apple(), new Banana()]
-    ```
-=== "Python"
-    ```python hl_lines="1"
-    from fruit import *
-
-    fruits = [Apple(), Banana()]
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-    ```kotlin hl_lines="1-2"
-    import com.example.fruit.Apple
-    import com.example.fruit.Banana
-
-    val fruits = listOf(Apple(), Banana())
-    ```
-=== "Java"
-    ```java hl_lines="1-2"
-    import com.example.fruit.Apple;
-    import com.example.fruit.Banana;
-
-    List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
-    ```
-=== "Groovy"
-    ```groovy hl_lines="1-2"
-    import com.example.fruit.Apple
-    import com.example.fruit.Banana
-
-    ArrayList<Fruit> fruits = [new Apple(), new Banana()]
-    ```
-=== "Python"
-    ```python hl_lines="1"
-    from fruit import Apple, Banana
-
-    fruits = [Apple(), Banana()]
     ```
 
 ### File size
@@ -445,62 +384,66 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 
 === "Kotlin"
     ```kotlin hl_lines="4 7"
-    val inventory =
-        mapOf(
-            "milks" to 2,
-            "eggs" to 6
+    val items =
+        listOf(
+            "milks",
+            "eggs"
         )
 
-    println(inventory,)
+    println(items,)
     ```
 === "Groovy"
-    ```groovy hl_lines="3 6"
-    def inventory = [
-        'milks': 2,
-        'eggs': 6
-    ]
+    ```groovy hl_lines="4 7"
+    def items =
+        Arrays.asList(
+            'milks',
+            'eggs'
+        )
 
-    println(inventory,)
+    println(items,)
     ```
 === "Python"
-    ```python hl_lines="3 6"
-    inventory = {
-        'milks': 2,
-        'eggs': 6
-    }
+    ```python hl_lines="4 7"
+    items = \
+        set(
+            'milks',
+            'eggs'
+        )
 
-    print(inventory,)
+    print(items,)
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
     ```kotlin hl_lines="4 7"
-    val inventory =
-        mapOf(
-            "milks" to 2,
-            "eggs" to 6,
+    val items =
+        listOf(
+            "milks",
+            "eggs",
         )
 
-    println(inventory)
+    println(items)
     ```
 === "Groovy"
-    ```groovy hl_lines="3 6"
-    def inventory = [
-        'milks': 2,
-        'eggs': 6,
-    ]
+    ```groovy hl_lines="4 7"
+    def items =
+        Arrays.asList(
+            'milks',
+            'eggs',
+        )
 
-    println(inventory)
+    println(items)
     ```
 === "Python"
-    ```python hl_lines="3 6"
-    inventory = {
-        'milks': 2,
-        'eggs': 6,
-    }
+    ```python hl_lines="4 7"
+    items = \
+        set(
+            'milks',
+            'eggs',
+        )
 
-    print(inventory)
+    print(items)
     ```
 
 ### Trailing comma in collection
@@ -686,6 +629,67 @@ Remove unused import statements.
     from fruit import Apple
 
     apple = Apple()
+    ```
+
+### Wildcard import
+
+Import directives must be single-type instead of wildcard imports.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+    ```kotlin hl_lines="1"
+    import com.example.fruit.*
+
+    val fruits = listOf(Apple(), Banana())
+    ```
+=== "Java"
+    ```java hl_lines="1"
+    import com.example.fruit.*;
+
+    List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
+    ```
+=== "Groovy"
+    ```groovy hl_lines="1"
+    import com.example.fruit.*
+
+    ArrayList<Fruit> fruits = [new Apple(), new Banana()]
+    ```
+=== "Python"
+    ```python hl_lines="1"
+    from fruit import *
+
+    fruits = [Apple(), Banana()]
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+    ```kotlin hl_lines="1-2"
+    import com.example.fruit.Apple
+    import com.example.fruit.Banana
+
+    val fruits = listOf(Apple(), Banana())
+    ```
+=== "Java"
+    ```java hl_lines="1-2"
+    import com.example.fruit.Apple;
+    import com.example.fruit.Banana;
+
+    List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
+    ```
+=== "Groovy"
+    ```groovy hl_lines="1-2"
+    import com.example.fruit.Apple
+    import com.example.fruit.Banana
+
+    ArrayList<Fruit> fruits = [new Apple(), new Banana()]
+    ```
+=== "Python"
+    ```python hl_lines="1"
+    from fruit import Apple, Banana
+
+    fruits = [Apple(), Banana()]
     ```
 
 ## Declaring
@@ -2364,73 +2368,6 @@ spaces from the leading asterisk.
     def abs(int num) {}
     ```
 
-### Block tag separator
-
-Separate block tag group from the summary with a blank line.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-    ```kotlin
-    /**
-     * Returns the absolute value of the given number.
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    fun abs(number: Int): Int
-    ```
-=== "Java"
-    ```java
-    /**
-     * Returns the absolute value of the given number.
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    void abs(int number) {}
-    ```
-=== "Groovy"
-    ```groovy
-    /**
-     * Returns the absolute value of the given number.
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    def abs(int number) {}
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-    ```kotlin hl_lines="3"
-    /**
-     * Returns the absolute value of the given number.
-     *
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    fun abs(number: Int): Int
-    ```
-=== "Java"
-    ```java hl_lines="3"
-    /**
-     * Returns the absolute value of the given number.
-     *
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    void abs(int number) {}
-    ```
-=== "Groovy"
-    ```groovy hl_lines="3"
-    /**
-     * Returns the absolute value of the given number.
-     *
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    def abs(int number) {}
-    ```
-
 ### Case separator
 
 Multiline switch-case entries end with a blank line while short entries are
@@ -3000,7 +2937,74 @@ There is an exception for single-line properties.
             pass
     ```
 
-### Unexpected blank line before package
+### Missing blank line before block tags
+
+Separate block tag group from the summary with a blank line.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+    ```kotlin
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    fun abs(number: Int): Int
+    ```
+=== "Java"
+    ```java
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    void abs(int number) {}
+    ```
+=== "Groovy"
+    ```groovy
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    def abs(int number) {}
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+    ```kotlin hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    fun abs(number: Int): Int
+    ```
+=== "Java"
+    ```java hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    void abs(int number) {}
+    ```
+=== "Groovy"
+    ```groovy hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    def abs(int number) {}
+    ```
+
+### Unnecessary blank line before package
 
 The first line of a file cannot be a blank line.
 
@@ -3638,26 +3642,6 @@ by a newline.
             .toString()
     ```
 
-### Block comment unwrap
-
-Short block comments should be written in a single line.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-    ```kotlin
-    /**
-     * The quick brown fox jumps over the lazy dog.
-     */
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-    ```kotlin
-    /** The quick brown fox jumps over the lazy dog. */
-    ```
-
 ### Chain call wrap
 
 Each method call in a chain should be aligned with the dot operator.
@@ -3716,9 +3700,9 @@ instead of trailing the statement.
         ?: "Unknown"
     ```
 
-### Empty code block unwrap
+### Empty code block join
 
-Empty code blocks should not contain any other characters in between the braces.
+Whitespace is not allowed in empty code blocks.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -3743,6 +3727,9 @@ Empty code blocks should not contain any other characters in between the braces.
     ```java
     void main() {}
     ```
+
+!!! tip
+    Code blocks with comments are not considered empty.
 
 ### Infix call wrap
 
@@ -3923,6 +3910,26 @@ new line.
         email: str,
         age: int,
     )
+    ```
+
+### Short block comment join
+
+Short block comments should be written in a single line.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+    ```kotlin
+    /**
+     * The quick brown fox jumps over the lazy dog.
+     */
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+    ```kotlin
+    /** The quick brown fox jumps over the lazy dog. */
     ```
 
 ### Statement wrap

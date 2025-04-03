@@ -42,21 +42,19 @@ public class ImportOrderRule : RulebookImportRule() {
                     // checks for violation
                     if (index != prevIndex!! + 1) {
                         violations +=
-                            Violation().apply {
-                                rule = this@ImportOrderRule
-                                lineNumber = index
-                                sourceLine = line
-                                message = Messages.get(MSG_JOIN, directive)
-                            }
+                            createViolation(
+                                index,
+                                line,
+                                Messages.get(MSG_JOIN, directive),
+                            )
                     }
                     if (directive < prevDirective!!) {
                         violations +=
-                            Violation().apply {
-                                rule = this@ImportOrderRule
-                                lineNumber = index
-                                sourceLine = line
-                                message = Messages.get(MSG_SORT, directive, prevDirective!!)
-                            }
+                            createViolation(
+                                index,
+                                line,
+                                Messages.get(MSG_SORT, directive, prevDirective!!),
+                            )
                     }
 
                     prevStatic = isStatic
@@ -66,11 +64,11 @@ public class ImportOrderRule : RulebookImportRule() {
             },
         )
 
-    internal companion object {
+    private companion object {
         const val MSG_SORT = "import.order.sort"
         const val MSG_JOIN = "import.order.join"
 
-        private val IMPORT_REGEX = Regex(NON_STATIC_IMPORT_PATTERN)
-        private val STATIC_IMPORT_REGEX = Regex(STATIC_IMPORT_PATTERN)
+        val IMPORT_REGEX = Regex(NON_STATIC_IMPORT_PATTERN)
+        val STATIC_IMPORT_REGEX = Regex(STATIC_IMPORT_PATTERN)
     }
 }

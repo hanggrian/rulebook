@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.ExceptionInheritanceRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -29,8 +27,8 @@ class ExceptionInheritanceRuleTest {
             class Bar : Error()
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 13, Messages[MSG]),
-            LintViolation(3, 13, Messages[MSG]),
+            LintViolation(1, 13, "Extend from class 'Exception'."),
+            LintViolation(3, 13, "Extend from class 'Exception'."),
         )
 
     @Test
@@ -43,5 +41,5 @@ class ExceptionInheritanceRuleTest {
                 constructor(message: String): super(message)
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 13, Messages[MSG])
+        ).hasLintViolationWithoutAutoCorrect(1, 13, "Extend from class 'Exception'.")
 }

@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.InnerClassPositionRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -45,7 +43,7 @@ class InnerClassPositionRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 5, Messages[MSG]),
-            LintViolation(6, 5, Messages[MSG]),
+            LintViolation(2, 5, "Move inner class to the bottom."),
+            LintViolation(6, 5, "Move inner class to the bottom."),
         )
 }

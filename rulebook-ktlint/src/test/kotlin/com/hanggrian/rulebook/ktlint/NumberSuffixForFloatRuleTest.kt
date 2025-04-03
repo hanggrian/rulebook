@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.NumberSuffixForFloatRule.Companion.MSG_NUM
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -35,7 +33,7 @@ class NumberSuffixForFloatRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 13, Messages[MSG_NUM]),
-            LintViolation(4, 17, Messages[MSG_NUM]),
+            LintViolation(1, 13, "Tag float literal by 'f'."),
+            LintViolation(4, 17, "Tag float literal by 'f'."),
         )
 }

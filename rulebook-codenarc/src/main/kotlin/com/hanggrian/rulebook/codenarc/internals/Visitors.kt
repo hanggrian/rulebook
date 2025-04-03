@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.codenarc.internals
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codenarc.rule.AbstractAstVisitor
+import org.codenarc.util.AstUtil
 
 /**
  * This function replace `lineNumber` because it cannot accurately produce the first index
@@ -44,3 +45,21 @@ internal fun AbstractAstVisitor.getLiteral(expression: ConstantExpression): Stri
     sourceCode.lines[expression.lineNumber - 1]
         .takeUnless { it.length > expression.lastColumnNumber }
         ?.substring(expression.columnNumber - 1, expression.lastColumnNumber - 1)
+
+/**
+ * @see AbstractAstVisitor.sourceLine
+ */
+internal fun AbstractAstVisitor.sourceLineNullable(node: ASTNode): String? =
+    when {
+        node.lineNumber < 0 -> null
+        else -> sourceCode.lines[AstUtil.findFirstNonAnnotationLine(node, sourceCode) - 1]
+    }
+
+/**
+ * @see AbstractAstVisitor.lastSourceLine
+ */
+internal fun AbstractAstVisitor.lastSourceLineNullable(node: ASTNode): String? =
+    when {
+        node.lastLineNumber < 0 -> null
+        else -> sourceCode.lines[node.lastLineNumber - 1]
+    }

@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.ParameterWrapRule.Companion.MSG_ARGUMENT
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -81,8 +79,8 @@ class ParameterWrapRuleTest : AbstractRuleTestCase<ParameterWrapRule>() {
                 )
             }
             """.trimIndent(),
-            violationOf(8, ".toString(), 0", Messages[MSG_ARGUMENT]),
-            violationOf(15, ".toString(), 0", Messages[MSG_ARGUMENT]),
+            violationOf(8, ".toString(), 0", "Break each parameter into newline."),
+            violationOf(15, ".toString(), 0", "Break each parameter into newline."),
         )
 
     @Test
@@ -94,6 +92,24 @@ class ParameterWrapRuleTest : AbstractRuleTestCase<ParameterWrapRule>() {
                     .append(1)
                     .append("Hello", 1, 2)
             }
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Allow comments between parameters`() =
+        assertNoViolations(
+            """
+            def foo(
+                var a,
+                // Comment
+                var b,
+                /** Block comment */
+                var c,
+                /**
+                 * Long block comment
+                 */
+                var d
+            ) {}
             """.trimIndent(),
         )
 }

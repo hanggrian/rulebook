@@ -8,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck
 import java.io.File
 
 @Throws(CheckstyleException::class)
-internal inline fun <reified T> checkerOf(): Checker {
+inline fun <reified T> checkerOf(): Checker {
     val checker = Checker()
     checker.setModuleClassLoader(Thread.currentThread().contextClassLoader)
     checker.configure(
@@ -20,7 +20,7 @@ internal inline fun <reified T> checkerOf(): Checker {
 }
 
 @Throws(CheckstyleException::class)
-internal inline fun <reified T> treeWalkerCheckerOf(): Checker {
+inline fun <reified T> treeWalkerCheckerOf(): Checker {
     val checker = Checker()
     checker.setModuleClassLoader(Thread.currentThread().contextClassLoader)
     checker.configure(
@@ -35,19 +35,18 @@ internal inline fun <reified T> treeWalkerCheckerOf(): Checker {
     return checker
 }
 
-internal fun Checker.read(resource: String): Int {
+fun Checker.read(resource: String): Int {
     val testFileUrl = object {}.javaClass.getResource("$resource.java")!!
     val testFile = File(testFileUrl.file)
     return process(listOf(testFile))
 }
 
-internal fun RulebookAstCheck.assertProperties() {
+fun RulebookAstCheck.assertProperties() {
     val requiredTokens = requiredTokens.asList()
     assertThat(defaultTokens).asList().containsExactlyElementsIn(requiredTokens)
     assertThat(acceptableTokens).asList().containsExactlyElementsIn(requiredTokens)
 }
 
-internal fun RulebookFileCheck.assertProperties() =
-    assertThat(fileExtensions).asList().contains(".java")
+fun RulebookFileCheck.assertProperties() = assertThat(fileExtensions).asList().contains(".java")
 
-internal fun AbstractJavadocCheck.assertProperties() = assertThat(defaultJavadocTokens).isNotEmpty()
+fun AbstractJavadocCheck.assertProperties() = assertThat(defaultJavadocTokens).isNotEmpty()

@@ -10,7 +10,7 @@ public class UnnecessaryParenthesesInLambdaRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "unnecessary.parentheses.in.lambda"
     }
 
@@ -22,8 +22,8 @@ public class UnnecessaryParenthesesInLambdaRule : RulebookAstRule() {
             val parameter =
                 node
                     .parameters
-                    .singleOrNull()
-                    ?.takeIf { ") ->" in sourceLine(it) }
+                    ?.singleOrNull()
+                    ?.takeIf { it.isDynamicTyped && ") ->" in sourceLine(it) }
                     ?: return
             addViolation(parameter, Messages[MSG])
         }

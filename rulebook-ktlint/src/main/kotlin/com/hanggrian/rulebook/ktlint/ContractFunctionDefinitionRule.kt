@@ -52,9 +52,9 @@ public class ContractFunctionDefinitionRule : RulebookRule(ID) {
         emit(node.startOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:contract-function-definition")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:contract-function-definition")
 
-        const val MSG = "contract.function.definition"
+        private const val MSG = "contract.function.definition"
     }
 }

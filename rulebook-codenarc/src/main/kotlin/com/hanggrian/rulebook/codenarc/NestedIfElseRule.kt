@@ -17,11 +17,11 @@ public class NestedIfElseRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG_INVERT = "nested.if.else.invert"
         const val MSG_LIFT = "nested.if.else.lift"
 
-        private fun Statement.hasMultipleLines() =
+        fun Statement.hasMultipleLines() =
             (this as? BlockStatement)
                 ?.statements
                 .orEmpty()

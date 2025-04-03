@@ -35,9 +35,10 @@ public class DuplicateBlankLineInCommentRule : RulebookRule(ID) {
         emit(next.endOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:duplicate-blank-line-in-comment")
+    public companion object {
+        public val ID: RuleId =
+            RuleId("${RulebookRuleSet.ID.value}:duplicate-blank-line-in-comment")
 
-        const val MSG = "duplicate.blank.line.in.comment"
+        private const val MSG = "duplicate.blank.line.in.comment"
     }
 }

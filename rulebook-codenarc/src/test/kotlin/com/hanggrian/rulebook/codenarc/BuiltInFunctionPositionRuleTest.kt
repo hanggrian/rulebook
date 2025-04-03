@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.BuiltInFunctionPositionRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -60,10 +58,10 @@ class BuiltInFunctionPositionRuleTest : AbstractRuleTestCase<BuiltInFunctionPosi
             """.trimIndent(),
             3,
             "String toString() {",
-            Messages.get(MSG, "toString"),
+            "Move 'toString' to last.",
             10,
             "int hashCode() {",
-            Messages.get(MSG, "hashCode"),
+            "Move 'hashCode' to last.",
         )
 
     @Test

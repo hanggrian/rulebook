@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.BuiltInFunctionPositionRule.Companion.MSG
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -43,8 +41,8 @@ class BuiltInFunctionPositionRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 5, Messages.get(MSG, "toString")),
-            LintViolation(6, 5, Messages.get(MSG, "hashCode")),
+            LintViolation(2, 5, "Move 'toString' to last."),
+            LintViolation(6, 5, "Move 'hashCode' to last."),
         )
 
     @Test

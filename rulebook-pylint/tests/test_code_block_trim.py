@@ -1,13 +1,13 @@
 from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
-from rulebook_pylint.code_block_trim import CodeBlockTrim
+from rulebook_pylint.code_block_trim import CodeBlockTrimChecker
 
 from .tests import assert_properties, msg
 
 
-class TestCodeBlockTrim(CheckerTestCase):
-    CHECKER_CLASS = CodeBlockTrim
+class TestCodeBlockTrimChecker(CheckerTestCase):
+    CHECKER_CLASS = CodeBlockTrimChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -36,8 +36,8 @@ class TestCodeBlockTrim(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CodeBlockTrim.MSG, (3, 0)),
-            msg(CodeBlockTrim.MSG, (5, 0)),
+            msg(CodeBlockTrimChecker.MSG, (3, 0)),
+            msg(CodeBlockTrimChecker.MSG, (5, 0)),
         ):
             self.checker.process_tokens(tokens)
 

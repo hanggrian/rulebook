@@ -46,7 +46,7 @@ public class RedundantDefaultCheck : RulebookAstCheck() {
         log(default, Messages[MSG])
     }
 
-    internal companion object {
+    private companion object {
         const val MSG = "redundant.default"
     }
 }

@@ -51,9 +51,9 @@ public class InnerClassPositionRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:inner-class-position")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:inner-class-position")
 
-        const val MSG = "inner.class.position"
+        private const val MSG = "inner.class.position"
     }
 }

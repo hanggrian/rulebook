@@ -1,8 +1,5 @@
 package com.hanggrian.rulebook.ktlint
 
-import com.hanggrian.rulebook.ktlint.TodoCommentRule.Companion.MSG_KEYWORD
-import com.hanggrian.rulebook.ktlint.TodoCommentRule.Companion.MSG_SEPARATOR
-import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
@@ -30,8 +27,8 @@ class TodoCommentRuleTest {
             // fixme fix bug
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 1, Messages.get(MSG_KEYWORD, "todo")),
-            LintViolation(2, 1, Messages.get(MSG_KEYWORD, "fixme")),
+            LintViolation(1, 1, "Capitalize keyword 'todo'."),
+            LintViolation(2, 1, "Capitalize keyword 'fixme'."),
         )
 
     @Test
@@ -42,8 +39,8 @@ class TodoCommentRuleTest {
             // FIXME1 fix bug
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 1, Messages.get(MSG_SEPARATOR, ':')),
-            LintViolation(2, 1, Messages.get(MSG_SEPARATOR, '1')),
+            LintViolation(1, 1, "Omit separator ':'."),
+            LintViolation(2, 1, "Omit separator '1'."),
         )
 
     @Test
@@ -57,8 +54,8 @@ class TodoCommentRuleTest {
              */
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 4, Messages.get(MSG_KEYWORD, "todo")),
-            LintViolation(4, 2, Messages.get(MSG_SEPARATOR, ':')),
+            LintViolation(1, 4, "Capitalize keyword 'todo'."),
+            LintViolation(4, 2, "Omit separator ':'."),
         )
 
     @Test
@@ -68,7 +65,7 @@ class TodoCommentRuleTest {
             // Untested. Todo: add tests.
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 1, Messages.get(MSG_KEYWORD, "Todo")),
-            LintViolation(1, 1, Messages.get(MSG_SEPARATOR, ':')),
+            LintViolation(1, 1, "Capitalize keyword 'Todo'."),
+            LintViolation(1, 1, "Omit separator ':'."),
         )
 }

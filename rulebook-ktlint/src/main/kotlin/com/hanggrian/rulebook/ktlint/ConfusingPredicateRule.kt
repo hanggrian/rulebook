@@ -44,18 +44,16 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
 
         // checks for violation
         val (expression, msg) =
-            when {
-                BINARY_EXPRESSION in predicateBlock ->
-                    predicateBlock.findChildByType(BINARY_EXPRESSION)!! to MSG_EQUALS
-
-                PREFIX_EXPRESSION in predicateBlock ->
-                    predicateBlock.findChildByType(PREFIX_EXPRESSION)!! to MSG_NEGATES
-
-                IS_EXPRESSION in predicateBlock ->
-                    predicateBlock.findChildByType(IS_EXPRESSION)!! to MSG_NEGATES
-
-                else -> return
-            }
+            predicateBlock
+                .findChildByType(BINARY_EXPRESSION)
+                ?.to(MSG_EQUALS)
+                ?: predicateBlock
+                    .findChildByType(PREFIX_EXPRESSION)
+                    ?.to(MSG_NEGATES)
+                ?: predicateBlock
+                    .findChildByType(IS_EXPRESSION)
+                    ?.to(MSG_NEGATES)
+                ?: return
         expression
             .takeUnless { it.isChained() }
             ?.findChildByType(OPERATION_REFERENCE)
@@ -68,11 +66,11 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
         emit(node.startOffset, Messages.get(msg, functionReplacement), false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:confusing-predicate")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:confusing-predicate")
 
-        const val MSG_EQUALS = "confusing.predicate.equals"
-        const val MSG_NEGATES = "confusing.predicate.negates"
+        private const val MSG_EQUALS = "confusing.predicate.equals"
+        private const val MSG_NEGATES = "confusing.predicate.negates"
 
         private val PREDICATE_CALLS = mutableMapOf<String, String>()
 

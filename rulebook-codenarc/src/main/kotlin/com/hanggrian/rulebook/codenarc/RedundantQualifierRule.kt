@@ -14,7 +14,7 @@ public class RedundantQualifierRule : RulebookAstRule() {
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
-    internal companion object {
+    private companion object {
         const val MSG = "redundant.qualifier"
     }
 
@@ -59,9 +59,19 @@ public class RedundantQualifierRule : RulebookAstRule() {
             node
                 .takeIf { text in importPaths }
                 ?: return
-            if (targetNodes.add(node)) {
-                addViolation(node, Messages[MSG])
+            if (!targetNodes.add(node)) {
+                return
             }
+            addViolation(
+                node,
+                Messages.get(
+                    MSG,
+                    when {
+                        '.' in text -> text.substringBeforeLast('.') + '.'
+                        else -> text
+                    },
+                ),
+            )
         }
     }
 }

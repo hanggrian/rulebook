@@ -11,8 +11,8 @@ import com.pinterest.ktlint.rule.engine.core.api.prevSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-separator) */
-public class BlockTagSeparatorRule : RulebookRule(ID) {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#missing-blank-line-before-block-tags) */
+public class MissingBlankLineBeforeBlockTagsRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(KDOC_SECTION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -27,15 +27,16 @@ public class BlockTagSeparatorRule : RulebookRule(ID) {
             .prevKdocLeadingAsterisk
             ?.prevKdocLeadingAsterisk
             ?.siblingsUntil(KDOC_LEADING_ASTERISK)
-            ?.takeUnless { it.size == 1 && it.single().isWhiteSpaceWithNewline() }
+            ?.takeUnless { it.singleOrNull().isWhiteSpaceWithNewline() }
             ?: return
         emit(kdocTag.startOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:block-tag-separator")
+    public companion object {
+        public val ID: RuleId =
+            RuleId("${RulebookRuleSet.ID.value}:missing-blank-line-before-block-tags")
 
-        const val MSG = "block.tag.separator"
+        private const val MSG = "missing.blank.line.before.block.tags"
 
         private val ASTNode.prevKdocLeadingAsterisk
             get() = prevSibling { it.elementType == KDOC_LEADING_ASTERISK }

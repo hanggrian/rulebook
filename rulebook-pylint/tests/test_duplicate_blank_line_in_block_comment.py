@@ -2,13 +2,14 @@ from unittest import main
 
 from astroid import extract_node, parse
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.duplicate_blank_line_in_block_comment import DuplicateBlankLineInBlockComment
+from rulebook_pylint.duplicate_blank_line_in_block_comment import \
+    DuplicateBlankLineInBlockCommentChecker
 
 from .tests import assert_properties, msg
 
 
-class TestDuplicateBlankLineInBlockComment(CheckerTestCase):
-    CHECKER_CLASS = DuplicateBlankLineInBlockComment
+class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
+    CHECKER_CLASS = DuplicateBlankLineInBlockCommentChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -65,7 +66,7 @@ class TestDuplicateBlankLineInBlockComment(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(DuplicateBlankLineInBlockComment.MSG, (2, 0, 7, 3), node_all.doc_node),
+            msg(DuplicateBlankLineInBlockCommentChecker.MSG, (2, 0, 7, 3), node_all.doc_node),
         ):
             self.checker.visit_module(node_all)
 
@@ -93,8 +94,8 @@ class TestDuplicateBlankLineInBlockComment(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(DuplicateBlankLineInBlockComment.MSG, (3, 4, 8, 7), node1.doc_node),
-            msg(DuplicateBlankLineInBlockComment.MSG, (13, 4, 18, 7), node2.doc_node),
+            msg(DuplicateBlankLineInBlockCommentChecker.MSG, (3, 4, 8, 7), node1.doc_node),
+            msg(DuplicateBlankLineInBlockCommentChecker.MSG, (13, 4, 18, 7), node2.doc_node),
         ):
             self.checker.visit_classdef(node1)
             self.checker.visit_functiondef(node2)

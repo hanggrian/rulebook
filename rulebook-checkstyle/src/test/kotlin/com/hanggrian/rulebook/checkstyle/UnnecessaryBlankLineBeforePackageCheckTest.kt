@@ -3,11 +3,11 @@ package com.hanggrian.rulebook.checkstyle
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class UnexpectedBlankLineBeforePackageCheckTest {
-    private val checker = treeWalkerCheckerOf<UnexpectedBlankLineBeforePackageCheck>()
+class UnnecessaryBlankLineBeforePackageCheckTest {
+    private val checker = treeWalkerCheckerOf<UnnecessaryBlankLineBeforePackageCheck>()
 
     @Test
-    fun `Rule properties`() = UnexpectedBlankLineBeforePackageCheck().assertProperties()
+    fun `Rule properties`() = UnnecessaryBlankLineBeforePackageCheck().assertProperties()
 
     @Test
     fun `Trimmed file`() = assertEquals(0, checker.read("BlankLineBeforePackage1"))

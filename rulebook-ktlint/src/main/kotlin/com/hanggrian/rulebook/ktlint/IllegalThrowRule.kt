@@ -25,10 +25,10 @@ public class IllegalThrowRule : RulebookRule(ID) {
         emit(identifier.startOffset, Messages[MSG], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:illegal-throw")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:illegal-throw")
 
-        const val MSG = "illegal.throw"
+        private const val MSG = "illegal.throw"
 
         private val BROAD_EXCEPTIONS =
             setOf(

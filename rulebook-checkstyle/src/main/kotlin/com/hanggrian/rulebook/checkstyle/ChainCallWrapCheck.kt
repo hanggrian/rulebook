@@ -41,7 +41,7 @@ public class ChainCallWrapCheck : RulebookAstCheck() {
         }
     }
 
-    internal companion object {
+    private companion object {
         const val MSG_MISSING = "chain.call.wrap.missing"
         const val MSG_UNEXPECTED = "chain.call.wrap.unexpected"
     }

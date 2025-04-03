@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc
 
-import com.hanggrian.rulebook.codenarc.DuplicateBlankLineInCommentRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.internals.Messages
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 
@@ -37,6 +35,6 @@ class DuplicateBlankLineInCommentRuleTest :
             """.trimIndent(),
             4,
             "//",
-            Messages[MSG],
+            "Remove consecutive blank line after '//'.",
         )
 }

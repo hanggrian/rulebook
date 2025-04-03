@@ -60,10 +60,10 @@ public class BuiltInTypesRule : RulebookRule(ID) {
                 else -> null
             }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:built-in-types")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:built-in-types")
 
-        const val MSG = "built.in.types"
+        private const val MSG = "built.in.types"
 
         private val COLLECTIONS_REPLACEMENT =
             mapOf(

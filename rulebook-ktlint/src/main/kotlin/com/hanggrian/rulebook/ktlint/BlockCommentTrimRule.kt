@@ -40,10 +40,10 @@ public class BlockCommentTrimRule : RulebookRule(ID) {
         emit(lastChild.treePrev!!.endOffset, Messages[MSG_LAST], false)
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:block-comment-trim")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-comment-trim")
 
-        const val MSG_FIRST = "block.comment.trim.first"
-        const val MSG_LAST = "block.comment.trim.last"
+        private const val MSG_FIRST = "block.comment.trim.first"
+        private const val MSG_LAST = "block.comment.trim.last"
     }
 }

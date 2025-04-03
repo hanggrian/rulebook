@@ -25,7 +25,7 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
         // checks for violation
         val declaredIdentifiers = mutableSetOf<String>()
         for ((i, `fun`) in funs.withIndex()) {
-            val identifier = `fun`.findChildByType(IDENTIFIER)!!
+            val identifier = `fun`.findChildByType(IDENTIFIER) ?: continue
             if (funs.getOrNull(i - 1)?.findChildByType(IDENTIFIER)?.text != identifier.text &&
                 !declaredIdentifiers.add(identifier.text)
             ) {
@@ -34,9 +34,9 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
         }
     }
 
-    internal companion object {
-        val ID = RuleId("${RulebookRuleSet.ID.value}:overload-function-position")
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:overload-function-position")
 
-        const val MSG = "overload.function.position"
+        private const val MSG = "overload.function.position"
     }
 }
