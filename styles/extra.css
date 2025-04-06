@@ -1,4 +1,7 @@
 /* MkDocs base colors */
+#primary {
+  color: var(--md-primary-fg-color);
+}
 #accent {
   color: var(--md-accent-fg-color);
 }
@@ -27,4 +30,48 @@
 }
 #android {
   color: #34a853;
+}
+
+/* Custom admonition */
+:root {
+  --md-admonition-icon--about: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>book</title><path d="M18,22A2,2 0 0,0 20,20V4C20,2.89 19.1,2 18,2H12V9L9.5,7.5L7,9V2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18Z" /></svg>');
+  --md-admonition-icon--features: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>lightning-bolt</title><path d="M11 15H6L13 1V9H18L11 23V15Z"/></svg>');
+  --md-admonition-icon--legend: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>shape</title><path d="M11,13.5V21.5H3V13.5H11M12,2L17.5,11H6.5L12,2M17.5,13C20,13 22,15 22,17.5C22,20 20,22 17.5,22C15,22 13,20 13,17.5C13,15 15,13 17.5,13Z"/></svg>');
+}
+
+.md-typeset .admonition.about,
+.md-typeset details.about,
+.md-typeset .admonition.features,
+.md-typeset details.features,
+.md-typeset .admonition.legend,
+.md-typeset details.legend {
+  border-color: rgb(2, 166, 242);
+}
+
+.md-typeset .about > .admonition-title,
+.md-typeset .about > summary,
+.md-typeset .features > .admonition-title,
+.md-typeset .features > summary,
+.md-typeset .legend > .admonition-title,
+.md-typeset .legend > summary {
+  background-color: rgba(2, 166, 242, 0.1);
+}
+
+.md-typeset .about > .admonition-title::before,
+.md-typeset .about > summary::before {
+  background-color: rgb(255, 193, 5);
+  -webkit-mask-image: var(--md-admonition-icon--about);
+    mask-image: var(--md-admonition-icon--about);
+}
+.md-typeset .features > .admonition-title::before,
+.md-typeset .features > summary::before {
+  background-color: rgb(255, 193, 5);
+  -webkit-mask-image: var(--md-admonition-icon--features);
+    mask-image: var(--md-admonition-icon--features);
+}
+.md-typeset .legend > .admonition-title::before,
+.md-typeset .legend > summary::before {
+  background-color: rgb(255, 193, 5);
+  -webkit-mask-image: var(--md-admonition-icon--legend);
+    mask-image: var(--md-admonition-icon--legend);
 }
