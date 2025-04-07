@@ -1,20 +1,29 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class RedundantElseCheckTest {
-    private val checker = treeWalkerCheckerOf<RedundantElseCheck>()
-
-    @Test
-    fun `Rule properties`() = RedundantElseCheck().assertProperties()
+class RedundantElseCheckTest : CheckTest() {
+    override val check = RedundantElseCheck()
 
     @Test
-    fun `No throw or return in if`() = assertEquals(0, checker.read("RedundantElse1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Lift else when if has return`() = assertEquals(2, checker.read("RedundantElse2"))
+    fun `No throw or return in if`() = assertAll("RedundantElse1")
 
     @Test
-    fun `Consider if-else without blocks`() = assertEquals(2, checker.read("RedundantElse3"))
+    fun `Lift else when if has return`() =
+        assertAll(
+            "RedundantElse2",
+            "7:11: Omit redundant else condition.",
+            "9:11: Omit redundant else condition.",
+        )
+
+    @Test
+    fun `Consider if-else without blocks`() =
+        assertAll(
+            "RedundantElse3",
+            "6:9: Omit redundant else condition.",
+            "7:9: Omit redundant else condition.",
+        )
 }

@@ -49,7 +49,7 @@ class RulebookRuleSetTest {
             RequiredGenericNameRule::class,
             ShortBlockCommentJoinRule::class,
             TodoCommentRule::class,
-            UnexpectedBlankLineBeforePackageRule::class,
+            UnnecessaryBlankLineBeforePackageRule::class,
             UnnecessarySwitchRule::class,
         )
     }

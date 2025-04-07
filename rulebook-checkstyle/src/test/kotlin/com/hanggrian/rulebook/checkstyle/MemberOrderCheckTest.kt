@@ -1,23 +1,24 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class MemberOrderCheckTest {
-    private val checker = treeWalkerCheckerOf<MemberOrderCheck>()
-
-    @Test
-    fun `Rule properties`() = MemberOrderCheck().assertProperties()
+class MemberOrderCheckTest : CheckTest() {
+    override val check = MemberOrderCheck()
 
     @Test
-    fun `Correct member organizations`() = assertEquals(0, checker.read("MemberOrder1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Member property after constructor`() = assertEquals(1, checker.read("MemberOrder2"))
+    fun `Correct member organizations`() = assertAll("MemberOrder1")
 
     @Test
-    fun `Member constructor after function`() = assertEquals(1, checker.read("MemberOrder3"))
+    fun `Member property after constructor`() =
+        assertAll("MemberOrder2", "7:9: Arrange member 'property' before 'constructor'.")
 
     @Test
-    fun `Skip static members`() = assertEquals(0, checker.read("MemberOrder4"))
+    fun `Member constructor after function`() =
+        assertAll("MemberOrder3", "7:9: Arrange member 'constructor' before 'function'.")
+
+    @Test
+    fun `Skip static members`() = assertAll("MemberOrder4")
 }

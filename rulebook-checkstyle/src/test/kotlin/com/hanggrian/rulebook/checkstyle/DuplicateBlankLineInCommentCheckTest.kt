@@ -1,19 +1,17 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class DuplicateBlankLineInCommentCheckTest {
-    private val checker = treeWalkerCheckerOf<DuplicateBlankLineInCommentCheck>()
-
-    @Test
-    fun `Rule properties`() = DuplicateBlankLineInCommentCheck().assertProperties()
+class DuplicateBlankLineInCommentCheckTest : CheckTest() {
+    override val check = DuplicateBlankLineInCommentCheck()
 
     @Test
-    fun `Single empty line in EOL comment`() =
-        assertEquals(0, checker.read("DuplicateBlankLineInComment1"))
+    fun `Rule properties`() = check.assertProperties()
+
+    @Test
+    fun `Single empty line in EOL comment`() = assertAll("DuplicateBlankLineInComment1")
 
     @Test
     fun `Multiple empty lines in EOL comment`() =
-        assertEquals(1, checker.read("DuplicateBlankLineInComment2"))
+        assertAll("DuplicateBlankLineInComment2", "7:9: Remove consecutive blank line after //.")
 }

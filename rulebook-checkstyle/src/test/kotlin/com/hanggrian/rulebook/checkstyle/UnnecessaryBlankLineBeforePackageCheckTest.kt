@@ -1,20 +1,20 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class UnnecessaryBlankLineBeforePackageCheckTest {
-    private val checker = treeWalkerCheckerOf<UnnecessaryBlankLineBeforePackageCheck>()
-
-    @Test
-    fun `Rule properties`() = UnnecessaryBlankLineBeforePackageCheck().assertProperties()
+class UnnecessaryBlankLineBeforePackageCheckTest : CheckTest() {
+    override val check = UnnecessaryBlankLineBeforePackageCheck()
 
     @Test
-    fun `Trimmed file`() = assertEquals(0, checker.read("BlankLineBeforePackage1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Padded file`() = assertEquals(1, checker.read("BlankLineBeforePackage2"))
+    fun `Trimmed file`() = assertAll("UnnecessaryBlankLineBeforePackage1")
 
     @Test
-    fun `Skip comment`() = assertEquals(0, checker.read("BlankLineBeforePackage3"))
+    fun `Padded file`() =
+        assertAll("UnnecessaryBlankLineBeforePackage2", "1: Remove blank line at the beginning.")
+
+    @Test
+    fun `Skip comment`() = assertAll("UnnecessaryBlankLineBeforePackage3")
 }

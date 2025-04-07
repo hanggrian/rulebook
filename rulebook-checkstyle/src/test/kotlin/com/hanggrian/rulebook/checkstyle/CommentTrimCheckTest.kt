@@ -1,24 +1,27 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class CommentTrimCheckTest {
-    private val checker = treeWalkerCheckerOf<CommentTrimCheck>()
-
-    @Test
-    fun `Rule properties`() = CommentTrimCheck().assertProperties()
+class CommentTrimCheckTest : CheckTest() {
+    override val check = CommentTrimCheck()
 
     @Test
-    fun `Comment without initial and final newline`() =
-        assertEquals(0, checker.read("CommentTrim1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Comment with initial and final newline`() = assertEquals(2, checker.read("CommentTrim2"))
+    fun `Comment without initial and final newline`() = assertAll("CommentTrim1")
 
     @Test
-    fun `Skip blank comment`() = assertEquals(0, checker.read("CommentTrim3"))
+    fun `Comment with initial and final newline`() =
+        assertAll(
+            "CommentTrim2",
+            "4:5: Remove blank line after //.",
+            "6:5: Remove blank line after //.",
+        )
 
     @Test
-    fun `Skip comment with code`() = assertEquals(0, checker.read("CommentTrim4"))
+    fun `Skip blank comment`() = assertAll("CommentTrim3")
+
+    @Test
+    fun `Skip comment with code`() = assertAll("CommentTrim4")
 }

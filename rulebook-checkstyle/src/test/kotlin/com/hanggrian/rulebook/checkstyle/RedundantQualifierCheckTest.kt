@@ -1,23 +1,33 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class RedundantQualifierCheckTest {
-    private val checker = treeWalkerCheckerOf<RedundantQualifierCheck>()
-
-    @Test
-    fun `Rule properties`() = RedundantQualifierCheck().assertProperties()
+class RedundantQualifierCheckTest : CheckTest() {
+    override val check = RedundantQualifierCheck()
 
     @Test
-    fun `Consistent class qualifiers`() = assertEquals(0, checker.read("RedundantQualifier1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Redundant class qualifiers`() = assertEquals(3, checker.read("RedundantQualifier2"))
+    fun `Consistent class qualifiers`() = assertAll("RedundantQualifier1")
 
     @Test
-    fun `Consistent method qualifiers`() = assertEquals(0, checker.read("RedundantQualifier3"))
+    fun `Redundant class qualifiers`() =
+        assertAll(
+            "RedundantQualifier2",
+            "6:14: Omit redundant qualifier.",
+            "8:29: Omit redundant qualifier.",
+            "11:18: Omit redundant qualifier.",
+        )
 
     @Test
-    fun `Redundant method qualifiers`() = assertEquals(2, checker.read("RedundantQualifier4"))
+    fun `Consistent method qualifiers`() = assertAll("RedundantQualifier3")
+
+    @Test
+    fun `Redundant method qualifiers`() =
+        assertAll(
+            "RedundantQualifier4",
+            "6:39: Omit redundant qualifier.",
+            "9:25: Omit redundant qualifier.",
+        )
 }

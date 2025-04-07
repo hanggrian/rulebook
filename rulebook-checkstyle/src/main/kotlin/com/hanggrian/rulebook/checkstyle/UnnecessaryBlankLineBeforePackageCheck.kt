@@ -28,7 +28,7 @@ public class UnnecessaryBlankLineBeforePackageCheck : RulebookAstCheck() {
             .takeUnless { minIndex == 1 }
             ?.takeIf { it.lineNo > 1 }
             ?: return
-        log(node, Messages[MSG])
+        log(1, Messages[MSG])
     }
 
     private companion object {

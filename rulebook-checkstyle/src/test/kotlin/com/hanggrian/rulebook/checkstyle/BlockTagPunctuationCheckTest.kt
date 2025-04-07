@@ -2,14 +2,12 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.google.common.truth.Truth.assertThat
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class BlockTagPunctuationCheckTest {
-    private val checker = treeWalkerCheckerOf<BlockTagPunctuationCheck>()
+class BlockTagPunctuationCheckTest : CheckTest() {
+    override val check = BlockTagPunctuationCheck()
 
     @Test
     fun `Rule properties`() {
-        val check = BlockTagPunctuationCheck()
         check.assertProperties()
 
         check.setTags("@author", "@see")
@@ -17,15 +15,24 @@ class BlockTagPunctuationCheckTest {
     }
 
     @Test
-    fun `No description`() = assertEquals(0, checker.read("BlockTagPunctuation1"))
+    fun `No description`() = assertAll("BlockTagPunctuation1")
 
     @Test
-    fun `Descriptions end with a period`() = assertEquals(0, checker.read("BlockTagPunctuation2"))
+    fun `Descriptions end with a period`() = assertAll("BlockTagPunctuation2")
 
     @Test
     fun `Descriptions don't end with a period`() =
-        assertEquals(2, checker.read("BlockTagPunctuation3"))
+        assertAll(
+            "BlockTagPunctuation3",
+            "5:19: End '@param' with a period.",
+            "6:16: End '@return' with a period.",
+        )
 
     @Test
-    fun `Long Descriptions`() = assertEquals(2, checker.read("BlockTagPunctuation4"))
+    fun `Long Descriptions`() =
+        assertAll(
+            "BlockTagPunctuation4",
+            "5:19: End '@param' with a period.",
+            "7:7: End '@return' with a period.",
+        )
 }

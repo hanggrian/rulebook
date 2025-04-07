@@ -76,21 +76,32 @@ theme:
     - search.share
     - content.code.copy
     - content.tabs.link
-    - toc.follow
-    - toc.integrate
 
 nav:
-  - Home: index.md
-  - Getting Started:
+  - Home:
+    - Overview: index.md
+    - FAQ: faq.md
+  - Getting started:
     - Installation: getting-started/index.md
     - Configuration:
       - IDE settings: getting-started/ide-settings.md
       - EditorConfig file: getting-started/editorconfig-file.md
-  - Rules: rules.md
-  - Rationales: rationales.md
+  - Rules:
+    - All rules: rules/index.md
+    - Glossary: rules/glossary.md
+    - External links:
+      - Checkstyle standard checks &nearr;: https://checkstyle.org/checks.html
+      - CodeNarc rules &nearr;: https://codenarc.org/codenarc-rule-index.html
+      - Ktlint standard rules &nearr;: https://pinterest.github.io/ktlint/latest/rules/standard/
+      - Pylint checkers &nearr;: https://pylint.pycqa.org/en/latest/user_guide/checkers/features.html
+  - Rationales:
+    - Common rationales: rationales/index.md
+    - External links:
+      - Kotlin coding conventions &nearr;: https://kotlinlang.org/docs/coding-conventions.html
+      - PEP 8 &nearr;: https://peps.python.org/pep-0008/
   - Contributing:
-    - Developing: contributing/index.md
-    - Glossary: contributing/glossary.md
+    - Developer guide: contributing/index.md
+    - Debugging: contributing/debugging.md
 
 plugins:
   - search
@@ -141,3 +152,4 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
+  - footnotes

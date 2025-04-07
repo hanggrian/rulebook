@@ -21,8 +21,14 @@ public class CommentSpacesCheck : RulebookAstCheck() {
 
         // checks for violation
         commentContent
-            .takeUnless { it.text.startsWith(' ') }
-            ?: return
+            .takeIf { n ->
+                !n.text.startsWith(' ') &&
+                    !n.text.startsWith("noinspection") &&
+                    !n.text.startsWith("region") &&
+                    !n.text.startsWith("endregion") &&
+                    !n.text.startsWith("language=") &&
+                    !n.text.trimEnd().all { it == '/' }
+            } ?: return
         log(node, Messages[MSG])
     }
 

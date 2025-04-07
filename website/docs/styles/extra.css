@@ -1,4 +1,7 @@
 /* MkDocs base colors */
+#primary {
+  color: var(--md-primary-fg-color);
+}
 #accent {
   color: var(--md-accent-fg-color);
 }
@@ -27,4 +30,70 @@
 }
 #android {
   color: #34a853;
+}
+
+/* Custom admonition */
+:root {
+  --md-admonition-icon--features1: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>book</title><path d="M18,22A2,2 0 0,0 20,20V4C20,2.89 19.1,2 18,2H12V9L9.5,7.5L7,9V2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18Z" /></svg>');
+  --md-admonition-icon--features2: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>lightning-bolt</title><path d="M11 15H6L13 1V9H18L11 23V15Z"/></svg>');
+  --md-admonition-icon--legend: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>shape</title><path d="M11,13.5V21.5H3V13.5H11M12,2L17.5,11H6.5L12,2M17.5,13C20,13 22,15 22,17.5C22,20 20,22 17.5,22C15,22 13,20 13,17.5C13,15 15,13 17.5,13Z"/></svg>');
+  --md-admonition-icon--download1: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>toy-brick</title><path d="M19 6V5A2 2 0 0 0 17 3H15A2 2 0 0 0 13 5V6H11V5A2 2 0 0 0 9 3H7A2 2 0 0 0 5 5V6H3V20H21V6Z"/></svg>');
+  --md-admonition-icon--download2: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>download</title><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/></svg>');
+}
+
+.md-typeset .admonition.features1,
+.md-typeset details.features1,
+.md-typeset .admonition.features2,
+.md-typeset details.features2,
+.md-typeset .admonition.legend,
+.md-typeset details.legend,
+.md-typeset .admonition.download1,
+.md-typeset details.download1,
+.md-typeset .admonition.download2,
+.md-typeset details.download2 {
+  border-color: rgb(2, 166, 242);
+}
+
+.md-typeset .features1 > .admonition-title,
+.md-typeset .features1 > summary,
+.md-typeset .features2 > .admonition-title,
+.md-typeset .features2 > summary,
+.md-typeset .legend > .admonition-title,
+.md-typeset .legend > summary,
+.md-typeset .download1 > .admonition-title,
+.md-typeset .download1 > summary,
+.md-typeset .download2 > .admonition-title,
+.md-typeset .download2 > summary {
+  background-color: rgba(2, 166, 242, 0.1);
+}
+
+.md-typeset .features1 > .admonition-title::before,
+.md-typeset .features1 > summary::before {
+  background-color: rgb(255, 193, 5);
+  -webkit-mask-image: var(--md-admonition-icon--features1);
+    mask-image: var(--md-admonition-icon--features1);
+}
+.md-typeset .features2 > .admonition-title::before,
+.md-typeset .features2 > summary::before {
+  background-color: rgb(255, 193, 5);
+  -webkit-mask-image: var(--md-admonition-icon--features2);
+    mask-image: var(--md-admonition-icon--features2);
+}
+.md-typeset .legend > .admonition-title::before,
+.md-typeset .legend > summary::before {
+  background-color: rgb(255, 193, 5);
+  -webkit-mask-image: var(--md-admonition-icon--legend);
+    mask-image: var(--md-admonition-icon--legend);
+}
+.md-typeset .download1 > .admonition-title::before,
+.md-typeset .download1 > summary::before {
+  background-color: rgb(255, 193, 5);
+  -webkit-mask-image: var(--md-admonition-icon--download1);
+    mask-image: var(--md-admonition-icon--download1);
+}
+.md-typeset .download2 > .admonition-title::before,
+.md-typeset .download2 > summary::before {
+  background-color: rgb(255, 193, 5);
+  -webkit-mask-image: var(--md-admonition-icon--download2);
+    mask-image: var(--md-admonition-icon--download2);
 }

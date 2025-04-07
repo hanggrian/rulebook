@@ -1,20 +1,35 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class CommentSpacesCheckTest {
-    private val checker = treeWalkerCheckerOf<CommentSpacesCheck>()
-
-    @Test
-    fun `Rule properties`() = CommentSpacesCheck().assertProperties()
+class CommentSpacesCheckTest : CheckTest() {
+    override val check = CommentSpacesCheck()
 
     @Test
-    fun `With whitespace`() = assertEquals(0, checker.read("CommentSpaces1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Without whitespace`() = assertEquals(2, checker.read("CommentSpaces2"))
+    fun `With whitespace`() = assertAll("CommentSpaces1")
 
     @Test
-    fun `Ignore block comment`() = assertEquals(0, checker.read("CommentSpaces3"))
+    fun `Without whitespace`() =
+        assertAll(
+            "CommentSpaces2",
+            "4:5: Put space after //.",
+            "5:5: Put space after //.",
+        )
+
+    @Test
+    fun `Ignore block comment`() = assertAll("CommentSpaces3")
+
+    @Test
+    fun `Capture repeated slashes without content`() =
+        assertAll(
+            "CommentSpaces4",
+            "8:5: Put space after //.",
+            "10:5: Put space after //.",
+        )
+
+    @Test
+    fun `Skip special comments`() = assertAll("CommentSpaces5")
 }

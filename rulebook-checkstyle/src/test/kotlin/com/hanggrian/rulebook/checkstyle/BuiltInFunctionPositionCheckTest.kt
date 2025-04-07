@@ -1,25 +1,27 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class BuiltInFunctionPositionCheckTest {
-    private val checker = treeWalkerCheckerOf<BuiltInFunctionPositionCheck>()
-
-    @Test
-    fun `Rule properties`() = BuiltInFunctionPositionCheck().assertProperties()
+class BuiltInFunctionPositionCheckTest : CheckTest() {
+    override val check = BuiltInFunctionPositionCheck()
 
     @Test
-    fun `Special function at the bottom`() =
-        assertEquals(0, checker.read("BuiltInFunctionPosition1"))
+    fun `Rule properties`() = check.assertProperties()
+
+    @Test
+    fun `Special function at the bottom`() = assertAll("BuiltInFunctionPosition1")
 
     @Test
     fun `Special function not at the bottom`() =
-        assertEquals(2, checker.read("BuiltInFunctionPosition2"))
+        assertAll(
+            "BuiltInFunctionPosition2",
+            "5:9: Move 'toString' to last.",
+            "12:9: Move 'hashCode' to last.",
+        )
 
     @Test
-    fun `Grouped overridden functions`() = assertEquals(0, checker.read("BuiltInFunctionPosition3"))
+    fun `Grouped overridden functions`() = assertAll("BuiltInFunctionPosition3")
 
     @Test
-    fun `Skip static members`() = assertEquals(0, checker.read("BuiltInFunctionPosition4"))
+    fun `Skip static members`() = assertAll("BuiltInFunctionPosition4")
 }

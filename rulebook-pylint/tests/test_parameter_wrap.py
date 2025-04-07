@@ -106,6 +106,21 @@ class TestParameterWrapChecker(CheckerTestCase):
             self.checker.visit_functiondef(node1)
             self.checker.visit_call(node2)
 
+    def aware_sam(self):
+        node1, node2 = \
+            extract_node(
+                '''
+                def foo():
+                    bar(
+                        lambda x: x +
+                            2,
+                    )
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.visit_functiondef(node1)
+            self.checker.visit_call(node2)
+
 
 if __name__ == '__main__':
     main()

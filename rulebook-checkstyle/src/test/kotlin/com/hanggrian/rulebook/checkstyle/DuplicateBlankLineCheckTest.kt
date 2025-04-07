@@ -1,17 +1,21 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class DuplicateBlankLineCheckTest {
-    private val checker = checkerOf<DuplicateBlankLineCheck>()
-
-    @Test
-    fun `Rule properties`() = DuplicateBlankLineCheck().assertProperties()
+class DuplicateBlankLineCheckTest : CheckTest() {
+    override val check = DuplicateBlankLineCheck()
 
     @Test
-    fun `Single empty line`() = assertEquals(0, checker.read("DuplicateBlankLine1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Multiple empty lines`() = assertEquals(2, checker.read("DuplicateBlankLine2"))
+    fun `Single empty line`() = assertAll("DuplicateBlankLine1")
+
+    @Test
+    fun `Multiple empty lines`() =
+        assertAll(
+            "DuplicateBlankLine2",
+            "3: Remove consecutive blank line.",
+            "7: Remove consecutive blank line.",
+        )
 }

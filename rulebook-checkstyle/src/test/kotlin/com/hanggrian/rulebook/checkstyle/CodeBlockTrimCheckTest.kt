@@ -1,24 +1,29 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class CodeBlockTrimCheckTest {
-    private val checker = treeWalkerCheckerOf<CodeBlockTrimCheck>()
-
-    @Test
-    fun `Rule properties`() = CodeBlockTrimCheck().assertProperties()
+class CodeBlockTrimCheckTest : CheckTest() {
+    override val check = CodeBlockTrimCheck()
 
     @Test
-    fun `Code blocks without newline padding`() = assertEquals(0, checker.read("CodeBlockTrim1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Code blocks with newline padding`() = assertEquals(4, checker.read("CodeBlockTrim2"))
+    fun `Code blocks without newline padding`() = assertAll("CodeBlockTrim1")
 
     @Test
-    fun `Block comment and annotations in members`() =
-        assertEquals(0, checker.read("CodeBlockTrim3"))
+    fun `Code blocks with newline padding`() =
+        assertAll(
+            "CodeBlockTrim2",
+            "5: Remove blank line after {.",
+            "7: Remove blank line after {.",
+            "9: Remove blank line before }.",
+            "11: Remove blank line before }.",
+        )
 
     @Test
-    fun `Comment in members`() = assertEquals(0, checker.read("CodeBlockTrim4"))
+    fun `Block comment and annotations in members`() = assertAll("CodeBlockTrim3")
+
+    @Test
+    fun `Comment in members`() = assertAll("CodeBlockTrim4")
 }

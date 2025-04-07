@@ -1,9 +1,9 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
+import com.hanggrian.rulebook.checkstyle.internals.contains
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
-import com.hanggrian.rulebook.checkstyle.internals.maxLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_CALL
@@ -20,19 +20,28 @@ public class ChainCallWrapCheck : RulebookAstCheck() {
             .takeIf { it.isMultiline() && it.parent.type != DOT }
             ?: return
 
+        // single call is by definition not chained
+        var dot: DetailAST? = node.findFirstToken(DOT) ?: return
+        if (DOT !in dot!! &&
+            dot.findFirstToken(METHOD_CALL)?.findFirstToken(DOT) == null
+        ) {
+            return
+        }
+
         // checks for violation
-        var dot = node.findFirstToken(DOT)
         while (dot != null) {
-            val dotSibling = dot.firstChild.lastMostChild
-            if ((dotSibling.type == RPAREN || dotSibling.type == RCURLY) &&
-                dotSibling.lineNo != dotSibling.previousSibling?.maxLineNo
-            ) {
-                if (dot.lineNo != dotSibling.lineNo) {
-                    log(dot, Messages[MSG_UNEXPECTED])
-                }
-            } else {
-                if (dot.lineNo != dotSibling.lineNo + 1) {
-                    log(dot, Messages[MSG_MISSING])
+            val dotSibling = dot.firstChild?.lastMostChild
+            if (dotSibling != null) {
+                if ((dotSibling.type == RPAREN || dotSibling.type == RCURLY) &&
+                    dotSibling.lineNo != dotSibling.previousSibling?.lineNo
+                ) {
+                    if (dot.lineNo != dotSibling.lineNo) {
+                        log(dot, Messages[MSG_UNEXPECTED])
+                    }
+                } else {
+                    if (dot.lineNo != dotSibling.lineNo + 1) {
+                        log(dot, Messages[MSG_MISSING])
+                    }
                 }
             }
             dot =

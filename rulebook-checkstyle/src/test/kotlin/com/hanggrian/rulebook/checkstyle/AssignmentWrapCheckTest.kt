@@ -1,29 +1,26 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class AssignmentWrapCheckTest {
-    private val checker = treeWalkerCheckerOf<AssignmentWrapCheck>()
-
-    @Test
-    fun `Rule properties`() = AssignmentWrapCheck().assertProperties()
+class AssignmentWrapCheckTest : CheckTest() {
+    override val check = AssignmentWrapCheck()
 
     @Test
-    fun `Single-line assignment`() = assertEquals(0, checker.read("AssignmentWrap1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Multiline assignment with breaking assignee`() =
-        assertEquals(0, checker.read("AssignmentWrap2"))
+    fun `Single-line assignment`() = assertAll("AssignmentWrap1")
+
+    @Test
+    fun `Multiline assignment with breaking assignee`() = assertAll("AssignmentWrap2")
 
     @Test
     fun `Multiline assignment with non-breaking assignee`() =
-        assertEquals(1, checker.read("AssignmentWrap3"))
+        assertAll("AssignmentWrap3", "5:19: Break assignment into newline.")
 
     @Test
-    fun `Multiline variable but single-line value`() =
-        assertEquals(0, checker.read("AssignmentWrap4"))
+    fun `Multiline variable but single-line value`() = assertAll("AssignmentWrap4")
 
     @Test
-    fun `Skip lambda initializers`() = assertEquals(0, checker.read("AssignmentWrap5"))
+    fun `Skip lambda initializers`() = assertAll("AssignmentWrap5")
 }

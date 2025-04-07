@@ -1,17 +1,21 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class NumberSuffixForFloatCheckTest {
-    private val checker = treeWalkerCheckerOf<NumberSuffixForFloatCheck>()
-
-    @Test
-    fun `Rule properties`() = NumberSuffixForFloatCheck().assertProperties()
+class NumberSuffixForFloatCheckTest : CheckTest() {
+    override val check = NumberSuffixForFloatCheck()
 
     @Test
-    fun `Lowercase literal floats`() = assertEquals(0, checker.read("NumberSuffixForFloat1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Uppercase literal floats`() = assertEquals(2, checker.read("NumberSuffixForFloat2"))
+    fun `Lowercase literal floats`() = assertAll("NumberSuffixForFloat1")
+
+    @Test
+    fun `Uppercase literal floats`() =
+        assertAll(
+            "NumberSuffixForFloat2",
+            "4:17: Tag float literal by f.",
+            "7:28: Tag float literal by f.",
+        )
 }

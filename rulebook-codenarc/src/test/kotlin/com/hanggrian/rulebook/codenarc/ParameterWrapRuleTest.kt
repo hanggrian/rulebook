@@ -112,4 +112,19 @@ class ParameterWrapRuleTest : AbstractRuleTestCase<ParameterWrapRule>() {
             ) {}
             """.trimIndent(),
         )
+
+    @Test
+    fun `Allow SAM`() =
+        assertNoViolations(
+            """
+            def foo(Runnable bar) {
+                foo(() -> {
+                    bar()
+                    bar()
+                });
+            }
+
+            def bar() {}
+            """.trimIndent(),
+        )
 }

@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
+import com.hanggrian.rulebook.checkstyle.internals.firstMostChild
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.hanggrian.rulebook.checkstyle.internals.maxLineNo
 import com.hanggrian.rulebook.checkstyle.internals.minLineNo
@@ -30,7 +31,7 @@ public class LambdaWrapCheck : RulebookAstCheck() {
         expr
             .takeUnless { parameters.maxLineNo + 1 == it.minLineNo }
             ?: return
-        log(expr, Messages[MSG])
+        log(expr.firstMostChild, Messages[MSG])
     }
 
     private companion object {

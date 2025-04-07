@@ -40,7 +40,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { CommentTrimRule() },
             RuleProvider { DuplicateBlankLineInBlockCommentRule() },
             RuleProvider { DuplicateBlankLineInCommentRule() },
-            RuleProvider { UnexpectedBlankLineBeforePackageRule() },
+            RuleProvider { UnnecessaryBlankLineBeforePackageRule() },
             // Stating
             RuleProvider { IllegalThrowRule() },
             RuleProvider { NestedIfElseRule() },

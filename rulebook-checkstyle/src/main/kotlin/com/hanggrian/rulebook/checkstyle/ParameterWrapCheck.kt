@@ -7,6 +7,7 @@ import com.hanggrian.rulebook.checkstyle.internals.minLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMA
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ELIST
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LAMBDA
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LPAREN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.PARAMETERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN
@@ -39,6 +40,9 @@ public class ParameterWrapCheck : RulebookAstCheck() {
                 ?: return
 
         // checks for violation
+        if (parameters.size == 1 && parameters.single().type == LAMBDA) {
+            return
+        }
         if (lparen.lineNo != parameters.first().minLineNo - 1) {
             log(lparen, Messages[MSG_PARENTHESIS])
         }

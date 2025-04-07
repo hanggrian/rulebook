@@ -1,17 +1,21 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class NumberSuffixForDoubleCheckTest {
-    private val checker = treeWalkerCheckerOf<NumberSuffixForDoubleCheck>()
-
-    @Test
-    fun `Rule properties`() = NumberSuffixForDoubleCheck().assertProperties()
+class NumberSuffixForDoubleCheckTest : CheckTest() {
+    override val check = NumberSuffixForDoubleCheck()
 
     @Test
-    fun `Lowercase literal doubles`() = assertEquals(0, checker.read("NumberSuffixForDouble1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Uppercase literal doubles`() = assertEquals(2, checker.read("NumberSuffixForDouble2"))
+    fun `Lowercase literal doubles`() = assertAll("NumberSuffixForDouble1")
+
+    @Test
+    fun `Uppercase literal doubles`() =
+        assertAll(
+            "NumberSuffixForDouble2",
+            "4:17: Tag double literal by d.",
+            "7:28: Tag double literal by d.",
+        )
 }

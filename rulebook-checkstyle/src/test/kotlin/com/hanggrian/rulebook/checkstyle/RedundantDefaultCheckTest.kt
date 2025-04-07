@@ -1,21 +1,20 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class RedundantDefaultCheckTest {
-    private val checker = treeWalkerCheckerOf<RedundantDefaultCheck>()
-
-    @Test
-    fun `Rule properties`() = RedundantDefaultCheck().assertProperties()
+class RedundantDefaultCheckTest : CheckTest() {
+    override val check = RedundantDefaultCheck()
 
     @Test
-    fun `No throw or return in case`() = assertEquals(0, checker.read("RedundantDefault1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Lift else when case has return`() = assertEquals(1, checker.read("RedundantDefault2"))
+    fun `No throw or return in case`() = assertAll("RedundantDefault1")
 
     @Test
-    fun `Skip if not all case blocks have jump statement`() =
-        assertEquals(0, checker.read("RedundantDefault3"))
+    fun `Lift else when case has return`() =
+        assertAll("RedundantDefault2", "10:13: Omit redundant default condition.")
+
+    @Test
+    fun `Skip if not all case blocks have jump statement`() = assertAll("RedundantDefault3")
 }

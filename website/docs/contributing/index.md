@@ -32,37 +32,6 @@ graph LR
   B --> |Yes| F[<b>BaseChecker</b>];
 ```
 
-## Debugging
-
-Print the AST tree of a file to help with debugging and development of rules.
-
-### Ktlint
-
-Print AST of a file.
-
-```shell
-ktlint --color printAST $file
-```
-
-> This command is no longer available in newer versions, use version [0.47.0](https://github.com/pinterest/ktlint/releases/tag/0.47.0).
-
-### Checkstyle
-
-Print AST of a file.
-
-```shell
-checkstyle -T $file
-checkstyle -J $file # for javadoc
-```
-
-### Pylint
-
-Use the following command to custom rules locally.
-
-```shell
-pip install -e rulebook
-```
-
 ## Rule naming
 
 Rule names are in form of state (missing-braces) or object (package-name). They are grouped by the intended objective (spacing) rather than the target site (imports). The rule messages that are printed to the console are in the form of verb phrase (Add missing braces or Rename package).

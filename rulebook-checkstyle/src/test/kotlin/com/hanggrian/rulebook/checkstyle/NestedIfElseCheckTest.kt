@@ -1,34 +1,38 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class NestedIfElseCheckTest {
-    private val checker = treeWalkerCheckerOf<NestedIfElseCheck>()
-
-    @Test
-    fun `Rule properties`() = NestedIfElseCheck().assertProperties()
+class NestedIfElseCheckTest : CheckTest() {
+    override val check = NestedIfElseCheck()
 
     @Test
-    fun `Empty or one statement in if statement`() = assertEquals(0, checker.read("NestedIfElse1"))
+    fun `Rule properties`() = check.assertProperties()
+
+    @Test
+    fun `Empty or one statement in if statement`() = assertAll("NestedIfElse1")
 
     @Test
     fun `Invert if with multiline statement or two statements`() =
-        assertEquals(2, checker.read("NestedIfElse2"))
+        assertAll(
+            "NestedIfElse2",
+            "5:9: Invert if condition.",
+            "12:9: Invert if condition.",
+        )
 
     @Test
-    fun `Lift else when there is no else if`() = assertEquals(1, checker.read("NestedIfElse3"))
+    fun `Lift else when there is no else if`() =
+        assertAll("NestedIfElse3", "7:11: Lift else and add return in if block.")
 
     @Test
-    fun `Skip else if`() = assertEquals(0, checker.read("NestedIfElse4"))
+    fun `Skip else if`() = assertAll("NestedIfElse4")
 
     @Test
-    fun `Skip block with jump statement`() = assertEquals(0, checker.read("NestedIfElse5"))
+    fun `Skip block with jump statement`() = assertAll("NestedIfElse5")
 
     @Test
-    fun `Capture trailing non-ifs`() = assertEquals(1, checker.read("NestedIfElse6"))
+    fun `Capture trailing non-ifs`() = assertAll("NestedIfElse6", "5:9: Invert if condition.")
 
     @Test
     fun `Skip recursive if-else because it is not safe to return in inner blocks`() =
-        assertEquals(0, checker.read("NestedIfElse7"))
+        assertAll("NestedIfElse7")
 }

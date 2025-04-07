@@ -32,6 +32,15 @@ internal val DetailAST.minLineNo: Int
             children.minOf { it.minLineNo }
         }
 
+internal val DetailAST.firstMostChild: DetailAST
+    get() {
+        var last = this
+        while (last.firstChild != null) {
+            last = last.firstChild
+        }
+        return last
+    }
+
 internal val DetailAST.lastMostChild: DetailAST
     get() {
         var last = this

@@ -1,21 +1,20 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class UnnecessarySwitchCheckTest {
-    private val checker = treeWalkerCheckerOf<UnnecessarySwitchCheck>()
-
-    @Test
-    fun `Rule properties`() = UnnecessarySwitchCheck().assertProperties()
+class UnnecessarySwitchCheckTest : CheckTest() {
+    override val check = UnnecessarySwitchCheck()
 
     @Test
-    fun `Multiple switch branches`() = assertEquals(0, checker.read("UnnecessarySwitch1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Single switch branch`() = assertEquals(1, checker.read("UnnecessarySwitch2"))
+    fun `Multiple switch branches`() = assertAll("UnnecessarySwitch1")
 
     @Test
-    fun `Skip single branch if it has fall through condition`() =
-        assertEquals(0, checker.read("UnnecessarySwitch3"))
+    fun `Single switch branch`() =
+        assertAll("UnnecessarySwitch2", "5:9: Replace switch with if condition.")
+
+    @Test
+    fun `Skip single branch if it has fall through condition`() = assertAll("UnnecessarySwitch3")
 }

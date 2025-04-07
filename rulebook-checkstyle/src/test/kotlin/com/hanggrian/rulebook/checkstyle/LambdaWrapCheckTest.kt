@@ -1,25 +1,24 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class LambdaWrapCheckTest {
-    private val checker = treeWalkerCheckerOf<LambdaWrapCheck>()
-
-    @Test
-    fun `Rule properties`() = LambdaWrapCheck().assertProperties()
+class LambdaWrapCheckTest : CheckTest() {
+    override val check = LambdaWrapCheck()
 
     @Test
-    fun `Single-line lambda`() = assertEquals(0, checker.read("LambdaWrap1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Multiline lambda expression with newline`() = assertEquals(0, checker.read("LambdaWrap2"))
+    fun `Single-line lambda`() = assertAll("LambdaWrap1")
+
+    @Test
+    fun `Multiline lambda expression with newline`() = assertAll("LambdaWrap2")
 
     @Test
     fun `Multiline lambda expression without newline`() =
-        assertEquals(1, checker.read("LambdaWrap3"))
+        assertAll("LambdaWrap3", "8:26: Put newline after ->.")
 
     @Test
     fun `Multiline lambda blocked expression without newline`() =
-        assertEquals(1, checker.read("LambdaWrap4"))
+        assertAll("LambdaWrap4", "10:21: Put newline after ->.")
 }

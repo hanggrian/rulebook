@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
+import com.hanggrian.rulebook.checkstyle.internals.firstMostChild
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
 import com.hanggrian.rulebook.checkstyle.internals.minLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
@@ -28,7 +29,7 @@ public class AssignmentWrapCheck : RulebookAstCheck() {
         expr
             .takeUnless { it.minLineNo == node.lineNo + 1 }
             ?: return
-        log(expr, Messages[MSG])
+        log(expr.firstMostChild, Messages[MSG])
     }
 
     private companion object {

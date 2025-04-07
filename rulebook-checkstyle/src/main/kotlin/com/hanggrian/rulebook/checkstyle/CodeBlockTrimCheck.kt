@@ -8,6 +8,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
+import kotlin.math.max
+import kotlin.math.min
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#code-block-trim) */
 public class CodeBlockTrimCheck : RulebookAstCheck() {
@@ -43,11 +45,13 @@ public class CodeBlockTrimCheck : RulebookAstCheck() {
             }
 
         // checks for violation
-        if (lcurlySibling.minLineNo - lcurly.lineNo > 1) {
-            log(lcurlySibling, Messages[MSG_FIRST])
+        val lcurlySiblingLineNo = min(lcurlySibling.lineNo, lcurlySibling.minLineNo)
+        val rcurlySiblingLineNo = max(rcurlySibling.lineNo, rcurlySibling.maxLineNo)
+        if (lcurlySiblingLineNo - lcurly.lineNo > 1) {
+            log(lcurlySiblingLineNo - 1, Messages[MSG_FIRST])
         }
-        if (rcurly.lineNo - rcurlySibling.maxLineNo > 1) {
-            log(rcurlySibling, Messages[MSG_LAST])
+        if (rcurly.lineNo - rcurlySiblingLineNo > 1) {
+            log(rcurlySiblingLineNo + 1, Messages[MSG_LAST])
         }
     }
 

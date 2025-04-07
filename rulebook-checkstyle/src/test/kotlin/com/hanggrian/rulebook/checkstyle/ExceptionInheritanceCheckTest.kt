@@ -1,17 +1,21 @@
 package com.hanggrian.rulebook.checkstyle
 
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
-class ExceptionInheritanceCheckTest {
-    private val checker = treeWalkerCheckerOf<ExceptionInheritanceCheck>()
-
-    @Test
-    fun `Rule properties`() = ExceptionInheritanceCheck().assertProperties()
+class ExceptionInheritanceCheckTest : CheckTest() {
+    override val check = ExceptionInheritanceCheck()
 
     @Test
-    fun `Extend user exceptions`() = assertEquals(0, checker.read("ExceptionInheritance1"))
+    fun `Rule properties`() = check.assertProperties()
 
     @Test
-    fun `Extend non-user exceptions`() = assertEquals(2, checker.read("ExceptionInheritance2"))
+    fun `Extend user exceptions`() = assertAll("ExceptionInheritance1")
+
+    @Test
+    fun `Extend non-user exceptions`() =
+        assertAll(
+            "ExceptionInheritance2",
+            "4:23: Extend from class Exception.",
+            "6:23: Extend from class Exception.",
+        )
 }
