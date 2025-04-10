@@ -40,7 +40,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
 
         // checks for violation
         kdocText
-            .takeUnless { it.text.trimComment().lastOrNull() in END_PUNCTUATIONS }
+            .takeUnless { it.text.lastOrNull() in END_PUNCTUATIONS }
             ?: return
         emit(kdocText.endOffset, Messages.get(MSG, kdocTagName.text), false)
     }
@@ -68,12 +68,6 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
 
         private const val MSG = "block.tag.punctuation"
 
-        private val END_PUNCTUATIONS = setOf('.', ')')
-
-        private fun String.trimComment() =
-            indexOf("//")
-                .takeUnless { it == -1 }
-                ?.let { substring(0, it).trimEnd() }
-                ?: this
+        private val END_PUNCTUATIONS = setOf('.', '!', '?', ')')
     }
 }

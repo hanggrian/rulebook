@@ -31,7 +31,7 @@ public class AbstractClassDefinitionCheck : RulebookAstCheck() {
             ?.takeIf { n ->
                 n
                     .findFirstToken(OBJBLOCK)
-                    ?.children
+                    ?.children()
                     .orEmpty()
                     .none { it.type == METHOD_DEF && it.hasModifier(ABSTRACT) }
             } ?: return

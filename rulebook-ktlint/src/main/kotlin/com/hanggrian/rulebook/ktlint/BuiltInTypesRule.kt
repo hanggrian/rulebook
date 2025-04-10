@@ -33,7 +33,7 @@ public class BuiltInTypesRule : RulebookRule(ID) {
                         path
                 }
 
-                else -> node to node.qualifierName
+                else -> node to node.text.qualifierName
             }
 
         // checks for violation

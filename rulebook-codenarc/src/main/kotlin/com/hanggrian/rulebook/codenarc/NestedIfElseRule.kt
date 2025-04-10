@@ -57,14 +57,15 @@ public class NestedIfElseRule : RulebookAstRule() {
             // checks for violation
             val `else` = `if`.elseBlock
             if (!`else`.isEmpty) {
-                `else`.takeUnless { it is IfStatement } ?: return
+                `else`
+                    .takeUnless { it is IfStatement }
+                    ?: return
                 addViolation(`else`, Messages[MSG_LIFT])
                 return
             }
             `if`
-                .takeUnless { it.hasJumpStatement() }
-                ?.ifBlock
-                ?.takeIf { it.hasMultipleLines() }
+                .ifBlock
+                ?.takeIf { !it.hasJumpStatement() && it.hasMultipleLines() }
                 ?: return
             addViolation(`if`, Messages[MSG_INVERT])
         }

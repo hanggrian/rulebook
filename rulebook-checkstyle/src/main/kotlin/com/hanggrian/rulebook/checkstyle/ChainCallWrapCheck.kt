@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import com.hanggrian.rulebook.checkstyle.internals.Messages
 import com.hanggrian.rulebook.checkstyle.internals.contains
 import com.hanggrian.rulebook.checkstyle.internals.isMultiline
-import com.hanggrian.rulebook.checkstyle.internals.lastMostChild
+import com.hanggrian.rulebook.checkstyle.internals.lastLeaf
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_CALL
@@ -30,7 +30,7 @@ public class ChainCallWrapCheck : RulebookAstCheck() {
 
         // checks for violation
         while (dot != null) {
-            val dotSibling = dot.firstChild?.lastMostChild
+            val dotSibling = dot.firstChild?.lastLeaf()
             if (dotSibling != null) {
                 if ((dotSibling.type == RPAREN || dotSibling.type == RCURLY) &&
                     dotSibling.lineNo != dotSibling.previousSibling?.lineNo

@@ -22,5 +22,8 @@ class AssignmentWrapCheckTest : CheckTest() {
     fun `Multiline variable but single-line value`() = assertAll("AssignmentWrap4")
 
     @Test
-    fun `Skip lambda initializers`() = assertAll("AssignmentWrap5")
+    fun `Allow comments after assign operator`() = assertAll("AssignmentWrap5")
+
+    @Test
+    fun `Skip Lambda initializers`() = assertAll("AssignmentWrap6")
 }

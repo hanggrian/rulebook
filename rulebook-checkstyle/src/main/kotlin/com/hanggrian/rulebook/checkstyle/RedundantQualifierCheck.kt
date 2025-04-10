@@ -59,7 +59,7 @@ public class RedundantQualifierCheck : RulebookAstCheck() {
 
         val DetailAST.dotIdentTexts: List<String>
             get() =
-                children
+                children()
                     .filter { it.type == IDENT }
                     .map { it.text }
                     .toList()

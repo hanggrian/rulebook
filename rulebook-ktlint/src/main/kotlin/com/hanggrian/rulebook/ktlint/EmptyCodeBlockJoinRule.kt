@@ -3,8 +3,10 @@ package com.hanggrian.rulebook.ktlint
 import com.hanggrian.rulebook.ktlint.internals.Messages
 import com.hanggrian.rulebook.ktlint.internals.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.BODY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CATCH
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_BODY
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.DO_WHILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUNCTION_LITERAL
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
@@ -26,9 +28,13 @@ public class EmptyCodeBlockJoinRule : RulebookRule(ID) {
         // skip control flows that can have multi-blocks
         node
             .treeParent
-            .elementType
-            .takeUnless { it == TRY || it == CATCH || it == THEN || it == ELSE }
-            ?: return
+            .takeUnless {
+                it.elementType == TRY ||
+                    it.elementType == CATCH ||
+                    it.elementType == THEN ||
+                    it.elementType == ELSE ||
+                    (it.elementType == BODY && it.treeParent.elementType == DO_WHILE)
+            } ?: return
 
         // obtain corresponding braces
         node

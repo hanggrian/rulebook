@@ -1,11 +1,16 @@
 package com.hanggrian.rulebook.checkstyle;
 
-import java.util.function.Function;
-
 class AssignmentWrap {
     void foo(Bar bar) {
-        Function<Integer> bar = (a) -> {
-            System.out.println(a);
-        };
+        int bar =
+            // Comment
+            1 +
+                2;
+        int baz = /* Short comment */
+            1 +
+                2;
+        int qux =
+            /** Long comment */1 +
+            2;
     }
 }

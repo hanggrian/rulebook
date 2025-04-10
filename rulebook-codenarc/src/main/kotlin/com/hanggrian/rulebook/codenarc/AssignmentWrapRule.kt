@@ -23,14 +23,7 @@ public class AssignmentWrapRule : RulebookAstRule() {
         override fun visitBinaryExpression(node: BinaryExpression) {
             super.visitBinaryExpression(node)
 
-            // target multiline assignment
-            val operation =
-                node
-                    .operation
-                    .takeIf { it.type == ASSIGN && node.rightExpression.isMultiline() }
-                    ?: return
-
-            // checks for violation
+            // skip lambda and collection initializers
             val expression =
                 node
                     .rightExpression
@@ -38,8 +31,19 @@ public class AssignmentWrapRule : RulebookAstRule() {
                         it is ListExpression ||
                             it is MapExpression ||
                             it is ClosureExpression
-                    }?.takeUnless { it.lineNumber == operation.startLine + 1 }
+                    } ?: return
+
+            // find multiline assignee
+            val operation =
+                node
+                    .operation
+                    .takeIf { it.type == ASSIGN && expression.isMultiline() }
                     ?: return
+
+            // checks for violation
+            expression
+                .takeIf { it.lineNumber == operation.startLine }
+                ?: return
             addViolation(expression, Messages[MSG])
         }
     }

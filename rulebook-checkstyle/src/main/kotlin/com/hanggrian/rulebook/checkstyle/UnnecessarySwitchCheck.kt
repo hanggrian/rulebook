@@ -15,13 +15,13 @@ public class UnnecessarySwitchCheck : RulebookAstCheck() {
         // target single entry
         val caseGroup =
             node
-                .children
+                .children()
                 .singleOrNull { it.type == CASE_GROUP }
                 ?: return
 
         // checks for violation
         caseGroup
-            .children
+            .children()
             .takeUnless { cases2 -> cases2.count { it.type == LITERAL_CASE } > 1 }
             ?: return
         log(node, Messages[MSG])

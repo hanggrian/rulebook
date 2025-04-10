@@ -40,7 +40,7 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
 
         // checks for violation
         text
-            .takeUnless { it.text.trimComment().trimEnd().lastOrNull() in END_PUNCTUATIONS }
+            .takeUnless { it.text.lastOrNull() in END_PUNCTUATIONS }
             ?: return
         log(text.lineNumber, text.columnNumber, Messages.get(MSG, tagLiteral.text))
     }
@@ -48,8 +48,6 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
     private companion object {
         const val MSG = "block.tag.punctuation"
 
-        val END_PUNCTUATIONS = setOf('.', ')')
-
-        fun String.trimComment() = substringBefore("//").trimEnd()
+        val END_PUNCTUATIONS = setOf('.', '!', '?', ')')
     }
 }

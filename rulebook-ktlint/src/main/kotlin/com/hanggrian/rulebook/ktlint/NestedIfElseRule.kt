@@ -64,16 +64,14 @@ public class NestedIfElseRule : RulebookRule(ID) {
         val `else` = `if`.findChildByType(ELSE)
         if (`else` != null) {
             `else`
-                .takeUnless { IF in it }
-                ?.takeIf { it.hasMultipleLines() }
+                .takeIf { IF !in it && it.hasMultipleLines() }
                 ?: return
             emit(`if`.findChildByType(ELSE_KEYWORD)!!.startOffset, Messages[MSG_LIFT], false)
             return
         }
         `if`
-            .takeUnless { it.hasJumpStatement() }
-            ?.findChildByType(THEN)
-            ?.takeIf { it.hasMultipleLines() }
+            .findChildByType(THEN)
+            ?.takeIf { !it.hasJumpStatement() && it.hasMultipleLines() }
             ?: return
         emit(`if`.startOffset, Messages[MSG_INVERT], false)
     }

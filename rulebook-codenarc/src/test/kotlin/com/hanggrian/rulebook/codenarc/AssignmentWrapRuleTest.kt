@@ -66,6 +66,25 @@ class AssignmentWrapRuleTest : AbstractRuleTestCase<AssignmentWrapRule>() {
         )
 
     @Test
+    fun `Allow comments after assign operator`() =
+        assertNoViolations(
+            """
+            def foo() {
+                var bar =
+                    // Comment
+                    1 +
+                        2;
+                var baz = /* Short comment */
+                    1 +
+                        2;
+                var qux =
+                    /** Long comment */1 +
+                    2;
+            }
+            """.trimIndent(),
+        )
+
+    @Test
     fun `Skip lambda initializers`() =
         assertNoViolations(
             """
@@ -73,10 +92,12 @@ class AssignmentWrapRuleTest : AbstractRuleTestCase<AssignmentWrapRule>() {
                 var bar = (a) -> {
                     println(a)
                 }
-
                 var baz = { a ->
                     println(a)
                 }
+
+                var bar2 = (a) -> println(a)
+                var baz2 = { a -> println(a) }
             }
             """.trimIndent(),
         )
@@ -90,7 +111,6 @@ class AssignmentWrapRuleTest : AbstractRuleTestCase<AssignmentWrapRule>() {
                     1,
                     2,
                 ]
-
                 var baz = [
                     a: 1,
                     b: 2,

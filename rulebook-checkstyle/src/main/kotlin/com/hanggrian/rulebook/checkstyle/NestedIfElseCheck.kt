@@ -36,7 +36,7 @@ public class NestedIfElseCheck : RulebookAstCheck() {
 
         // get last if
         var `if`: DetailAST? = null
-        for (child in node.children.asIterable().reversed()) {
+        for (child in node.children().asIterable().reversed()) {
             when {
                 child.type == LITERAL_IF -> {
                     `if` = child
@@ -55,15 +55,13 @@ public class NestedIfElseCheck : RulebookAstCheck() {
         val `else` = `if`.findFirstToken(LITERAL_ELSE)
         if (`else` != null) {
             `else`
-                .takeUnless { LITERAL_IF in it }
-                ?.takeIf { it.hasMultipleLines() }
+                .takeIf { LITERAL_IF !in it && it.hasMultipleLines() }
                 ?: return
             log(`else`, Messages[MSG_LIFT])
             return
         }
         `if`
-            .takeUnless { it.hasJumpStatement() }
-            ?.takeIf { it.hasMultipleLines() }
+            .takeIf { !it.hasJumpStatement() && it.hasMultipleLines() }
             ?: return
         log(`if`, Messages[MSG_INVERT])
     }
@@ -74,7 +72,7 @@ public class NestedIfElseCheck : RulebookAstCheck() {
 
         fun DetailAST.hasMultipleLines() =
             findFirstToken(SLIST)
-                ?.children
+                ?.children()
                 .orEmpty()
                 .filterNot { it.type == RCURLY || it.type == SEMI }
                 .let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }

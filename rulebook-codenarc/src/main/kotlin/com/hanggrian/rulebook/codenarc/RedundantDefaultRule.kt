@@ -1,12 +1,8 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.codenarc.internals.Messages
-import org.codehaus.groovy.ast.stmt.BlockStatement
-import org.codehaus.groovy.ast.stmt.ContinueStatement
-import org.codehaus.groovy.ast.stmt.ReturnStatement
-import org.codehaus.groovy.ast.stmt.Statement
+import com.hanggrian.rulebook.codenarc.internals.hasJumpStatement
 import org.codehaus.groovy.ast.stmt.SwitchStatement
-import org.codehaus.groovy.ast.stmt.ThrowStatement
 import org.codenarc.rule.AbstractAstVisitor
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-default) */
@@ -17,11 +13,6 @@ public class RedundantDefaultRule : RulebookAstRule() {
 
     private companion object {
         const val MSG = "redundant.default"
-
-        fun Statement.isJumpStatementExceptBreak() =
-            this is ReturnStatement ||
-                this is ThrowStatement ||
-                this is ContinueStatement
     }
 
     public class Visitor : AbstractAstVisitor() {
@@ -34,17 +25,8 @@ public class RedundantDefaultRule : RulebookAstRule() {
             // checks for violation
             node
                 .caseStatements
-                .takeIf { cases2 ->
-                    cases2.all { c ->
-                        if (c.code.isJumpStatementExceptBreak()) {
-                            return@all true
-                        }
-                        (c.code as? BlockStatement)
-                            ?.statements
-                            .orEmpty()
-                            .any { it.isJumpStatementExceptBreak() }
-                    }
-                } ?: return
+                .takeIf { cases2 -> cases2.all { it.code.hasJumpStatement(false) } }
+                ?: return
             addViolation(default, Messages[MSG])
         }
     }

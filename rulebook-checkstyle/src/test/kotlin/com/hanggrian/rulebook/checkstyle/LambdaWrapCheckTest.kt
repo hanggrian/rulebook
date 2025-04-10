@@ -16,9 +16,9 @@ class LambdaWrapCheckTest : CheckTest() {
 
     @Test
     fun `Multiline lambda expression without newline`() =
-        assertAll("LambdaWrap3", "8:26: Put newline after ->.")
-
-    @Test
-    fun `Multiline lambda blocked expression without newline`() =
-        assertAll("LambdaWrap4", "10:21: Put newline after ->.")
+        assertAll(
+            "LambdaWrap3",
+            "7:50: Put newline after ->.",
+            "11:28: Put newline after ->.",
+        )
 }

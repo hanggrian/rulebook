@@ -47,6 +47,9 @@ class EmptyCodeBlockJoinRuleTest {
                 } else if (false) {
                 } else {
                 }
+
+                do {
+                } while (true)
             }
             """.trimIndent(),
         ).hasNoLintViolations()

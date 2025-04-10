@@ -4,10 +4,9 @@ class EmptyCodeBlockJoin {
     fun foo() {}
 
     fun bar() {
-        if (true) {
-        } else if (false) {
-        } else {
-        }
+        while (true) {}
+        do {
+        } while (false)
     }
 
     class Baz(val baz: (Int) -> Unit = {})

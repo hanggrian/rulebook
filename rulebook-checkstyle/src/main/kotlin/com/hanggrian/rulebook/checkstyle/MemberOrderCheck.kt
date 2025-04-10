@@ -19,7 +19,7 @@ public class MemberOrderCheck : RulebookAstCheck() {
         // in Java, static members have specific keyword
         var lastChildType: Int? = null
         node
-            .children
+            .children()
             .filter {
                 it.type == VARIABLE_DEF ||
                     it.type == CTOR_DEF ||

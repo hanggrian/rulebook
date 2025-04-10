@@ -33,7 +33,7 @@ public class ParameterWrapCheck : RulebookAstCheck() {
         val parameters =
             node
                 .takeIf { rparen.lineNo > lparen.lineNo }
-                ?.children
+                ?.children()
                 ?.filterNot { it.type == COMMA }
                 ?.toList()
                 ?.takeUnless { it.isEmpty() }

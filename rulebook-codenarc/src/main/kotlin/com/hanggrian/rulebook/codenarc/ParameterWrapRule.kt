@@ -6,6 +6,8 @@ import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
 import org.codehaus.groovy.ast.expr.ConstructorCallExpression
 import org.codehaus.groovy.ast.expr.Expression
+import org.codehaus.groovy.ast.expr.ListExpression
+import org.codehaus.groovy.ast.expr.MapExpression
 import org.codehaus.groovy.ast.expr.MethodCall
 import org.codehaus.groovy.ast.expr.MethodCallExpression
 import org.codenarc.rule.AbstractAstVisitor
@@ -23,12 +25,17 @@ public class ParameterWrapRule : RulebookAstRule() {
     public class Visitor : AbstractAstVisitor() {
         override fun visitConstructorCallExpression(node: ConstructorCallExpression) {
             super.visitConstructorCallExpression(node)
-            visitCallExpression(node)
+            visitAnyCallExpression(node)
         }
 
         override fun visitMethodCallExpression(node: MethodCallExpression) {
             super.visitMethodCallExpression(node)
-            visitCallExpression(node)
+            visitAnyCallExpression(node)
+        }
+
+        private fun <T> visitAnyCallExpression(node: T) where T : Expression, T : MethodCall {
+            val arguments = node.arguments as? ArgumentListExpression ?: return
+            process(arguments.expressions)
         }
 
         override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
@@ -36,9 +43,14 @@ public class ParameterWrapRule : RulebookAstRule() {
             process(node.parameters.asList())
         }
 
-        private fun <T> visitCallExpression(node: T) where T : Expression, T : MethodCall {
-            val arguments = node.arguments as? ArgumentListExpression ?: return
-            process(arguments.expressions)
+        override fun visitListExpression(node: ListExpression) {
+            super.visitListExpression(node)
+            process(node.expressions)
+        }
+
+        override fun visitMapExpression(node: MapExpression) {
+            super.visitMapExpression(node)
+            process(node.mapEntryExpressions)
         }
 
         private fun process(parameters: List<ASTNode>) {

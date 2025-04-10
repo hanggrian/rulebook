@@ -19,29 +19,30 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
         assertNoViolations(
             """
             def foo() {
-                println(1 + 2 - 3)
+                var bar = 1 * 2
+                println(3 + 4 - 5)
             }
             """.trimIndent(),
         )
 
     @Test
     fun `NL-wrapped operators in multi-line statement`() =
-        assertTwoViolations(
+        assertViolations(
             """
             def foo() {
-                println(
+                var bar =
                     1
-                        + 2
-                        - 3
+                        * 2
+                println(
+                    3
+                        + 4
+                        - 5
                 )
             }
             """.trimIndent(),
-            4,
-            "+ 2",
-            "Omit newline before operator '+'.",
-            5,
-            "- 3",
-            "Omit newline before operator '-'.",
+            violationOf(4, "* 2", "Omit newline before operator '*'."),
+            violationOf(7, "+ 4", "Omit newline before operator '+'."),
+            violationOf(8, "- 5", "Omit newline before operator '-'."),
         )
 
     @Test
@@ -49,10 +50,13 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
         assertNoViolations(
             """
             def foo() {
+                var bar =
+                    1 *
+                        2
                 println(
-                    1 +
-                        2 -
-                        3
+                    3 +
+                        4 -
+                        5
                 )
             }
             """.trimIndent(),
@@ -60,36 +64,43 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
 
     @Test
     fun `Multiline operand need to be wrapped`() =
-        assertTwoViolations(
+        assertViolations(
             """
             def foo() {
-                println(
-                    1 + Math.min(
+                var bar =
+                    1 * Math.min(
                         2,
                         3
+                    )
+                println(
+                    4 + Math.min(
+                        5,
+                        6
                     ) - Math.max(
-                        4,
-                        5
+                        7,
+                        8
                     )
                 )
             }
             """.trimIndent(),
-            3,
-            "1 + Math.min(",
-            "Put newline before operator '+'.",
-            6,
-            ") - Math.max(",
-            "Put newline before operator '-'.",
+            violationOf(3, "1 * Math.min(", "Put newline before operator '*'."),
+            violationOf(8, "4 + Math.min(", "Put newline before operator '+'."),
+            violationOf(11, ") - Math.max(", "Put newline before operator '-'."),
         )
 
     @Test
-    fun `Skip assign operator`() =
+    fun `Allow comments after operator`() =
         assertNoViolations(
             """
             def foo() {
                 var bar =
-                    1 +
+                    1 * // Comment
                         2
+                println(
+                    3 + /* Short comment */
+                        4 -
+                        /** Long comment */ 5
+                )
             }
             """.trimIndent(),
         )

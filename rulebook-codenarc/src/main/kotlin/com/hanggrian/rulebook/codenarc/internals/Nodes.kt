@@ -2,6 +2,8 @@ package com.hanggrian.rulebook.codenarc.internals
 
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.AnnotatedNode
+import org.codehaus.groovy.ast.expr.Expression
+import org.codehaus.groovy.ast.expr.TupleExpression
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.BreakStatement
 import org.codehaus.groovy.ast.stmt.CaseStatement
@@ -11,26 +13,47 @@ import org.codehaus.groovy.ast.stmt.ReturnStatement
 import org.codehaus.groovy.ast.stmt.Statement
 import org.codehaus.groovy.ast.stmt.ThrowStatement
 
+/** Returns true if name can be found in the node's annotation list. */
 internal fun AnnotatedNode.hasAnnotation(name: String): Boolean =
     annotations.any { it.classNode.name == name }
 
-internal fun Statement.hasJumpStatement(): Boolean {
-    val statements =
-        when (this) {
-            is IfStatement -> ifBlock
-            is CaseStatement -> code
-            else -> return false
-        }
-    return if (statements.isJumpStatement()) {
-        true
-    } else {
-        (statements as? BlockStatement)
-            ?.statements
-            .orEmpty()
-            .any { it.isJumpStatement() }
+/** Returns this node or first statement of this code block. */
+internal fun Statement.firstStatement(): Statement =
+    (this as? BlockStatement)
+        ?.statements
+        ?.firstOrNull()
+        ?: this
+
+/** Returns this node or last expression of this code block. */
+internal fun Expression.lastExpression(): Expression =
+    (this as? TupleExpression)
+        ?.expressions
+        ?.lastOrNull()
+        ?: this
+
+/**
+ * Returns true if this node or code block of this node contains a jump statement.
+ * In Java and Groovy, a switch-case branch may have a break statement without exiting current code
+ * block.
+ */
+internal fun Statement.hasJumpStatement(includeBreakStatement: Boolean = true): Boolean =
+    (this as? BlockStatement)
+        ?.statements
+        ?.any { it.isJumpStatement(includeBreakStatement) }
+        ?: isJumpStatement(includeBreakStatement)
+
+private fun Statement.isJumpStatement(includeBreakStatement: Boolean): Boolean {
+    var predicate =
+        this is ReturnStatement ||
+            this is ThrowStatement ||
+            this is ContinueStatement
+    if (includeBreakStatement) {
+        predicate = predicate || this is BreakStatement
     }
+    return predicate
 }
 
+/** Determine whether this node spans multiple lines of code. */
 internal fun ASTNode.isMultiline(): Boolean =
     when (this) {
         is IfStatement ->
@@ -48,9 +71,3 @@ internal fun ASTNode.isMultiline(): Boolean =
 
         else -> lastLineNumber > lineNumber
     }
-
-private fun Statement.isJumpStatement() =
-    this is ReturnStatement ||
-        this is ThrowStatement ||
-        this is BreakStatement ||
-        this is ContinueStatement

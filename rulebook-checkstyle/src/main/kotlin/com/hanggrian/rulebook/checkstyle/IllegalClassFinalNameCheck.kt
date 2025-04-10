@@ -7,6 +7,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.CLASS_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ENUM_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.RECORD_DEF
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
 public class IllegalClassFinalNameCheck : RulebookAstCheck() {
@@ -20,8 +21,9 @@ public class IllegalClassFinalNameCheck : RulebookAstCheck() {
         intArrayOf(
             CLASS_DEF,
             INTERFACE_DEF,
-            ENUM_DEF,
             ANNOTATION_DEF,
+            ENUM_DEF,
+            RECORD_DEF,
         )
 
     override fun visitToken(node: DetailAST) {

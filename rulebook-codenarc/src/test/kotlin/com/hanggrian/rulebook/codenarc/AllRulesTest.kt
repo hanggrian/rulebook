@@ -14,7 +14,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class AllRulesTest : AbstractTestCase() {
-    val rules =
+    private val rules =
         setOf<Rule>(
             AssignmentWrapRule(),
             BuiltInFunctionPositionRule(),
@@ -26,6 +26,7 @@ class AllRulesTest : AbstractTestCase() {
             IllegalVariableNameRule(),
             ImportOrderRule(),
             InnerClassPositionRule(),
+            LambdaWrapRule(),
             MemberOrderRule(),
             MemberSeparatorRule(),
             NestedIfElseRule(),
@@ -127,6 +128,16 @@ class AllRulesTest : AbstractTestCase() {
                 "Invert 'if' condition.",
             ),
             violationOf(606, "if (environment.isReloadEnabled()) {", "Invert 'if' condition."),
+            violationOf(
+                691,
+                "ant.native2ascii(src: src, dest: dest,",
+                "Break each parameter into newline.",
+            ),
+            violationOf(
+                692,
+                "includes: \"**/*.properties\", encoding: \"UTF-8\")",
+                "Break each parameter into newline.",
+            ),
             violationOf(
                 722,
                 "if (project.tasks.findByName(\"runScript\") == null) {",

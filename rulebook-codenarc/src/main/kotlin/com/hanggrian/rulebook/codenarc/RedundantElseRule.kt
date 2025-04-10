@@ -30,7 +30,7 @@ public class RedundantElseRule : RulebookAstRule() {
 
                 // checks for violation
                 while (`if` != null) {
-                    if (!`if`.hasJumpStatement()) {
+                    if (!`if`.ifBlock.hasJumpStatement()) {
                         return
                     }
                     val lastElse = `if`.elseBlock

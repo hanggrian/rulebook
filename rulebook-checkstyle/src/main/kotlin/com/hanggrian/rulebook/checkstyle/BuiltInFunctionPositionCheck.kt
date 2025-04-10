@@ -19,7 +19,7 @@ public class BuiltInFunctionPositionCheck : RulebookAstCheck() {
         // in Java, static members have specific keyword
         val methods =
             node
-                .children
+                .children()
                 .filter { it.type == METHOD_DEF && !it.hasModifier(LITERAL_STATIC) }
                 .toList()
 

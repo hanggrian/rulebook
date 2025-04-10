@@ -186,6 +186,7 @@
 
   <!-- Wrapping -->
   <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.LambdaWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.OperatorWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ParameterWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.StatementWrapRule"/>

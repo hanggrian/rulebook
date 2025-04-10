@@ -4,8 +4,9 @@ import java.util.function.Function;
 
 class LambdaWrap {
     void foo() {
-        bar(param -> new StringBuilder().append("").toString());
+        Function<Int, String> bar = param -> new StringBuilder().append("").toString();
+        baz(param -> { new StringBuilder().append("").toString(); });
     }
 
-    void bar(Function<Int, String> function) {}
+    void baz(Function<Int, String> function) {}
 }

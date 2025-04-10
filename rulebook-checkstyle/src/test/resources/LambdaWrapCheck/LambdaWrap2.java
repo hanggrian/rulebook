@@ -4,13 +4,18 @@ import java.util.function.Function;
 
 class LambdaWrap {
     void foo() {
-        bar(
-            param ->
+        Function<Int, String> bar = param ->
+            new StringBuilder()
+                .append("")
+                .toString();
+        baz(
+            param -> {
                 new StringBuilder()
                     .append("")
-                    .toString()
+                    .toString();
+            }
         );
     }
 
-    void bar(Function<Int, String> function) {}
+    void baz(Function<Int, String> function) {}
 }

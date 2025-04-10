@@ -27,7 +27,7 @@ public class CaseSeparatorCheck : RulebookAstCheck() {
         // checks for violation
         val slist = node.findFirstToken(SLIST) ?: return
         if (slist.isMultiline() ||
-            node.children.any { it.isComment() }
+            node.children().any { it.isComment() }
         ) {
             caseGroup
                 .takeIf { it.minLineNo != slist.maxLineNo + 2 }

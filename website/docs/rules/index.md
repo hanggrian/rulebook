@@ -66,7 +66,7 @@ question mark or exclamation mark.
 
 ### Built-in types
 
-Do not use types from `java.*` when there are Kotlin equivalents.
+Prefer to use built-in types provided by the language.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -3733,27 +3733,43 @@ line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
-    ```java hl_lines="5"
+    ```java hl_lines="4"
     int sum =
         IntStream
             .range(0, 10)
-            .map(
-              i -> i
+            .map(i -> i
                 * 2
             ).sum();
+    ```
+=== "Groovy"
+    ```groovy hl_lines="4"
+    var sum =
+        IntStream
+            .range(0, 10)
+            .map { i -> i
+                * 2
+            }.sum()
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
-    ```java hl_lines="6"
+    ```java hl_lines="5"
     int sum =
         IntStream
             .range(0, 10)
-            .map(
-                i ->
-                  i * 2
+            .map(i ->
+                i * 2
             ).sum();
+    ```
+=== "Groovy"
+    ```groovy hl_lines="5"
+    var sum =
+        IntStream
+            .range(0, 10)
+            .map { i ->
+                i * 2
+            }.sum()
     ```
 
 ### Operator wrap

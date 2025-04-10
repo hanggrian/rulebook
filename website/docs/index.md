@@ -91,7 +91,7 @@ Chain call wrap[^kotlin-wrap-chained-calls] | :material-check-all:{ .xl } | :mat
 Elvis wrap[^common-trailing-elvis] | | | :material-check-all:{ .xl }
 Empty code block join[^google-braces-empty-blocks] | [:material-check:{ .xl }](https://checkstyle.org/checks/regexp/regexpsinglelinejava.html) | :material-close:{ .xl } | :material-check-all:{ .xl }
 Infix call wrap[^android-where-to-break] | | | :material-check-all:{ .xl }
-Lambda wrap[^google-line-wrapping-where-to-break] | :material-check-all:{ .xl } | :material-close:{ .xl } | | :material-close:{ .xl }
+Lambda wrap[^google-line-wrapping-where-to-break] | :material-check-all:{ .xl } | :material-check-all:{ .xl } | | :material-close:{ .xl }
 Operator wrap[^android-where-to-break] | [:material-check:{ .xl }](https://checkstyle.sourceforge.io/checks/whitespace/operatorwrap.html) | :material-check-all:{ .xl } | [:material-check:{ .xl }](https://pinterest.github.io/ktlint/latest/rules/standard/#condition-wrapping) | :material-close:{ .xl }
 Parameter wrap[^kotlin-class-headers] | :material-check-all:{ .xl } | :material-check-all:{ .xl } | [:material-check:{ .xl }](https://pinterest.github.io/ktlint/latest/rules/standard/#argument-list-wrapping)[:material-check:{ .xl }](https://pinterest.github.io/ktlint/latest/rules/standard/#parameter-list-wrapping) | :material-check-all:{ .xl }
 Short block comment join[^kotlin-documentation-comments] | :material-close:{ .xl } | :material-close:{ .xl } | :material-check-all:{ .xl } | :material-close:{ .xl }

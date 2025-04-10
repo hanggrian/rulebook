@@ -20,7 +20,7 @@ public class UnnecessaryParenthesesInLambdaCheck : RulebookAstCheck() {
         val parameter =
             node
                 .findFirstToken(PARAMETERS)
-                ?.children
+                ?.children()
                 ?.singleOrNull()
                 ?.takeIf {
                     (IDENT !in it.findFirstToken(TYPE)) &&

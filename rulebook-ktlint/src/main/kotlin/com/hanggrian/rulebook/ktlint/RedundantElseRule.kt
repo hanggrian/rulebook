@@ -6,6 +6,7 @@ import com.hanggrian.rulebook.ktlint.internals.hasJumpStatement
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -23,7 +24,7 @@ public class RedundantElseRule : RulebookRule(ID) {
         // checks for violation
         var `if`: ASTNode? = node
         while (`if` != null) {
-            if (!`if`.hasJumpStatement()) {
+            if (`if`.findChildByType(THEN)?.hasJumpStatement() == false) {
                 return
             }
             val lastElse = `if`.findChildByType(ELSE_KEYWORD)
