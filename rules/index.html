@@ -6487,7 +6487,7 @@ by a newline.</p>
 <h3 id="chain-call-wrap">Chain call wrap<a class="headerlink" href="#chain-call-wrap" title="Permanent link">&para;</a></h3>
 <p>Each method call in a chain should be aligned with the dot operator.</p>
 <p><strong><span class="twemoji" id="accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 6.7 1.45 3.85L17.3 12l-3.85 1.45L12 17.3l-1.45-3.85L6.7 12l3.85-1.45zM12 1 9 9l-8 3 8 3 3 8 3-8 8-3-8-3z"/></svg></span> Before</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="121:2"><input checked="checked" id="__tabbed_121_1" name="__tabbed_121" type="radio" /><input id="__tabbed_121_2" name="__tabbed_121" type="radio" /><div class="tabbed-labels"><label for="__tabbed_121_1">Java</label><label for="__tabbed_121_2">Kotlin</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="121:3"><input checked="checked" id="__tabbed_121_1" name="__tabbed_121" type="radio" /><input id="__tabbed_121_2" name="__tabbed_121" type="radio" /><input id="__tabbed_121_3" name="__tabbed_121" type="radio" /><div class="tabbed-labels"><label for="__tabbed_121_1">Java</label><label for="__tabbed_121_2">Groovy</label><label for="__tabbed_121_3">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-400-1" name="__codelineno-400-1" href="#__codelineno-400-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">senderId</span><span class="w"> </span><span class="o">=</span>
@@ -6496,28 +6496,41 @@ by a newline.</p>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-401-1" name="__codelineno-401-1" href="#__codelineno-401-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">senderId</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-401-2" name="__codelineno-401-2" href="#__codelineno-401-2"></a><span class="hll"><span class="w">    </span><span class="n">notification</span><span class="p">.</span><span class="na">getSender</span><span class="p">()</span>
-</span><a id="__codelineno-401-3" name="__codelineno-401-3" href="#__codelineno-401-3"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">takeIf</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-401-1" name="__codelineno-401-1" href="#__codelineno-401-1"></a><span class="n">var</span><span class="w"> </span><span class="n">senderId</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-401-2" name="__codelineno-401-2" href="#__codelineno-401-2"></a><span class="hll"><span class="w">    </span><span class="n">notification</span><span class="o">.</span><span class="na">getSender</span><span class="o">()</span>
+</span><a id="__codelineno-401-3" name="__codelineno-401-3" href="#__codelineno-401-3"></a><span class="hll"><span class="w">        </span><span class="o">.</span><span class="na">getId</span><span class="o">()</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-402-1" name="__codelineno-402-1" href="#__codelineno-402-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">senderId</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-402-2" name="__codelineno-402-2" href="#__codelineno-402-2"></a><span class="hll"><span class="w">    </span><span class="n">notification</span><span class="p">.</span><span class="na">getSender</span><span class="p">()</span>
+</span><a id="__codelineno-402-3" name="__codelineno-402-3" href="#__codelineno-402-3"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">takeIf</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <p><strong><span class="twemoji" id="accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 9 9l-8 3 8 3 3 8 3-8 8-3-8-3z"/></svg></span> After</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="122:2"><input checked="checked" id="__tabbed_122_1" name="__tabbed_122" type="radio" /><input id="__tabbed_122_2" name="__tabbed_122" type="radio" /><div class="tabbed-labels"><label for="__tabbed_122_1">Java</label><label for="__tabbed_122_2">Kotlin</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="122:3"><input checked="checked" id="__tabbed_122_1" name="__tabbed_122" type="radio" /><input id="__tabbed_122_2" name="__tabbed_122" type="radio" /><input id="__tabbed_122_3" name="__tabbed_122" type="radio" /><div class="tabbed-labels"><label for="__tabbed_122_1">Java</label><label for="__tabbed_122_2">Groovy</label><label for="__tabbed_122_3">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-402-1" name="__codelineno-402-1" href="#__codelineno-402-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">senderId</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-402-2" name="__codelineno-402-2" href="#__codelineno-402-2"></a><span class="hll"><span class="w">    </span><span class="n">notification</span>
-</span><a id="__codelineno-402-3" name="__codelineno-402-3" href="#__codelineno-402-3"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">getSender</span><span class="p">()</span>
-</span><a id="__codelineno-402-4" name="__codelineno-402-4" href="#__codelineno-402-4"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">getId</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-403-1" name="__codelineno-403-1" href="#__codelineno-403-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">senderId</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-403-2" name="__codelineno-403-2" href="#__codelineno-403-2"></a><span class="hll"><span class="w">    </span><span class="n">notification</span>
+</span><a id="__codelineno-403-3" name="__codelineno-403-3" href="#__codelineno-403-3"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">getSender</span><span class="p">()</span>
+</span><a id="__codelineno-403-4" name="__codelineno-403-4" href="#__codelineno-403-4"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">getId</span><span class="p">();</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-403-1" name="__codelineno-403-1" href="#__codelineno-403-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">senderId</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-403-2" name="__codelineno-403-2" href="#__codelineno-403-2"></a><span class="hll"><span class="w">    </span><span class="n">notification</span>
-</span><a id="__codelineno-403-3" name="__codelineno-403-3" href="#__codelineno-403-3"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">getSender</span><span class="p">()</span>
-</span><a id="__codelineno-403-4" name="__codelineno-403-4" href="#__codelineno-403-4"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">id</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-404-1" name="__codelineno-404-1" href="#__codelineno-404-1"></a><span class="n">var</span><span class="w"> </span><span class="n">senderId</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-404-2" name="__codelineno-404-2" href="#__codelineno-404-2"></a><span class="hll"><span class="w">    </span><span class="n">notification</span>
+</span><a id="__codelineno-404-3" name="__codelineno-404-3" href="#__codelineno-404-3"></a><span class="hll"><span class="w">        </span><span class="o">.</span><span class="na">getSender</span><span class="o">()</span>
+</span><a id="__codelineno-404-4" name="__codelineno-404-4" href="#__codelineno-404-4"></a><span class="hll"><span class="w">        </span><span class="o">.</span><span class="na">getId</span><span class="o">()</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-405-1" name="__codelineno-405-1" href="#__codelineno-405-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">senderId</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-405-2" name="__codelineno-405-2" href="#__codelineno-405-2"></a><span class="hll"><span class="w">    </span><span class="n">notification</span>
+</span><a id="__codelineno-405-3" name="__codelineno-405-3" href="#__codelineno-405-3"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">getSender</span><span class="p">()</span>
+</span><a id="__codelineno-405-4" name="__codelineno-405-4" href="#__codelineno-405-4"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">id</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -6529,8 +6542,8 @@ instead of trailing the statement.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="123:1"><input checked="checked" id="__tabbed_123_1" name="__tabbed_123" type="radio" /><div class="tabbed-labels"><label for="__tabbed_123_1">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-404-1" name="__codelineno-404-1" href="#__codelineno-404-1"></a><span class="n">user</span><span class="p">.</span><span class="na">name</span>
-<a id="__codelineno-404-2" name="__codelineno-404-2" href="#__codelineno-404-2"></a><span class="hll"><span class="w">    </span><span class="p">.</span><span class="na">takeIf</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;Unknown&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-406-1" name="__codelineno-406-1" href="#__codelineno-406-1"></a><span class="n">user</span><span class="p">.</span><span class="na">name</span>
+<a id="__codelineno-406-2" name="__codelineno-406-2" href="#__codelineno-406-2"></a><span class="hll"><span class="w">    </span><span class="p">.</span><span class="na">takeIf</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;Unknown&quot;</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -6539,9 +6552,9 @@ instead of trailing the statement.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="124:1"><input checked="checked" id="__tabbed_124_1" name="__tabbed_124" type="radio" /><div class="tabbed-labels"><label for="__tabbed_124_1">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-405-1" name="__codelineno-405-1" href="#__codelineno-405-1"></a><span class="n">user</span><span class="p">.</span><span class="na">name</span>
-<a id="__codelineno-405-2" name="__codelineno-405-2" href="#__codelineno-405-2"></a><span class="w">    </span><span class="p">.</span><span class="na">takeIf</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-405-3" name="__codelineno-405-3" href="#__codelineno-405-3"></a><span class="hll"><span class="w">    </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;Unknown&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-407-1" name="__codelineno-407-1" href="#__codelineno-407-1"></a><span class="n">user</span><span class="p">.</span><span class="na">name</span>
+<a id="__codelineno-407-2" name="__codelineno-407-2" href="#__codelineno-407-2"></a><span class="w">    </span><span class="p">.</span><span class="na">takeIf</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isNotBlank</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-407-3" name="__codelineno-407-3" href="#__codelineno-407-3"></a><span class="hll"><span class="w">    </span><span class="o">?:</span><span class="w"> </span><span class="s">&quot;Unknown&quot;</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -6549,29 +6562,38 @@ instead of trailing the statement.</p>
 <h3 id="empty-code-block-join">Empty code block join<a class="headerlink" href="#empty-code-block-join" title="Permanent link">&para;</a></h3>
 <p>Whitespace is not allowed in empty code blocks.</p>
 <p><strong><span class="twemoji" id="accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 6.7 1.45 3.85L17.3 12l-3.85 1.45L12 17.3l-1.45-3.85L6.7 12l3.85-1.45zM12 1 9 9l-8 3 8 3 3 8 3-8 8-3-8-3z"/></svg></span> Before</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="125:2"><input checked="checked" id="__tabbed_125_1" name="__tabbed_125" type="radio" /><input id="__tabbed_125_2" name="__tabbed_125" type="radio" /><div class="tabbed-labels"><label for="__tabbed_125_1">Java</label><label for="__tabbed_125_2">Kotlin</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="125:3"><input checked="checked" id="__tabbed_125_1" name="__tabbed_125" type="radio" /><input id="__tabbed_125_2" name="__tabbed_125" type="radio" /><input id="__tabbed_125_3" name="__tabbed_125" type="radio" /><div class="tabbed-labels"><label for="__tabbed_125_1">Java</label><label for="__tabbed_125_2">Groovy</label><label for="__tabbed_125_3">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-406-1" name="__codelineno-406-1" href="#__codelineno-406-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-406-2" name="__codelineno-406-2" href="#__codelineno-406-2"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-408-1" name="__codelineno-408-1" href="#__codelineno-408-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-408-2" name="__codelineno-408-2" href="#__codelineno-408-2"></a><span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-407-1" name="__codelineno-407-1" href="#__codelineno-407-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-407-2" name="__codelineno-407-2" href="#__codelineno-407-2"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-409-1" name="__codelineno-409-1" href="#__codelineno-409-1"></a><span class="kt">def</span><span class="w"> </span><span class="nf">main</span><span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-409-2" name="__codelineno-409-2" href="#__codelineno-409-2"></a><span class="o">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-410-1" name="__codelineno-410-1" href="#__codelineno-410-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-410-2" name="__codelineno-410-2" href="#__codelineno-410-2"></a><span class="p">}</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 <p><strong><span class="twemoji" id="accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 9 9l-8 3 8 3 3 8 3-8 8-3-8-3z"/></svg></span> After</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="126:2"><input checked="checked" id="__tabbed_126_1" name="__tabbed_126" type="radio" /><input id="__tabbed_126_2" name="__tabbed_126" type="radio" /><div class="tabbed-labels"><label for="__tabbed_126_1">Java</label><label for="__tabbed_126_2">Kotlin</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="126:3"><input checked="checked" id="__tabbed_126_1" name="__tabbed_126" type="radio" /><input id="__tabbed_126_2" name="__tabbed_126" type="radio" /><input id="__tabbed_126_3" name="__tabbed_126" type="radio" /><div class="tabbed-labels"><label for="__tabbed_126_1">Java</label><label for="__tabbed_126_2">Groovy</label><label for="__tabbed_126_3">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-408-1" name="__codelineno-408-1" href="#__codelineno-408-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-411-1" name="__codelineno-411-1" href="#__codelineno-411-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-409-1" name="__codelineno-409-1" href="#__codelineno-409-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-412-1" name="__codelineno-412-1" href="#__codelineno-412-1"></a><span class="kt">def</span><span class="w"> </span><span class="nf">main</span><span class="o">()</span><span class="w"> </span><span class="o">{}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-413-1" name="__codelineno-413-1" href="#__codelineno-413-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 </code></pre></div>
 </div>
 </div>
@@ -6587,13 +6609,13 @@ of the line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="127:1"><input checked="checked" id="__tabbed_127_1" name="__tabbed_127" type="radio" /><div class="tabbed-labels"><label for="__tabbed_127_1">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-410-1" name="__codelineno-410-1" href="#__codelineno-410-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">ages</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-410-2" name="__codelineno-410-2" href="#__codelineno-410-2"></a><span class="w">    </span><span class="n">mapOf</span><span class="p">(</span>
-<a id="__codelineno-410-3" name="__codelineno-410-3" href="#__codelineno-410-3"></a><span class="w">        </span><span class="s">&quot;Alice&quot;</span>
-<a id="__codelineno-410-4" name="__codelineno-410-4" href="#__codelineno-410-4"></a><span class="hll"><span class="w">            </span><span class="n">to</span><span class="w"> </span><span class="m">25</span><span class="p">,</span>
-</span><a id="__codelineno-410-5" name="__codelineno-410-5" href="#__codelineno-410-5"></a><span class="w">        </span><span class="s">&quot;Bob&quot;</span>
-<a id="__codelineno-410-6" name="__codelineno-410-6" href="#__codelineno-410-6"></a><span class="hll"><span class="w">            </span><span class="n">to</span><span class="w"> </span><span class="m">30</span><span class="p">,</span>
-</span><a id="__codelineno-410-7" name="__codelineno-410-7" href="#__codelineno-410-7"></a><span class="w">    </span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-414-1" name="__codelineno-414-1" href="#__codelineno-414-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">ages</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-414-2" name="__codelineno-414-2" href="#__codelineno-414-2"></a><span class="w">    </span><span class="n">mapOf</span><span class="p">(</span>
+<a id="__codelineno-414-3" name="__codelineno-414-3" href="#__codelineno-414-3"></a><span class="w">        </span><span class="s">&quot;Alice&quot;</span>
+<a id="__codelineno-414-4" name="__codelineno-414-4" href="#__codelineno-414-4"></a><span class="hll"><span class="w">            </span><span class="n">to</span><span class="w"> </span><span class="m">25</span><span class="p">,</span>
+</span><a id="__codelineno-414-5" name="__codelineno-414-5" href="#__codelineno-414-5"></a><span class="w">        </span><span class="s">&quot;Bob&quot;</span>
+<a id="__codelineno-414-6" name="__codelineno-414-6" href="#__codelineno-414-6"></a><span class="hll"><span class="w">            </span><span class="n">to</span><span class="w"> </span><span class="m">30</span><span class="p">,</span>
+</span><a id="__codelineno-414-7" name="__codelineno-414-7" href="#__codelineno-414-7"></a><span class="w">    </span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -6602,13 +6624,13 @@ of the line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="128:1"><input checked="checked" id="__tabbed_128_1" name="__tabbed_128" type="radio" /><div class="tabbed-labels"><label for="__tabbed_128_1">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-411-1" name="__codelineno-411-1" href="#__codelineno-411-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">ages</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-411-2" name="__codelineno-411-2" href="#__codelineno-411-2"></a><span class="w">    </span><span class="n">mapOf</span><span class="p">(</span>
-<a id="__codelineno-411-3" name="__codelineno-411-3" href="#__codelineno-411-3"></a><span class="hll"><span class="w">        </span><span class="s">&quot;Alice&quot;</span><span class="w"> </span><span class="n">to</span>
-</span><a id="__codelineno-411-4" name="__codelineno-411-4" href="#__codelineno-411-4"></a><span class="w">            </span><span class="m">25</span><span class="p">,</span>
-<a id="__codelineno-411-5" name="__codelineno-411-5" href="#__codelineno-411-5"></a><span class="hll"><span class="w">        </span><span class="s">&quot;Bob&quot;</span><span class="w"> </span><span class="n">to</span>
-</span><a id="__codelineno-411-6" name="__codelineno-411-6" href="#__codelineno-411-6"></a><span class="w">            </span><span class="m">30</span><span class="p">,</span>
-<a id="__codelineno-411-7" name="__codelineno-411-7" href="#__codelineno-411-7"></a><span class="w">    </span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-415-1" name="__codelineno-415-1" href="#__codelineno-415-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">ages</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-415-2" name="__codelineno-415-2" href="#__codelineno-415-2"></a><span class="w">    </span><span class="n">mapOf</span><span class="p">(</span>
+<a id="__codelineno-415-3" name="__codelineno-415-3" href="#__codelineno-415-3"></a><span class="hll"><span class="w">        </span><span class="s">&quot;Alice&quot;</span><span class="w"> </span><span class="n">to</span>
+</span><a id="__codelineno-415-4" name="__codelineno-415-4" href="#__codelineno-415-4"></a><span class="w">            </span><span class="m">25</span><span class="p">,</span>
+<a id="__codelineno-415-5" name="__codelineno-415-5" href="#__codelineno-415-5"></a><span class="hll"><span class="w">        </span><span class="s">&quot;Bob&quot;</span><span class="w"> </span><span class="n">to</span>
+</span><a id="__codelineno-415-6" name="__codelineno-415-6" href="#__codelineno-415-6"></a><span class="w">            </span><span class="m">30</span><span class="p">,</span>
+<a id="__codelineno-415-7" name="__codelineno-415-7" href="#__codelineno-415-7"></a><span class="w">    </span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -6620,21 +6642,21 @@ line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="129:2"><input checked="checked" id="__tabbed_129_1" name="__tabbed_129" type="radio" /><input id="__tabbed_129_2" name="__tabbed_129" type="radio" /><div class="tabbed-labels"><label for="__tabbed_129_1">Java</label><label for="__tabbed_129_2">Groovy</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-412-1" name="__codelineno-412-1" href="#__codelineno-412-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-412-2" name="__codelineno-412-2" href="#__codelineno-412-2"></a><span class="w">    </span><span class="n">IntStream</span>
-<a id="__codelineno-412-3" name="__codelineno-412-3" href="#__codelineno-412-3"></a><span class="w">        </span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-412-4" name="__codelineno-412-4" href="#__codelineno-412-4"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">i</span>
-</span><a id="__codelineno-412-5" name="__codelineno-412-5" href="#__codelineno-412-5"></a><span class="w">            </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
-<a id="__codelineno-412-6" name="__codelineno-412-6" href="#__codelineno-412-6"></a><span class="w">        </span><span class="p">).</span><span class="na">sum</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-416-1" name="__codelineno-416-1" href="#__codelineno-416-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-416-2" name="__codelineno-416-2" href="#__codelineno-416-2"></a><span class="w">    </span><span class="n">IntStream</span>
+<a id="__codelineno-416-3" name="__codelineno-416-3" href="#__codelineno-416-3"></a><span class="w">        </span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-416-4" name="__codelineno-416-4" href="#__codelineno-416-4"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">i</span>
+</span><a id="__codelineno-416-5" name="__codelineno-416-5" href="#__codelineno-416-5"></a><span class="w">            </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-416-6" name="__codelineno-416-6" href="#__codelineno-416-6"></a><span class="w">        </span><span class="p">).</span><span class="na">sum</span><span class="p">();</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-413-1" name="__codelineno-413-1" href="#__codelineno-413-1"></a><span class="n">var</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-413-2" name="__codelineno-413-2" href="#__codelineno-413-2"></a><span class="w">    </span><span class="n">IntStream</span>
-<a id="__codelineno-413-3" name="__codelineno-413-3" href="#__codelineno-413-3"></a><span class="w">        </span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">)</span>
-<a id="__codelineno-413-4" name="__codelineno-413-4" href="#__codelineno-413-4"></a><span class="hll"><span class="w">        </span><span class="o">.</span><span class="na">map</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">i</span>
-</span><a id="__codelineno-413-5" name="__codelineno-413-5" href="#__codelineno-413-5"></a><span class="w">            </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
-<a id="__codelineno-413-6" name="__codelineno-413-6" href="#__codelineno-413-6"></a><span class="w">        </span><span class="o">}.</span><span class="na">sum</span><span class="o">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-417-1" name="__codelineno-417-1" href="#__codelineno-417-1"></a><span class="n">var</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-417-2" name="__codelineno-417-2" href="#__codelineno-417-2"></a><span class="w">    </span><span class="n">IntStream</span>
+<a id="__codelineno-417-3" name="__codelineno-417-3" href="#__codelineno-417-3"></a><span class="w">        </span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">)</span>
+<a id="__codelineno-417-4" name="__codelineno-417-4" href="#__codelineno-417-4"></a><span class="hll"><span class="w">        </span><span class="o">.</span><span class="na">map</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">i</span>
+</span><a id="__codelineno-417-5" name="__codelineno-417-5" href="#__codelineno-417-5"></a><span class="w">            </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
+<a id="__codelineno-417-6" name="__codelineno-417-6" href="#__codelineno-417-6"></a><span class="w">        </span><span class="o">}.</span><span class="na">sum</span><span class="o">()</span>
 </code></pre></div>
 </div>
 </div>
@@ -6643,21 +6665,21 @@ line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="130:2"><input checked="checked" id="__tabbed_130_1" name="__tabbed_130" type="radio" /><input id="__tabbed_130_2" name="__tabbed_130" type="radio" /><div class="tabbed-labels"><label for="__tabbed_130_1">Java</label><label for="__tabbed_130_2">Groovy</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-414-1" name="__codelineno-414-1" href="#__codelineno-414-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-414-2" name="__codelineno-414-2" href="#__codelineno-414-2"></a><span class="w">    </span><span class="n">IntStream</span>
-<a id="__codelineno-414-3" name="__codelineno-414-3" href="#__codelineno-414-3"></a><span class="w">        </span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
-<a id="__codelineno-414-4" name="__codelineno-414-4" href="#__codelineno-414-4"></a><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span>
-<a id="__codelineno-414-5" name="__codelineno-414-5" href="#__codelineno-414-5"></a><span class="hll"><span class="w">            </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
-</span><a id="__codelineno-414-6" name="__codelineno-414-6" href="#__codelineno-414-6"></a><span class="w">        </span><span class="p">).</span><span class="na">sum</span><span class="p">();</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-418-1" name="__codelineno-418-1" href="#__codelineno-418-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-418-2" name="__codelineno-418-2" href="#__codelineno-418-2"></a><span class="w">    </span><span class="n">IntStream</span>
+<a id="__codelineno-418-3" name="__codelineno-418-3" href="#__codelineno-418-3"></a><span class="w">        </span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-418-4" name="__codelineno-418-4" href="#__codelineno-418-4"></a><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-418-5" name="__codelineno-418-5" href="#__codelineno-418-5"></a><span class="hll"><span class="w">            </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
+</span><a id="__codelineno-418-6" name="__codelineno-418-6" href="#__codelineno-418-6"></a><span class="w">        </span><span class="p">).</span><span class="na">sum</span><span class="p">();</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-415-1" name="__codelineno-415-1" href="#__codelineno-415-1"></a><span class="n">var</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-415-2" name="__codelineno-415-2" href="#__codelineno-415-2"></a><span class="w">    </span><span class="n">IntStream</span>
-<a id="__codelineno-415-3" name="__codelineno-415-3" href="#__codelineno-415-3"></a><span class="w">        </span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">)</span>
-<a id="__codelineno-415-4" name="__codelineno-415-4" href="#__codelineno-415-4"></a><span class="w">        </span><span class="o">.</span><span class="na">map</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span>
-<a id="__codelineno-415-5" name="__codelineno-415-5" href="#__codelineno-415-5"></a><span class="hll"><span class="w">            </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
-</span><a id="__codelineno-415-6" name="__codelineno-415-6" href="#__codelineno-415-6"></a><span class="w">        </span><span class="o">}.</span><span class="na">sum</span><span class="o">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-419-1" name="__codelineno-419-1" href="#__codelineno-419-1"></a><span class="n">var</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-419-2" name="__codelineno-419-2" href="#__codelineno-419-2"></a><span class="w">    </span><span class="n">IntStream</span>
+<a id="__codelineno-419-3" name="__codelineno-419-3" href="#__codelineno-419-3"></a><span class="w">        </span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="w"> </span><span class="mi">10</span><span class="o">)</span>
+<a id="__codelineno-419-4" name="__codelineno-419-4" href="#__codelineno-419-4"></a><span class="w">        </span><span class="o">.</span><span class="na">map</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-419-5" name="__codelineno-419-5" href="#__codelineno-419-5"></a><span class="hll"><span class="w">            </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span>
+</span><a id="__codelineno-419-6" name="__codelineno-419-6" href="#__codelineno-419-6"></a><span class="w">        </span><span class="o">}.</span><span class="na">sum</span><span class="o">()</span>
 </code></pre></div>
 </div>
 </div>
@@ -6668,24 +6690,24 @@ line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="131:3"><input checked="checked" id="__tabbed_131_1" name="__tabbed_131" type="radio" /><input id="__tabbed_131_2" name="__tabbed_131" type="radio" /><input id="__tabbed_131_3" name="__tabbed_131" type="radio" /><div class="tabbed-labels"><label for="__tabbed_131_1">Java</label><label for="__tabbed_131_2">Groovy</label><label for="__tabbed_131_3">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-416-1" name="__codelineno-416-1" href="#__codelineno-416-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-416-2" name="__codelineno-416-2" href="#__codelineno-416-2"></a><span class="w">    </span><span class="n">subtotal</span>
-<a id="__codelineno-416-3" name="__codelineno-416-3" href="#__codelineno-416-3"></a><span class="hll"><span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">tax</span>
-</span><a id="__codelineno-416-4" name="__codelineno-416-4" href="#__codelineno-416-4"></a><span class="hll"><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">discount</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-420-1" name="__codelineno-420-1" href="#__codelineno-420-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-420-2" name="__codelineno-420-2" href="#__codelineno-420-2"></a><span class="w">    </span><span class="n">subtotal</span>
+<a id="__codelineno-420-3" name="__codelineno-420-3" href="#__codelineno-420-3"></a><span class="hll"><span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">tax</span>
+</span><a id="__codelineno-420-4" name="__codelineno-420-4" href="#__codelineno-420-4"></a><span class="hll"><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">discount</span><span class="p">;</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-417-1" name="__codelineno-417-1" href="#__codelineno-417-1"></a><span class="n">var</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-417-2" name="__codelineno-417-2" href="#__codelineno-417-2"></a><span class="w">    </span><span class="n">subtotal</span>
-<a id="__codelineno-417-3" name="__codelineno-417-3" href="#__codelineno-417-3"></a><span class="hll"><span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">tax</span>
-</span><a id="__codelineno-417-4" name="__codelineno-417-4" href="#__codelineno-417-4"></a><span class="hll"><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">discount</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-421-1" name="__codelineno-421-1" href="#__codelineno-421-1"></a><span class="n">var</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-421-2" name="__codelineno-421-2" href="#__codelineno-421-2"></a><span class="w">    </span><span class="n">subtotal</span>
+<a id="__codelineno-421-3" name="__codelineno-421-3" href="#__codelineno-421-3"></a><span class="hll"><span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">tax</span>
+</span><a id="__codelineno-421-4" name="__codelineno-421-4" href="#__codelineno-421-4"></a><span class="hll"><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">discount</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-418-1" name="__codelineno-418-1" href="#__codelineno-418-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-418-2" name="__codelineno-418-2" href="#__codelineno-418-2"></a><span class="w">    </span><span class="n">subtotal</span>
-<a id="__codelineno-418-3" name="__codelineno-418-3" href="#__codelineno-418-3"></a><span class="hll"><span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">tax</span>
-</span><a id="__codelineno-418-4" name="__codelineno-418-4" href="#__codelineno-418-4"></a><span class="hll"><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">discount</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-422-1" name="__codelineno-422-1" href="#__codelineno-422-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-422-2" name="__codelineno-422-2" href="#__codelineno-422-2"></a><span class="w">    </span><span class="n">subtotal</span>
+<a id="__codelineno-422-3" name="__codelineno-422-3" href="#__codelineno-422-3"></a><span class="hll"><span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">tax</span>
+</span><a id="__codelineno-422-4" name="__codelineno-422-4" href="#__codelineno-422-4"></a><span class="hll"><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">discount</span>
 </span></code></pre></div>
 </div>
 </div>
@@ -6694,24 +6716,24 @@ line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="132:3"><input checked="checked" id="__tabbed_132_1" name="__tabbed_132" type="radio" /><input id="__tabbed_132_2" name="__tabbed_132" type="radio" /><input id="__tabbed_132_3" name="__tabbed_132" type="radio" /><div class="tabbed-labels"><label for="__tabbed_132_1">Java</label><label for="__tabbed_132_2">Groovy</label><label for="__tabbed_132_3">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-419-1" name="__codelineno-419-1" href="#__codelineno-419-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-419-2" name="__codelineno-419-2" href="#__codelineno-419-2"></a><span class="hll"><span class="w">    </span><span class="n">subtotal</span><span class="w"> </span><span class="o">+</span>
-</span><a id="__codelineno-419-3" name="__codelineno-419-3" href="#__codelineno-419-3"></a><span class="hll"><span class="w">    </span><span class="n">tax</span><span class="w"> </span><span class="o">-</span>
-</span><a id="__codelineno-419-4" name="__codelineno-419-4" href="#__codelineno-419-4"></a><span class="w">    </span><span class="n">discount</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-423-1" name="__codelineno-423-1" href="#__codelineno-423-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-423-2" name="__codelineno-423-2" href="#__codelineno-423-2"></a><span class="hll"><span class="w">    </span><span class="n">subtotal</span><span class="w"> </span><span class="o">+</span>
+</span><a id="__codelineno-423-3" name="__codelineno-423-3" href="#__codelineno-423-3"></a><span class="hll"><span class="w">    </span><span class="n">tax</span><span class="w"> </span><span class="o">-</span>
+</span><a id="__codelineno-423-4" name="__codelineno-423-4" href="#__codelineno-423-4"></a><span class="w">    </span><span class="n">discount</span><span class="p">;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-420-1" name="__codelineno-420-1" href="#__codelineno-420-1"></a><span class="n">var</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-420-2" name="__codelineno-420-2" href="#__codelineno-420-2"></a><span class="hll"><span class="w">    </span><span class="n">subtotal</span><span class="w"> </span><span class="o">+</span>
-</span><a id="__codelineno-420-3" name="__codelineno-420-3" href="#__codelineno-420-3"></a><span class="hll"><span class="w">    </span><span class="n">tax</span><span class="w"> </span><span class="o">-</span>
-</span><a id="__codelineno-420-4" name="__codelineno-420-4" href="#__codelineno-420-4"></a><span class="w">    </span><span class="n">discount</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-424-1" name="__codelineno-424-1" href="#__codelineno-424-1"></a><span class="n">var</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-424-2" name="__codelineno-424-2" href="#__codelineno-424-2"></a><span class="hll"><span class="w">    </span><span class="n">subtotal</span><span class="w"> </span><span class="o">+</span>
+</span><a id="__codelineno-424-3" name="__codelineno-424-3" href="#__codelineno-424-3"></a><span class="hll"><span class="w">    </span><span class="n">tax</span><span class="w"> </span><span class="o">-</span>
+</span><a id="__codelineno-424-4" name="__codelineno-424-4" href="#__codelineno-424-4"></a><span class="w">    </span><span class="n">discount</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-421-1" name="__codelineno-421-1" href="#__codelineno-421-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-421-2" name="__codelineno-421-2" href="#__codelineno-421-2"></a><span class="hll"><span class="w">    </span><span class="n">subtotal</span><span class="w"> </span><span class="o">+</span>
-</span><a id="__codelineno-421-3" name="__codelineno-421-3" href="#__codelineno-421-3"></a><span class="hll"><span class="w">    </span><span class="n">tax</span><span class="w"> </span><span class="o">-</span>
-</span><a id="__codelineno-421-4" name="__codelineno-421-4" href="#__codelineno-421-4"></a><span class="w">    </span><span class="n">discount</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-425-1" name="__codelineno-425-1" href="#__codelineno-425-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-425-2" name="__codelineno-425-2" href="#__codelineno-425-2"></a><span class="hll"><span class="w">    </span><span class="n">subtotal</span><span class="w"> </span><span class="o">+</span>
+</span><a id="__codelineno-425-3" name="__codelineno-425-3" href="#__codelineno-425-3"></a><span class="hll"><span class="w">    </span><span class="n">tax</span><span class="w"> </span><span class="o">-</span>
+</span><a id="__codelineno-425-4" name="__codelineno-425-4" href="#__codelineno-425-4"></a><span class="w">    </span><span class="n">discount</span>
 </code></pre></div>
 </div>
 </div>
@@ -6723,27 +6745,27 @@ new line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="133:4"><input checked="checked" id="__tabbed_133_1" name="__tabbed_133" type="radio" /><input id="__tabbed_133_2" name="__tabbed_133" type="radio" /><input id="__tabbed_133_3" name="__tabbed_133" type="radio" /><input id="__tabbed_133_4" name="__tabbed_133" type="radio" /><div class="tabbed-labels"><label for="__tabbed_133_1">Java</label><label for="__tabbed_133_2">Groovy</label><label for="__tabbed_133_3">Kotlin</label><label for="__tabbed_133_4">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-422-1" name="__codelineno-422-1" href="#__codelineno-422-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span>
-<a id="__codelineno-422-2" name="__codelineno-422-2" href="#__codelineno-422-2"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span>
-</span><a id="__codelineno-422-3" name="__codelineno-422-3" href="#__codelineno-422-3"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-426-1" name="__codelineno-426-1" href="#__codelineno-426-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span>
+<a id="__codelineno-426-2" name="__codelineno-426-2" href="#__codelineno-426-2"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span>
+</span><a id="__codelineno-426-3" name="__codelineno-426-3" href="#__codelineno-426-3"></a><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-423-1" name="__codelineno-423-1" href="#__codelineno-423-1"></a><span class="kt">def</span><span class="w"> </span><span class="nf">createUser</span><span class="o">(</span>
-<a id="__codelineno-423-2" name="__codelineno-423-2" href="#__codelineno-423-2"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="o">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="o">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span>
-</span><a id="__codelineno-423-3" name="__codelineno-423-3" href="#__codelineno-423-3"></a><span class="o">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-427-1" name="__codelineno-427-1" href="#__codelineno-427-1"></a><span class="kt">def</span><span class="w"> </span><span class="nf">createUser</span><span class="o">(</span>
+<a id="__codelineno-427-2" name="__codelineno-427-2" href="#__codelineno-427-2"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="o">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="o">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span>
+</span><a id="__codelineno-427-3" name="__codelineno-427-3" href="#__codelineno-427-3"></a><span class="o">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-424-1" name="__codelineno-424-1" href="#__codelineno-424-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span>
-<a id="__codelineno-424-2" name="__codelineno-424-2" href="#__codelineno-424-2"></a><span class="hll"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
-</span><a id="__codelineno-424-3" name="__codelineno-424-3" href="#__codelineno-424-3"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-428-1" name="__codelineno-428-1" href="#__codelineno-428-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span>
+<a id="__codelineno-428-2" name="__codelineno-428-2" href="#__codelineno-428-2"></a><span class="hll"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+</span><a id="__codelineno-428-3" name="__codelineno-428-3" href="#__codelineno-428-3"></a><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-425-1" name="__codelineno-425-1" href="#__codelineno-425-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_user</span><span class="p">(</span>
-<a id="__codelineno-425-2" name="__codelineno-425-2" href="#__codelineno-425-2"></a><span class="hll">    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-</span><a id="__codelineno-425-3" name="__codelineno-425-3" href="#__codelineno-425-3"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-429-1" name="__codelineno-429-1" href="#__codelineno-429-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_user</span><span class="p">(</span>
+<a id="__codelineno-429-2" name="__codelineno-429-2" href="#__codelineno-429-2"></a><span class="hll">    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+</span><a id="__codelineno-429-3" name="__codelineno-429-3" href="#__codelineno-429-3"></a><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -6752,35 +6774,35 @@ new line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="134:4"><input checked="checked" id="__tabbed_134_1" name="__tabbed_134" type="radio" /><input id="__tabbed_134_2" name="__tabbed_134" type="radio" /><input id="__tabbed_134_3" name="__tabbed_134" type="radio" /><input id="__tabbed_134_4" name="__tabbed_134" type="radio" /><div class="tabbed-labels"><label for="__tabbed_134_1">Java</label><label for="__tabbed_134_2">Groovy</label><label for="__tabbed_134_3">Kotlin</label><label for="__tabbed_134_4">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-426-1" name="__codelineno-426-1" href="#__codelineno-426-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span>
-<a id="__codelineno-426-2" name="__codelineno-426-2" href="#__codelineno-426-2"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
-</span><a id="__codelineno-426-3" name="__codelineno-426-3" href="#__codelineno-426-3"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
-</span><a id="__codelineno-426-4" name="__codelineno-426-4" href="#__codelineno-426-4"></a><span class="hll"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span>
-</span><a id="__codelineno-426-5" name="__codelineno-426-5" href="#__codelineno-426-5"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-430-1" name="__codelineno-430-1" href="#__codelineno-430-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span>
+<a id="__codelineno-430-2" name="__codelineno-430-2" href="#__codelineno-430-2"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+</span><a id="__codelineno-430-3" name="__codelineno-430-3" href="#__codelineno-430-3"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+</span><a id="__codelineno-430-4" name="__codelineno-430-4" href="#__codelineno-430-4"></a><span class="hll"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span>
+</span><a id="__codelineno-430-5" name="__codelineno-430-5" href="#__codelineno-430-5"></a><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-427-1" name="__codelineno-427-1" href="#__codelineno-427-1"></a><span class="kt">def</span><span class="w"> </span><span class="nf">createUser</span><span class="o">(</span>
-<a id="__codelineno-427-2" name="__codelineno-427-2" href="#__codelineno-427-2"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="o">,</span>
-</span><a id="__codelineno-427-3" name="__codelineno-427-3" href="#__codelineno-427-3"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="o">,</span>
-</span><a id="__codelineno-427-4" name="__codelineno-427-4" href="#__codelineno-427-4"></a><span class="hll"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="o">,</span>
-</span><a id="__codelineno-427-5" name="__codelineno-427-5" href="#__codelineno-427-5"></a><span class="o">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-431-1" name="__codelineno-431-1" href="#__codelineno-431-1"></a><span class="kt">def</span><span class="w"> </span><span class="nf">createUser</span><span class="o">(</span>
+<a id="__codelineno-431-2" name="__codelineno-431-2" href="#__codelineno-431-2"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="o">,</span>
+</span><a id="__codelineno-431-3" name="__codelineno-431-3" href="#__codelineno-431-3"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="o">,</span>
+</span><a id="__codelineno-431-4" name="__codelineno-431-4" href="#__codelineno-431-4"></a><span class="hll"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="o">,</span>
+</span><a id="__codelineno-431-5" name="__codelineno-431-5" href="#__codelineno-431-5"></a><span class="o">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-428-1" name="__codelineno-428-1" href="#__codelineno-428-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span>
-<a id="__codelineno-428-2" name="__codelineno-428-2" href="#__codelineno-428-2"></a><span class="hll"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
-</span><a id="__codelineno-428-3" name="__codelineno-428-3" href="#__codelineno-428-3"></a><span class="hll"><span class="w">    </span><span class="n">email</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
-</span><a id="__codelineno-428-4" name="__codelineno-428-4" href="#__codelineno-428-4"></a><span class="hll"><span class="w">    </span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
-</span><a id="__codelineno-428-5" name="__codelineno-428-5" href="#__codelineno-428-5"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-432-1" name="__codelineno-432-1" href="#__codelineno-432-1"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span>
+<a id="__codelineno-432-2" name="__codelineno-432-2" href="#__codelineno-432-2"></a><span class="hll"><span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+</span><a id="__codelineno-432-3" name="__codelineno-432-3" href="#__codelineno-432-3"></a><span class="hll"><span class="w">    </span><span class="n">email</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+</span><a id="__codelineno-432-4" name="__codelineno-432-4" href="#__codelineno-432-4"></a><span class="hll"><span class="w">    </span><span class="n">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+</span><a id="__codelineno-432-5" name="__codelineno-432-5" href="#__codelineno-432-5"></a><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-429-1" name="__codelineno-429-1" href="#__codelineno-429-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_user</span><span class="p">(</span>
-<a id="__codelineno-429-2" name="__codelineno-429-2" href="#__codelineno-429-2"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-429-3" name="__codelineno-429-3" href="#__codelineno-429-3"></a>    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-429-4" name="__codelineno-429-4" href="#__codelineno-429-4"></a>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-<a id="__codelineno-429-5" name="__codelineno-429-5" href="#__codelineno-429-5"></a><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-433-1" name="__codelineno-433-1" href="#__codelineno-433-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_user</span><span class="p">(</span>
+<a id="__codelineno-433-2" name="__codelineno-433-2" href="#__codelineno-433-2"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-433-3" name="__codelineno-433-3" href="#__codelineno-433-3"></a>    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-433-4" name="__codelineno-433-4" href="#__codelineno-433-4"></a>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-433-5" name="__codelineno-433-5" href="#__codelineno-433-5"></a><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -6788,21 +6810,41 @@ new line.</p>
 <h3 id="short-block-comment-join">Short block comment join<a class="headerlink" href="#short-block-comment-join" title="Permanent link">&para;</a></h3>
 <p>Short block comments should be written in a single line.</p>
 <p><strong><span class="twemoji" id="accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 6.7 1.45 3.85L17.3 12l-3.85 1.45L12 17.3l-1.45-3.85L6.7 12l3.85-1.45zM12 1 9 9l-8 3 8 3 3 8 3-8 8-3-8-3z"/></svg></span> Before</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="135:1"><input checked="checked" id="__tabbed_135_1" name="__tabbed_135" type="radio" /><div class="tabbed-labels"><label for="__tabbed_135_1">Kotlin</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="135:3"><input checked="checked" id="__tabbed_135_1" name="__tabbed_135" type="radio" /><input id="__tabbed_135_2" name="__tabbed_135" type="radio" /><input id="__tabbed_135_3" name="__tabbed_135" type="radio" /><div class="tabbed-labels"><label for="__tabbed_135_1">Java</label><label for="__tabbed_135_2">Groovy</label><label for="__tabbed_135_3">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-430-1" name="__codelineno-430-1" href="#__codelineno-430-1"></a><span class="cm">/**</span>
-<a id="__codelineno-430-2" name="__codelineno-430-2" href="#__codelineno-430-2"></a><span class="cm"> * The quick brown fox jumps over the lazy dog.</span>
-<a id="__codelineno-430-3" name="__codelineno-430-3" href="#__codelineno-430-3"></a><span class="cm"> */</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-434-1" name="__codelineno-434-1" href="#__codelineno-434-1"></a><span class="cm">/**</span>
+<a id="__codelineno-434-2" name="__codelineno-434-2" href="#__codelineno-434-2"></a><span class="cm"> * The quick brown fox jumps over the lazy dog.</span>
+<a id="__codelineno-434-3" name="__codelineno-434-3" href="#__codelineno-434-3"></a><span class="cm"> */</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-435-1" name="__codelineno-435-1" href="#__codelineno-435-1"></a><span class="cm">/**</span>
+<a id="__codelineno-435-2" name="__codelineno-435-2" href="#__codelineno-435-2"></a><span class="cm"> * The quick brown fox jumps over the lazy dog.</span>
+<a id="__codelineno-435-3" name="__codelineno-435-3" href="#__codelineno-435-3"></a><span class="cm"> */</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-436-1" name="__codelineno-436-1" href="#__codelineno-436-1"></a><span class="cm">/**</span>
+<a id="__codelineno-436-2" name="__codelineno-436-2" href="#__codelineno-436-2"></a><span class="cm"> * The quick brown fox jumps over the lazy dog.</span>
+<a id="__codelineno-436-3" name="__codelineno-436-3" href="#__codelineno-436-3"></a><span class="cm"> */</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 <p><strong><span class="twemoji" id="accent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 9 9l-8 3 8 3 3 8 3-8 8-3-8-3z"/></svg></span> After</strong></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="136:1"><input checked="checked" id="__tabbed_136_1" name="__tabbed_136" type="radio" /><div class="tabbed-labels"><label for="__tabbed_136_1">Kotlin</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="136:3"><input checked="checked" id="__tabbed_136_1" name="__tabbed_136" type="radio" /><input id="__tabbed_136_2" name="__tabbed_136" type="radio" /><input id="__tabbed_136_3" name="__tabbed_136" type="radio" /><div class="tabbed-labels"><label for="__tabbed_136_1">Java</label><label for="__tabbed_136_2">Groovy</label><label for="__tabbed_136_3">Kotlin</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-431-1" name="__codelineno-431-1" href="#__codelineno-431-1"></a><span class="cm">/** The quick brown fox jumps over the lazy dog. */</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-437-1" name="__codelineno-437-1" href="#__codelineno-437-1"></a><span class="cm">/** The quick brown fox jumps over the lazy dog. */</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-438-1" name="__codelineno-438-1" href="#__codelineno-438-1"></a><span class="cm">/** The quick brown fox jumps over the lazy dog. */</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-439-1" name="__codelineno-439-1" href="#__codelineno-439-1"></a><span class="cm">/** The quick brown fox jumps over the lazy dog. */</span>
 </code></pre></div>
 </div>
 </div>
@@ -6813,19 +6855,19 @@ new line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="137:4"><input checked="checked" id="__tabbed_137_1" name="__tabbed_137" type="radio" /><input id="__tabbed_137_2" name="__tabbed_137" type="radio" /><input id="__tabbed_137_3" name="__tabbed_137" type="radio" /><input id="__tabbed_137_4" name="__tabbed_137" type="radio" /><div class="tabbed-labels"><label for="__tabbed_137_1">Java</label><label for="__tabbed_137_2">Groovy</label><label for="__tabbed_137_3">Kotlin</label><label for="__tabbed_137_4">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-432-1" name="__codelineno-432-1" href="#__codelineno-432-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-440-1" name="__codelineno-440-1" href="#__codelineno-440-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-433-1" name="__codelineno-433-1" href="#__codelineno-433-1"></a><span class="n">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">;</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-441-1" name="__codelineno-441-1" href="#__codelineno-441-1"></a><span class="n">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">;</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-434-1" name="__codelineno-434-1" href="#__codelineno-434-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-442-1" name="__codelineno-442-1" href="#__codelineno-442-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-435-1" name="__codelineno-435-1" href="#__codelineno-435-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-443-1" name="__codelineno-443-1" href="#__codelineno-443-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
 </code></pre></div>
 </div>
 </div>
@@ -6834,23 +6876,23 @@ new line.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="138:4"><input checked="checked" id="__tabbed_138_1" name="__tabbed_138" type="radio" /><input id="__tabbed_138_2" name="__tabbed_138" type="radio" /><input id="__tabbed_138_3" name="__tabbed_138" type="radio" /><input id="__tabbed_138_4" name="__tabbed_138" type="radio" /><div class="tabbed-labels"><label for="__tabbed_138_1">Java</label><label for="__tabbed_138_2">Groovy</label><label for="__tabbed_138_3">Kotlin</label><label for="__tabbed_138_4">Python</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-436-1" name="__codelineno-436-1" href="#__codelineno-436-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<a id="__codelineno-436-2" name="__codelineno-436-2" href="#__codelineno-436-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-444-1" name="__codelineno-444-1" href="#__codelineno-444-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-444-2" name="__codelineno-444-2" href="#__codelineno-444-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-437-1" name="__codelineno-437-1" href="#__codelineno-437-1"></a><span class="n">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-<a id="__codelineno-437-2" name="__codelineno-437-2" href="#__codelineno-437-2"></a><span class="n">var</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-445-1" name="__codelineno-445-1" href="#__codelineno-445-1"></a><span class="n">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-445-2" name="__codelineno-445-2" href="#__codelineno-445-2"></a><span class="n">var</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-438-1" name="__codelineno-438-1" href="#__codelineno-438-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
-<a id="__codelineno-438-2" name="__codelineno-438-2" href="#__codelineno-438-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-446-1" name="__codelineno-446-1" href="#__codelineno-446-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-446-2" name="__codelineno-446-2" href="#__codelineno-446-2"></a><span class="kd">val</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-439-1" name="__codelineno-439-1" href="#__codelineno-439-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-<a id="__codelineno-439-2" name="__codelineno-439-2" href="#__codelineno-439-2"></a><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-447-1" name="__codelineno-447-1" href="#__codelineno-447-1"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-447-2" name="__codelineno-447-2" href="#__codelineno-447-2"></a><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
 </code></pre></div>
 </div>
 </div>
