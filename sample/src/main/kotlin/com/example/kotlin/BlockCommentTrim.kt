@@ -11,8 +11,6 @@ class BlockCommentTrim {
     /** Foo is awesome. */
     fun bar(): Int = 0
 
-    /**
-     *
-     */
+    /** */
     fun <T> baz(t: T, items: List<T>) {}
 }

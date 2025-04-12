@@ -28,7 +28,7 @@ public class CommentTrimCheck : RulebookAstCheck() {
             current = current.nextSibling
         }
 
-        // skip blank comment
+        // no blank comment
         current
             .takeUnless { it === node }
             ?: return

@@ -30,13 +30,15 @@ public class CaseSeparatorCheck : RulebookAstCheck() {
             node.children().any { it.isComment() }
         ) {
             caseGroup
-                .takeIf { it.minLineNo != slist.maxLineNo + 2 }
+                .minLineNo
+                .takeIf { it != slist.maxLineNo + 2 }
                 ?: return
             log(slist.lastChild, Messages[MSG_MISSING])
             return
         }
         caseGroup
-            .takeIf { it.minLineNo != slist.maxLineNo + 1 }
+            .minLineNo
+            .takeIf { it != slist.maxLineNo + 1 }
             ?: return
         log(slist.lastChild, Messages[MSG_UNEXPECTED])
     }

@@ -11,11 +11,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.RECORD_DEF
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
 public class IllegalClassFinalNameCheck : RulebookAstCheck() {
-    internal var names = setOf("Util", "Utility", "Helper", "Manager", "Wrapper")
+    public var names: String = "Util, Utility, Helper, Manager, Wrapper"
 
-    public fun setNames(vararg names: String) {
-        this.names = names.toSet()
-    }
+    internal val nameList get() = names.split(',').map { it.trim() }
 
     override fun getRequiredTokens(): IntArray =
         intArrayOf(
@@ -30,7 +28,7 @@ public class IllegalClassFinalNameCheck : RulebookAstCheck() {
         // checks for violation
         val ident = node.findFirstToken(IDENT) ?: return
         val finalName =
-            names
+            nameList
                 .singleOrNull { ident.text.endsWith(it) }
                 ?: return
         if (finalName in UTILITY_FINAL_NAMES) {

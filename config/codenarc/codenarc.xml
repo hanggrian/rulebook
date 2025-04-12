@@ -149,7 +149,9 @@
   </ruleset-ref>
 
   <!-- Basic -->
+  <rule class="com.hanggrian.rulebook.codenarc.BlockTagPunctuationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.RedundantQualifierRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.TodoCommentRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.TrailingCommaInCallRule"/>
 
   <!-- Declaring -->
@@ -166,6 +168,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericNameRule"/>
 
   <!-- Ordering -->
+  <rule class="com.hanggrian.rulebook.codenarc.BlockTagOrderRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.BuiltInFunctionPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ImportOrderRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.InnerClassPositionRule"/>
@@ -173,10 +176,13 @@
   <rule class="com.hanggrian.rulebook.codenarc.OverloadFunctionPositionRule"/>
 
   <!-- Spacing -->
+  <rule class="com.hanggrian.rulebook.codenarc.BlockTagIndentationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.CaseSeparatorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.CommentTrimRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.DuplicateBlankLineInCommentRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.EmptyCodeBlockJoinRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.MemberSeparatorRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.MissingBlankLineBeforeBlockTagsRule"/>
 
   <!-- Stating -->
   <rule class="com.hanggrian.rulebook.codenarc.NestedIfElseRule"/>
@@ -186,8 +192,10 @@
 
   <!-- Wrapping -->
   <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ChainCallWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.LambdaWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.OperatorWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ParameterWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ShortBlockCommentJoinRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.StatementWrapRule"/>
 </ruleset>

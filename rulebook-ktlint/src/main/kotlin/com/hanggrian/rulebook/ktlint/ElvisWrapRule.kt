@@ -35,13 +35,15 @@ public class ElvisWrapRule : RulebookRule(ID) {
             sibling.treePrev.isWhiteSpaceWithNewline()
         ) {
             operationReference
-                .takeIf { it.treePrev.isWhiteSpaceWithNewline() }
+                .treePrev
+                .takeIf { it.isWhiteSpaceWithNewline() }
                 ?: return
             emit(node.startOffset, Messages[MSG_UNEXPECTED], false)
             return
         }
         operationReference
-            .takeIf { it.treePrev.isWhiteSpaceWithoutNewline() }
+            .treePrev
+            .takeIf { it.isWhiteSpaceWithoutNewline() }
             ?: return
         emit(node.startOffset, Messages[MSG_MISSING], false)
     }

@@ -50,13 +50,14 @@ public class TodoCommentRule : RulebookRule(ID) {
                 false,
             )
         }
-        if (SEPARATOR_REGEX.containsMatchIn(text)) {
-            emit(
-                node.startOffset,
-                Messages.get(MSG_SEPARATOR, SEPARATOR_REGEX.find(text)!!.value.last()),
-                false,
-            )
+        if (!SEPARATOR_REGEX.containsMatchIn(text)) {
+            return
         }
+        emit(
+            node.startOffset,
+            Messages.get(MSG_SEPARATOR, SEPARATOR_REGEX.find(text)!!.value.last()),
+            false,
+        )
     }
 
     public companion object {
@@ -65,7 +66,7 @@ public class TodoCommentRule : RulebookRule(ID) {
         private const val MSG_KEYWORD = "todo.comment.keyword"
         private const val MSG_SEPARATOR = "todo.comment.separator"
 
-        private val KEYWORD_REGEX = Regex("\\b(?i:fixme|todo)(?<!FIXME|TODO)\\b")
-        private val SEPARATOR_REGEX = Regex("\\b(todo|fixme)\\S", IGNORE_CASE)
+        private val KEYWORD_REGEX = Regex("""\b(?i:fixme|todo)(?<!FIXME|TODO)\b""")
+        private val SEPARATOR_REGEX = Regex("""\b(todo|fixme)\S""", IGNORE_CASE)
     }
 }

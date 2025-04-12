@@ -20,7 +20,7 @@ public class AbstractClassDefinitionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip non-abstract class
+        // no non-abstract class
         val abstractKeyword =
             node
                 .findChildByType(MODIFIER_LIST)
@@ -29,16 +29,16 @@ public class AbstractClassDefinitionRule : RulebookRule(ID) {
 
         // checks for violation
         node
-            .takeUnless { SUPER_TYPE_LIST in it }
-            ?.takeIf { n ->
-                n
-                    .findChildByType(CLASS_BODY)
-                    ?.children()
-                    .orEmpty()
-                    .none {
-                        (it.elementType == FUN || it.elementType == PROPERTY) &&
-                            it.hasModifier(ABSTRACT_KEYWORD)
-                    }
+            .takeIf { n ->
+                SUPER_TYPE_LIST !in n &&
+                    n
+                        .findChildByType(CLASS_BODY)
+                        ?.children()
+                        .orEmpty()
+                        .none {
+                            (it.elementType == FUN || it.elementType == PROPERTY) &&
+                                it.hasModifier(ABSTRACT_KEYWORD)
+                        }
             } ?: return
         emit(abstractKeyword.startOffset, Messages[MSG], false)
     }

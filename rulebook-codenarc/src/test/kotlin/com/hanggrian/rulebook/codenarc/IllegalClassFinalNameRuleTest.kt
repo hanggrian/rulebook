@@ -15,8 +15,8 @@ class IllegalClassFinalNameRuleTest : AbstractRuleTestCase<IllegalClassFinalName
         assertIs<IllegalClassFinalNameRule.Visitor>(rule.astVisitor)
 
         val rule = IllegalClassFinalNameRule()
-        rule.setNames("Hello, World")
-        assertThat(rule.names).containsExactly("Hello", "World")
+        rule.names = "Hello, World"
+        assertThat(rule.nameList).containsExactly("Hello", "World")
     }
 
     @Test

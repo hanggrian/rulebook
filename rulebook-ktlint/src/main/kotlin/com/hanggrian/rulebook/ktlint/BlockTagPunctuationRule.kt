@@ -40,7 +40,9 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
 
         // checks for violation
         kdocText
-            .takeUnless { it.text.lastOrNull() in END_PUNCTUATIONS }
+            .text
+            .lastOrNull()
+            ?.takeUnless { it in END_PUNCTUATIONS }
             ?: return
         emit(kdocText.endOffset, Messages.get(MSG, kdocTagName.text), false)
     }

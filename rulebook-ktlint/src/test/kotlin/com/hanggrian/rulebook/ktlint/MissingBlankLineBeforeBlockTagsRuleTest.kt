@@ -29,17 +29,10 @@ class MissingBlankLineBeforeBlockTagsRuleTest {
         assertThatCode(
             """
             /**
-             *
              * @param num description.
              * @return description.
              */
             fun foo(num: Int): Int {}
-
-            /**
-             * @param num description.
-             * @return description.
-             */
-            fun bar(num: Int): Int {}
             """.trimIndent(),
         ).hasNoLintViolations()
 

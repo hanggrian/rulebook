@@ -25,7 +25,7 @@ public class EmptyCodeBlockJoinRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY, BLOCK, FUNCTION_LITERAL)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip control flows that can have multi-blocks
+        // no control flows that can have multi-blocks
         node
             .treeParent
             .takeUnless {

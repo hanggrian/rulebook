@@ -18,6 +18,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil.isCommentType
 import kotlin.math.max
 import kotlin.math.min
 
+/** Iterate to find the highest line number of this tree. */
 internal val DetailAST.maxLineNo: Int
     get() =
         if (isLeaf()) {
@@ -26,6 +27,7 @@ internal val DetailAST.maxLineNo: Int
             max(lineNo, children().maxOf { it.maxLineNo })
         }
 
+/** Iterate to find the lowest line number of this tree. */
 internal val DetailAST.minLineNo: Int
     get() =
         if (isLeaf()) {

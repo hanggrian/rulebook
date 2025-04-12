@@ -21,18 +21,19 @@ public class RedundantElseRule : RulebookAstRule() {
         override fun visitBlockStatement(node: BlockStatement) {
             super.visitBlockStatement(node)
 
-            for (statement in node.statements) {
-                // skip single if
+            for (statement in node.statements.filterIsInstance<IfStatement>()) {
+                // no single if
                 var `if`: IfStatement? =
-                    (statement as? IfStatement)
-                        ?.takeUnless { it.elseBlock.isEmpty }
+                    statement
+                        .takeUnless { it.elseBlock.isEmpty }
                         ?: continue
 
                 // checks for violation
                 while (`if` != null) {
-                    if (!`if`.ifBlock.hasJumpStatement()) {
-                        return
-                    }
+                    `if`
+                        .ifBlock
+                        .takeIf { it.hasJumpStatement() }
+                        ?: return
                     val lastElse = `if`.elseBlock
                     if (lastElse != null) {
                         addViolation(lastElse, Messages[MSG])

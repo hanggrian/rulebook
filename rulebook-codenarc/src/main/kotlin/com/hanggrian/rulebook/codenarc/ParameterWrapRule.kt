@@ -56,13 +56,14 @@ public class ParameterWrapRule : RulebookAstRule() {
         private fun process(parameters: List<ASTNode>) {
             // target multiline parameters
             parameters
-                .takeIf { it.isNotEmpty() && it.last().lineNumber > parameters.first().lineNumber }
+                .takeIf { it.isNotEmpty() && it.last().lineNumber > it.first().lineNumber }
                 ?: return
 
             // checks for violation
             for ((i, parameter) in parameters.withIndex().drop(1)) {
                 parameters[i - 1]
-                    .takeIf { it.lastLineNumber == parameter.lineNumber }
+                    .lastLineNumber
+                    .takeIf { it == parameter.lineNumber }
                     ?: continue
                 addViolation(parameter, Messages[MSG_ARGUMENT])
             }

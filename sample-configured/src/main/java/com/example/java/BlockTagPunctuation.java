@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class BlockTagPunctuation {
     /**
-     * @throws Exception oops
+     * @throws Exception oops.
      */
     public void foo() throws IOException {}
 }

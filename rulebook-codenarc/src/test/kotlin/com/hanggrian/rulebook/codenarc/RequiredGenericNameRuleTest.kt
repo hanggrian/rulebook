@@ -15,8 +15,8 @@ class RequiredGenericNameRuleTest : AbstractRuleTestCase<RequiredGenericNameRule
         assertIs<RequiredGenericNameRule.Visitor>(rule.astVisitor)
 
         val rule = RequiredGenericNameRule()
-        rule.setNames("X, Z")
-        assertThat(rule.names).containsExactly("X", "Z")
+        rule.names = "X, Z"
+        assertThat(rule.nameList).containsExactly("X", "Z")
     }
 
     @Test

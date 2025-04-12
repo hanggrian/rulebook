@@ -33,7 +33,7 @@ class ShortBlockCommentJoinRuleTest {
              */
             fun foo() {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 3, "Convert into single-line.")
+        ).hasLintViolationWithoutAutoCorrect(1, 1, "Convert into single-line.")
 
     @Test
     fun `Skip tagged block comment`() =
@@ -43,17 +43,6 @@ class ShortBlockCommentJoinRuleTest {
              * @param bar some value.
              */
             fun foo(bar: Int) {}
-            """.trimIndent(),
-        ).hasNoLintViolations()
-
-    @Test
-    fun `Skip empty block comment`() =
-        assertThatCode(
-            """
-            /**
-             *
-             */
-            fun foo() {}
             """.trimIndent(),
         ).hasNoLintViolations()
 }

@@ -22,7 +22,9 @@ public class DuplicateBlankLineInBlockCommentCheck : RulebookJavadocCheck() {
 
         // checks for violation
         nextLeadingAsterisk
-            .takeIf { it.next?.type == NEWLINE }
+            .next
+            ?.type
+            ?.takeIf { it == NEWLINE }
             ?: return
         log(nextLeadingAsterisk.lineNumber, nextLeadingAsterisk.columnNumber, Messages[MSG])
     }

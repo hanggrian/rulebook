@@ -13,9 +13,7 @@ jobs:
     executor: linux
     steps:
       - checkout
-      - run: |
-          ./gradlew checkstyleMain codenarcMain ktlintCheck \
-            test koverXmlReport
+      - run: ./gradlew check koverXmlReport
       - run: pip install -r requirements.txt && pytest --cov .
       - codecov/upload
 

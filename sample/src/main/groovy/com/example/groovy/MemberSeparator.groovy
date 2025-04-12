@@ -12,7 +12,8 @@ class MemberSeparator {
         }
 
         /**
-         * Lorem ipsum.
+         * Lorem
+         * ipsum.
          */
         def baz() {}
     }

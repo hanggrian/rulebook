@@ -70,6 +70,7 @@
 
   <!-- Spacing -->
   <module name="DuplicateBlankLine"/>
+  <module name="UnnecessaryBlankLineBeforePackage"/>
 
   <module name="TreeWalker">
     <!-- https://checkstyle.org/checks/javadoc/index.html -->
@@ -261,7 +262,6 @@
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
-    <module name="UnnecessaryBlankLineBeforePackage"/>
 
     <!-- Stating -->
     <module name="IllegalCatch">
@@ -291,6 +291,7 @@
     </module>
     <module name="LambdaWrap"/>
     <module name="ParameterWrap"/>
+    <module name="SingleLineJavadoc"/>
     <module name="OneStatementPerLine"/>
   </module>
 </module>

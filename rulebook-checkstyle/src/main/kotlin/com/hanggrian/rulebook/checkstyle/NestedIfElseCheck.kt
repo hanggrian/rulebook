@@ -23,7 +23,7 @@ public class NestedIfElseCheck : RulebookAstCheck() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // skip blocks without exit path
+        // no blocks without exit path
         val slist =
             node.takeUnless { it.parent.isTryCatch() }
                 ?: node.parent { it.type == SLIST && !it.parent.isTryCatch() && LITERAL_TRY in it }

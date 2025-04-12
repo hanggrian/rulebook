@@ -33,11 +33,8 @@ public class RedundantQualifierCheck : RulebookAstCheck() {
 
     private fun process(dot: DetailAST?) {
         dot
-            ?.takeIf { n -> importNodes.any { n.isDotEquals(it) } }
+            ?.takeIf { n -> importNodes.any { n.isDotEquals(it) } && targetNodes.add(n) }
             ?: return
-        if (!targetNodes.add(dot)) {
-            return
-        }
         log(dot, Messages[MSG])
     }
 

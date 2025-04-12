@@ -8,15 +8,9 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation) */
 public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
-    internal var tags =
-        setOf(
-            "@param",
-            "@return",
-        )
+    public var tags: String = "@param, @return"
 
-    public fun setTags(vararg tags: String) {
-        this.tags = tags.toSet()
-    }
+    internal val tagList get() = tags.split(',').map { it.trim() }
 
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 
@@ -26,7 +20,7 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
             node
                 .children
                 .first()
-                .takeIf { it.text in tags }
+                .takeIf { it.text in tagList }
                 ?: return
 
         // long descriptions have multiple lines, take only the last one
@@ -40,7 +34,9 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
 
         // checks for violation
         text
-            .takeUnless { it.text.lastOrNull() in END_PUNCTUATIONS }
+            .text
+            .lastOrNull()
+            ?.takeUnless { it in END_PUNCTUATIONS }
             ?: return
         log(text.lineNumber, text.columnNumber, Messages.get(MSG, tagLiteral.text))
     }

@@ -69,14 +69,14 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
             val identifier =
                 property
                     .findChildByType(IDENTIFIER)
-                    ?.takeUnless { it.text.startsWith("is") }
                     ?.takeIf {
-                        property
-                            .findChildByType(TYPE_REFERENCE)
-                            ?.findChildByType(USER_TYPE)
-                            ?.findChildByType(REFERENCE_EXPRESSION)
-                            ?.findChildByType(IDENTIFIER)
-                            ?.text == "Boolean"
+                        !it.text.startsWith("is") &&
+                            property
+                                .findChildByType(TYPE_REFERENCE)
+                                ?.findChildByType(USER_TYPE)
+                                ?.findChildByType(REFERENCE_EXPRESSION)
+                                ?.findChildByType(IDENTIFIER)
+                                ?.text == "Boolean"
                     } ?: continue
             emit(
                 identifier.startOffset,
@@ -95,15 +95,15 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
             findChildByType(MODIFIER_LIST)
                 ?.children()
                 .orEmpty()
-                .filter { it.elementType == ANNOTATION_ENTRY }
                 .any {
-                    it
-                        .findChildByType(CONSTRUCTOR_CALLEE)
-                        ?.findChildByType(TYPE_REFERENCE)
-                        ?.findChildByType(USER_TYPE)
-                        ?.findChildByType(REFERENCE_EXPRESSION)
-                        ?.findChildByType(IDENTIFIER)
-                        ?.text == name
+                    it.elementType == ANNOTATION_ENTRY &&
+                        it
+                            .findChildByType(CONSTRUCTOR_CALLEE)
+                            ?.findChildByType(TYPE_REFERENCE)
+                            ?.findChildByType(USER_TYPE)
+                            ?.findChildByType(REFERENCE_EXPRESSION)
+                            ?.findChildByType(IDENTIFIER)
+                            ?.text == name
                 }
 
         private fun ASTNode.isPublic() =

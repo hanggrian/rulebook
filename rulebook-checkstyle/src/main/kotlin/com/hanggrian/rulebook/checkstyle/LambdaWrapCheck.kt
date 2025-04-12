@@ -29,7 +29,8 @@ public class LambdaWrapCheck : RulebookAstCheck() {
 
         // checks for violation
         expr
-            .takeIf { parameters.maxLineNo == it.minLineNo }
+            .minLineNo
+            .takeIf { it == parameters.maxLineNo }
             ?: return
         log(expr.firstLeaf(), Messages[MSG])
     }

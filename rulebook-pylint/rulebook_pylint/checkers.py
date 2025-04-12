@@ -13,11 +13,7 @@ class RulebookTokenChecker(BaseTokenChecker, ABC):
 
 
 class RulebookFileChecker(BaseRawFileChecker, ABC):
-    """
-    Override `process_module` to capture file at once.
-
-    When not overriden, the source code will be collected as a list of bytes.
-    """
+    """Override `process_module` to capture file at once."""
     lines: list[bytes]
 
     def process_module(self, node: Module) -> None:

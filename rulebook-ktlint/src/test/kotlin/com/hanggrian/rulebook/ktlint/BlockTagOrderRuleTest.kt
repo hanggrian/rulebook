@@ -19,7 +19,7 @@ class BlockTagOrderRuleTest {
              * @property bar lorem ipsum.
              * @see http://some.url/
              */
-            data class Foo(val bar: Int)
+            class Foo(val bar: Int)
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -28,14 +28,26 @@ class BlockTagOrderRuleTest {
         assertThatCode(
             """
             /**
-             * @see Foo
+             * @see http://some.url/
              * @property bar lorem ipsum.
              * @constructor lorem ipsum.
              */
-            data class Foo(val bar: Int)
+            class Foo(val bar: Int)
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(3, 4, "Arrange tag '@property' before '@see'."),
             LintViolation(4, 4, "Arrange tag '@constructor' before '@property'."),
         )
+
+    @Test
+    fun `Aware of duplicate block tag`() =
+        assertThatCode(
+            """
+            /**
+             * @property bar lorem ipsum.
+             * @property baz lorem ipsum.
+             */
+            class Foo(val bar: Int, val baz: Int)
+            """.trimIndent(),
+        ).hasNoLintViolations()
 }

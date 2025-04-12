@@ -3,6 +3,9 @@ package com.hanggrian.rulebook.codenarc
 import com.hanggrian.rulebook.codenarc.internals.Messages
 import com.hanggrian.rulebook.codenarc.internals.isMultiline
 import org.codehaus.groovy.ast.expr.BinaryExpression
+import org.codehaus.groovy.ast.expr.ClosureExpression
+import org.codehaus.groovy.ast.expr.ListExpression
+import org.codehaus.groovy.ast.expr.MapExpression
 import org.codehaus.groovy.syntax.Types.ASSIGN
 import org.codenarc.rule.AbstractAstVisitor
 
@@ -46,7 +49,12 @@ public class OperatorWrapRule : RulebookAstRule() {
             }
             node
                 .rightExpression
-                .takeIf { it.lineNumber == operation.startLine }
+                .takeUnless {
+                    it is ListExpression ||
+                        it is MapExpression ||
+                        it is ClosureExpression
+                }?.lineNumber
+                ?.takeIf { it == operation.startLine }
                 ?: return
             violations +=
                 rule.createViolation(

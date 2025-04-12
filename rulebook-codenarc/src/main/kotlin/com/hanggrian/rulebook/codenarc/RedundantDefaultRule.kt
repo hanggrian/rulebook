@@ -19,7 +19,7 @@ public class RedundantDefaultRule : RulebookAstRule() {
         override fun visitSwitch(node: SwitchStatement) {
             super.visitSwitch(node)
 
-            // skip no default
+            // find default
             val default = node.defaultStatement ?: return
 
             // checks for violation

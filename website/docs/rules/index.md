@@ -3617,6 +3617,12 @@ Each method call in a chain should be aligned with the dot operator.
         notification.getSender()
             .getId();
     ```
+=== "Groovy"
+    ```groovy hl_lines="2-3"
+    var senderId =
+        notification.getSender()
+            .getId()
+    ```
 === "Kotlin"
     ```kotlin hl_lines="2-3"
     val senderId =
@@ -3632,6 +3638,13 @@ Each method call in a chain should be aligned with the dot operator.
         notification
             .getSender()
             .getId();
+    ```
+=== "Groovy"
+    ```groovy hl_lines="2-4"
+    var senderId =
+        notification
+            .getSender()
+            .getId()
     ```
 === "Kotlin"
     ```kotlin hl_lines="2-4"
@@ -3674,6 +3687,11 @@ Whitespace is not allowed in empty code blocks.
     void main() {
     }
     ```
+=== "Groovy"
+    ```groovy
+    def main() {
+    }
+    ```
 === "Kotlin"
     ```kotlin
     fun main() {
@@ -3685,6 +3703,10 @@ Whitespace is not allowed in empty code blocks.
 === "Java"
     ```java
     void main() {}
+    ```
+=== "Groovy"
+    ```groovy
+    def main() {}
     ```
 === "Kotlin"
     ```kotlin
@@ -3897,6 +3919,18 @@ Short block comments should be written in a single line.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
+=== "Java"
+    ```java
+    /**
+     * The quick brown fox jumps over the lazy dog.
+     */
+    ```
+=== "Groovy"
+    ```groovy
+    /**
+     * The quick brown fox jumps over the lazy dog.
+     */
+    ```
 === "Kotlin"
     ```kotlin
     /**
@@ -3906,6 +3940,14 @@ Short block comments should be written in a single line.
 
 **:material-star-four-points:{ #accent } After**
 
+=== "Java"
+    ```java
+    /** The quick brown fox jumps over the lazy dog. */
+    ```
+=== "Groovy"
+    ```groovy
+    /** The quick brown fox jumps over the lazy dog. */
+    ```
 === "Kotlin"
     ```kotlin
     /** The quick brown fox jumps over the lazy dog. */

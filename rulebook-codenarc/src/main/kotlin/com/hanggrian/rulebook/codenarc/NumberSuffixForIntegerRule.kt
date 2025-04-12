@@ -23,7 +23,7 @@ public class NumberSuffixForIntegerRule : RulebookAstRule() {
                 return
             }
 
-            // skip other literals
+            // no other literals
             node
                 .type
                 .takeIf { it == int_TYPE }
@@ -31,7 +31,7 @@ public class NumberSuffixForIntegerRule : RulebookAstRule() {
 
             // checks for violation
             getLiteral(node)
-                ?.singleOrNull { it.isLetter() }
+                ?.last()
                 ?.takeIf { it == 'I' }
                 ?: return
             addViolation(node, Messages[MSG])

@@ -40,7 +40,7 @@ public class MemberSeparatorRule : RulebookAstRule() {
                         violations +=
                             rule.createViolation(
                                 lastMember.lastLineNumber,
-                                sourceCode.line(lastMember.lastLineNumber - 1),
+                                lastSourceLine(lastMember),
                                 Messages.get(
                                     MSG,
                                     when (lastMember) {

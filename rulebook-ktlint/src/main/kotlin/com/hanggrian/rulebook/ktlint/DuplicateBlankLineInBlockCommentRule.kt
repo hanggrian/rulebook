@@ -24,7 +24,8 @@ public class DuplicateBlankLineInBlockCommentRule : RulebookRule(ID) {
 
         // checks for violation
         nextKdocLeadingAsterisk
-            .takeIf { it.treeNext.isWhiteSpaceWithNewline() }
+            .treeNext
+            .takeIf { it.isWhiteSpaceWithNewline() }
             ?: return
         emit(nextKdocLeadingAsterisk.endOffset, Messages[MSG], false)
     }

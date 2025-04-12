@@ -10,8 +10,8 @@ class IllegalClassFinalNameCheckTest : CheckTest() {
     fun `Rule properties`() {
         check.assertProperties()
 
-        check.setNames("Hello", "World")
-        assertThat(check.names).containsExactly("Hello", "World")
+        check.names = "Hello, World"
+        assertThat(check.nameList).containsExactly("Hello", "World")
     }
 
     @Test

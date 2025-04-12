@@ -12,7 +12,7 @@ public class CommentSpacesCheck : RulebookAstCheck() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // skip empty comment
+        // no empty comment
         val commentContent =
             node
                 .findFirstToken(COMMENT_CONTENT)
@@ -21,13 +21,14 @@ public class CommentSpacesCheck : RulebookAstCheck() {
 
         // checks for violation
         commentContent
-            .takeIf { n ->
-                !n.text.startsWith(' ') &&
-                    !n.text.startsWith("noinspection") &&
-                    !n.text.startsWith("region") &&
-                    !n.text.startsWith("endregion") &&
-                    !n.text.startsWith("language=") &&
-                    !n.text.trimEnd().all { it == '/' }
+            .text
+            .takeIf { s ->
+                !s.startsWith(' ') &&
+                    !s.startsWith("noinspection") &&
+                    !s.startsWith("region") &&
+                    !s.startsWith("endregion") &&
+                    !s.startsWith("language=") &&
+                    !s.trimEnd().all { it == '/' }
             } ?: return
         log(node, Messages[MSG])
     }

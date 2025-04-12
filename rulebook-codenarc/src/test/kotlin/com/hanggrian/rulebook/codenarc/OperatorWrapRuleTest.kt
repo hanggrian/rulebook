@@ -36,7 +36,7 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
                 println(
                     3
                         + 4
-                        - 5
+                        - 5,
                 )
             }
             """.trimIndent(),
@@ -56,7 +56,7 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
                 println(
                     3 +
                         4 -
-                        5
+                        5,
                 )
             }
             """.trimIndent(),
@@ -70,7 +70,7 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
                 var bar =
                     1 * Math.min(
                         2,
-                        3
+                        3,
                     )
                 println(
                     4 + Math.min(
@@ -78,14 +78,14 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
                         6
                     ) - Math.max(
                         7,
-                        8
+                        8,
                     )
                 )
             }
             """.trimIndent(),
-            violationOf(3, "1 * Math.min(", "Put newline before operator '*'."),
-            violationOf(8, "4 + Math.min(", "Put newline before operator '+'."),
-            violationOf(11, ") - Math.max(", "Put newline before operator '-'."),
+            violationOf(3, "1 * Math.min(", "Put newline after operator '*'."),
+            violationOf(8, "4 + Math.min(", "Put newline after operator '+'."),
+            violationOf(11, ") - Math.max(", "Put newline after operator '-'."),
         )
 
     @Test
@@ -101,6 +101,22 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
                         4 -
                         /** Long comment */ 5
                 )
+            }
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Skip collection initializers`() =
+        assertNoViolations(
+            """
+            def foo() {
+                var bar =
+                    1 + [
+                        2,
+                        3,
+                    ] + {
+                        4
+                    }
             }
             """.trimIndent(),
         )

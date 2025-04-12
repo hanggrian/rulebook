@@ -36,13 +36,15 @@ public class TrailingCommaInCallRule : RulebookAstRule() {
             // checks for violation
             if (!arguments.isMultiline()) {
                 sourceLineNullable(expression)
-                    ?.takeIf { it.trimComment().endsWith(",)") }
+                    ?.trimComment()
+                    ?.takeIf { it.endsWith(",)") }
                     ?: return
                 addViolation(expression, Messages[MSG_SINGLE])
                 return
             }
             lastSourceLineNullable(expression)
-                ?.takeUnless { it.trimComment().endsWith(',') }
+                ?.trimComment()
+                ?.takeUnless { it.endsWith(',') }
                 ?: return
             violations +=
                 rule.createViolation(

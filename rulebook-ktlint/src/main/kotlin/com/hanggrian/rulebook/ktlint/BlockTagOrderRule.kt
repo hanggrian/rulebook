@@ -31,15 +31,15 @@ public class BlockTagOrderRule : RulebookRule(ID) {
                     ?.findChildByType(KDOC_TAG_NAME)
                     ?: continue
             val kdocTagName = kdocTag.findChildByType(KDOC_TAG_NAME) ?: continue
-            if (MEMBER_POSITIONS.getOrDefault(lastKdocTagName.text, -1) >
-                MEMBER_POSITIONS[kdocTagName.text]!!
-            ) {
-                emit(
-                    kdocTag.startOffset,
-                    Messages.get(MSG, kdocTagName.text, lastKdocTagName.text),
-                    false,
-                )
-            }
+            MEMBER_POSITIONS
+                .getOrDefault(lastKdocTagName.text, -1)
+                .takeIf { it > MEMBER_POSITIONS[kdocTagName.text]!! }
+                ?: continue
+            emit(
+                kdocTag.startOffset,
+                Messages.get(MSG, kdocTagName.text, lastKdocTagName.text),
+                false,
+            )
         }
     }
 

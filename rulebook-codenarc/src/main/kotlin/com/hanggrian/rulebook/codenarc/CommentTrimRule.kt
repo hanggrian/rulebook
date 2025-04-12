@@ -16,7 +16,7 @@ public class CommentTrimRule : RulebookFileRule() {
             .forEach { (start, line) ->
                 // continue if this comment is first line
                 sourceCode
-                    .lines[start - 1]
+                    .line(start - 1)
                     .takeUnless { "//" in it }
                     ?: return
 
@@ -26,7 +26,7 @@ public class CommentTrimRule : RulebookFileRule() {
                     end++
                 }
 
-                // skip blank comment
+                // no blank comment
                 start
                     .takeUnless { it == end }
                     ?: return
@@ -37,7 +37,7 @@ public class CommentTrimRule : RulebookFileRule() {
                 }
                 val endLine =
                     sourceCode
-                        .lines[end]
+                        .line(end)
                         .takeIf { it.isEolCommentEmpty() }
                         ?: return
                 violations += createViolation(end + 1, endLine, Messages[MSG])

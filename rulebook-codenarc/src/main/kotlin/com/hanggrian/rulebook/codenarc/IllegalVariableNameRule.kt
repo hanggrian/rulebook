@@ -6,19 +6,9 @@ import org.codenarc.rule.AbstractAstVisitor
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-variable-name) */
 public class IllegalVariableNameRule : RulebookAstRule() {
-    internal var names =
-        setOf(
-            "object",
-            "integer",
-            "string",
-            "objects",
-            "integers",
-            "strings",
-        )
+    public var names: String = "object, integer, string, objects, integers, strings"
 
-    public fun setNames(names: String) {
-        this.names = names.split(", ").toSet()
-    }
+    internal val nameList get() = names.split(',').map { it.trim() }
 
     override fun getName(): String = "IllegalVariableName"
 
@@ -33,9 +23,10 @@ public class IllegalVariableNameRule : RulebookAstRule() {
             super.visitField(node)
 
             // checks for violation
-            val names = (rule as IllegalVariableNameRule).names
+            val names = (rule as IllegalVariableNameRule).nameList
             node
-                .takeIf { it.name in names }
+                .name
+                .takeIf { it in names }
                 ?: return
             addViolation(node, Messages[MSG])
         }

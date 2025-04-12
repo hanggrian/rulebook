@@ -42,7 +42,8 @@ public class ExceptionInheritanceRule : RulebookRule(ID) {
 
         // checks for violation
         identifier
-            .takeIf { it.text in NON_APPLICATION_EXCEPTIONS }
+            .text
+            .takeIf { it in NON_APPLICATION_EXCEPTIONS }
             ?: return
         emit(identifier.startOffset, Messages[MSG], false)
     }

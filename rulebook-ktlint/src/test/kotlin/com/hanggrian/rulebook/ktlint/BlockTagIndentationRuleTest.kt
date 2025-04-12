@@ -20,7 +20,7 @@ class BlockTagIndentationRuleTest {
              * @param bar lorem
              *     ipsum.
              */
-            data class Foo(val bar: Int)
+            class Foo(val bar: Int)
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -34,7 +34,7 @@ class BlockTagIndentationRuleTest {
              * @param bar lorem
              *   ipsum.
              */
-            data class Foo(val bar: Int)
+            class Foo(val bar: Int)
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(3, 3, "Indent block tag description by '4 spaces'."),

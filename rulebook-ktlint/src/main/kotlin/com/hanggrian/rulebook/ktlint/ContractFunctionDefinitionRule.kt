@@ -29,11 +29,12 @@ public class ContractFunctionDefinitionRule : RulebookRule(ID) {
                     n
                         .findChildByType(REFERENCE_EXPRESSION)
                         ?.findChildByType(IDENTIFIER)
-                        ?.let { it.text == "contract" || it.text == "kotlin.contract" }
+                        ?.text
+                        ?.let { it == "contract" || it == "kotlin.contract" }
                         ?: return
                 } ?: return
 
-        // skip function without `callsInPlace`
+        // no function without `callsInPlace`
         callExpression
             .findChildByType(LAMBDA_ARGUMENT)
             ?.findChildByType(LAMBDA_EXPRESSION)
@@ -42,7 +43,8 @@ public class ContractFunctionDefinitionRule : RulebookRule(ID) {
             ?.findChildByType(CALL_EXPRESSION)
             ?.findChildByType(REFERENCE_EXPRESSION)
             ?.findChildByType(IDENTIFIER)
-            ?.takeIf { it.text == "callsInPlace" }
+            ?.text
+            ?.takeIf { it == "callsInPlace" }
             ?: return
 
         // checks for violation

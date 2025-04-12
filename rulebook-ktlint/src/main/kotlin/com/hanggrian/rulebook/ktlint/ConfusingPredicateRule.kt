@@ -25,7 +25,7 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CALL_EXPRESSION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip non-predicate call
+        // no non-predicate call
         val predicateBlock =
             node
                 .findChildByType(LAMBDA_ARGUMENT)
@@ -39,7 +39,8 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
             node
                 .findChildByType(REFERENCE_EXPRESSION)
                 ?.findChildByType(IDENTIFIER)
-                ?.let { PREDICATE_CALLS[it.text] }
+                ?.text
+                ?.let { PREDICATE_CALLS[it] }
                 ?: return
 
         // checks for violation
@@ -58,11 +59,9 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
             .takeUnless { it.isChained() }
             ?.findChildByType(OPERATION_REFERENCE)
             ?.firstChildNode
-            ?.takeIf {
-                it.elementType == EXCLEQ ||
-                    it.elementType == EXCL ||
-                    it.elementType == NOT_IS
-            } ?: return
+            ?.elementType
+            ?.takeIf { it == EXCLEQ || it == EXCL || it == NOT_IS }
+            ?: return
         emit(node.startOffset, Messages.get(msg, functionReplacement), false)
     }
 

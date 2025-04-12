@@ -168,7 +168,7 @@
     </module>
 
     <module name="BlockTagPunctuation">
-      <property name="tags" value="@exception"/>
+      <property name="tags" value="@throws"/>
     </module>
 
     <module name="IllegalClassFinalName">

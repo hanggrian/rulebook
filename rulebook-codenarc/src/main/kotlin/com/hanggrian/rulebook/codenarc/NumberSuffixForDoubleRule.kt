@@ -23,7 +23,7 @@ public class NumberSuffixForDoubleRule : RulebookAstRule() {
                 return
             }
 
-            // skip other literals
+            // no other literals
             node
                 .type
                 .takeIf { it == double_TYPE }

@@ -33,7 +33,8 @@ public class LambdaWrapRule : RulebookAstRule() {
 
             // checks for violation
             expression
-                .takeIf { parameters.lastLineNumber == it.lineNumber }
+                .lineNumber
+                .takeIf { it == parameters.lastLineNumber }
                 ?: return
             addViolation(expression, Messages[MSG])
         }

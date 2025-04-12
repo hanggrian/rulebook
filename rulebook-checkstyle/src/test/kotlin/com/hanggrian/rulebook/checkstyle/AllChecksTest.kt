@@ -12,6 +12,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
             DefaultConfiguration("root").apply {
                 addProperty("charset", StandardCharsets.UTF_8.name())
                 addConfiguration<DuplicateBlankLineCheck>()
+                addConfiguration<UnnecessaryBlankLineBeforePackageCheck>()
                 addChild(
                     DefaultConfiguration(TreeWalker::class.simpleName).apply {
                         addConfiguration<AbstractClassDefinitionCheck>()
@@ -35,7 +36,6 @@ class AllChecksTest : AbstractModuleTestSupport() {
                         addConfiguration<RedundantDefaultCheck>()
                         addConfiguration<RedundantElseCheck>()
                         addConfiguration<RedundantQualifierCheck>()
-                        addConfiguration<UnnecessaryBlankLineBeforePackageCheck>()
                         addConfiguration<UnnecessaryParenthesesInLambdaCheck>()
                         addConfiguration<UnnecessarySwitchCheck>()
                     },

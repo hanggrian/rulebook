@@ -14,7 +14,9 @@ class ChainCallWrap {
             .baz(
                 new String("Lorem ipsum")
             )
-            .baz();
+            .baz(
+                new String("Lorem ipsum")
+            );
     }
 
     static class Baz {

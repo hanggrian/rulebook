@@ -6,11 +6,9 @@ import org.codenarc.rule.AbstractAstVisitor
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
 public class IllegalClassFinalNameRule : RulebookAstRule() {
-    internal var names = setOf("Util", "Utility", "Helper", "Manager", "Wrapper")
+    public var names: String = "Util, Utility, Helper, Manager, Wrapper"
 
-    public fun setNames(names: String) {
-        this.names = names.split(", ").toSet()
-    }
+    internal val nameList get() = names.split(',').map { it.trim() }
 
     override fun getName(): String = "IllegalClassFinalName"
 
@@ -30,7 +28,7 @@ public class IllegalClassFinalNameRule : RulebookAstRule() {
             // checks for violation
             val finalName =
                 (rule as IllegalClassFinalNameRule)
-                    .names
+                    .nameList
                     .singleOrNull { node.name.endsWith(it) }
                     ?: return
             if (finalName in UTILITY_FINAL_NAMES) {

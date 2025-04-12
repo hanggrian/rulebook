@@ -16,7 +16,7 @@ public class RedundantElseRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(IF)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip single if
+        // no single if
         node
             .takeIf { ELSE in node }
             ?: return
@@ -24,9 +24,10 @@ public class RedundantElseRule : RulebookRule(ID) {
         // checks for violation
         var `if`: ASTNode? = node
         while (`if` != null) {
-            if (`if`.findChildByType(THEN)?.hasJumpStatement() == false) {
-                return
-            }
+            `if`
+                .findChildByType(THEN)
+                ?.takeIf { it.hasJumpStatement() }
+                ?: return
             val lastElse = `if`.findChildByType(ELSE_KEYWORD)
             if (lastElse != null) {
                 emit(lastElse.startOffset, Messages[MSG], false)

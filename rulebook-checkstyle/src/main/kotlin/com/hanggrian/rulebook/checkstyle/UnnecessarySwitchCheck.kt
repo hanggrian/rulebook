@@ -12,7 +12,7 @@ public class UnnecessarySwitchCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 
     override fun visitToken(node: DetailAST) {
-        // target single entry
+        // no multiple branches
         val caseGroup =
             node
                 .children()

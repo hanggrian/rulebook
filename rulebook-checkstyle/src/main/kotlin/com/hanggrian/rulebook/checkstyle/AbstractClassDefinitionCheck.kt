@@ -18,7 +18,7 @@ public class AbstractClassDefinitionCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CLASS_DEF)
 
     override fun visitToken(node: DetailAST) {
-        // skip non-abstract class
+        // no non-abstract class
         val abstract =
             node
                 .findFirstToken(MODIFIERS)
@@ -27,13 +27,14 @@ public class AbstractClassDefinitionCheck : RulebookAstCheck() {
 
         // checks for violation
         node
-            .takeUnless { EXTENDS_CLAUSE in it || IMPLEMENTS_CLAUSE in it }
-            ?.takeIf { n ->
-                n
-                    .findFirstToken(OBJBLOCK)
-                    ?.children()
-                    .orEmpty()
-                    .none { it.type == METHOD_DEF && it.hasModifier(ABSTRACT) }
+            .takeIf { n ->
+                EXTENDS_CLAUSE !in n &&
+                    IMPLEMENTS_CLAUSE !in n &&
+                    n
+                        .findFirstToken(OBJBLOCK)
+                        ?.children()
+                        .orEmpty()
+                        .none { it.type == METHOD_DEF && it.hasModifier(ABSTRACT) }
             } ?: return
         log(abstract, Messages[MSG])
     }

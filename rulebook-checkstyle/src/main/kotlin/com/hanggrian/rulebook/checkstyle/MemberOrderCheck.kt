@@ -21,12 +21,14 @@ public class MemberOrderCheck : RulebookAstCheck() {
         node
             .children()
             .filter {
-                it.type == VARIABLE_DEF ||
-                    it.type == CTOR_DEF ||
-                    it.type == COMPACT_CTOR_DEF ||
-                    it.type == METHOD_DEF
-            }.filterNot { it.hasModifier(LITERAL_STATIC) }
-            .forEach {
+                (
+                    it.type == VARIABLE_DEF ||
+                        it.type == CTOR_DEF ||
+                        it.type == COMPACT_CTOR_DEF ||
+                        it.type == METHOD_DEF
+                ) &&
+                    !it.hasModifier(LITERAL_STATIC)
+            }.forEach {
                 // checks for violation
                 if (MEMBER_POSITIONS.getOrDefault(lastChildType, -1) >
                     MEMBER_POSITIONS[it.type]!!

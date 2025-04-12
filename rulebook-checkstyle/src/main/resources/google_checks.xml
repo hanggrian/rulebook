@@ -64,6 +64,7 @@
 
   <!-- Spacing -->
   <module name="DuplicateBlankLine"/>
+  <module name="UnnecessaryBlankLineBeforePackage"/>
 
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
@@ -537,7 +538,6 @@
     <module name="CommentTrim"/>
     <module name="DuplicateBlankLineInBlockComment"/>
     <module name="DuplicateBlankLineInComment"/>
-    <module name="UnnecessaryBlankLineBeforePackage"/>
 
     <!-- Stating -->
     <module name="IllegalCatch">

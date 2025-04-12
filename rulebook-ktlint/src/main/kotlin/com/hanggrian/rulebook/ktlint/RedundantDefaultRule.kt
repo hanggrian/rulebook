@@ -16,7 +16,7 @@ public class RedundantDefaultRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip no default
+        // find default
         val whenEntries =
             node
                 .children()

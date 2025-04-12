@@ -16,17 +16,20 @@ public class UnnecessaryParenthesesInLambdaCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LAMBDA)
 
     override fun visitToken(node: DetailAST) {
-        // checks for violation
+        // no multiple parameters
         val parameter =
             node
                 .findFirstToken(PARAMETERS)
                 ?.children()
                 ?.singleOrNull()
-                ?.takeIf {
-                    (IDENT !in it.findFirstToken(TYPE)) &&
-                        LPAREN in node &&
-                        RPAREN in node
-                } ?: return
+                ?: return
+
+        // checks for violation
+        parameter
+            .takeIf { LPAREN in node && RPAREN in node }
+            ?.findFirstToken(TYPE)
+            ?.takeUnless { IDENT in it }
+            ?: return
         log(parameter, Messages[MSG])
     }
 

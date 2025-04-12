@@ -9,11 +9,9 @@ import org.codenarc.rule.AbstractAstVisitor
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#required-generic-name) */
 public class RequiredGenericNameRule : RulebookAstRule() {
-    internal var names = setOf("E", "K", "N", "T", "V")
+    public var names: String = "E, K, N, T, V"
 
-    public fun setNames(names: String) {
-        this.names = names.split(", ").toSet()
-    }
+    internal val nameList get() = names.split(',').map { it.trim() }
 
     override fun getName(): String = "RequiredGenericName"
 
@@ -50,7 +48,7 @@ public class RequiredGenericNameRule : RulebookAstRule() {
                     ?: return
 
             // checks for violation
-            val names = (rule as RequiredGenericNameRule).names
+            val names = (rule as RequiredGenericNameRule).nameList
             node
                 .takeUnless { it.hasParentWithGenerics() || genericsType.name in names }
                 ?: return

@@ -1,32 +1,18 @@
 package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.checkstyle.internals.Messages
-import com.puppycrawl.tools.checkstyle.api.DetailAST
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
-import kotlin.math.min
+import com.puppycrawl.tools.checkstyle.api.FileText
+import java.io.File
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#unnecessary-blank-line-before-package) */
-public class UnnecessaryBlankLineBeforePackageCheck : RulebookAstCheck() {
-    private var minIndex = Int.MAX_VALUE
+public class UnnecessaryBlankLineBeforePackageCheck : RulebookFileCheck() {
+    override fun processFiltered(file: File, fileText: FileText) {
+        super.processFiltered(file, fileText)
 
-    override fun getRequiredTokens(): IntArray =
-        intArrayOf(
-            SINGLE_LINE_COMMENT,
-            BLOCK_COMMENT_BEGIN,
-        )
-
-    override fun isCommentNodesRequired(): Boolean = true
-
-    override fun visitToken(node: DetailAST) {
-        minIndex = min(minIndex, node.lineNo)
-    }
-
-    override fun finishTree(node: DetailAST) {
         // checks for violation
-        node
-            .takeUnless { minIndex == 1 }
-            ?.takeIf { it.lineNo > 1 }
+        lines
+            .firstOrNull()
+            ?.takeIf { it.isBlank() }
             ?: return
         log(1, Messages[MSG])
     }

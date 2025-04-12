@@ -31,7 +31,7 @@ public class ImportOrderRule : RulebookImportRule() {
                             else -> return
                         }
 
-                    // skip first index
+                    // no first index
                     if (isStatic != prevStatic || (prevIndex == null && prevDirective == null)) {
                         prevStatic = isStatic
                         prevIndex = index

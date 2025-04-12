@@ -57,11 +57,8 @@ public class RedundantQualifierRule : RulebookAstRule() {
 
         private fun process(node: ASTNode, text: String) {
             node
-                .takeIf { text in importPaths }
+                .takeIf { text in importPaths && targetNodes.add(it) }
                 ?: return
-            if (!targetNodes.add(node)) {
-                return
-            }
             addViolation(
                 node,
                 Messages.get(

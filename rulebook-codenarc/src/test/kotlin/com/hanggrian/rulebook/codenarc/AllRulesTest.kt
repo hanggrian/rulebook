@@ -17,11 +17,16 @@ class AllRulesTest : AbstractTestCase() {
     private val rules =
         setOf<Rule>(
             AssignmentWrapRule(),
+            BlockTagIndentationRule(),
+            BlockTagOrderRule(),
+            BlockTagPunctuationRule(),
             BuiltInFunctionPositionRule(),
             CaseSeparatorRule(),
+            ChainCallWrapRule(),
             ClassNameAcronymRule(),
             CommentTrimRule(),
             DuplicateBlankLineInCommentRule(),
+            EmptyCodeBlockJoinRule(),
             IllegalClassFinalNameRule(),
             IllegalVariableNameRule(),
             ImportOrderRule(),
@@ -29,6 +34,7 @@ class AllRulesTest : AbstractTestCase() {
             LambdaWrapRule(),
             MemberOrderRule(),
             MemberSeparatorRule(),
+            MissingBlankLineBeforeBlockTagsRule(),
             NestedIfElseRule(),
             NumberSuffixForDoubleRule(),
             NumberSuffixForFloatRule(),
@@ -39,14 +45,16 @@ class AllRulesTest : AbstractTestCase() {
             RedundantDefaultRule(),
             RedundantElseRule(),
             RedundantQualifierRule(),
+            ShortBlockCommentJoinRule(),
             StatementWrapRule(),
+            TodoCommentRule(),
             TrailingCommaInCallRule(),
             UnnecessaryParenthesesInLambdaRule(),
             UnnecessarySwitchRule(),
             UtilityClassDefinitionRule(),
         )
-    private val sourceCodeName = "All.groovy"
-    private val sourceCodePath = "com/hanggrian/rulebook/codenarc/all"
+    private val sourceCodeName = "AllRules.groovy"
+    private val sourceCodePath = "com/hanggrian/rulebook/codenarc"
 
     @Test
     fun org_codenarc_CodeNarcRunner() =
@@ -56,97 +64,173 @@ class AllRulesTest : AbstractTestCase() {
                 .readText(),
             violationOf(116, "if (pluginClassNames) {", "Invert 'if' condition."),
             violationOf(149, "if (plugins) {", "Invert 'if' condition."),
+            violationOf(167, "* @return a single RuleSet", "End '@return' with a period."),
         )
 
     @Test
-    fun org_grails_gradle_plugin_core_GrailsGradlePlugin() =
+    fun org_grails_gradle_plugin_publishing_GrailsPublishGradlePlugin() =
         assertViolations(
             javaClass
-                .getResource("GrailsGradlePlugin.groovy")!!
+                .getResource("GrailsPublishGradlePlugin.groovy")!!
                 .readText(),
             violationOf(
-                68,
-                "import javax.inject.Inject",
-                "Remove blank line before directive 'javax.inject.Inject'.",
+                177,
+                "project.tasks.withType(Sign).configureEach { Sign task ->",
+                "Put newline before '.'.",
             ),
             violationOf(
-                68,
-                "import javax.inject.Inject",
-                "Arrange directive 'javax.inject.Inject' " +
-                    "before 'org.springframework.boot.gradle.plugin.SpringBootPlugin'",
+                177,
+                "project.tasks.withType(Sign).configureEach { Sign task ->",
+                "Put newline before '.'.",
             ),
             violationOf(
-                178,
-                "if (!project.tasks.findByName('configureGroovyCompiler')) {",
-                "Invert 'if' condition.",
+                177,
+                "project.tasks.withType(Sign).configureEach { Sign task ->",
+                "Put newline before '.'.",
             ),
             violationOf(
-                198,
-                "List<String> scripts = " +
-                    "sourceConfigFiles.get().asFile.listFiles({ File dir, String name ->",
+                194,
+                "project.rootProject.tasks.withType(InitializeNexusStagingRepository)" +
+                    ".configureEach { InitializeNexusStagingRepository task ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                194,
+                "project.rootProject.tasks.withType(InitializeNexusStagingRepository)" +
+                    ".configureEach { InitializeNexusStagingRepository task ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                194,
+                "project.rootProject.tasks.withType(InitializeNexusStagingRepository)" +
+                    ".configureEach { InitializeNexusStagingRepository task ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                194,
+                "project.rootProject.tasks.withType(InitializeNexusStagingRepository)" +
+                    ".configureEach { InitializeNexusStagingRepository task ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(200, "project.rootProject.nexusPublishing {", "Put newline before '.'."),
+            violationOf(200, "project.rootProject.nexusPublishing {", "Put newline before '.'."),
+            violationOf(
+                369,
+                "dependencyNodes.findAll { dependencyNode ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                375,
+                "def resolvedArtifacts = project.configurations.compileClasspath" +
+                    ".resolvedConfiguration.resolvedArtifacts +",
                 "Break assignment into newline.",
             ),
-            violationOf(200, "} as FilenameFilter).collect { it.text }", "Put trailing comma."),
             violationOf(
-                260,
-                "if (!slf4jPreventExclusion || slf4jPreventExclusion != 'true') {",
-                "Invert 'if' condition.",
+                378,
+                "resolvedArtifacts += project.configurations.testFixturesCompileClasspath" +
+                    ".resolvedConfiguration.resolvedArtifacts +",
+                "Put newline after operator '+='.",
             ),
             violationOf(
-                268,
-                "if (project.configurations.findByName(PROFILE_CONFIGURATION) == null) {",
-                "Invert 'if' condition.",
-            ),
-            violationOf(
-                321,
-                "if (project.tasks.findByName(\"buildProperties\") == null) {",
-                "Invert 'if' condition.",
-            ),
-            violationOf(352, "if (micronautVersion) {", "Invert 'if' condition."),
-            violationOf(361, "} as Action<DependencyResolveDetails>)", "Put trailing comma."),
-            violationOf(362, "} as Action<Configuration>)", "Put trailing comma."),
-            violationOf(369, "if (groovyVersion) {", "Invert 'if' condition."),
-            violationOf(
-                437,
-                "if (project.tasks.findByName(taskName) == null) {",
-                "Invert 'if' condition.",
-            ),
-            violationOf(
-                507,
-                "if (project.extensions.findByName('assets')) {",
-                "Invert 'if' condition.",
-            ),
-            violationOf(
-                518,
-                "def map = System.properties.findAll { entry ->",
+                381,
+                "def managedVersion = resolvedArtifacts.find {",
                 "Break assignment into newline.",
             ),
-            violationOf(523, "if (value) {", "Invert 'if' condition."),
             violationOf(
-                561,
-                "if (project.configurations.findByName(\"console\") == null) {",
+                381,
+                "def managedVersion = resolvedArtifacts.find {",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                384,
+                "}?.moduleVersion?.id?.version",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                384,
+                "}?.moduleVersion?.id?.version",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                402,
+                "extensionContainer.configure(SigningExtension, {",
+                "Put trailing comma.",
+            ),
+            violationOf(
+                419,
+                "taskContainer.register(\"publish\${GrailsNameUtils" +
+                    ".getClassName(defaultClassifier)}\", { Task task ->",
+                "Put trailing comma.",
+            ),
+            violationOf(
+                424,
+                "if (installTask == null) {",
                 "Invert 'if' condition.",
             ),
-            violationOf(606, "if (environment.isReloadEnabled()) {", "Invert 'if' condition."),
             violationOf(
-                691,
-                "ant.native2ascii(src: src, dest: dest,",
-                "Break each parameter into newline.",
+                425,
+                "taskContainer.register('install', { Task task ->",
+                "Put trailing comma.",
             ),
             violationOf(
-                692,
-                "includes: \"**/*.properties\", encoding: \"UTF-8\")",
-                "Break each parameter into newline.",
+                433,
+                "project.plugins.withId(MAVEN_PUBLISH_PLUGIN_ID) {",
+                "Put newline before '.'.",
             ),
             violationOf(
-                722,
-                "if (project.tasks.findByName(\"runScript\") == null) {",
-                "Invert 'if' condition.",
+                433,
+                "project.plugins.withId(MAVEN_PUBLISH_PLUGIN_ID) {",
+                "Put newline before '.'.",
             ),
             violationOf(
-                735,
-                "if (project.tasks.findByName(\"runCommand\") == null) {",
-                "Invert 'if' condition.",
+                499,
+                "project.extensions.configure(JavaPluginExtension) {",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                499,
+                "project.extensions.configure(JavaPluginExtension) {",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                505,
+                "taskContainer.named('javadocJar', Jar).configure { Jar task ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                505,
+                "taskContainer.named('javadocJar', Jar).configure { Jar task ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                516,
+                "taskContainer.named('sourcesJar', Jar).configure { Jar task ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                516,
+                "taskContainer.named('sourcesJar', Jar).configure { Jar task ->",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                523,
+                "project.tasks.register('testSourcesJar', Jar) {",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                523,
+                "project.tasks.register('testSourcesJar', Jar) {",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                530,
+                "Collection<SourceSet> publishedSources = sourceSets.findAll { SourceSet sourceSet ->",
+                "Break assignment into newline.",
+            ),
+            violationOf(
+                534,
+                ") && !sourceSet.allSource.isEmpty()",
+                "Omit newline before operator '&&'.",
             ),
         )
 
@@ -168,67 +252,109 @@ class AllRulesTest : AbstractTestCase() {
                     "before 'java.util.function.Predicate'.",
             ),
             violationOf(
+                110,
+                "* @param config The Fusion configuration object",
+                "End '@param' with a period.",
+            ),
+            violationOf(
+                111,
+                "* @return A map of environment variables",
+                "End '@return' with a period.",
+            ),
+            violationOf(
+                138,
+                "* @return The signed JWT token",
+                "Arrange tag '@return' before '@throws'.",
+            ),
+            violationOf(138, "* @return The signed JWT token", "End '@return' with a period."),
+            violationOf(
+                175,
+                "* @return The new HttpClient instance",
+                "End '@return' with a period.",
+            ),
+            violationOf(
+                175,
+                "* @return The new HttpClient instance",
+                "Add blank line before block tag group.",
+            ),
+            violationOf(
                 178,
                 "final builder = HttpClient.newBuilder()",
                 "Break assignment into newline.",
+            ),
+            violationOf(
+                178,
+                "final builder = HttpClient.newBuilder()",
+                "Put newline before '.'.",
+            ),
+            violationOf(
+                196,
+                "* @return The new RetryPolicy instance",
+                "End '@return' with a period.",
             ),
             violationOf(
                 203,
                 "final listener = new EventListener<ExecutionAttemptedEvent<HttpResponse<T>>>() {",
                 "Break assignment into newline.",
             ),
+            violationOf(228, "* @param req The HttpRequest to send", "End '@param' with a period."),
+            violationOf(229, "* @return The HttpResponse received", "End '@return' with a period."),
             violationOf(238, "} as CheckedSupplier", "Put trailing comma."),
+            violationOf(
+                245,
+                "* @param req The LicenseTokenRequest object",
+                "End '@param' with a period.",
+            ),
+            violationOf(
+                246,
+                "* @return The resulting HttpRequest object",
+                "End '@return' with a period.",
+            ),
+            violationOf(
+                262,
+                "* @param req The LicenseTokenRequest object",
+                "End '@param' with a period.",
+            ),
+            violationOf(263, "* @return The resulting JSON string", "End '@return' with a period."),
+            violationOf(
+                272,
+                "* @param json The String containing the JSON representation of the " +
+                    "LicenseTokenResponse object",
+                "End '@param' with a period.",
+            ),
+            violationOf(
+                273,
+                "* @return The resulting LicenseTokenResponse object",
+                "End '@return' with a period.",
+            ),
+            violationOf(
+                284,
+                "* @param req The LicenseTokenRequest object",
+                "End '@param' with a period.",
+            ),
+            violationOf(
+                285,
+                "* @return The LicenseTokenResponse object",
+                "End '@return' with a period.",
+            ),
         )
 
     @Test
-    fun spock_util_SourceToAstNodeAndSourceTranspiler() =
+    fun org_spockframework_gradle_AsciiDocLinkVerifier() =
         assertViolations(
             javaClass
-                .getResource("SourceToAstNodeAndSourceTranspiler.groovy")!!
+                .getResource("AsciiDocLinkVerifier.groovy")!!
                 .readText(),
-            violationOf(
-                13,
-                "import java.lang.reflect.Modifier",
-                "Remove blank line before directive 'java.lang.reflect.Modifier'.",
-            ),
-            violationOf(
-                13,
-                "import java.lang.reflect.Modifier",
-                "Arrange directive 'java.lang.reflect.Modifier' " +
-                    "before 'org.spockframework.compat.groovy2.GroovyCodeVisitorCompat'.",
-            ),
-            violationOf(
-                16,
-                "import groovy.transform.*",
-                "Remove blank line before directive 'groovy.transform.*'.",
-            ),
-            violationOf(
-                16,
-                "import groovy.transform.*",
-                "Arrange directive 'groovy.transform.*' before 'java.security.CodeSource'.",
-            ),
-            violationOf(426, "if (packageNode) {", "Invert 'if' condition."),
-            violationOf(445, "if (node) {", "Invert 'if' condition."),
-            violationOf(536, "if (generics != null) {", "Invert 'if' condition."),
-            violationOf(677, "if (node?.members) {", "Invert 'if' condition."),
-            violationOf(
-                875,
-                "if (!(expression.rightExpression instanceof EmptyExpression) || " +
-                    "expression.operation.type != Types.ASSIGN) {",
-                "Invert 'if' condition.",
-            ),
-            violationOf(961, "} else {", "Lift 'else' and add 'return' in 'if' block."),
-            violationOf(998, "} else {", "Lift 'else' and add 'return' in 'if' block."),
-            violationOf(1013, "} else {", "Lift 'else' and add 'return' in 'if' block."),
-            violationOf(1026, "} else {", "Lift 'else' and add 'return' in 'if' block."),
-            violationOf(1096, "} else {", "Lift 'else' and add 'return' in 'if' block."),
-            violationOf(1112, "} else {", "Lift 'else' and add 'return' in 'if' block."),
-            violationOf(1161, "} else {", "Lift 'else' and add 'return' in 'if' block."),
-            violationOf(
-                1328,
-                "if (expression?.expressions != null) { // print array initializer",
-                "Invert 'if' condition.",
-            ),
+            violationOf(23, "class AsciiDocLinkVerifier {", "Put 'final' modifier."),
+            violationOf(23, "class AsciiDocLinkVerifier {", "Add private constructor."),
+            violationOf(38, ".tap {", "Omit newline before '.'."),
+            violationOf(58, "def relativeLinkTargets = subject", "Break assignment into newline."),
+            violationOf(73, "def result = relativeLinkTargets", "Break assignment into newline."),
+            violationOf(97, ".findAll()", "Omit newline before '.'."),
+            violationOf(97, ".findAll()", "Put trailing comma."),
+            violationOf(107, ".findAll()", "Put trailing comma."),
+            violationOf(111, "return result + subject", "Put newline after operator '+'."),
+            violationOf(121, ".tap {", "Omit newline before '.'."),
         )
 
     /**

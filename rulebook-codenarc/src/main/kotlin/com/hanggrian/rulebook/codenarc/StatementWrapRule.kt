@@ -20,29 +20,44 @@ public class StatementWrapRule : RulebookAstRule() {
     private companion object {
         const val MSG = "statement.wrap"
 
-        val FOR_REGEX = Regex("for \\(.*?\\)")
-        val STRING_REGEX = Regex("[\"\'].*?[\'\"]")
+        val FOR_REGEX = Regex("""for\s\(.*?\)""".trimMargin())
+        val STRING_REGEX = Regex("""["'].*?['"]""")
     }
 
     public class Visitor : AbstractAstVisitor() {
         override fun visitIfElse(node: IfStatement) {
             super.visitIfElse(node)
-            processControlFlow(node.ifBlock as? BlockStatement ?: return)
+            processControlFlow(node.ifBlock as? BlockStatement)
         }
 
         override fun visitForLoop(node: ForStatement) {
             super.visitForLoop(node)
-            processControlFlow(node.loopBlock as? BlockStatement ?: return)
+            processControlFlow(node.loopBlock as? BlockStatement)
         }
 
         override fun visitWhileLoop(node: WhileStatement) {
             super.visitWhileLoop(node)
-            processControlFlow(node.loopBlock as? BlockStatement ?: return)
+            processControlFlow(node.loopBlock as? BlockStatement)
         }
 
         override fun visitDoWhileLoop(node: DoWhileStatement) {
             super.visitDoWhileLoop(node)
-            processControlFlow(node.loopBlock as? BlockStatement ?: return)
+            processControlFlow(node.loopBlock as? BlockStatement)
+        }
+
+        private fun processControlFlow(blockStatement: BlockStatement?) {
+            // checks for violation
+            blockStatement
+                ?.takeUnless { it.isMultiline() }
+                ?.let { sourceLineNullable(it) }
+                ?.trimComment()
+                ?.takeIf {
+                    val lcurlyIndex = it.lastIndexOf('{')
+                    val rcurlyIndex = it.lastIndexOf('}')
+                    lcurlyIndex < rcurlyIndex &&
+                        it.substring(lcurlyIndex + 1, rcurlyIndex).isNotBlank()
+                } ?: return
+            addViolation(blockStatement, Messages.get(MSG, '{'))
         }
 
         override fun visitBlockStatement(node: BlockStatement) {
@@ -52,20 +67,12 @@ public class StatementWrapRule : RulebookAstRule() {
                 // checks for violation
                 sourceLineNullable(statement)
                     ?.trimComment()
-                    ?.takeIf { ';' in FOR_REGEX.replace(STRING_REGEX.replace(it, ""), "") }
-                    ?: continue
+                    ?.takeIf {
+                        val line = FOR_REGEX.replace(STRING_REGEX.replace(it, ""), "")
+                        ';' in line && line.substringAfterLast(';').isNotBlank()
+                    } ?: continue
                 addViolation(statement, Messages.get(MSG, ';'))
             }
-        }
-
-        private fun processControlFlow(blockStatement: BlockStatement) {
-            if (blockStatement.lineNumber < 0 || blockStatement.isMultiline()) {
-                return
-            }
-            sourceLineNullable(blockStatement)
-                ?.takeIf { it.indexOf('{') < it.indexOf('}') }
-                ?: return
-            addViolation(blockStatement, Messages.get(MSG, '{'))
         }
     }
 }

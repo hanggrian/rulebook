@@ -4,8 +4,10 @@ class ChainCallWrap {
     void foo() {
         new StringBuilder(
             "Lorem ipsum"
-        ).append(0)
-            .append(1);
+        ).append(1)
+            .append(
+                2
+            );
     }
 
     void baz() {

@@ -16,7 +16,7 @@ public class AssignmentWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(ASSIGN)
 
     override fun visitToken(node: DetailAST) {
-        // skip lambda initializers
+        // no lambda initializers
         node
             .takeUnless { LAMBDA in it }
             ?: return
@@ -29,7 +29,8 @@ public class AssignmentWrapCheck : RulebookAstCheck() {
 
         // checks for violation
         expr
-            .takeIf { it.minLineNo == node.lineNo }
+            .minLineNo
+            .takeIf { it == node.lineNo }
             ?: return
         log(expr.firstLeaf(), Messages[MSG])
     }

@@ -109,6 +109,10 @@
     <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
+  <rule class="com.hanggrian.rulebook.codenarc.BlockTagPunctuationRule">
+    <property name="tags" value="@throws"/>
+  </rule>
+
   <rule class="com.hanggrian.rulebook.codenarc.IllegalClassFinalNameRule">
     <property name="names" value="Hello, World"/>
   </rule>

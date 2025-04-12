@@ -14,7 +14,7 @@ public class RedundantElseCheck : RulebookAstCheck() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // skip single if
+        // no single if
         node
             .takeIf { LITERAL_ELSE in it }
             ?: return
@@ -22,9 +22,9 @@ public class RedundantElseCheck : RulebookAstCheck() {
         // checks for violation
         var `if`: DetailAST? = node
         while (`if` != null) {
-            if (!`if`.hasJumpStatement()) {
-                return
-            }
+            `if`
+                .takeIf { it.hasJumpStatement() }
+                ?: return
             val lastElse = `if`.findFirstToken(LITERAL_ELSE)
             if (lastElse != null) {
                 log(lastElse, Messages[MSG])

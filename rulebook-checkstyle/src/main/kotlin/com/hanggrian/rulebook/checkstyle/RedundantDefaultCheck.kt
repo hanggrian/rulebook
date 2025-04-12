@@ -16,7 +16,7 @@ public class RedundantDefaultCheck : RulebookAstCheck() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // skip no default
+        // find default
         val caseGroups =
             node
                 .children()

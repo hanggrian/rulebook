@@ -19,7 +19,8 @@ public class BlockCommentSpacesRule : RulebookRule(ID) {
                 // only target single line
                 node
                     .treeParent
-                    .takeUnless { '\n' in it.text }
+                    .text
+                    .takeUnless { '\n' in it }
                     ?: return
 
                 // checks for violation
@@ -41,7 +42,8 @@ public class BlockCommentSpacesRule : RulebookRule(ID) {
 
                 // checks for violation
                 next
-                    .takeUnless { it.text.startsWith(' ') }
+                    .text
+                    .takeUnless { it.startsWith(' ') }
                     ?: return
                 emit(next.startOffset, Messages[MSG_MULTI], false)
             }

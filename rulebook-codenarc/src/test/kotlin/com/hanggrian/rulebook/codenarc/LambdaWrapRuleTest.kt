@@ -19,11 +19,11 @@ class LambdaWrapRuleTest : AbstractRuleTestCase<LambdaWrapRule>() {
         assertNoViolations(
             """
             def foo() {
-                Function<Int, String> bar = param -> new StringBuilder().append("").toString()
-                baz(param -> { new StringBuilder().append("").toString() })
+                Function<Int, String> bar = param -> new StringBuilder().append('').toString()
+                baz(param -> { new StringBuilder().append('').toString() })
 
-                Closure<String> bar2 = { param -> new StringBuilder().append("").toString() }
-                baz2({param -> new StringBuilder().append("").toString()})
+                Closure<String> bar2 = { param -> new StringBuilder().append('').toString() }
+                baz2({ param -> new StringBuilder().append('').toString() })
             }
 
             void baz(Function<Int, String> function) {}

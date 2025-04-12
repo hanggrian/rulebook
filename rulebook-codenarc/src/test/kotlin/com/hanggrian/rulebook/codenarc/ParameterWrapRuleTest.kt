@@ -43,7 +43,7 @@ class ParameterWrapRuleTest : AbstractRuleTestCase<ParameterWrapRule>() {
                 foo(
                     new StringBuilder()
                         .toString(),
-                    0
+                    0,
                 )
             }
 
@@ -68,19 +68,40 @@ class ParameterWrapRuleTest : AbstractRuleTestCase<ParameterWrapRule>() {
             def bar() {
                 foo(
                     new StringBuilder()
-                        .toString(), 0
+                        .toString(), 0,
                 )
             }
 
             def baz() {
                 new Foo(
                     new StringBuilder()
-                        .toString(), 0
+                        .toString(), 0,
                 )
             }
             """.trimIndent(),
             violationOf(8, ".toString(), 0", "Break each parameter into newline."),
             violationOf(15, ".toString(), 0", "Break each parameter into newline."),
+        )
+
+    @Test
+    fun `Multiline parameters each hugging parenthesis`() =
+        assertNoViolations(
+            """
+            def foo(var a,
+                    var b) {}
+
+            def bar() {
+                foo(new StringBuilder()
+                        .toString(),
+                    0)
+            }
+
+            def baz() {
+                new Foo(new StringBuilder()
+                            .toString(),
+                        0)
+            }
+            """.trimIndent(),
         )
 
     @Test

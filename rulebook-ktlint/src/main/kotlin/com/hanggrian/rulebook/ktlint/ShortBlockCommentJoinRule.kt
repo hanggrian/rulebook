@@ -50,11 +50,12 @@ public class ShortBlockCommentJoinRule :
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // skip multiline comment content
+        // no single-line or block tag
         val children =
             node
-                .children()
-                .singleOrNull { it.elementType == KDOC_SECTION }
+                .takeIf { it.isMultiline() }
+                ?.children()
+                ?.singleOrNull { it.elementType == KDOC_SECTION }
                 ?.takeUnless { KDOC_TAG in it || WHITE_SPACE in it }
                 ?.children()
                 ?.filter {
@@ -62,22 +63,14 @@ public class ShortBlockCommentJoinRule :
                         it.elementType == KDOC_MARKDOWN_INLINE_LINK
                 } ?: return
 
-        // allow empty content
-        val text =
-            children
-                .joinToString("") { it.text }
-                .takeIf { it.isNotBlank() }
-                ?: return
-
         // checks for violation
-        val textLength = node.indentLength + text.length
-        if (node.isMultiline()) {
-            textLength
-                .takeIf { it + SINGLELINE_TEMPLATE.length <= maxLineLength }
-                ?: return
-            emit(children.first().startOffset, Messages[MSG], false)
-            return
-        }
+        val textLength =
+            node.indentLength +
+                children.joinToString("") { it.text }.length
+        textLength
+            .takeIf { it + SINGLELINE_TEMPLATE.length <= maxLineLength }
+            ?: return
+        emit(node.startOffset, Messages[MSG], false)
     }
 
     private val ASTNode.indentLength: Int

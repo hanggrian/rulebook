@@ -51,7 +51,8 @@ public class ParameterWrapCheck : RulebookAstCheck() {
         }
         for ((i, parameter) in parameters.withIndex().drop(1)) {
             parameters[i - 1]
-                .takeIf { it.maxLineNo == parameter.minLineNo }
+                .maxLineNo
+                .takeIf { it == parameter.minLineNo }
                 ?: continue
             log(parameter, Messages[MSG_ARGUMENT])
         }

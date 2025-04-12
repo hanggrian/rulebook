@@ -21,12 +21,13 @@ public class ChainCallWrapCheck : RulebookAstCheck() {
             ?: return
 
         // single call is by definition not chained
-        var dot: DetailAST? = node.findFirstToken(DOT) ?: return
-        if (DOT !in dot!! &&
-            dot.findFirstToken(METHOD_CALL)?.findFirstToken(DOT) == null
-        ) {
-            return
-        }
+        var dot: DetailAST? =
+            node
+                .findFirstToken(DOT)
+                ?.takeUnless {
+                    DOT !in it &&
+                        it.findFirstToken(METHOD_CALL)?.findFirstToken(DOT) == null
+                } ?: return
 
         // checks for violation
         while (dot != null) {

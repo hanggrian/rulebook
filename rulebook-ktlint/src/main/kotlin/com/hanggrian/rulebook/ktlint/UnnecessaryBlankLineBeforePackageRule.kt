@@ -13,11 +13,12 @@ public class UnnecessaryBlankLineBeforePackageRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // checks for violation
-        node
-            .firstChildNode
-            ?.takeIf { it.isWhiteSpaceWithNewline() }
-            ?: return
-        emit(node.startOffset, Messages[MSG], false)
+        val whitespace =
+            node
+                .firstChildNode
+                ?.takeIf { it.isWhiteSpaceWithNewline() }
+                ?: return
+        emit(whitespace.startOffset, Messages[MSG], false)
     }
 
     public companion object {

@@ -15,8 +15,8 @@ class IllegalVariableNameRuleTest : AbstractRuleTestCase<IllegalVariableNameRule
         assertIs<IllegalVariableNameRule.Visitor>(rule.astVisitor)
 
         val rule = IllegalVariableNameRule()
-        rule.setNames("foo, bar")
-        assertThat(rule.names).containsExactly("foo", "bar")
+        rule.names = "foo, bar"
+        assertThat(rule.nameList).containsExactly("foo", "bar")
     }
 
     @Test

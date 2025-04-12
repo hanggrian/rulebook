@@ -23,7 +23,7 @@ public class NumberSuffixForFloatRule : RulebookAstRule() {
                 return
             }
 
-            // skip other literals
+            // no other literals
             node
                 .type
                 .takeIf { it == float_TYPE }

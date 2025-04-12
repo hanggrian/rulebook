@@ -21,11 +21,11 @@ public class UtilityClassDefinitionRule : RulebookAstRule() {
         override fun visitClassEx(node: ClassNode) {
             super.visitClassEx(node)
 
-            // skip empty class, inheritance or containing non-static members
+            // no empty class, inheritance or containing non-static members
             node
-                .takeUnless { it.methods.isEmpty() && node.fields.isEmpty() }
-                ?.takeIf { n ->
-                    n.interfaces.isEmpty() &&
+                .takeIf { n ->
+                    (n.methods.isNotEmpty() || n.fields.isNotEmpty()) &&
+                        n.interfaces.isEmpty() &&
                         n.superClass.name == "java.lang.Object" &&
                         n.methods.all { it.isStatic } &&
                         n.fields.all { it.isStatic }

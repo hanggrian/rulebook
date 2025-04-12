@@ -10,8 +10,8 @@ class BlockTagPunctuationCheckTest : CheckTest() {
     fun `Rule properties`() {
         check.assertProperties()
 
-        check.setTags("@author", "@see")
-        assertThat(check.tags).containsExactly("@author", "@see")
+        check.tags = "@author, @see"
+        assertThat(check.tagList).containsExactly("@author", "@see")
     }
 
     @Test
