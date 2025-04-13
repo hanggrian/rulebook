@@ -950,7 +950,7 @@
         
   
   <span class="md-ellipsis">
-    Checkstyle standard checks &nearr;
+    Checkstyle standard checks <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
     
   </span>
   
@@ -972,7 +972,7 @@
         
   
   <span class="md-ellipsis">
-    CodeNarc rules &nearr;
+    CodeNarc rules <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
     
   </span>
   
@@ -994,7 +994,7 @@
         
   
   <span class="md-ellipsis">
-    Ktlint standard rules &nearr;
+    Ktlint standard rules <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
     
   </span>
   
@@ -1016,7 +1016,7 @@
         
   
   <span class="md-ellipsis">
-    Pylint checkers &nearr;
+    Pylint checkers <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
     
   </span>
   
@@ -1161,7 +1161,7 @@
         
   
   <span class="md-ellipsis">
-    Kotlin coding conventions &nearr;
+    Kotlin coding conventions <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
     
   </span>
   
@@ -1183,7 +1183,7 @@
         
   
   <span class="md-ellipsis">
-    PEP 8 &nearr;
+    PEP 8 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
     
   </span>
   
@@ -1264,28 +1264,6 @@
   
   <span class="md-ellipsis">
     Developer guide
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../contributing/debugging/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Debugging
     
   </span>
   
@@ -1495,8 +1473,19 @@
 
   <h1>Glossary</h1>
 
+<div class="admonition note inline end">
+<p class="admonition-title">Note</p>
 <p>This section hopes to clarify some ambiguous terms used in rule names and
 messages.</p>
+</div>
+<p>Rule names are in form of state (missing-braces) or object (package-name). They
+are grouped by the intended objective (spacing) rather than the target site
+(imports). The rule messages that are printed to the console are in the form of
+verb phrase (Add missing braces or Rename package).</p>
+<p>When possible, merge rules of relatable targets that achieve the same goal. For
+example, missing-if-braces and missing-for-braces can be merged into
+control-flow-bracing. Ignore this guideline if one of the rules is not
+applicable by the linter tool or in the language.</p>
 <h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
 <h3 id="declaration">Declaration<a class="headerlink" href="#declaration" title="Permanent link">&para;</a></h3>
 <p>Declaring that a class, function or property exists. The implementation details

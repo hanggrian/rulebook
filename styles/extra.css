@@ -7,29 +7,32 @@
 }
 
 /* Brand colors */
-#oracle {
-  color: #f80000;
-}
-#kotlin {
-  color: #7f52ff;
-}
-#google {
-  color: #4285f4;
-}
-#jetbrains {
-  color: #666;
-}
-#python {
-  color: #ffde57;
+#android {
+  color: #34a853;
 }
 #common {
   color: #aaa;
 }
+#editorconfig {
+  color: #fefefe;
+}
+#google {
+  color: #4285f4;
+}
 #groovy {
   color: #4298b8;
 }
-#android {
-  color: #34a853;
+#jetbrains {
+  color: #666;
+}
+#kotlin {
+  color: #7f52ff;
+}
+#oracle {
+  color: #f80000;
+}
+#python {
+  color: #ffde57;
 }
 
 /* Custom admonition */
