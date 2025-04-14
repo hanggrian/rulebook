@@ -29,7 +29,7 @@ public class NestedIfElseRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(BLOCK)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // no blocks without exit path
+        // skip blocks without exit path
         val block =
             node.takeUnless { it.treeParent.isTryCatch() }
                 ?: node.parent {

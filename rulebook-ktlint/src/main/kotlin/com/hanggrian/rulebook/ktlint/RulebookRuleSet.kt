@@ -7,13 +7,15 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleSetId
 public class RulebookRuleSet : RuleSetProviderV3(ID) {
     override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
-            // Basic
             RuleProvider { BlockTagPunctuationRule() },
             RuleProvider { BuiltInTypesRule() },
             RuleProvider { ConfusingPredicateRule() },
             RuleProvider { FileSizeRule() },
             RuleProvider { NullEqualityRule() },
             RuleProvider { TodoCommentRule() },
+            // Clipping
+            RuleProvider { EmptyBracesClipRule() },
+            RuleProvider { ShortBlockCommentClipRule() },
             // Declaring
             RuleProvider { AbstractClassDefinitionRule() },
             RuleProvider { ContractFunctionDefinitionRule() },
@@ -24,7 +26,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { IllegalClassFinalNameRule() },
             RuleProvider { IllegalVariableNameRule() },
             RuleProvider { PropertyNameInteropRule() },
-            RuleProvider { RequiredGenericNameRule() },
+            RuleProvider { RequiredGenericsNameRule() },
             // Ordering
             RuleProvider { BlockTagOrderRule() },
             RuleProvider { BuiltInFunctionPositionRule() },
@@ -33,13 +35,9 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { OverloadFunctionPositionRule() },
             // Spacing
             RuleProvider { BlockCommentSpacesRule() },
-            RuleProvider { BlockCommentTrimRule() },
             RuleProvider { BlockTagIndentationRule() },
             RuleProvider { MissingBlankLineBeforeBlockTagsRule() },
             RuleProvider { CaseSeparatorRule() },
-            RuleProvider { CommentTrimRule() },
-            RuleProvider { DuplicateBlankLineInBlockCommentRule() },
-            RuleProvider { DuplicateBlankLineInCommentRule() },
             RuleProvider { UnnecessaryBlankLineBeforePackageRule() },
             // Stating
             RuleProvider { IllegalThrowRule() },
@@ -47,10 +45,13 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { RedundantDefaultRule() },
             RuleProvider { RedundantElseRule() },
             RuleProvider { UnnecessarySwitchRule() },
+            // Trimming
+            RuleProvider { BlockCommentTrimRule() },
+            RuleProvider { CommentTrimRule() },
+            RuleProvider { DuplicateBlankLineInBlockCommentRule() },
+            RuleProvider { DuplicateBlankLineInCommentRule() },
             // Wrapping
-            RuleProvider { ShortBlockCommentJoinRule() },
             RuleProvider { ElvisWrapRule() },
-            RuleProvider { EmptyCodeBlockJoinRule() },
             RuleProvider { InfixCallWrapRule() },
         )
 

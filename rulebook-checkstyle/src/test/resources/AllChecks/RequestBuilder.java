@@ -236,7 +236,7 @@ final class RequestBuilder {
         if (urlBuilder != null) {
             url = urlBuilder.build();
         } else {
-            // No query parameters triggered builder creation, just combine the relative URL and base URL.
+            // skip query parameters triggered builder creation, just combine the relative URL and base URL.
             //noinspection ConstantConditions Non-null if urlBuilder is null.
             url = baseUrl.resolve(relativeUrl);
             if (url == null) {

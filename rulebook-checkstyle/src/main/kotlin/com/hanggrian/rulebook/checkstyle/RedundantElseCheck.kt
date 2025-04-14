@@ -14,7 +14,7 @@ public class RedundantElseCheck : RulebookAstCheck() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // no single if
+        // skip single if
         node
             .takeIf { LITERAL_ELSE in it }
             ?: return

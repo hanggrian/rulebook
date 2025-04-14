@@ -20,36 +20,48 @@ class TrailingCommaInCallRuleTest : AbstractRuleTestCase<TrailingCommaInCallRule
             """
             def foo() {
                 bar(1, 2)
+                new Baz(3, 4)
             }
             """.trimIndent(),
         )
 
     @Test
     fun `Single line parameter with trailing comma`() =
-        assertSingleViolation(
+        assertTwoViolations(
             """
             def foo() {
                 bar(1, 2,)
+                new Baz(3, 4,)
             }
             """.trimIndent(),
             2,
             "bar(1, 2,)",
             "Omit trailing comma.",
+            3,
+            "new Baz(3, 4,)",
+            "Omit trailing comma.",
         )
 
     @Test
     fun `Multiline parameter without trailing comma`() =
-        assertSingleViolation(
+        assertTwoViolations(
             """
             def foo() {
                 bar(
                     1,
                     2
                 )
+                new Baz(
+                    3,
+                    4
+                )
             }
             """.trimIndent(),
             4,
             "2",
+            "Put trailing comma.",
+            8,
+            "4",
             "Put trailing comma.",
         )
 
@@ -61,6 +73,10 @@ class TrailingCommaInCallRuleTest : AbstractRuleTestCase<TrailingCommaInCallRule
                 bar(
                     1,
                     2,
+                )
+                new Baz(
+                    3,
+                    4,
                 )
             }
             """.trimIndent(),
@@ -75,6 +91,10 @@ class TrailingCommaInCallRuleTest : AbstractRuleTestCase<TrailingCommaInCallRule
                     1, // 1
                     2, // 2
                 )
+                new Baz(
+                    3, // 3
+                    4, // 4
+                )
             }
             """.trimIndent(),
         )
@@ -88,6 +108,11 @@ class TrailingCommaInCallRuleTest : AbstractRuleTestCase<TrailingCommaInCallRule
                     .bar(2)
                     .bar(
                         3,
+                    )
+                new Baz(4)
+                    .baz(5)
+                    .baz(
+                        6,
                     )
             }
             """.trimIndent(),

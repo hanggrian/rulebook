@@ -43,9 +43,9 @@ class IllegalClassFinalNameChecker(RulebookChecker):
         # checks for violation
         for word in [
             m[0] for m in self.TITLE_CASE_REGEX.findall(node.name) \
-            if m[0] in self._illegal_class_final_names
-        ]:
-            if word in {'Util', 'Utility'}:
+            if m[0] in self._illegal_class_final_names \
+            ]:
+            if word in ('Util', 'Utility'):
                 self.add_message(
                     self.MSG_UTIL,
                     node=node,

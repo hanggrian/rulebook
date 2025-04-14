@@ -3,10 +3,11 @@
   "file-size": "Reduce file size to '%d'.",
   "todo-comment-keyword": "Capitalize keyword '%s'.",
   "todo-comment-separator": "Omit separator '%s'.",
-  "trailing-comma-in-call-single": "Omit trailing comma.",
-  "trailing-comma-in-call-multi": "Put trailing comma.",
-  "trailing-comma-in-declaration-single": "Omit trailing comma.",
-  "trailing-comma-in-declaration-multi": "Put trailing comma.",
+  "trailing-comma-single": "Remove trailing comma.",
+  "trailing-comma-multi": "Put trailing comma.",
+
+  "empty-parentheses-clip": "Convert into '%s'.",
+  "short-block-comment-clip": "Convert into single-line.",
 
   "abstract-class-definition": "Omit 'abstract' modifier.",
   "exception-inheritance": "Extend from class 'Exception'.",
@@ -16,22 +17,20 @@
   "class-name-acronym": "Rename acronym to '%s'.",
   "illegal-class-final-name-all": "Avoid meaningless word '%s'.",
   "illegal-class-final-name-util": "Rename utility class to '%s'.",
-  "required-generic-name": "Use common generics '%s'.",
+  "required-generics-name": "Use common generics '%s'.",
 
   "built-in-function-position": "Move '%s' to last.",
   "member-order": "Arrange '%s' before '%s'.",
   "inner-class-position": "Move inner class to the bottom.",
 
-  "block-comment-trim-first": "Remove blank line after '\"\"\"'.",
-  "block-comment-trim-last": "Remove blank line before '\"\"\"'.",
-  "code-block-trim": "Remove blank line after ':'.",
   "case-separator-missing": "Add blank line after multiline branch.",
   "case-separator-unexpected": "Remove blank line after single-line branch.",
-  "comment-trim": "Remove blank line after '#'.",
   "duplicate-blank-line": "Remove consecutive blank line.",
   "duplicate-blank-line-in-block-comment": "Remove consecutive blank line in '\"\"\"'.",
   "duplicate-blank-line-in-comment": "Remove consecutive blank line after '#'.",
+  "duplicate-space": "Remove consecutive space.",
   "member-separator": "Add blank line after '%s'.",
+  "unnecessary-blank-line-after-colon": "Remove blank line after ':'.",
   "unnecessary-blank-line-before-package": "Remove blank line at the beginning.",
 
   "nested-if-else-invert": "Invert 'if' condition.",
@@ -39,6 +38,11 @@
   "redundant-default": "Omit redundant 'case _' condition.",
   "unnecessary-switch": "Replace 'match' with 'if' condition.",
 
-  "assignment-wrap": "Break assignment into newline.",
-  "parameter-wrap-argument": "Break each parameter into newline."
+  "block-comment-trim-first": "Remove blank line after '\"\"\"'.",
+  "block-comment-trim-last": "Remove blank line before '\"\"\"'.",
+  "comment-trim": "Remove blank line after '#'.",
+  "parentheses-trim-first": "Remove blank line after '%s'.",
+  "parentheses-trim-last": "Remove blank line before '%s'.",
+
+  "parameter-wrap": "Break each parameter into newline."
 }

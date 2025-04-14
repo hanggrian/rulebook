@@ -33,6 +33,7 @@ public abstract class RulebookFileRule : AbstractRule() {
     final override fun setPriority(priority: Int): Nothing = throw UnsupportedOperationException()
 }
 
+/** Alias of [AbstractRule.createViolation] that is not protected. */
 public fun Rule.createViolation(lineNumber: Int, sourceLine: String, message: String): Violation =
     Violation().also {
         it.rule = this@createViolation

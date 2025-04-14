@@ -23,7 +23,7 @@ public class NumberSuffixForIntegerRule : RulebookAstRule() {
                 return
             }
 
-            // no other literals
+            // skip other literals
             node
                 .type
                 .takeIf { it == int_TYPE }

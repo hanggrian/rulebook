@@ -34,7 +34,7 @@ public class ContractFunctionDefinitionRule : RulebookRule(ID) {
                         ?: return
                 } ?: return
 
-        // no function without `callsInPlace`
+        // skip function without `callsInPlace`
         callExpression
             .findChildByType(LAMBDA_ARGUMENT)
             ?.findChildByType(LAMBDA_EXPRESSION)

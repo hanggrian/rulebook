@@ -1,7 +1,6 @@
 from tokenize import TokenInfo, COMMENT, NL
 
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from regex import regex, Pattern
 from rulebook_pylint.checkers import RulebookTokenChecker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import is_comment_empty
@@ -13,9 +12,6 @@ if TYPE_CHECKING:
 class CommentTrimChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#comment-trim"""
     MSG: str = 'comment-trim'
-
-    # pylint: disable=anomalous-backslash-in-string
-    EMPTY_COMMENT_REGEX: Pattern = regex.compile('#\s*$')
 
     name: str = 'comment-trim'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)

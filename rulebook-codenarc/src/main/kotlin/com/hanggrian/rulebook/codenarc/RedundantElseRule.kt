@@ -22,7 +22,7 @@ public class RedundantElseRule : RulebookAstRule() {
             super.visitBlockStatement(node)
 
             for (statement in node.statements.filterIsInstance<IfStatement>()) {
-                // no single if
+                // skip single if
                 var `if`: IfStatement? =
                     statement
                         .takeUnless { it.elseBlock.isEmpty }

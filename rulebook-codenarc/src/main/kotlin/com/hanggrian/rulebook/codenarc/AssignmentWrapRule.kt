@@ -23,7 +23,7 @@ public class AssignmentWrapRule : RulebookAstRule() {
         override fun visitBinaryExpression(node: BinaryExpression) {
             super.visitBinaryExpression(node)
 
-            // no lambda and collection initializers
+            // skip lambda and collection initializers
             val expression =
                 node
                     .rightExpression

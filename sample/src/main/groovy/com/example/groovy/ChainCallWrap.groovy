@@ -3,7 +3,7 @@ package com.example.groovy
 class ChainCallWrap {
     def foo() {
         new StringBuilder(
-            'Lorem ipsum'
+            'Lorem ipsum',
         ).append(0)
             .append(1)
     }
@@ -19,7 +19,7 @@ class ChainCallWrap {
     def baz() {
         String.format(
             new StringBuilder(
-                'Lorem ipsum'
+                'Lorem ipsum',
             ).append(0)
                 .append(1)
                 .toString(),

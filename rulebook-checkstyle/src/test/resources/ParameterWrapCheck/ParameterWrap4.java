@@ -1,11 +1,9 @@
 package com.hanggrian.rulebook.checkstyle;
 
 class ParameterWrap {
-    void foo(String a,
-             int bz) {}
-
-    void bar() {
-        foo(new StringBuilder().toString(),
-            1);
+    void foo() {
+        new StringBuilder()
+            .append(1)
+            .append("Hello", 1, 2);
     }
 }

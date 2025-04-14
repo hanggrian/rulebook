@@ -36,30 +36,32 @@
 
   <ruleset-ref path="rulesets/convention.xml">
     <exclude name="CompileStatic"/>
-    <exclude name="NoDouble"/>
-    <exclude name="NoFloat"/>
-    <exclude name="NoDef"/>
-    <exclude name="VariableTypeRequired"/>
     <exclude name="FieldTypeRequired"/>
+    <exclude name="InvertedCondition"/>
+    <exclude name="InvertedIfElse"/>
     <exclude name="MethodParameterTypeRequired"/>
     <exclude name="MethodReturnTypeRequired"/>
+    <exclude name="NoDef"/>
+    <exclude name="NoDouble"/>
+    <exclude name="NoFloat"/>
     <exclude name="ParameterReassignment"/>
-    <exclude name="InvertedIfElse"/>
-    <exclude name="AbstractClassWithPublicConstructor"/>
     <exclude name="PublicMethodsBeforeNonPublicMethods"/>
+    <exclude name="StaticFieldsBeforeInstanceFields"/>
     <exclude name="StaticMethodsBeforeInstanceMethods"/>
+    <exclude name="VariableTypeRequired"/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/design.xml">
-    <exclude name="Instanceof"/>
-    <exclude name="ImplementationAsType"/>
+    <exclude name="AbstractClassWithPublicConstructor"/>
     <exclude name="BuilderMethodWithSideEffects"/>
+    <exclude name="ImplementationAsType"/>
+    <exclude name="Instanceof"/>
   </ruleset-ref>
 
-  <ruleset-ref path="rulesets/dry.xml">
+  <!--ruleset-ref path="rulesets/dry.xml">
     <exclude name="DuplicateStringLiteral"/>
     <exclude name="DuplicateNumberLiteral"/>
-  </ruleset-ref>
+  </ruleset-ref-->
 
   <ruleset-ref path="rulesets/exceptions.xml"/>
 
@@ -67,9 +69,13 @@
     <rule-config name="LineLength">
       <property name="length" value="100"/>
     </rule-config>
+    <rule-config name="ClassEndsWithBlankLine">
+      <property name="blankLineRequired" value="false"/>
+    </rule-config>
+    <rule-config name="ClassStartsWithBlankLine">
+      <property name="blankLineRequired" value="false"/>
+    </rule-config>
 
-    <exclude name="ClassEndsWithBlankLine"/>
-    <exclude name="ClassStartsWithBlankLine"/>
     <exclude name="Indentation"/>
     <exclude name="SpaceAfterOpeningBrace"/>
     <exclude name="SpaceBeforeClosingBrace"/>
@@ -96,8 +102,9 @@
 
   <ruleset-ref path="rulesets/naming.xml">
     <exclude name="ConfusingMethodName"/>
-    <!--exclude name="MethodName"/-->
-    <exclude name="FactoryMethodName"/>
+    <!-- unit tests have arbitrary names -->
+    <exclude name='MethodName'/>
+    <exclude name='FactoryMethodName'/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/security.xml">
@@ -148,11 +155,17 @@
     <exclude name="JavadocMissingThrowsDescription"/>
   </ruleset-ref>
 
-  <!-- Basic -->
   <rule class="com.hanggrian.rulebook.codenarc.BlockTagPunctuationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.RedundantQualifierRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.TodoCommentRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.TrailingCommaInCallRule"/>
+
+  <!-- Clipping -->
+  <rule class="com.hanggrian.rulebook.codenarc.EmptyBracesClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.EmptyBracketsClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.EmptyParenthesesClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.EmptyTagsClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ShortBlockCommentClipRule"/>
 
   <!-- Declaring -->
   <rule class="com.hanggrian.rulebook.codenarc.NumberSuffixForDoubleRule"/>
@@ -165,7 +178,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.IllegalClassFinalNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.IllegalVariableNameRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericsNameRule"/>
 
   <!-- Ordering -->
   <rule class="com.hanggrian.rulebook.codenarc.BlockTagOrderRule"/>
@@ -178,9 +191,6 @@
   <!-- Spacing -->
   <rule class="com.hanggrian.rulebook.codenarc.BlockTagIndentationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.CaseSeparatorRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.CommentTrimRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.DuplicateBlankLineInCommentRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.EmptyCodeBlockJoinRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.MemberSeparatorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.MissingBlankLineBeforeBlockTagsRule"/>
 
@@ -190,12 +200,18 @@
   <rule class="com.hanggrian.rulebook.codenarc.RedundantElseRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.UnnecessarySwitchRule"/>
 
+  <!-- Trimming -->
+  <rule class="com.hanggrian.rulebook.codenarc.BracketsTrimRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.CommentTrimRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.DuplicateBlankLineInCommentRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ParenthesesTrimRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.TagsTrimRule"/>
+
   <!-- Wrapping -->
   <rule class="com.hanggrian.rulebook.codenarc.AssignmentWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ChainCallWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.LambdaWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.OperatorWrapRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.ParameterWrapRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.ShortBlockCommentJoinRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.StatementWrapRule"/>
 </ruleset>

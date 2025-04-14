@@ -121,7 +121,7 @@
     <property name="names" value="mString, mList"/>
   </rule>
 
-  <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericNameRule">
+  <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericsNameRule">
     <property name="names" value="A"/>
   </rule>
 </ruleset>

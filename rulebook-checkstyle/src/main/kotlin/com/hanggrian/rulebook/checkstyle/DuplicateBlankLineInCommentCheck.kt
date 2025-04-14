@@ -12,7 +12,7 @@ public class DuplicateBlankLineInCommentCheck : RulebookAstCheck() {
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // no comment with content
+        // skip comment with content
         node
             .takeIf { it.isEolCommentEmpty() }
             ?: return

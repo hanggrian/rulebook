@@ -29,7 +29,7 @@ public class CommentTrimRule : RulebookRule(ID) {
             current = current.treeNext.treeNext
         }
 
-        // no blank comment
+        // skip blank comment
         current
             .takeUnless { it === node }
             ?: return

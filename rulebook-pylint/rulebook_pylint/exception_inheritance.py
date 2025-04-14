@@ -18,8 +18,8 @@ class ExceptionInheritanceChecker(RulebookChecker):
         # checks for violation
         for base in [
             n for n in node.bases \
-            if isinstance(n, Name) and n.name == 'BaseException'
-        ]:
+            if isinstance(n, Name) and n.name == 'BaseException' \
+            ]:
             self.add_message(self.MSG, node=base)
             return
 

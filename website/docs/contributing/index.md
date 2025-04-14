@@ -32,8 +32,19 @@ graph LR
   B --> |Yes| F[<b>BaseChecker</b>];
 ```
 
-## Rule naming
+## Debugging
 
-Rule names are in form of state (missing-braces) or object (package-name). They are grouped by the intended objective (spacing) rather than the target site (imports). The rule messages that are printed to the console are in the form of verb phrase (Add missing braces or Rename package).
+Printing the AST tree to the console is possible with Checkstyle and Ktlint.
 
-When possible, merge rules of relatable targets that achieve the same goal. For example, missing-if-braces and missing-for-braces can be merged into control-flow-bracing. Ignore this guideline if one of the rules is not applicable by the linter tool or in the language.
+!!! warning
+    This command is no longer available in newer versions of Ktlint, use version [0.47.0](https://github.com/pinterest/ktlint/releases/tag/0.47.0).
+
+=== "Ktlint"
+    ```shell
+    ktlint --color printAST $file
+    ```
+=== "Checkstyle"
+    ```shell
+    checkstyle -T $file
+    checkstyle -J $file # for javadoc
+    ```

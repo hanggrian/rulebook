@@ -112,16 +112,11 @@ codebase. Disable the rules individually if they behave unexpectedly.
 
 ## What's next for Rulebook?
 
-Although there is no timeline for the roadmap, the following features are
-planned:
+Although there is no timeline for the roadmap, more languages are planned:
 
-- More languages:
-    - [X] Java
-    - [X] Groovy
-    - [X] Kotlin
-    - [X] Python
-    - [ ] JavaScript
-    - [ ] TypeScript
-- Rigorous testing:
-    - [X] Consistent unit test names and cases across all languages.
-    - [ ] Collect interesting code snippets from open-source projects.
+- [X] Java
+- [X] Groovy
+- [X] Kotlin
+- [X] Python
+- [ ] JavaScript
+- [ ] TypeScript

@@ -20,7 +20,7 @@ public class UnnecessarySwitchRule : RulebookAstRule() {
         override fun visitSwitch(node: SwitchStatement) {
             super.visitSwitch(node)
 
-            // no multiple branches
+            // skip multiple branches
             val case =
                 node
                     .caseStatements

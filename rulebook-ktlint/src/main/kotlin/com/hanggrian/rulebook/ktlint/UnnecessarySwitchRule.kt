@@ -15,7 +15,7 @@ public class UnnecessarySwitchRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // no multiple branches
+        // skip multiple branches
         val whenEntry =
             node
                 .children()

@@ -21,7 +21,7 @@ public class UtilityClassDefinitionRule : RulebookAstRule() {
         override fun visitClassEx(node: ClassNode) {
             super.visitClassEx(node)
 
-            // no empty class, inheritance or containing non-static members
+            // skip empty class, inheritance or containing non-static members
             node
                 .takeIf { n ->
                     (n.methods.isNotEmpty() || n.fields.isNotEmpty()) &&

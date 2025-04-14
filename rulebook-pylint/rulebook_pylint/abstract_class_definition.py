@@ -18,18 +18,18 @@ class AbstractClassDefinitionChecker(RulebookChecker):
     def visit_classdef(self, node: ClassDef) -> None:
         # skip non-abstract class
         if not any(
-            isinstance(n, Name) and \
-            n.name == 'ABC' \
-            for n in node.bases
+            (isinstance(n, Name) and \
+             n.name == 'ABC' \
+             for n in node.bases),
         ):
             return
 
         # checks for violation
         if len(node.bases) > 1 or \
             any(
-                isinstance(n, FunctionDef) and \
-                has_decorator(n, 'abstractmethod') \
-                for n in node.body
+                (isinstance(n, FunctionDef) and \
+                 has_decorator(n, 'abstractmethod') \
+                 for n in node.body),
             ):
             return
         self.add_message(self.MSG, node=node.bases[0])

@@ -68,7 +68,19 @@
     <property name="fileExtensions" value="java"/>
   </module-->
 
-  <!-- Spacing -->
+  <!-- Clipping -->
+  <module name="RegexpMultiline">
+    <property name="fileExtensions" value="java"/>
+    <property name="format" value="\(\s+\)"/>
+    <property name="message" value="Unexpected whitespace between '()'."/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="fileExtensions" value="java"/>
+    <property name="format" value="\&lt;\s+\&gt;"/>
+    <property name="message" value="Unexpected whitespace between '&lt;&gt;'."/>
+  </module>
+
+  <!-- Trimming -->
   <module name="DuplicateBlankLine"/>
   <module name="UnnecessaryBlankLineBeforePackage"/>
 
@@ -137,7 +149,7 @@
 
     <!-- https://checkstyle.org/checks/blocks/index.html -->
     <module name="AvoidNestedBlocks"/>
-    <module name="EmptyBlock"/>
+    <!--module name="EmptyBlock"/-->
     <module name="LeftCurly"/>
     <module name="NeedBraces">
       <property name="allowEmptyLoopBody" value="true"/>
@@ -187,7 +199,6 @@
       <property name="optional" value="true"/>
     </module>
 
-    <!-- Basic -->
     <module name="BlockTagPunctuation"/>
     <module name="RedundantQualifier"/>
     <module name="ArrayTrailingComma"/>
@@ -250,15 +261,10 @@
 
     <!-- Spacing -->
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
-    <module name="BlockCommentTrim"/>
     <module name="JavadocTagContinuationIndentation"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
     <module name="CaseSeparator"/>
-    <module name="CodeBlockTrim"/>
     <module name="CommentSpaces"/>
-    <module name="CommentTrim"/>
-    <module name="DuplicateBlankLineInBlockComment"/>
-    <module name="DuplicateBlankLineInComment"/>
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
@@ -282,11 +288,21 @@
     <module name="RedundantElse"/>
     <module name="UnnecessarySwitch"/>
 
+    <!-- Trimming -->
+    <module name="BlockCommentTrim"/>
+    <module name="BracesTrim"/>
+    <module name="CommentTrim"/>
+    <module name="DuplicateBlankLineInBlockComment"/>
+    <module name="DuplicateBlankLineInComment"/>
+    <module name="SingleSpaceSeparator"/>
+    <module name="ParenthesesTrim"/>
+    <module name="TagsTrim"/>
+
     <!-- Wrapping -->
     <module name="AssignmentWrap"/>
     <module name="ChainCallWrap"/>
     <module name="RegexpSinglelineJava">
-      <property name="format" value="\{[ ]+\}"/>
+      <property name="format" value="\{\s+\}"/>
       <property name="message" value="Unexpected whitespace between '{}'."/>
     </module>
     <module name="LambdaWrap"/>

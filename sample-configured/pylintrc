@@ -411,4 +411,4 @@ valid-metaclass-classmethod-first-arg=mcs
 rulebook-illegal-class-final-names=Hello, World
 rulebook-illegal-identifier-names=m_str, m_list
 rulebook-max-file-size=10
-rulebook-required-generic-names=A
+rulebook-required-generics-names=A

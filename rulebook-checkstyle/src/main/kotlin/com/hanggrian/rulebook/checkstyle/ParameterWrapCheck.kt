@@ -43,23 +43,16 @@ public class ParameterWrapCheck : RulebookAstCheck() {
         if (parameters.size == 1 && parameters.single().type == LAMBDA) {
             return
         }
-        if (lparen.lineNo != parameters.first().minLineNo - 1) {
-            log(lparen, Messages[MSG_PARENTHESIS])
-        }
-        if (rparen.lineNo != parameters.last().maxLineNo + 1) {
-            log(rparen, Messages[MSG_PARENTHESIS])
-        }
         for ((i, parameter) in parameters.withIndex().drop(1)) {
             parameters[i - 1]
                 .maxLineNo
                 .takeIf { it == parameter.minLineNo }
                 ?: continue
-            log(parameter, Messages[MSG_ARGUMENT])
+            log(parameter, Messages[MSG])
         }
     }
 
     private companion object {
-        const val MSG_PARENTHESIS = "parameter.wrap.parenthesis"
-        const val MSG_ARGUMENT = "parameter.wrap.argument"
+        const val MSG = "parameter.wrap"
     }
 }

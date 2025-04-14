@@ -18,7 +18,7 @@ public class UnnecessaryParenthesesInLambdaRule : RulebookAstRule() {
         override fun visitLambdaExpression(node: LambdaExpression) {
             super.visitLambdaExpression(node)
 
-            // no multiple parameters
+            // skip multiple parameters
             val parameter =
                 node
                     .parameters

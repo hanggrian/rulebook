@@ -23,21 +23,11 @@ class ParameterWrapCheckTest : CheckTest() {
         )
 
     @Test
-    fun `Multiline parameters each hugging parenthesis`() =
-        assertAll(
-            "ParameterWrap4",
-            "4:13: Do not join parentheses with parameters.",
-            "5:20: Do not join parentheses with parameters.",
-            "8:12: Do not join parentheses with parameters.",
-            "9:14: Do not join parentheses with parameters.",
-        )
+    fun `Aware of chained single-line calls`() = assertAll("ParameterWrap4")
 
     @Test
-    fun `Aware of chained single-line calls`() = assertAll("ParameterWrap5")
+    fun `Allow comments between parameters`() = assertAll("ParameterWrap5")
 
     @Test
-    fun `Allow comments between parameters`() = assertAll("ParameterWrap6")
-
-    @Test
-    fun `Allow SAM`() = assertAll("ParameterWrap7")
+    fun `Allow SAM`() = assertAll("ParameterWrap6")
 }

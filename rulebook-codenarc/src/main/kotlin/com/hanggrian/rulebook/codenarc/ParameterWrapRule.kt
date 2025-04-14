@@ -19,7 +19,7 @@ public class ParameterWrapRule : RulebookAstRule() {
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
     private companion object {
-        const val MSG_ARGUMENT = "parameter.wrap.argument"
+        const val MSG = "parameter.wrap"
     }
 
     public class Visitor : AbstractAstVisitor() {
@@ -34,8 +34,7 @@ public class ParameterWrapRule : RulebookAstRule() {
         }
 
         private fun <T> visitAnyCallExpression(node: T) where T : Expression, T : MethodCall {
-            val arguments = node.arguments as? ArgumentListExpression ?: return
-            process(arguments.expressions)
+            process((node.arguments as? ArgumentListExpression)?.expressions ?: return)
         }
 
         override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
@@ -65,7 +64,7 @@ public class ParameterWrapRule : RulebookAstRule() {
                     .lastLineNumber
                     .takeIf { it == parameter.lineNumber }
                     ?: continue
-                addViolation(parameter, Messages[MSG_ARGUMENT])
+                addViolation(parameter, Messages[MSG])
             }
         }
     }

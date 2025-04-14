@@ -7,9 +7,7 @@ class ImportOrderRuleTest : AbstractRuleTestCase<ImportOrderRule>() {
     override fun createRule() = ImportOrderRule()
 
     @Test
-    fun `Rule properties`() {
-        rule.assertProperties()
-    }
+    fun `Rule properties`() = rule.assertProperties()
 
     @Test
     fun `Correct import layout`() =

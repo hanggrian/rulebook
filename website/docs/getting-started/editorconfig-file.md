@@ -19,7 +19,8 @@ insert_final_newline = true
 [*.kt]
 indent_size = 4
 max_line_length = 100
-ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
+ktlint_code_style = ktlint_official
+ktlint_standard = enabled
 ij_kotlin_packages_to_use_import_on_demand = unset
 ij_kotlin_name_count_to_use_star_import = 99
 ij_kotlin_name_count_to_use_star_import_for_members = 99

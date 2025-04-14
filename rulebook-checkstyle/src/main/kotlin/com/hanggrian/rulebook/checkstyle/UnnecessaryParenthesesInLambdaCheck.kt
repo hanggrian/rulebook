@@ -16,7 +16,7 @@ public class UnnecessaryParenthesesInLambdaCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LAMBDA)
 
     override fun visitToken(node: DetailAST) {
-        // no multiple parameters
+        // skip multiple parameters
         val parameter =
             node
                 .findFirstToken(PARAMETERS)

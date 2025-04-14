@@ -16,7 +16,7 @@ public class AssignmentWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(ASSIGN)
 
     override fun visitToken(node: DetailAST) {
-        // no lambda initializers
+        // skip lambda initializers
         node
             .takeUnless { LAMBDA in it }
             ?: return

@@ -6,6 +6,6 @@ class CommentSpaces {
     //////////
 
     //////// /////
-    // not good //
+    // skipt good //
     ///  ///  ////
 }

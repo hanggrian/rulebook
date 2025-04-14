@@ -20,7 +20,7 @@ public class AbstractClassDefinitionRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // no non-abstract class
+        // skip non-abstract class
         val abstractKeyword =
             node
                 .findChildByType(MODIFIER_LIST)

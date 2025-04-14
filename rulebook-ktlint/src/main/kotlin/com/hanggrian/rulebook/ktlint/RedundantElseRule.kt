@@ -16,7 +16,7 @@ public class RedundantElseRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(IF)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // no single if
+        // skip single if
         node
             .takeIf { ELSE in node }
             ?: return

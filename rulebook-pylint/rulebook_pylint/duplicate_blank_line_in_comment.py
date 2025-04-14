@@ -1,8 +1,6 @@
 from tokenize import TokenInfo, COMMENT
 
-import regex
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from regex import Pattern
 from rulebook_pylint.checkers import RulebookTokenChecker
 from rulebook_pylint.internals.messages import Messages
 from rulebook_pylint.internals.nodes import is_comment_empty
@@ -14,9 +12,6 @@ if TYPE_CHECKING:
 class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment"""
     MSG: str = 'duplicate-blank-line-in-comment'
-
-    # pylint: disable=anomalous-backslash-in-string
-    EMPTY_COMMENT_REGEX: Pattern = regex.compile('#\s*$')
 
     name: str = 'duplicate-blank-line-in-comment'
     msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG)

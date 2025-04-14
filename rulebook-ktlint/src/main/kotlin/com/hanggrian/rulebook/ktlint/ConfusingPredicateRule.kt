@@ -25,7 +25,7 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CALL_EXPRESSION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // no non-predicate call
+        // skip non-predicate call
         val predicateBlock =
             node
                 .findChildByType(LAMBDA_ARGUMENT)

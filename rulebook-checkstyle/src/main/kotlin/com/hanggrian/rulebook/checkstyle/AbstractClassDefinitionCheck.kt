@@ -18,7 +18,7 @@ public class AbstractClassDefinitionCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CLASS_DEF)
 
     override fun visitToken(node: DetailAST) {
-        // no non-abstract class
+        // skip non-abstract class
         val abstract =
             node
                 .findFirstToken(MODIFIERS)

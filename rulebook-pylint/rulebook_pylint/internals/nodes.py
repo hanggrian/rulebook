@@ -17,9 +17,9 @@ def get_assignname(node: Assign) -> AssignName | None:
 
 def has_decorator(node: FunctionDef | ClassDef, name: str) -> bool:
     return any(
-        (isinstance(n, Name) and n.name == name) or \
-        (isinstance(n, Attribute) and n.attrname == name) \
-        for n in node.decorators.nodes
+        ((isinstance(n, Name) and n.name == name) or \
+         (isinstance(n, Attribute) and n.attrname == name) \
+         for n in node.decorators.nodes),
     ) if node.decorators \
         else False
 

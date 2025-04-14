@@ -26,7 +26,7 @@ public class CommentTrimRule : RulebookFileRule() {
                     end++
                 }
 
-                // no blank comment
+                // skip blank comment
                 start
                     .takeUnless { it == end }
                     ?: return

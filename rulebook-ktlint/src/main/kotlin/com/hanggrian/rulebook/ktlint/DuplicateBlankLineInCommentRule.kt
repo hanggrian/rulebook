@@ -14,7 +14,7 @@ public class DuplicateBlankLineInCommentRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(EOL_COMMENT)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // no comment with content
+        // skip comment with content
         node
             .takeIf { it.isEolCommentEmpty() }
             ?: return
