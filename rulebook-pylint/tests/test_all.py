@@ -11,7 +11,7 @@ from rulebook_pylint.abstract_class_definition import AbstractClassDefinitionChe
 from rulebook_pylint.block_comment_trim import BlockCommentTrimChecker
 from rulebook_pylint.built_in_function_position import BuiltInFunctionPositionChecker
 from rulebook_pylint.case_separator import CaseSeparatorChecker
-from rulebook_pylint.class_name_acronym import ClassNameAcronymChecker
+from rulebook_pylint.class_name_abbreviation import ClassNameAbbreviationChecker
 from rulebook_pylint.comment_trim import CommentTrimChecker
 from rulebook_pylint.duplicate_blank_line import DuplicateBlankLineChecker
 from rulebook_pylint.duplicate_blank_line_in_block_comment import \
@@ -48,7 +48,7 @@ class TestAllCheckers:
         BlockCommentTrimChecker,
         BuiltInFunctionPositionChecker,
         CaseSeparatorChecker,
-        ClassNameAcronymChecker,
+        ClassNameAbbreviationChecker,
         CommentTrimChecker,
         DuplicateBlankLineChecker,
         DuplicateBlankLineInBlockCommentChecker,

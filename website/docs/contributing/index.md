@@ -1,4 +1,6 @@
-Custom rules for each linter are implemented differently based on the tool capabilities and the limitations of the underlying language parser. Below are the details on which classes to extend for each linter.
+Custom rules for each linter are implemented differently based on the tool
+capabilities and the limitations of the underlying language parser. Below are
+the details on which classes to extend for each linter.
 
 ```mermaid
 graph LR
@@ -37,7 +39,8 @@ graph LR
 Printing the AST tree to the console is possible with Checkstyle and Ktlint.
 
 !!! warning
-    This command is no longer available in newer versions of Ktlint, use version [0.47.0](https://github.com/pinterest/ktlint/releases/tag/0.47.0).
+    This command is no longer available in newer versions of Ktlint, use version
+    [0.47.0](https://github.com/pinterest/ktlint/releases/tag/0.47.0).
 
 === "Ktlint"
     ```shell

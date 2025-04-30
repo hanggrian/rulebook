@@ -24,7 +24,7 @@ class AllRulesTest : AbstractTestCase() {
             BuiltInFunctionPositionRule(),
             CaseSeparatorRule(),
             ChainCallWrapRule(),
-            ClassNameAcronymRule(),
+            ClassNameAbbreviationRule(),
             CommentTrimRule(),
             DuplicateBlankLineInCommentRule(),
             EmptyBracesClipRule(),

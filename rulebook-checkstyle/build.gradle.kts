@@ -15,7 +15,10 @@ dependencies {
 
     implementation(libs.checkstyle)
 
-    testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
+    testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
     testImplementation(libs.truth)
-    testImplementation(libs.bundles.junit.jupiter)
+
+    testRuntimeOnly(libs.junit.platform.launcher)
 }

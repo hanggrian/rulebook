@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-class ClassNameAcronym {
+class ClassNameAbbreviation {
     class RestApi {
         val httpUrl = "https://example.com"
     }

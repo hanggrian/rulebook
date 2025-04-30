@@ -1,6 +1,6 @@
 package com.example.groovy
 
-class ClassNameAcronym {
+class ClassNameAbbreviation {
     class RestApi {
         var httpUrl = 'https://example.com'
     }

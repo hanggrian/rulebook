@@ -52,7 +52,7 @@ load-plugins=
   rulebook_pylint.exception_inheritance,
   rulebook_pylint.string_quotes,
   # Naming
-  rulebook_pylint.class_name_acronym,
+  rulebook_pylint.class_name_abbreviation,
   rulebook_pylint.illegal_class_final_name,
   rulebook_pylint.required_generics_name,
   # Ordering

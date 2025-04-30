@@ -14,10 +14,13 @@ dependencies {
     implementation(libs.ktlint.rule.engine.core)
     implementation(libs.ktlint.cli.ruleset.core)
 
-    testImplementation(kotlin("test-junit", libs.versions.kotlin.get()))
+    testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.truth)
     testImplementation(libs.ktlint.test)
     testImplementation(libs.ktlint.ruleset.standard) // for ID comparison
-    testImplementation(libs.truth)
 
+    testRuntimeOnly(libs.junit.platform.launcher)
     testRuntimeOnly(libs.logback)
 }

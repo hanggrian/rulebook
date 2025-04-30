@@ -1,7 +1,7 @@
 [versions]
 jdk = "21"
 jre = "8"
-junit = "5.12.1"
+junit = "5.12.2"
 # kotlin
 kotlin = "2.0.0"
 ktlint = "1.5.0"
@@ -30,11 +30,6 @@ codenarc = { module = "org.codenarc:CodeNarc", version.ref = "codenarc" }
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
 truth = "com.google.truth:truth:1.4.4"
 logback = "ch.qos.logback:logback-classic:1.5.17"
-junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
-
-[bundles]
-junit-jupiter = [
-  "junit-jupiter-api",
-  "junit-jupiter-engine",
-]
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
+junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.12.2"

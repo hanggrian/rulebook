@@ -1071,8 +1071,8 @@ Use single quotes for string literals, unless the string contains single quotes.
 
 ### Utility class definition
 
-Utility classes should have a final modifier and a private constructor to prevent
-instantiation.
+Utility classes should have a final modifier and a private constructor to
+prevent instantiation.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -1446,7 +1446,7 @@ Length of a line should not exceed 100 characters.
 
 ## Naming
 
-### Class name acronym
+### Class name abbreviation
 
 Ensures that the first letter of acronyms longer than three characters are
 always capitalized.

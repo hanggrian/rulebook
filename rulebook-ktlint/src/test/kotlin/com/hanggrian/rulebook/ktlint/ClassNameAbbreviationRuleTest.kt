@@ -4,11 +4,11 @@ import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class ClassNameAcronymRuleTest {
-    private val assertThatCode = assertThatRule { ClassNameAcronymRule() }
+class ClassNameAbbreviationRuleTest {
+    private val assertThatCode = assertThatRule { ClassNameAbbreviationRule() }
 
     @Test
-    fun `Rule properties`() = ClassNameAcronymRule().assertProperties()
+    fun `Rule properties`() = ClassNameAbbreviationRule().assertProperties()
 
     @Test
     fun `Class names with lowercase abbreviation`() =
@@ -45,19 +45,19 @@ class ClassNameAcronymRuleTest {
             object MySQLObject
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 7, "Rename acronym to 'MySqlClass'."),
-            LintViolation(3, 18, "Rename acronym to 'MySqlAnnotationClass'."),
-            LintViolation(5, 12, "Rename acronym to 'MySqlDataClass'."),
-            LintViolation(7, 14, "Rename acronym to 'MySqlSealedClass'."),
-            LintViolation(9, 11, "Rename acronym to 'MySqlInterface'."),
-            LintViolation(11, 8, "Rename acronym to 'MySqlObject'."),
+            LintViolation(1, 7, "Rename abbreviation to 'MySqlClass'."),
+            LintViolation(3, 18, "Rename abbreviation to 'MySqlAnnotationClass'."),
+            LintViolation(5, 12, "Rename abbreviation to 'MySqlDataClass'."),
+            LintViolation(7, 14, "Rename abbreviation to 'MySqlSealedClass'."),
+            LintViolation(9, 11, "Rename abbreviation to 'MySqlInterface'."),
+            LintViolation(11, 8, "Rename abbreviation to 'MySqlObject'."),
         )
 
     @Test
     fun `File abbreviation`() =
         assertThatCode("")
             .asFileWithPath("/some/path/RestAPI.kt")
-            .hasLintViolationWithoutAutoCorrect(1, 1, "Rename acronym to 'RestApi'.")
+            .hasLintViolationWithoutAutoCorrect(1, 1, "Rename abbreviation to 'RestApi'.")
 
     @Test
     fun `Skip a KTS file`() =

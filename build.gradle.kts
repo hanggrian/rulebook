@@ -85,9 +85,14 @@ subprojects {
             compilerOptions.jvmTarget
                 .set(JvmTarget.fromTarget(JavaVersion.toVersion(jreVersion).toString()))
         }
+        withType<Test>().configureEach {
+            useJUnitPlatform()
+        }
     }
 }
 
-tasks.dokkaHtmlMultiModule {
-    outputDirectory.set(layout.buildDirectory.dir("dokka/dokka/"))
+dependencies {
+    dokka(project(":$releaseArtifact-checkstyle"))
+    dokka(project(":$releaseArtifact-codenarc"))
+    dokka(project(":$releaseArtifact-ktlint"))
 }

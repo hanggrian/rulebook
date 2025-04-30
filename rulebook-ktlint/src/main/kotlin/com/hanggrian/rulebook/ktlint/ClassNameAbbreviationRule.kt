@@ -10,8 +10,8 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#class-name-acronym) */
-public class ClassNameAcronymRule : RulebookRule(ID) {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#class-name-abbreviation) */
+public class ClassNameAbbreviationRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION, FILE)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -55,9 +55,9 @@ public class ClassNameAcronymRule : RulebookRule(ID) {
     }
 
     public companion object {
-        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:class-name-acronym")
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:class-name-abbreviation")
 
-        private const val MSG = "class.name.acronym"
+        private const val MSG = "class.name.abbreviation"
 
         private val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
     }

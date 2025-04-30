@@ -14,7 +14,7 @@
   "string-quotes-single": "Use single quotes ''.",
   "string-quotes-double": "Use double quotes \"\".",
 
-  "class-name-acronym": "Rename acronym to '%s'.",
+  "class-name-abbreviation": "Rename abbreviation to '%s'.",
   "illegal-class-final-name-all": "Avoid meaningless word '%s'.",
   "illegal-class-final-name-util": "Rename utility class to '%s'.",
   "required-generics-name": "Use common generics '%s'.",

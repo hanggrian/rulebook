@@ -1,16 +1,36 @@
+[View Dokka](api/dokka/){ .md-button .md-button--primary }&emsp;[View Pdoc](api/pdoc/){ .md-button }
+
 ## Features
 
 !!! features1 "What is Rulebook?"
     <div class="grid cards" markdown>
 
-    - <div style="text-align: center">:material-puzzle:{ .xxxl #primary }<br><b id="primary">Library extension</b><br>A set of additional rules for static code analysis tools</div>
-    - <div style="text-align: center">:material-translate:{ .xxxl #primary }<br><b id="primary">Multiple languages</b><br>Originally written for Kotlin, it now supports Java, Groovy and Python</div>
+    - <div style="text-align: center">
+        :material-puzzle:{ .xxxl #primary }<br>
+        <b id="primary">Library extension</b><br>
+        A set of additional rules for static code analysis tools
+      </div>
+    - <div style="text-align: center">
+        :material-translate:{ .xxxl #primary }<br>
+        <b id="primary">Multiple languages</b><br>
+        Originally written for Kotlin, it now supports Java, Groovy and Python
+      </div>
     </div>
 !!! features2 "Features"
     <div class="grid cards" markdown>
 
-    - <div style="text-align: center">:material-creation:{ .xxxl #primary }<br><b id="primary">Follows guidelines</b><br>Works together with standard rules from the linters and respects common coding convention</div>
-    - <div style="text-align: center">:material-mirror:{ .xxxl #primary }<br><b id="primary">Shared configuration</b><br>Available in standard and Google Style Guide variants with adjusted defaults.</div>
+    - <div style="text-align: center">
+        :material-creation:{ .xxxl #primary }<br>
+        <b id="primary">Follows guidelines</b><br>
+        Works together with standard rules from the linters and respects common
+        coding convention
+      </div>
+    - <div style="text-align: center">
+        :material-mirror:{ .xxxl #primary }<br>
+        <b id="primary">Shared configuration</b><br>
+        Available in standard and Google Style Guide variants with adjusted
+        defaults.
+      </div>
     </div>
 
 ## Compatibility table
@@ -21,13 +41,16 @@
     :material-check-all:{ .xl .middle }&ensp;The rule is fully implemented
     { .card }
 
-    :material-check:{ .xl .middle }&ensp;Functionality already exists in other rules
+    :material-check:{ .xl .middle }&ensp;Functionality already exists in other
+    rules
     { .card }
 
-    [:material-check:{ .xl .middle }](#)&ensp;The rule is already supported by the linter
+    :material-information-outline:{ .xl .middle }&ensp;The rule is already
+    supported by the linter
     { .card }
 
-    [:material-close:{ .xl .middle #accent }](#)&ensp;Not supported due to technical limitations
+    :material-close:{ .xl .middle }&ensp;Not supported due to technical
+    limitations
     { .card }
 
     > **Empty** &mdash; not applicable to this language
@@ -36,94 +59,94 @@
 Rule | Java | Groovy | Kotlin | Python
 --- | :---: | :---: | :---: | :---:
 Block tag punctuation[^oracle-javadoc-tool] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Built-in types[^kotlin-mapped-types] | | | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/warning/deprecated-typing-alias.html)
+Built-in types[^kotlin-mapped-types] | | | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; deprecated-typing-alias" }
 Confusing predicate[^kotlin-filter-by-predicate] | | | :material-check-all:{ .lg }
 Null equality[^kotlin-structural-equality] | | | :material-check-all:{ .lg }
 Redundant qualifier[^jetbrains-remove-redundant-qualifier-name] | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-TODO comment[^jetbrains-using-todo] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/misc/todocomment.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Trailing comma in call[^kotlin-trailing-commas] | | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#trailing-comma-on-call-site) | :material-check-all:{ .lg }
-Trailing comma in collection[^python-when-to-use-trailing-commas] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/coding/arraytrailingcomma.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-convention.html#trailingcomma-rule) | | :material-check:{ .lg }
-Trailing comma in declaration[^kotlin-trailing-commas] | | | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#trailing-comma-on-declaration-site) | :material-check:{ .lg }
-Unused import[^remove-unused-imports] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/imports/unusedimports.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-imports.html#unusedimport-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#no-unused-imports) | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/warning/unused-import.html)
-Wildcard import[^google-import-statements] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/imports/avoidstarimport.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-imports.html#nowildcardimports-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#no-wildcard-imports) | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/warning/wildcard-import.html)
-<span class="material-symbols-outlined lg middle">format_text_clip</span> **Clipping group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-Empty braces clip[^google-braces-empty-blocks] | [:material-check:{ .lg }](https://checkstyle.org/checks/regexp/regexpsinglelinejava.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+TODO comment[^jetbrains-using-todo] | :material-information-outline:{ .lg title="&bull; TodoComment" } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Trailing comma in call[^kotlin-trailing-commas] | | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; trailing-comma-on-call-site" } | :material-check-all:{ .lg }
+Trailing comma in collection[^python-when-to-use-trailing-commas] | :material-information-outline:{ .lg title="&bull; ArrayTrailingComma" } | :material-information-outline:{ .lg title="&bull; TrailingComma" } | | :material-check:{ .lg }
+Trailing comma in declaration[^kotlin-trailing-commas] | | | :material-information-outline:{ .lg title="&bull; trailing-comma-on-declaration-site" } | :material-check:{ .lg }
+Unused import[^remove-unused-imports] | :material-information-outline:{ .lg title="&bull; UnusedImports" } | :material-information-outline:{ .lg title="&bull; UnusedImport" } | :material-information-outline:{ .lg title="&bull; no-unused-imports" } | :material-information-outline:{ .lg title="&bull; unused-import" }
+Wildcard import[^google-import-statements] | :material-information-outline:{ .lg title="&bull; AvoidStarImport" } | :material-information-outline:{ .lg title="&bull; NoWildcardImports" } | :material-information-outline:{ .lg title="&bull; no-wildcard-imports" } | :material-information-outline:{ .lg title="&bull; wildcard-import" }
+<span class="material-symbols-outlined lg middle">format_text_clip</span> **Clipping group** | **Java** | **Groovy** | **Kotlin** | **Python**
+Empty braces clip[^google-braces-empty-blocks] | :material-information-outline:{ .lg title="&bull; RegexpSinglelineJava" } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Empty brackets clip[^concise-brackets-parentheses-and-tags] | | :material-check-all:{ .lg } | | :material-check:{ .lg }
-Empty parentheses clip[^concise-brackets-parentheses-and-tags] | [:material-check:{ .lg }](https://checkstyle.org/checks/regexp/regexpmultiline.html) | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#parenthesis-spacing)[:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#parameter-list-spacing) | :material-check:{ .lg }
+Empty parentheses clip[^concise-brackets-parentheses-and-tags] | :material-information-outline:{ .lg title="&bull; RegexpMultiline" } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; parenthesis-spacing&#013;&bull; parameter-list-spacing" } | :material-check:{ .lg }
 Empty tags clip[^concise-brackets-parentheses-and-tags] | :material-check:{ .lg } | :material-check-all:{ .lg }
-Short block comment clip[^kotlin-documentation-comments] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/javadoc/singlelinejavadoc.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-<span class="material-symbols-outlined lg middle">data_object</span> **Declaring group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-Abstract class definition[^common-abstract-class-require-abstract-method] | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-design.html#abstractclasswithoutabstractmethod-rule) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Short block comment clip[^kotlin-documentation-comments] | :material-information-outline:{ .lg title="&bull; SingleLineJavadoc" } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+<span class="material-symbols-outlined lg middle">data_object</span> **Declaring group** | **Java** | **Groovy** | **Kotlin** | **Python**
+Abstract class definition[^common-abstract-class-require-abstract-method] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; AbstractClassWithoutAbstractMethod" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Contract function definition[^kotlin-kotlin-contracts] | | | :material-check-all:{ .lg }
-Exception inheritance[^oracle-throwing] | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-exceptions.html#exceptionextendserror-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-exceptions.html#exceptionextendsthrowable-rule) | :material-check-all:{ .lg } | :material-check-all:{ .lg } |
+Exception inheritance[^oracle-throwing] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; ExceptionExtendsError&#013;&bull; ExceptionExtendsThrowable" } | :material-check-all:{ .lg } | :material-check-all:{ .lg } |
 Number suffix for double[^groovy-number-type-suffixes] | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Number suffix for float[^groovy-number-type-suffixes] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Number suffix for integer[^groovy-number-type-suffixes] | | :material-check-all:{ .lg }
-Number suffix for long[^groovy-number-type-suffixes] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/misc/upperell.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-convention.html#longliteralwithlowercasel-rule)
-String quotes[^google-features-strings-use-single-quotes] | | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-unnecessary.html#unnecessarygstring-rule) | | :material-check-all:{ .lg }
+Number suffix for long[^groovy-number-type-suffixes] | :material-information-outline:{ .lg title="&bull; UpperEll" } | :material-information-outline:{ .lg title="&bull; LongLiteralWithLowercaseL" }
+String quotes[^google-features-strings-use-single-quotes] | | :material-information-outline:{ .lg title="&bull; UnnecessaryGString" } | | :material-check-all:{ .lg }
 Unnecessary parentheses in lambda[^oracle-lambdaexpressions] | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Utility class definition[^hide-utility-class-instance] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/design/hideutilityclassconstructor.html) | :material-check-all:{ .lg }
-<span class="material-symbols-outlined lg middle">draft</span> **Formatting group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-File size[^kotlin-source-file-organization] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/sizes/filelength.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-size.html#classsize-rule) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Final newline[^editorconfig-file-format] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/misc/newlineatendoffile.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-formatting.html#fileendswithoutnewline-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#final-newline) | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/convention/missing-final-newline.html)
-Indent style[^editorconfig-file-format] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/whitespace/filetabcharacter.html#FileTabCharacter) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-convention.html#notabcharacter-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#indentation) | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/warning/bad-indentation.html)
-Line length[^google-column-limit] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/sizes/linelength.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-formatting.html#linelength-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#max-line-length) | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/convention/line-too-long.html)
-<span class="material-symbols-outlined lg middle">label_important</span> **Naming group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-Class name acronym[^kotlin-choose-good-names] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/abbreviationaswordinname.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Class name[^oracle-codeconventions-namingconventions] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/typename.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#classname-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#interfacename-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#class-naming) | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/convention/invalid-name.html)
-Constant property name[^oracle-codeconventions-namingconventions] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/constantname.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#fieldname-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#propertyname-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#property-naming)
-File name[^kotlin-source-file-names] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/misc/outertypefilename.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#classnamesameasfilename-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#file-name)
-Identifier name[^oracle-codeconventions-namingconventions] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/catchparametername.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/lambdaparametername.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/localvariablename.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/localfinalvariablename.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/membername.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/methodname.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/parametername.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/patternvariablename.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/recordcomponentname.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/staticvariablename.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#methodname-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#parametername-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#variablename-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#function-naming) | :material-check:{ .lg }
+Utility class definition[^hide-utility-class-instance] | :material-information-outline:{ .lg title="&bull; HideUtilityClassConstructor" } | :material-check-all:{ .lg }
+<span class="material-symbols-outlined lg middle">draft</span> **Formatting group** | **Java** | **Groovy** | **Kotlin** | **Python**
+File size[^kotlin-source-file-organization] | :material-information-outline:{ .lg title="&bull; FileLength" } | :material-information-outline:{ .lg title="&bull; ClassSize" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Final newline[^editorconfig-file-format] | :material-information-outline:{ .lg title="&bull; NewlineAtEndOfFile" } | :material-information-outline:{ .lg title="&bull; FileEndsWithoutNewline" } | :material-information-outline:{ .lg title="&bull; final-newline" } | :material-information-outline:{ .lg title="&bull; missing-final-newline" }
+Indent style[^editorconfig-file-format] | :material-information-outline:{ .lg title="&bull; FileTabCharacter" } | :material-information-outline:{ .lg title="&bull; NoTabCharacter" } | :material-information-outline:{ .lg title="&bull; indentation" } | :material-information-outline:{ .lg title="&bull; bad-indentation" }
+Line length[^google-column-limit] | :material-information-outline:{ .lg title="&bull; LineLength" } | :material-information-outline:{ .lg title="&bull; LineLength" } | :material-information-outline:{ .lg title="&bull; max-line-length" } | :material-information-outline:{ .lg title="&bull; line-too-long" }
+<span class="material-symbols-outlined lg middle">label</span> **Naming group** | **Java** | **Groovy** | **Kotlin** | **Python**
+Class name abbreviation[^kotlin-choose-good-names] | :material-information-outline:{ .lg title="&bull; AbbreviationAsWordInName" } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Class name[^oracle-codeconventions-namingconventions] | :material-information-outline:{ .lg title="&bull; TypeName" } | :material-information-outline:{ .lg title="&bull; ClassName&#013;&bull; InterfaceName" } | :material-information-outline:{ .lg title="&bull; class-naming" } | :material-information-outline:{ .lg title="&bull; invalid-name" }
+Constant property name[^oracle-codeconventions-namingconventions] | :material-information-outline:{ .lg title="&bull; ConstantName" } | :material-information-outline:{ .lg title="&bull; FieldName&#013;&bull; PropertyName" } | :material-information-outline:{ .lg title="&bull; property-naming" }
+File name[^kotlin-source-file-names] | :material-information-outline:{ .lg title="&bull; OuterTypeFilename" } | :material-information-outline:{ .lg title="&bull; ClassNameSameAsFilename" } | :material-information-outline:{ .lg title="&bull; file-name" }
+Identifier name[^oracle-codeconventions-namingconventions] | :material-information-outline:{ .lg title="&bull; CatchParameterName&#013;&bull; LambdaParameterName&#013;&bull; LocalVariableName&#013;&bull; LocalFinalVariableName&#013;&bull; MemberName&#013;&bull; MethodName&#013;&bull; ParameterName&#013;&bull; PatternVariableName&#013;&bull; RecordComponentName&#013;&bull; StaticVariableName" } | :material-information-outline:{ .lg title="&bull; MethodName&#013;&bull; ParameterName&#013;&bull; VariableName" } | :material-information-outline:{ .lg title="&bull; function-naming" } | :material-check:{ .lg }
 Illegal class final name[^kotlin-choose-good-names] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Illegal variable name[^avoid-primitive-names] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/illegalidentifiername.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/convention/disallowed-name.html)
-Package name[^oracle-codeconventions-namingconventions] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/packagename.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-naming.html#packagename-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#package-name) | :material-check:{ .lg }
+Illegal variable name[^avoid-primitive-names] | :material-information-outline:{ .lg title="&bull; IllegalIdentifierName" } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; disallowed-name" }
+Package name[^oracle-codeconventions-namingconventions] | :material-information-outline:{ .lg title="&bull; PackageName" } | :material-information-outline:{ .lg title="&bull; PackageName" } | :material-information-outline:{ .lg title="&bull; package-name" } | :material-check:{ .lg }
 Property name interop[^kotlin-properties] | | | :material-check-all:{ .lg }
-Required generics name[^oracle-types] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/classtypeparametername.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/interfacetypeparametername.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/methodtypeparametername.html)[:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/naming/recordtypeparametername.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-<span class="material-symbols-outlined lg middle">swap_vert</span> **Ordering group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-Block tag order[^android-block-tags] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/javadoc/atclauseorder.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Required generics name[^oracle-types] | :material-information-outline:{ .lg title="&bull; ClassTypeParameterName&#013;&bull; InterfaceTypeParameterName&#013;&bull; MethodTypeParameterName&#013;&bull; RecordTypeParameterName" } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+<span class="material-symbols-outlined lg middle">swap_vert</span> **Ordering group** | **Java** | **Groovy** | **Kotlin** | **Python**
+Block tag order[^android-block-tags] | :material-information-outline:{ .lg title="&bull; AtClauseOrder" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Built-in function position[^common-place-built-in-methods-last] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Import order[^google-import-ordering-and-spacing] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/imports/customimportorder.html) | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#import-ordering) | [:material-check:{ .lg }](https://pylint.pycqa.org/en/latest/user_guide/messages/convention/wrong-import-order.html)
-Inner class position[^kotlin-class-layout] | [:material-check:{ .lg }](https://checkstyle.org/checks/design/innertypelast.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Import order[^google-import-ordering-and-spacing] | :material-information-outline:{ .lg title="&bull; CustomImportOrder" } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; import-ordering" } | :material-information-outline:{ .lg title="&bull; wrong-import-order" }
+Inner class position[^kotlin-class-layout] | :material-information-outline:{ .lg title="&bull; InnerTypeLast" } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Member order[^kotlin-class-layout] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Overload function position[^kotlin-overload-layout] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/coding/overloadmethodsdeclarationorder.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Static import position[^google-import-ordering-and-spacing] | :material-check:{ .lg } | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-imports.html#misorderedstaticimports-rule)
-<span class="material-symbols-outlined lg middle">format_letter_spacing_2</span> **Spacing group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-Block comment spaces[^oracle-javadoc] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/javadoc/javadocmissingwhitespaceafterasterisk.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-comments.html#spaceaftercommentdelimiter-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-comments.html#spacebeforecommentdelimiter-rule) | :material-check-all:{ .lg }
-Block tag indentation[^google-javadoc-block-tags] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/javadoc/javadoctagcontinuationindentation.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Overload function position[^kotlin-overload-layout] | :material-information-outline:{ .lg title="&bull; OverloadMethodsDeclarationOrder" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Static import position[^google-import-ordering-and-spacing] | :material-check:{ .lg } | :material-information-outline:{ .lg title="&bull; MisorderedStaticImports" }
+<span class="material-symbols-outlined lg middle">format_letter_spacing_2</span> **Spacing group** | **Java** | **Groovy** | **Kotlin** | **Python**
+Block comment spaces[^oracle-javadoc] | :material-information-outline:{ .lg title="&bull; JavadocMissingWhitespaceAfterAsterisk" } | :material-information-outline:{ .lg title="&bull; SpaceAfterCommentDelimiter&#013;&bull; SpaceBeforeCommentDelimiter" } | :material-check-all:{ .lg }
+Block tag indentation[^google-javadoc-block-tags] | :material-information-outline:{ .lg title="&bull; JavadocTagContinuationIndentation" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Case separator[^kotlin-control-flow-statements] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Comment spaces[^android-horizontal] | :material-check-all:{ .lg } | :material-check:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#comment-spacing) | [:material-check:{ .lg }](https://peps.python.org/pep-0008/#inline-comments)
-Member separator[^google-vertical-whitespace] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/whitespace/emptylineseparator.html) | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#blank-line-before-declarations) | :material-check-all:{ .lg }
-Missing blank line before block tags[^kotlin-kdoc-syntax] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/javadoc/requireemptylinebeforeblocktaggroup.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-<span class="material-symbols-outlined lg middle">code_blocks</span> **Stating group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-Illegal catch[^oracle-throwing] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/coding/illegalcatch.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-exceptions.html#catcherror-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-exceptions.html#catchexception-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-exceptions.html#catchthrowable-rule) | [:material-close:{ .lg #accent }](https://discuss.kotlinlang.org/t/does-kotlin-have-multi-catch/486/) | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/warning/bare-except.html)
-Illegal throw[^oracle-throwing] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/coding/illegalthrows.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-exceptions.html#throwerror-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-exceptions.html#throwexception-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-exceptions.html#throwthrowable-rule) | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/warning/broad-exception-caught.html)
-Missing braces[^android-braces] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/blocks/needbraces.html) | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-braces.html#ifstatementbraces-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-braces.html#forstatementbraces-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-braces.html#whilestatementbraces-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#multiline-if-else)[:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#multiline-loop)
+Comment spaces[^android-horizontal] | :material-check-all:{ .lg } | :material-check:{ .lg } | :material-information-outline:{ .lg title="&bull; comment-spacing" } | :material-information-outline:{ .lg title="&bull; inline-comments" }
+Member separator[^google-vertical-whitespace] | :material-information-outline:{ .lg title="&bull; EmptyLineSeparator" } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; blank-line-before-declarations" } | :material-check-all:{ .lg }
+Missing blank line before block tags[^kotlin-kdoc-syntax] | :material-information-outline:{ .lg title="&bull; RequireEmptyLineBeforeBlockTagGroup" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+<span class="material-symbols-outlined lg middle">code_blocks</span> **Stating group** | **Java** | **Groovy** | **Kotlin** | **Python**
+Illegal catch[^oracle-throwing] | :material-information-outline:{ .lg title="&bull; IllegalCatch" } | :material-information-outline:{ .lg title="&bull; CatchError&#013;&bull; CatchException&#013;&bull; CatchThrowable" } | [:material-close:{ .lg #accent }](https://discuss.kotlinlang.org/t/does-kotlin-have-multi-catch/486/) | :material-information-outline:{ .lg title="&bull; bare-except" }
+Illegal throw[^oracle-throwing] | :material-information-outline:{ .lg title="&bull; IllegalThrows" } | :material-information-outline:{ .lg title="&bull; ThrowError&#013;&bull; ThrowException&#013;&bull; ThrowThrowable" } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; broad-exception-caught" }
+Missing braces[^android-braces] | :material-information-outline:{ .lg title="&bull; NeedBraces" } | :material-information-outline:{ .lg title="&bull; IfStatementBraces&#013;&bull; ForStatementBraces&#013;&bull; WhileStatementBraces" } | :material-information-outline:{ .lg title="&bull; multiline-if-else&#013;&bull; multiline-loop" }
 Nested if-else[^jetbrains-invert-if] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Redundant default[^jetbrains-redundant-if-else-block] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Redundant else[^jetbrains-redundant-if-else-block] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/refactor/no-else-raise.html)[:material-check:{ .lg }](https://pylint.pycqa.org/en/stable/user_guide/messages/refactor/no-else-return.html)
+Redundant else[^jetbrains-redundant-if-else-block] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; no-else-raise&#013;&bull; no-else-return" }
 Unnecessary switch[^jetbrains-switch-statement-with-too-few-branches] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-<span class="material-symbols-outlined lg middle">format_letter_spacing_standard</span> **Trimming group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-Block comment trim[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-comments.html#javadocemptyfirstline-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-comments.html#javadocemptylastline-rule) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Braces trim[^google-blocks-k-r-style] | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-formatting.html#blockendswithblankline-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-formatting.html#blockstartswithblankline-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-formatting.html#classendswithblankline-rule)[:material-check:{ .lg }](https://codenarc.org/codenarc-rules-formatting.html#classstartswithblankline-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#no-empty-first-line-at-start-in-class-body)[:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#no-blank-lines-before) | :material-check:{ .lg }
+<span class="material-symbols-outlined lg middle">format_letter_spacing_standard</span> **Trimming group** | **Java** | **Groovy** | **Kotlin** | **Python**
+Block comment trim[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; JavadocEmptyFirstLine&#013;&bull; JavadocEmptyLastLine" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Braces trim[^google-blocks-k-r-style] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; BlockEndsWithBlankLine&#013;&bull; BlockStartsWithBlankLine&#013;&bull; ClassEndsWithBlankLine&#013;&bull; ClassStartsWithBlankLine" } | :material-information-outline:{ .lg title="&bull; no-empty-first-line-at-start-in-class-body&#013;&bull; no-blank-lines-before" } | :material-check:{ .lg }
 Brackets trim[^strip-multiline-brackets-parentheses-and-tags] | | :material-check-all:{ .lg } | | :material-check:{ .lg }
 Comment trim[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Duplicate blank line[^google-vertical-whitespace] | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-formatting.html#consecutiveblanklines-rule) | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#no-consecutive-blank-lines) | :material-check-all:{ .lg }
-Duplicate blank line in block comment[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-comments.html#javadocconsecutiveemptylines-rule) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Duplicate blank line[^google-vertical-whitespace] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; ConsecutiveBlankLines" } | :material-information-outline:{ .lg title="&bull; no-consecutive-blank-lines" } | :material-check-all:{ .lg }
+Duplicate blank line in block comment[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; JavadocConsecutiveEmptyLines" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Duplicate blank line in comment[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Duplicate space[^kotlin-horizontal-whitespace] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/whitespace/singlespaceseparator.html) | :material-close:{ .lg #accent } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#no-multi-spaces) | :material-check-all:{ .lg }
-Parentheses trim[^strip-multiline-brackets-parentheses-and-tags] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#no-blank-lines-in-list) | :material-check-all:{ .lg }
+Duplicate space[^kotlin-horizontal-whitespace] | :material-information-outline:{ .lg title="&bull; SingleSpaceSeparator" } | :material-close:{ .lg #accent } | :material-information-outline:{ .lg title="&bull; no-multi-spaces" } | :material-check-all:{ .lg }
+Parentheses trim[^strip-multiline-brackets-parentheses-and-tags] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; no-blank-lines-in-list" } | :material-check-all:{ .lg }
 Tags trim[^strip-multiline-brackets-parentheses-and-tags] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check:{ .lg }
 Unnecessary blank line after colon[^google-blocks-k-r-style] | | | | :material-check-all:{ .lg }
-Unnecessary blank line before package[^google-source-file-structure] | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://codenarc.org/codenarc-rules-formatting.html#blanklinebeforepackage-rule) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-<span class="material-symbols-outlined lg middle">format_text_wrap</span> **Wrapping group** | :material-language-java:{ .lg } | :simple-apachegroovy:{ .lg } | :material-language-kotlin:{ .lg } | :material-language-python:{ .lg }
-Assignment wrap[^google-line-wrapping-where-to-break] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#multiline-expression-wrapping) | :material-close:{ .lg #accent }
-Chain call wrap[^kotlin-wrap-chained-calls] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#chain-method-continuation) | :material-close:{ .lg #accent }
+Unnecessary blank line before package[^google-source-file-structure] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; BlankLineBeforePackage" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+<span class="material-symbols-outlined lg middle">format_text_wrap</span> **Wrapping group** | **Java** | **Groovy** | **Kotlin** | **Python**
+Assignment wrap[^google-line-wrapping-where-to-break] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; multiline-expression-wrapping" } | :material-close:{ .lg #accent }
+Chain call wrap[^kotlin-wrap-chained-calls] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; chain-method-continuation" } | :material-close:{ .lg #accent }
 Elvis wrap[^move-trailing-elvis-to-the-next-line] | | | :material-check-all:{ .lg }
 Infix call wrap[^android-where-to-break] | | | :material-check-all:{ .lg }
 Lambda wrap[^google-line-wrapping-where-to-break] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | | :material-close:{ .lg #accent }
-Operator wrap[^android-where-to-break] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/whitespace/operatorwrap.html) | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#condition-wrapping) | :material-close:{ .lg #accent }
-Parameter wrap[^kotlin-class-headers] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#argument-list-wrapping)[:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#parameter-list-wrapping) | :material-check-all:{ .lg }
-Statement wrap[^codeconventions-statements] | [:material-check:{ .lg }](https://checkstyle.sourceforge.io/checks/coding/onestatementperline.html) | :material-check-all:{ .lg } | [:material-check:{ .lg }](https://pinterest.github.io/ktlint/latest/rules/standard/#statement-wrapping) | [:material-check:{ .lg }](https://peps.python.org/pep-0008/#other-recommendations)
+Operator wrap[^android-where-to-break] | :material-information-outline:{ .lg title="&bull; OperatorWrap" } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; condition-wrapping" } | :material-close:{ .lg #accent }
+Parameter wrap[^kotlin-class-headers] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; argument-list-wrapping&#013;&bull; parameter-list-wrapping" } | :material-check-all:{ .lg }
+Statement wrap[^codeconventions-statements] | :material-information-outline:{ .lg title="&bull; OneStatementPerLine" } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; statement-wrapping" } | :material-information-outline:{ .lg title="&bull; other-recommendations" }
 
 ## Download
 
@@ -142,8 +165,8 @@ Statement wrap[^codeconventions-statements] | [:material-check:{ .lg }](https://
             src="images/checkstyle.png">
         </a>
 
-        Checkstyle is a development tool to help programmers write Java code that
-        adheres to a coding standard.
+        Checkstyle is a development tool to help programmers write Java code
+        that adheres to a coding standard.
 
         [Maven Plugin :material-open-in-new:](https://maven.apache.org/plugins/maven-checkstyle-plugin/)&emsp;[Gradle Plugin :material-open-in-new:](https://docs.gradle.org/current/userguide/checkstyle_plugin.html)
 
@@ -159,7 +182,8 @@ Statement wrap[^codeconventions-statements] | [:material-check:{ .lg }](https://
             src="images/codenarc.png">
         </a>
 
-        CodeNarc is similar to popular static analysis tools such as PMD or Checkstyle.
+        CodeNarc is similar to popular static analysis tools such as PMD or
+        Checkstyle.
 
         [Maven Plugin :material-open-in-new:](https://gleclaire.github.io/codenarc-maven-plugin/)&emsp;[Gradle Plugin :material-open-in-new:](https://docs.gradle.org/current/userguide/codenarc_plugin.html)
 
@@ -196,7 +220,24 @@ Statement wrap[^codeconventions-statements] | [:material-check:{ .lg }](https://
         [PyPI :material-open-in-new:](https://pypi.org/project/pylint/)
     </div>
 !!! download2 "Download the library"
-    [:simple-apachemaven:{ .lg .middle } Maven](https://repo1.maven.org/maven2/com/hanggrian/rulebook/){ .md-button .md-button--primary }&emsp;[:simple-pypi:{ .lg .middle } PyPI](https://pypi.org/project/rulebook-pylint/){ .md-button }
+    <div class="grid cards" markdown>
+
+    -   :simple-apachemaven:{ .lg .middle } **Maven**
+
+        ---
+
+        JVM artifacts are available on Maven Central.
+
+        [Maven Central :material-open-in-new:](https://repo1.maven.org/maven2/com/hanggrian/rulebook/)
+
+    -   :simple-pypi:{ .lg .middle } **PyPI**
+
+        ---
+
+        The Python package is available on PyPI.
+
+        [PyPI :material-open-in-new:](https://pypi.org/project/rulebook-pylint/)
+    </div>
 
 [^common-abstract-class-require-abstract-method]: [Abstract class require abstract method](rationales/index.md#abstract-class-require-abstract-method)
 [^avoid-primitive-names]: [Avoid primitive names](rationales/index.md#avoid-primitive-names)
@@ -211,7 +252,7 @@ Statement wrap[^codeconventions-statements] | [:material-check:{ .lg }](https://
 [^android-braces]: :simple-android:{ #android .lg .middle } [Android: Braces :material-open-in-new:](https://developer.android.com/kotlin/style-guide#braces)
 [^android-horizontal]: :simple-android:{ #android .lg .middle } [Android: Horizontal whitespace :material-open-in-new:](https://developer.android.com/kotlin/style-guide#horizontal)
 [^android-where-to-break]: :simple-android:{ #android .lg .middle } [Android: Where to break :material-open-in-new:](https://developer.android.com/kotlin/style-guide#where_to_break)
-[^editorconfig-file-format]: :simple-editorconfig:{ #editorconfig .lg .middle } [EditorConfig: What's an EditorConfig file look like? :material-open-in-new:](https://editorconfig.org/#file-format)
+[^editorconfig-file-format]: :simple-editorconfig:{ #light .lg .middle } [EditorConfig: What's an EditorConfig file look like? :material-open-in-new:](https://editorconfig.org/#file-format)
 [^google-blocks-k-r-style]: :simple-google:{ #google .lg .middle } [Google: Nonempty blocks :material-open-in-new:](https://google.github.io/styleguide/javaguide.html#s4.1.2-blocks-k-r-style)
 [^google-braces-empty-blocks]: :simple-google:{ #google .lg .middle } [Google: Empty blocks :material-open-in-new:](https://google.github.io/styleguide/javaguide.html#s4.1.3-braces-empty-blocks)
 [^google-column-limit]: :simple-google:{ #google .lg .middle } [Google: Column limit: 100 :material-open-in-new:](https://google.github.io/styleguide/javaguide.html#s4.4-column-limit)
@@ -223,11 +264,11 @@ Statement wrap[^codeconventions-statements] | [:material-check:{ .lg }](https://
 [^google-source-file-structure]: :simple-google:{ #google .lg .middle } [Google: Source file structure :material-open-in-new:](https://google.github.io/styleguide/javaguide.html#s3-source-file-structure)
 [^google-vertical-whitespace]: :simple-google:{ #google .lg .middle } [Google: Vertical whitespace :material-open-in-new:](https://google.github.io/styleguide/jsguide.html#formatting-vertical-whitespace)
 [^groovy-number-type-suffixes]: :simple-gradle:{ #groovy .lg .middle } [Groovy: Number type suffixes :material-open-in-new:](https://groovy-lang.org/syntax.html#_number_type_suffixes)
-[^jetbrains-invert-if]: :simple-jetbrains:{ #jetbrains .lg .middle } [JetBrains: Invert if statement :material-open-in-new:](https://www.jetbrains.com/help/resharper/InvertIf.html)
-[^jetbrains-redundant-if-else-block]: :simple-jetbrains:{ #jetbrains .lg .middle } [JetBrains: Redundant else keyword :material-open-in-new:](https://www.jetbrains.com/help/resharper/RedundantIfElseBlock.html)
-[^jetbrains-remove-redundant-qualifier-name]: :simple-jetbrains:{ #jetbrains .lg .middle } [JetBrains: Redundant qualifier name :material-open-in-new:](https://www.jetbrains.com/help/inspectopedia/RemoveRedundantQualifierName.html)
-[^jetbrains-switch-statement-with-too-few-branches]: :simple-jetbrains:{ #jetbrains .lg .middle } [JetBrains: Minimum switch branches :material-open-in-new:](https://www.jetbrains.com/help/inspectopedia/SwitchStatementWithTooFewBranches.html)
-[^jetbrains-using-todo]: :simple-jetbrains:{ #jetbrains .lg .middle } [JetBrains: TODO comments :material-open-in-new:](https://www.jetbrains.com/help/idea/using-todo.html)
+[^jetbrains-invert-if]: :simple-jetbrains:{ #dark .lg .middle } [JetBrains: Invert if statement :material-open-in-new:](https://www.jetbrains.com/help/resharper/InvertIf.html)
+[^jetbrains-redundant-if-else-block]: :simple-jetbrains:{ #dark .lg .middle } [JetBrains: Redundant else keyword :material-open-in-new:](https://www.jetbrains.com/help/resharper/RedundantIfElseBlock.html)
+[^jetbrains-remove-redundant-qualifier-name]: :simple-jetbrains:{ #dark .lg .middle } [JetBrains: Redundant qualifier name :material-open-in-new:](https://www.jetbrains.com/help/inspectopedia/RemoveRedundantQualifierName.html)
+[^jetbrains-switch-statement-with-too-few-branches]: :simple-jetbrains:{ #dark .lg .middle } [JetBrains: Minimum switch branches :material-open-in-new:](https://www.jetbrains.com/help/inspectopedia/SwitchStatementWithTooFewBranches.html)
+[^jetbrains-using-todo]: :simple-jetbrains:{ #dark .lg .middle } [JetBrains: TODO comments :material-open-in-new:](https://www.jetbrains.com/help/idea/using-todo.html)
 [^kotlin-choose-good-names]: :simple-kotlin:{ #kotlin .lg .middle } [Kotlin: Choose good names :material-open-in-new:](https://kotlinlang.org/docs/coding-conventions.html#choose-good-names)
 [^kotlin-class-headers]: :simple-kotlin:{ #kotlin .lg .middle } [Kotlin: Class headers :material-open-in-new:](https://kotlinlang.org/docs/coding-conventions.html#class-headers)
 [^kotlin-class-layout]: :simple-kotlin:{ #kotlin .lg .middle } [Kotlin: Class layout :material-open-in-new:](https://kotlinlang.org/docs/coding-conventions.html#class-layout)

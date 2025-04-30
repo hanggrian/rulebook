@@ -6,14 +6,14 @@ import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.MethodNode
 import org.codenarc.rule.AbstractAstVisitor
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#class-name-acronym) */
-public class ClassNameAcronymRule : RulebookAstRule() {
-    override fun getName(): String = "ClassNameAcronym"
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#class-name-abbreviation) */
+public class ClassNameAbbreviationRule : RulebookAstRule() {
+    override fun getName(): String = "ClassNameAbbreviation"
 
     override fun getAstVisitorClass(): Class<*> = Visitor::class.java
 
     private companion object {
-        const val MSG = "class.name.acronym"
+        const val MSG = "class.name.abbreviation"
 
         val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
     }

@@ -2,28 +2,22 @@
 #primary {
   color: var(--md-primary-fg-color);
 }
-#accent {
-  color: var(--md-accent-fg-color);
-}
 
 /* Brand colors */
-#android {
-  color: #34a853;
-}
-#common {
+#light {
   color: #aaa;
 }
-#editorconfig {
-  color: #fefefe;
+#dark {
+  color: #666;
+}
+#android {
+  color: #34a853;
 }
 #google {
   color: #4285f4;
 }
 #groovy {
   color: #4298b8;
-}
-#jetbrains {
-  color: #666;
 }
 #kotlin {
   color: #7f52ff;

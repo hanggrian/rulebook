@@ -22,7 +22,7 @@ class RulebookRuleSetTest {
             BuiltInFunctionPositionRule::class,
             BuiltInTypesRule::class,
             CaseSeparatorRule::class,
-            ClassNameAcronymRule::class,
+            ClassNameAbbreviationRule::class,
             CommentTrimRule::class,
             ConfusingPredicateRule::class,
             ContractFunctionDefinitionRule::class,

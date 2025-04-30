@@ -14,16 +14,19 @@ kotlin.explicitApi()
 dependencies {
     ktlintRuleset(project(":$releaseArtifact-ktlint"))
 
-    implementation(libs.groovy)
     api(libs.codenarc)
 
+    implementation(libs.groovy)
+
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
-    testImplementation(libs.ktlint.test)
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter)
     testImplementation(libs.truth)
+
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+tasks.test {
     maxParallelForks = 2
     jvmArgs("-Duser.language=en -Duser.country=US")
 }

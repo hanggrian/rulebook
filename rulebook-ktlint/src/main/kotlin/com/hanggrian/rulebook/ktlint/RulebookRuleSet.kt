@@ -22,7 +22,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { ExceptionInheritanceRule() },
             RuleProvider { NumberSuffixForFloatRule() },
             // Naming
-            RuleProvider { ClassNameAcronymRule() },
+            RuleProvider { ClassNameAbbreviationRule() },
             RuleProvider { IllegalClassFinalNameRule() },
             RuleProvider { IllegalVariableNameRule() },
             RuleProvider { PropertyNameInteropRule() },

@@ -175,7 +175,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.UtilityClassDefinitionRule"/>
 
   <!-- Naming -->
-  <rule class="com.hanggrian.rulebook.codenarc.ClassNameAcronymRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.ClassNameAbbreviationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.IllegalClassFinalNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.IllegalVariableNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericsNameRule"/>

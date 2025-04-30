@@ -5,3 +5,5 @@ regex>=2024.11.6
 # test
 pytest
 pytest-cov
+
+-r requirements-website.txt
