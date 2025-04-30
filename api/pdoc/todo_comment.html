@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>rulebook-pylint.rulebook_pylint.todo_comment API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>rulebook-pylint.rulebook_pylint.todo_comment</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.register"><code class="name flex">
+<span>def <span class="ident">register</span></span>(<span>linter: PyLinter)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def register(linter: &#39;PyLinter&#39;) -&gt; None:
+    linter.register_checker(TodoCommentChecker(linter))</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match"><code class="flex name class">
+<span>class <span class="ident">Match</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Match object</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.endpos"><code class="name">var <span class="ident">endpos</span></code></dt>
+<dd>
+<div class="desc"><p>The final position beyond which the regex engine won't search.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.fuzzy_changes"><code class="name">var <span class="ident">fuzzy_changes</span></code></dt>
+<dd>
+<div class="desc"><p>A tuple of the positions of the substitutions, insertions and deletions.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.fuzzy_counts"><code class="name">var <span class="ident">fuzzy_counts</span></code></dt>
+<dd>
+<div class="desc"><p>A tuple of the number of substitutions, insertions and deletions.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.lastgroup"><code class="name">var <span class="ident">lastgroup</span></code></dt>
+<dd>
+<div class="desc"><p>The name of the last matched capturing group, or None.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.lastindex"><code class="name">var <span class="ident">lastindex</span></code></dt>
+<dd>
+<div class="desc"><p>The group number of the last matched capturing group, or None.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.partial"><code class="name">var <span class="ident">partial</span></code></dt>
+<dd>
+<div class="desc"><p>Whether it's a partial match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.pos"><code class="name">var <span class="ident">pos</span></code></dt>
+<dd>
+<div class="desc"><p>The position at which the regex engine starting searching.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.re"><code class="name">var <span class="ident">re</span></code></dt>
+<dd>
+<div class="desc"><p>The regex object that produced this match object.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.regs"><code class="name">var <span class="ident">regs</span></code></dt>
+<dd>
+<div class="desc"><p>A tuple of the spans of the capturing groups.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.string"><code class="name">var <span class="ident">string</span></code></dt>
+<dd>
+<div class="desc"><p>The string that was searched, or None if it has been detached.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.allcaptures"><code class="name flex">
+<span>def <span class="ident">allcaptures</span></span>(<span>self, /)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>allcaptures() &ndash;&gt; list of strings or tuple of list of strings.
+Return the captures of all the groups of the match and the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.allspans"><code class="name flex">
+<span>def <span class="ident">allspans</span></span>(<span>self, /)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>allspans() &ndash;&gt; list of 2-tuple of ints or tuple of list of 2-tuple of ints.
+Return the spans (a 2-tuple of the indices of the start and end) of all the
+captures of all the groups of the match and the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.captures"><code class="name flex">
+<span>def <span class="ident">captures</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>captures([group1, &hellip;]) &ndash;&gt; list of strings or tuple of list of strings.
+Return the captures of one or more subgroups of the match.
+If there is a
+single argument, the result is a list of strings; if there are multiple
+arguments, the result is a tuple of lists with one item per argument; if
+there are no arguments, the captures of the whole match is returned.
+Group
+0 is the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.capturesdict"><code class="name flex">
+<span>def <span class="ident">capturesdict</span></span>(<span>self, /)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>capturesdict() &ndash;&gt; dict.
+Return a dictionary containing the captures of all the named subgroups of the
+match, keyed by the subgroup name.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.detach_string"><code class="name flex">
+<span>def <span class="ident">detach_string</span></span>(<span>self, /)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>detach_string()
+Detaches the target string from the match object. The 'string' attribute
+will become None.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.end"><code class="name flex">
+<span>def <span class="ident">end</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>end([group1, &hellip;]) &ndash;&gt; int or tuple of ints.
+Return the index of the end of one or more subgroups of the match.
+If there
+is a single argument, the result is an index, or -1 if the group did not
+contribute to the match; if there are multiple arguments, the result is a
+tuple with one item per argument; if there are no arguments, the index of
+the end of the whole match is returned.
+Group 0 is the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.ends"><code class="name flex">
+<span>def <span class="ident">ends</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>ends([group1, &hellip;]) &ndash;&gt; list of ints or tuple of list of ints.
+Return the indices of the ends of the captures of one or more subgroups of
+the match.
+If there is a single argument, the result is a list of indices;
+if there are multiple arguments, the result is a tuple of lists with one
+item per argument; if there are no arguments, the indices of the ends of the
+captures of the whole match is returned.
+Group 0 is the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.expand"><code class="name flex">
+<span>def <span class="ident">expand</span></span>(<span>self, object, /)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>expand(template) &ndash;&gt; string.
+Return the string obtained by doing backslash substitution on the template,
+as done by the sub() method.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.expandf"><code class="name flex">
+<span>def <span class="ident">expandf</span></span>(<span>self, object, /)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>expandf(format) &ndash;&gt; string.
+Return the string obtained by using the format, as done by the subf()
+method.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.group"><code class="name flex">
+<span>def <span class="ident">group</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>group([group1, &hellip;]) &ndash;&gt; string or tuple of strings.
+Return one or more subgroups of the match.
+If there is a single argument,
+the result is a single string, or None if the group did not contribute to
+the match; if there are multiple arguments, the result is a tuple with one
+item per argument; if there are no arguments, the whole match is returned.
+Group 0 is the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.groupdict"><code class="name flex">
+<span>def <span class="ident">groupdict</span></span>(<span>default=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>groupdict(default=None) &ndash;&gt; dict.
+Return a dictionary containing all the named subgroups of the match, keyed
+by the subgroup name.
+The argument is the value to be given for groups that
+did not participate in the match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.groups"><code class="name flex">
+<span>def <span class="ident">groups</span></span>(<span>default=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>groups(default=None) &ndash;&gt; tuple of strings.
+Return a tuple containing all the subgroups of the match.
+The argument is
+the default for groups that did not participate in the match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.span"><code class="name flex">
+<span>def <span class="ident">span</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>span([group1, &hellip;]) &ndash;&gt; 2-tuple of int or tuple of 2-tuple of ints.
+Return the span (a 2-tuple of the indices of the start and end) of one or
+more subgroups of the match.
+If there is a single argument, the result is a
+span, or (-1, -1) if the group did not contribute to the match; if there are
+multiple arguments, the result is a tuple with one item per argument; if
+there are no arguments, the span of the whole match is returned.
+Group 0 is
+the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.spans"><code class="name flex">
+<span>def <span class="ident">spans</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>spans([group1, &hellip;]) &ndash;&gt; list of 2-tuple of ints or tuple of list of 2-tuple of ints.
+Return the spans (a 2-tuple of the indices of the start and end) of the
+captures of one or more subgroups of the match.
+If there is a single
+argument, the result is a list of spans; if there are multiple arguments,
+the result is a tuple of lists with one item per argument; if there are no
+arguments, the spans of the captures of the whole match is returned.
+Group
+0 is the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.start"><code class="name flex">
+<span>def <span class="ident">start</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>start([group1, &hellip;]) &ndash;&gt; int or tuple of ints.
+Return the index of the start of one or more subgroups of the match.
+If
+there is a single argument, the result is an index, or -1 if the group did
+not contribute to the match; if there are multiple arguments, the result is
+a tuple with one item per argument; if there are no arguments, the index of
+the start of the whole match is returned.
+Group 0 is the whole match.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Match.starts"><code class="name flex">
+<span>def <span class="ident">starts</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>starts([group1, &hellip;]) &ndash;&gt; list of ints or tuple of list of ints.
+Return the indices of the starts of the captures of one or more subgroups of
+the match.
+If there is a single argument, the result is a list of indices;
+if there are multiple arguments, the result is a tuple of lists with one
+item per argument; if there are no arguments, the indices of the starts of
+the captures of the whole match is returned.
+Group 0 is the whole match.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern"><code class="flex name class">
+<span>class <span class="ident">Pattern</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compiled regex object</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.flags"><code class="name">var <span class="ident">flags</span></code></dt>
+<dd>
+<div class="desc"><p>The regex matching flags.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.groupindex"><code class="name">var <span class="ident">groupindex</span></code></dt>
+<dd>
+<div class="desc"><p>A dictionary mapping group names to group numbers.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.groups"><code class="name">var <span class="ident">groups</span></code></dt>
+<dd>
+<div class="desc"><p>The number of capturing groups in the pattern.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.named_lists"><code class="name">var <span class="ident">named_lists</span></code></dt>
+<dd>
+<div class="desc"><p>The named lists used by the regex.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.pattern"><code class="name">var <span class="ident">pattern</span></code></dt>
+<dd>
+<div class="desc"><p>The pattern string from which the regex object was compiled.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.findall"><code class="name flex">
+<span>def <span class="ident">findall</span></span>(<span>string, pos=None, endpos=None, overlapped=False, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>findall(string, pos=None, endpos=None, overlapped=False, concurrent=None, timeout=None) &ndash;&gt; list.
+Return a list of all matches of pattern in string.
+The matches may be
+overlapped if overlapped is True.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.finditer"><code class="name flex">
+<span>def <span class="ident">finditer</span></span>(<span>string, pos=None, endpos=None, overlapped=False, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>finditer(string, pos=None, endpos=None, overlapped=False, concurrent=None, timeout=None) &ndash;&gt; iterator.
+Return an iterator over all matches for the RE pattern in string.
+The
+matches may be overlapped if overlapped is True.
+For each match, the
+iterator returns a MatchObject.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.fullmatch"><code class="name flex">
+<span>def <span class="ident">fullmatch</span></span>(<span>string, pos=None, endpos=None, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>fullmatch(string, pos=None, endpos=None, concurrent=None, timeout=None) &ndash;&gt; MatchObject or None.
+Match zero or more characters against all of the string.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.match"><code class="name flex">
+<span>def <span class="ident">match</span></span>(<span>string, pos=None, endpos=None, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>match(string, pos=None, endpos=None, concurrent=None, timeout=None) &ndash;&gt; MatchObject or None.
+Match zero or more characters at the beginning of the string.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.scanner"><code class="name flex">
+<span>def <span class="ident">scanner</span></span>(<span>string, pos=None, endpos=None, overlapped=False, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>scanner(string, pos=None, endpos=None, overlapped=False, concurrent=None, timeout=None) &ndash;&gt; scanner.
+Return an scanner for the RE pattern in string.
+The matches may be overlapped
+if overlapped is True.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.search"><code class="name flex">
+<span>def <span class="ident">search</span></span>(<span>string, pos=None, endpos=None, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>search(string, pos=None, endpos=None, concurrent=None, timeout=None) &ndash;&gt; MatchObject or None.
+Search through string looking for a match, and return a corresponding
+match object instance.
+Return None if no match is found.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.split"><code class="name flex">
+<span>def <span class="ident">split</span></span>(<span>string, maxsplit=0, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>split(string, maxsplit=0, concurrent=None, timeout=None) &ndash;&gt; list.
+Split string by the occurrences of pattern.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.splititer"><code class="name flex">
+<span>def <span class="ident">splititer</span></span>(<span>string, maxsplit=0, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>splititer(string, maxsplit=0, concurrent=None, timeout=None) &ndash;&gt; iterator.
+Return an iterator yielding the parts of a split string.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.sub"><code class="name flex">
+<span>def <span class="ident">sub</span></span>(<span>repl, string, count=0, flags=0, pos=None, endpos=None, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>sub(repl, string, count=0, flags=0, pos=None, endpos=None, concurrent=None, timeout=None) &ndash;&gt; newstring
+Return the string obtained by replacing the leftmost (or rightmost with a
+reverse pattern) non-overlapping occurrences of pattern in string by the
+replacement repl.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subf"><code class="name flex">
+<span>def <span class="ident">subf</span></span>(<span>format, string, count=0, flags=0, pos=None, endpos=None, concurrent=None, timeout=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>subf(format, string, count=0, flags=0, pos=None, endpos=None, concurrent=None, timeout=None) &ndash;&gt; newstring
+Return the string obtained by replacing the leftmost (or rightmost with a
+reverse pattern) non-overlapping occurrences of pattern in string by the
+replacement format.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subfn"><code class="name flex">
+<span>def <span class="ident">subfn</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>subfn(format, string, count=0, flags=0, pos=None, endpos=None, concurrent=None, timeout=None) &ndash;&gt; (newstring, number of subs)
+Return the tuple (new_string, number_of_subs_made) found by replacing the
+leftmost (or rightmost with a reverse pattern) non-overlapping occurrences
+of pattern with the replacement format.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subn"><code class="name flex">
+<span>def <span class="ident">subn</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>subn(repl, string, count=0, flags=0, pos=None, endpos=None, concurrent=None, timeout=None) &ndash;&gt; (newstring, number of subs)
+Return the tuple (new_string, number_of_subs_made) found by replacing the
+leftmost (or rightmost with a reverse pattern) non-overlapping occurrences
+of pattern with the replacement repl.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker"><code class="flex name class">
+<span>class <span class="ident">TodoCommentChecker</span></span>
+<span>(</span><span>linter: PyLinter)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TodoCommentChecker(RulebookFileChecker):
+    &#34;&#34;&#34;See detail: https://hanggrian.github.io/rulebook/rules/#todo-comment&#34;&#34;&#34;
+    MSG_KEYWORD: str = &#39;todo-comment-keyword&#39;
+    MSG_SEPARATOR: str = &#39;todo-comment-separator&#39;
+
+    KEYWORD_REGEX: Pattern = regex.compile(r&#39;\b(?i:fixme|todo)(?&lt;!FIXME|TODO)\b&#39;)
+    SEPARATOR_REGEX: Pattern = regex.compile(r&#39;\b(todo|fixme)\S&#39;, IGNORECASE)
+
+    name: str = &#39;todo-comment&#39;
+    msgs: dict[str, MessageDefinitionTuple] = Messages.of(MSG_KEYWORD, MSG_SEPARATOR)
+
+    def process_module(self, node: Module) -&gt; None:
+        with node.stream() as stream:
+            for i, line in enumerate(stream):
+                # obtain comment content
+                line_no: int = i + 1
+                parts: list[bytes] = line.split(b&#39;#&#39;, 1)
+                if len(parts) &lt; 2:
+                    continue
+                comment_content: str = decode(parts[1])
+
+                # checks for violation
+                match: Match = self.KEYWORD_REGEX.search(comment_content)
+                if match:
+                    self.add_message(self.MSG_KEYWORD, line=line_no, args=match.group(0))
+                match: Match = self.SEPARATOR_REGEX.search(comment_content)
+                if match:
+                    self.add_message(self.MSG_SEPARATOR, line=line_no, args=match.group(0)[-1])</code></pre>
+</details>
+<div class="desc"><p>See detail: <a href="https://hanggrian.github.io/rulebook/rules/#todo-comment">https://hanggrian.github.io/rulebook/rules/#todo-comment</a></p>
+<p>Checker instances should have the linter as argument.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>rulebook_pylint.checkers.RulebookFileChecker</li>
+<li>pylint.checkers.base_checker.BaseRawFileChecker</li>
+<li>pylint.checkers.base_checker.BaseChecker</li>
+<li>pylint.config.arguments_provider._ArgumentsProvider</li>
+<li>abc.ABC</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.KEYWORD_REGEX"><code class="name">var <span class="ident">KEYWORD_REGEX</span> : _regex.Pattern</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.MSG_KEYWORD"><code class="name">var <span class="ident">MSG_KEYWORD</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.MSG_SEPARATOR"><code class="name">var <span class="ident">MSG_SEPARATOR</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.SEPARATOR_REGEX"><code class="name">var <span class="ident">SEPARATOR_REGEX</span> : _regex.Pattern</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.msgs"><code class="name">var <span class="ident">msgs</span> : dict[str, tuple[str, str, str] | tuple[str, str, str, pylint.typing.ExtraMessageOptions]]</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.process_module"><code class="name flex">
+<span>def <span class="ident">process_module</span></span>(<span>self, node: astroid.nodes.scoped_nodes.scoped_nodes.Module) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def process_module(self, node: Module) -&gt; None:
+    with node.stream() as stream:
+        for i, line in enumerate(stream):
+            # obtain comment content
+            line_no: int = i + 1
+            parts: list[bytes] = line.split(b&#39;#&#39;, 1)
+            if len(parts) &lt; 2:
+                continue
+            comment_content: str = decode(parts[1])
+
+            # checks for violation
+            match: Match = self.KEYWORD_REGEX.search(comment_content)
+            if match:
+                self.add_message(self.MSG_KEYWORD, line=line_no, args=match.group(0))
+            match: Match = self.SEPARATOR_REGEX.search(comment_content)
+            if match:
+                self.add_message(self.MSG_SEPARATOR, line=line_no, args=match.group(0)[-1])</code></pre>
+</details>
+<div class="desc"><p>Process a module.</p>
+<p>The module's content is accessible via <code>astroid.stream</code></p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="rulebook-pylint.rulebook_pylint" href="index.html">rulebook-pylint.rulebook_pylint</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.register" href="#rulebook-pylint.rulebook_pylint.todo_comment.register">register</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match">Match</a></code></h4>
+<ul class="two-column">
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.allcaptures" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.allcaptures">allcaptures</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.allspans" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.allspans">allspans</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.captures" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.captures">captures</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.capturesdict" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.capturesdict">capturesdict</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.detach_string" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.detach_string">detach_string</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.end" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.end">end</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.endpos" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.endpos">endpos</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.ends" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.ends">ends</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.expand" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.expand">expand</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.expandf" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.expandf">expandf</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.fuzzy_changes" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.fuzzy_changes">fuzzy_changes</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.fuzzy_counts" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.fuzzy_counts">fuzzy_counts</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.group" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.group">group</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.groupdict" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.groupdict">groupdict</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.groups" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.groups">groups</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.lastgroup" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.lastgroup">lastgroup</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.lastindex" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.lastindex">lastindex</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.partial" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.partial">partial</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.pos" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.pos">pos</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.re" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.re">re</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.regs" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.regs">regs</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.span" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.span">span</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.spans" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.spans">spans</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.start" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.start">start</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.starts" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.starts">starts</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Match.string" href="#rulebook-pylint.rulebook_pylint.todo_comment.Match.string">string</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern">Pattern</a></code></h4>
+<ul class="two-column">
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.findall" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.findall">findall</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.finditer" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.finditer">finditer</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.flags" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.flags">flags</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.fullmatch" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.fullmatch">fullmatch</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.groupindex" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.groupindex">groupindex</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.groups" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.groups">groups</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.match" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.match">match</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.named_lists" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.named_lists">named_lists</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.pattern" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.pattern">pattern</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.scanner" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.scanner">scanner</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.search" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.search">search</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.split" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.split">split</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.splititer" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.splititer">splititer</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.sub" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.sub">sub</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subf" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subf">subf</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subfn" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subfn">subfn</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subn" href="#rulebook-pylint.rulebook_pylint.todo_comment.Pattern.subn">subn</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker" href="#rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker">TodoCommentChecker</a></code></h4>
+<ul class="two-column">
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.KEYWORD_REGEX" href="#rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.KEYWORD_REGEX">KEYWORD_REGEX</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.MSG_KEYWORD" href="#rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.MSG_KEYWORD">MSG_KEYWORD</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.MSG_SEPARATOR" href="#rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.MSG_SEPARATOR">MSG_SEPARATOR</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.SEPARATOR_REGEX" href="#rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.SEPARATOR_REGEX">SEPARATOR_REGEX</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.msgs" href="#rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.msgs">msgs</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.name" href="#rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.name">name</a></code></li>
+<li><code><a title="rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.process_module" href="#rulebook-pylint.rulebook_pylint.todo_comment.TodoCommentChecker.process_module">process_module</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

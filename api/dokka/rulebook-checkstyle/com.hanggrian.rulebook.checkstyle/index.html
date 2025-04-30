@@ -1,0 +1,602 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.hanggrian.rulebook.checkstyle</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    rulebook
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">0.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":rulebook-checkstyle/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":rulebook-checkstyle/main" data-filter=":rulebook-checkstyle/main">
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    rulebook
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="rulebook-checkstyle::com.hanggrian.rulebook.checkstyle////PointingToDeclaration//-1965475265">
+  <div class="breadcrumbs"><a href="../index.html">rulebook-checkstyle</a><span class="delimiter">/</span><span class="current">com.hanggrian.rulebook.checkstyle</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1411558035%2FClasslikes%2F-1965475265" anchor-label="AbstractClassDefinitionCheck" id="1411558035%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-abstract-class-definition-check/index.html"><span>Abstract</span><wbr><span>Class</span><wbr><span>Definition</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1411558035%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-abstract-class-definition-check/index.html">AbstractClassDefinitionCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#abstract-class-definition">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="13640191%2FClasslikes%2F-1965475265" anchor-label="AssignmentWrapCheck" id="13640191%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-assignment-wrap-check/index.html"><span>Assignment</span><wbr><span>Wrap</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="13640191%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-assignment-wrap-check/index.html">AssignmentWrapCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#assignment-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1572943588%2FClasslikes%2F-1965475265" anchor-label="BlockCommentTrimCheck" id="-1572943588%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-block-comment-trim-check/index.html"><span>Block</span><wbr><span>Comment</span><wbr><span>Trim</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1572943588%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-block-comment-trim-check/index.html">BlockCommentTrimCheck</a> : <span data-unresolved-link="com.puppycrawl.tools.checkstyle.checks.javadoc/AbstractJavadocCheck///PointingToDeclaration/">AbstractJavadocCheck</span></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#block-comment-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="969546487%2FClasslikes%2F-1965475265" anchor-label="BlockTagPunctuationCheck" id="969546487%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-block-tag-punctuation-check/index.html"><span>Block</span><wbr><span>Tag</span><wbr><span>Punctuation</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="969546487%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-block-tag-punctuation-check/index.html">BlockTagPunctuationCheck</a> : <span data-unresolved-link="com.puppycrawl.tools.checkstyle.checks.javadoc/AbstractJavadocCheck///PointingToDeclaration/">AbstractJavadocCheck</span></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1024537706%2FClasslikes%2F-1965475265" anchor-label="BracesTrimCheck" id="1024537706%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-braces-trim-check/index.html"><span>Braces</span><wbr><span>Trim</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1024537706%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-braces-trim-check/index.html">BracesTrimCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#braces-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2104253330%2FClasslikes%2F-1965475265" anchor-label="BuiltInFunctionPositionCheck" id="-2104253330%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-built-in-function-position-check/index.html"><span>Built</span><wbr><span>In</span><wbr><span>Function</span><wbr><span>Position</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2104253330%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-built-in-function-position-check/index.html">BuiltInFunctionPositionCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#built-in-function-position">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-447392769%2FClasslikes%2F-1965475265" anchor-label="CaseSeparatorCheck" id="-447392769%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-case-separator-check/index.html"><span>Case</span><wbr><span>Separator</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-447392769%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-case-separator-check/index.html">CaseSeparatorCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#case-separator">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1272653075%2FClasslikes%2F-1965475265" anchor-label="ChainCallWrapCheck" id="1272653075%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-chain-call-wrap-check/index.html"><span>Chain</span><wbr><span>Call</span><wbr><span>Wrap</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1272653075%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-chain-call-wrap-check/index.html">ChainCallWrapCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#chain-call-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-718197866%2FClasslikes%2F-1965475265" anchor-label="CommentSpacesCheck" id="-718197866%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-comment-spaces-check/index.html"><span>Comment</span><wbr><span>Spaces</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-718197866%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-comment-spaces-check/index.html">CommentSpacesCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#comment-spaces">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1304572725%2FClasslikes%2F-1965475265" anchor-label="CommentTrimCheck" id="-1304572725%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-comment-trim-check/index.html"><span>Comment</span><wbr><span>Trim</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1304572725%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-comment-trim-check/index.html">CommentTrimCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#comment-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2101399067%2FClasslikes%2F-1965475265" anchor-label="DuplicateBlankLineCheck" id="-2101399067%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-duplicate-blank-line-check/index.html"><span>Duplicate</span><wbr><span>Blank</span><wbr><span>Line</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2101399067%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-duplicate-blank-line-check/index.html">DuplicateBlankLineCheck</a> : <a href="-rulebook-file-check/index.html">RulebookFileCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-252838500%2FClasslikes%2F-1965475265" anchor-label="DuplicateBlankLineInBlockCommentCheck" id="-252838500%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-duplicate-blank-line-in-block-comment-check/index.html"><span>Duplicate</span><wbr><span>Blank</span><wbr><span>Line</span><wbr><span>In</span><wbr><span>Block</span><wbr><span>Comment</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-252838500%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-duplicate-blank-line-in-block-comment-check/index.html">DuplicateBlankLineInBlockCommentCheck</a> : <span data-unresolved-link="com.puppycrawl.tools.checkstyle.checks.javadoc/AbstractJavadocCheck///PointingToDeclaration/">AbstractJavadocCheck</span></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1551476231%2FClasslikes%2F-1965475265" anchor-label="DuplicateBlankLineInCommentCheck" id="1551476231%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-duplicate-blank-line-in-comment-check/index.html"><span>Duplicate</span><wbr><span>Blank</span><wbr><span>Line</span><wbr><span>In</span><wbr><span>Comment</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1551476231%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-duplicate-blank-line-in-comment-check/index.html">DuplicateBlankLineInCommentCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2016790531%2FClasslikes%2F-1965475265" anchor-label="ExceptionInheritanceCheck" id="2016790531%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-exception-inheritance-check/index.html"><span>Exception</span><wbr><span>Inheritance</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2016790531%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-exception-inheritance-check/index.html">ExceptionInheritanceCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#exception-inheritance">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1277514633%2FClasslikes%2F-1965475265" anchor-label="IllegalClassFinalNameCheck" id="1277514633%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-illegal-class-final-name-check/index.html"><span>Illegal</span><wbr><span>Class</span><wbr><span>Final</span><wbr><span>Name</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1277514633%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-illegal-class-final-name-check/index.html">IllegalClassFinalNameCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-864114695%2FClasslikes%2F-1965475265" anchor-label="LambdaWrapCheck" id="-864114695%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-lambda-wrap-check/index.html"><span>Lambda</span><wbr><span>Wrap</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-864114695%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-lambda-wrap-check/index.html">LambdaWrapCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#lambda-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="505945918%2FClasslikes%2F-1965475265" anchor-label="MemberOrderCheck" id="505945918%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-member-order-check/index.html"><span>Member</span><wbr><span>Order</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="505945918%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-member-order-check/index.html">MemberOrderCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#member-order">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-70226347%2FClasslikes%2F-1965475265" anchor-label="NestedIfElseCheck" id="-70226347%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-nested-if-else-check/index.html"><span>Nested</span><wbr><span>If</span><wbr><span>Else</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-70226347%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-nested-if-else-check/index.html">NestedIfElseCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#nested-if-else">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1381576886%2FClasslikes%2F-1965475265" anchor-label="NumberSuffixForDoubleCheck" id="-1381576886%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-number-suffix-for-double-check/index.html"><span>Number</span><wbr><span>Suffix</span><wbr><span>For</span><wbr><span>Double</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1381576886%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-number-suffix-for-double-check/index.html">NumberSuffixForDoubleCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#number-suffix-for-double">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1172696907%2FClasslikes%2F-1965475265" anchor-label="NumberSuffixForFloatCheck" id="-1172696907%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-number-suffix-for-float-check/index.html"><span>Number</span><wbr><span>Suffix</span><wbr><span>For</span><wbr><span>Float</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1172696907%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-number-suffix-for-float-check/index.html">NumberSuffixForFloatCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#number-suffix-for-float">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="786637181%2FClasslikes%2F-1965475265" anchor-label="ParameterWrapCheck" id="786637181%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parameter-wrap-check/index.html"><span>Parameter</span><wbr><span>Wrap</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="786637181%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-parameter-wrap-check/index.html">ParameterWrapCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#parameter-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2039526650%2FClasslikes%2F-1965475265" anchor-label="ParenthesesTrimCheck" id="-2039526650%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parentheses-trim-check/index.html"><span>Parentheses</span><wbr><span>Trim</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2039526650%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-parentheses-trim-check/index.html">ParenthesesTrimCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#parentheses-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="596998492%2FClasslikes%2F-1965475265" anchor-label="RedundantDefaultCheck" id="596998492%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-redundant-default-check/index.html"><span>Redundant</span><wbr><span>Default</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="596998492%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-redundant-default-check/index.html">RedundantDefaultCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#redundant-default">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2026708592%2FClasslikes%2F-1965475265" anchor-label="RedundantElseCheck" id="2026708592%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-redundant-else-check/index.html"><span>Redundant</span><wbr><span>Else</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2026708592%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-redundant-else-check/index.html">RedundantElseCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#redundant-else">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1925359227%2FClasslikes%2F-1965475265" anchor-label="RedundantQualifierCheck" id="-1925359227%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-redundant-qualifier-check/index.html"><span>Redundant</span><wbr><span>Qualifier</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1925359227%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-redundant-qualifier-check/index.html">RedundantQualifierCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#redundant-qualifier">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1449544441%2FClasslikes%2F-1965475265" anchor-label="RulebookAstCheck" id="-1449544441%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rulebook-ast-check/index.html"><span>Rulebook</span><wbr><span>Ast</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1449544441%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-rulebook-ast-check/index.html">RulebookAstCheck</a> : <span data-unresolved-link="com.puppycrawl.tools.checkstyle.api/AbstractCheck///PointingToDeclaration/">AbstractCheck</span></div><div class="brief "><p class="paragraph">Rule that uses Java AST tree to validate a node.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1129640311%2FClasslikes%2F-1965475265" anchor-label="RulebookFileCheck" id="-1129640311%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rulebook-file-check/index.html"><span>Rulebook</span><wbr><span>File</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1129640311%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-rulebook-file-check/index.html">RulebookFileCheck</a> : <span data-unresolved-link="com.puppycrawl.tools.checkstyle.api/AbstractFileSetCheck///PointingToDeclaration/">AbstractFileSetCheck</span></div><div class="brief "><p class="paragraph">Rule that checks source code by the raw file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-385482405%2FClasslikes%2F-1965475265" anchor-label="RulebookJavadocCheck" id="-385482405%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rulebook-javadoc-check/index.html"><span>Rulebook</span><wbr><span>Javadoc</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-385482405%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">typealias </span><a href="-rulebook-javadoc-check/index.html">RulebookJavadocCheck</a><span class="token operator"> = </span><span data-unresolved-link="com.puppycrawl.tools.checkstyle.checks.javadoc/AbstractJavadocCheck///PointingToDeclaration/">AbstractJavadocCheck</span></div><div class="brief "><p class="paragraph">An alias of base javadoc check.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-413372061%2FClasslikes%2F-1965475265" anchor-label="TagsTrimCheck" id="-413372061%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tags-trim-check/index.html"><span>Tags</span><wbr><span>Trim</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-413372061%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-tags-trim-check/index.html">TagsTrimCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#tags-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-341103201%2FClasslikes%2F-1965475265" anchor-label="UnnecessaryBlankLineBeforePackageCheck" id="-341103201%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-unnecessary-blank-line-before-package-check/index.html"><span>Unnecessary</span><wbr><span>Blank</span><wbr><span>Line</span><wbr><span>Before</span><wbr><span>Package</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-341103201%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-unnecessary-blank-line-before-package-check/index.html">UnnecessaryBlankLineBeforePackageCheck</a> : <a href="-rulebook-file-check/index.html">RulebookFileCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#unnecessary-blank-line-before-package">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-819771368%2FClasslikes%2F-1965475265" anchor-label="UnnecessaryParenthesesInLambdaCheck" id="-819771368%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-unnecessary-parentheses-in-lambda-check/index.html"><span>Unnecessary</span><wbr><span>Parentheses</span><wbr><span>In</span><wbr><span>Lambda</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-819771368%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-unnecessary-parentheses-in-lambda-check/index.html">UnnecessaryParenthesesInLambdaCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#unnecessary-parentheses-in-lambda">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1750967596%2FClasslikes%2F-1965475265" anchor-label="UnnecessarySwitchCheck" id="-1750967596%2FClasslikes%2F-1965475265" data-filterable-set=":rulebook-checkstyle/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-checkstyle/main" data-filterable-set=":rulebook-checkstyle/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-unnecessary-switch-check/index.html"><span>Unnecessary</span><wbr><span>Switch</span><wbr><span><span>Check</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1750967596%2FClasslikes%2F-1965475265"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-checkstyle/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-unnecessary-switch-check/index.html">UnnecessarySwitchCheck</a> : <a href="-rulebook-ast-check/index.html">RulebookAstCheck</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#unnecessary-switch">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

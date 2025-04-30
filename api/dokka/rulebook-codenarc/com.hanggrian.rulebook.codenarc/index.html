@@ -1,0 +1,831 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>com.hanggrian.rulebook.codenarc</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../index.html">
+                    rulebook
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">0.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":rulebook-codenarc/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":rulebook-codenarc/main" data-filter=":rulebook-codenarc/main">
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    rulebook
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="rulebook-codenarc::com.hanggrian.rulebook.codenarc////PointingToDeclaration//330278631">
+  <div class="breadcrumbs"><a href="../index.html">rulebook-codenarc</a><span class="delimiter">/</span><span class="current">com.hanggrian.rulebook.codenarc</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1857652423%2FClasslikes%2F330278631" anchor-label="AssignmentWrapRule" id="1857652423%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-assignment-wrap-rule/index.html"><span>Assignment</span><wbr><span>Wrap</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1857652423%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-assignment-wrap-rule/index.html">AssignmentWrapRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#assignment-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2099812464%2FClasslikes%2F330278631" anchor-label="BlockTagIndentationRule" id="2099812464%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-block-tag-indentation-rule/index.html"><span>Block</span><wbr><span>Tag</span><wbr><span>Indentation</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2099812464%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-block-tag-indentation-rule/index.html">BlockTagIndentationRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#block-tag-indentation">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="792085515%2FClasslikes%2F330278631" anchor-label="BlockTagOrderRule" id="792085515%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-block-tag-order-rule/index.html"><span>Block</span><wbr><span>Tag</span><wbr><span>Order</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="792085515%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-block-tag-order-rule/index.html">BlockTagOrderRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#block-tag-order">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="608139903%2FClasslikes%2F330278631" anchor-label="BlockTagPunctuationRule" id="608139903%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-block-tag-punctuation-rule/index.html"><span>Block</span><wbr><span>Tag</span><wbr><span>Punctuation</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="608139903%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-block-tag-punctuation-rule/index.html">BlockTagPunctuationRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="86947313%2FClasslikes%2F330278631" anchor-label="BracketsTrimRule" id="86947313%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-brackets-trim-rule/index.html"><span>Brackets</span><wbr><span>Trim</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="86947313%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-brackets-trim-rule/index.html">BracketsTrimRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#brackets-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1312392664%2FClasslikes%2F330278631" anchor-label="BuiltInFunctionPositionRule" id="-1312392664%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-built-in-function-position-rule/index.html"><span>Built</span><wbr><span>In</span><wbr><span>Function</span><wbr><span>Position</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1312392664%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-built-in-function-position-rule/index.html">BuiltInFunctionPositionRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#built-in-function-position">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="56205943%2FClasslikes%2F330278631" anchor-label="CaseSeparatorRule" id="56205943%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-case-separator-rule/index.html"><span>Case</span><wbr><span>Separator</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="56205943%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-case-separator-rule/index.html">CaseSeparatorRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#case-separator">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1827971357%2FClasslikes%2F330278631" anchor-label="ChainCallWrapRule" id="-1827971357%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-chain-call-wrap-rule/index.html"><span>Chain</span><wbr><span>Call</span><wbr><span>Wrap</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1827971357%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-chain-call-wrap-rule/index.html">ChainCallWrapRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#chain-call-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-584451205%2FClasslikes%2F330278631" anchor-label="ClassNameAbbreviationRule" id="-584451205%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-class-name-abbreviation-rule/index.html"><span>Class</span><wbr><span>Name</span><wbr><span>Abbreviation</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-584451205%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-class-name-abbreviation-rule/index.html">ClassNameAbbreviationRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#class-name-abbreviation">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-977267157%2FClasslikes%2F330278631" anchor-label="CommentTrimRule" id="-977267157%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-comment-trim-rule/index.html"><span>Comment</span><wbr><span>Trim</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-977267157%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-comment-trim-rule/index.html">CommentTrimRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#comment-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1897499281%2FClasslikes%2F330278631" anchor-label="DuplicateBlankLineInCommentRule" id="-1897499281%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-duplicate-blank-line-in-comment-rule/index.html"><span>Duplicate</span><wbr><span>Blank</span><wbr><span>Line</span><wbr><span>In</span><wbr><span>Comment</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1897499281%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-duplicate-blank-line-in-comment-rule/index.html">DuplicateBlankLineInCommentRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1687264783%2FClasslikes%2F330278631" anchor-label="EmptyBracesClipRule" id="1687264783%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-empty-braces-clip-rule/index.html"><span>Empty</span><wbr><span>Braces</span><wbr><span>Clip</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1687264783%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-empty-braces-clip-rule/index.html">EmptyBracesClipRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#empty-braces-clip">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1604589372%2FClasslikes%2F330278631" anchor-label="EmptyBracketsClipRule" id="-1604589372%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-empty-brackets-clip-rule/index.html"><span>Empty</span><wbr><span>Brackets</span><wbr><span>Clip</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1604589372%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-empty-brackets-clip-rule/index.html">EmptyBracketsClipRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#empty-brackets-clip">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-656539327%2FClasslikes%2F330278631" anchor-label="EmptyParenthesesClipRule" id="-656539327%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-empty-parentheses-clip-rule/index.html"><span>Empty</span><wbr><span>Parentheses</span><wbr><span>Clip</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-656539327%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-empty-parentheses-clip-rule/index.html">EmptyParenthesesClipRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#empty-parentheses-clip">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-429861834%2FClasslikes%2F330278631" anchor-label="EmptyTagsClipRule" id="-429861834%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-empty-tags-clip-rule/index.html"><span>Empty</span><wbr><span>Tags</span><wbr><span>Clip</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-429861834%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-empty-tags-clip-rule/index.html">EmptyTagsClipRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#empty-tags-clip">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1214296493%2FClasslikes%2F330278631" anchor-label="IllegalClassFinalNameRule" id="1214296493%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-illegal-class-final-name-rule/index.html"><span>Illegal</span><wbr><span>Class</span><wbr><span>Final</span><wbr><span>Name</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1214296493%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-illegal-class-final-name-rule/index.html">IllegalClassFinalNameRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1072928241%2FClasslikes%2F330278631" anchor-label="IllegalVariableNameRule" id="-1072928241%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-illegal-variable-name-rule/index.html"><span>Illegal</span><wbr><span>Variable</span><wbr><span>Name</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1072928241%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-illegal-variable-name-rule/index.html">IllegalVariableNameRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#illegal-variable-name">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="13438883%2FClasslikes%2F330278631" anchor-label="ImportOrderRule" id="13438883%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-import-order-rule/index.html"><span>Import</span><wbr><span>Order</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="13438883%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-import-order-rule/index.html">ImportOrderRule</a> : <a href="-rulebook-import-rule/index.html">RulebookImportRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#import-order">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-868295821%2FClasslikes%2F330278631" anchor-label="InnerClassPositionRule" id="-868295821%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-inner-class-position-rule/index.html"><span>Inner</span><wbr><span>Class</span><wbr><span>Position</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-868295821%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-inner-class-position-rule/index.html">InnerClassPositionRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#inner-class-position">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1709108621%2FClasslikes%2F330278631" anchor-label="LambdaWrapRule" id="1709108621%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-lambda-wrap-rule/index.html"><span>Lambda</span><wbr><span>Wrap</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1709108621%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-lambda-wrap-rule/index.html">LambdaWrapRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#lambda-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1020799320%2FClasslikes%2F330278631" anchor-label="MemberOrderRule" id="1020799320%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-member-order-rule/index.html"><span>Member</span><wbr><span>Order</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1020799320%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-member-order-rule/index.html">MemberOrderRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#member-order">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1312282785%2FClasslikes%2F330278631" anchor-label="MemberSeparatorRule" id="1312282785%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-member-separator-rule/index.html"><span>Member</span><wbr><span>Separator</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1312282785%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-member-separator-rule/index.html">MemberSeparatorRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#member-separator">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-5521977%2FClasslikes%2F330278631" anchor-label="MissingBlankLineBeforeBlockTagsRule" id="-5521977%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-missing-blank-line-before-block-tags-rule/index.html"><span>Missing</span><wbr><span>Blank</span><wbr><span>Line</span><wbr><span>Before</span><wbr><span>Block</span><wbr><span>Tags</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-5521977%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-missing-blank-line-before-block-tags-rule/index.html">MissingBlankLineBeforeBlockTagsRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#missing-blank-line-before-block-tags">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1200430671%2FClasslikes%2F330278631" anchor-label="NestedIfElseRule" id="-1200430671%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-nested-if-else-rule/index.html"><span>Nested</span><wbr><span>If</span><wbr><span>Else</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1200430671%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-nested-if-else-rule/index.html">NestedIfElseRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#nested-if-else">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1959803340%2FClasslikes%2F330278631" anchor-label="NumberSuffixForDoubleRule" id="1959803340%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-number-suffix-for-double-rule/index.html"><span>Number</span><wbr><span>Suffix</span><wbr><span>For</span><wbr><span>Double</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1959803340%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-number-suffix-for-double-rule/index.html">NumberSuffixForDoubleRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#number-suffix-for-double">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1025264465%2FClasslikes%2F330278631" anchor-label="NumberSuffixForFloatRule" id="1025264465%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-number-suffix-for-float-rule/index.html"><span>Number</span><wbr><span>Suffix</span><wbr><span>For</span><wbr><span>Float</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1025264465%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-number-suffix-for-float-rule/index.html">NumberSuffixForFloatRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#number-suffix-for-float">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-258856529%2FClasslikes%2F330278631" anchor-label="NumberSuffixForIntegerRule" id="-258856529%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-number-suffix-for-integer-rule/index.html"><span>Number</span><wbr><span>Suffix</span><wbr><span>For</span><wbr><span>Integer</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-258856529%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-number-suffix-for-integer-rule/index.html">NumberSuffixForIntegerRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#number-suffix-for-integer">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-218002928%2FClasslikes%2F330278631" anchor-label="OperatorWrapRule" id="-218002928%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-operator-wrap-rule/index.html"><span>Operator</span><wbr><span>Wrap</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-218002928%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-operator-wrap-rule/index.html">OperatorWrapRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#operator-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="734888387%2FClasslikes%2F330278631" anchor-label="OverloadFunctionPositionRule" id="734888387%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-overload-function-position-rule/index.html"><span>Overload</span><wbr><span>Function</span><wbr><span>Position</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="734888387%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-overload-function-position-rule/index.html">OverloadFunctionPositionRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#overload-function-position">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="373108025%2FClasslikes%2F330278631" anchor-label="ParameterWrapRule" id="373108025%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parameter-wrap-rule/index.html"><span>Parameter</span><wbr><span>Wrap</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="373108025%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-parameter-wrap-rule/index.html">ParameterWrapRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#parameter-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1430292336%2FClasslikes%2F330278631" anchor-label="ParenthesesTrimRule" id="-1430292336%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parentheses-trim-rule/index.html"><span>Parentheses</span><wbr><span>Trim</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1430292336%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-parentheses-trim-rule/index.html">ParenthesesTrimRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#parentheses-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1722303946%2FClasslikes%2F330278631" anchor-label="RedundantDefaultRule" id="1722303946%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-redundant-default-rule/index.html"><span>Redundant</span><wbr><span>Default</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1722303946%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-redundant-default-rule/index.html">RedundantDefaultRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#redundant-default">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1937130982%2FClasslikes%2F330278631" anchor-label="RedundantElseRule" id="1937130982%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-redundant-else-rule/index.html"><span>Redundant</span><wbr><span>Else</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1937130982%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-redundant-else-rule/index.html">RedundantElseRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#redundant-else">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="624210561%2FClasslikes%2F330278631" anchor-label="RedundantQualifierRule" id="624210561%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-redundant-qualifier-rule/index.html"><span>Redundant</span><wbr><span>Qualifier</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="624210561%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-redundant-qualifier-rule/index.html">RedundantQualifierRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#redundant-qualifier">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1220272200%2FClasslikes%2F330278631" anchor-label="RequiredGenericsNameRule" id="-1220272200%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-required-generics-name-rule/index.html"><span>Required</span><wbr><span>Generics</span><wbr><span>Name</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1220272200%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-required-generics-name-rule/index.html">RequiredGenericsNameRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#required-generics-name">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2090322321%2FClasslikes%2F330278631" anchor-label="RulebookAstRule" id="-2090322321%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rulebook-ast-rule/index.html"><span>Rulebook</span><wbr><span>Ast</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2090322321%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-rulebook-ast-rule/index.html">RulebookAstRule</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitorRule///PointingToDeclaration/">AbstractAstVisitorRule</span></div><div class="brief "><p class="paragraph">Rule that uses Groovy AST tree to validate a node.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1234605315%2FClasslikes%2F330278631" anchor-label="RulebookFileRule" id="-1234605315%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rulebook-file-rule/index.html"><span>Rulebook</span><wbr><span>File</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1234605315%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-rulebook-file-rule/index.html">RulebookFileRule</a> : <span data-unresolved-link="org.codenarc.rule/AbstractRule///PointingToDeclaration/">AbstractRule</span></div><div class="brief "><p class="paragraph">Rule that checks source code by the raw file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1704108148%2FClasslikes%2F330278631" anchor-label="RulebookImportRule" id="1704108148%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-rulebook-import-rule/index.html"><span>Rulebook</span><wbr><span>Import</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1704108148%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-rulebook-import-rule/index.html">RulebookImportRule</a> : <span data-unresolved-link="org.codenarc.rule.imports/AbstractImportRule///PointingToDeclaration/">AbstractImportRule</span></div><div class="brief "><p class="paragraph">Rule that validates an import statement.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1913910898%2FClasslikes%2F330278631" anchor-label="ShortBlockCommentClipRule" id="-1913910898%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-short-block-comment-clip-rule/index.html"><span>Short</span><wbr><span>Block</span><wbr><span>Comment</span><wbr><span>Clip</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1913910898%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-short-block-comment-clip-rule/index.html">ShortBlockCommentClipRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#short-block-comment-clip">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1724315597%2FClasslikes%2F330278631" anchor-label="StatementWrapRule" id="-1724315597%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-statement-wrap-rule/index.html"><span>Statement</span><wbr><span>Wrap</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1724315597%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-statement-wrap-rule/index.html">StatementWrapRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#statement-wrap">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1470224611%2FClasslikes%2F330278631" anchor-label="TagsTrimRule" id="1470224611%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-tags-trim-rule/index.html"><span>Tags</span><wbr><span>Trim</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1470224611%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-tags-trim-rule/index.html">TagsTrimRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#tags-trim">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1637669139%2FClasslikes%2F330278631" anchor-label="TodoCommentRule" id="1637669139%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-todo-comment-rule/index.html"><span>Todo</span><wbr><span>Comment</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1637669139%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-todo-comment-rule/index.html">TodoCommentRule</a> : <a href="-rulebook-file-rule/index.html">RulebookFileRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#block-tag-indentation">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-679507568%2FClasslikes%2F330278631" anchor-label="TrailingCommaInCallRule" id="-679507568%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-trailing-comma-in-call-rule/index.html"><span>Trailing</span><wbr><span>Comma</span><wbr><span>In</span><wbr><span>Call</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-679507568%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-trailing-comma-in-call-rule/index.html">TrailingCommaInCallRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#trailing-comma-in-call">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="545941902%2FClasslikes%2F330278631" anchor-label="UnnecessaryParenthesesInLambdaRule" id="545941902%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-unnecessary-parentheses-in-lambda-rule/index.html"><span>Unnecessary</span><wbr><span>Parentheses</span><wbr><span>In</span><wbr><span>Lambda</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="545941902%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-unnecessary-parentheses-in-lambda-rule/index.html">UnnecessaryParenthesesInLambdaRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#unnecessary-parentheses-in-lambda">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-381157118%2FClasslikes%2F330278631" anchor-label="UnnecessarySwitchRule" id="-381157118%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-unnecessary-switch-rule/index.html"><span>Unnecessary</span><wbr><span>Switch</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-381157118%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-unnecessary-switch-rule/index.html">UnnecessarySwitchRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#unnecessary-switch">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="638981535%2FClasslikes%2F330278631" anchor-label="UtilityClassDefinitionRule" id="638981535%2FClasslikes%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-utility-class-definition-rule/index.html"><span>Utility</span><wbr><span>Class</span><wbr><span>Definition</span><wbr><span><span>Rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="638981535%2FClasslikes%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-utility-class-definition-rule/index.html">UtilityClassDefinitionRule</a> : <a href="-rulebook-ast-rule/index.html">RulebookAstRule</a></div><div class="brief "><p class="paragraph"><a href="https://hanggrian.github.io/rulebook/rules/#utility-class-definition">See detail</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-500560561%2FFunctions%2F330278631" anchor-label="createViolation" id="-500560561%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-violation.html"><span>create</span><wbr><span><span>Violation</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-500560561%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.codenarc.rule/Rule///PointingToDeclaration/">Rule</span><span class="token punctuation">.</span><a href="create-violation.html"><span class="token function">createViolation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lineNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">sourceLine<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="org.codenarc.rule/Violation///PointingToDeclaration/">Violation</span></div><div class="brief "><p class="paragraph">Alias of <span data-unresolved-link="org.codenarc.rule/AbstractRule/createViolation/#kotlin.Int#kotlin.String#kotlin.String/PointingToDeclaration/">AbstractRule.createViolation</span> that is not protected.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

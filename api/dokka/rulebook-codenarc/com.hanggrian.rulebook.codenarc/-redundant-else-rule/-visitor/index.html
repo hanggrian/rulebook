@@ -1,0 +1,1181 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Visitor</title>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+<a class="library-name--link" href="../../../../index.html">
+                    rulebook
+            </a>        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle" type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">0.1
+        </div>
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":rulebook-codenarc/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox" data-role="dropdown-toggle" aria-controls="platform-tags-listbox" aria-haspopup="listbox" aria-expanded="false" aria-label="Toggle source sets"></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":rulebook-codenarc/main" data-filter=":rulebook-codenarc/main">
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button" type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list" data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    rulebook
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="rulebook-codenarc::com.hanggrian.rulebook.codenarc/RedundantElseRule.Visitor///PointingToDeclaration//330278631">
+  <div class="breadcrumbs"><a href="../../../index.html">rulebook-codenarc</a><span class="delimiter">/</span><a href="../../index.html">com.hanggrian.rulebook.codenarc</a><span class="delimiter">/</span><a href="../index.html">RedundantElseRule</a><span class="delimiter">/</span><span class="current">Visitor</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Visitor</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Visitor</a> : <span data-unresolved-link="org.codenarc.rule/AbstractAstVisitor///PointingToDeclaration/">AbstractAstVisitor</span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-2080815949%2FConstructors%2F330278631" anchor-label="Visitor" id="-2080815949%2FConstructors%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-visitor.html"><span><span>Visitor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2080815949%2FConstructors%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1720892736%2FProperties%2F330278631" anchor-label="rule" id="-1720892736%2FProperties%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1720892736%2FProperties%2F330278631"><span><span>rule</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1720892736%2FProperties%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">var </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1720892736%2FProperties%2F330278631">rule</a><span class="token operator">: </span><span data-unresolved-link="org.codenarc.rule/Rule///PointingToDeclaration/">Rule</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1969763156%2FProperties%2F330278631" anchor-label="sourceCode" id="1969763156%2FProperties%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1969763156%2FProperties%2F330278631"><span>source</span><wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1969763156%2FProperties%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">var </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1969763156%2FProperties%2F330278631">sourceCode</a><span class="token operator">: </span><span data-unresolved-link="org.codenarc.source/SourceCode///PointingToDeclaration/">SourceCode</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1882820302%2FProperties%2F330278631" anchor-label="violations" id="1882820302%2FProperties%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1882820302%2FProperties%2F330278631"><span><span>violations</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1882820302%2FProperties%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1882820302%2FProperties%2F330278631">violations</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="org.codenarc.rule/Violation///PointingToDeclaration/">Violation</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="315772148%2FProperties%2F330278631" anchor-label="visited" id="315772148%2FProperties%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#315772148%2FProperties%2F330278631"><span><span>visited</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="315772148%2FProperties%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">var </span><a href="../../-utility-class-definition-rule/-visitor/index.html#315772148%2FProperties%2F330278631">visited</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-set/index.html">MutableSet</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1526035985%2FFunctions%2F330278631" anchor-label="addError" id="-1526035985%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1526035985%2FFunctions%2F330278631"><span>add</span><wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1526035985%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1526035985%2FFunctions%2F330278631"><span class="token function">addError</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">p1<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/ASTNode///PointingToDeclaration/">ASTNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1640046810%2FFunctions%2F330278631" anchor-label="visitAnnotations" id="-1640046810%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1640046810%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Annotations</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1640046810%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1640046810%2FFunctions%2F330278631"><span class="token function">visitAnnotations</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/AnnotatedNode///PointingToDeclaration/">AnnotatedNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="939037359%2FFunctions%2F330278631" anchor-label="visitArgumentlistExpression" id="939037359%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#939037359%2FFunctions%2F330278631"><span>visit</span><wbr><span>Argumentlist</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="939037359%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#939037359%2FFunctions%2F330278631"><span class="token function">visitArgumentlistExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ArgumentListExpression///PointingToDeclaration/">ArgumentListExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-246095137%2FFunctions%2F330278631" anchor-label="visitArrayExpression" id="-246095137%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-246095137%2FFunctions%2F330278631"><span>visit</span><wbr><span>Array</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-246095137%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-246095137%2FFunctions%2F330278631"><span class="token function">visitArrayExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ArrayExpression///PointingToDeclaration/">ArrayExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1060355930%2FFunctions%2F330278631" anchor-label="visitAssertStatement" id="1060355930%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1060355930%2FFunctions%2F330278631"><span>visit</span><wbr><span>Assert</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1060355930%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1060355930%2FFunctions%2F330278631"><span class="token function">visitAssertStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/AssertStatement///PointingToDeclaration/">AssertStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-179114279%2FFunctions%2F330278631" anchor-label="visitAttributeExpression" id="-179114279%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-179114279%2FFunctions%2F330278631"><span>visit</span><wbr><span>Attribute</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-179114279%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-179114279%2FFunctions%2F330278631"><span class="token function">visitAttributeExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/AttributeExpression///PointingToDeclaration/">AttributeExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1645391473%2FFunctions%2F330278631" anchor-label="visitBinaryExpression" id="-1645391473%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1645391473%2FFunctions%2F330278631"><span>visit</span><wbr><span>Binary</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1645391473%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1645391473%2FFunctions%2F330278631"><span class="token function">visitBinaryExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/BinaryExpression///PointingToDeclaration/">BinaryExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1304999195%2FFunctions%2F330278631" anchor-label="visitBitwiseNegationExpression" id="-1304999195%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1304999195%2FFunctions%2F330278631"><span>visit</span><wbr><span>Bitwise</span><wbr><span>Negation</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1304999195%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1304999195%2FFunctions%2F330278631"><span class="token function">visitBitwiseNegationExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/BitwiseNegationExpression///PointingToDeclaration/">BitwiseNegationExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1348216334%2FFunctions%2F330278631" anchor-label="visitBlockStatement" id="-1348216334%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="visit-block-statement.html"><span>visit</span><wbr><span>Block</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1348216334%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="visit-block-statement.html"><span class="token function">visitBlockStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">node<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/BlockStatement///PointingToDeclaration/">BlockStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-639651967%2FFunctions%2F330278631" anchor-label="visitBooleanExpression" id="-639651967%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-639651967%2FFunctions%2F330278631"><span>visit</span><wbr><span>Boolean</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-639651967%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-639651967%2FFunctions%2F330278631"><span class="token function">visitBooleanExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/BooleanExpression///PointingToDeclaration/">BooleanExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1079822752%2FFunctions%2F330278631" anchor-label="visitBreakStatement" id="-1079822752%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1079822752%2FFunctions%2F330278631"><span>visit</span><wbr><span>Break</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1079822752%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1079822752%2FFunctions%2F330278631"><span class="token function">visitBreakStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/BreakStatement///PointingToDeclaration/">BreakStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="649794502%2FFunctions%2F330278631" anchor-label="visitBytecodeExpression" id="649794502%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#649794502%2FFunctions%2F330278631"><span>visit</span><wbr><span>Bytecode</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="649794502%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#649794502%2FFunctions%2F330278631"><span class="token function">visitBytecodeExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.classgen/BytecodeExpression///PointingToDeclaration/">BytecodeExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1084300782%2FFunctions%2F330278631" anchor-label="visitCaseStatement" id="1084300782%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1084300782%2FFunctions%2F330278631"><span>visit</span><wbr><span>Case</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1084300782%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1084300782%2FFunctions%2F330278631"><span class="token function">visitCaseStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/CaseStatement///PointingToDeclaration/">CaseStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1399777359%2FFunctions%2F330278631" anchor-label="visitCastExpression" id="1399777359%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1399777359%2FFunctions%2F330278631"><span>visit</span><wbr><span>Cast</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1399777359%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1399777359%2FFunctions%2F330278631"><span class="token function">visitCastExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/CastExpression///PointingToDeclaration/">CastExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="766990304%2FFunctions%2F330278631" anchor-label="visitCatchStatement" id="766990304%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#766990304%2FFunctions%2F330278631"><span>visit</span><wbr><span>Catch</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="766990304%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#766990304%2FFunctions%2F330278631"><span class="token function">visitCatchStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/CatchStatement///PointingToDeclaration/">CatchStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="649830629%2FFunctions%2F330278631" anchor-label="visitClass" id="649830629%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#649830629%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Class</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="649830629%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#649830629%2FFunctions%2F330278631"><span class="token function">visitClass</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/ClassNode///PointingToDeclaration/">ClassNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1887079073%2FFunctions%2F330278631" anchor-label="visitClassExpression" id="1887079073%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1887079073%2FFunctions%2F330278631"><span>visit</span><wbr><span>Class</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1887079073%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1887079073%2FFunctions%2F330278631"><span class="token function">visitClassExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ClassExpression///PointingToDeclaration/">ClassExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1794859547%2FFunctions%2F330278631" anchor-label="visitClosureExpression" id="1794859547%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1794859547%2FFunctions%2F330278631"><span>visit</span><wbr><span>Closure</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1794859547%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1794859547%2FFunctions%2F330278631"><span class="token function">visitClosureExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ClosureExpression///PointingToDeclaration/">ClosureExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-759514081%2FFunctions%2F330278631" anchor-label="visitClosureListExpression" id="-759514081%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-759514081%2FFunctions%2F330278631"><span>visit</span><wbr><span>Closure</span><wbr><span>List</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-759514081%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-759514081%2FFunctions%2F330278631"><span class="token function">visitClosureListExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ClosureListExpression///PointingToDeclaration/">ClosureListExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1333267375%2FFunctions%2F330278631" anchor-label="visitConstantExpression" id="1333267375%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1333267375%2FFunctions%2F330278631"><span>visit</span><wbr><span>Constant</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1333267375%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1333267375%2FFunctions%2F330278631"><span class="token function">visitConstantExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ConstantExpression///PointingToDeclaration/">ConstantExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1079847014%2FFunctions%2F330278631" anchor-label="visitConstructor" id="-1079847014%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1079847014%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Constructor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1079847014%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1079847014%2FFunctions%2F330278631"><span class="token function">visitConstructor</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/ConstructorNode///PointingToDeclaration/">ConstructorNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2127142431%2FFunctions%2F330278631" anchor-label="visitConstructorCallExpression" id="-2127142431%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-2127142431%2FFunctions%2F330278631"><span>visit</span><wbr><span>Constructor</span><wbr><span>Call</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2127142431%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-2127142431%2FFunctions%2F330278631"><span class="token function">visitConstructorCallExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ConstructorCallExpression///PointingToDeclaration/">ConstructorCallExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1941552732%2FFunctions%2F330278631" anchor-label="visitContinueStatement" id="1941552732%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1941552732%2FFunctions%2F330278631"><span>visit</span><wbr><span>Continue</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1941552732%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1941552732%2FFunctions%2F330278631"><span class="token function">visitContinueStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/ContinueStatement///PointingToDeclaration/">ContinueStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="285739387%2FFunctions%2F330278631" anchor-label="visitDeclarationExpression" id="285739387%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#285739387%2FFunctions%2F330278631"><span>visit</span><wbr><span>Declaration</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="285739387%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#285739387%2FFunctions%2F330278631"><span class="token function">visitDeclarationExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/DeclarationExpression///PointingToDeclaration/">DeclarationExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1272476553%2FFunctions%2F330278631" anchor-label="visitDoWhileLoop" id="-1272476553%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1272476553%2FFunctions%2F330278631"><span>visit</span><wbr><span>Do</span><wbr><span>While</span><wbr><span><span>Loop</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1272476553%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1272476553%2FFunctions%2F330278631"><span class="token function">visitDoWhileLoop</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/DoWhileStatement///PointingToDeclaration/">DoWhileStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1210662142%2FFunctions%2F330278631" anchor-label="visitEmptyExpression" id="-1210662142%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1210662142%2FFunctions%2F330278631"><span>visit</span><wbr><span>Empty</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1210662142%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1210662142%2FFunctions%2F330278631"><span class="token function">visitEmptyExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/EmptyExpression///PointingToDeclaration/">EmptyExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1085280770%2FFunctions%2F330278631" anchor-label="visitEmptyStatement" id="1085280770%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1085280770%2FFunctions%2F330278631"><span>visit</span><wbr><span>Empty</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1085280770%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1085280770%2FFunctions%2F330278631"><span class="token function">visitEmptyStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/EmptyStatement///PointingToDeclaration/">EmptyStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1054557698%2FFunctions%2F330278631" anchor-label="visitExpressionStatement" id="-1054557698%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1054557698%2FFunctions%2F330278631"><span>visit</span><wbr><span>Expression</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1054557698%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1054557698%2FFunctions%2F330278631"><span class="token function">visitExpressionStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/ExpressionStatement///PointingToDeclaration/">ExpressionStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1851710362%2FFunctions%2F330278631" anchor-label="visitField" id="1851710362%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1851710362%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Field</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1851710362%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1851710362%2FFunctions%2F330278631"><span class="token function">visitField</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/FieldNode///PointingToDeclaration/">FieldNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1030352797%2FFunctions%2F330278631" anchor-label="visitFieldExpression" id="1030352797%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1030352797%2FFunctions%2F330278631"><span>visit</span><wbr><span>Field</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1030352797%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1030352797%2FFunctions%2F330278631"><span class="token function">visitFieldExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/FieldExpression///PointingToDeclaration/">FieldExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="849067517%2FFunctions%2F330278631" anchor-label="visitForLoop" id="849067517%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#849067517%2FFunctions%2F330278631"><span>visit</span><wbr><span>For</span><wbr><span><span>Loop</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="849067517%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#849067517%2FFunctions%2F330278631"><span class="token function">visitForLoop</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/ForStatement///PointingToDeclaration/">ForStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="656846113%2FFunctions%2F330278631" anchor-label="visitGStringExpression" id="656846113%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#656846113%2FFunctions%2F330278631"><span>visit</span><wbr><span>GString</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="656846113%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#656846113%2FFunctions%2F330278631"><span class="token function">visitGStringExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/GStringExpression///PointingToDeclaration/">GStringExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="408682202%2FFunctions%2F330278631" anchor-label="visitIfElse" id="408682202%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#408682202%2FFunctions%2F330278631"><span>visit</span><wbr><span>If</span><wbr><span><span>Else</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="408682202%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#408682202%2FFunctions%2F330278631"><span class="token function">visitIfElse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/IfStatement///PointingToDeclaration/">IfStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-281639158%2FFunctions%2F330278631" anchor-label="visitImports" id="-281639158%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-281639158%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Imports</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-281639158%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-281639158%2FFunctions%2F330278631"><span class="token function">visitImports</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/ModuleNode///PointingToDeclaration/">ModuleNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="846620239%2FFunctions%2F330278631" anchor-label="visitLambdaExpression" id="846620239%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#846620239%2FFunctions%2F330278631"><span>visit</span><wbr><span>Lambda</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="846620239%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#846620239%2FFunctions%2F330278631"><span class="token function">visitLambdaExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/LambdaExpression///PointingToDeclaration/">LambdaExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1314293231%2FFunctions%2F330278631" anchor-label="visitListExpression" id="1314293231%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1314293231%2FFunctions%2F330278631"><span>visit</span><wbr><span>List</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1314293231%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1314293231%2FFunctions%2F330278631"><span class="token function">visitListExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ListExpression///PointingToDeclaration/">ListExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="942523988%2FFunctions%2F330278631" anchor-label="visitListOfExpressions" id="942523988%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#942523988%2FFunctions%2F330278631"><span>visit</span><wbr><span>List</span><wbr><span>Of</span><wbr><span><span>Expressions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="942523988%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#942523988%2FFunctions%2F330278631"><span class="token function">visitListOfExpressions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span class="token keyword">out </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/Expression///PointingToDeclaration/">Expression</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-627143313%2FFunctions%2F330278631" anchor-label="visitMapEntryExpression" id="-627143313%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-627143313%2FFunctions%2F330278631"><span>visit</span><wbr><span>Map</span><wbr><span>Entry</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-627143313%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-627143313%2FFunctions%2F330278631"><span class="token function">visitMapEntryExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/MapEntryExpression///PointingToDeclaration/">MapEntryExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1754080153%2FFunctions%2F330278631" anchor-label="visitMapExpression" id="1754080153%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1754080153%2FFunctions%2F330278631"><span>visit</span><wbr><span>Map</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1754080153%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1754080153%2FFunctions%2F330278631"><span class="token function">visitMapExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/MapExpression///PointingToDeclaration/">MapExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="282994851%2FFunctions%2F330278631" anchor-label="visitMethod" id="282994851%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#282994851%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Method</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="282994851%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#282994851%2FFunctions%2F330278631"><span class="token function">visitMethod</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/MethodNode///PointingToDeclaration/">MethodNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1838318415%2FFunctions%2F330278631" anchor-label="visitMethodCallExpression" id="1838318415%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1838318415%2FFunctions%2F330278631"><span>visit</span><wbr><span>Method</span><wbr><span>Call</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1838318415%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1838318415%2FFunctions%2F330278631"><span class="token function">visitMethodCallExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/MethodCallExpression///PointingToDeclaration/">MethodCallExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1103063463%2FFunctions%2F330278631" anchor-label="visitMethodPointerExpression" id="-1103063463%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1103063463%2FFunctions%2F330278631"><span>visit</span><wbr><span>Method</span><wbr><span>Pointer</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1103063463%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1103063463%2FFunctions%2F330278631"><span class="token function">visitMethodPointerExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/MethodPointerExpression///PointingToDeclaration/">MethodPointerExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="224700541%2FFunctions%2F330278631" anchor-label="visitMethodReferenceExpression" id="224700541%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#224700541%2FFunctions%2F330278631"><span>visit</span><wbr><span>Method</span><wbr><span>Reference</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="224700541%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#224700541%2FFunctions%2F330278631"><span class="token function">visitMethodReferenceExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/MethodReferenceExpression///PointingToDeclaration/">MethodReferenceExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="391836907%2FFunctions%2F330278631" anchor-label="visitNotExpression" id="391836907%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#391836907%2FFunctions%2F330278631"><span>visit</span><wbr><span>Not</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="391836907%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#391836907%2FFunctions%2F330278631"><span class="token function">visitNotExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/NotExpression///PointingToDeclaration/">NotExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1779000858%2FFunctions%2F330278631" anchor-label="visitPackage" id="1779000858%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1779000858%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Package</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1779000858%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1779000858%2FFunctions%2F330278631"><span class="token function">visitPackage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/PackageNode///PointingToDeclaration/">PackageNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1543426599%2FFunctions%2F330278631" anchor-label="visitPostfixExpression" id="1543426599%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1543426599%2FFunctions%2F330278631"><span>visit</span><wbr><span>Postfix</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1543426599%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1543426599%2FFunctions%2F330278631"><span class="token function">visitPostfixExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/PostfixExpression///PointingToDeclaration/">PostfixExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1079369135%2FFunctions%2F330278631" anchor-label="visitPrefixExpression" id="1079369135%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1079369135%2FFunctions%2F330278631"><span>visit</span><wbr><span>Prefix</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1079369135%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1079369135%2FFunctions%2F330278631"><span class="token function">visitPrefixExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/PrefixExpression///PointingToDeclaration/">PrefixExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="875924144%2FFunctions%2F330278631" anchor-label="visitProperty" id="875924144%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#875924144%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Property</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="875924144%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#875924144%2FFunctions%2F330278631"><span class="token function">visitProperty</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast/PropertyNode///PointingToDeclaration/">PropertyNode</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="181273487%2FFunctions%2F330278631" anchor-label="visitPropertyExpression" id="181273487%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#181273487%2FFunctions%2F330278631"><span>visit</span><wbr><span>Property</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="181273487%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#181273487%2FFunctions%2F330278631"><span class="token function">visitPropertyExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/PropertyExpression///PointingToDeclaration/">PropertyExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-988627689%2FFunctions%2F330278631" anchor-label="visitRangeExpression" id="-988627689%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-988627689%2FFunctions%2F330278631"><span>visit</span><wbr><span>Range</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-988627689%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-988627689%2FFunctions%2F330278631"><span class="token function">visitRangeExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/RangeExpression///PointingToDeclaration/">RangeExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1002453422%2FFunctions%2F330278631" anchor-label="visitReturnStatement" id="1002453422%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1002453422%2FFunctions%2F330278631"><span>visit</span><wbr><span>Return</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1002453422%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1002453422%2FFunctions%2F330278631"><span class="token function">visitReturnStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/ReturnStatement///PointingToDeclaration/">ReturnStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="191531495%2FFunctions%2F330278631" anchor-label="visitShortTernaryExpression" id="191531495%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#191531495%2FFunctions%2F330278631"><span>visit</span><wbr><span>Short</span><wbr><span>Ternary</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="191531495%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#191531495%2FFunctions%2F330278631"><span class="token function">visitShortTernaryExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/ElvisOperatorExpression///PointingToDeclaration/">ElvisOperatorExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-918973489%2FFunctions%2F330278631" anchor-label="visitSpreadExpression" id="-918973489%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-918973489%2FFunctions%2F330278631"><span>visit</span><wbr><span>Spread</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-918973489%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-918973489%2FFunctions%2F330278631"><span class="token function">visitSpreadExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/SpreadExpression///PointingToDeclaration/">SpreadExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1123933887%2FFunctions%2F330278631" anchor-label="visitSpreadMapExpression" id="1123933887%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1123933887%2FFunctions%2F330278631"><span>visit</span><wbr><span>Spread</span><wbr><span>Map</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1123933887%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1123933887%2FFunctions%2F330278631"><span class="token function">visitSpreadMapExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/SpreadMapExpression///PointingToDeclaration/">SpreadMapExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1423226511%2FFunctions%2F330278631" anchor-label="visitStaticMethodCallExpression" id="1423226511%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1423226511%2FFunctions%2F330278631"><span>visit</span><wbr><span>Static</span><wbr><span>Method</span><wbr><span>Call</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1423226511%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1423226511%2FFunctions%2F330278631"><span class="token function">visitStaticMethodCallExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/StaticMethodCallExpression///PointingToDeclaration/">StaticMethodCallExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-163680525%2FFunctions%2F330278631" anchor-label="visitSwitch" id="-163680525%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-163680525%2FFunctions%2F330278631"><span>visit</span><wbr><span><span>Switch</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-163680525%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-163680525%2FFunctions%2F330278631"><span class="token function">visitSwitch</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/SwitchStatement///PointingToDeclaration/">SwitchStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-214161738%2FFunctions%2F330278631" anchor-label="visitSynchronizedStatement" id="-214161738%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-214161738%2FFunctions%2F330278631"><span>visit</span><wbr><span>Synchronized</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-214161738%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-214161738%2FFunctions%2F330278631"><span class="token function">visitSynchronizedStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/SynchronizedStatement///PointingToDeclaration/">SynchronizedStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-373892901%2FFunctions%2F330278631" anchor-label="visitTernaryExpression" id="-373892901%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-373892901%2FFunctions%2F330278631"><span>visit</span><wbr><span>Ternary</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-373892901%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-373892901%2FFunctions%2F330278631"><span class="token function">visitTernaryExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/TernaryExpression///PointingToDeclaration/">TernaryExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1731699136%2FFunctions%2F330278631" anchor-label="visitThrowStatement" id="1731699136%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1731699136%2FFunctions%2F330278631"><span>visit</span><wbr><span>Throw</span><wbr><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1731699136%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1731699136%2FFunctions%2F330278631"><span class="token function">visitThrowStatement</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/ThrowStatement///PointingToDeclaration/">ThrowStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1927555782%2FFunctions%2F330278631" anchor-label="visitTryCatchFinally" id="-1927555782%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1927555782%2FFunctions%2F330278631"><span>visit</span><wbr><span>Try</span><wbr><span>Catch</span><wbr><span><span>Finally</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1927555782%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1927555782%2FFunctions%2F330278631"><span class="token function">visitTryCatchFinally</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/TryCatchStatement///PointingToDeclaration/">TryCatchStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1627123201%2FFunctions%2F330278631" anchor-label="visitTupleExpression" id="1627123201%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1627123201%2FFunctions%2F330278631"><span>visit</span><wbr><span>Tuple</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1627123201%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1627123201%2FFunctions%2F330278631"><span class="token function">visitTupleExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/TupleExpression///PointingToDeclaration/">TupleExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1472006799%2FFunctions%2F330278631" anchor-label="visitUnaryMinusExpression" id="1472006799%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#1472006799%2FFunctions%2F330278631"><span>visit</span><wbr><span>Unary</span><wbr><span>Minus</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1472006799%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#1472006799%2FFunctions%2F330278631"><span class="token function">visitUnaryMinusExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/UnaryMinusExpression///PointingToDeclaration/">UnaryMinusExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-628568641%2FFunctions%2F330278631" anchor-label="visitUnaryPlusExpression" id="-628568641%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-628568641%2FFunctions%2F330278631"><span>visit</span><wbr><span>Unary</span><wbr><span>Plus</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-628568641%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-628568641%2FFunctions%2F330278631"><span class="token function">visitUnaryPlusExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/UnaryPlusExpression///PointingToDeclaration/">UnaryPlusExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1140096849%2FFunctions%2F330278631" anchor-label="visitVariableExpression" id="-1140096849%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-1140096849%2FFunctions%2F330278631"><span>visit</span><wbr><span>Variable</span><wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1140096849%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-1140096849%2FFunctions%2F330278631"><span class="token function">visitVariableExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.expr/VariableExpression///PointingToDeclaration/">VariableExpression</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-836493427%2FFunctions%2F330278631" anchor-label="visitWhileLoop" id="-836493427%2FFunctions%2F330278631" data-filterable-set=":rulebook-codenarc/main"></a>
+          <div class="table-row" data-filterable-current=":rulebook-codenarc/main" data-filterable-set=":rulebook-codenarc/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../-utility-class-definition-rule/-visitor/index.html#-836493427%2FFunctions%2F330278631"><span>visit</span><wbr><span>While</span><wbr><span><span>Loop</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-836493427%2FFunctions%2F330278631"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":rulebook-codenarc/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="../../-utility-class-definition-rule/-visitor/index.html#-836493427%2FFunctions%2F330278631"><span class="token function">visitWhileLoop</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">p0<span class="token operator">: </span><span data-unresolved-link="org.codehaus.groovy.ast.stmt/WhileStatement///PointingToDeclaration/">WhileStatement</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2025 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

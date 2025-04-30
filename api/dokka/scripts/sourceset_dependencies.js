@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":rulebook-checkstyle/main":[],":rulebook-ktlint/main":[],":rulebook-codenarc/main":[]}'
