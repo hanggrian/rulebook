@@ -2,6 +2,9 @@
 #primary {
   color: var(--md-primary-fg-color);
 }
+#accent {
+  color: #ffc105;
+}
 
 /* Brand colors */
 #light {
