@@ -20,43 +20,43 @@ persistent=no
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
 load-plugins=
-  rulebook_pylint.file_size,
-  rulebook_pylint.todo_comment,
-  rulebook_pylint.trailing_comma,
+  rulebook_pylint.checkers.file_size,
+  rulebook_pylint.checkers.todo_comment,
+  rulebook_pylint.checkers.trailing_comma,
   # Clipping
-  rulebook_pylint.empty_parentheses_clip,
-  rulebook_pylint.short_block_comment_clip,
+  rulebook_pylint.checkers.empty_parentheses_clip,
+  rulebook_pylint.checkers.short_block_comment_clip,
   # Declaring
-  rulebook_pylint.abstract_class_definition,
-  rulebook_pylint.exception_inheritance,
-  rulebook_pylint.string_quotes,
+  rulebook_pylint.checkers.abstract_class_definition,
+  rulebook_pylint.checkers.exception_inheritance,
+  rulebook_pylint.checkers.string_quotes,
   # Naming
-  rulebook_pylint.class_name_abbreviation,
-  rulebook_pylint.illegal_class_final_name,
-  rulebook_pylint.required_generics_name,
+  rulebook_pylint.checkers.class_name_abbreviation,
+  rulebook_pylint.checkers.illegal_class_final_name,
+  rulebook_pylint.checkers.required_generics_name,
   # Ordering
-  rulebook_pylint.built_in_function_position,
-  rulebook_pylint.inner_class_position,
-  rulebook_pylint.member_order,
+  rulebook_pylint.checkers.built_in_function_position,
+  rulebook_pylint.checkers.inner_class_position,
+  rulebook_pylint.checkers.member_order,
   # Spacing
-  rulebook_pylint.case_separator,
-  rulebook_pylint.member_separator,
+  rulebook_pylint.checkers.case_separator,
+  rulebook_pylint.checkers.member_separator,
   # Stating
-  rulebook_pylint.nested_if_else,
-  rulebook_pylint.redundant_default,
-  rulebook_pylint.unnecessary_switch,
-  rulebook_pylint.unnecessary_blank_line_after_colon,
-  rulebook_pylint.unnecessary_blank_line_before_package,
+  rulebook_pylint.checkers.nested_if_else,
+  rulebook_pylint.checkers.redundant_default,
+  rulebook_pylint.checkers.unnecessary_switch,
+  rulebook_pylint.checkers.unnecessary_blank_line_after_colon,
+  rulebook_pylint.checkers.unnecessary_blank_line_before_package,
   # Trimming
-  rulebook_pylint.block_comment_trim,
-  rulebook_pylint.comment_trim,
-  rulebook_pylint.duplicate_blank_line,
-  rulebook_pylint.duplicate_blank_line_in_block_comment,
-  rulebook_pylint.duplicate_blank_line_in_comment,
-  rulebook_pylint.duplicate_space,
-  rulebook_pylint.parentheses_trim,
+  rulebook_pylint.checkers.block_comment_trim,
+  rulebook_pylint.checkers.comment_trim,
+  rulebook_pylint.checkers.duplicate_blank_line,
+  rulebook_pylint.checkers.duplicate_blank_line_in_block_comment,
+  rulebook_pylint.checkers.duplicate_blank_line_in_comment,
+  rulebook_pylint.checkers.duplicate_space,
+  rulebook_pylint.checkers.parentheses_trim,
   # Wrapping
-  rulebook_pylint.parameter_wrap,
+  rulebook_pylint.checkers.parameter_wrap,
 
 # Use multiple processes to speed up Pylint.
 jobs=1

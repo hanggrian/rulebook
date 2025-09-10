@@ -1,4 +1,4 @@
-package com.hanggrian.rulebook.checkstyle;
+package com.hanggrian.rulebook.checkstyle.checks;
 
 class CaseSeparator {
     void foo(int bar) {

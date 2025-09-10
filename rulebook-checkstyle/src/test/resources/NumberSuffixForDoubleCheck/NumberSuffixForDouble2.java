@@ -1,4 +1,4 @@
-package com.hanggrian.rulebook.checkstyle;
+package com.hanggrian.rulebook.checkstyle.checks;
 
 class NumberSuffixForDouble {
     float foo = 0D;

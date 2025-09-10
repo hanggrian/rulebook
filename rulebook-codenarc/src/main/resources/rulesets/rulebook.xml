@@ -1,0 +1,68 @@
+<ruleset
+  xmlns="http://codenarc.org/ruleset/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"
+  xsi:noNamespaceSchemaLocation="http://codenarc.org/ruleset-schema.xsd">
+
+  <description>All Rulebook rules.</description>
+
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagPunctuationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantQualifierRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.TodoCommentRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.TrailingCommaInCallRule"/>
+
+  <!-- Clipping -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyBracesClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyBracketsClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyParenthesesClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyTagsClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ShortBlockCommentClipRule"/>
+
+  <!-- Declaring -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NumberSuffixForDoubleRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NumberSuffixForFloatRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NumberSuffixForIntegerRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UtilityClassDefinitionRule"/>
+
+  <!-- Naming -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ClassNameAbbreviationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalClassFinalNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.RequiredGenericsNameRule"/>
+
+  <!-- Ordering -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagOrderRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BuiltInFunctionPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ImportOrderRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.InnerClassPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.MemberOrderRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.OverloadFunctionPositionRule"/>
+
+  <!-- Spacing -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagIndentationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.MemberSeparatorRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.MissingBlankLineBeforeBlockTagsRule"/>
+
+  <!-- Stating -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantDefaultRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantElseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessarySwitchRule"/>
+
+  <!-- Trimming -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.CommentTrimRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.DuplicateBlankLineInCommentRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ParenthesesTrimRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.TagsTrimRule"/>
+
+  <!-- Wrapping -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.AssignmentWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LambdaWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.OperatorWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ParameterWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.StatementWrapRule"/>
+</ruleset>

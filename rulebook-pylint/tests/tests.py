@@ -4,7 +4,7 @@ from pylint.testutils import MessageTest
 
 
 def assert_properties(checker: BaseChecker):
-    line = str(checker).rsplit("<class 'rulebook_pylint.", 1)[1].split("'>", 1)[0]
+    line = str(checker).rsplit("<class 'rulebook_pylint.checkers.", 1)[1].split("'>", 1)[0]
     module = line.split('.', 1)[0]
     cls = line.rsplit('.', 1)[1]
 

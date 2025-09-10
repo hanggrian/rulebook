@@ -128,14 +128,14 @@ Unnecessary switch[^jetbrains-switch-statement-with-too-few-branches] | :materia
 <span class="material-symbols-outlined lg middle">format_letter_spacing_standard</span> **Trimming group** | **Java** | **Groovy** | **Kotlin** | **Python**
 Block comment trim[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; JavadocEmptyFirstLine&#013;&bull; JavadocEmptyLastLine" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Braces trim[^google-blocks-k-r-style] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; BlockEndsWithBlankLine&#013;&bull; BlockStartsWithBlankLine&#013;&bull; ClassEndsWithBlankLine&#013;&bull; ClassStartsWithBlankLine" } | :material-information-outline:{ .lg title="&bull; no-empty-first-line-at-start-in-class-body&#013;&bull; no-blank-lines-before" } | :material-check:{ .lg }
-Brackets trim[^strip-multiline-brackets-parentheses-and-tags] | | :material-check-all:{ .lg } | | :material-check:{ .lg }
+Brackets trim[^trim-multiline-brackets-parentheses-and-tags] | | :material-check-all:{ .lg } | | :material-check:{ .lg }
 Comment trim[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Duplicate blank line[^google-vertical-whitespace] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; ConsecutiveBlankLines" } | :material-information-outline:{ .lg title="&bull; no-consecutive-blank-lines" } | :material-check-all:{ .lg }
 Duplicate blank line in block comment[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; JavadocConsecutiveEmptyLines" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Duplicate blank line in comment[^no-blank-lines-at-initial-final-and-consecutive-comments] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Duplicate space[^kotlin-horizontal-whitespace] | :material-information-outline:{ .lg title="&bull; SingleSpaceSeparator" } | :material-close:{ .lg #accent } | :material-information-outline:{ .lg title="&bull; no-multi-spaces" } | :material-check-all:{ .lg }
-Parentheses trim[^strip-multiline-brackets-parentheses-and-tags] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; no-blank-lines-in-list" } | :material-check-all:{ .lg }
-Tags trim[^strip-multiline-brackets-parentheses-and-tags] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check:{ .lg }
+Parentheses trim[^trim-multiline-brackets-parentheses-and-tags] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; no-blank-lines-in-list" } | :material-check-all:{ .lg }
+Tags trim[^trim-multiline-brackets-parentheses-and-tags] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check:{ .lg }
 Unnecessary blank line after colon[^google-blocks-k-r-style] | | | | :material-check-all:{ .lg }
 Unnecessary blank line before package[^google-source-file-structure] | :material-check-all:{ .lg } | :material-information-outline:{ .lg title="&bull; BlankLineBeforePackage" } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 <span class="material-symbols-outlined lg middle">format_text_wrap</span> **Wrapping group** | **Java** | **Groovy** | **Kotlin** | **Python**
@@ -247,7 +247,7 @@ Statement wrap[^codeconventions-statements] | :material-information-outline:{ .l
 [^no-blank-lines-at-initial-final-and-consecutive-comments]: [No blank lines at initial, final and consecutive comments](rationales/index.md#no-blank-lines-at-initial-final-and-consecutive-comments)
 [^common-place-built-in-methods-last]: [Place built-in methods last](rationales/index.md#place-built-in-methods-last)
 [^remove-unused-imports]: [Remove unused imports](rationales/index.md#remove-unused-imports)
-[^strip-multiline-brackets-parentheses-and-tags]: [Strip multiline brackets, parentheses and tags](rationales/index.md#strip-multiline-brackets-parentheses-and-tags)
+[^trim-multiline-brackets-parentheses-and-tags]: [Trim multiline brackets, parentheses and tags](rationales/index.md#trim-multiline-brackets-parentheses-and-tags)
 [^android-block-tags]: :simple-android:{ #android .lg .middle } [Android: Block tags :material-open-in-new:](https://developer.android.com/kotlin/style-guide#block_tags)
 [^android-braces]: :simple-android:{ #android .lg .middle } [Android: Braces :material-open-in-new:](https://developer.android.com/kotlin/style-guide#braces)
 [^android-horizontal]: :simple-android:{ #android .lg .middle } [Android: Horizontal whitespace :material-open-in-new:](https://developer.android.com/kotlin/style-guide#horizontal)

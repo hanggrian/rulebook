@@ -1,6 +1,6 @@
 from typing import TypeVar
 
-A = TypeVar('A')
+B = TypeVar('B')
 
-class MyClass(A):
+class MyClass(B):
     stub = 1

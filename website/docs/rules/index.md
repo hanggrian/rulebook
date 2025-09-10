@@ -72,7 +72,7 @@ Prefer to use built-in types provided by the language.
 
 === "Kotlin"
     ```kotlin hl_lines="1 4"
-    import java.lang.String
+    import java.util.ArrayList
 
     val names = arrayListOf<String>()
     val people = java.util.ArrayList<Person>()
@@ -307,9 +307,7 @@ this rule applies to tuples.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
-    ```java hl_lines="1 6"
-    String[] games = {"chess", "checkers",};
-
+    ```java hl_lines="2-4"
     int[][] ticTacToe = {
         {0, 0, 0,},
         {0, 0, 0,},
@@ -317,9 +315,7 @@ this rule applies to tuples.
     };
     ```
 === "Groovy"
-    ```groovy hl_lines="1 6"
-    var games = ['chess', 'checkers',]
-
+    ```groovy hl_lines="2-4"
     var ticTacToe = [
         [0, 0, 0,],
         [0, 0, 0,],
@@ -327,9 +323,7 @@ this rule applies to tuples.
     ]
     ```
 === "Python"
-    ```python hl_lines="1 6"
-    games = ('chess', 'checkers',)
-
+    ```python hl_lines="2-4"
     tic_tac_toe = (
         (0, 0, 0,),
         (0, 0, 0,),
@@ -340,9 +334,7 @@ this rule applies to tuples.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
-    ```java hl_lines="1 6"
-    String[] games = {"chess", "checkers"};
-
+    ```java hl_lines="2-4"
     int[][] ticTacToe = {
         {0, 0, 0},
         {0, 0, 0},
@@ -350,9 +342,7 @@ this rule applies to tuples.
     };
     ```
 === "Groovy"
-    ```groovy hl_lines="1 6"
-    var games = ['chess', 'checkers']
-
+    ```groovy hl_lines="2-4"
     var ticTacToe = [
         [0, 0, 0],
         [0, 0, 0],
@@ -360,9 +350,7 @@ this rule applies to tuples.
     ]
     ```
 === "Python"
-    ```python hl_lines="1 6"
-    games = ('chess', 'checkers')
-
+    ```python hl_lines="2-4"
     tic_tac_toe = (
         (0, 0, 0),
         (0, 0, 0),
@@ -379,12 +367,12 @@ line.
 
 === "Kotlin"
     ```kotlin hl_lines="1 5"
-    fun updateInventory(item: String,) = TODO()
+    fun updateInventory(item: String,) {}
 
     fun createInventory(
         item: String,
         quantity: Int
-    ) = TODO()
+    ) {}
     ```
 === "Python"
     ```python hl_lines="1 7"
@@ -403,12 +391,12 @@ line.
 
 === "Kotlin"
     ```kotlin hl_lines="1 5"
-    fun updateInventory(item: String) = TODO()
+    fun updateInventory(item: String) {}
 
     fun createInventory(
         item: String,
         quantity: Int,
-    )
+    ) {}
     ```
 === "Python"
     ```python hl_lines="1 7"
@@ -803,19 +791,19 @@ Abstract classes need at least one abstract function.
 === "Java"
     ```java hl_lines="1"
     class Vehicle {
-        void start();
+        void start() {}
     }
     ```
 === "Groovy"
     ```groovy hl_lines="1"
     class Vehicle {
-        def start()
+        def start() {}
     }
     ```
 === "Kotlin"
     ```kotlin hl_lines="1"
     class Vehicle {
-        fun start()
+        fun start() {}
     }
     ```
 === "Python"
@@ -1005,14 +993,10 @@ Long integer literals should be suffixed with uppercase `L`.
 
 ### String quotes
 
+Wrap string in single quotes, unless there is a template or a single quote.
+
 **:material-star-four-points-outline:{ #accent } Before**
 
-=== "Groovy"
-    ```groovy
-    var name = "John Doe"
-
-    println('G\'day, ' + name)
-    ```
 === "Python"
     ```python
     name = "John Doe"
@@ -1022,12 +1006,6 @@ Long integer literals should be suffixed with uppercase `L`.
 
 **:material-star-four-points:{ #accent } After**
 
-=== "Groovy"
-    ```groovy
-    var name = 'John Doe'
-
-    println("G'day, " + name)
-    ```
 === "Python"
     ```python
     name = 'John Doe'
@@ -1764,8 +1742,8 @@ class.
 
 ### Illegal variable name
 
-Prohibitprimitive type names, base `Object` type names and their plural forms as
-identifiers of properties, parameters and local variables. The name of the
+Prohibits primitive type names, base `Object` type names and their plural forms
+as identifiers of properties, parameters and local variables. The name of the
 identifier should be descriptive and meaningful.
 
 **:material-star-four-points-outline:{ #accent } Before**

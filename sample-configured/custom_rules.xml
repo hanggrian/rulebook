@@ -12,7 +12,7 @@
   xsi:schemaLocation="http://codenarc.org/ruleset/1.0 http://codenarc.org/ruleset-schema.xsd"
   xsi:noNamespaceSchemaLocation="http://codenarc.org/ruleset-schema.xsd">
 
-  <description>Rulebook third-party rules</description>
+  <description>A customized Rulebook third-party rules</description>
 
   <ruleset-ref path="rulesets/basic.xml">
     <exclude name="EmptyCatchBlock"/>
@@ -36,27 +36,50 @@
 
   <ruleset-ref path="rulesets/convention.xml">
     <exclude name="CompileStatic"/>
+    <exclude name="FieldTypeRequired"/>
+    <exclude name="InvertedCondition"/>
+    <exclude name="InvertedIfElse"/>
+    <exclude name="MethodParameterTypeRequired"/>
+    <exclude name="MethodReturnTypeRequired"/>
+    <exclude name="NoDef"/>
+    <exclude name="NoDouble"/>
+    <exclude name="NoFloat"/>
+    <exclude name="ParameterReassignment"/>
+    <exclude name="PublicMethodsBeforeNonPublicMethods"/>
+    <exclude name="StaticFieldsBeforeInstanceFields"/>
+    <exclude name="StaticMethodsBeforeInstanceMethods"/>
+    <exclude name="VariableTypeRequired"/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/design.xml">
-    <exclude name="Instanceof"/>
-    <exclude name="ImplementationAsType"/>
+    <exclude name="AbstractClassWithPublicConstructor"/>
     <exclude name="BuilderMethodWithSideEffects"/>
+    <exclude name="ImplementationAsType"/>
+    <exclude name="Instanceof"/>
   </ruleset-ref>
 
-  <ruleset-ref path="rulesets/dry.xml">
+  <!--ruleset-ref path="rulesets/dry.xml">
     <exclude name="DuplicateStringLiteral"/>
     <exclude name="DuplicateNumberLiteral"/>
-  </ruleset-ref>
+  </ruleset-ref-->
 
   <ruleset-ref path="rulesets/exceptions.xml"/>
 
   <ruleset-ref path="rulesets/formatting.xml">
-    <exclude name="ClassEndsWithBlankLine"/>
-    <exclude name="ClassStartsWithBlankLine"/>
+    <rule-config name="LineLength">
+      <property name="length" value="100"/>
+    </rule-config>
+    <rule-config name="ClassEndsWithBlankLine">
+      <property name="blankLineRequired" value="false"/>
+    </rule-config>
+    <rule-config name="ClassStartsWithBlankLine">
+      <property name="blankLineRequired" value="false"/>
+    </rule-config>
+
     <exclude name="Indentation"/>
     <exclude name="SpaceAfterOpeningBrace"/>
     <exclude name="SpaceBeforeClosingBrace"/>
+    <exclude name="SpaceAroundMapEntryColon"/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/generic.xml"/>
@@ -65,7 +88,11 @@
 
   <ruleset-ref path="rulesets/groovyism.xml"/>
 
-  <ruleset-ref path="rulesets/imports.xml"/>
+  <ruleset-ref path="rulesets/imports.xml">
+    <rule-config name="MisorderedStaticImports">
+      <property name="comesBefore" value="false"/>
+    </rule-config>
+  </ruleset-ref>
 
   <ruleset-ref path="rulesets/jdbc.xml"/>
 
@@ -75,8 +102,9 @@
 
   <ruleset-ref path="rulesets/naming.xml">
     <exclude name="ConfusingMethodName"/>
-    <!--exclude name="MethodName"/-->
-    <exclude name="FactoryMethodName"/>
+    <!-- unit tests have arbitrary names -->
+    <exclude name='MethodName'/>
+    <exclude name='FactoryMethodName'/>
   </ruleset-ref>
 
   <ruleset-ref path="rulesets/security.xml">
@@ -86,6 +114,7 @@
   <ruleset-ref path="rulesets/serialization.xml"/>
 
   <ruleset-ref path="rulesets/size.xml">
+    <!-- AbcMetric, CrapMetric and CyclomaticComplexity require external libs -->
     <exclude name="AbcMetric"/>
     <exclude name="CrapMetric"/>
     <exclude name="CyclomaticComplexity"/>
@@ -99,29 +128,48 @@
     <exclude name="UnnecessaryCollectCall"/>
     <exclude name="UnnecessaryGetter"/>
 
-    <exclude name="UnnecessaryGString"/>
+    <!--exclude name="UnnecessaryGString"/-->
     <exclude name="UnnecessarySetter"/>
     <exclude name="UnnecessaryPublicModifier"/>
     <exclude name="UnnecessaryReturnKeyword"/>
 
+    <!-- Poor suggestion when using static typing -->
     <exclude name="UnnecessaryObjectReferences"/>
+
     <!-- Clash with 'UtilityClassInstanceHiding' -->
     <exclude name="UnnecessaryConstructor"/>
   </ruleset-ref>
 
-  <rule class="com.hanggrian.rulebook.codenarc.BlockTagPunctuationRule">
-    <property name="tags" value="@throws"/>
-  </rule>
+  <ruleset-ref path="rulesets/comments.xml">
+    <exclude name="ClassJavadoc"/>
+    <exclude name="JavadocEmptyAuthorTag"/>
+    <exclude name="JavadocEmptyExceptionTag"/>
+    <exclude name="JavadocEmptyParamTag"/>
+    <exclude name="JavadocEmptyReturnTag"/>
+    <exclude name="JavadocEmptySeeTag"/>
+    <exclude name="JavadocEmptySinceTag"/>
+    <exclude name="JavadocEmptyThrowsTag"/>
+    <exclude name="JavadocEmptyVersionTag"/>
+    <exclude name="JavadocMissingExceptionDescription"/>
+    <exclude name="JavadocMissingParamDescription"/>
+    <exclude name="JavadocMissingThrowsDescription"/>
+  </ruleset-ref>
 
-  <rule class="com.hanggrian.rulebook.codenarc.IllegalClassFinalNameRule">
-    <property name="names" value="Hello, World"/>
-  </rule>
+  <ruleset-ref path="rulesets/rulebook.xml">
+    <rule-config name="BlockTagPunctuation">
+      <property name="tags" value="@throws"/>
+    </rule-config>
 
-  <rule class="com.hanggrian.rulebook.codenarc.IllegalVariableNameRule">
-    <property name="names" value="mString, mList"/>
-  </rule>
+    <rule-config name="IllegalClassFinalName">
+      <property name="names" value="Hello, World"/>
+    </rule-config>
 
-  <rule class="com.hanggrian.rulebook.codenarc.RequiredGenericsNameRule">
-    <property name="names" value="A"/>
-  </rule>
+    <rule-config name="IllegalVariableName">
+      <property name="names" value="mString, mList"/>
+    </rule-config>
+
+    <rule-config name="RequiredGenericsName">
+      <property name="names" value="A"/>
+    </rule-config>
+  </ruleset-ref>
 </ruleset>

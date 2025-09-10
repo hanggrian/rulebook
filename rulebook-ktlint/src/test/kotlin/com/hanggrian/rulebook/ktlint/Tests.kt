@@ -1,5 +1,6 @@
 package com.hanggrian.rulebook.ktlint
 
+import com.hanggrian.rulebook.ktlint.rules.RulebookRule
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

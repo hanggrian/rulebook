@@ -120,7 +120,7 @@ import java.lang.String
 val names = arrayListOf<String>()
 ```
 
-## Strip multiline brackets, parentheses and tags
+## Trim multiline brackets, parentheses and tags
 
 Method declaration, calls and collection initializers should not start or end
 with a blank line.

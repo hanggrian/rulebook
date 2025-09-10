@@ -1,9 +1,9 @@
 package com.example.groovy
 
 class IllegalVariableName {
-    class Person {}
-
-    String name = ""
+    String name = ''
 
     List<Person> people = []
+
+    class Person {}
 }
