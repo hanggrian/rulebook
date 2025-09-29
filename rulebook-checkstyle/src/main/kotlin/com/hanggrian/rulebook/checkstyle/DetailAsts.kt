@@ -1,4 +1,4 @@
-@file:JvmName("NodesKt")
+@file:JvmName("DetailNodesKt")
 @file:JvmMultifileClass
 
 package com.hanggrian.rulebook.checkstyle
@@ -127,4 +127,4 @@ internal fun DetailAST.isComment(): Boolean = isCommentType(type)
 /** Returns true if this node is an EOL comment without content. */
 internal fun DetailAST.isEolCommentEmpty(): Boolean =
     type == SINGLE_LINE_COMMENT &&
-        firstChild.let { n -> n.type == COMMENT_CONTENT && n.text == "\n" }
+        firstChild.let { it.type == COMMENT_CONTENT && it.text == "\n" }

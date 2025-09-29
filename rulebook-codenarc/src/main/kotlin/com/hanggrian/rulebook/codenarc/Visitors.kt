@@ -44,7 +44,7 @@ internal fun AbstractAstVisitor.hasCommentAbove(current: ASTNode): Boolean {
 internal fun AbstractAstVisitor.getLiteral(expression: ConstantExpression): String? =
     sourceCode.lines[expression.lineNumber - 1]
         .takeUnless { it.length > expression.lastColumnNumber }
-        ?.substring(expression.columnNumber - 1, expression.lastColumnNumber - 1)
+        ?.substring(expression.lastColumnNumber - 2, expression.lastColumnNumber - 1)
 
 /**
  * @see AbstractAstVisitor.sourceLine

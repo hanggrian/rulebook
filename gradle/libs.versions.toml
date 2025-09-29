@@ -13,9 +13,9 @@ codenarc = "3.6.0"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.1"
-ktlint = "org.jlleitschuh.gradle.ktlint:12.2.0"
-maven-publish = "com.vanniktech.maven.publish.base:0.31.0"
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.2"
+ktlint = "org.jlleitschuh.gradle.ktlint:13.1.0"
+maven-publish = "com.vanniktech.maven.publish.base:0.34.0"
 
 [libraries]
 # main
@@ -28,8 +28,16 @@ checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checks
 codenarc = { module = "org.codenarc:CodeNarc", version.ref = "codenarc" }
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
-truth = "com.google.truth:truth:1.4.4"
-logback = "ch.qos.logback:logback-classic:1.5.17"
+mockito-junit-jupiter = "org.mockito:mockito-junit-jupiter:5.20.0"
+truth = "com.google.truth:truth:1.4.5"
+logback = "ch.qos.logback:logback-classic:1.5.18"
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.12.2"
+
+[bundles]
+junit5 = [
+  "junit-jupiter",
+  "mockito-junit-jupiter",
+  "truth",
+]

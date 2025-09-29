@@ -14,15 +14,15 @@ public class DuplicateBlankLineInBlockCommentCheck : RulebookJavadocCheck() {
         // find matching sibling
         val nextLeadingAsterisk =
             node
-                .nextSibling
+                .nextSibling()
                 ?.takeIf { it.type == NEWLINE }
-                ?.nextSibling
+                ?.nextSibling()
                 ?.takeIf { it.type == LEADING_ASTERISK }
                 ?: return
 
         // checks for violation
         nextLeadingAsterisk
-            .nextSibling
+            .nextSibling()
             ?.type
             ?.takeIf { it == NEWLINE }
             ?: return

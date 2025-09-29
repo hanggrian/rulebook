@@ -16,8 +16,7 @@ dependencies {
 
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
     testImplementation(platform(libs.junit.bom))
-    testImplementation(libs.junit.jupiter)
-    testImplementation(libs.truth)
+    testImplementation(libs.bundles.junit5)
     testImplementation(libs.ktlint.test)
     testImplementation(libs.ktlint.ruleset.standard) // for ID comparison
 

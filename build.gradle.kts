@@ -2,7 +2,6 @@ import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.MavenPublishBasePlugin
-import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
@@ -44,7 +43,7 @@ subprojects {
     plugins.withType<MavenPublishBasePlugin> {
         configure<MavenPublishBaseExtension> {
             configure(KotlinJvm(JavadocJar.Dokka("dokkaJavadoc")))
-            publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+            publishToMavenCentral()
             signAllPublications()
             pom {
                 name.set(project.name)
@@ -68,7 +67,8 @@ subprojects {
                 scm {
                     url.set(releaseUrl)
                     connection.set("scm:git:https://github.com/$developerId/$releaseArtifact.git")
-                    developerConnection.set("scm:git:ssh://git@github.com/$developerId/$releaseArtifact.git")
+                    developerConnection
+                        .set("scm:git:ssh://git@github.com/$developerId/$releaseArtifact.git")
                 }
             }
         }
