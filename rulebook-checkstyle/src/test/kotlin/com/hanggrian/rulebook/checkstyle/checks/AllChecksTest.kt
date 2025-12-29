@@ -26,7 +26,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
                         addConfiguration<DuplicateBlankLineInBlockCommentCheck>()
                         addConfiguration<DuplicateBlankLineInCommentCheck>()
                         addConfiguration<ExceptionInheritanceCheck>()
-                        addConfiguration<IllegalClassFinalNameCheck>()
+                        addConfiguration<IllegalClassNameSuffixCheck>()
                         addConfiguration<LambdaWrapCheck>()
                         addConfiguration<MemberOrderCheck>()
                         addConfiguration<NestedIfElseCheck>()
@@ -71,6 +71,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
             checker,
             getPath("Checker.java"),
             "64: Remove blank line after {.",
+            "72:5: Arrange member 'property' before 'static member'.",
             "75:54: Break assignment into newline.",
             "183:9: Invert if condition.",
             "223:40: Break assignment into newline.",
@@ -103,6 +104,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
             checker,
             getPath("JavaFile.java"),
             "47:59: Break assignment into newline.",
+            "59:5: Arrange member 'property' before 'static member'.",
             "89:43: Break assignment into newline.",
             "132:55: Break each parameter into newline.",
             "165:27: Break assignment into newline.",
@@ -111,6 +113,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
             "229:5: Move 'hashCode' to last.",
             "233:5: Move 'toString' to last.",
             "244:19: Break assignment into newline.",
+            "268:5: Arrange member 'function' before 'static member'.",
         )
 
     @Test
@@ -118,10 +121,12 @@ class AllChecksTest : AbstractModuleTestSupport() {
         verify(
             checker,
             getPath("RequestBuilder.java"),
+            "52:5: Arrange member 'property' before 'static member'.",
             "156:21: Break each parameter into newline.",
             "156:35: Break each parameter into newline.",
             "156:44: Break each parameter into newline.",
             "156:55: Break each parameter into newline.",
+            "186:5: Arrange member 'function' before 'static member'.",
             "200:11: Lift else and add return in if block.",
         )
 

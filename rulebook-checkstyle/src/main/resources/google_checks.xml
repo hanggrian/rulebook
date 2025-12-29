@@ -525,7 +525,7 @@
     <module name="ConstantName"/>
     <module name="LocalFinalVariableName"/>
     <module name="StaticVariableName"/>
-    <module name="IllegalClassFinalName"/>
+    <module name="IllegalClassNameSuffix"/>
     <module name="IllegalIdentifierName">
       <property
         name="format"

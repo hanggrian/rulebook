@@ -1,6 +1,6 @@
 from tokenize import TokenInfo, COMMENT
 
-from astroid import NodeNG, Name, Assign, AnnAssign, AssignName, FunctionDef, ClassDef, If, \
+from astroid.nodes import NodeNG, Name, Assign, AnnAssign, AssignName, FunctionDef, ClassDef, If, \
     MatchCase, Return, Raise, Break, Continue, Attribute
 
 

@@ -2,13 +2,13 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.illegal_class_final_name import IllegalClassFinalNameChecker
+from rulebook_pylint.checkers.illegal_class_name_suffix import IllegalClassNameSuffixChecker
 
 from ..tests import assert_properties, msg
 
 
-class TestIllegalClassFinalNameChecker(CheckerTestCase):
-    CHECKER_CLASS = IllegalClassFinalNameChecker
+class TestIllegalClassNameSuffixChecker(CheckerTestCase):
+    CHECKER_CLASS = IllegalClassNameSuffixChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -33,7 +33,7 @@ class TestIllegalClassFinalNameChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(IllegalClassFinalNameChecker.MSG_ALL, (2, 6, 22), node1, 'Manager'),
+            msg(IllegalClassNameSuffixChecker.MSG_ALL, (2, 6, 22), node1, 'Manager'),
         ):
             self.checker.visit_classdef(node1)
 
@@ -46,7 +46,7 @@ class TestIllegalClassFinalNameChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(IllegalClassFinalNameChecker.MSG_UTIL, (2, 6, 19), node1, 'Spaceships'),
+            msg(IllegalClassNameSuffixChecker.MSG_UTIL, (2, 6, 19), node1, 'Spaceships'),
         ):
             self.checker.visit_classdef(node1)
 

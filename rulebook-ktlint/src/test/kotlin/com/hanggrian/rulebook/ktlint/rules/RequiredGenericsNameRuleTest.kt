@@ -12,7 +12,7 @@ class RequiredGenericsNameRuleTest {
     fun `Rule properties`() = RequiredGenericsNameRule().assertProperties()
 
     @Test
-    fun `Common generic type in class-alike`() =
+    fun `Common generic type in class`() =
         assertThatCode(
             """
             class MyClass<T>
@@ -28,7 +28,7 @@ class RequiredGenericsNameRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Uncommon generic type in class-alike`() =
+    fun `Uncommon generic type in class`() =
         assertThatCode(
             """
             class MyClass<X>
@@ -54,6 +54,8 @@ class RequiredGenericsNameRuleTest {
         assertThatCode(
             """
             fun <E> execute(list: List<E>) {}
+
+            fun <reified E> execute2(list: List<E>) {}
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -62,8 +64,13 @@ class RequiredGenericsNameRuleTest {
         assertThatCode(
             """
             fun <X> execute(list: List<X>) {}
+
+            fun <reified X> execute2(list: List<X>) {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 6, "Use common generics 'E, K, N, T, V'.")
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(1, 6, "Use common generics 'E, K, N, T, V'."),
+            LintViolation(3, 14, "Use common generics 'E, K, N, T, V'."),
+        )
 
     @Test
     fun `Skip inner generics`() =
@@ -76,12 +83,4 @@ class RequiredGenericsNameRuleTest {
             }
             """.trimIndent(),
         ).hasNoLintViolations()
-
-    @Test
-    fun `Reified generic type`() =
-        assertThatCode(
-            """
-            fun <reified X> execute(list: List<X>) {}
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 14, "Use common generics 'E, K, N, T, V'.")
 }

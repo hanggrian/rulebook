@@ -31,7 +31,7 @@ class ClassNameAbbreviationRuleTest : AbstractRuleTestCase<ClassNameAbbreviation
         )
 
     @Test
-    fun `Class names with upppercase abbreviation`() =
+    fun `Class names with uppercase abbreviation`() =
         assertViolations(
             """
             class MySQLClass {}

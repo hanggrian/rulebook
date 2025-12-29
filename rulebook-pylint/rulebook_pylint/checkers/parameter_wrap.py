@@ -1,4 +1,4 @@
-from astroid import NodeNG, FunctionDef, Call
+from astroid.nodes import NodeNG, FunctionDef, Call, Arguments
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -15,10 +15,12 @@ class ParameterWrapChecker(RulebookChecker):
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
-        self._process(node.args.args)
+        if isinstance(node, NodeNG):
+            self._process(node.args.args)
 
     def visit_call(self, node: Call) -> None:
-        self._process(node.args)
+        if isinstance(node, NodeNG):
+            self._process(node.args)
 
     def _process(self, parameters: list[NodeNG]) -> None:
         # target multiline parameters

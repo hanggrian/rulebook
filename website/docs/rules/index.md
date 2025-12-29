@@ -1663,7 +1663,7 @@ Non-constant fields, functions and parameters should be written in
         another_user = user
     ```
 
-### Illegal class final name
+### Illegal class name suffix
 
 Prohibits meaningless source names in class, interface, object and files. The
 name of utility classes (or files) should be the plural form of the extended
@@ -1673,29 +1673,19 @@ class.
 
 === "Java"
     ```java
-    interface AbstractRocket {}
-
-    class SpaceshipWrapper implements AbstractRocket {}
+    class SpaceshipWrapper {}
     ```
 === "Groovy"
     ```groovy
-    interface AbstractRocket {}
-
-    class SpaceshipWrapper implements AbstractRocket {}
+    class SpaceshipWrapper {}
     ```
 === "Kotlin"
     ```kotlin
-    interface AbstractRocket
-
-    class SpaceshipWrapper : AbstractRocket
+    class SpaceshipWrapper
     ```
 === "Python"
     ```python
-    class AbstractRocket:
-        pass
-
-
-    class SpaceshipWrapper(AbstractRocket):
+    class SpaceshipWrapper():
         pass
     ```
 
@@ -1703,42 +1693,32 @@ class.
 
 === "Java"
     ```java
-    interface Rocket {}
-
-    class Spaceship implements Rocket {}
+    class Spaceship {}
     ```
 === "Groovy"
     ```groovy
-    interface Rocket {}
-
-    class Spaceship implements Rocket {}
+    class Spaceship {}
     ```
 === "Kotlin"
     ```kotlin
-    interface Rocket
-
-    class Spaceship : Rocket
+    class Spaceship
     ```
 === "Python"
     ```python
-    class Rocket:
-        pass
-
-
-    class Spaceship(Rocket):
+    class Spaceship():
         pass
     ```
 
 ??? Configuration
     :material-language-java:{ .lg .middle } Checkstyle | Default value
     --- | ---
-    IllegalClassFinalName#names | `Util, Utility, Helper, Manager, Wrapper`
+    IllegalClassNameSuffix#names | `Util, Utility, Helper, Manager, Wrapper`
     **:simple-apachegroovy:{ .lg .middle } CodeNarc**
-    IllegalClassFinalName#names | `Util, Utility, Helper, Manager, Wrapper`
+    IllegalClassNameSuffix#names | `Util, Utility, Helper, Manager, Wrapper`
     **:material-language-kotlin:{ .lg .middle } Ktlint**
-    rulebook_illegal_class_final_names | `Util, Utility, Helper, Manager, Wrapper`
+    rulebook_illegal_class_name_suffixes | `Util, Utility, Helper, Manager, Wrapper`
     **:material-language-python: Pylint**
-    rulebook-illegal-class-final-names | `Util, Utility, Helper, Manager, Wrapper`
+    rulebook-illegal-class-name-suffixes | `Util, Utility, Helper, Manager, Wrapper`
 
 ### Illegal variable name
 
@@ -2293,13 +2273,18 @@ Place inner classes at the end of the class.
 ### Member order
 
 The class should be organized as follows: properties, initializer block,
-constructors and methods.
+constructors, methods and static members. Inner classes should be declared next
+to the last member that uses them.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
-    ```java hl_lines="2 4-6 8 10-12"
+    ```java
     class Car {
+        static void log(String message) {
+            System.out.println(message);
+        }
+
         Car(String brand, String model) {}
 
         Car(String brand) {
@@ -2314,8 +2299,12 @@ constructors and methods.
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="2 4-6 8 10-12"
+    ```groovy
     class Car {
+        static def log(String message) {
+            System.out.println(message)
+        }
+
         Car(String brand, String model) {}
 
         Car(String brand) {
@@ -2330,8 +2319,14 @@ constructors and methods.
     }
     ```
 === "Kotlin"
-    ```kotlin hl_lines="2-4 6 8 10-12"
+    ```kotlin
     class Car(brand: String, model: String) {
+        companion object {
+            fun log(message: String) {
+                println(message)
+            }
+        }
+
         init {
             log("Car created")
         }
@@ -2346,22 +2341,26 @@ constructors and methods.
     }
     ```
 === "Python"
-    ```python hl_lines="2-3 5 7-8"
+    ```python
     class Car:
+        @staticmethod
+        def log(message: str):
+            print(message)
+
         def __init__(self, brand, model = 'Unknown'):
             pass
 
         wheels = 4
 
         def start(self):
-            pass
+            log('Car started')
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
-    ```java hl_lines="2 4 6-8 10-12"
-    class Car implements Vehicle {
+    ```java
+    class Car {
         int wheels = 4;
 
         Car(String brand, String model) {}
@@ -2373,11 +2372,15 @@ constructors and methods.
         void start() {
             log("Car created");
         }
+
+        static void log(String message) {
+            System.out.println(message);
+        }
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="2 4 6-8 10-12"
-    class Car implements Vehicle {
+    ```groovy
+    class Car {
         var wheels = 4
 
         Car(String brand, String model) {}
@@ -2389,11 +2392,15 @@ constructors and methods.
         def start() {
             log('Car created')
         }
+
+        static def log(String message) {
+            System.out.println(message)
+        }
     }
     ```
 === "Kotlin"
-    ```kotlin hl_lines="2 4-6 8 10-12"
-    class Car(brand: String, model: String): Vehicle {
+    ```kotlin
+    class Car(brand: String, model: String) {
         override val wheels = 4
 
         init {
@@ -2405,18 +2412,28 @@ constructors and methods.
         fun start() {
             log("Car started")
         }
+
+        companion object {
+            fun log(message: String) {
+                println(message)
+            }
+        }
     }
     ```
 === "Python"
-    ```python hl_lines="2 4-5 7-8"
-    class Car(Vehicle):
+    ```python
+    class Car:
         wheels = 4
 
         def __init__(self, brand, model = 'Unknown'):
             pass
 
         def start(self):
-            pass
+            log('Car started')
+
+        @staticmethod
+        def log(message: str):
+            print(message)
     ```
 
 ### Overload function position

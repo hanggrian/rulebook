@@ -12,13 +12,14 @@ class MemberOrderCheckTest : CheckTest() {
     fun `Correct member organizations`() = assertAll("MemberOrder1")
 
     @Test
-    fun `Member property after constructor`() =
+    fun `Property after constructor`() =
         assertAll("MemberOrder2", "7:9: Arrange member 'property' before 'constructor'.")
 
     @Test
-    fun `Member constructor after function`() =
+    fun `Constructor after function`() =
         assertAll("MemberOrder3", "7:9: Arrange member 'constructor' before 'function'.")
 
     @Test
-    fun `Skip static members`() = assertAll("MemberOrder4")
+    fun `Function after static member`() =
+        assertAll("MemberOrder4", "7:9: Arrange member 'function' before 'static member'.")
 }

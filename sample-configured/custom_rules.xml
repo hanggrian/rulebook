@@ -160,7 +160,7 @@
       <property name="tags" value="@throws"/>
     </rule-config>
 
-    <rule-config name="IllegalClassFinalName">
+    <rule-config name="IllegalClassNameSuffix">
       <property name="names" value="Hello, World"/>
     </rule-config>
 

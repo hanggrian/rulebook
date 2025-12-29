@@ -74,7 +74,7 @@ class TestParameterWrapChecker(CheckerTestCase):
             self.checker.visit_functiondef(node1)
             self.checker.visit_call(node2)
 
-    def aware_of_chained_single_line_calls(self):
+    def test_aware_of_chained_single_line_calls(self):
         node1, node2 = \
             extract_node(
                 '''
@@ -88,29 +88,26 @@ class TestParameterWrapChecker(CheckerTestCase):
             self.checker.visit_functiondef(node1)
             self.checker.visit_call(node2)
 
-    def aware_allow_comments_between_parameters(self):
-        node1, node2 = \
+    def test_allow_comments_between_parameters(self):
+        node1 = \
             extract_node(
                 '''
                 def foo(  #@
                     a,
                     # Comment
                     b,
-                    """Block comment"""
-                    c,
                 ):
                     pass
                 ''',
             )
         with self.assertNoMessages():
             self.checker.visit_functiondef(node1)
-            self.checker.visit_call(node2)
 
-    def aware_sam(self):
-        node1, node2 = \
+    def test_allow_sam(self):
+        node1 = \
             extract_node(
                 '''
-                def foo():
+                def foo():  #@
                     bar(
                         lambda x: x +
                             2,
@@ -119,7 +116,6 @@ class TestParameterWrapChecker(CheckerTestCase):
             )
         with self.assertNoMessages():
             self.checker.visit_functiondef(node1)
-            self.checker.visit_call(node2)
 
 
 if __name__ == '__main__':

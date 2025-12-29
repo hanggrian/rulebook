@@ -2,10 +2,8 @@ package com.hanggrian.rulebook.checkstyle.checks;
 
 class MemberOrder {
     class Foo {
-        static void bar() {}
+        static void qux() {}
 
-        static int baz = 0;
-
-        Foo() {}
+        void bar() {}
     }
 }

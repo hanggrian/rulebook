@@ -68,4 +68,18 @@ class EmptyBracesClipRuleTest : AbstractRuleTestCase<EmptyBracesClipRule>() {
             }
             """.trimIndent(),
         )
+
+    @Test
+    fun `Braces in parameter default value declaration`() =
+        assertSingleViolation(
+            """
+            def foo(
+                Closure<Void> bar = {},
+                Closure<Void> baz = { }
+            ) {}
+            """.trimIndent(),
+            3,
+            "Closure<Void> baz = { }",
+            "Convert into '{}'.",
+        )
 }

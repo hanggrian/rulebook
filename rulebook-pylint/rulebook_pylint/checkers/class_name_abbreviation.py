@@ -1,5 +1,5 @@
 import regex
-from astroid import ClassDef
+from astroid.nodes import ClassDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from regex import Pattern
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker

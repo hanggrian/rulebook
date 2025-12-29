@@ -9,8 +9,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RECORD_DEF
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
-public class IllegalClassFinalNameCheck : RulebookAstCheck() {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-name-suffix) */
+public class IllegalClassNameSuffixCheck : RulebookAstCheck() {
     public var names: String = "Util, Utility, Helper, Manager, Wrapper"
 
     internal val nameList get() = names.split(',').map { it.trim() }
@@ -42,8 +42,8 @@ public class IllegalClassFinalNameCheck : RulebookAstCheck() {
     }
 
     private companion object {
-        const val MSG_ALL = "illegal.class.final.name.all"
-        const val MSG_UTIL = "illegal.class.final.name.util"
+        const val MSG_ALL = "illegal.class.name.suffix.all"
+        const val MSG_UTIL = "illegal.class.name.suffix.util"
 
         val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
     }

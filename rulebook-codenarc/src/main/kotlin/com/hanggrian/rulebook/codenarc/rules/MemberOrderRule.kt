@@ -2,7 +2,11 @@ package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
+import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
+import org.codehaus.groovy.ast.ConstructorNode
+import org.codehaus.groovy.ast.FieldNode
+import org.codehaus.groovy.ast.MethodNode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#member-order) */
 public class MemberOrderRule : RulebookAstRule() {
@@ -12,44 +16,43 @@ public class MemberOrderRule : RulebookAstRule() {
 
     private companion object {
         const val MSG = "member.order"
+
+        private val ASTNode.memberPosition: Int
+            get() =
+                when (this) {
+                    is FieldNode -> if (isStatic) 4 else 1
+                    is ConstructorNode -> 2
+                    is MethodNode -> if (isStatic) 4 else 3
+                    else -> -1
+                }
+
+        private val ASTNode.memberArgument: String
+            get() =
+                when (this) {
+                    is FieldNode -> if (isStatic) "static member" else "property"
+                    is ConstructorNode -> "constructor"
+                    is MethodNode -> if (isStatic) "static member" else "function"
+                    else -> ""
+                }
     }
 
     public class Visitor : RulebookVisitor() {
         override fun visitClassEx(node: ClassNode) {
             super.visitClassEx(node)
 
-            // get indices of first members
-            val firstConstructorIndex =
-                node
-                    .declaredConstructors
-                    .minOfOrNull { it.lineNumber }
-            val firstFunctionIndex =
-                node
-                    .methods
-                    .filterNot { it.isStatic }
-                    .minOfOrNull { it.lineNumber }
-
-            // in Groovy, static members have specific keyword
-            node
-                .fields
-                .filterNot { it.isStatic }
-                .forEach {
-                    // checks for violation
-                    when {
-                        firstConstructorIndex != null && it.lineNumber > firstConstructorIndex ->
-                            addViolation(it, Messages.get(MSG, "property", "constructor"))
-
-                        firstFunctionIndex != null && it.lineNumber > firstFunctionIndex ->
-                            addViolation(it, Messages.get(MSG, "property", "function"))
-                    }
+            var lastChild: ASTNode? = null
+            for (child in (node.declaredConstructors + node.fields + node.methods)
+                .sortedBy { it.lineNumber }) {
+                // checks for violation
+                if ((lastChild?.memberPosition ?: -1) > child.memberPosition) {
+                    addViolation(
+                        child,
+                        Messages.get(MSG, child.memberArgument, lastChild!!.memberArgument),
+                    )
                 }
 
-            // checks for violation
-            firstFunctionIndex ?: return
-            node
-                .declaredConstructors
-                .filter { it.lineNumber > firstFunctionIndex }
-                .forEach { addViolation(it, Messages.get(MSG, "constructor", "function")) }
+                lastChild = child
+            }
         }
     }
 }

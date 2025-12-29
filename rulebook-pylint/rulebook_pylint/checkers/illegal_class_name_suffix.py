@@ -1,5 +1,5 @@
 import regex
-from astroid import ClassDef
+from astroid.nodes import ClassDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
 from regex import Pattern
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
@@ -9,10 +9,10 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class IllegalClassFinalNameChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name"""
-    MSG_ALL: str = 'illegal-class-final-name-all'
-    MSG_UTIL: str = 'illegal-class-final-name-util'
+class IllegalClassNameSuffixChecker(RulebookChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#illegal-class-name-suffix"""
+    MSG_ALL: str = 'illegal-class-name-suffix-all'
+    MSG_UTIL: str = 'illegal-class-name-suffix-util'
 
     TITLE_CASE_REGEX: Pattern = \
         regex.compile(
@@ -20,11 +20,11 @@ class IllegalClassFinalNameChecker(RulebookChecker):
             r'([A-Z]+(?=([A-Z][a-z])|($)|([0-9]))))',
         )
 
-    name: str = 'illegal-class-final-name'
+    name: str = 'illegal-class-name-suffix'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_ALL, MSG_UTIL)
     options: Options = (
         (
-            'rulebook-illegal-class-final-names',
+            'rulebook-illegal-class-name-suffixes',
             {
                 'default': ('Util', 'Utility', 'Helper', 'Manager', 'Wrapper'),
                 'type': 'csv',
@@ -34,16 +34,16 @@ class IllegalClassFinalNameChecker(RulebookChecker):
         ),
     )
 
-    _illegal_class_final_names: list[str]
+    _illegal_class_name_suffixes: list[str]
 
     def open(self) -> None:
-        self._illegal_class_final_names = self.linter.config.rulebook_illegal_class_final_names
+        self._illegal_class_name_suffixes = self.linter.config.rulebook_illegal_class_name_suffixes
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
         words: list[str] = [
             m[0] for m in self.TITLE_CASE_REGEX.findall(node.name) \
-            if m[0] in self._illegal_class_final_names
+            if m[0] in self._illegal_class_name_suffixes
         ]
         if not words:
             return
@@ -60,4 +60,4 @@ class IllegalClassFinalNameChecker(RulebookChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(IllegalClassFinalNameChecker(linter))
+    linter.register_checker(IllegalClassNameSuffixChecker(linter))

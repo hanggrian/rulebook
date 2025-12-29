@@ -1,7 +1,7 @@
 from codecs import decode
 
 import regex
-from astroid import Module
+from astroid.nodes import Module
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from regex import Pattern, Match, IGNORECASE
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker

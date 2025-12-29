@@ -26,21 +26,16 @@ class ExceptionInheritanceRuleTest {
             class Foo : Throwable()
 
             class Bar : Error()
-            """.trimIndent(),
-        ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 13, "Extend from class 'Exception'."),
-            LintViolation(3, 13, "Extend from class 'Exception'."),
-        )
 
-    @Test
-    fun `Extend without constructor callee`() =
-        assertThatCode(
-            """
-            class Foo : Throwable {
+            class Baz : Throwable {
                 constructor()
 
                 constructor(message: String): super(message)
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 13, "Extend from class 'Exception'.")
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(1, 13, "Extend from class 'Exception'."),
+            LintViolation(3, 13, "Extend from class 'Exception'."),
+            LintViolation(5, 13, "Extend from class 'Exception'."),
+        )
 }

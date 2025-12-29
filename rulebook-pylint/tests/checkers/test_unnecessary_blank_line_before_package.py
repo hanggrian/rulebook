@@ -32,6 +32,17 @@ class TestUnnecessaryBlankLineBeforePackageChecker(CheckerTestCase):
         with self.assertAddsMessages(msg(UnnecessaryBlankLineBeforePackageChecker.MSG, 0)):
             self.checker.process_tokens(tokens)
 
+    def test_skip_comment(self):
+        tokens = \
+            _tokenize_str(
+                '''# Lorem ipsum.
+
+                import unittest
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.process_tokens(tokens)
+
 
 if __name__ == '__main__':
     main()

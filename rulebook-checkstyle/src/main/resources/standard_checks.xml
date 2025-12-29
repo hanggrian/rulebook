@@ -219,7 +219,7 @@
     <module name="LambdaParameterName"/>
     <module name="PatternVariableName"/>
     <module name="RecordComponentName"/>
-    <module name="IllegalClassFinalName"/>
+    <module name="IllegalClassNameSuffix"/>
     <module name="IllegalIdentifierName">
       <property
         name="format"

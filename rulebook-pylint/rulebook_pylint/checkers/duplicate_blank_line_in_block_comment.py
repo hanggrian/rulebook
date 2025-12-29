@@ -1,4 +1,4 @@
-from astroid import Const, Module, ClassDef, FunctionDef
+from astroid.nodes import Const, Module, ClassDef, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages

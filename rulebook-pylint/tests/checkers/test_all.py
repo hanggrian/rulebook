@@ -3,7 +3,8 @@ from os.path import join, dirname
 from typing import Any, Iterator, Generator
 from unittest import main
 
-from astroid import parse, NodeNG, ClassDef, Module, FunctionDef, Assign, Match, For, While, Call
+from astroid import parse
+from astroid.nodes import NodeNG, ClassDef, Module, FunctionDef, Assign, Match, For, While, Call
 from pylint.testutils import UnittestLinter, MessageTest, _tokenize_str
 from pylint.testutils.global_test_linter import linter
 from pylint.utils import ASTWalker
@@ -22,7 +23,7 @@ from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_pylint.checkers.empty_parentheses_clip import EmptyParenthesesClipChecker
 from rulebook_pylint.checkers.exception_inheritance import ExceptionInheritanceChecker
 from rulebook_pylint.checkers.file_size import FileSizeChecker
-from rulebook_pylint.checkers.illegal_class_final_name import IllegalClassFinalNameChecker
+from rulebook_pylint.checkers.illegal_class_name_suffix import IllegalClassNameSuffixChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_pylint.checkers.member_order import MemberOrderChecker
 from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
@@ -58,8 +59,10 @@ class TestAllCheckers:
         DuplicateSpaceChecker,
         EmptyParenthesesClipChecker,
         ExceptionInheritanceChecker,
-        # FileSizeChecker, TODO throwing error, find out why
-        IllegalClassFinalNameChecker,
+        # TODO find out why this test shares config (max 3 lines) with `test_file_size` when running
+        #   command `pytest`.
+        # FileSizeChecker,
+        IllegalClassNameSuffixChecker,
         InnerClassPositionChecker,
         MemberOrderChecker,
         MemberSeparatorChecker,
@@ -69,6 +72,7 @@ class TestAllCheckers:
         RedundantDefaultChecker,
         RequiredGenericsNameChecker,
         ShortBlockCommentClipChecker,
+        # skip string quotes, too many errors
         # StringQuotesChecker,
         TodoCommentChecker,
         TrailingCommaChecker,
@@ -211,6 +215,7 @@ class TestAllCheckers:
             msg(BlockCommentTrimChecker.MSG_LAST, (2551, 4, 7), clim.doc_node),
             msg(BlockCommentTrimChecker.MSG_LAST, (2668, 4, 7), matshow.doc_node),
             msg(DuplicateBlankLineInBlockCommentChecker.MSG, (2173, 4, 2229, 7), xticks.doc_node),
+            # msg(FileSizeChecker.MSG, args=1000),
             msg(
                 NestedIfElseChecker.MSG_INVERT,
                 (545, 4, 548, 20),

@@ -32,7 +32,7 @@ class AllRulesTest : AbstractTestCase() {
             EmptyBracketsClipRule(),
             EmptyParenthesesClipRule(),
             EmptyTagsClipRule(),
-            IllegalClassFinalNameRule(),
+            IllegalClassNameSuffixRule(),
             IllegalVariableNameRule(),
             ImportOrderRule(),
             InnerClassPositionRule(),
@@ -69,6 +69,11 @@ class AllRulesTest : AbstractTestCase() {
             javaClass
                 .getResource("CodeNarcRunner.groovy")!!
                 .readText(),
+            violationOf(
+                49,
+                "String ruleSetFiles",
+                "Arrange member 'property' before 'static member'.",
+            ),
             violationOf(116, "if (pluginClassNames) {", "Invert 'if' condition."),
             violationOf(149, "if (plugins) {", "Invert 'if' condition."),
             violationOf(167, "* @return a single RuleSet", "End '@return' with a period."),
@@ -80,6 +85,11 @@ class AllRulesTest : AbstractTestCase() {
             javaClass
                 .getResource("GrailsPublishGradlePlugin.groovy")!!
                 .readText(),
+            violationOf(
+                59,
+                "String getErrorMessage(String missingSetting) {",
+                "Arrange member 'function' before 'static member'.",
+            ),
             violationOf(
                 177,
                 "project.tasks.withType(Sign).configureEach { Sign task ->",
@@ -259,6 +269,11 @@ class AllRulesTest : AbstractTestCase() {
                     "before 'java.util.function.Predicate'.",
             ),
             violationOf(
+                66,
+                "private final HttpClient httpClient = newDefaultHttpClient()",
+                "Arrange member 'property' before 'static member'.",
+            ),
+            violationOf(
                 110,
                 "* @param config The Fusion configuration object",
                 "End '@param' with a period.",
@@ -306,6 +321,12 @@ class AllRulesTest : AbstractTestCase() {
             ),
             violationOf(228, "* @param req The HttpRequest to send", "End '@param' with a period."),
             violationOf(229, "* @return The HttpResponse received", "End '@return' with a period."),
+            violationOf(
+                231,
+                "private <T> HttpResponse<String> " +
+                    "safeHttpSend(HttpRequest req, RetryPolicy<T> policy) {",
+                "Arrange member 'function' before 'static member'.",
+            ),
             violationOf(238, "} as CheckedSupplier", "Put trailing comma."),
             violationOf(
                 245,
@@ -343,6 +364,15 @@ class AllRulesTest : AbstractTestCase() {
                 285,
                 "* @return The LicenseTokenResponse object",
                 "End '@return' with a period.",
+            ),
+            violationOf(
+                292,
+                "private GetLicenseTokenResponse sendRequest(GetLicenseTokenRequest req) throws " +
+                    "AbortOperationException, " +
+                    "UnauthorizedException, " +
+                    "BadResponseException, " +
+                    "IllegalStateException {",
+                "Arrange member 'function' before 'static member'.",
             ),
         )
 

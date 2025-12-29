@@ -1,4 +1,4 @@
-from astroid import NodeNG
+from astroid.nodes import NodeNG
 
 
 def _get_fromlineno_before(lines: list[bytes], current: NodeNG, previous: NodeNG) -> int:

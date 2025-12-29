@@ -26,7 +26,7 @@ class MissingBlankLineBeforeBlockTagsRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `No summary are fine`() =
+    fun `No summary is fine`() =
         assertThatCode(
             """
             /**

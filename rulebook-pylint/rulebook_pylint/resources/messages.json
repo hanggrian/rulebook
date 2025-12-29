@@ -15,8 +15,8 @@
   "string-quotes-double": "Use double quotes \"\".",
 
   "class-name-abbreviation": "Rename abbreviation to '%s'.",
-  "illegal-class-final-name-all": "Avoid meaningless word '%s'.",
-  "illegal-class-final-name-util": "Rename utility class to '%s'.",
+  "illegal-class-name-suffix-all": "Avoid meaningless word '%s'.",
+  "illegal-class-name-suffix-util": "Rename utility class to '%s'.",
   "required-generics-name": "Use common generics '%s'.",
 
   "built-in-function-position": "Move '%s' to last.",

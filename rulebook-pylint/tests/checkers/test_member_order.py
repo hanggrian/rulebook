@@ -18,14 +18,36 @@ class TestMemberOrderChecker(CheckerTestCase):
             extract_node(
                 '''
                 class Foo:  #@
+                    bar = 0
+
                     def __init__(self):
-                        print()
+                        pass
 
                     def baz(self):
-                        print()
+                        pass
+
+                    @staticmethod
+                    def qux():
+                        pass
                 ''',
             )
         with self.assertNoMessages():
+            self.checker.visit_classdef(node1)
+
+    def test_property_after_constructor(self):
+        node1, node2 = \
+            extract_node(
+                '''
+                class Foo:  #@
+                    def __init__(self):
+                        pass
+
+                    bar = 0  #@
+                ''',
+            )
+        with self.assertAddsMessages(
+            msg(MemberOrderChecker.MSG, (6, 4, 7), node2.targets[0], ('property', 'constructor')),
+        ):
             self.checker.visit_classdef(node1)
 
     def test_constructor_after_function(self):
@@ -33,11 +55,11 @@ class TestMemberOrderChecker(CheckerTestCase):
             extract_node(
                 '''
                 class Foo:  #@
-                    def bar():
-                        print()
+                    def baz():
+                        pass
 
                     def __init__(self):  #@
-                        print()
+                        pass
                 ''',
             )
         with self.assertAddsMessages(
@@ -45,20 +67,22 @@ class TestMemberOrderChecker(CheckerTestCase):
         ):
             self.checker.visit_classdef(node1)
 
-    def test_skip_static_members(self):
-        node1 = \
+    def test_function_after_static_member(self):
+        node1, node2 = \
             extract_node(
                 '''
                 class Foo:  #@
                     @staticmethod
-                    def bar():
-                        print()
+                    def qux():
+                        pass
 
-                    def __init__(self):
-                        print()
+                    def baz():  #@
+                        pass
                 ''',
             )
-        with self.assertNoMessages():
+        with self.assertAddsMessages(
+            msg(MemberOrderChecker.MSG, (7, 4, 11), node2, ('function', 'static member')),
+        ):
             self.checker.visit_classdef(node1)
 
 

@@ -1,4 +1,4 @@
-from astroid import ClassDef, Assign, FunctionDef, NodeNG
+from astroid.nodes import ClassDef, Assign, FunctionDef, NodeNG
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.files import _get_fromlineno_before

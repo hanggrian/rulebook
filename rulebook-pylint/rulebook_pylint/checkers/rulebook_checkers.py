@@ -1,6 +1,6 @@
 from abc import ABC
 
-from astroid import Module
+from astroid.nodes import Module
 from pylint.checkers import BaseChecker, BaseTokenChecker, BaseRawFileChecker
 
 

@@ -27,7 +27,7 @@ class MissingBlankLineBeforeBlockTagsRuleTest :
         )
 
     @Test
-    fun `No summary are fine`() =
+    fun `No summary is fine`() =
         assertNoViolations(
             """
             /**

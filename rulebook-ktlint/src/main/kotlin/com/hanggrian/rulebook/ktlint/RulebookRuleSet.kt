@@ -19,7 +19,7 @@ import com.hanggrian.rulebook.ktlint.rules.ElvisWrapRule
 import com.hanggrian.rulebook.ktlint.rules.EmptyBracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.ExceptionInheritanceRule
 import com.hanggrian.rulebook.ktlint.rules.FileSizeRule
-import com.hanggrian.rulebook.ktlint.rules.IllegalClassFinalNameRule
+import com.hanggrian.rulebook.ktlint.rules.IllegalClassNameSuffixRule
 import com.hanggrian.rulebook.ktlint.rules.IllegalThrowRule
 import com.hanggrian.rulebook.ktlint.rules.IllegalVariableNameRule
 import com.hanggrian.rulebook.ktlint.rules.InfixCallWrapRule
@@ -61,7 +61,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { NumberSuffixForFloatRule() },
             // Naming
             RuleProvider { ClassNameAbbreviationRule() },
-            RuleProvider { IllegalClassFinalNameRule() },
+            RuleProvider { IllegalClassNameSuffixRule() },
             RuleProvider { IllegalVariableNameRule() },
             RuleProvider { PropertyNameInteropRule() },
             RuleProvider { RequiredGenericsNameRule() },

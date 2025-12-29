@@ -3,19 +3,20 @@ jdk = "21"
 jre = "8"
 junit = "5.12.2"
 # kotlin
-kotlin = "2.0.0"
+kotlin = "2.1.0"
 ktlint = "1.5.0"
 # java
 checkstyle = "10.21.4"
 # groovy
-groovy = "3.0.24"
+groovy = "3.0.23"
 codenarc = "3.6.0"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.2"
-ktlint = "org.jlleitschuh.gradle.ktlint:13.1.0"
-maven-publish = "com.vanniktech.maven.publish.base:0.34.0"
+dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "kotlin" }
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.4"
+ktlint = "org.jlleitschuh.gradle.ktlint:14.0.1"
+maven-publish = "com.vanniktech.maven.publish.base:0.35.0"
 
 [libraries]
 # main

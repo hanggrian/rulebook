@@ -59,4 +59,18 @@ class BuiltInFunctionPositionRuleTest {
             }
             """.trimIndent(),
         ).hasNoLintViolations()
+
+    @Test
+    fun `Skip static members`() =
+        assertThatCode(
+            """
+            class Foo {
+                override fun toString() = "foo"
+
+                companion object {
+                    fun baz() {}
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
 }

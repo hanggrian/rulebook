@@ -1,5 +1,5 @@
 package com.example.java;
 
-public class IllegalClassFinalName {
+public class IllegalClassNameSuffix {
     class MyClass {}
 }

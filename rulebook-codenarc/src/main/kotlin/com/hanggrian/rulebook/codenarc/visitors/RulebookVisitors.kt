@@ -11,7 +11,7 @@ import org.codenarc.rule.AbstractAstVisitor
 public typealias RulebookVisitor = AbstractAstVisitor
 
 /** Visitor that captures any method call with a single function. */
-public abstract class RulebookAnyCallVisitor : AbstractAstVisitor() {
+public abstract class RulebookAnyCallVisitor : RulebookVisitor() {
     final override fun visitConstructorCallExpression(node: ConstructorCallExpression) {
         super.visitConstructorCallExpression(node)
         visitAnyCallExpression(node)

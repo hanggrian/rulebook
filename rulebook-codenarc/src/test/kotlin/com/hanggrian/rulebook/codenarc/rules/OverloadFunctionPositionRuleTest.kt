@@ -45,4 +45,19 @@ class OverloadFunctionPositionRuleTest : AbstractRuleTestCase<OverloadFunctionPo
             "def bar(String a) {}",
             "Move 'bar' next to each other.",
         )
+
+    @Test
+    fun `Overload function not next to each other in root`() =
+        assertSingleViolation(
+            """
+            def bar(int a) {}
+
+            def baz() {}
+
+            def bar(String a) {}
+            """.trimIndent(),
+            5,
+            "def bar(String a) {}",
+            "Move 'bar' next to each other.",
+        )
 }

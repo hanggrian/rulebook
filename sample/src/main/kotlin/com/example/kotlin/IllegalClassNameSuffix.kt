@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-class IllegalClassFinalName {
+class IllegalClassNameSuffix {
     interface Rocket
 
     object Spaceships

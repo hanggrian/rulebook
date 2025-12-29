@@ -29,62 +29,54 @@ class MemberOrderRuleTest : AbstractRuleTestCase<MemberOrderRule>() {
                 Foo(var a) {}
 
                 def baz() {}
+
+                static def qux() {}
             }
             """.trimIndent(),
         )
 
     @Test
-    fun `Member property after constructor`() =
+    fun `Property after constructor`() =
         assertSingleViolation(
             """
             class Foo {
-                Foo() {
-                    this(0)
-                }
-
-                Foo(var a) {}
+                Foo() {}
 
                 var bar = 0
             }
             """.trimIndent(),
-            8,
+            4,
             "var bar = 0",
             "Arrange member 'property' before 'constructor'.",
         )
 
     @Test
-    fun `Member constructor after function`() =
-        assertTwoViolations(
+    fun `Constructor after function`() =
+        assertSingleViolation(
             """
             class Foo {
                 def baz() {}
 
-                Foo() {
-                    this(0)
-                }
-
-                Foo(var a) {}
+                Foo() {}
             }
             """.trimIndent(),
             4,
             "Foo() {",
             "Arrange member 'constructor' before 'function'.",
-            8,
-            "Foo(var a) {}",
-            "Arrange member 'constructor' before 'function'.",
         )
 
     @Test
-    fun `Skip static members`() =
-        assertNoViolations(
+    fun `Function after static member`() =
+        assertSingleViolation(
             """
             class Foo {
-                static baz() {}
+                static def qux() {}
 
-                static var baz = 0
-
-                Foo() {}
+                def baz() {}
             }
             """.trimIndent(),
+            4,
+            "def baz() {}",
+            "Arrange member 'function' before 'static member'.",
         )
 }

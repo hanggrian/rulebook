@@ -1,4 +1,4 @@
-from astroid import NodeNG
+from astroid.nodes import NodeNG
 from pylint.checkers import BaseChecker
 from pylint.testutils import MessageTest
 

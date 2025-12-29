@@ -24,6 +24,7 @@ val jreVersion = JavaLanguageVersion.of(libs.versions.jre.get())
 plugins {
     kotlin("jvm") version libs.versions.kotlin apply false
     alias(libs.plugins.dokka)
+    alias(libs.plugins.dokka.javadoc) apply false
     alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.maven.publish) apply false
 }
@@ -42,7 +43,7 @@ subprojects {
     }
     plugins.withType<MavenPublishBasePlugin> {
         configure<MavenPublishBaseExtension> {
-            configure(KotlinJvm(JavadocJar.Dokka("dokkaJavadoc")))
+            configure(KotlinJvm(JavadocJar.Dokka("dokkaGeneratePublicationJavadoc")))
             publishToMavenCentral()
             signAllPublications()
             pom {

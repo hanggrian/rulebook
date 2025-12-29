@@ -171,7 +171,7 @@
       <property name="tags" value="@throws"/>
     </module>
 
-    <module name="IllegalClassFinalName">
+    <module name="IllegalClassNameSuffix">
       <property name="names" value="Hello, World"/>
     </module>
   </module>

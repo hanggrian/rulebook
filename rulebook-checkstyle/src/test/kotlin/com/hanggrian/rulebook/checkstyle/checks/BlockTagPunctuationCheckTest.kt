@@ -21,7 +21,7 @@ class BlockTagPunctuationCheckTest : CheckTest() {
     fun `Descriptions end with a period`() = assertAll("BlockTagPunctuation2")
 
     @Test
-    fun `Descriptions don't end with a period`() =
+    fun `Descriptions end without a period`() =
         assertAll(
             "BlockTagPunctuation3",
             "5:19: End '@param' with a period.",
@@ -29,7 +29,7 @@ class BlockTagPunctuationCheckTest : CheckTest() {
         )
 
     @Test
-    fun `Long Descriptions`() =
+    fun `Long descriptions`() =
         assertAll(
             "BlockTagPunctuation4",
             "5:19: End '@param' with a period.",

@@ -36,7 +36,7 @@ class BlockTagPunctuationRuleTest {
         ).hasNoLintViolations()
 
     @Test
-    fun `Descriptions don't end with a period`() =
+    fun `Descriptions end without a period`() =
         assertThatCode(
             """
             /**

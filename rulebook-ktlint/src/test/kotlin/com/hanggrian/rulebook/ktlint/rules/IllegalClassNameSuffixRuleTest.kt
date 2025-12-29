@@ -5,11 +5,11 @@ import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class IllegalClassFinalNameRuleTest {
-    private val assertThatCode = assertThatRule { IllegalClassFinalNameRule() }
+class IllegalClassNameSuffixRuleTest {
+    private val assertThatCode = assertThatRule { IllegalClassNameSuffixRule() }
 
     @Test
-    fun `Rule properties`() = IllegalClassFinalNameRule().assertProperties()
+    fun `Rule properties`() = IllegalClassNameSuffixRule().assertProperties()
 
     @Test
     fun `Meaningful class names`() =

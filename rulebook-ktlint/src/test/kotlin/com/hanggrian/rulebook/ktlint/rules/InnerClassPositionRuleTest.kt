@@ -47,4 +47,18 @@ class InnerClassPositionRuleTest {
             LintViolation(2, 5, "Move inner class to the bottom."),
             LintViolation(6, 5, "Move inner class to the bottom."),
         )
+
+    @Test
+    fun `Skip enum members with initialization`() =
+        assertThatCode(
+            """
+            enum class Foo {
+                BAR {
+                    override fun baz() {}
+                };
+
+                abstract fun bar()
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
 }

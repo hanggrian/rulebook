@@ -1,4 +1,4 @@
-from astroid import NodeNG, Match, MatchCase
+from astroid.nodes import NodeNG, Match, MatchCase
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.files import _get_fromlineno_before, _has_comment_above

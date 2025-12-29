@@ -15,14 +15,14 @@ import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-final-name) */
-public class IllegalClassFinalNameRule : RulebookRule(ID, ILLEGAL_CLASS_FINAL_NAMES_PROPERTY) {
-    private var illegalClassFinalNames = ILLEGAL_CLASS_FINAL_NAMES_PROPERTY.defaultValue
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-name-suffix) */
+public class IllegalClassNameSuffixRule : RulebookRule(ID, ILLEGAL_CLASS_FINAL_NAMES_PROPERTY) {
+    private var illegalClassNameSuffixes = ILLEGAL_CLASS_FINAL_NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION, FILE)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
-        illegalClassFinalNames = editorConfig[ILLEGAL_CLASS_FINAL_NAMES_PROPERTY]
+        illegalClassNameSuffixes = editorConfig[ILLEGAL_CLASS_FINAL_NAMES_PROPERTY]
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -42,7 +42,7 @@ public class IllegalClassFinalNameRule : RulebookRule(ID, ILLEGAL_CLASS_FINAL_NA
 
         // checks for violation
         val finalName =
-            illegalClassFinalNames
+            illegalClassNameSuffixes
                 .singleOrNull { fullName.endsWith(it) }
                 ?: return
         if (finalName in UTILITY_FINAL_NAMES) {
@@ -57,12 +57,12 @@ public class IllegalClassFinalNameRule : RulebookRule(ID, ILLEGAL_CLASS_FINAL_NA
     }
 
     public companion object {
-        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:illegal-class-final-name")
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:illegal-class-name-suffix")
         public val ILLEGAL_CLASS_FINAL_NAMES_PROPERTY: EditorConfigProperty<Set<String>> =
             EditorConfigProperty(
                 type =
                     LowerCasingPropertyType(
-                        "rulebook_illegal_class_final_names",
+                        "rulebook_illegal_class_name_suffixes",
                         "A set of banned words.",
                         CommaSeparatedListValueParser(),
                     ),
@@ -70,8 +70,8 @@ public class IllegalClassFinalNameRule : RulebookRule(ID, ILLEGAL_CLASS_FINAL_NA
                 propertyWriter = { it.joinToString() },
             )
 
-        private const val MSG_ALL = "illegal.class.final.name.all"
-        private const val MSG_UTIL = "illegal.class.final.name.util"
+        private const val MSG_ALL = "illegal.class.name.suffix.all"
+        private const val MSG_UTIL = "illegal.class.name.suffix.util"
 
         private val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
     }

@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.ktlint.rules
 
 import com.hanggrian.rulebook.ktlint.assertProperties
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class MemberOrderRuleTest {
@@ -24,14 +25,12 @@ class MemberOrderRuleTest {
                 fun baz() {}
 
                 companion object {}
-
-                class Baz {}
             }
             """.trimIndent(),
         ).hasNoLintViolations()
 
     @Test
-    fun `Member property after initializer block`() =
+    fun `Property after initializer block`() =
         assertThatCode(
             """
             class Foo(a: Int) {
@@ -47,7 +46,7 @@ class MemberOrderRuleTest {
         )
 
     @Test
-    fun `Member initializer block after constructor`() =
+    fun `Initializer block after constructor`() =
         assertThatCode(
             """
             class Foo(a: Int) {
@@ -63,51 +62,46 @@ class MemberOrderRuleTest {
         )
 
     @Test
-    fun `Member constructor after function`() =
+    fun `Constructor after function`() =
         assertThatCode(
             """
             class Foo(a: Int) {
-                fun bar() {}
+                fun baz() {}
 
                 constructor() : this(0)
             }
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(
-            4,
-            5,
-            "Arrange member 'constructor' before 'function'.",
-        )
 
-    @Test
-    fun `Member function after companion object`() =
-        assertThatCode(
-            """
-            class Foo(a: Int) {
-                companion object {}
-
-                fun bar() {}
-            }
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(
-            4,
-            5,
-            "Arrange member 'function' before 'companion'.",
-        )
-
-    @Test
-    fun `Treat backing property as function`() =
-        assertThatCode(
-            """
-            class Foo(a: Int) {
-                val bar
+            class Bar(b: Int) {
+                val baz
                     get() = 0
 
                 constructor() : this(0)
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(
-            5,
-            5,
-            "Arrange member 'constructor' before 'function'.",
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(4, 5, "Arrange member 'constructor' before 'function'."),
+            LintViolation(11, 5, "Arrange member 'constructor' before 'function'."),
+        )
+
+    @Test
+    fun `Function after companion object`() =
+        assertThatCode(
+            """
+            class Foo(a: Int) {
+                companion object {}
+
+                fun baz() {}
+            }
+
+            class Bar(b: Int) {
+                companion object {}
+
+                val baz
+                    get() = 0
+            }
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(4, 5, "Arrange member 'function' before 'companion'."),
+            LintViolation(10, 5, "Arrange member 'function' before 'companion'."),
         )
 }

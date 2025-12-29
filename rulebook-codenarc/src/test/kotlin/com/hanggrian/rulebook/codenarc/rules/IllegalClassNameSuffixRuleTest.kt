@@ -7,16 +7,16 @@ import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class IllegalClassFinalNameRuleTest : AbstractRuleTestCase<IllegalClassFinalNameRule>() {
-    override fun createRule() = IllegalClassFinalNameRule()
+class IllegalClassNameSuffixRuleTest : AbstractRuleTestCase<IllegalClassNameSuffixRule>() {
+    override fun createRule() = IllegalClassNameSuffixRule()
 
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
 
-        assertIs<IllegalClassFinalNameRule.Visitor>(rule.astVisitor)
+        assertIs<IllegalClassNameSuffixRule.Visitor>(rule.astVisitor)
 
-        val rule = IllegalClassFinalNameRule()
+        val rule = IllegalClassNameSuffixRule()
         rule.names = "Hello, World"
         assertThat(rule.nameList).containsExactly("Hello", "World")
     }

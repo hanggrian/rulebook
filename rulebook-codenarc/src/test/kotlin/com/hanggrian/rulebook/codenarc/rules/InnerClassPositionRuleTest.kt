@@ -62,7 +62,7 @@ class InnerClassPositionRuleTest : AbstractRuleTestCase<InnerClassPositionRule>(
         )
 
     @Test
-    fun `Skip enum members with initialization (Groovy only)`() =
+    fun `Skip enum members with initialization`() =
         assertNoViolations(
             """
             enum Foo {

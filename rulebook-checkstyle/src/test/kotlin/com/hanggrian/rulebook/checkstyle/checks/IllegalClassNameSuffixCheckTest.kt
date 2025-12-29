@@ -3,8 +3,8 @@ package com.hanggrian.rulebook.checkstyle.checks
 import com.google.common.truth.Truth.assertThat
 import kotlin.test.Test
 
-class IllegalClassFinalNameCheckTest : CheckTest() {
-    override val check = IllegalClassFinalNameCheck()
+class IllegalClassNameSuffixCheckTest : CheckTest() {
+    override val check = IllegalClassNameSuffixCheck()
 
     @Test
     fun `Rule properties`() {
@@ -15,12 +15,12 @@ class IllegalClassFinalNameCheckTest : CheckTest() {
     }
 
     @Test
-    fun `Meaningful class names`() = assertAll("IllegalClassFinalName1")
+    fun `Meaningful class names`() = assertAll("IllegalClassNameSuffix1")
 
     @Test
     fun `Meaningless class names`() =
         assertAll(
-            "IllegalClassFinalName2",
+            "IllegalClassNameSuffix2",
             "4:11: Avoid meaningless word 'Manager'.",
             "6:15: Avoid meaningless word 'Manager'.",
             "8:16: Avoid meaningless word 'Manager'.",
@@ -29,5 +29,5 @@ class IllegalClassFinalNameCheckTest : CheckTest() {
 
     @Test
     fun `Utility class found`() =
-        assertAll("IllegalClassFinalName3", "4:11: Rename utility class to 'Spaceships'.")
+        assertAll("IllegalClassNameSuffix3", "4:11: Rename utility class to 'Spaceships'.")
 }

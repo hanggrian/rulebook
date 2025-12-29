@@ -53,7 +53,7 @@ load-plugins=
   rulebook_pylint.checkers.string_quotes,
   # Naming
   rulebook_pylint.checkers.class_name_abbreviation,
-  rulebook_pylint.checkers.illegal_class_final_name,
+  rulebook_pylint.checkers.illegal_class_name_suffix,
   rulebook_pylint.checkers.required_generics_name,
   # Ordering
   rulebook_pylint.checkers.built_in_function_position,

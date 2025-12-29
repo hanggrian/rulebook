@@ -34,7 +34,7 @@ class RulebookRuleSetTest {
             EmptyBracesClipRule::class,
             ExceptionInheritanceRule::class,
             FileSizeRule::class,
-            IllegalClassFinalNameRule::class,
+            IllegalClassNameSuffixRule::class,
             IllegalThrowRule::class,
             IllegalVariableNameRule::class,
             InfixCallWrapRule::class,

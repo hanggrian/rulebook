@@ -27,7 +27,7 @@
 
   <!-- Naming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.ClassNameAbbreviationRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalClassFinalNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalClassNameSuffixRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RequiredGenericsNameRule"/>
 

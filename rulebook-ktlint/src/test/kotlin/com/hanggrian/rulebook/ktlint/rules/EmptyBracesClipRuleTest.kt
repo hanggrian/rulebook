@@ -69,10 +69,10 @@ class EmptyBracesClipRuleTest {
     fun `Braces in parameter default value declaration`() =
         assertThatCode(
             """
-            class Foo(
-                val bar: (Int) -> Unit = {},
-                val baz: (Int) -> Unit = { },
-            )
+            fun foo(
+                bar: (Int) -> Unit = {},
+                baz: (Int) -> Unit = { },
+            ) {}
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(3, 31, "Convert into '{}'.")
+        ).hasLintViolationWithoutAutoCorrect(3, 27, "Convert into '{}'.")
 }

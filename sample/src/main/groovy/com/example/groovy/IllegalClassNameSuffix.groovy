@@ -1,6 +1,6 @@
 package com.example.groovy
 
-class IllegalClassFinalName {
+class IllegalClassNameSuffix {
     interface Rocket {}
 
     class Spaceships {}

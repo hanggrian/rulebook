@@ -17,6 +17,8 @@ class IllegalVariableNameRuleTest {
             """
             val age = 0
             val name: String = ""
+
+            val `height` = 0.0
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -26,10 +28,13 @@ class IllegalVariableNameRuleTest {
             """
             val int = 0
             val string: String = ""
+
+            val `double` = 0.0
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 5, "Use descriptive name."),
             LintViolation(2, 5, "Use descriptive name."),
+            LintViolation(4, 5, "Use descriptive name."),
         )
 
     @Test
@@ -40,6 +45,8 @@ class IllegalVariableNameRuleTest {
                 listOf(0).forEach { name ->
                 }
             }
+
+            fun bar(`height`: Double) {}
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -51,10 +58,13 @@ class IllegalVariableNameRuleTest {
                 listOf(0).forEach { string ->
                 }
             }
+
+            fun bar(`double`: Double) {}
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(1, 9, "Use descriptive name."),
             LintViolation(2, 25, "Use descriptive name."),
+            LintViolation(6, 9, "Use descriptive name."),
         )
 
     @Test
@@ -63,6 +73,8 @@ class IllegalVariableNameRuleTest {
             """
             fun foo() {
                 val (age, name) = kotlin.Pair(0, "")
+
+                val (`height`, `weight`) = kotlin.Pair(0.0, 0f)
             }
             """.trimIndent(),
         ).hasNoLintViolations()
@@ -73,20 +85,14 @@ class IllegalVariableNameRuleTest {
             """
             fun foo() {
                 val (int, string) = kotlin.Pair(0, "")
+
+                val (`double`, `float`) = kotlin.Pair(0.0, 0f)
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(2, 10, "Use descriptive name."),
             LintViolation(2, 15, "Use descriptive name."),
+            LintViolation(4, 10, "Use descriptive name."),
+            LintViolation(4, 20, "Use descriptive name."),
         )
-
-    @Test
-    fun `Find backticked identifier`() =
-        assertThatCode(
-            """
-            class Foo {
-                val `int` = 0
-            }
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 9, "Use descriptive name.")
 }

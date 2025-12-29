@@ -1,4 +1,4 @@
-from astroid import Assign, Call, Name, AssignName
+from astroid.nodes import Assign, Call, Name, AssignName
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
