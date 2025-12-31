@@ -1,12 +1,18 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
+import com.google.common.truth.Truth.assertThat
 import kotlin.test.Test
 
 class MemberOrderCheckTest : CheckTest() {
     override val check = MemberOrderCheck()
 
     @Test
-    fun `Rule properties`() = check.assertProperties()
+    fun `Rule properties`() {
+        check.assertProperties()
+
+        check.order = "constructor, property, static, method"
+        assertThat(check.orderList).containsExactly("constructor", "property", "static", "method")
+    }
 
     @Test
     fun `Correct member organizations`() = assertAll("MemberOrder1")

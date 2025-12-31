@@ -1,7 +1,7 @@
 # main
-pylint>=3.3.5
-astroid>=3.3.9
-regex>=2024.11.6
+pylint==4.0.4
+astroid==4.0.2
+regex>=2025.11.3
 # test
 pytest
 pytest-cov

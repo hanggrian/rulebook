@@ -1,14 +1,19 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.splitToList
 import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation) */
 public class BlockTagPunctuationRule : RulebookFileRule() {
-    public var tags: String = "@param, @return"
+    internal var tagList = listOf("@param", "@return")
 
-    internal val tagList get() = tags.split(',').map { it.trim() }
+    public var tags: String
+        get() = throw UnsupportedOperationException()
+        set(value) {
+            tagList = value.splitToList()
+        }
 
     override fun getName(): String = "BlockTagPunctuation"
 

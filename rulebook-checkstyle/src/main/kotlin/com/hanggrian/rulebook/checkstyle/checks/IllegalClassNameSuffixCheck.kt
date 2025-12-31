@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
+import com.hanggrian.rulebook.checkstyle.splitToList
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CLASS_DEF
@@ -11,9 +12,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.RECORD_DEF
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-name-suffix) */
 public class IllegalClassNameSuffixCheck : RulebookAstCheck() {
-    public var names: String = "Util, Utility, Helper, Manager, Wrapper"
+    internal var nameList = listOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 
-    internal val nameList get() = names.split(',').map { it.trim() }
+    public var names: String
+        get() = throw UnsupportedOperationException()
+        set(value) {
+            nameList = value.splitToList()
+        }
 
     override fun getRequiredTokens(): IntArray =
         intArrayOf(

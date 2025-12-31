@@ -13,6 +13,7 @@ from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_pylint.checkers.built_in_function_position import BuiltInFunctionPositionChecker
 from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
 from rulebook_pylint.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
+from rulebook_pylint.checkers.comment_space import CommentSpaceChecker
 from rulebook_pylint.checkers.comment_trim import CommentTrimChecker
 from rulebook_pylint.checkers.duplicate_blank_line import DuplicateBlankLineChecker
 from rulebook_pylint.checkers.duplicate_blank_line_in_block_comment import \
@@ -52,6 +53,7 @@ class TestAllCheckers:
         BuiltInFunctionPositionChecker,
         CaseSeparatorChecker,
         ClassNameAbbreviationChecker,
+        CommentSpaceChecker,
         CommentTrimChecker,
         DuplicateBlankLineChecker,
         DuplicateBlankLineInBlockCommentChecker,
@@ -214,6 +216,14 @@ class TestAllCheckers:
             msg(BlockCommentTrimChecker.MSG_LAST, (1949, 4, 7), last_subplot_mosaic.doc_node),
             msg(BlockCommentTrimChecker.MSG_LAST, (2551, 4, 7), clim.doc_node),
             msg(BlockCommentTrimChecker.MSG_LAST, (2668, 4, 7), matshow.doc_node),
+            msg(CommentSpaceChecker.MSG, (268, 0)),
+            msg(CommentSpaceChecker.MSG, (872, 0)),
+            msg(CommentSpaceChecker.MSG, (1256, 0)),
+            msg(CommentSpaceChecker.MSG, (1268, 0)),
+            msg(CommentSpaceChecker.MSG, (1387, 0)),
+            msg(CommentSpaceChecker.MSG, (2089, 0)),
+            msg(CommentSpaceChecker.MSG, (2517, 0)),
+            msg(CommentSpaceChecker.MSG, (2738, 0)),
             msg(DuplicateBlankLineInBlockCommentChecker.MSG, (2173, 4, 2229, 7), xticks.doc_node),
             # msg(FileSizeChecker.MSG, args=1000),
             msg(

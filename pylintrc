@@ -61,6 +61,7 @@ load-plugins=
   rulebook_pylint.checkers.member_order,
   # Spacing
   rulebook_pylint.checkers.case_separator,
+  rulebook_pylint.checkers.comment_space,
   rulebook_pylint.checkers.member_separator,
   # Stating
   rulebook_pylint.checkers.nested_if_else,
@@ -82,10 +83,6 @@ load-plugins=
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
 # number of processors available to use.
 jobs=1
-
-# When enabled, pylint would attempt to guess common misconfiguration and emit
-# user-friendly hints instead of false-positive error messages.
-suggestion-mode=yes
 
 # Allow loading of arbitrary C extensions. Extensions are imported into the
 # active Python interpreter and may run arbitrary code.
@@ -425,7 +422,7 @@ ignore-on-opaque-inference=yes
 # of finding the hint is based on edit distance.
 missing-member-hint=yes
 
-# The minimum edit distance a name should have in order to be considered a
+# The maximum edit distance a name should have in order to be considered a
 # similar match for a missing member name.
 missing-member-hint-distance=1
 
@@ -441,7 +438,7 @@ missing-member-max-choices=1
 spelling-dict=
 
 # List of comma separated words that should not be checked.
-spelling-ignore-words=
+spelling-ignore-words=subpkg,MyClass
 
 # List of comma separated words that should be considered directives if they
 # appear and the beginning of a comment and should not be checked.

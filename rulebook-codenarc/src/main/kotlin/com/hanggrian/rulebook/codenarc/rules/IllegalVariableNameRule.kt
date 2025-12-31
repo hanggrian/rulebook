@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.splitToList
 import com.hanggrian.rulebook.codenarc.visitors.RulebookAnyCallVisitor
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.FieldNode
@@ -15,9 +16,13 @@ import org.codehaus.groovy.ast.expr.VariableExpression
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-variable-name) */
 public class IllegalVariableNameRule : RulebookAstRule() {
-    public var names: String = "object, integer, string, objects, integers, strings"
+    internal var nameList = listOf("object", "integer", "string", "objects", "integers", "strings")
 
-    internal val nameList get() = names.split(',').map { it.trim() }
+    public var names: String
+        get() = throw UnsupportedOperationException()
+        set(value) {
+            nameList = value.splitToList()
+        }
 
     override fun getName(): String = "IllegalVariableName"
 

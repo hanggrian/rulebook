@@ -40,6 +40,7 @@ load-plugins=
   rulebook_pylint.checkers.member_order,
   # Spacing
   rulebook_pylint.checkers.case_separator,
+  rulebook_pylint.checkers.comment_space,
   rulebook_pylint.checkers.member_separator,
   # Stating
   rulebook_pylint.checkers.nested_if_else,
@@ -186,6 +187,9 @@ output-format=text
 # Tells whether to display a full report or only the messages
 reports=no
 
+# Activate the evaluation score.
+score=no
+
 # Python expression which should return a note less than 10 (10 is the highest
 # note). You have access to the variables errors warning, statement which
 # respectively contain the number of errors / warnings messages and the total
@@ -289,7 +293,9 @@ max-line-length=80
 # lines made too long by directives to pytype.
 
 # Regexp for a line that is allowed to be longer than the limit.
-ignore-long-lines=(?x)(^\s*(\#\ )?<?https?://\S+>?$|^\s*(from\s+\S+\s+)?import\s+.+$)
+ignore-long-lines=(?x)(
+  ^\s*(\#\ )?<?https?://\S+>?$|
+  ^\s*(from\s+\S+\s+)?import\s+.+$)
 
 # Allow the body of an if to be on the same line as the test if there is no
 # else.
@@ -300,9 +306,8 @@ max-module-lines=99999
 
 # String used as indentation unit.  The internal Google style guide mandates 2
 # spaces.  Google's externaly-published style guide says 4, consistent with
-# PEP 8.  Here, we use 2 spaces, for conformity with many open-sourced Google
-# projects (like TensorFlow).
-indent-string='  '
+# PEP 8.
+indent-string='    '
 
 # Number of spaces of indent required inside a hanging  or continued line.
 indent-after-paren=4

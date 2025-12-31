@@ -1,4 +1,4 @@
-from astroid.nodes import NodeNG, ClassDef, FunctionDef
+from astroid.nodes import NodeNG, ClassDef, FunctionDef, AssignName, Assign
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -19,14 +19,16 @@ class InnerClassPositionChecker(RulebookChecker):
         if node.parent and not isinstance(node.parent, ClassDef):
             return
 
-        current: NodeNG = node
-        while current:
+        next2: NodeNG = node
+        while next2:
+            next2 = next2.next_sibling()
+
             # checks for violation
-            if isinstance(current, FunctionDef):
+            if isinstance(next2, FunctionDef) or \
+                isinstance(next2, Assign) or \
+                isinstance(next2, AssignName):
                 self.add_message(self.MSG, node=node)
                 return
-
-            current = current.next_sibling()
 
 
 def register(linter: 'PyLinter') -> None:

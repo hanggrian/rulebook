@@ -88,11 +88,7 @@
 
   <ruleset-ref path="rulesets/groovyism.xml"/>
 
-  <ruleset-ref path="rulesets/imports.xml">
-    <rule-config name="MisorderedStaticImports">
-      <property name="comesBefore" value="false"/>
-    </rule-config>
-  </ruleset-ref>
+  <ruleset-ref path="rulesets/imports.xml"/>
 
   <ruleset-ref path="rulesets/jdbc.xml"/>
 

@@ -22,7 +22,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
                         addConfiguration<BuiltInFunctionPositionCheck>()
                         addConfiguration<CaseSeparatorCheck>()
                         addConfiguration<ChainCallWrapCheck>()
-                        addConfiguration<CommentSpacesCheck>()
+                        addConfiguration<CommentSpaceCheck>()
                         addConfiguration<DuplicateBlankLineInBlockCommentCheck>()
                         addConfiguration<DuplicateBlankLineInCommentCheck>()
                         addConfiguration<ExceptionInheritanceCheck>()

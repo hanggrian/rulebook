@@ -1,14 +1,19 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.splitToList
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassNode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-name-suffix) */
 public class IllegalClassNameSuffixRule : RulebookAstRule() {
-    public var names: String = "Util, Utility, Helper, Manager, Wrapper"
+    internal var nameList = listOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 
-    internal val nameList get() = names.split(',').map { it.trim() }
+    public var names: String
+        get() = throw UnsupportedOperationException()
+        set(value) {
+            nameList = value.splitToList()
+        }
 
     override fun getName(): String = "IllegalClassNameSuffix"
 

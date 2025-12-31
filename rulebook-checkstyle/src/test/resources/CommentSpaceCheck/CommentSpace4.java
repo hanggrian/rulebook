@@ -1,11 +1,11 @@
 package com.hanggrian.rulebook.checkstyle.checks;
 
-class CommentSpaces {
+class CommentSpace {
     //////////
     // good //
     //////////
 
     //////// /////
-    // skipt good //
+    // not good //
     ///  ///  ////
 }

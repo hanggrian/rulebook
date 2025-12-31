@@ -5,8 +5,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#comment-spaces) */
-public class CommentSpacesCheck : RulebookAstCheck() {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#comment-space) */
+public class CommentSpaceCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(SINGLE_LINE_COMMENT)
 
     override fun isCommentNodesRequired(): Boolean = true
@@ -34,6 +34,6 @@ public class CommentSpacesCheck : RulebookAstCheck() {
     }
 
     private companion object {
-        const val MSG = "comment.spaces"
+        const val MSG = "comment.space"
     }
 }

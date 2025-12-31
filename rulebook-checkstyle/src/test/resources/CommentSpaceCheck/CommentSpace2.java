@@ -1,6 +1,6 @@
 package com.hanggrian.rulebook.checkstyle.checks;
 
-class CommentSpaces {
+class CommentSpace {
     //bad
     //text
 }

@@ -997,6 +997,12 @@ Wrap string in single quotes, unless there is a template or a single quote.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
+=== "Groovy"
+    ```groovy
+    name = "John Doe"
+
+    println('G\'day, ' + name)
+    ```
 === "Python"
     ```python
     name = "John Doe"
@@ -1006,6 +1012,12 @@ Wrap string in single quotes, unless there is a template or a single quote.
 
 **:material-star-four-points:{ #accent } After**
 
+=== "Groovy"
+    ```groovy
+    name = 'John Doe'
+
+    println("G'day, " + name)
+    ```
 === "Python"
     ```python
     name = 'John Doe'
@@ -2027,7 +2039,7 @@ at the end of the class.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
-    ```java hl_lines="2-5 7-8 10-13"
+    ```java hl_lines="2-5"
     class Notification {
         @Override
         public String toString() {
@@ -2044,7 +2056,7 @@ at the end of the class.
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="2-4 6-7 9-12"
+    ```groovy hl_lines="2-4"
     class Notification {
         String toString() {
             return "${id}: ${message}"
@@ -2060,7 +2072,7 @@ at the end of the class.
     }
     ```
 === "Kotlin"
-    ```kotlin hl_lines="2 4"
+    ```kotlin hl_lines="2"
     class Notification(val message: String) {
         override fun toString(): String = "$id: $message"
 
@@ -2068,7 +2080,7 @@ at the end of the class.
     }
     ```
 === "Python"
-    ```python hl_lines="2-3 5-7"
+    ```python hl_lines="2-3"
     class Notification:
         def __str__(self):
             return f'{self.id}: {self.message}'
@@ -2081,7 +2093,7 @@ at the end of the class.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
-    ```java hl_lines="2-3 5-8 10-13"
+    ```java hl_lines="10-13"
     class Notification {
         final String message;
         final int id;
@@ -2098,7 +2110,7 @@ at the end of the class.
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="2-3 5-8 10-12"
+    ```groovy hl_lines="10-12"
     class Notification {
         final String message
         final int id
@@ -2114,7 +2126,7 @@ at the end of the class.
     }
     ```
 === "Kotlin"
-    ```kotlin hl_lines="2 4"
+    ```kotlin hl_lines="4"
     class Notification(val message: String) {
         val id: Int = randomize()
 
@@ -2122,7 +2134,7 @@ at the end of the class.
     }
     ```
 === "Python"
-    ```python hl_lines="2-4 6-7"
+    ```python hl_lines="6-7"
     class Notification:
         def __init__(self, message):
             self.message = message
@@ -2436,6 +2448,17 @@ to the last member that uses them.
             print(message)
     ```
 
+??? Configuration
+    :material-language-java:{ .lg .middle } Checkstyle | Default value
+    --- | ---
+    MemberOrder#order | `property, constructor, method, static`
+    **:simple-apachegroovy:{ .lg .middle } CodeNarc**
+    MemberOrder#order | `property, constructor, method, static`
+    **:material-language-kotlin:{ .lg .middle } Ktlint**
+    rulebook_member_order | `property, initializer, constructor, method, companion`
+    **:material-language-python: Pylint**
+    rulebook-member-order | `property, constructor, method, static`
+
 ### Overload function position
 
 Place overloaded functions next to each other.
@@ -2443,7 +2466,7 @@ Place overloaded functions next to each other.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
-    ```java hl_lines="5-7 9-11"
+    ```java hl_lines="9-11"
     int sum(int a, int b) {
         return a + b;
     }
@@ -2457,7 +2480,7 @@ Place overloaded functions next to each other.
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="5-7 9-11"
+    ```groovy hl_lines="9-11"
     def sum(int a, int b) {
         return a + b
     }
@@ -2471,7 +2494,7 @@ Place overloaded functions next to each other.
     }
     ```
 === "Kotlin"
-    ```kotlin hl_lines="3 5"
+    ```kotlin hl_lines="5"
     fun sum(a: Int, b: Int): Int = a + b
 
     fun times(a: Int, b: Int): Int = a * b
@@ -2482,7 +2505,7 @@ Place overloaded functions next to each other.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
-    ```java hl_lines="5-7 9-11"
+    ```java hl_lines="5-7"
     int sum(int a, int b) {
         return a + b;
     }
@@ -2496,7 +2519,7 @@ Place overloaded functions next to each other.
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="5-7 9-11"
+    ```groovy hl_lines="5-7"
     def sum(int a, int b) {
         return a + b
     }
@@ -2510,7 +2533,7 @@ Place overloaded functions next to each other.
     }
     ```
 === "Kotlin"
-    ```kotlin hl_lines="3 5"
+    ```kotlin hl_lines="3"
     fun sum(a: Int, b: Int): Int = a + b
 
     fun sum(a: Int, b: Int, c: Int): Int = a + b + c
@@ -2520,37 +2543,37 @@ Place overloaded functions next to each other.
 
 ### Static import position
 
-Static import directives are to be placed after normal imports, separated by a
-blank line.
+Static import directives are to be placed before non-static imports, separated
+by a blank line.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
-    ```java hl_lines="1 3"
-    import static java.lang.Math.PI;
-
+    ```java hl_lines="3"
     import java.util.List;
+
+    import static java.lang.Math.PI;
     ```
 === "Groovy"
-    ```groovy hl_lines="1 3"
-    import static java.lang.Math.PI
-
+    ```groovy hl_lines="3"
     import java.util.List
+
+    import static java.lang.Math.PI
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
-    ```java hl_lines="1 3"
-    import java.util.List;
-
+    ```java hl_lines="1"
     import static java.lang.Math.PI;
+
+    import java.util.List;
     ```
 === "Groovy"
-    ```groovy hl_lines="1 3"
-    import java.util.List
-
+    ```groovy hl_lines="1"
     import static java.lang.Math.PI
+
+    import java.util.List
     ```
 
 ## Spacing
@@ -2766,7 +2789,7 @@ joined.
             create_event(event)
     ```
 
-### Comment spaces
+### Comment space
 
 End-of-file comments should be separated by a single whitespace from the
 preceding code, and start with a single whitespace.

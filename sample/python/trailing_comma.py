@@ -7,7 +7,7 @@ def bar(
     b
 ):
     print(
-        3,
-        4 + \
+        a,
+        b + \
         5
     )

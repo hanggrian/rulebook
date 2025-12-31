@@ -84,32 +84,6 @@ fun main() {
 }
 ```
 
-## Place built-in methods last
-
-Built-in methods like `toString`, `hashCode` and `equals` are often placed at
-the end of the class. They are unrelated to the rest of the class and can be
-distracting when reading the source code.
-
-```kotlin hl_lines="4 6 8-12"
-class User(val firstName: String, val lastName: String) {
-    var isAdmin: Boolean = false
-
-    override fun toString(): String = "$lastName, $firstName"
-
-    override fun hashCode(): Int = Objects.hash(firstName, lastName)
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is Robot) return false
-        return firstName == other.firstName && lastName == other.lastName
-    }
-
-    fun promote() {
-        isAdmin = true
-    }
-}
-```
-
 ## Remove unused imports
 
 Remove imports that are not used in the file.

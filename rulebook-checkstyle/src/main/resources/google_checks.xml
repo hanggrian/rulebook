@@ -544,7 +544,7 @@
     <!-- Spacing -->
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="CaseSeparator"/>
-    <module name="CommentSpaces"/>
+    <module name="CommentSpace"/>
 
     <!-- Stating -->
     <module name="IllegalCatch">

@@ -2,6 +2,9 @@
 #primary {
   color: var(--md-primary-fg-color);
 }
+#accent {
+  color: var(--md-accent-fg-color);
+}
 
 /* Brand colors */
 #light {
@@ -22,8 +25,11 @@
 #kotlin {
   color: #7f52ff;
 }
+#openjdk {
+  color: #ed8b00;
+}
 #oracle {
-  color: #f80000;
+  color: #ed1d25;
 }
 #python {
   color: #ffde57;

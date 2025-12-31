@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.splitToList
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
@@ -9,9 +10,13 @@ import org.codehaus.groovy.ast.MethodNode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#required-generics-name) */
 public class RequiredGenericsNameRule : RulebookAstRule() {
-    public var names: String = "E, K, N, T, V"
+    internal var nameList = listOf("E", "K", "N", "T", "V")
 
-    internal val nameList get() = names.split(',').map { it.trim() }
+    public var names: String
+        get() = throw UnsupportedOperationException()
+        set(value) {
+            nameList = value.splitToList()
+        }
 
     override fun getName(): String = "RequiredGenericsName"
 

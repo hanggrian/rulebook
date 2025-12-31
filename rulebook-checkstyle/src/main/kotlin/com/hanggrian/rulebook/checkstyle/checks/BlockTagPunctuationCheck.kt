@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
+import com.hanggrian.rulebook.checkstyle.splitToList
 import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
@@ -8,9 +9,13 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation) */
 public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
-    public var tags: String = "@param, @return"
+    internal var tagList = listOf("@param", "@return")
 
-    internal val tagList get() = tags.split(',').map { it.trim() }
+    public var tags: String
+        get() = throw UnsupportedOperationException()
+        set(value) {
+            tagList = value.splitToList()
+        }
 
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 

@@ -264,7 +264,7 @@
     <module name="JavadocTagContinuationIndentation"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
     <module name="CaseSeparator"/>
-    <module name="CommentSpaces"/>
+    <module name="CommentSpace"/>
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>

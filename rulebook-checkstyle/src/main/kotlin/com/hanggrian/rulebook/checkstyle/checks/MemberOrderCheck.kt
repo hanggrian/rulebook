@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.checkstyle.checks
 import com.hanggrian.rulebook.checkstyle.Messages
 import com.hanggrian.rulebook.checkstyle.children
 import com.hanggrian.rulebook.checkstyle.hasModifier
+import com.hanggrian.rulebook.checkstyle.splitToList
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMPACT_CTOR_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CTOR_DEF
@@ -13,6 +14,66 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#member-order) */
 public class MemberOrderCheck : RulebookAstCheck() {
+    internal var orderList = listOf("property", "constructor", "function", "static")
+    private var propertyPosition = 0
+    private var constructorPosition = 1
+    private var functionPosition = 2
+    private var staticPosition = 3
+
+    public var order: String
+        get() = throw UnsupportedOperationException()
+        set(value) {
+            orderList = value.splitToList()
+            require(orderList.size == 4)
+
+            propertyPosition = orderList.indexOf("property")
+            constructorPosition = orderList.indexOf("constructor")
+            functionPosition = orderList.indexOf("function")
+            staticPosition = orderList.indexOf("static")
+        }
+
+    private val DetailAST.memberPosition: Int
+        get() =
+            when (type) {
+                VARIABLE_DEF ->
+                    if (hasModifier(LITERAL_STATIC)) {
+                        staticPosition
+                    } else {
+                        propertyPosition
+                    }
+
+                CTOR_DEF, COMPACT_CTOR_DEF -> constructorPosition
+                METHOD_DEF ->
+                    if (hasModifier(LITERAL_STATIC)) {
+                        staticPosition
+                    } else {
+                        functionPosition
+                    }
+
+                else -> -1
+            }
+
+    private val DetailAST.memberArgument: String
+        get() =
+            when (type) {
+                VARIABLE_DEF ->
+                    if (hasModifier(LITERAL_STATIC)) {
+                        "static member"
+                    } else {
+                        "property"
+                    }
+
+                CTOR_DEF, COMPACT_CTOR_DEF -> "constructor"
+                METHOD_DEF ->
+                    if (hasModifier(LITERAL_STATIC)) {
+                        "static member"
+                    } else {
+                        "function"
+                    }
+
+                else -> ""
+            }
+
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
     override fun visitToken(node: DetailAST) {
@@ -40,23 +101,5 @@ public class MemberOrderCheck : RulebookAstCheck() {
 
     private companion object {
         const val MSG = "member.order"
-
-        private val DetailAST.memberPosition: Int
-            get() =
-                when (type) {
-                    VARIABLE_DEF -> if (hasModifier(LITERAL_STATIC)) 4 else 1
-                    CTOR_DEF, COMPACT_CTOR_DEF -> 2
-                    METHOD_DEF -> if (hasModifier(LITERAL_STATIC)) 4 else 3
-                    else -> -1
-                }
-
-        private val DetailAST.memberArgument: String
-            get() =
-                when (type) {
-                    VARIABLE_DEF -> if (hasModifier(LITERAL_STATIC)) "static member" else "property"
-                    CTOR_DEF, COMPACT_CTOR_DEF -> "constructor"
-                    METHOD_DEF -> if (hasModifier(LITERAL_STATIC)) "static member" else "function"
-                    else -> ""
-                }
     }
 }

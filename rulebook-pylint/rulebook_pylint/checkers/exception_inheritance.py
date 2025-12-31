@@ -19,9 +19,9 @@ class ExceptionInheritanceChecker(RulebookChecker):
         for base in [
             n for n in node.bases \
             if isinstance(n, Name) and n.name == 'BaseException' \
-            ]:
+        ]:
             self.add_message(self.MSG, node=base)
-            return
+            continue
 
 
 def register(linter: 'PyLinter') -> None:
