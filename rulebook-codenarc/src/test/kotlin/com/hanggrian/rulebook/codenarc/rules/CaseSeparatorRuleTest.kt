@@ -17,13 +17,28 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
     }
 
     @Test
-    fun `No line break after single-line branch and line break after multiline branch`() =
+    fun `Single-line branches without line break`() =
+        assertNoViolations(
+            """
+            def foo(int bar) {
+                switch (bar) {
+                    case 0: baz()
+                    case 1: baz(); break
+                    default: baz()
+                }
+            }
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Multiline branches with line break`() =
         assertNoViolations(
             """
             def foo(int bar) {
                 switch (bar) {
                     case 0:
                         baz()
+
                     case 1:
                         baz()
                         break
@@ -36,14 +51,38 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
         )
 
     @Test
-    fun `Line break after single-line branch`() =
-        assertSingleViolation(
+    fun `Single-line branches with line break`() =
+        assertTwoViolations(
+            """
+            def foo(int bar) {
+                switch (bar) {
+                    case 0: baz()
+
+                    case 1: baz(); break
+
+                    default: baz()
+                }
+            }
+            """.trimIndent(),
+            3,
+            "case 0: baz()",
+            "Remove blank line after single-line branch.",
+            5,
+            "case 1: baz(); break",
+            "Remove blank line after single-line branch.",
+        )
+
+    @Test
+    fun `Multiline branches without line break`() =
+        assertTwoViolations(
             """
             def foo(int bar) {
                 switch (bar) {
                     case 0:
                         baz()
-
+                    case 1:
+                        baz()
+                        break
                     default:
                         baz()
                 }
@@ -51,25 +90,8 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
             """.trimIndent(),
             4,
             "baz()",
-            "Remove blank line after single-line branch.",
-        )
-
-    @Test
-    fun `No line break after multiline branch`() =
-        assertSingleViolation(
-            """
-            def foo(int bar) {
-                switch (bar) {
-                    case 0:
-                        baz()
-                        break
-                    default:
-                        baz()
-                        break
-                }
-            }
-            """.trimIndent(),
-            5,
+            "Add blank line after multiline branch.",
+            7,
             "break",
             "Add blank line after multiline branch.",
         )
@@ -97,5 +119,28 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
             violationOf(5, "baz()", "Add blank line after multiline branch."),
             violationOf(8, "baz()", "Add blank line after multiline branch."),
             violationOf(11, "baz()", "Add blank line after multiline branch."),
+        )
+
+    @Test
+    fun `Special Groovy expression`() =
+        assertTwoViolations(
+            """
+            def foo(int bar) {
+                def result =
+                    switch (bar) {
+                        case 0 -> 0
+
+                        case 1 -> 1
+
+                        default -> 2
+                    }
+            }
+            """.trimIndent(),
+            4,
+            "case 0 -> 0",
+            "Remove blank line after single-line branch.",
+            6,
+            "case 1 -> 1",
+            "Remove blank line after single-line branch.",
         )
 }

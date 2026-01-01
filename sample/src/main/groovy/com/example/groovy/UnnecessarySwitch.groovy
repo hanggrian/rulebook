@@ -7,6 +7,7 @@ class UnnecessarySwitch {
         }
         switch (foo) {
             case 0: bar.run()
+
             case 1:
                 bar.run()
                 break

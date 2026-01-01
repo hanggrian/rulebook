@@ -43,6 +43,7 @@ public class BlockCommentTrimCheck : RulebookJavadocCheck() {
                 .let { child ->
                     when (child.type) {
                         NEWLINE -> child
+
                         JAVADOC_TAG -> {
                             val description =
                                 child.children.firstOrNull { it.type == DESCRIPTION }

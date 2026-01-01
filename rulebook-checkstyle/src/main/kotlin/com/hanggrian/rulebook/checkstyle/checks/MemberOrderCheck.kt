@@ -43,6 +43,7 @@ public class MemberOrderCheck : RulebookAstCheck() {
                     }
 
                 CTOR_DEF, COMPACT_CTOR_DEF -> constructorPosition
+
                 METHOD_DEF ->
                     if (hasModifier(LITERAL_STATIC)) {
                         staticPosition
@@ -64,6 +65,7 @@ public class MemberOrderCheck : RulebookAstCheck() {
                     }
 
                 CTOR_DEF, COMPACT_CTOR_DEF -> "constructor"
+
                 METHOD_DEF ->
                     if (hasModifier(LITERAL_STATIC)) {
                         "static member"

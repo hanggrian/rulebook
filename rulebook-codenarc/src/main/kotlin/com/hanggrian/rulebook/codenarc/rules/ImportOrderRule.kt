@@ -25,6 +25,7 @@ public class ImportOrderRule : RulebookImportRule() {
                     val (directive, isStatic) =
                         when {
                             line.matches(IMPORT_REGEX) -> line.substringAfter("import ") to false
+
                             line.matches(STATIC_IMPORT_REGEX) ->
                                 line.substringAfter("import static ") to true
 

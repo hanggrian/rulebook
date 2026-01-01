@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.com.intellij.lang.FileASTNode
 import org.jetbrains.kotlin.psi.KtFile
 
 /**
- * @see `com.pinterest.ktlint.ruleset.standard.FilenameRule`.
+ * @see com.pinterest.ktlint.ruleset.standard.FilenameRule
  */
 internal fun Rule.getFileName(node: ASTNode): String? {
     node as? FileASTNode ?: error("node is not ${FileASTNode::class} but ${node::class}")

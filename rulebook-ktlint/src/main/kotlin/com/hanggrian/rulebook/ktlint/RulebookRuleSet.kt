@@ -8,7 +8,6 @@ import com.hanggrian.rulebook.ktlint.rules.BlockTagOrderRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagPunctuationRule
 import com.hanggrian.rulebook.ktlint.rules.BuiltInFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.BuiltInTypesRule
-import com.hanggrian.rulebook.ktlint.rules.CaseSeparatorRule
 import com.hanggrian.rulebook.ktlint.rules.ClassNameAbbreviationRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
@@ -75,7 +74,6 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BlockCommentSpacesRule() },
             RuleProvider { BlockTagIndentationRule() },
             RuleProvider { MissingBlankLineBeforeBlockTagsRule() },
-            RuleProvider { CaseSeparatorRule() },
             RuleProvider { UnnecessaryBlankLineBeforePackageRule() },
             // Stating
             RuleProvider { IllegalThrowRule() },

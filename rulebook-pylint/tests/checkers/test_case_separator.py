@@ -13,16 +13,13 @@ class TestCaseSeparatorChecker(CheckerTestCase):
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
 
-    def test_no_line_break_after_single_line_branch_and_line_break_after_multiline_branch(self):
+    def test_single_line_branches_without_line_break(self):
         node_all = \
             parse(
                 '''
                 match foo:
                     case 0: bar()
-                    case 1:
-                        bar()
-                        bar()
-
+                    case 1: bar(); bar()
                     case _: bar()
                 ''',
             )
@@ -30,37 +27,62 @@ class TestCaseSeparatorChecker(CheckerTestCase):
             self.checker.process_module(node_all)
             self.checker.visit_match(node_all.body[0])
 
-    def test_line_break_after_single_line_branch(self):
-        node_all = \
-            parse(
-                '''
-                match foo:
-                    case 0: bar()
-
-                    case _: bar()
-                ''',
-            )
-        with self.assertAddsMessages(
-            msg(CaseSeparatorChecker.MSG_UNEXPECTED, (3, 12, 17)),
-        ):
-            self.checker.process_module(node_all)
-            self.checker.visit_match(node_all.body[0])
-
-    def test_no_line_break_after_multiline_branch(self):
+    def test_multiline_branches_with_line_break(self):
         node_all = \
             parse(
                 '''
                 match foo:
                     case 0:
                         bar()
+
+                    case 1:
                         bar()
+                        bar()
+
                     case _:
                         bar()
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.process_module(node_all)
+            self.checker.visit_match(node_all.body[0])
+
+    def test_single_line_branches_with_line_break(self):
+        node_all = \
+            parse(
+                '''
+                match foo:
+                    case 0: bar()
+
+                    case 1: bar(); bar()
+
+                    case _: bar()
+                ''',
+            )
+        with self.assertAddsMessages(
+            msg(CaseSeparatorChecker.MSG_UNEXPECTED, (3, 12, 17)),
+            msg(CaseSeparatorChecker.MSG_UNEXPECTED, (5, 19, 24)),
+        ):
+            self.checker.process_module(node_all)
+            self.checker.visit_match(node_all.body[0])
+
+    def test_multiline_branches_without_line_break(self):
+        node_all = \
+            parse(
+                '''
+                match foo:
+                    case 0:
+                        bar()
+                    case 1:
+                        bar()
+                        break
+                    case _:
                         bar()
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CaseSeparatorChecker.MSG_MISSING, (5, 8, 13)),
+            msg(CaseSeparatorChecker.MSG_MISSING, (4, 8, 13)),
+            msg(CaseSeparatorChecker.MSG_MISSING, (7, 8, 13)),
         ):
             self.checker.process_module(node_all)
             self.checker.visit_match(node_all.body[0])

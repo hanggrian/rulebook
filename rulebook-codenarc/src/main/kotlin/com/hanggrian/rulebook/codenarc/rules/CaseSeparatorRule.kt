@@ -30,25 +30,25 @@ public class CaseSeparatorRule : RulebookAstRule() {
             val statements =
                 buildList<Statement> {
                     addAll(node.caseStatements)
-                    if (!node.defaultStatement.isEmpty) {
-                        add(node.defaultStatement)
-                    }
+                    node
+                        .defaultStatement
+                        ?.takeUnless { it.isEmpty }
+                        ?.let { add(it) }
                 }.takeUnless { it.isEmpty() }
                     ?: return
 
+            // checks for violation
+            val hasMultiline = statements.any { it.isMultiline() || hasCommentAbove(it) }
             for ((i, statement) in statements.withIndex()) {
-                // targeting switch, skip first branch
-                val lastStatement = statements.getOrNull(i - 1) ?: continue
                 val lastBody =
-                    ((lastStatement as CaseStatement).code as BlockStatement)
-                        .statements
-                        .last()
+                    ((statements.getOrNull(i - 1) as? CaseStatement)?.code as? BlockStatement)
+                        ?.statements
+                        ?.last()
+                        ?: continue
                 val lastStatementLastLineNumber = lastBody.lastLineNumber - 1
-
-                // checks for violation
                 val statementLineNumber = getLineNumberBefore(statement, lastBody)
                 when {
-                    lastStatement.isMultiline() || hasCommentAbove(lastStatement) ->
+                    hasMultiline ->
                         if (lastStatementLastLineNumber != statementLineNumber - 2) {
                             violations +=
                                 rule.createViolation(

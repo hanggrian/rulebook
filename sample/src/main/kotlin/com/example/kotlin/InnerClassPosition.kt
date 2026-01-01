@@ -4,6 +4,8 @@ class InnerClassPosition {
     class Foo(a: Int) {
         constructor() : this(0)
 
-        companion object
+        data object A {
+            override fun toString(): String = ""
+        }
     }
 }

@@ -1,15 +1,15 @@
 [versions]
 jdk = "21"
 jre = "8"
-junit = "5.12.2"
+junit = "5.14.1"
 # kotlin
 kotlin = "2.1.0"
-ktlint = "1.5.0"
+ktlint = "1.8.0"
 # java
-checkstyle = "10.21.4"
+checkstyle = "11.1.0"
 # groovy
-groovy = "3.0.23"
-codenarc = "3.6.0"
+groovy = "4.0.24"
+codenarc = "3.7.0-groovy-4.0"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
@@ -20,8 +20,8 @@ maven-publish = "com.vanniktech.maven.publish.base:0.35.0"
 
 [libraries]
 # main
-groovy = { module = "org.codehaus.groovy:groovy", version.ref = "groovy" }
-groovy-all = { module = "org.codehaus.groovy:groovy-all", version.ref = "groovy" }
+groovy = { module = "org.apache.groovy:groovy", version.ref = "groovy" }
+groovy-all = { module = "org.apache.groovy:groovy-all", version.ref = "groovy" }
 ktlint-rule-engine-core = { module = "com.pinterest.ktlint:ktlint-rule-engine-core", version.ref = "ktlint" }
 ktlint-cli-ruleset-core = { module = "com.pinterest.ktlint:ktlint-cli-ruleset-core", version.ref = "ktlint" }
 ktlint-ruleset-standard = { module = "com.pinterest.ktlint:ktlint-ruleset-standard", version.ref = "ktlint" }

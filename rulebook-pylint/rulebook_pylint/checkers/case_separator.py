@@ -20,18 +20,24 @@ class CaseSeparatorChecker(RulebookFileChecker):
     def visit_match(self, node: Match) -> None:
         # collect cases
         match_cases: list[MatchCase] = node.cases
+        if len(match_cases) == 0:
+            return
 
+        # checks for violation
+        has_multiline = \
+            any(
+                _is_multiline(match_case) or
+                _has_comment_above(self.lines, match_case) for
+                match_case in match_cases
+            )
         for (i, match_case) in enumerate(match_cases):
-            # targeting switch, skip first branch
             if i == 0:
                 continue
             last_match_case: MatchCase = match_cases[i - 1]
             match_case_fromlineno: int = \
                 _get_fromlineno_before(self.lines, match_case, last_match_case)
             last_body: NodeNG = last_match_case.body[-1]
-
-            # checks for violation
-            if _is_multiline(last_match_case) or _has_comment_above(self.lines, last_match_case):
+            if has_multiline:
                 if last_body.tolineno - 1 != match_case_fromlineno - 2:
                     self.add_message(
                         self.MSG_MISSING,
@@ -40,16 +46,14 @@ class CaseSeparatorChecker(RulebookFileChecker):
                         col_offset=last_body.col_offset,
                         end_col_offset=last_body.end_col_offset,
                     )
-                continue
-            if last_body.tolineno - 1 == match_case_fromlineno - 1:
-                continue
-            self.add_message(
-                self.MSG_UNEXPECTED,
-                line=last_body.lineno,
-                end_lineno=last_body.end_lineno,
-                col_offset=last_body.col_offset,
-                end_col_offset=last_body.end_col_offset,
-            )
+            elif last_body.tolineno - 1 != match_case_fromlineno - 1:
+                self.add_message(
+                    self.MSG_UNEXPECTED,
+                    line=last_body.lineno,
+                    end_lineno=last_body.end_lineno,
+                    col_offset=last_body.col_offset,
+                    end_col_offset=last_body.end_col_offset,
+                )
 
 
 def register(linter: 'PyLinter') -> None:

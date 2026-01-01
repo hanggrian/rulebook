@@ -1,7 +1,3 @@
-[View Dokka](api/dokka/){ .md-button .md-button--primary }&emsp;[View Pdoc](api/pdoc/){ .md-button }
-
-## Features
-
 !!! features1 "What is Rulebook?"
     <div class="grid cards" markdown>
 
@@ -34,6 +30,15 @@
     </div>
 
 ## Compatibility table
+
+### Language
+
+Version | Java | Groovy | Kotlin | Python
+--- | :---: | :---: | :---: | :---:
+0.1 | 8 (lambda) | 3 (closure, deferred) | 1.9 (SAM) | 3.9 (f-strings, match)
+0.2 | 16 (pattern, record) | 4 (arrow switch case) | 2.1 (data object) | 3.10 (union types)
+
+### Rules
 
 !!! legend
     <div class="grid" markdown>
@@ -113,13 +118,13 @@ Static import position[^openjdk-feedback] | :material-check:{ .lg } | [:material
 <span class="material-symbols-outlined lg middle">format_letter_spacing_2</span> **Spacing group** | **Java** | **Groovy** | **Kotlin** | **Python**
 Block comment spaces[^oracle-javadoc] | [:material-information-outline:{ .lg title="JavadocMissingWhitespaceAfterAsterisk" }](https://checkstyle.sourceforge.io/checks/javadoc/javadocmissingwhitespaceafterasterisk.html) | [:material-information-outline:{ .lg title="SpaceAfterCommentDelimiter" }](https://codenarc.org/codenarc-rules-comments.html#spaceaftercommentdelimiter-rule) [:material-information-outline:{ .lg title="SpaceBeforeCommentDelimiter" }](https://codenarc.org/codenarc-rules-comments.html#spacebeforecommentdelimiter-rule) | :material-check-all:{ .lg }
 Block tag indentation[^google-javadoc-block-tags] | [:material-information-outline:{ .lg title="JavadocTagContinuationIndentation" }](https://checkstyle.sourceforge.io/checks/javadoc/javadoctagcontinuationindentation.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
-Case separator[^kotlin-control-flow-statements] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
+Case separator[^kotlin-control-flow-statements] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | [:material-information-outline:{ .lg title="blank-line-between-when-conditions" }](https://pinterest.github.io/ktlint/latest/rules/standard/#blank-line-between-when-conditions) | :material-check-all:{ .lg }
 Comment space[^android-horizontal] | :material-check-all:{ .lg } | :material-check:{ .lg } | [:material-information-outline:{ .lg title="comment-spacing" }](https://pinterest.github.io/ktlint/latest/rules/standard/#comment-spacing) | :material-check-all:{ .lg }
 Member separator[^google-vertical-whitespace] | [:material-information-outline:{ .lg title="EmptyLineSeparator" }](https://checkstyle.sourceforge.io/checks/whitespace/emptylineseparator.html) | :material-check-all:{ .lg } | [:material-information-outline:{ .lg title="blank-line-before-declarations" }](https://pinterest.github.io/ktlint/latest/rules/standard/#blank-line-before-declarations) | :material-check-all:{ .lg }
 Missing blank line before block tags[^kotlin-kdoc-syntax] | [:material-information-outline:{ .lg title="RequireEmptyLineBeforeBlockTagGroup" }](https://checkstyle.sourceforge.io/checks/javadoc/requireemptylinebeforeblocktaggroup.html) | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 <span class="material-symbols-outlined lg middle">code_blocks</span> **Stating group** | **Java** | **Groovy** | **Kotlin** | **Python**
 Illegal catch[^oracle-throwing] | [:material-information-outline:{ .lg title="IllegalCatch" }](https://checkstyle.sourceforge.io/checks/coding/illegalcatch.html) | [:material-information-outline:{ .lg title="CatchError" }](https://codenarc.org/codenarc-rules-exceptions.html#catcherror-rule) [:material-information-outline:{ .lg title="CatchException" }](https://codenarc.org/codenarc-rules-exceptions.html#catchexception-rule) [:material-information-outline:{ .lg title="CatchThrowable" }](https://codenarc.org/codenarc-rules-exceptions.html#catchthrowable-rule) | [:material-close:{ .lg }](https://discuss.kotlinlang.org/t/does-kotlin-have-multi-catch/486/) | [:material-information-outline:{ .lg title="bare-except" }](https://pylint.pycqa.org/en/latest/user_guide/messages/warning/bare-except.html)
-Illegal throw[^oracle-throwing] | [:material-information-outline:{ .lg title="IllegalThrows" }](checkstyle.sourceforge.io/checks/coding/illegalthrows.html) | [:material-information-outline:{ .lg title="ThrowError" }](https://codenarc.org/codenarc-rules-exceptions.html#throwerror-rule) [:material-information-outline:{ .lg title="ThrowException" }](https://codenarc.org/codenarc-rules-exceptions.html#throwexception-rule) [:material-information-outline:{ .lg title="ThrowThrowable" }](https://codenarc.org/codenarc-rules-exceptions.html#throwthrowable-rule) | :material-check-all:{ .lg } | [:material-information-outline:{ .lg title="broad-exception-caught" }](https://pylint.pycqa.org/en/latest/user_guide/messages/warning/broad-exception-caught.html)
+Illegal throw[^oracle-throwing] | [:material-information-outline:{ .lg title="IllegalThrows" }](https://checkstyle.sourceforge.io/checks/coding/illegalthrows.html) | [:material-information-outline:{ .lg title="ThrowError" }](https://codenarc.org/codenarc-rules-exceptions.html#throwerror-rule) [:material-information-outline:{ .lg title="ThrowException" }](https://codenarc.org/codenarc-rules-exceptions.html#throwexception-rule) [:material-information-outline:{ .lg title="ThrowThrowable" }](https://codenarc.org/codenarc-rules-exceptions.html#throwthrowable-rule) | :material-check-all:{ .lg } | [:material-information-outline:{ .lg title="broad-exception-caught" }](https://pylint.pycqa.org/en/latest/user_guide/messages/warning/broad-exception-caught.html)
 Missing braces[^android-braces] | [:material-information-outline:{ .lg title="NeedBraces" }](https://checkstyle.sourceforge.io/checks/blocks/needbraces.html) | [:material-information-outline:{ .lg title="ElseStatementBraces" }](https://codenarc.org/codenarc-rules-braces.html#elsestatementbraces-rule) [:material-information-outline:{ .lg title="ForStatementBraces" }](https://codenarc.org/codenarc-rules-braces.html#forstatementbraces-rule) [:material-information-outline:{ .lg title="IfStatementBraces" }](https://codenarc.org/codenarc-rules-braces.html#ifstatementbraces-rule) [:material-information-outline:{ .lg title="WhileStatementBraces" }](https://codenarc.org/codenarc-rules-braces.html#whilestatementbraces-rule) | [:material-information-outline:{ .lg title="multiline-if-else" }](https://pinterest.github.io/ktlint/latest/rules/standard/#multiline-if-else) [:material-information-outline:{ .lg title="multiline-loop" }](https://pinterest.github.io/ktlint/latest/rules/standard/#multiline-loop)
 Nested if-else[^jetbrains-invert-if] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
 Redundant default[^jetbrains-redundant-if-else-block] | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg } | :material-check-all:{ .lg }
@@ -220,24 +225,134 @@ Statement wrap[^oracle-codeconventions-statements] | [:material-information-outl
         [PyPI :material-open-in-new:](https://pypi.org/project/pylint/)
     </div>
 !!! download2 "Download the library"
-    <div class="grid cards" markdown>
+    Get the artifacts from official package managers.
 
-    -   :simple-apachemaven:{ .lg .middle } **Maven**
+    [Maven Central](https://repo1.maven.org/maven2/com/hanggrian/rulebook/){ .md-button .md-button--primary }&emsp;[PyPI](https://pypi.org/project/rulebook-pylint/){ .md-button }
 
-        ---
+## FAQ
 
-        JVM artifacts are available on Maven Central.
+### Why is it necessary?
 
-        [Maven Central :material-open-in-new:](https://repo1.maven.org/maven2/com/hanggrian/rulebook/)
+When working on a project with multiple programming languages, we often forget
+to apply the same coding style and leave the validation to a linter tool.
+However, the default behavior of these linters are not always consistent.
+Consider the example below:
 
-    -   :simple-pypi:{ .lg .middle } **PyPI**
+<table>
+  <thead>
+    <tr>
+      <th>Java</th>
+      <th>Groovy</th>
+      <th>Kotlin</th>
+      <th>Python</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Java does not allow trailing commas except in array initializers.
+      </td>
+      <td>
+        Groovy allows trailing commas in call sites, but CodeNarc does not
+        natively support it.
+      </td>
+      <td>
+        Trailing commas can be placed in call and declaration sites in Kotlin,
+        the rule is provided by Ktlint.
+      </td>
+      <td>
+        Python allows trailing commas but Pylint considers it optional in PEP.
+        <i>Note that the comment spacing rule is different in Python.</i>
+      </td>
+    </tr>
+    <tr>
+      <td>
+```java
+void foo(
+    int a,
+    int b
+) {
+    bar(
+        a,
+        b
+    )
+}
+```
+      </td>
+      <td>
+```groovy
+def foo(
+    int a,
+    int b
+) {
+    bar(
+        a,
+        b // no!
+    )
+}
+```
+      </td>
+      <td>
+```kotlin
+fun foo(
+    a: Int,
+    b: Int // no!
+) =
+    bar(
+        a,
+        b // no!
+    )
+```
+      </td>
+      <td>
+        <pre>
+```python
+def foo(
+    a: int,
+    b: int  # no!
+):
+    bar(
+        a,
+        b  # no!
+    )
+```
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-        ---
+### How stable is it?
 
-        The Python package is available on PyPI.
+The rules are mostly work in progress and have not been tested against a large
+codebase. Disable the rules individually if they behave unexpectedly.
 
-        [PyPI :material-open-in-new:](https://pypi.org/project/rulebook-pylint/)
-    </div>
+=== "checkstyle.xml"
+    ```xml
+    <!--module name="CommentSpaces"/-->
+    ```
+=== "codenarc.xml"
+    ```xml
+    <!--rule class="com.hanggrian.rulebook.codenarc.CommentSpacesRule"/-->
+    ```
+=== ".editorconfig"
+    ```ini
+    ktlint_rulebook_comment-spaces = disabled
+    ```
+=== "pylintrc"
+    ```python
+    # rulebook_pylint.comment_spaces,
+    ```
+
+### What's next for Rulebook?
+
+Although there is no timeline for the roadmap, more languages are planned:
+
+- [X] Java
+- [X] Groovy
+- [X] Kotlin
+- [X] Python
+- [ ] JavaScript
+- [ ] TypeScript
 
 [^common-abstract-class-require-abstract-method]: [Abstract class require abstract method](rationales/index.md#abstract-class-require-abstract-method)
 [^avoid-primitive-names]: [Avoid primitive names](rationales/index.md#avoid-primitive-names)

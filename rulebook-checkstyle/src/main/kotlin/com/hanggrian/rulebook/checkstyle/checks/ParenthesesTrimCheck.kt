@@ -42,7 +42,7 @@ public class ParenthesesTrimCheck : RulebookAstCheck() {
             }
 
         // checks for violation
-        val lparenSiblingLineNo = lparenSibling.minLineNo
+        val lparenSiblingLineNo = lparenSibling?.minLineNo ?: return
         val rparenSiblingLineNo = rparenSibling.maxLineNo
         if (lparenSiblingLineNo - lparen.lineNo > 1) {
             log(lparenSiblingLineNo - 1, Messages[MSG_FIRST])

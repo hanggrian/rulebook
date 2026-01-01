@@ -29,6 +29,7 @@ public class BlockCommentTrimRule : RulebookRule(ID) {
                 .let { n ->
                     when (n.elementType) {
                         KDOC_LEADING_ASTERISK -> n
+
                         KDOC_TAG ->
                             n
                                 .findChildByType(KDOC_LEADING_ASTERISK)

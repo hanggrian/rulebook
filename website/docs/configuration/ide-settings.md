@@ -1,4 +1,4 @@
-Presuming the IDE is *IntelliJ IDEA* or *PyCharm*, consider applying the linter
+Presuming the IDE is *IntelliJ IDEA* or *PyCharm,* consider applying the linter
 style to it.
 
 ## Ktlint Style

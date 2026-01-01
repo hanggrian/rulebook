@@ -3,11 +3,15 @@ package com.hanggrian.rulebook.checkstyle.checks;
 class CaseSeparator {
     void foo(int bar) {
         switch (bar) {
+            // Lorem ipsum.
             case 0:
                 baz();
+            /* Lorem ipsum. */
             case 1:
                 baz();
-                break;
+            /** Lorem ipsum. */
+            case 2:
+                baz();
             default:
                 baz();
         }

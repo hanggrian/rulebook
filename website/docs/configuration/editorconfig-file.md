@@ -27,6 +27,7 @@ ij_kotlin_name_count_to_use_star_import_for_members = 99
 ktlint_class_signature_rule_force_multiline_when_parameter_count_greater_or_equal_than = unset
 ktlint_function_signature_rule_force_multiline_when_parameter_count_greater_or_equal_than = unset
 ktlint_chain_method_rule_force_multiline_when_chain_operator_count_greater_or_equal_than = unset
+ktlint_standard_when-entry-bracing = disabled
 ```
 
 ## Java configuration

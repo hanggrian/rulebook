@@ -23,7 +23,6 @@ class RulebookRuleSetTest {
             BlockTagPunctuationRule::class,
             BuiltInFunctionPositionRule::class,
             BuiltInTypesRule::class,
-            CaseSeparatorRule::class,
             ClassNameAbbreviationRule::class,
             CommentTrimRule::class,
             ConfusingPredicateRule::class,

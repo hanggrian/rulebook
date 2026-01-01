@@ -28,6 +28,7 @@ public class TodoCommentRule : RulebookRule(ID) {
         val text =
             when (node.elementType) {
                 EOL_COMMENT -> node.text
+
                 KDOC_SECTION ->
                     node
                         .takeUnless { KDOC_LEADING_ASTERISK in it }

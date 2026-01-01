@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#inner-class-position) */
 public class InnerClassPositionRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(CLASS)
+    override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // consider only inner class

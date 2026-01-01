@@ -6,6 +6,10 @@ class CaseSeparator {
             case 0:
                 baz();
 
+            case 1:
+                baz();
+                break;
+
             default:
                 baz();
         }

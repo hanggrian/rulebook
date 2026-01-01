@@ -80,27 +80,26 @@ theme:
 nav:
   - Home:
     - Overview: index.md
-    - FAQ: faq.md
-  - Getting started:
-    - Installation: getting-started/index.md
+    - Getting started: readme.md
+    - Developer guide: contributing.md
     - Configuration:
-      - IDE settings: getting-started/ide-settings.md
-      - EditorConfig file: getting-started/editorconfig-file.md
+      - IDE settings: configuration/ide-settings.md
+      - EditorConfig file: configuration/editorconfig-file.md
   - Rules:
     - All rules: rules/index.md
     - Glossary: rules/glossary.md
     - External links:
-      - Checkstyle standard checks <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>: https://checkstyle.org/checks.html
-      - CodeNarc rules <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>: https://codenarc.org/codenarc-rule-index.html
-      - Ktlint standard rules <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>: https://pinterest.github.io/ktlint/latest/rules/standard/
-      - Pylint checkers <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>: https://pylint.pycqa.org/en/latest/user_guide/checkers/features.html
+      - Checkstyle standard checks: https://checkstyle.org/checks.html?ext
+      - CodeNarc rules: https://codenarc.org/codenarc-rule-index.html?ext
+      - Ktlint standard rules: https://pinterest.github.io/ktlint/latest/rules/standard/?ext
+      - Pylint checkers: https://pylint.pycqa.org/en/latest/user_guide/checkers/features.html?ext
   - Rationales:
     - Common rationales: rationales/index.md
     - External links:
-      - Kotlin coding conventions <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>: https://kotlinlang.org/docs/coding-conventions.html
-      - PEP 8 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>open-in-new</title><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>: https://peps.python.org/pep-0008/
-  - Contributing:
-    - Developer guide: contributing/index.md
+      - Kotlin coding conventions: https://kotlinlang.org/docs/coding-conventions.html?ext
+      - PEP 8: https://peps.python.org/pep-0008/?ext
+  - Javadoc: api/dokka/
+  - Pythondoc: api/pdoc/
 
 plugins:
   - search
@@ -108,8 +107,8 @@ plugins:
 extra_javascript:
   - scripts/mermaid.min.js # hotfix for Mermaid not loading in GitHub Pages
 extra_css:
-  - styles/extra.css
-  - https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined # more material icons
+  - styles/colors.css
+  - styles/links.css
 
 hooks:
   - hooks/archive.py

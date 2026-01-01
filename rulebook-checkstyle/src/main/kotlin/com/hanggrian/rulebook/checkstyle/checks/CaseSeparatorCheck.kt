@@ -6,41 +6,51 @@ import com.hanggrian.rulebook.checkstyle.isComment
 import com.hanggrian.rulebook.checkstyle.isMultiline
 import com.hanggrian.rulebook.checkstyle.maxLineNo
 import com.hanggrian.rulebook.checkstyle.minLineNo
-import com.hanggrian.rulebook.checkstyle.nextSibling
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#case-separator) */
 public class CaseSeparatorCheck : RulebookAstCheck() {
-    override fun getRequiredTokens(): IntArray = intArrayOf(CASE_GROUP)
+    override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 
     override fun isCommentNodesRequired(): Boolean = true
 
     override fun visitToken(node: DetailAST) {
-        // targeting case, skip last branch
-        val caseGroup =
+        // collect cases
+        val caseGroups =
             node
-                .nextSibling { it.type == CASE_GROUP }
+                .children()
+                .filter { it.type == CASE_GROUP }
+                .toList()
+                .takeUnless { it.isEmpty() }
                 ?: return
 
         // checks for violation
-        val slist = node.findFirstToken(SLIST) ?: return
-        if (slist.isMultiline() ||
-            node.children().any { it.isComment() }
-        ) {
-            caseGroup
-                .minLineNo
-                .takeIf { it != slist.maxLineNo + 2 }
-                ?: return
-            log(slist.lastChild, Messages[MSG_MISSING])
-            return
+        val hasMultiline =
+            caseGroups.any { caseGroup ->
+                caseGroup.findFirstToken(SLIST)?.isMultiline() == true ||
+                    caseGroup.children().any { it.isComment() }
+            }
+        for ((i, caseGroup) in caseGroups.withIndex()) {
+            val lastSlist =
+                caseGroups
+                    .getOrNull(i - 1)
+                    ?.findFirstToken(SLIST)
+                    ?: continue
+            when {
+                hasMultiline -> {
+                    if (caseGroup.minLineNo != lastSlist.maxLineNo + 2) {
+                        log(lastSlist.lastChild, Messages[MSG_MISSING])
+                    }
+                }
+
+                caseGroup.minLineNo != lastSlist.maxLineNo + 1 -> {
+                    log(lastSlist.lastChild, Messages[MSG_UNEXPECTED])
+                }
+            }
         }
-        caseGroup
-            .minLineNo
-            .takeIf { it != slist.maxLineNo + 1 }
-            ?: return
-        log(slist.lastChild, Messages[MSG_UNEXPECTED])
     }
 
     private companion object {

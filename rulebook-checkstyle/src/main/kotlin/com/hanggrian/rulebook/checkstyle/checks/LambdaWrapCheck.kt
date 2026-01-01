@@ -19,7 +19,7 @@ public class LambdaWrapCheck : RulebookAstCheck() {
     override fun visitToken(node: DetailAST) {
         // target multiline lambda
         val expr =
-            (node.findFirstToken(EXPR) ?: node.findFirstToken(SLIST).findFirstToken(EXPR))
+            (node.findFirstToken(EXPR) ?: node.findFirstToken(SLIST)?.findFirstToken(EXPR))
                 ?.takeIf { it.isMultiline() }
                 ?: return
         val parameters =

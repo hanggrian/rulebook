@@ -43,6 +43,7 @@ public class ClassNameAbbreviationRule : RulebookAstRule() {
                             it.value.first() +
                                 when {
                                     it.range.last == s.lastIndex -> it.value.drop(1).lowercase()
+
                                     else ->
                                         it.value.drop(1).dropLast(1).lowercase() +
                                             it.value.last()

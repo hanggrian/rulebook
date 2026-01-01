@@ -57,7 +57,9 @@ public class BuiltInTypesRule : RulebookRule(ID) {
                     }
 
                 startsWith("java.util.") -> COLLECTIONS_REPLACEMENT[this]
+
                 isTestClass && startsWith("org.junit") -> TEST_ANNOTATIONS_REPLACEMENT[this]
+
                 else -> null
             }
 
