@@ -7,6 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OVERRIDE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -21,7 +22,7 @@ public class BuiltInFunctionPositionRule : RulebookRule(ID) {
         // in Kotlin, static members belong in companion object
         val funs =
             node
-                .children()
+                .children20
                 .filter { it.elementType == FUN }
                 .toList()
 
@@ -38,7 +39,7 @@ public class BuiltInFunctionPositionRule : RulebookRule(ID) {
                 .subList(i, funs.size)
                 .takeIf { nodes -> nodes.any { !it.isBuiltInFunction() } }
                 ?: continue
-            emit(`fun`.startOffset, Messages.get(MSG, identifier.text), false)
+            emit(`fun`.startOffset, Messages[MSG, identifier.text], false)
         }
     }
 

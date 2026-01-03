@@ -12,8 +12,7 @@ class TagsTrimRuleTest : AbstractRuleTestCase<TagsTrimRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<TagsTrimRule.Visitor>(rule.astVisitor)
+        assertIs<TagsTrimVisitor>(rule.astVisitor)
     }
 
     @Test

@@ -6,6 +6,7 @@ import com.hanggrian.rulebook.ktlint.endOffset
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -18,7 +19,7 @@ public class DuplicateBlankLineInBlockCommentRule : RulebookRule(ID) {
         val nextKdocLeadingAsterisk =
             node
                 .treeNext
-                ?.takeIf { it.isWhiteSpaceWithNewline() }
+                ?.takeIf { it.isWhiteSpaceWithNewline20 }
                 ?.treeNext
                 ?.takeIf { it.elementType == KDOC_LEADING_ASTERISK }
                 ?: return
@@ -26,7 +27,7 @@ public class DuplicateBlankLineInBlockCommentRule : RulebookRule(ID) {
         // checks for violation
         nextKdocLeadingAsterisk
             .treeNext
-            .takeIf { it.isWhiteSpaceWithNewline() }
+            .takeIf { it.isWhiteSpaceWithNewline20 }
             ?: return
         emit(nextKdocLeadingAsterisk.endOffset, Messages[MSG], false)
     }

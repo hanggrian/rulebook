@@ -8,7 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProper
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-public typealias Emit = (
+internal typealias Emit = (
     offset: Int,
     errorMessage: String,
     canBeAutoCorrected: Boolean,

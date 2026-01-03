@@ -28,7 +28,7 @@ public class FileSizeRule : RulebookRule(ID, MAX_FILE_SIZE_PROPERTY) {
             .lines()
             .takeIf { (if (it.last().isEmpty()) it.lastIndex else it.size) > maxFileSize }
             ?: return
-        emit(node.startOffset, Messages.get(MSG, maxFileSize), false)
+        emit(node.startOffset, Messages[MSG, maxFileSize], false)
     }
 
     public companion object {

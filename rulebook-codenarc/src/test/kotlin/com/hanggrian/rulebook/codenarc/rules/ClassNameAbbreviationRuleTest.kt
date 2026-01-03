@@ -12,8 +12,7 @@ class ClassNameAbbreviationRuleTest : AbstractRuleTestCase<ClassNameAbbreviation
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<ClassNameAbbreviationRule.Visitor>(rule.astVisitor)
+        assertIs<ClassNameAbbreviationVisitor>(rule.astVisitor)
     }
 
     @Test

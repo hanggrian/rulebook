@@ -11,11 +11,11 @@ class AssignmentWrap {
         ]
 
         var baz = i -> {
-            System.out.println(i)
-            System.out.println(i)
+            println(i)
+            println(i)
         }
 
         var qux = i ->
-            System.out.println(i)
+            println(i)
     }
 }

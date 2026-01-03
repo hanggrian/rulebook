@@ -12,8 +12,7 @@ class ParenthesesTrimRuleTest : AbstractRuleTestCase<ParenthesesTrimRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<ParenthesesTrimRule.Visitor>(rule.astVisitor)
+        assertIs<ParenthesesTrimVisitor>(rule.astVisitor)
     }
 
     @Test
@@ -23,7 +22,7 @@ class ParenthesesTrimRuleTest : AbstractRuleTestCase<ParenthesesTrimRule>() {
             def foo(
                 var bar
             ) {
-                System.out.println(
+                println(
                     'baz',
                 )
             }
@@ -39,7 +38,7 @@ class ParenthesesTrimRuleTest : AbstractRuleTestCase<ParenthesesTrimRule>() {
                 var bar
 
             ) {
-                System.out.println(
+                println(
 
                     'baz',
 
@@ -61,7 +60,7 @@ class ParenthesesTrimRuleTest : AbstractRuleTestCase<ParenthesesTrimRule>() {
                 var bar
                 // ipsum.
             ) {
-                System.out.println(
+                println(
                     // Lorem
                     'baz',
                     // ipsum.

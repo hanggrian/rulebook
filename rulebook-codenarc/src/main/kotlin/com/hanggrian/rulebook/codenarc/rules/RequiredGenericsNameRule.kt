@@ -1,6 +1,8 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.rules.RequiredGenericsNameRule.Companion.MSG
+import com.hanggrian.rulebook.codenarc.rules.RequiredGenericsNameRule.Companion.hasParentWithGenerics
 import com.hanggrian.rulebook.codenarc.splitToList
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ASTNode
@@ -20,9 +22,9 @@ public class RequiredGenericsNameRule : RulebookAstRule() {
 
     override fun getName(): String = "RequiredGenericsName"
 
-    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
+    override fun getAstVisitorClass(): Class<*> = RequiredGenericsNameVisitor::class.java
 
-    private companion object {
+    internal companion object {
         const val MSG = "required.generics.name"
 
         fun ASTNode.hasParentWithGenerics() =
@@ -31,31 +33,31 @@ public class RequiredGenericsNameRule : RulebookAstRule() {
                 else -> (this as ClassNode).outerClasses
             }.any { it.name != "None" && !it.genericsTypes.isNullOrEmpty() }
     }
+}
 
-    public class Visitor : RulebookVisitor() {
-        override fun visitClassEx(node: ClassNode) {
-            super.visitClassEx(node)
-            process(node, node.genericsTypes)
-        }
+public class RequiredGenericsNameVisitor : RulebookVisitor() {
+    override fun visitClassEx(node: ClassNode) {
+        super.visitClassEx(node)
+        process(node, node.genericsTypes)
+    }
 
-        override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-            super.visitConstructorOrMethod(node, isConstructor)
-            process(node, node.genericsTypes)
-        }
+    override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
+        super.visitConstructorOrMethod(node, isConstructor)
+        process(node, node.genericsTypes)
+    }
 
-        private fun process(node: ASTNode, genericTypes: Array<GenericsType>?) {
-            // filter out multiple generics
-            val genericsType =
-                genericTypes
-                    ?.singleOrNull()
-                    ?: return
-
-            // checks for violation
-            val names = (rule as RequiredGenericsNameRule).nameList
-            node
-                .takeUnless { it.hasParentWithGenerics() || genericsType.name in names }
+    private fun process(node: ASTNode, genericTypes: Array<GenericsType>?) {
+        // filter out multiple generics
+        val genericsType =
+            genericTypes
+                ?.singleOrNull()
                 ?: return
-            addViolation(genericsType, Messages.get(MSG, names.joinToString(", ")))
-        }
+
+        // checks for violation
+        val names = (rule as RequiredGenericsNameRule).nameList
+        node
+            .takeUnless { it.hasParentWithGenerics() || genericsType.name in names }
+            ?: return
+        addViolation(genericsType, Messages[MSG, names.joinToString(", ")])
     }
 }

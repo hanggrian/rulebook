@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.expr.LambdaExpression
 
@@ -8,28 +9,28 @@ import org.codehaus.groovy.ast.expr.LambdaExpression
 public class UnnecessaryParenthesesInLambdaRule : RulebookAstRule() {
     override fun getName(): String = "UnnecessaryParenthesesInLambda"
 
-    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
+    override fun getAstVisitorClass(): Class<*> = UnnecessaryParenthesesInLambdaVisitor::class.java
 
-    private companion object {
+    internal companion object {
         const val MSG = "unnecessary.parentheses.in.lambda"
     }
+}
 
-    public class Visitor : RulebookVisitor() {
-        override fun visitLambdaExpression(node: LambdaExpression) {
-            super.visitLambdaExpression(node)
+public class UnnecessaryParenthesesInLambdaVisitor : RulebookVisitor() {
+    override fun visitLambdaExpression(node: LambdaExpression) {
+        super.visitLambdaExpression(node)
 
-            // skip multiple parameters
-            val parameter =
-                node
-                    .parameters
-                    ?.singleOrNull()
-                    ?: return
-
-            // checks for violation
-            sourceLine(parameter)
-                .takeIf { ") ->" in it && parameter.isDynamicTyped }
+        // skip multiple parameters
+        val parameter =
+            node
+                .parameters
+                ?.singleOrNull()
                 ?: return
-            addViolation(parameter, Messages[MSG])
-        }
+
+        // checks for violation
+        sourceLine(parameter)
+            .takeIf { ") ->" in it && parameter.isDynamicTyped }
+            ?: return
+        addViolation(parameter, Messages[MSG])
     }
 }

@@ -43,7 +43,7 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
             .lastOrNull()
             ?.takeUnless { it in END_PUNCTUATIONS }
             ?: return
-        log(text.lineNumber, text.columnNumber, Messages.get(MSG, tagLiteral.text))
+        log(text.lineNumber, text.columnNumber, Messages[MSG, tagLiteral.text])
     }
 
     private companion object {

@@ -12,8 +12,7 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<CaseSeparatorRule.Visitor>(rule.astVisitor)
+        assertIs<CaseSeparatorVisitor>(rule.astVisitor)
     }
 
     @Test

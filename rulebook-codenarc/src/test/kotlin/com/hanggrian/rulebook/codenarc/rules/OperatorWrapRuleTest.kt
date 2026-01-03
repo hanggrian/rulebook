@@ -12,8 +12,7 @@ class OperatorWrapRuleTest : AbstractRuleTestCase<OperatorWrapRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<OperatorWrapRule.Visitor>(rule.astVisitor)
+        assertIs<OperatorWrapVisitor>(rule.astVisitor)
     }
 
     @Test

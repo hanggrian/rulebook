@@ -63,7 +63,7 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
             ?.elementType
             ?.takeIf { it == EXCLEQ || it == EXCL || it == NOT_IS }
             ?: return
-        emit(node.startOffset, Messages.get(msg, functionReplacement), false)
+        emit(node.startOffset, Messages[msg, functionReplacement], false)
     }
 
     public companion object {

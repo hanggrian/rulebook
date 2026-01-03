@@ -12,8 +12,7 @@ class IllegalVariableNameRuleTest : AbstractRuleTestCase<IllegalVariableNameRule
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<IllegalVariableNameRule.Visitor>(rule.astVisitor)
+        assertIs<IllegalVariableNameVisitor>(rule.astVisitor)
 
         val rule = IllegalVariableNameRule()
         rule.names = "foo, bar"

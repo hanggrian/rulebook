@@ -9,7 +9,9 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline20
 import com.pinterest.ktlint.rule.engine.core.api.prevCodeSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -33,18 +35,18 @@ public class ElvisWrapRule : RulebookRule(ID) {
                 ?.lastLeaf()
                 ?: return
         if (sibling.elementType == RBRACE &&
-            sibling.treePrev.isWhiteSpaceWithNewline()
+            sibling.treePrev.isWhiteSpaceWithNewline20
         ) {
             operationReference
                 .treePrev
-                .takeIf { it.isWhiteSpaceWithNewline() }
+                .takeIf { it.isWhiteSpaceWithNewline20 }
                 ?: return
             emit(node.startOffset, Messages[MSG_UNEXPECTED], false)
             return
         }
         operationReference
             .treePrev
-            .takeIf { it.isWhiteSpaceWithoutNewline() }
+            .takeIf { it.isWhiteSpaceWithoutNewline20 }
             ?: return
         emit(node.startOffset, Messages[MSG_MISSING], false)
     }

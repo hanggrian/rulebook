@@ -11,8 +11,7 @@ class OverloadFunctionPositionRuleTest : AbstractRuleTestCase<OverloadFunctionPo
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<OverloadFunctionPositionRule.Visitor>(rule.astVisitor)
+        assertIs<OverloadFunctionPositionVisitor>(rule.astVisitor)
     }
 
     @Test

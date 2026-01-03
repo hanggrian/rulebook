@@ -236,7 +236,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 
 === "Groovy"
     ```groovy hl_lines="4 7"
-    def items =
+    var items =
         Arrays.asList(
             'milks',
             'eggs'
@@ -269,7 +269,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 
 === "Groovy"
     ```groovy hl_lines="4 7"
-    def items =
+    var items =
         Arrays.asList(
             'milks',
             'eggs',
@@ -487,7 +487,7 @@ Import directives must be single-type instead of wildcard imports.
     ```groovy hl_lines="1"
     import com.example.fruit.*
 
-    ArrayList<Fruit> fruits = [new Apple(), new Banana()]
+    var fruits = [new Apple(), new Banana()]
     ```
 === "Kotlin"
     ```kotlin hl_lines="1"
@@ -516,7 +516,7 @@ Import directives must be single-type instead of wildcard imports.
     import com.example.fruit.Apple
     import com.example.fruit.Banana
 
-    ArrayList<Fruit> fruits = [new Apple(), new Banana()]
+    var fruits = [new Apple(), new Banana()]
     ```
 === "Kotlin"
     ```kotlin hl_lines="1-2"
@@ -999,7 +999,7 @@ Wrap string in single quotes, unless there is a template or a single quote.
 
 === "Groovy"
     ```groovy
-    name = "John Doe"
+    var name = "John Doe"
 
     println('G\'day, ' + name)
     ```
@@ -1014,7 +1014,7 @@ Wrap string in single quotes, unless there is a template or a single quote.
 
 === "Groovy"
     ```groovy
-    name = 'John Doe'
+    var name = 'John Doe'
 
     println("G'day, " + name)
     ```
@@ -1382,7 +1382,7 @@ Length of a line should not exceed 100 characters.
     ```
 === "Groovy"
     ```groovy
-    StringBuilder builder = new StringBuilder('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+    var builder = new StringBuilder('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
     ```
 === "Kotlin"
     ```kotlin
@@ -1404,7 +1404,7 @@ Length of a line should not exceed 100 characters.
     ```
 === "Groovy"
     ```groovy
-    StringBuilder builder =
+    var builder =
         new StringBuilder(
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
         )
@@ -1549,7 +1549,7 @@ Constant fields should be written in `SCREAMING_SNAKE_CASE`.
     ```
 === "Groovy"
     ```groovy
-    static final int maxValue = 99
+    static final var maxValue = 99
     ```
 === "Kotlin"
     ```kotlin
@@ -1564,7 +1564,7 @@ Constant fields should be written in `SCREAMING_SNAKE_CASE`.
     ```
 === "Groovy"
     ```groovy
-    static final int MAX_VALUE = 99
+    static final var MAX_VALUE = 99
     ```
 === "Kotlin"
     ```kotlin
@@ -1628,19 +1628,19 @@ Non-constant fields, functions and parameters should be written in
 === "Java"
     ```java
     void DebugUser(User User) {
-        AnotherUser = User;
+        User AnotherUser = User;
     }
     ```
 === "Groovy"
     ```groovy
     def DebugUser(User User) {
-        AnotherUser = User
+        var AnotherUser = User
     }
     ```
 === "Kotlin"
     ```kotlin
     fun DebugUser(User: User) {
-        AnotherUser = User
+        val AnotherUser = User
     }
     ```
 === "Python"
@@ -1654,19 +1654,19 @@ Non-constant fields, functions and parameters should be written in
 === "Java"
     ```java
     void debugUser(User user) {
-        anotherUser = user;
+        User anotherUser = user;
     }
     ```
 === "Groovy"
     ```groovy
     def debugUser(User user) {
-        anotherUser = user
+        var anotherUser = user
     }
     ```
 === "Kotlin"
     ```kotlin
     fun debugUser(user: User) {
-        anotherUser = user
+        val anotherUser = user
     }
     ```
 === "Python"
@@ -2039,98 +2039,51 @@ at the end of the class.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
-    ```java hl_lines="2-5"
+    ```java hl_lines="8-11"
     class Notification {
-        @Override
-        public String toString() {
-            return String.format("%d: %s", id, message);
+        private String message;
+
+        public Notification(String message) {
+            this.message = message;
         }
 
-        final String message;
-        final int id;
+        @Override
+        public String toString() {
+            return message;
+        }
 
-        Notification(String message) {
-            this.message = message;
-            this.id = randomize();
+        public void notify() {
+            return System.out.println(message);
         }
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="2-4"
+    ```groovy hl_lines="8-11"
     class Notification {
-        String toString() {
-            return "${id}: ${message}"
+        private var message
+
+        public Notification(String message) {
+            this.message = message
         }
 
-        final String message
-        final int id
+        @Override
+        public def toString() {
+            return message
+        }
 
-        Notification(String message) {
-            this.message = message
-            this.id = randomize()
+        public def notify() {
+            println(message)
         }
     }
     ```
 === "Kotlin"
     ```kotlin hl_lines="2"
-    class Notification(val message: String) {
-        override fun toString(): String = "$id: $message"
+    class Notification(private val message: String) {
+        public override fun toString(): String = message
 
-        val id: Int = randomize()
-    }
-    ```
-=== "Python"
-    ```python hl_lines="2-3"
-    class Notification:
-        def __str__(self):
-            return f'{self.id}: {self.message}'
-
-        def __init__(self, message):
-            self.message = message
-            self.id = randomize()
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-    ```java hl_lines="10-13"
-    class Notification {
-        final String message;
-        final int id;
-
-        Notification(String message) {
-            this.message = message;
-            this.id = randomize();
+        public fun notify() {
+            println(message)
         }
-
-        @Override
-        public String toString() {
-            return String.format("%d: %s", id, message);
-        }
-    }
-    ```
-=== "Groovy"
-    ```groovy hl_lines="10-12"
-    class Notification {
-        final String message
-        final int id
-
-        Notification(String message) {
-            this.message = message
-            this.id = randomize()
-        }
-
-        String toString() {
-            return "${id}: ${message}"
-        }
-    }
-    ```
-=== "Kotlin"
-    ```kotlin hl_lines="4"
-    class Notification(val message: String) {
-        val id: Int = randomize()
-
-        override fun toString(): String = "$id: $message"
     }
     ```
 === "Python"
@@ -2141,7 +2094,74 @@ at the end of the class.
             self.id = randomize()
 
         def __str__(self):
-            return f'{self.id}: {self.message}'
+            return self.message
+
+        def notify(self):
+            print(self.message)
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+    ```java hl_lines="12-15"
+    class Notification {
+        private String message;
+
+        public Notification(String message) {
+            this.message = message;
+        }
+
+        public void notify() {
+            return System.out.println(message);
+        }
+
+        @Override
+        public String toString() {
+            return message;
+        }
+    }
+    ```
+=== "Groovy"
+    ```groovy hl_lines="12-15"
+    class Notification {
+        private var message
+
+        public Notification(String message) {
+            this.message = message
+        }
+
+        public def notify() {
+            println(message)
+        }
+
+        @Override
+        public def toString() {
+            return message
+        }
+    }
+    ```
+=== "Kotlin"
+    ```kotlin hl_lines="6"
+    class Notification(private val message: String) {
+        public fun notify() {
+            println(message)
+        }
+
+        public override fun toString(): String = message
+    }
+    ```
+=== "Python"
+    ```python hl_lines="9-10"
+    class Notification:
+        def __init__(self, message):
+            self.message = message
+            self.id = randomize()
+
+        def notify(self):
+            print(self.message)
+
+        def __str__(self):
+            return self.message
     ```
 
 ### Import order
@@ -2686,7 +2706,7 @@ joined.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
-    ```java hl_lines="4"
+    ```java hl_lines="8"
     switch (event) {
         case CANCELLED:
             return;
@@ -2699,20 +2719,20 @@ joined.
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="4"
+    ```groovy hl_lines="8"
     switch (event) {
         case CANCELLED:
-            return;
+            return
 
         case PAST:
-            var message = 'Event is in the past';
-            throw new IllegalStateException(message);
+            var message = 'Event is in the past'
+            throw new IllegalStateException(message)
         default:
-            createEvent(event);
+            createEvent(event)
     }
     ```
 === "Kotlin"
-    ```kotlin hl_lines="3"
+    ```kotlin hl_lines="8"
     when {
         event.isCancelled() -> return
 
@@ -2724,7 +2744,7 @@ joined.
     }
     ```
 === "Python"
-    ```python hl_lines="4"
+    ```python hl_lines="8"
     match event:
         case CANCELLED:
             return
@@ -2739,10 +2759,11 @@ joined.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
-    ```java hl_lines="7"
+    ```java
     switch (event) {
         case CANCELLED:
             return;
+
         case PAST:
             String message = "Event is in the past";
             throw new IllegalStateException(message);
@@ -2752,22 +2773,24 @@ joined.
     }
     ```
 === "Groovy"
-    ```groovy hl_lines="7"
+    ```groovy
     switch (event) {
         case CANCELLED:
-            return;
+            return
+
         case PAST:
-            var message = 'Event is in the past';
-            throw new IllegalStateException(message);
+            var message = 'Event is in the past'
+            throw new IllegalStateException(message)
 
         default:
-            createEvent(event);
+            createEvent(event)
     }
     ```
 === "Kotlin"
-    ```kotlin hl_lines="7"
+    ```kotlin
     when {
         event.isCancelled() -> return
+
         event.date < now -> {
             val message = "Event is in the past"
             throw IllegalStateException(message)
@@ -2777,10 +2800,11 @@ joined.
     }
     ```
 === "Python"
-    ```python hl_lines="7"
+    ```python
     match event:
         case CANCELLED:
             return
+
         case PAST:
             message = 'Event is in the past'
             raise ValueError(message)
@@ -2852,7 +2876,7 @@ There is an exception for single-line properties.
 === "Groovy"
     ```groovy
     interface Vehicle {
-        int getWheels();
+        def getWheels();
         def start();
     }
     ```
@@ -2884,7 +2908,7 @@ There is an exception for single-line properties.
 === "Groovy"
     ```groovy hl_lines="3"
     interface Vehicle {
-        int getWheels();
+        def getWheels();
 
         void start();
     }
@@ -4297,7 +4321,7 @@ by a newline.
     ```
 === "Groovy"
     ```groovy hl_lines="1"
-    val message = new StringBuilder()
+    var message = new StringBuilder()
         .append('Hello')
         .toString()
     ```

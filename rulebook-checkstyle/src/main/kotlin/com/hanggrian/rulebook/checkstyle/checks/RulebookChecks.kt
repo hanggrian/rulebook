@@ -28,4 +28,4 @@ public abstract class RulebookFileCheck : AbstractFileSetCheck() {
 }
 
 /** An alias of base javadoc check. */
-public typealias RulebookJavadocCheck = AbstractJavadocCheck
+internal typealias RulebookJavadocCheck = AbstractJavadocCheck

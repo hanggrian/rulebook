@@ -21,7 +21,7 @@ public class MissingBlankLineBeforeBlockTagsRule : RulebookFileRule() {
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "missing.blank.line.before.block.tags"
 
         val REGEX =

@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.getLiteral
+import com.hanggrian.rulebook.codenarc.rules.NumberSuffixForFloatRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassHelper.float_TYPE
 import org.codehaus.groovy.ast.expr.ConstantExpression
@@ -10,31 +11,31 @@ import org.codehaus.groovy.ast.expr.ConstantExpression
 public class NumberSuffixForFloatRule : RulebookAstRule() {
     override fun getName(): String = "NumberSuffixForFloat"
 
-    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
+    override fun getAstVisitorClass(): Class<*> = NumberSuffixForFloatVisitor::class.java
 
-    private companion object {
+    internal companion object {
         const val MSG = "number.suffix.for.float"
     }
+}
 
-    public class Visitor : RulebookVisitor() {
-        override fun visitConstantExpression(node: ConstantExpression) {
-            super.visitConstantExpression(node)
-            if (!isFirstVisit(node)) {
-                return
-            }
-
-            // skip other literals
-            node
-                .type
-                .takeIf { it == float_TYPE }
-                ?: return
-
-            // checks for violation
-            getLiteral(node)
-                ?.last()
-                ?.takeIf { it == 'F' }
-                ?: return
-            addViolation(node, Messages[MSG])
+public class NumberSuffixForFloatVisitor : RulebookVisitor() {
+    override fun visitConstantExpression(node: ConstantExpression) {
+        super.visitConstantExpression(node)
+        if (!isFirstVisit(node)) {
+            return
         }
+
+        // skip other literals
+        node
+            .type
+            .takeIf { it == float_TYPE }
+            ?: return
+
+        // checks for violation
+        getLiteral(node)
+            ?.last()
+            ?.takeIf { it == 'F' }
+            ?: return
+        addViolation(node, Messages[MSG])
     }
 }

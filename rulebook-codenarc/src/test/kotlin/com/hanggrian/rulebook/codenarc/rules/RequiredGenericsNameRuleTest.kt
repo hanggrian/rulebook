@@ -12,8 +12,7 @@ class RequiredGenericsNameRuleTest : AbstractRuleTestCase<RequiredGenericsNameRu
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<RequiredGenericsNameRule.Visitor>(rule.astVisitor)
+        assertIs<RequiredGenericsNameVisitor>(rule.astVisitor)
 
         val rule = RequiredGenericsNameRule()
         rule.names = "X, Z"

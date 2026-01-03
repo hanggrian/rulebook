@@ -7,6 +7,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.children
@@ -19,7 +20,7 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
         // collect functions
         val funs =
             node
-                .children()
+                .children20
                 .filter { it.elementType == FUN }
                 .toList()
 
@@ -30,7 +31,7 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
             if (funs.getOrNull(i - 1)?.findChildByType(IDENTIFIER)?.text != identifier.text &&
                 !declaredIdentifiers.add(identifier.text)
             ) {
-                emit(`fun`.startOffset, Messages.get(MSG, identifier.text), false)
+                emit(`fun`.startOffset, Messages[MSG, identifier.text], false)
             }
         }
     }

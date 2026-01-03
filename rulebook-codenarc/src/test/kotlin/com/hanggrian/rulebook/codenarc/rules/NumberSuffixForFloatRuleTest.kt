@@ -11,8 +11,7 @@ class NumberSuffixForFloatRuleTest : AbstractRuleTestCase<NumberSuffixForFloatRu
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<NumberSuffixForFloatRule.Visitor>(rule.astVisitor)
+        assertIs<NumberSuffixForFloatVisitor>(rule.astVisitor)
     }
 
     @Test

@@ -22,7 +22,7 @@ public class DuplicateBlankLineInCommentRule : RulebookFileRule() {
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "duplicate.blank.line.in.comment"
 
         val REGEX = Regex("""//\s*(?=//\n)""")

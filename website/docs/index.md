@@ -31,15 +31,6 @@
 
 ## Compatibility table
 
-### Language
-
-Version | Java | Groovy | Kotlin | Python
---- | :---: | :---: | :---: | :---:
-0.1 | 8 (lambda) | 3 (closure, deferred) | 1.9 (SAM) | 3.9 (f-strings, match)
-0.2 | 16 (pattern, record) | 4 (arrow switch case) | 2.1 (data object) | 3.10 (union types)
-
-### Rules
-
 !!! legend
     <div class="grid" markdown>
 

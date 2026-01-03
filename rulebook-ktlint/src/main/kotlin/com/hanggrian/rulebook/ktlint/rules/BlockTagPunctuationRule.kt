@@ -45,7 +45,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
             .lastOrNull()
             ?.takeUnless { it in END_PUNCTUATIONS }
             ?: return
-        emit(kdocText.endOffset, Messages.get(MSG, kdocTagName.text), false)
+        emit(kdocText.endOffset, Messages[MSG, kdocTagName.text], false)
     }
 
     public companion object {

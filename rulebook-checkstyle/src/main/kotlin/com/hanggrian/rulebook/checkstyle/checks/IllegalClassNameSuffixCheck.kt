@@ -39,11 +39,11 @@ public class IllegalClassNameSuffixCheck : RulebookAstCheck() {
         if (finalName in UTILITY_FINAL_NAMES) {
             log(
                 ident,
-                Messages.get(MSG_UTIL, ident.text.substringBefore(finalName) + 's'),
+                Messages[MSG_UTIL, ident.text.substringBefore(finalName) + 's'],
             )
             return
         }
-        log(ident, Messages.get(MSG_ALL, finalName))
+        log(ident, Messages[MSG_ALL, finalName])
     }
 
     private companion object {

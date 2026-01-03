@@ -12,8 +12,7 @@ class ParameterWrapRuleTest : AbstractRuleTestCase<ParameterWrapRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<ParameterWrapRule.Visitor>(rule.astVisitor)
+        assertIs<ParameterWrapVisitor>(rule.astVisitor)
     }
 
     @Test

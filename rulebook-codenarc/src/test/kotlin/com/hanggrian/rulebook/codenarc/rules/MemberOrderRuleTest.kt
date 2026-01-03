@@ -1,5 +1,6 @@
 package com.hanggrian.rulebook.codenarc.rules
 
+import com.google.common.truth.Truth.assertThat
 import com.hanggrian.rulebook.codenarc.assertProperties
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
@@ -11,8 +12,11 @@ class MemberOrderRuleTest : AbstractRuleTestCase<MemberOrderRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
+        assertIs<MemberOrderVisitor>(rule.astVisitor)
 
-        assertIs<MemberOrderRule.Visitor>(rule.astVisitor)
+        val rule = MemberOrderRule()
+        rule.order = "static, function, constructor, property"
+        assertThat(rule.orderList).containsExactly("static", "function", "constructor", "property")
     }
 
     @Test

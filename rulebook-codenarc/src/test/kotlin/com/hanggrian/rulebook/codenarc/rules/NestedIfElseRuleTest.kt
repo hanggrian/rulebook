@@ -11,8 +11,7 @@ class NestedIfElseRuleTest : AbstractRuleTestCase<NestedIfElseRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<NestedIfElseRule.Visitor>(rule.astVisitor)
+        assertIs<NestedIfElseVisitor>(rule.astVisitor)
     }
 
     @Test

@@ -174,5 +174,9 @@
     <module name="IllegalClassNameSuffix">
       <property name="names" value="Hello, World"/>
     </module>
+
+    <module name="MemberOrder">
+      <property name="order" value="static, function, constructor, property"/>
+    </module>
   </module>
 </module>

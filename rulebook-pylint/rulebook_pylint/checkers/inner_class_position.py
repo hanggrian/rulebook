@@ -24,9 +24,7 @@ class InnerClassPositionChecker(RulebookChecker):
             next2 = next2.next_sibling()
 
             # checks for violation
-            if isinstance(next2, FunctionDef) or \
-                isinstance(next2, Assign) or \
-                isinstance(next2, AssignName):
+            if isinstance(next2, (FunctionDef, Assign, AssignName)):
                 self.add_message(self.MSG, node=node)
                 return
 

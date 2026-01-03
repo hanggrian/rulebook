@@ -28,12 +28,12 @@ public class BlockTagPunctuationRule : RulebookFileRule() {
                     createViolation(
                         lineNumber,
                         sourceCode.line(lineNumber - 1),
-                        Messages.get(MSG, it.value.substringBefore(' ')),
+                        Messages[MSG, it.value.substringBefore(' ')],
                     )
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "block.tag.punctuation"
 
         val END_PUNCTUATIONS = setOf('.', '!', '?', ')')

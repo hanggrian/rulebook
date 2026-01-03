@@ -39,7 +39,7 @@ public class BuiltInTypesRule : RulebookRule(ID) {
 
         // checks for violation
         val replacement = qualifier.kotlinClassReplacement ?: return
-        emit(node2.startOffset, Messages.get(MSG, replacement), false)
+        emit(node2.startOffset, Messages[MSG, replacement], false)
     }
 
     private val String.kotlinClassReplacement

@@ -42,12 +42,12 @@ public class BlockTagOrderRule : RulebookFileRule() {
                         createViolation(
                             lineNumber,
                             sourceCode.line(lineNumber - 1),
-                            Messages.get(MSG, blockTagName, lastBlockTagName),
+                            Messages[MSG, blockTagName, lastBlockTagName],
                         )
                 }
             }
 
-    private companion object {
+    internal companion object {
         const val MSG = "block.tag.order"
 
         val REGEX = Regex("""$JAVADOC_LINE_PREFIX@(?:param|return|throws|see)""")

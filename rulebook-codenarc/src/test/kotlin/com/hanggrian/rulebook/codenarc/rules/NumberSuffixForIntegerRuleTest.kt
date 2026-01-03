@@ -11,8 +11,7 @@ class NumberSuffixForIntegerRuleTest : AbstractRuleTestCase<NumberSuffixForInteg
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<NumberSuffixForIntegerRule.Visitor>(rule.astVisitor)
+        assertIs<NumberSuffixForIntegerVisitor>(rule.astVisitor)
     }
 
     @Test

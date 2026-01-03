@@ -3,6 +3,8 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.createViolation
 import com.hanggrian.rulebook.codenarc.isMultiline
+import com.hanggrian.rulebook.codenarc.rules.OperatorWrapRule.Companion.MSG_MISSING
+import com.hanggrian.rulebook.codenarc.rules.OperatorWrapRule.Companion.MSG_UNEXPECTED
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.ast.expr.ClosureExpression
@@ -14,55 +16,55 @@ import org.codehaus.groovy.syntax.Types.ASSIGN
 public class OperatorWrapRule : RulebookAstRule() {
     override fun getName(): String = "OperatorWrap"
 
-    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
+    override fun getAstVisitorClass(): Class<*> = OperatorWrapVisitor::class.java
 
-    private companion object {
+    internal companion object {
         const val MSG_MISSING = "operator.wrap.missing"
         const val MSG_UNEXPECTED = "operator.wrap.unexpected"
     }
+}
 
-    public class Visitor : RulebookVisitor() {
-        override fun visitBinaryExpression(node: BinaryExpression) {
-            super.visitBinaryExpression(node)
+public class OperatorWrapVisitor : RulebookVisitor() {
+    override fun visitBinaryExpression(node: BinaryExpression) {
+        super.visitBinaryExpression(node)
 
-            // target multiline statement
-            val operation =
-                node
-                    .takeIf { it.isMultiline() }
-                    ?.operation
-                    ?.takeUnless { it.type == ASSIGN }
-                    ?: return
-
-            // left expression may be a compounded binary expression
-            val leftExpression =
-                (node.leftExpression as? BinaryExpression)?.rightExpression
-                    ?: node.leftExpression
-
-            // checks for violation
-            if (leftExpression.lastLineNumber < operation.startLine) {
-                violations +=
-                    rule.createViolation(
-                        operation.startLine,
-                        sourceLine(node.rightExpression),
-                        Messages.get(MSG_UNEXPECTED, operation.text),
-                    )
-                return
-            }
+        // target multiline statement
+        val operation =
             node
-                .rightExpression
-                .takeUnless {
-                    it is ListExpression ||
-                        it is MapExpression ||
-                        it is ClosureExpression
-                }?.lineNumber
-                ?.takeIf { it == operation.startLine }
+                .takeIf { it.isMultiline() }
+                ?.operation
+                ?.takeUnless { it.type == ASSIGN }
                 ?: return
+
+        // left expression may be a compounded binary expression
+        val leftExpression =
+            (node.leftExpression as? BinaryExpression)?.rightExpression
+                ?: node.leftExpression
+
+        // checks for violation
+        if (leftExpression.lastLineNumber < operation.startLine) {
             violations +=
                 rule.createViolation(
                     operation.startLine,
                     sourceLine(node.rightExpression),
-                    Messages.get(MSG_MISSING, operation.text),
+                    Messages[MSG_UNEXPECTED, operation.text],
                 )
+            return
         }
+        node
+            .rightExpression
+            .takeUnless {
+                it is ListExpression ||
+                    it is MapExpression ||
+                    it is ClosureExpression
+            }?.lineNumber
+            ?.takeIf { it == operation.startLine }
+            ?: return
+        violations +=
+            rule.createViolation(
+                operation.startLine,
+                sourceLine(node.rightExpression),
+                Messages[MSG_MISSING, operation.text],
+            )
     }
 }

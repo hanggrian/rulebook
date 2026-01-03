@@ -19,7 +19,7 @@ public class EmptyParenthesesClipRule : RulebookFileRule() {
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "empty.parentheses.clip"
 
         val REGEX = Regex("""\(\s+\)""")

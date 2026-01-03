@@ -8,6 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -18,7 +19,7 @@ public class BlockCommentTrimRule : RulebookRule(ID) {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // initial node is always asterisk
         val firstChild = node.firstChildNode.takeIf { it.elementType == KDOC_LEADING_ASTERISK }
-        if (firstChild?.treeNext?.isWhiteSpace() == true) {
+        if (firstChild?.treeNext?.isWhiteSpace20 == true) {
             emit(firstChild.startOffset, Messages[MSG_FIRST], false)
         }
 
@@ -37,7 +38,7 @@ public class BlockCommentTrimRule : RulebookRule(ID) {
 
                         else -> null
                     }
-                }?.takeIf { it.treePrev?.isWhiteSpace() == true }
+                }?.takeIf { it.treePrev?.isWhiteSpace20 == true }
                 ?: return
         emit(lastChild.treePrev!!.endOffset, Messages[MSG_LAST], false)
     }

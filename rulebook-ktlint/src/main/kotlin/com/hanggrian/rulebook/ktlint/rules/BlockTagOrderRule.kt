@@ -8,6 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG_NAME
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -19,7 +20,7 @@ public class BlockTagOrderRule : RulebookRule(ID) {
         // collect block tags
         val kdocTags =
             node
-                .children()
+                .children20
                 .filter { it.elementType == KDOC_SECTION }
                 .mapNotNull { it.findChildByType(KDOC_TAG) }
                 .toList()
@@ -38,7 +39,7 @@ public class BlockTagOrderRule : RulebookRule(ID) {
                 ?: continue
             emit(
                 kdocTag.startOffset,
-                Messages.get(MSG, kdocTagName.text, lastKdocTagName.text),
+                Messages[MSG, kdocTagName.text, lastKdocTagName.text],
                 false,
             )
         }

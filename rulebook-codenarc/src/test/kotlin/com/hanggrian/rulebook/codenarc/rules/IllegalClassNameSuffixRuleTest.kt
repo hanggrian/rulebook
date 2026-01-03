@@ -13,8 +13,7 @@ class IllegalClassNameSuffixRuleTest : AbstractRuleTestCase<IllegalClassNameSuff
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<IllegalClassNameSuffixRule.Visitor>(rule.astVisitor)
+        assertIs<IllegalClassNameSuffixVisitor>(rule.astVisitor)
 
         val rule = IllegalClassNameSuffixRule()
         rule.names = "Hello, World"

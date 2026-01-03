@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.rules.OverloadFunctionPositionRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassNode
 
@@ -8,31 +9,31 @@ import org.codehaus.groovy.ast.ClassNode
 public class OverloadFunctionPositionRule : RulebookAstRule() {
     override fun getName(): String = "OverloadFunctionPosition"
 
-    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
+    override fun getAstVisitorClass(): Class<*> = OverloadFunctionPositionVisitor::class.java
 
-    private companion object {
+    internal companion object {
         const val MSG = "overload.function.position"
     }
+}
 
-    public class Visitor : RulebookVisitor() {
-        override fun visitClassEx(node: ClassNode) {
-            super.visitClassEx(node)
+public class OverloadFunctionPositionVisitor : RulebookVisitor() {
+    override fun visitClassEx(node: ClassNode) {
+        super.visitClassEx(node)
 
-            // collect functions
-            val functions =
-                node
-                    .methods
-                    .filterNot { it.isStatic }
+        // collect functions
+        val functions =
+            node
+                .methods
+                .filterNot { it.isStatic }
 
-            // checks for violation
-            val declaredIdentifiers = mutableSetOf<String>()
-            for ((i, function) in functions.withIndex()) {
-                val name = function.name
-                if (functions.getOrNull(i - 1)?.name != name &&
-                    !declaredIdentifiers.add(name)
-                ) {
-                    addViolation(function, Messages.get(MSG, name))
-                }
+        // checks for violation
+        val declaredIdentifiers = mutableSetOf<String>()
+        for ((i, function) in functions.withIndex()) {
+            val name = function.name
+            if (functions.getOrNull(i - 1)?.name != name &&
+                !declaredIdentifiers.add(name)
+            ) {
+                addViolation(function, Messages[MSG, name])
             }
         }
     }

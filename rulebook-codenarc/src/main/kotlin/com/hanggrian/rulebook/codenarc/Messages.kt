@@ -11,7 +11,7 @@ internal object Messages {
     operator fun get(key: String): String = bundle.getString(key)
 
     /** Returns a formatted message. */
-    fun get(key: String, vararg args: Any): String =
+    operator fun get(key: String, vararg args: Any): String =
         MessageFormat(bundle.getString(key)).format(args)
 
     private val bundle: ResourceBundle

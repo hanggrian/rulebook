@@ -4,5 +4,5 @@ class BlockTagPunctuation {
     /**
      * @throws Exception oops.
      */
-    void foo() throws IOException {}
+    def foo() throws IOException {}
 }

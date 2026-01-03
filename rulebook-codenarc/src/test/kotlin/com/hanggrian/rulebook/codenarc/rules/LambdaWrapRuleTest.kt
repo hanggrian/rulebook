@@ -12,8 +12,7 @@ class LambdaWrapRuleTest : AbstractRuleTestCase<LambdaWrapRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<LambdaWrapRule.Visitor>(rule.astVisitor)
+        assertIs<LambdaWrapVisitor>(rule.astVisitor)
     }
 
     @Test

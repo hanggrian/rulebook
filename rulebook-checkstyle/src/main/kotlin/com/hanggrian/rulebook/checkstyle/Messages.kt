@@ -14,7 +14,7 @@ internal object Messages {
      * Returns a formatted message. The quotes won't appear in Checkstyle HTML reports without
      * extra quotes.
      */
-    fun get(key: String, vararg args: Any): String =
+    operator fun get(key: String, vararg args: Any): String =
         MessageFormat(bundle.getString(key)).format(args.map { "'$it'" }.toTypedArray())
 
     private val bundle: ResourceBundle

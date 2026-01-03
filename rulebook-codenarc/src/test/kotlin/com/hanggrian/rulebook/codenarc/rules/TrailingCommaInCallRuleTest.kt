@@ -11,8 +11,7 @@ class TrailingCommaInCallRuleTest : AbstractRuleTestCase<TrailingCommaInCallRule
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<TrailingCommaInCallRule.Visitor>(rule.astVisitor)
+        assertIs<TrailingCommaInCallVisitor>(rule.astVisitor)
     }
 
     @Test

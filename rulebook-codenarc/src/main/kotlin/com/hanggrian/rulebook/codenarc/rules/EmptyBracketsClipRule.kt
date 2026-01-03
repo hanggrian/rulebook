@@ -19,7 +19,7 @@ public class EmptyBracketsClipRule : RulebookFileRule() {
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "empty.brackets.clip"
 
         val REGEX = Regex("""\[(\s+|\s+:\s+)]""")

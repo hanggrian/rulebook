@@ -19,7 +19,7 @@ public class BlockTagIndentationRule : RulebookFileRule() {
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "block.tag.indentation"
 
         val REGEX =

@@ -28,7 +28,7 @@ class IllegalClassNameSuffixChecker(RulebookChecker):
             {
                 'default': ('Util', 'Utility', 'Helper', 'Manager', 'Wrapper'),
                 'type': 'csv',
-                'metavar': '<comma-separated names>',
+                'metavar': '<comma-separated values>',
                 'help': 'A set of banned words.',
             },
         ),
@@ -48,7 +48,7 @@ class IllegalClassNameSuffixChecker(RulebookChecker):
         if not words:
             return
         word: str = words[-1]
-        if word in ('Util', 'Utility'):
+        if word in {'Util', 'Utility'}:
             self.add_message(
                 self.MSG_UTIL,
                 node=node,

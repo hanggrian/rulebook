@@ -11,8 +11,7 @@ class NumberSuffixForDoubleRuleTest : AbstractRuleTestCase<NumberSuffixForDouble
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<NumberSuffixForDoubleRule.Visitor>(rule.astVisitor)
+        assertIs<NumberSuffixForDoubleVisitor>(rule.astVisitor)
     }
 
     @Test

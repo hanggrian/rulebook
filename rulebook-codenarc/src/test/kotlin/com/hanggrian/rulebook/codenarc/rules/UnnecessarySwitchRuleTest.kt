@@ -11,8 +11,7 @@ class UnnecessarySwitchRuleTest : AbstractRuleTestCase<UnnecessarySwitchRule>() 
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<UnnecessarySwitchRule.Visitor>(rule.astVisitor)
+        assertIs<UnnecessarySwitchVisitor>(rule.astVisitor)
     }
 
     @Test

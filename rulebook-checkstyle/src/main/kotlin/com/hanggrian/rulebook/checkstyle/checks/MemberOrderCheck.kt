@@ -36,44 +36,24 @@ public class MemberOrderCheck : RulebookAstCheck() {
         get() =
             when (type) {
                 VARIABLE_DEF ->
-                    if (hasModifier(LITERAL_STATIC)) {
-                        staticPosition
-                    } else {
-                        propertyPosition
-                    }
+                    if (hasModifier(LITERAL_STATIC)) staticPosition else propertyPosition
 
                 CTOR_DEF, COMPACT_CTOR_DEF -> constructorPosition
 
-                METHOD_DEF ->
-                    if (hasModifier(LITERAL_STATIC)) {
-                        staticPosition
-                    } else {
-                        functionPosition
-                    }
-
-                else -> -1
+                else ->
+                    if (hasModifier(LITERAL_STATIC)) staticPosition else functionPosition
             }
 
     private val DetailAST.memberArgument: String
         get() =
             when (type) {
                 VARIABLE_DEF ->
-                    if (hasModifier(LITERAL_STATIC)) {
-                        "static member"
-                    } else {
-                        "property"
-                    }
+                    if (hasModifier(LITERAL_STATIC)) "static member" else "property"
 
                 CTOR_DEF, COMPACT_CTOR_DEF -> "constructor"
 
-                METHOD_DEF ->
-                    if (hasModifier(LITERAL_STATIC)) {
-                        "static member"
-                    } else {
-                        "function"
-                    }
-
-                else -> ""
+                else ->
+                    if (hasModifier(LITERAL_STATIC)) "static member" else "function"
             }
 
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
@@ -93,7 +73,7 @@ public class MemberOrderCheck : RulebookAstCheck() {
                 if ((lastChild?.memberPosition ?: -1) > child.memberPosition) {
                     log(
                         child,
-                        Messages.get(MSG, child.memberArgument, lastChild!!.memberArgument),
+                        Messages[MSG, child.memberArgument, lastChild!!.memberArgument],
                     )
                 }
 

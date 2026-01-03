@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.firstStatement
 import com.hanggrian.rulebook.codenarc.isMultiline
+import com.hanggrian.rulebook.codenarc.rules.LambdaWrapRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.expr.ClosureExpression
 
@@ -10,33 +11,33 @@ import org.codehaus.groovy.ast.expr.ClosureExpression
 public class LambdaWrapRule : RulebookAstRule() {
     override fun getName(): String = "LambdaWrap"
 
-    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
+    override fun getAstVisitorClass(): Class<*> = LambdaWrapVisitor::class.java
 
-    private companion object {
+    internal companion object {
         const val MSG = "lambda.wrap"
     }
+}
 
-    public class Visitor : RulebookVisitor() {
-        override fun visitClosureExpression(node: ClosureExpression) {
-            super.visitClosureExpression(node)
+public class LambdaWrapVisitor : RulebookVisitor() {
+    override fun visitClosureExpression(node: ClosureExpression) {
+        super.visitClosureExpression(node)
 
-            // target multiline lambda
-            val expression =
-                node
-                    .code
-                    .firstStatement()
-                    .takeIf { it.isMultiline() }
-                    ?: return
-            val parameters =
-                node.parameters?.firstOrNull()
-                    ?: node
-
-            // checks for violation
-            expression
-                .lineNumber
-                .takeIf { it == parameters.lastLineNumber }
+        // target multiline lambda
+        val expression =
+            node
+                .code
+                .firstStatement()
+                .takeIf { it.isMultiline() }
                 ?: return
-            addViolation(expression, Messages[MSG])
-        }
+        val parameters =
+            node.parameters?.firstOrNull()
+                ?: node
+
+        // checks for violation
+        expression
+            .lineNumber
+            .takeIf { it == parameters.lastLineNumber }
+            ?: return
+        addViolation(expression, Messages[MSG])
     }
 }

@@ -19,7 +19,7 @@ class FileSizeChecker(RulebookFileChecker):
             {
                 'default': 1000,
                 'type': 'int',
-                'metavar': '<int>',
+                'metavar': '<integer>',
                 'help': 'Max lines of code that is allowed.',
             },
         ),

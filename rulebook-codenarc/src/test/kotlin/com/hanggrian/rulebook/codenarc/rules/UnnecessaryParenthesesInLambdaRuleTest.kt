@@ -12,8 +12,7 @@ class UnnecessaryParenthesesInLambdaRuleTest :
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<UnnecessaryParenthesesInLambdaRule.Visitor>(rule.astVisitor)
+        assertIs<UnnecessaryParenthesesInLambdaVisitor>(rule.astVisitor)
     }
 
     @Test

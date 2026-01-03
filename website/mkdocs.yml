@@ -81,6 +81,7 @@ nav:
   - Home:
     - Overview: index.md
     - Getting started: readme.md
+    - Change log: changelog.md
     - Developer guide: contributing.md
     - Configuration:
       - IDE settings: configuration/ide-settings.md
@@ -109,6 +110,7 @@ extra_javascript:
 extra_css:
   - styles/colors.css
   - styles/links.css
+  - https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined # more material icons
 
 hooks:
   - hooks/archive.py

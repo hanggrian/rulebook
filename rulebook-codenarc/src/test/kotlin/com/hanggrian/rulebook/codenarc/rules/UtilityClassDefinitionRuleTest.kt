@@ -11,8 +11,7 @@ class UtilityClassDefinitionRuleTest : AbstractRuleTestCase<UtilityClassDefiniti
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<UtilityClassDefinitionRule.Visitor>(rule.astVisitor)
+        assertIs<UtilityClassDefinitionVisitor>(rule.astVisitor)
     }
 
     @Test

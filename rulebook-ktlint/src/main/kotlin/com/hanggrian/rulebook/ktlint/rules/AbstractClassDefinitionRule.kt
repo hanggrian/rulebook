@@ -12,6 +12,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SUPER_TYPE_LIST
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -34,7 +35,7 @@ public class AbstractClassDefinitionRule : RulebookRule(ID) {
                 SUPER_TYPE_LIST !in n &&
                     n
                         .findChildByType(CLASS_BODY)
-                        ?.children()
+                        ?.children20
                         .orEmpty()
                         .none {
                             (it.elementType == FUN || it.elementType == PROPERTY) &&

@@ -30,7 +30,7 @@ public class NullEqualityRule : RulebookRule(ID) {
                 ?: return
         emit(
             operator.startOffset,
-            Messages.get(MSG, if (operator.elementType == EQEQEQ) "==" else "!="),
+            Messages[MSG, if (operator.elementType == EQEQEQ) "==" else "!="],
             false,
         )
     }

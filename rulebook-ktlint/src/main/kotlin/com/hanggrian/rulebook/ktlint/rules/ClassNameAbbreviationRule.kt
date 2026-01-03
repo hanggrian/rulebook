@@ -53,7 +53,7 @@ public class ClassNameAbbreviationRule : RulebookRule(ID) {
                             }
                     }
                 } ?: return
-        emit(node2.startOffset, Messages.get(MSG, transformation), false)
+        emit(node2.startOffset, Messages[MSG, transformation], false)
     }
 
     public companion object {

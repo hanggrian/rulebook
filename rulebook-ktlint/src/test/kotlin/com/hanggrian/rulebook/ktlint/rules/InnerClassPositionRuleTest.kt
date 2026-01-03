@@ -34,7 +34,7 @@ class InnerClassPositionRuleTest {
         assertThatCode(
             """
             class Foo(a: Int) {
-                interface Inner
+                class Inner
 
                 val bar = 0
 
@@ -61,4 +61,62 @@ class InnerClassPositionRuleTest {
             }
             """.trimIndent(),
         ).hasNoLintViolations()
+
+    @Test
+    fun `Target all class-like declarations`() =
+        assertThatCode(
+            """
+            interface OuterInterface {
+                interface InnerInterface
+
+                val member = 0
+            }
+
+            annotation class OuterAnnotationClass {
+                annotation class InnerAnnotationClass
+
+                val member = 0
+            }
+
+            enum class OuterEnumClass {
+                FOO;
+
+                enum class InnerEnumClass
+
+                val member = 0
+            }
+
+            sealed class OuterSealedClass {
+                annotation class InnerSealedClass
+
+                val member = 0
+            }
+
+            data class OuterDataClass {
+                annotation class InnerDataClass
+
+                val member = 0
+            }
+
+            object OuterObject {
+                object InnerObject
+
+                val member = 0
+            }
+
+            data object OuterDataObject {
+                data object InnerObject
+
+                val member = 0
+            }
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(2, 5, "Move inner class to the bottom."),
+            LintViolation(8, 5, "Move inner class to the bottom."),
+            LintViolation(16, 5, "Move inner class to the bottom."),
+            LintViolation(22, 5, "Move inner class to the bottom."),
+            LintViolation(28, 5, "Move inner class to the bottom."),
+            LintViolation(34, 5, "Move inner class to the bottom."),
+            LintViolation(40, 5, "Move inner class to the bottom."),
+        )
 }

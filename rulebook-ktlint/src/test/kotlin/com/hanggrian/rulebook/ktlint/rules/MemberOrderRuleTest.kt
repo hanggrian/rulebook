@@ -101,7 +101,7 @@ class MemberOrderRuleTest {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(4, 5, "Arrange member 'function' before 'companion'."),
-            LintViolation(10, 5, "Arrange member 'function' before 'companion'."),
+            LintViolation(4, 5, "Arrange member 'function' before 'companion object'."),
+            LintViolation(10, 5, "Arrange member 'function' before 'companion object'."),
         )
 }

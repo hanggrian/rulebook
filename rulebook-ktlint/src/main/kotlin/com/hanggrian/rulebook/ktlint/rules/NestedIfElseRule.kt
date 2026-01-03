@@ -19,8 +19,10 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.TRY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.isPartOf
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
 import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -46,7 +48,7 @@ public class NestedIfElseRule : RulebookRule(ID) {
 
         // get last if
         var `if`: ASTNode? = null
-        for (child in node.children().asIterable().reversed()) {
+        for (child in node.children20.asIterable().reversed()) {
             when {
                 child.elementType == IF -> {
                     `if` = child
@@ -85,12 +87,12 @@ public class NestedIfElseRule : RulebookRule(ID) {
 
         private fun ASTNode.hasMultipleLines() =
             findChildByType(BLOCK)
-                ?.children()
+                ?.children20
                 .orEmpty()
                 .filterNot {
                     it.elementType == LBRACE ||
                         it.elementType == RBRACE ||
-                        it.isWhiteSpace()
+                        it.isWhiteSpace20
                 }.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
 
         private fun ASTNode.isTryCatch() = elementType == TRY || elementType == CATCH

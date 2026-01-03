@@ -11,8 +11,7 @@ class ChainCallWrapRuleTest : AbstractRuleTestCase<ChainCallWrapRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<ChainCallWrapRule.Visitor>(rule.astVisitor)
+        assertIs<ChainCallWrapVisitor>(rule.astVisitor)
     }
 
     @Test

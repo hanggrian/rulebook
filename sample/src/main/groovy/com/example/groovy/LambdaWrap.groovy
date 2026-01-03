@@ -2,13 +2,13 @@ package com.example.groovy
 
 class LambdaWrap {
     def foo() {
-        new Thread(() -> System.out.println(0))
+        new Thread(() -> println(0))
     }
 
     def bar() {
         new Thread(
             () ->
-                System.out.println(0)
+                println(0)
         )
     }
 

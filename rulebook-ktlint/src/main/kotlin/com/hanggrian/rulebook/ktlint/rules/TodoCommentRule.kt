@@ -48,7 +48,7 @@ public class TodoCommentRule : RulebookRule(ID) {
         if (KEYWORD_REGEX.containsMatchIn(text)) {
             emit(
                 node.startOffset,
-                Messages.get(MSG_KEYWORD, KEYWORD_REGEX.find(text)!!.value),
+                Messages[MSG_KEYWORD, KEYWORD_REGEX.find(text)!!.value],
                 false,
             )
         }
@@ -57,7 +57,7 @@ public class TodoCommentRule : RulebookRule(ID) {
         }
         emit(
             node.startOffset,
-            Messages.get(MSG_SEPARATOR, SEPARATOR_REGEX.find(text)!!.value.last()),
+            Messages[MSG_SEPARATOR, SEPARATOR_REGEX.find(text)!!.value.last()],
             false,
         )
     }

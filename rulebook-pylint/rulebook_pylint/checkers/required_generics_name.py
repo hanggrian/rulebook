@@ -20,7 +20,7 @@ class RequiredGenericsNameChecker(RulebookChecker):
             {
                 'default': ('E', 'K', 'N', 'T', 'V'),
                 'type': 'csv',
-                'metavar': '<comma-separated names>',
+                'metavar': '<comma-separated values>',
                 'help': 'A set of common generics.',
             },
         ),

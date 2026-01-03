@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  The standard Rulebook CodeNarc configuration.
-
-  Rulebook: https://github.com/hanggrian/rulebook/
-  CodeNarc: https://codenarc.org/
-  Source template: https://github.com/google/protobuf-gradle-plugin/blob/master/config/codenarc/codenarc.xml
--->
 <ruleset
   xmlns="http://codenarc.org/ruleset/1.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -166,6 +159,10 @@
 
     <rule-config name="IllegalVariableName">
       <property name="names" value="mString, mList"/>
+    </rule-config>
+
+    <rule-config name="MemberOrder">
+      <property name="order" value="static, function, constructor, property"/>
     </rule-config>
 
     <rule-config name="RequiredGenericsName">

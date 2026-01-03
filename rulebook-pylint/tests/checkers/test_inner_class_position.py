@@ -24,10 +24,8 @@ class TestInnerClassPositionChecker(CheckerTestCase):
                     def bar(self):
                         print()
 
-
                     class Inner:  #@
                         print()
-
 
                     class AnotherInner:  #@
                         print()
@@ -46,13 +44,10 @@ class TestInnerClassPositionChecker(CheckerTestCase):
                     class Inner:  #@
                         print()
 
-
                     bar = 0
-
 
                     class AnotherInner:  #@
                         print()
-
 
                     def baz():
                         print()
@@ -60,7 +55,7 @@ class TestInnerClassPositionChecker(CheckerTestCase):
             )
         with self.assertAddsMessages(
             msg(InnerClassPositionChecker.MSG, (3, 4, 15), node2),
-            msg(InnerClassPositionChecker.MSG, (10, 4, 22), node3),
+            msg(InnerClassPositionChecker.MSG, (8, 4, 22), node3),
         ):
             self.checker.visit_classdef(node1)
             self.checker.visit_classdef(node2)

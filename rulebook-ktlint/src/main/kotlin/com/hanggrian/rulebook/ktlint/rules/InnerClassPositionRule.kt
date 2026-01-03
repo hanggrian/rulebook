@@ -26,7 +26,7 @@ public class InnerClassPositionRule : RulebookRule(ID) {
             .treeParent
             .takeIf { it.elementType == CLASS_BODY }
             ?.treeParent
-            ?.takeIf { it.elementType == CLASS }
+            ?.takeIf { it.elementType in tokens }
             ?: return
 
         // in Kotlin, static members belong in companion object

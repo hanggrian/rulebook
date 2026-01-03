@@ -21,7 +21,7 @@ class ShortBlockCommentClipChecker(RulebookChecker):
             {
                 'default': 100,
                 'type': 'int',
-                'metavar': '<int>',
+                'metavar': '<integer>',
                 'help': 'Max length of a line.',
             },
         ),

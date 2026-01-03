@@ -43,7 +43,7 @@ public class CommentTrimRule : RulebookFileRule() {
                 violations += createViolation(end + 1, endLine, Messages[MSG])
             }
 
-    private companion object {
+    internal companion object {
         const val MSG = "comment.trim"
 
         fun String.isEolCommentEmpty() =

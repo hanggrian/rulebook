@@ -48,12 +48,12 @@ public class IllegalClassNameSuffixRule : RulebookRule(ID, ILLEGAL_CLASS_FINAL_N
         if (finalName in UTILITY_FINAL_NAMES) {
             emit(
                 node2.startOffset,
-                Messages.get(MSG_UTIL, fullName.substringBefore(finalName) + 's'),
+                Messages[MSG_UTIL, fullName.substringBefore(finalName) + 's'],
                 false,
             )
             return
         }
-        emit(node2.startOffset, Messages.get(MSG_ALL, finalName), false)
+        emit(node2.startOffset, Messages[MSG_ALL, finalName], false)
     }
 
     public companion object {

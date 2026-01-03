@@ -24,6 +24,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.VAL_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.VAR_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -45,7 +46,7 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
                 primaryConstructor
                     .takeIf { it.isPublic() }
                     ?.findChildByType(VALUE_PARAMETER_LIST)
-                    ?.children()
+                    ?.children20
                     ?.filter {
                         it.elementType == VALUE_PARAMETER &&
                             (VAL_KEYWORD in it || VAR_KEYWORD in it)
@@ -57,7 +58,7 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
         if (classBody != null) {
             properties +=
                 classBody
-                    .children()
+                    .children20
                     .filter { it.elementType == PROPERTY }
         }
 
@@ -81,7 +82,7 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
                     } ?: continue
             emit(
                 identifier.startOffset,
-                Messages.get(MSG, "is" + identifier.text.replaceFirstChar { it.uppercaseChar() }),
+                Messages[MSG, "is" + identifier.text.replaceFirstChar { it.uppercaseChar() }],
                 false,
             )
         }
@@ -94,7 +95,7 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
 
         private fun ASTNode.hasAnnotation(name: String) =
             findChildByType(MODIFIER_LIST)
-                ?.children()
+                ?.children20
                 .orEmpty()
                 .any {
                     it.elementType == ANNOTATION_ENTRY &&

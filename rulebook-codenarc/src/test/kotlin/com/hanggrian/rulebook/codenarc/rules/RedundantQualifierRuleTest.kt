@@ -12,8 +12,7 @@ class RedundantQualifierRuleTest : AbstractRuleTestCase<RedundantQualifierRule>(
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<RedundantQualifierRule.Visitor>(rule.astVisitor)
+        assertIs<RedundantQualifierVisitor>(rule.astVisitor)
     }
 
     @Test

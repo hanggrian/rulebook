@@ -12,8 +12,7 @@ class StatementWrapRuleTest : AbstractRuleTestCase<StatementWrapRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<StatementWrapRule.Visitor>(rule.astVisitor)
+        assertIs<StatementWrapVisitor>(rule.astVisitor)
     }
 
     @Test

@@ -46,7 +46,7 @@ public class ImportOrderRule : RulebookImportRule() {
                             createViolation(
                                 index,
                                 line,
-                                Messages.get(MSG_JOIN, directive),
+                                Messages[MSG_JOIN, directive],
                             )
                     }
                     if (directive < prevDirective!!) {
@@ -54,7 +54,7 @@ public class ImportOrderRule : RulebookImportRule() {
                             createViolation(
                                 index,
                                 line,
-                                Messages.get(MSG_SORT, directive, prevDirective!!),
+                                Messages[MSG_SORT, directive, prevDirective!!],
                             )
                     }
 
@@ -65,7 +65,7 @@ public class ImportOrderRule : RulebookImportRule() {
             },
         )
 
-    private companion object {
+    internal companion object {
         const val MSG_SORT = "import.order.sort"
         const val MSG_JOIN = "import.order.join"
 

@@ -11,8 +11,7 @@ class RedundantElseRuleTest : AbstractRuleTestCase<RedundantElseRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<RedundantElseRule.Visitor>(rule.astVisitor)
+        assertIs<RedundantElseVisitor>(rule.astVisitor)
     }
 
     @Test

@@ -37,7 +37,7 @@ public class ShortBlockCommentClipRule : RulebookFileRule() {
         }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "short.block.comment.clip"
 
         const val SINGLELINE_TEMPLATE = "/** */"

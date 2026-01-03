@@ -16,6 +16,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TRY
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isLeaf
+import com.pinterest.ktlint.rule.engine.core.api.isLeaf20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -39,7 +40,7 @@ public class EmptyBracesClipRule : RulebookRule(ID) {
 
         // obtain corresponding braces
         node
-            .takeUnless { it.isLeaf() }
+            .takeUnless { it.isLeaf20 }
             ?: return
         val lbrace =
             node

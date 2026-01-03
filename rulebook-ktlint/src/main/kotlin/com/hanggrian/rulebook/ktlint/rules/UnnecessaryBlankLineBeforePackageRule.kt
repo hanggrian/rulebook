@@ -5,6 +5,7 @@ import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -17,7 +18,7 @@ public class UnnecessaryBlankLineBeforePackageRule : RulebookRule(ID) {
         val whitespace =
             node
                 .firstChildNode
-                ?.takeIf { it.isWhiteSpaceWithNewline() }
+                ?.takeIf { it.isWhiteSpaceWithNewline20 }
                 ?: return
         emit(whitespace.startOffset, Messages[MSG], false)
     }

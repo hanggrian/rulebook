@@ -10,7 +10,9 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 
@@ -43,8 +45,8 @@ internal fun ASTNode.hasJumpStatement(): Boolean =
 /** Determine whether this node spans multiple lines of code. */
 internal fun ASTNode.isMultiline(): Boolean =
     when {
-        isWhiteSpaceWithNewline() -> true
-        else -> children().any { it.isMultiline() }
+        isWhiteSpaceWithNewline20 -> true
+        else -> children20.any { it.isMultiline() }
     }
 
 /** Returns true if this node is of any comment type. */

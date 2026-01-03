@@ -16,11 +16,13 @@ import com.pinterest.ktlint.rule.engine.core.api.Rule.VisitorModifier.RunAfterRu
 import com.pinterest.ktlint.rule.engine.core.api.Rule.VisitorModifier.RunAfterRule.Mode.REGARDLESS_WHETHER_RUN_AFTER_RULE_IS_LOADED_OR_DISABLED
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.INDENT_SIZE_PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.INDENT_STYLE_PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.MAX_LINE_LENGTH_PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.isRoot
+import com.pinterest.ktlint.rule.engine.core.api.isRoot20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -55,10 +57,10 @@ public class ShortBlockCommentClipRule :
         val children =
             node
                 .takeIf { it.isMultiline() }
-                ?.children()
+                ?.children20
                 ?.singleOrNull { it.elementType == KDOC_SECTION }
                 ?.takeUnless { KDOC_TAG in it || WHITE_SPACE in it }
-                ?.children()
+                ?.children20
                 ?.filter {
                     it.elementType == KDOC_TEXT ||
                         it.elementType == KDOC_MARKDOWN_INLINE_LINK
@@ -78,7 +80,7 @@ public class ShortBlockCommentClipRule :
         get() {
             var result = 0
             var current = this
-            while (!current.isRoot()) {
+            while (!current.isRoot20) {
                 current = current.treeParent
                 if (current.elementType == CLASS_BODY) {
                     result++

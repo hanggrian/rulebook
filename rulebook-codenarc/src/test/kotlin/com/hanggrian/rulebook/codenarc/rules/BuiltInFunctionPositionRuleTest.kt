@@ -11,8 +11,7 @@ class BuiltInFunctionPositionRuleTest : AbstractRuleTestCase<BuiltInFunctionPosi
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<BuiltInFunctionPositionRule.Visitor>(rule.astVisitor)
+        assertIs<BuiltInFunctionPositionVisitor>(rule.astVisitor)
     }
 
     @Test

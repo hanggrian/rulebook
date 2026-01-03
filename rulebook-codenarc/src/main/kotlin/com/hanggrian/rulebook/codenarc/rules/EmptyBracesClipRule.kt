@@ -19,7 +19,7 @@ public class EmptyBracesClipRule : RulebookFileRule() {
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "empty.braces.clip"
 
         val REGEX =

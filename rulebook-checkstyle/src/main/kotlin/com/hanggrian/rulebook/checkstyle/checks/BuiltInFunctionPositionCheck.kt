@@ -36,14 +36,14 @@ public class BuiltInFunctionPositionCheck : RulebookAstCheck() {
                 .subList(i, methods.size)
                 .takeIf { nodes -> nodes.any { !it.isBuiltInFunction() } }
                 ?: continue
-            log(method, Messages.get(MSG, identifier.text))
+            log(method, Messages[MSG, identifier.text])
         }
     }
 
     private companion object {
         const val MSG = "built.in.function.position"
 
-        val BUILTIN_FUNCTIONS =
+        private val BUILTIN_FUNCTIONS =
             setOf(
                 "toString",
                 "hashCode",

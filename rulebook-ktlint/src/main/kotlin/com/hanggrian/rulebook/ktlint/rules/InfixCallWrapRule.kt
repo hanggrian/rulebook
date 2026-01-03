@@ -8,8 +8,8 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.BINARY_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
-import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
-import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -31,15 +31,15 @@ public class InfixCallWrapRule : RulebookRule(ID) {
                 ?: return
 
         // checks for violation
-        if (node.treePrev.isWhiteSpaceWithNewline()) {
-            emit(node.startOffset, Messages.get(MSG_UNEXPECTED, node.text), false)
+        if (node.treePrev.isWhiteSpaceWithNewline20) {
+            emit(node.startOffset, Messages[MSG_UNEXPECTED, node.text], false)
             return
         }
         node
             .treeNext
-            .takeIf { it.isWhiteSpaceWithoutNewline() }
+            .takeIf { it.isWhiteSpaceWithoutNewline20 }
             ?: return
-        emit(parent.lastChildNode.startOffset, Messages.get(MSG_MISSING, node.text), false)
+        emit(parent.lastChildNode.startOffset, Messages[MSG_MISSING, node.text], false)
     }
 
     public companion object {

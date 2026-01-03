@@ -12,8 +12,7 @@ class BracketsTrimRuleTest : AbstractRuleTestCase<BracketsTrimRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<BracketsTrimRule.Visitor>(rule.astVisitor)
+        assertIs<BracketsTrimVisitor>(rule.astVisitor)
     }
 
     @Test

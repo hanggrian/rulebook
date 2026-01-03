@@ -2,6 +2,8 @@ package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.hasAnnotation
+import com.hanggrian.rulebook.codenarc.rules.BuiltInFunctionPositionRule.Companion.MSG
+import com.hanggrian.rulebook.codenarc.rules.BuiltInFunctionPositionRule.Companion.isBuiltInFunction
 import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.MethodNode
@@ -10,12 +12,12 @@ import org.codehaus.groovy.ast.MethodNode
 public class BuiltInFunctionPositionRule : RulebookAstRule() {
     override fun getName(): String = "BuiltInFunctionPosition"
 
-    override fun getAstVisitorClass(): Class<*> = Visitor::class.java
+    override fun getAstVisitorClass(): Class<*> = BuiltInFunctionPositionVisitor::class.java
 
-    private companion object {
+    internal companion object {
         const val MSG = "built.in.function.position"
 
-        val BUILTIN_FUNCTIONS =
+        private val BUILTIN_FUNCTIONS =
             setOf(
                 "toString",
                 "hashCode",
@@ -26,31 +28,32 @@ public class BuiltInFunctionPositionRule : RulebookAstRule() {
 
         fun MethodNode.isBuiltInFunction() = hasAnnotation("Override") && name in BUILTIN_FUNCTIONS
     }
+}
 
-    public class Visitor : RulebookVisitor() {
-        override fun visitClassEx(node: ClassNode) {
-            super.visitClassEx(node)
+public class BuiltInFunctionPositionVisitor : RulebookVisitor() {
+    override fun visitClassEx(node: ClassNode) {
+        super.visitClassEx(node)
 
-            // collect functions
-            // in Groovy, static members have specific keyword
-            val methods =
-                node
-                    .methods
-                    .filterNot { it.isStatic }
+        // collect functions
+        // in Groovy, static members have specific keyword
+        val methods =
+            node
+                .methods
+                .filterNot { it.isStatic }
 
-            for ((i, method) in methods.withIndex()) {
-                // target special function
-                method
-                    .takeIf { it.isBuiltInFunction() }
-                    ?: continue
+        for ((i, method) in methods.withIndex()) {
+            // target special function
+            method
+                .takeIf { it.isBuiltInFunction() }
+                ?: continue
 
-                // checks for violation
-                methods
-                    .subList(i, methods.size)
-                    .takeIf { nodes -> nodes.any { !it.isBuiltInFunction() } }
-                    ?: continue
-                addViolation(method, Messages.get(MSG, method.name))
-            }
+            // checks for violation
+            methods
+                .subList(i, methods.size)
+                .takeIf { nodes ->
+                    nodes.any { !it.isBuiltInFunction() }
+                } ?: continue
+            addViolation(method, Messages[MSG, method.name])
         }
     }
 }

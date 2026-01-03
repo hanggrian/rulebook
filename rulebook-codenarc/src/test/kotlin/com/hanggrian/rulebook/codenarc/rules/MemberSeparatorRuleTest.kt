@@ -11,8 +11,7 @@ class MemberSeparatorRuleTest : AbstractRuleTestCase<MemberSeparatorRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-
-        assertIs<MemberSeparatorRule.Visitor>(rule.astVisitor)
+        assertIs<MemberSeparatorVisitor>(rule.astVisitor)
     }
 
     @Test

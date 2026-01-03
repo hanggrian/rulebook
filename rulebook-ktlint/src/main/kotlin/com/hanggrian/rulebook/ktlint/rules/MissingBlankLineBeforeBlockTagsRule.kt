@@ -8,6 +8,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import com.pinterest.ktlint.rule.engine.core.api.prevSibling
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -28,7 +29,7 @@ public class MissingBlankLineBeforeBlockTagsRule : RulebookRule(ID) {
             .prevKdocLeadingAsterisk
             ?.prevKdocLeadingAsterisk
             ?.siblingsUntil(KDOC_LEADING_ASTERISK)
-            ?.takeUnless { it.singleOrNull().isWhiteSpaceWithNewline() }
+            ?.takeUnless { it.singleOrNull().isWhiteSpaceWithNewline20 }
             ?: return
         emit(kdocTag.startOffset, Messages[MSG], false)
     }

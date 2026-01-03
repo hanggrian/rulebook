@@ -19,7 +19,7 @@ public class EmptyTagsClipRule : RulebookFileRule() {
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG = "empty.tags.clip"
 
         val REGEX = Regex("""<\s+>""")

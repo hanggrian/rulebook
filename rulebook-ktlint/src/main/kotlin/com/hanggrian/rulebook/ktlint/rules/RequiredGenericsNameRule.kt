@@ -10,6 +10,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_PARAMETER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_PARAMETER_LIST
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
@@ -32,7 +33,7 @@ public class RequiredGenericsNameRule : RulebookRule(ID, REQUIRED_GENERIC_NAMES_
         val typeParameter =
             node
                 .findChildByType(TYPE_PARAMETER_LIST)
-                ?.children()
+                ?.children20
                 ?.singleOrNull { it.elementType == TYPE_PARAMETER }
                 ?: return
 
@@ -42,7 +43,7 @@ public class RequiredGenericsNameRule : RulebookRule(ID, REQUIRED_GENERIC_NAMES_
                 .findChildByType(IDENTIFIER)
                 ?.takeUnless { node.hasParentWithGenerics() || it.text in requiredGenericNames }
                 ?: return
-        emit(identifier.startOffset, Messages.get(MSG, requiredGenericNames.joinToString()), false)
+        emit(identifier.startOffset, Messages[MSG, requiredGenericNames.joinToString()], false)
     }
 
     public companion object {

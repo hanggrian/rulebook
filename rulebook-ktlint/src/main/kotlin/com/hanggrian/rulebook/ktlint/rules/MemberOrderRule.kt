@@ -12,57 +12,62 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY_ACCESSOR
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SECONDARY_CONSTRUCTOR
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
-import com.pinterest.ktlint.rule.engine.core.api.children
+import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
-import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#member-order) */
 public class MemberOrderRule : RulebookRule(ID, MEMBER_ORDER_PROPERTY) {
     private var memberOrder = MEMBER_ORDER_PROPERTY.defaultValue
-    private lateinit var memberPositions: Map<IElementType, Int>
-    private lateinit var memberArguments: Map<IElementType, String>
+    private var propertyPosition = 0
+    private var initializerPosition = 1
+    private var constructorPosition = 2
+    private var functionPosition = 3
+    private var companionPosition = 4
 
     override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
+
+    private val ASTNode.memberPosition: Int?
+        get() =
+            when (elementType) {
+                PROPERTY -> if (PROPERTY_ACCESSOR in this) functionPosition else propertyPosition
+                CLASS_INITIALIZER -> initializerPosition
+                SECONDARY_CONSTRUCTOR -> constructorPosition
+                FUN -> functionPosition
+                else -> if (hasModifier(COMPANION_KEYWORD)) companionPosition else null
+            }
+
+    private val ASTNode.memberArgument: String?
+        get() =
+            when (elementType) {
+                PROPERTY -> if (PROPERTY_ACCESSOR in this) "function" else "property"
+                CLASS_INITIALIZER -> "initializer"
+                SECONDARY_CONSTRUCTOR -> "constructor"
+                FUN -> "function"
+                else -> if (hasModifier(COMPANION_KEYWORD)) "companion object" else null
+            }
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         memberOrder = editorConfig[MEMBER_ORDER_PROPERTY]
         require(memberOrder.size == 5)
 
-        memberPositions =
-            memberOrder.associate {
-                when (it) {
-                    "property" -> PROPERTY to 0
-                    "initializer" -> CLASS_INITIALIZER to 1
-                    "constructor" -> SECONDARY_CONSTRUCTOR to 2
-                    "function" -> FUN to 3
-                    "companion" -> OBJECT_DECLARATION to 4
-                    else -> error("Unknown member type.")
-                }
-            }
-        memberArguments =
-            memberOrder.associate {
-                when (it) {
-                    "property" -> PROPERTY to "property"
-                    "initializer" -> CLASS_INITIALIZER to "initializer"
-                    "constructor" -> SECONDARY_CONSTRUCTOR to "constructor"
-                    "function" -> FUN to "function"
-                    "companion" -> OBJECT_DECLARATION to "companion"
-                    else -> error("Unknown member type.")
-                }
-            }
+        propertyPosition = memberOrder.indexOf("property")
+        initializerPosition = memberOrder.indexOf("initializer")
+        constructorPosition = memberOrder.indexOf("constructor")
+        functionPosition = memberOrder.indexOf("function")
+        companionPosition = memberOrder.indexOf("companion")
     }
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // in Kotlin, static members belong in companion object
-        var lastChildType: IElementType? = null
+        var lastChild: ASTNode? = null
         for (child in node
-            .children()
+            .children20
             .filter {
                 it.elementType == PROPERTY ||
                     it.elementType == CLASS_INITIALIZER ||
@@ -70,36 +75,17 @@ public class MemberOrderRule : RulebookRule(ID, MEMBER_ORDER_PROPERTY) {
                     it.elementType == FUN ||
                     it.elementType == OBJECT_DECLARATION
             }) {
-            val childType =
-                when {
-                    child.elementType == PROPERTY && PROPERTY_ACCESSOR in child ->
-                        // property with getter and setter is essentially a function
-                        FUN
-
-                    child.elementType == OBJECT_DECLARATION ->
-                        // companion object must have appropriate keyword
-                        when {
-                            child.hasModifier(COMPANION_KEYWORD) -> OBJECT_DECLARATION
-                            else -> continue
-                        }
-
-                    else -> child.elementType
-                }
-
             // checks for violation
-            if (memberPositions.getOrDefault(lastChildType, -1) > memberPositions[childType]!!) {
+            val childMemberPosition = child.memberPosition ?: continue
+            if ((lastChild?.memberPosition ?: -1) > childMemberPosition) {
                 emit(
                     child.startOffset,
-                    Messages.get(
-                        MSG,
-                        memberArguments[childType]!!,
-                        memberArguments[lastChildType]!!,
-                    ),
+                    Messages[MSG, child.memberArgument!!, lastChild!!.memberArgument!!],
                     false,
                 )
             }
 
-            lastChildType = childType
+            lastChild = child
         }
     }
 

@@ -19,7 +19,7 @@ public class TodoCommentRule : RulebookFileRule() {
                     createViolation(
                         lineNumber,
                         sourceCode.line(lineNumber - 1),
-                        Messages.get(MSG_KEYWORD, it.value.substringAfterLast(' ')),
+                        Messages[MSG_KEYWORD, it.value.substringAfterLast(' ')],
                     )
                 } +
             SEPARATOR_REGEX
@@ -29,12 +29,12 @@ public class TodoCommentRule : RulebookFileRule() {
                     createViolation(
                         lineNumber,
                         sourceCode.line(lineNumber - 1),
-                        Messages.get(MSG_SEPARATOR, it.value.last()),
+                        Messages[MSG_SEPARATOR, it.value.last()],
                     )
                 }
     }
 
-    private companion object {
+    internal companion object {
         const val MSG_KEYWORD = "todo.comment.keyword"
         const val MSG_SEPARATOR = "todo.comment.separator"
 
