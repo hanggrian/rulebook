@@ -90,7 +90,7 @@ el.replaceWith(d);
             {
                 &#39;default&#39;: (&#39;Util&#39;, &#39;Utility&#39;, &#39;Helper&#39;, &#39;Manager&#39;, &#39;Wrapper&#39;),
                 &#39;type&#39;: &#39;csv&#39;,
-                &#39;metavar&#39;: &#39;&lt;comma-separated names&gt;&#39;,
+                &#39;metavar&#39;: &#39;&lt;comma-separated values&gt;&#39;,
                 &#39;help&#39;: &#39;A set of banned words.&#39;,
             },
         ),
@@ -110,7 +110,7 @@ el.replaceWith(d);
         if not words:
             return
         word: str = words[-1]
-        if word in (&#39;Util&#39;, &#39;Utility&#39;):
+        if word in {&#39;Util&#39;, &#39;Utility&#39;}:
             self.add_message(
                 self.MSG_UTIL,
                 node=node,
@@ -187,7 +187,7 @@ el.replaceWith(d);
     if not words:
         return
     word: str = words[-1]
-    if word in (&#39;Util&#39;, &#39;Utility&#39;):
+    if word in {&#39;Util&#39;, &#39;Utility&#39;}:
         self.add_message(
             self.MSG_UTIL,
             node=node,

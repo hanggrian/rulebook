@@ -77,11 +77,64 @@ el.replaceWith(d);
 
     name: str = &#39;member-order&#39;
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    options: Options = (
+        (
+            &#39;rulebook-member-order&#39;,
+            {
+                &#39;default&#39;: (&#39;property&#39;, &#39;constructor&#39;, &#39;function&#39;, &#39;static&#39;),
+                &#39;type&#39;: &#39;csv&#39;,
+                &#39;metavar&#39;: &#39;&lt;comma-separated values&gt;&#39;,
+                &#39;help&#39;: &#39;The structure of a class body.&#39;,
+            },
+        ),
+    )
+
+    _member_order: list[str]
+    _property_position: int
+    _constructor_position: int
+    _function_position: int
+    _static_position: int
+
+    def open(self) -&gt; None:
+        self._member_order = self.linter.config.rulebook_member_order
+        self._property_position: int = self._member_order.index(&#39;property&#39;)
+        self._constructor_position: int = self._member_order.index(&#39;constructor&#39;)
+        self._function_position: int = self._member_order.index(&#39;function&#39;)
+        self._static_position: int = self._member_order.index(&#39;static&#39;)
+
+    def _get_member_position(self, node: NodeNG) -&gt; int:
+        if isinstance(node, Assign):
+            if _has_decorator(node, &#39;staticmethod&#39;):
+                return self._static_position
+            return self._property_position
+        if isinstance(node, AssignName):
+            return self._property_position
+        if _has_decorator(node, &#39;staticmethod&#39;):
+            return self._static_position
+        return self._constructor_position \
+            if cast(FunctionDef, node).name == &#39;__init__&#39; \
+            else self._function_position
+
+    def _get_member_argument(self, node: NodeNG) -&gt; str:
+        if isinstance(node, Assign):
+            if _has_decorator(node, &#39;staticmethod&#39;):
+                return &#39;static member&#39;
+            return &#39;property&#39;
+        if isinstance(node, AssignName):
+            return &#39;property&#39;
+        if _has_decorator(node, &#39;staticmethod&#39;):
+            return &#39;static member&#39;
+        return &#39;constructor&#39; \
+            if cast(FunctionDef, node).name == &#39;__init__&#39; \
+            else &#39;function&#39;
 
     def visit_classdef(self, node: ClassDef) -&gt; None:
         # in Python, static members have are annotated
         last_child: FunctionDef | None = None
-        for child in node.values():
+        for child in [
+            n for n in node.values()
+            if isinstance(n, (Assign, AssignName, FunctionDef))
+        ]:
             # checks for violation
             if last_child and \
                 self._get_member_position(last_child) &gt; self._get_member_position(child):
@@ -94,35 +147,7 @@ el.replaceWith(d);
                     ),
                 )
 
-            last_child = child
-
-    @staticmethod
-    def _get_member_position(node: NodeNG) -&gt; int:
-        if isinstance(node, Assign):
-            if _has_decorator(node, &#39;staticmethod&#39;):
-                return 4
-            return 1
-        if isinstance(node, AssignName):
-            return 1
-        if isinstance(node, FunctionDef):
-            if _has_decorator(node, &#39;staticmethod&#39;):
-                return 4
-            return 2 if node.name == &#39;__init__&#39; else 3
-        return -1
-
-    @staticmethod
-    def _get_member_argument(node: NodeNG) -&gt; str:
-        if isinstance(node, Assign):
-            if _has_decorator(node, &#39;staticmethod&#39;):
-                return &#39;static member&#39;
-            return &#39;property&#39;
-        if isinstance(node, AssignName):
-            return &#39;property&#39;
-        if isinstance(node, FunctionDef):
-            if _has_decorator(node, &#39;staticmethod&#39;):
-                return &#39;static member&#39;
-            return &#39;constructor&#39; if node.name == &#39;__init__&#39; else &#39;function&#39;
-        return &#39;&#39;</code></pre>
+            last_child = child</code></pre>
 </details>
 <div class="desc"><p>See detail: <a href="https://hanggrian.github.io/rulebook/rules/#member-order">https://hanggrian.github.io/rulebook/rules/#member-order</a></p>
 <p>Checker instances should have the linter as argument.</p></div>
@@ -146,9 +171,30 @@ el.replaceWith(d);
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
+<dt id="rulebook_pylint.checkers.member_order.MemberOrderChecker.options"><code class="name">var <span class="ident">options</span> : tuple[tuple[str, dict[str, None | str | bool | int | re.Pattern[str] | collections.abc.Iterable[str | int | re.Pattern[str]] | type['_CallbackAction'] | collections.abc.Callable[[typing.Any], typing.Any] | collections.abc.Callable[[typing.Any, typing.Any, typing.Any, typing.Any], typing.Any]]], ...]</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
 </dl>
 <h3>Methods</h3>
 <dl>
+<dt id="rulebook_pylint.checkers.member_order.MemberOrderChecker.open"><code class="name flex">
+<span>def <span class="ident">open</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def open(self) -&gt; None:
+    self._member_order = self.linter.config.rulebook_member_order
+    self._property_position: int = self._member_order.index(&#39;property&#39;)
+    self._constructor_position: int = self._member_order.index(&#39;constructor&#39;)
+    self._function_position: int = self._member_order.index(&#39;function&#39;)
+    self._static_position: int = self._member_order.index(&#39;static&#39;)</code></pre>
+</details>
+<div class="desc"><p>Called before visiting project (i.e. set of modules).</p></div>
+</dd>
 <dt id="rulebook_pylint.checkers.member_order.MemberOrderChecker.visit_classdef"><code class="name flex">
 <span>def <span class="ident">visit_classdef</span></span>(<span>self, node: astroid.nodes.scoped_nodes.scoped_nodes.ClassDef) ‑> None</span>
 </code></dt>
@@ -160,7 +206,10 @@ el.replaceWith(d);
 <pre><code class="python">def visit_classdef(self, node: ClassDef) -&gt; None:
     # in Python, static members have are annotated
     last_child: FunctionDef | None = None
-    for child in node.values():
+    for child in [
+        n for n in node.values()
+        if isinstance(n, (Assign, AssignName, FunctionDef))
+    ]:
         # checks for violation
         if last_child and \
             self._get_member_position(last_child) &gt; self._get_member_position(child):
@@ -201,10 +250,12 @@ el.replaceWith(d);
 <ul>
 <li>
 <h4><code><a title="rulebook_pylint.checkers.member_order.MemberOrderChecker" href="#rulebook_pylint.checkers.member_order.MemberOrderChecker">MemberOrderChecker</a></code></h4>
-<ul class="">
+<ul class="two-column">
 <li><code><a title="rulebook_pylint.checkers.member_order.MemberOrderChecker.MSG" href="#rulebook_pylint.checkers.member_order.MemberOrderChecker.MSG">MSG</a></code></li>
 <li><code><a title="rulebook_pylint.checkers.member_order.MemberOrderChecker.msgs" href="#rulebook_pylint.checkers.member_order.MemberOrderChecker.msgs">msgs</a></code></li>
 <li><code><a title="rulebook_pylint.checkers.member_order.MemberOrderChecker.name" href="#rulebook_pylint.checkers.member_order.MemberOrderChecker.name">name</a></code></li>
+<li><code><a title="rulebook_pylint.checkers.member_order.MemberOrderChecker.open" href="#rulebook_pylint.checkers.member_order.MemberOrderChecker.open">open</a></code></li>
+<li><code><a title="rulebook_pylint.checkers.member_order.MemberOrderChecker.options" href="#rulebook_pylint.checkers.member_order.MemberOrderChecker.options">options</a></code></li>
 <li><code><a title="rulebook_pylint.checkers.member_order.MemberOrderChecker.visit_classdef" href="#rulebook_pylint.checkers.member_order.MemberOrderChecker.visit_classdef">visit_classdef</a></code></li>
 </ul>
 </li>
