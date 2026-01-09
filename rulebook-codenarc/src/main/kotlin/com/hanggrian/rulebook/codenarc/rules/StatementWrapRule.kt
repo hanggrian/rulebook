@@ -7,7 +7,6 @@ import com.hanggrian.rulebook.codenarc.rules.StatementWrapRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.rules.StatementWrapRule.Companion.STRING_REGEX
 import com.hanggrian.rulebook.codenarc.sourceLineNullable
 import com.hanggrian.rulebook.codenarc.trimComment
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.DoWhileStatement
 import org.codehaus.groovy.ast.stmt.ForStatement

@@ -3,7 +3,6 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.splitToList
-import com.hanggrian.rulebook.codenarc.visitors.RulebookAnyCallVisitor
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.FieldNode
 import org.codehaus.groovy.ast.MethodNode

@@ -14,6 +14,12 @@ max_line_length = 80
 [*.xml]
 max_line_length = 100
 
+[*.{js,ts,tsx}]
+max_line_length = 100
+ij_continuation_indent_size = 4
+ij_javascript_imports_wrap = off
+ij_typescript_imports_wrap = off
+
 [*.{kt,kts,java,groovy,py}]
 indent_size = 4
 max_line_length = 100
@@ -24,10 +30,10 @@ ij_kotlin_name_count_to_use_star_import = 99
 ij_kotlin_name_count_to_use_star_import_for_members = 99
 ktlint_code_style = ktlint_official
 ktlint_standard = enabled
+ktlint_standard_when-entry-bracing = disabled
 ktlint_class_signature_rule_force_multiline_when_parameter_count_greater_or_equal_than = unset
 ktlint_function_signature_rule_force_multiline_when_parameter_count_greater_or_equal_than = unset
 ktlint_chain_method_rule_force_multiline_when_chain_operator_count_greater_or_equal_than = unset
-ktlint_standard_when-entry-bracing = disabled
 
 [*.java]
 ij_java_use_single_class_imports = true

@@ -3,7 +3,6 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.hasJumpStatement
 import com.hanggrian.rulebook.codenarc.rules.RedundantDefaultRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.stmt.SwitchStatement
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-default) */

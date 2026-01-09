@@ -2,7 +2,6 @@ package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.rules.OverloadFunctionPositionRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassNode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#overload-function-position) */

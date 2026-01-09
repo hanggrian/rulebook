@@ -5,7 +5,6 @@ import com.hanggrian.rulebook.codenarc.createViolation
 import com.hanggrian.rulebook.codenarc.isMultiline
 import com.hanggrian.rulebook.codenarc.rules.OperatorWrapRule.Companion.MSG_MISSING
 import com.hanggrian.rulebook.codenarc.rules.OperatorWrapRule.Companion.MSG_UNEXPECTED
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.ast.expr.ClosureExpression
 import org.codehaus.groovy.ast.expr.ListExpression

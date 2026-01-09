@@ -334,7 +334,7 @@ codebase. Disable the rules individually if they behave unexpectedly.
     # rulebook_pylint.comment_spaces,
     ```
 
-### What's next for Rulebook?
+### What's next?
 
 Although there is no timeline for the roadmap, more languages are planned:
 

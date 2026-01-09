@@ -3,7 +3,6 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.getLiteral
 import com.hanggrian.rulebook.codenarc.rules.NumberSuffixForFloatRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassHelper.float_TYPE
 import org.codehaus.groovy.ast.expr.ConstantExpression
 

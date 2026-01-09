@@ -4,7 +4,6 @@ import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.hasAnnotation
 import com.hanggrian.rulebook.codenarc.rules.BuiltInFunctionPositionRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.rules.BuiltInFunctionPositionRule.Companion.isBuiltInFunction
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.MethodNode
 

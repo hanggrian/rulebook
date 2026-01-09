@@ -4,7 +4,6 @@ import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.createViolation
 import com.hanggrian.rulebook.codenarc.rules.TagsTrimRule.Companion.MSG_FIRST
 import com.hanggrian.rulebook.codenarc.rules.TagsTrimRule.Companion.MSG_LAST
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.GenericsType
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.expr.MethodCallExpression

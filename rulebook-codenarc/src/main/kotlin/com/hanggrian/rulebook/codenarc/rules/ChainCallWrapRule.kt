@@ -6,7 +6,6 @@ import com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule.Companion.MSG_MIS
 import com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule.Companion.MSG_UNEXPECTED
 import com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule.Companion.identifierOrSelf
 import com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule.Companion.parent
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
 import org.codehaus.groovy.ast.expr.ConstructorCallExpression
 import org.codehaus.groovy.ast.expr.DeclarationExpression

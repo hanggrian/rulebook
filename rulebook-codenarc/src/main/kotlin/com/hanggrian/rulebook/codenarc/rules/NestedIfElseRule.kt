@@ -6,7 +6,6 @@ import com.hanggrian.rulebook.codenarc.isMultiline
 import com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule.Companion.MSG_INVERT
 import com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule.Companion.MSG_LIFT
 import com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule.Companion.hasMultipleLines
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.DoWhileStatement

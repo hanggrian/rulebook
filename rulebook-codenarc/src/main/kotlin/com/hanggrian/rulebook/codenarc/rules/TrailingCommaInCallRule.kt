@@ -8,7 +8,6 @@ import com.hanggrian.rulebook.codenarc.rules.TrailingCommaInCallRule.Companion.M
 import com.hanggrian.rulebook.codenarc.rules.TrailingCommaInCallRule.Companion.MSG_SINGLE
 import com.hanggrian.rulebook.codenarc.sourceLineNullable
 import com.hanggrian.rulebook.codenarc.trimComment
-import com.hanggrian.rulebook.codenarc.visitors.RulebookAnyCallVisitor
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
 import org.codehaus.groovy.ast.expr.ClosureExpression
 import org.codehaus.groovy.ast.expr.Expression

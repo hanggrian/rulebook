@@ -3,7 +3,6 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.getLiteral
 import com.hanggrian.rulebook.codenarc.rules.NumberSuffixForIntegerRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassHelper.int_TYPE
 import org.codehaus.groovy.ast.expr.ConstantExpression
 

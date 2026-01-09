@@ -5,7 +5,6 @@ import com.hanggrian.rulebook.codenarc.rules.IllegalClassNameSuffixRule.Companio
 import com.hanggrian.rulebook.codenarc.rules.IllegalClassNameSuffixRule.Companion.MSG_UTIL
 import com.hanggrian.rulebook.codenarc.rules.IllegalClassNameSuffixRule.Companion.UTILITY_FINAL_NAMES
 import com.hanggrian.rulebook.codenarc.splitToList
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassNode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-class-name-suffix) */

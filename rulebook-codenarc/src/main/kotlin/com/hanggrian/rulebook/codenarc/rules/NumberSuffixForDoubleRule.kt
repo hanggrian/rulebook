@@ -3,7 +3,6 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.getLiteral
 import com.hanggrian.rulebook.codenarc.rules.NumberSuffixForDoubleRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassHelper.double_TYPE
 import org.codehaus.groovy.ast.expr.ConstantExpression
 

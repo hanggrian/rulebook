@@ -4,7 +4,6 @@ import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.rules.UtilityClassDefinitionRule.Companion.MSG_CONSTRUCTOR
 import com.hanggrian.rulebook.codenarc.rules.UtilityClassDefinitionRule.Companion.MSG_CONSTRUCTOR_MODIFIER
 import com.hanggrian.rulebook.codenarc.rules.UtilityClassDefinitionRule.Companion.MSG_MODIFIER
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ClassNode
 import java.lang.reflect.Modifier
 

@@ -7,7 +7,6 @@ import com.hanggrian.rulebook.codenarc.hasCommentAbove
 import com.hanggrian.rulebook.codenarc.isMultiline
 import com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule.Companion.MSG_MISSING
 import com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule.Companion.MSG_UNEXPECTED
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.CaseStatement
 import org.codehaus.groovy.ast.stmt.Statement

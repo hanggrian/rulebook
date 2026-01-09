@@ -4,7 +4,6 @@ import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.createViolation
 import com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule.Companion.MSG_FIRST
 import com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule.Companion.MSG_LAST
-import com.hanggrian.rulebook.codenarc.visitors.RulebookVisitor
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.expr.Expression
 import org.codehaus.groovy.ast.expr.ListExpression

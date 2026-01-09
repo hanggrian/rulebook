@@ -2,7 +2,6 @@ package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.rules.ParameterWrapRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.visitors.RulebookAnyCallVisitor
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.MethodNode
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
