@@ -1,6 +1,6 @@
 [versions]
-jdk = "21"
-jre = "8"
+java-compile = "21"
+java-support = "8"
 junit = "5.14.1"
 # kotlin
 kotlin = "2.1.0"

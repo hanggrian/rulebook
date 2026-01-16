@@ -18,8 +18,10 @@ val releaseVersion: String by project
 val releaseDescription: String by project
 val releaseUrl: String by project
 
-val jdkVersion = JavaLanguageVersion.of(libs.versions.jdk.get())
-val jreVersion = JavaLanguageVersion.of(libs.versions.jre.get())
+val javaCompileVersion: JavaLanguageVersion =
+    JavaLanguageVersion.of(libs.versions.java.compile.get())
+val javaSupportVersion: JavaLanguageVersion =
+    JavaLanguageVersion.of(libs.versions.java.support.get())
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin apply false
@@ -36,7 +38,7 @@ allprojects {
 
 subprojects {
     plugins.withType<KotlinPluginWrapper>().configureEach {
-        the<KotlinJvmProjectExtension>().jvmToolchain(jdkVersion.asInt())
+        the<KotlinJvmProjectExtension>().jvmToolchain(javaCompileVersion.asInt())
     }
     plugins.withType<KtlintPlugin>().configureEach {
         the<KtlintExtension>().version.set(libs.versions.ktlint.get())
@@ -54,8 +56,8 @@ subprojects {
                 licenses {
                     license {
                         name.set("The Apache License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                        distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                        distribution.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                     }
                 }
                 developers {
@@ -77,17 +79,35 @@ subprojects {
 
     tasks {
         withType<JavaCompile>().configureEach {
-            options.release = jreVersion.asInt()
+            options.release = javaSupportVersion.asInt()
         }
         withType<GroovyCompile>().configureEach {
-            options.release = jreVersion.asInt()
+            options.release = javaSupportVersion.asInt()
         }
         withType<KotlinCompile>().configureEach {
             compilerOptions.jvmTarget
-                .set(JvmTarget.fromTarget(JavaVersion.toVersion(jreVersion).toString()))
+                .set(JvmTarget.fromTarget(JavaVersion.toVersion(javaSupportVersion).toString()))
         }
         withType<Test>().configureEach {
             useJUnitPlatform()
+        }
+    }
+
+    if (project.name.startsWith("sample")) {
+        plugins.withType<JavaPlugin>().configureEach {
+            the<JavaPluginExtension>().sourceSets.named("main").get().java.srcDir("java")
+        }
+        plugins.withType<GroovyPlugin>().configureEach {
+            the<JavaPluginExtension>()
+                .sourceSets
+                .named("main")
+                .get()
+                .extensions
+                .getByType<GroovySourceDirectorySet>()
+                .srcDir("groovy")
+        }
+        plugins.withType<KotlinPluginWrapper>().configureEach {
+            the<KotlinJvmProjectExtension>().sourceSets.named("main").get().kotlin.srcDir("kotlin")
         }
     }
 }
