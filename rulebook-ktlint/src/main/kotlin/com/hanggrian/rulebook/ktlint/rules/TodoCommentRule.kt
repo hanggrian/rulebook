@@ -9,7 +9,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERI
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
-import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import kotlin.text.RegexOption.IGNORE_CASE
@@ -39,7 +39,7 @@ public class TodoCommentRule : RulebookRule(ID) {
                 else ->
                     node
                         .siblingsUntil(KDOC_LEADING_ASTERISK)
-                        .takeUnless { nodes -> nodes.all { it.isWhiteSpace() } }
+                        .takeUnless { nodes -> nodes.all { it.isWhiteSpace20 } }
                         ?.joinToString("") { it.text }
                         ?: return
             }

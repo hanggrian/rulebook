@@ -2,8 +2,3 @@
 pylint==4.0.4
 astroid==4.0.2
 regex>=2025.11.3
-# test
-pytest
-pytest-cov
-
--r requirements-website.txt

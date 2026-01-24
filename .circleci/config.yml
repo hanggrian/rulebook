@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - run: ./gradlew check koverXmlReport
-      - run: pip install -r requirements.txt && pytest --cov .
+      - run: pip install -r requirements-dev.txt && pytest --cov .
       - codecov/upload
 
 workflows:

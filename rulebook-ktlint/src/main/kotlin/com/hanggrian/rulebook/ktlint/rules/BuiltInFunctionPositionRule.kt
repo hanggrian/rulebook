@@ -11,7 +11,6 @@ import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
-import org.jetbrains.kotlin.psi.psiUtil.children
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#built-in-function-position) */
 public class BuiltInFunctionPositionRule : RulebookRule(ID) {

@@ -6,5 +6,4 @@ readonly ACTIVATE_EXEC="$VENV_NAME/bin/activate"
 if ! [[ -f "$ACTIVATE_EXEC" ]]; then
   python3 -m venv "$VENV_NAME"
 fi
-# shellcheck source=/dev/null
 source "$ACTIVATE_EXEC"

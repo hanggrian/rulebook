@@ -76,6 +76,20 @@ subprojects {
             }
         }
     }
+    if (project.name.startsWith("sample")) {
+        plugins.withType<JavaPlugin>().configureEach {
+            val main by the<JavaPluginExtension>().sourceSets.getting
+            main.java.srcDir("java")
+        }
+        plugins.withType<GroovyPlugin>().configureEach {
+            val main by the<JavaPluginExtension>().sourceSets.getting
+            main.extensions.getByType<GroovySourceDirectorySet>().srcDir("groovy")
+        }
+        plugins.withType<KotlinPluginWrapper>().configureEach {
+            val main by the<KotlinJvmProjectExtension>().sourceSets.getting
+            main.kotlin.srcDir("kotlin")
+        }
+    }
 
     tasks {
         withType<JavaCompile>().configureEach {
@@ -85,29 +99,12 @@ subprojects {
             options.release = javaSupportVersion.asInt()
         }
         withType<KotlinCompile>().configureEach {
-            compilerOptions.jvmTarget
+            compilerOptions
+                .jvmTarget
                 .set(JvmTarget.fromTarget(JavaVersion.toVersion(javaSupportVersion).toString()))
         }
         withType<Test>().configureEach {
             useJUnitPlatform()
-        }
-    }
-
-    if (project.name.startsWith("sample")) {
-        plugins.withType<JavaPlugin>().configureEach {
-            the<JavaPluginExtension>().sourceSets.named("main").get().java.srcDir("java")
-        }
-        plugins.withType<GroovyPlugin>().configureEach {
-            the<JavaPluginExtension>()
-                .sourceSets
-                .named("main")
-                .get()
-                .extensions
-                .getByType<GroovySourceDirectorySet>()
-                .srcDir("groovy")
-        }
-        plugins.withType<KotlinPluginWrapper>().configureEach {
-            the<KotlinJvmProjectExtension>().sourceSets.named("main").get().kotlin.srcDir("kotlin")
         }
     }
 }

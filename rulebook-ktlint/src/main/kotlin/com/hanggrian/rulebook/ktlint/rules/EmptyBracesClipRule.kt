@@ -15,9 +15,8 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TRY
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
-import com.pinterest.ktlint.rule.engine.core.api.isLeaf
 import com.pinterest.ktlint.rule.engine.core.api.isLeaf20
-import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
@@ -58,10 +57,10 @@ public class EmptyBracesClipRule : RulebookRule(ID) {
             .siblings()
             .filter {
                 when {
-                    it.elementType == BLOCK -> !it.isLeaf()
+                    it.elementType == BLOCK -> !it.isLeaf20
                     else -> it !== rbrace
                 }
-            }.takeIf { nodes -> nodes.any() && nodes.all { it.isWhiteSpace() } }
+            }.takeIf { nodes -> nodes.any() && nodes.all { it.isWhiteSpace20 } }
             ?: return
         emit(lbrace.endOffset, Messages[MSG], false)
     }
