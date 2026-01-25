@@ -6,7 +6,7 @@ orbs:
 executors:
   linux:
     docker:
-      - image: hanggrian/cimg-multiplatform:openjdk21.0-python3.13
+      - image: hanggrian/cimg-multiplatform:openjdk21.0-python3.13-node
 
 jobs:
   upload-coverage:
@@ -15,6 +15,7 @@ jobs:
       - checkout
       - run: ./gradlew check koverXmlReport
       - run: pip install -r requirements-dev.txt && pytest --cov .
+      - run: npm i && npm run test && npm run coverage
       - codecov/upload
 
 workflows:

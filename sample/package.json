@@ -1,0 +1,22 @@
+{
+  "name": "sample",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest --run __tests__",
+    "coverage": "vitest run --coverage __tests__ --reporter=junit --outputFile=test-report.junit.xml",
+    "docs": "typedoc --out docs"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/css-modules": "^1.0.5",
+    "@types/sinon": "^17.0.4",
+    "jsdom": "^26.0.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.3.4"
+  }
+}

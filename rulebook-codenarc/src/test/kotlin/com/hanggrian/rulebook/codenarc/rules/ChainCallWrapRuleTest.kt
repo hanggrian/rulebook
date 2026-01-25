@@ -139,11 +139,11 @@ class ChainCallWrapRuleTest : AbstractRuleTestCase<ChainCallWrapRule>() {
         assertNoViolations(
             """
             def foo(Runnable r) {
-                ChainCallWrapCheck().foo(() -> {
+                new ChainCallWrapCheck().foo(() -> {
                     println()
                     println()
                 })
-                ChainCallWrapCheck().foo {
+                new ChainCallWrapCheck().foo {
                     println()
                     println()
                 }

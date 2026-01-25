@@ -78,14 +78,7 @@ theme:
     - content.tabs.link
 
 nav:
-  - Home:
-    - Overview: index.md
-    - Getting started: readme.md
-    - Change log: changelog.md
-    - Developer guide: contributing.md
-    - Configuration:
-      - IDE settings: configuration/ide-settings.md
-      - EditorConfig file: configuration/editorconfig-file.md
+  - Home: index.md
   - Rules:
     - All rules: rules/index.md
     - Glossary: rules/glossary.md

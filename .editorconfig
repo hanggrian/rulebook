@@ -14,15 +14,21 @@ max_line_length = 80
 [*.xml]
 max_line_length = 100
 
-[*.{js,ts,tsx}]
-max_line_length = 100
-ij_continuation_indent_size = 4
-ij_javascript_imports_wrap = off
-ij_typescript_imports_wrap = off
-
-[*.{kt,kts,java,groovy,py}]
+[*.{kt,kts,java,groovy,py,js,ts}]
 indent_size = 4
 max_line_length = 100
+
+[*.js]
+ij_javascript_imports_wrap = off
+ij_javascript_spaces_within_object_literal_braces = true
+ij_javascript_spaces_within_object_type_braces = true
+ij_javascript_spaces_within_imports = true
+
+[*.ts]
+ij_typescript_imports_wrap = off
+ij_typescript_spaces_within_object_literal_braces = true
+ij_typescript_spaces_within_object_type_braces = true
+ij_typescript_spaces_within_imports = true
 
 [*.{kt,kts}]
 ij_kotlin_packages_to_use_import_on_demand = unset

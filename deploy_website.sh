@@ -2,10 +2,9 @@
 
 readonly API_DIR='website/site/api'
 
-source activate_python.sh
-
 ./gradlew clean dokkaGenerateHtml
 
+source activate_python.sh
 pdoc --html rulebook-pylint/rulebook_pylint --output-dir build/pdoc
 
 cd website && mkdocs build && cd ..

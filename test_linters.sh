@@ -1,7 +1,8 @@
 #!/bin/bash
 
-source activate_python.sh
-
 ./gradlew check test
 
+source activate_python.sh
 pytest
+
+npm run test
