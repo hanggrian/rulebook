@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import assignmentWrap, { MSG } from '../rules/assignment-wrap';
-import messages from '../messages';
+import assignmentWrap, { MSG } from '../src/rules/assignment-wrap';
+import messages from '../src/messages';
 import { AssertThat, assertThatRule } from './tests';
 
 describe('AssignmentWrapTest', () => {

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class MemberSeparatorChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#member-separator"""
-    MSG: str = 'member-separator'
+    MSG: str = 'member.separator'
 
     name: str = 'member-separator'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

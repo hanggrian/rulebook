@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class RequiredGenericsNameChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#required-generics-name"""
-    MSG: str = 'required-generics-name'
+    MSG: str = 'required.generics.name'
 
     name: str = 'required-generics-name'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment"""
-    MSG: str = 'duplicate-blank-line-in-comment'
+    MSG: str = 'duplicate.blank.line.in.comment'
 
     name: str = 'duplicate-blank-line-in-comment'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

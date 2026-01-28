@@ -84,6 +84,15 @@ fun main() {
 }
 ```
 
+## Remove empty file
+
+Content of a file should not be empty or consist of only whitespace characters,
+which may be spaces, tabs or newlines.
+
+```kotlin hl_lines="1"
+
+```
+
 ## Remove unused imports
 
 Remove imports that are not used in the file.

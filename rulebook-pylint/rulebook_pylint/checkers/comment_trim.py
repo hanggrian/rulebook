@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class CommentTrimChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#comment-trim"""
-    MSG: str = 'comment-trim'
+    MSG: str = 'comment.trim'
 
     name: str = 'comment-trim'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

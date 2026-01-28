@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import chainCallWrap, { MSG_MISSING, MSG_UNEXPECTED } from '../rules/chain-call-wrap';
-import messages from '../messages';
+import chainCallWrap, { MSG_MISSING, MSG_UNEXPECTED } from '../src/rules/chain-call-wrap';
+import messages from '../src/messages';
 import { AssertThat, assertThatRule } from './tests';
 
 describe('ChainCallWrapTest', () => {

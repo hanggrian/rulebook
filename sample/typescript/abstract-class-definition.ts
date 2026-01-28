@@ -1,4 +1,4 @@
-class Foo {
+abstract class Foo {
     bar(): void {
     }
 }

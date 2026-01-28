@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class FileSizeChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#file-size"""
-    MSG: str = 'file-size'
+    MSG: str = 'file.size'
 
     name: str = 'file-size'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

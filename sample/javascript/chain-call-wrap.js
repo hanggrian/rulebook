@@ -5,5 +5,4 @@ class Foo {
 }
 
 new Foo()
-    .bar()
-    .bar();
+    .bar().bar();

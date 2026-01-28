@@ -1,6 +1,6 @@
 import { createRuleTester, NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult } from 'eslint-vitest-rule-tester';
-import { RuleOptions } from "@stylistic/eslint-plugin-js";
-import typescriptEslint from "typescript-eslint";
+import { RuleOptions } from '@stylistic/eslint-plugin-js';
+import typescriptEslint from 'typescript-eslint';
 
 class Asserter {
     nativeTester: RuleTester;

@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class BuiltInFunctionPositionChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#built-in-function-position"""
-    MSG: str = 'built-in-function-position'
+    MSG: str = 'built.in.function.position'
 
     SPECIAL_FUNCTIONS = (
         '__str__',

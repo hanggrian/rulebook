@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import todoComment, { MSG_KEYWORD, MSG_SEPARATOR } from '../rules/todo-comment';
-import messages from '../messages';
+import todoComment, { MSG_KEYWORD, MSG_SEPARATOR } from '../src/rules/todo-comment';
+import messages from '../src/messages';
 import { AssertThat, assertThatRule } from './tests';
 
 describe('TodoCommentTest', () => {

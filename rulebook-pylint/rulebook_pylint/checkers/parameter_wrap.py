@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class ParameterWrapChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#parameter-wrap"""
-    MSG: str = 'parameter-wrap'
+    MSG: str = 'parameter.wrap'
 
     name: str = 'parameter-wrap'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

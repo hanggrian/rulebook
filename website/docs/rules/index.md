@@ -6,6 +6,7 @@ question mark or exclamation mark.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java title="Before" hl_lines="3"
     /**
     * @param num
@@ -14,6 +15,7 @@ question mark or exclamation mark.
     abstract int add(int num);
     ```
 === "Groovy"
+
     ```groovy title="Before" hl_lines="3"
     /**
     * @param num
@@ -22,6 +24,7 @@ question mark or exclamation mark.
     abstract def add(int num)
     ```
 === "Kotlin"
+
     ```kotlin title="Before" hl_lines="3"
     /**
     * @param num
@@ -33,6 +36,7 @@ question mark or exclamation mark.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java title="After" hl_lines="3"
     /**
     * @param num
@@ -41,6 +45,7 @@ question mark or exclamation mark.
     abstract int add(int num);
     ```
 === "Groovy"
+
     ```groovy title="After" hl_lines="3"
     /**
     * @param num
@@ -49,6 +54,7 @@ question mark or exclamation mark.
     abstract def add(int num)
     ```
 === "Kotlin"
+
     ```kotlin title="After" hl_lines="3"
     /**
     * @param num
@@ -58,6 +64,7 @@ question mark or exclamation mark.
     ```
 
 ??? Configuration
+
     :material-language-java:{ .lg .middle } Checkstyle | Default value
     --- | ---
     BlockTagPunctuation#tags | `@param, @return`
@@ -71,6 +78,7 @@ Prefer to use built-in types provided by the language.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
+
     ```kotlin hl_lines="1 4"
     import java.util.ArrayList
 
@@ -78,6 +86,7 @@ Prefer to use built-in types provided by the language.
     val people = java.util.ArrayList<Person>()
     ```
 === "Python"
+
     ```python hl_lines="1 3"
     from typing import Optional
 
@@ -88,11 +97,13 @@ Prefer to use built-in types provided by the language.
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     val names = arrayListOf<String>()
     val people = ArrayList<Person>()
     ```
 === "Python"
+
     ```python hl_lines="1"
     def get_name(person) -> str | None:
         return person['name']
@@ -106,6 +117,7 @@ calling function can be inverted.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
+
     ```kotlin
     person.takeIf { it.name != null }
     ```
@@ -113,6 +125,7 @@ calling function can be inverted.
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
+
     ```kotlin
     person.takeUnless { it.name == null }
     ```
@@ -125,6 +138,7 @@ with `null`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
+
     ```kotlin
     user.takeUnless { it.name === null }
     ```
@@ -132,6 +146,7 @@ with `null`.
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
+
     ```kotlin
     user.takeUnless { it.name == null }
     ```
@@ -143,12 +158,14 @@ Strip fully qualified names when they are already imported.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="3"
     import java.io.FileInputStream;
 
     void read(java.io.FileInputStream stream) {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     import java.io.FileInputStream
 
@@ -158,12 +175,14 @@ Strip fully qualified names when they are already imported.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="3"
     import java.io.FileInputStream;
 
     void read(FileInputStream stream) {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     import java.io.FileInputStream
 
@@ -177,24 +196,28 @@ TODO comment keywords should be uppercase and followed by exactly one space.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     // todo add tests
     //
     // FIXME: memory leak
     ```
 === "Groovy"
+
     ```groovy
     // todo add tests
     //
     // FIXME: memory leak
     ```
 === "Kotlin"
+
     ```kotlin
     // todo add tests
     //
     // FIXME: memory leak
     ```
 === "Python"
+
     ```python
     # todo add tests
     #
@@ -204,24 +227,28 @@ TODO comment keywords should be uppercase and followed by exactly one space.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     // TODO add tests
     //
     // FIXME memory leak
     ```
 === "Groovy"
+
     ```groovy
     // TODO add tests
     //
     // FIXME memory leak
     ```
 === "Kotlin"
+
     ```kotlin
     // TODO add tests
     //
     // FIXME memory leak
     ```
 === "Python"
+
     ```python
     # TODO add tests
     #
@@ -235,6 +262,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Groovy"
+
     ```groovy hl_lines="4 7"
     var items =
         Arrays.asList(
@@ -245,6 +273,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
     println(items,)
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="4 7"
     val items =
         listOf(
@@ -255,6 +284,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
     println(items,)
     ```
 === "Python"
+
     ```python hl_lines="4 7"
     items = \
         set(
@@ -268,6 +298,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 **:material-star-four-points:{ #accent } After**
 
 === "Groovy"
+
     ```groovy hl_lines="4 7"
     var items =
         Arrays.asList(
@@ -278,6 +309,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
     println(items)
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="4 7"
     val items =
         listOf(
@@ -288,6 +320,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
     println(items)
     ```
 === "Python"
+
     ```python hl_lines="4 7"
     items = \
         set(
@@ -307,6 +340,7 @@ this rule applies to tuples.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2-4"
     int[][] ticTacToe = {
         {0, 0, 0,},
@@ -315,6 +349,7 @@ this rule applies to tuples.
     };
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-4"
     var ticTacToe = [
         [0, 0, 0,],
@@ -323,6 +358,7 @@ this rule applies to tuples.
     ]
     ```
 === "Python"
+
     ```python hl_lines="2-4"
     tic_tac_toe = (
         (0, 0, 0,),
@@ -334,6 +370,7 @@ this rule applies to tuples.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2-4"
     int[][] ticTacToe = {
         {0, 0, 0},
@@ -342,6 +379,7 @@ this rule applies to tuples.
     };
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-4"
     var ticTacToe = [
         [0, 0, 0],
@@ -350,6 +388,7 @@ this rule applies to tuples.
     ]
     ```
 === "Python"
+
     ```python hl_lines="2-4"
     tic_tac_toe = (
         (0, 0, 0),
@@ -366,6 +405,7 @@ line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
+
     ```kotlin hl_lines="1 5"
     fun updateInventory(item: String,) {}
 
@@ -375,6 +415,7 @@ line.
     ) {}
     ```
 === "Python"
+
     ```python hl_lines="1 7"
     def update_inventory(item: str,):
         pass
@@ -390,6 +431,7 @@ line.
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
+
     ```kotlin hl_lines="1 5"
     fun updateInventory(item: String) {}
 
@@ -399,6 +441,7 @@ line.
     ) {}
     ```
 === "Python"
+
     ```python hl_lines="1 7"
     def update_inventory(item: str):
         pass
@@ -417,6 +460,7 @@ Remove unused import statements.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2"
     import com.example.fruit.Apple;
     import com.example.fruit.Banana;
@@ -424,6 +468,7 @@ Remove unused import statements.
     Apple apple = new Apple();
     ```
 === "Groovy"
+
     ```groovy hl_lines="2"
     import com.example.fruit.Apple
     import com.example.fruit.Banana
@@ -431,6 +476,7 @@ Remove unused import statements.
     var apple = new Apple()
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     import com.example.fruit.Apple
     import com.example.fruit.Banana
@@ -438,6 +484,7 @@ Remove unused import statements.
     val apple = Apple()
     ```
 === "Python"
+
     ```python hl_lines="1"
     from fruit import Apple, Banana
 
@@ -447,24 +494,28 @@ Remove unused import statements.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     import com.example.fruit.Apple;
 
     Apple apple = new Apple();
     ```
 === "Groovy"
+
     ```groovy
     import com.example.fruit.Apple
 
     var apple = new Apple()
     ```
 === "Kotlin"
+
     ```kotlin
     import com.example.fruit.Apple
 
     val apple = Apple()
     ```
 === "Python"
+
     ```python hl_lines="1"
     from fruit import Apple
 
@@ -478,24 +529,28 @@ Import directives must be single-type instead of wildcard imports.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="1"
     import com.example.fruit.*;
 
     List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     import com.example.fruit.*
 
     var fruits = [new Apple(), new Banana()]
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     import com.example.fruit.*
 
     val fruits = listOf(Apple(), Banana())
     ```
 === "Python"
+
     ```python hl_lines="1"
     from fruit import *
 
@@ -505,6 +560,7 @@ Import directives must be single-type instead of wildcard imports.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1-2"
     import com.example.fruit.Apple;
     import com.example.fruit.Banana;
@@ -512,6 +568,7 @@ Import directives must be single-type instead of wildcard imports.
     List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
     ```
 === "Groovy"
+
     ```groovy hl_lines="1-2"
     import com.example.fruit.Apple
     import com.example.fruit.Banana
@@ -519,6 +576,7 @@ Import directives must be single-type instead of wildcard imports.
     var fruits = [new Apple(), new Banana()]
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1-2"
     import com.example.fruit.Apple
     import com.example.fruit.Banana
@@ -526,6 +584,7 @@ Import directives must be single-type instead of wildcard imports.
     val fruits = listOf(Apple(), Banana())
     ```
 === "Python"
+
     ```python hl_lines="1"
     from fruit import Apple, Banana
 
@@ -541,21 +600,25 @@ Empty code blocks should be joined with the preceding code.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2"
     void main() {
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2"
     def main() {
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     fun main() {
     }
     ```
 === "Python"
+
     ```python hl_lines="2"
     foo = {
     }
@@ -564,18 +627,22 @@ Empty code blocks should be joined with the preceding code.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1"
     void main() {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     def main() {}
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     fun main() {}
     ```
 === "Python"
+
     ```python hl_lines="1"
     foo = {}
     ```
@@ -587,11 +654,13 @@ Empty collection initializers should be joined with the preceding code.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Groovy"
+
     ```groovy hl_lines="2"
     var items = [
     ]
     ```
 === "Python"
+
     ```python hl_lines="2"
     items = [
     ]
@@ -600,10 +669,12 @@ Empty collection initializers should be joined with the preceding code.
 **:material-star-four-points:{ #accent } After**
 
 === "Groovy"
+
     ```groovy hl_lines="1"
     var items = []
     ```
 === "Python"
+
     ```python hl_lines="1"
 
 ### Empty parentheses clip
@@ -613,6 +684,7 @@ Empty method declarations and calls should be joined with the preceding code.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2 4"
     void recurse(
     ) {
@@ -621,6 +693,7 @@ Empty method declarations and calls should be joined with the preceding code.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2 4"
     def recurse(
     ) {
@@ -629,6 +702,7 @@ Empty method declarations and calls should be joined with the preceding code.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2 4"
     fun recurse(
     ) {
@@ -637,6 +711,7 @@ Empty method declarations and calls should be joined with the preceding code.
     }
     ```
 === "Python"
+
     ```python hl_lines="2 4"
     def recurse(
     ):
@@ -647,24 +722,28 @@ Empty method declarations and calls should be joined with the preceding code.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1-2"
     void recurse() {
         recurse();
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="1-2"
     def recurse() {
         recurse()
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1-2"
     fun recurse() {
         recurse()
     }
     ```
 === "Python"
+
     ```python hl_lines="1-2"
     def recurse():
         recurse()
@@ -677,12 +756,14 @@ Empty generic types should be joined with the preceding code.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2-3"
     List<Float> points =
         new ArrayList<
           >();
     ```
 === "Groovy"
+
     ```groovy hl_lines="2"
     var points =
         new ArrayList< >()
@@ -691,11 +772,13 @@ Empty generic types should be joined with the preceding code.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2"
     List<Float> points =
         new ArrayList<>();
     ```
 === "Groovy"
+
     ```groovy hl_lines="2"
     var points =
         new ArrayList<>()
@@ -708,24 +791,28 @@ Short block comments should be written in a single line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     /**
      * The quick brown fox jumps over the lazy dog.
      */
     ```
 === "Groovy"
+
     ```groovy
     /**
      * The quick brown fox jumps over the lazy dog.
      */
     ```
 === "Kotlin"
+
     ```kotlin
     /**
      * The quick brown fox jumps over the lazy dog.
      */
     ```
 === "Python"
+
     ```python
     """
     The quick brown fox jumps over the lazy dog.
@@ -735,18 +822,22 @@ Short block comments should be written in a single line.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     /** The quick brown fox jumps over the lazy dog. */
     ```
 === "Groovy"
+
     ```groovy
     /** The quick brown fox jumps over the lazy dog. */
     ```
 === "Kotlin"
+
     ```kotlin
     /** The quick brown fox jumps over the lazy dog. */
     ```
 === "Python"
+
     ```python
     """The quick brown fox jumps over the lazy dog."""
     ```
@@ -760,24 +851,28 @@ Abstract classes need at least one abstract function.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="1"
     abstract class Vehicle {
         void start() {}
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     abstract class Vehicle {
         def start() {}
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     abstract class Vehicle {
         fun start() {}
     }
     ```
 === "Python"
+
     ```python hl_lines="3"
     from abc import ABC
 
@@ -789,24 +884,28 @@ Abstract classes need at least one abstract function.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1"
     class Vehicle {
         void start() {}
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     class Vehicle {
         def start() {}
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     class Vehicle {
         fun start() {}
     }
     ```
 === "Python"
+
     ```python hl_lines="1"
     class Vehicle:
         def start(self):
@@ -822,6 +921,7 @@ code block.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     fun action(block: () -> Unit) {
         contract { callsInPlace(block, EXACTLY_ONCE) }
@@ -832,6 +932,7 @@ code block.
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     inline fun action(block: () -> Unit) {
         contract { callsInPlace(block, EXACTLY_ONCE) }
@@ -847,18 +948,22 @@ extend `Error` or `Throwable`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     class PurchaseException extends Error {}
     ```
 === "Groovy"
+
     ```groovy
     class PurchaseException extends Error {}
     ```
 === "Kotlin"
+
     ```kotlin
     class PurchaseException : Error()
     ```
 === "Python"
+
     ```python
     class PurchaseException(BaseException):
         pass
@@ -867,18 +972,22 @@ extend `Error` or `Throwable`.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     class PurchaseException extends Exception {}
     ```
 === "Groovy"
+
     ```groovy
     class PurchaseException extends Exception {}
     ```
 === "Kotlin"
+
     ```kotlin
     class PurchaseException : Exception()
     ```
 === "Python"
+
     ```python
     class PurchaseException(Exception):
         pass
@@ -892,10 +1001,12 @@ more readable than `D`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     double quarter = 0.25D;
     ```
 === "Groovy"
+
     ```groovy
     var quarter = 0.25D
     ```
@@ -903,10 +1014,12 @@ more readable than `D`.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     double quarter = 0.25d;
     ```
 === "Groovy"
+
     ```groovy
     var quarter = 0.25d
     ```
@@ -919,14 +1032,17 @@ readable than `F`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     float half = 0.5F;
     ```
 === "Groovy"
+
     ```groovy
     var quarter = 0.25F
     ```
 === "Kotlin"
+
     ```kotlin
     val half = 0.5F
     ```
@@ -934,14 +1050,17 @@ readable than `F`.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     float half = 0.5f;
     ```
 === "Groovy"
+
     ```groovy
     var quarter = 0.25f
     ```
 === "Kotlin"
+
     ```kotlin
     val half = 0.5f
     ```
@@ -954,6 +1073,7 @@ than `I`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Groovy"
+
     ```groovy
     var ten = 10I
     ```
@@ -961,6 +1081,7 @@ than `I`.
 **:material-star-four-points:{ #accent } After**
 
 === "Groovy"
+
     ```groovy
     var ten = 10i
     ```
@@ -972,10 +1093,12 @@ Long integer literals should be suffixed with uppercase `L`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     long tenMillion = 10_000_000l;
     ```
 === "Groovy"
+
     ```groovy
     var tenMillion = 10_000_000l
     ```
@@ -983,10 +1106,12 @@ Long integer literals should be suffixed with uppercase `L`.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     long tenMillion = 10_000_000L;
     ```
 === "Groovy"
+
     ```groovy
     var tenMillion = 10_000_000L
     ```
@@ -998,12 +1123,14 @@ Wrap string in single quotes, unless there is a template or a single quote.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Groovy"
+
     ```groovy
     var name = "John Doe"
 
     println('G\'day, ' + name)
     ```
 === "Python"
+
     ```python
     name = "John Doe"
 
@@ -1013,12 +1140,14 @@ Wrap string in single quotes, unless there is a template or a single quote.
 **:material-star-four-points:{ #accent } After**
 
 === "Groovy"
+
     ```groovy
     var name = 'John Doe'
 
     println("G'day, " + name)
     ```
 === "Python"
+
     ```python
     name = 'John Doe'
 
@@ -1032,10 +1161,12 @@ Single parameter lambdas should not have parentheses.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     files.forEach((file) -> System.out.println(file));
     ```
 === "Groovy"
+
     ```groovy
     files.forEach((file) -> System.out.println(file))
     ```
@@ -1043,10 +1174,12 @@ Single parameter lambdas should not have parentheses.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     files.forEach(file -> System.out.println(file));
     ```
 === "Groovy"
+
     ```groovy
     files.forEach(file -> System.out.println(file))
     ```
@@ -1067,6 +1200,7 @@ prevent instantiation.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="1"
     class Lists {
         static List<String> of(String... elements) {
@@ -1075,6 +1209,7 @@ prevent instantiation.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     class Lists {
         static List<String> of(String... elements) {
@@ -1086,6 +1221,7 @@ prevent instantiation.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1-2"
     final class Lists {
         private Lists() {}
@@ -1096,6 +1232,7 @@ prevent instantiation.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="1-2"
     final class Lists {
         private Lists() {}
@@ -1116,6 +1253,7 @@ limit, it should be split into multiple files.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     final class Articles {
         static int create(Article article) { /*...*/ }
@@ -1128,6 +1266,7 @@ limit, it should be split into multiple files.
     }
     ```
 === "Groovy"
+
     ```groovy
     final class Articles {
         static def create(Article article) { /*...*/ }
@@ -1140,6 +1279,7 @@ limit, it should be split into multiple files.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     object Articles {
         fun create(article: Article): Int { /*...*/ }
@@ -1152,6 +1292,7 @@ limit, it should be split into multiple files.
     }
     ```
 === "Python"
+
     ```python
     def create_article(article: Article) -> int:
         // ...
@@ -1169,6 +1310,7 @@ limit, it should be split into multiple files.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     final class ArticleCreator {
         static int create(Article article) { /*...*/ }
@@ -1190,6 +1332,7 @@ limit, it should be split into multiple files.
     }
     ```
 === "Groovy"
+
     ```groovy
     final class ArticleCreator {
         static def create(Article article) { /*...*/ }
@@ -1211,6 +1354,7 @@ limit, it should be split into multiple files.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     fun Articles.create(article: Article): Int { /*...*/ }
     ```
@@ -1224,6 +1368,7 @@ limit, it should be split into multiple files.
     fun Articles.delete(articleId: Int) { /*...*/ }
     ```
 === "Python"
+
     ```python
     def create_article(article: Article) -> int:
         // ...
@@ -1242,6 +1387,7 @@ limit, it should be split into multiple files.
     ```
 
 ??? Configuration
+
     :material-language-java:{ .lg .middle } Checkstyle | Default value
     --- | ---
     FileLength#max | `1.000`
@@ -1259,18 +1405,22 @@ End files with a newline character.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     class AwesomeImplementation { /*...*/ }
     ```
 === "Groovy"
+
     ```groovy
     class AwesomeImplementation { /*...*/ }
     ```
 === "Kotlin"
+
     ```kotlin
     class AwesomeImplementation { /*...*/ }
     ```
 === "Python"
+
     ```python
     class AwesomeImplementation:
         pass
@@ -1279,21 +1429,25 @@ End files with a newline character.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2"
     class AwesomeImplementation { /*...*/ }
     \n
     ```
 === "Groovy"
+
     ```groovy hl_lines="2"
     class AwesomeImplementation { /*...*/ }
     \n
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     class AwesomeImplementation { /*...*/ }
     \n
     ```
 === "Python"
+
     ```python hl_lines="3"
     class AwesomeImplementation:
         pass
@@ -1307,6 +1461,7 @@ Use spaces instead of tabs for indentation.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2-4"
     class AwesomeImplementation {
     \t  void doSomething() {
@@ -1315,6 +1470,7 @@ Use spaces instead of tabs for indentation.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-4"
     class AwesomeImplementation {
     \t  def doSomething() {
@@ -1323,6 +1479,7 @@ Use spaces instead of tabs for indentation.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2-4"
     class AwesomeImplementation {
     \t  fun doSomething() {
@@ -1331,6 +1488,7 @@ Use spaces instead of tabs for indentation.
     }
     ```
 === "Python"
+
     ```python hl_lines="2-3"
     class AwesomeImplementation:
     \t  def do_something(self):
@@ -1340,6 +1498,7 @@ Use spaces instead of tabs for indentation.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2-4"
     class AwesomeImplementation {
         void doSomething() {
@@ -1348,6 +1507,7 @@ Use spaces instead of tabs for indentation.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-4"
     class AwesomeImplementation {
         def doSomething() {
@@ -1356,6 +1516,7 @@ Use spaces instead of tabs for indentation.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2-4"
     class AwesomeImplementation {
         fun doSomething() {
@@ -1364,6 +1525,7 @@ Use spaces instead of tabs for indentation.
     }
     ```
 === "Python"
+
     ```python hl_lines="2-3"
     class AwesomeImplementation:
         def do_something(self):
@@ -1377,18 +1539,22 @@ Length of a line should not exceed 100 characters.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     StringBuilder builder = new StringBuilder("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
     ```
 === "Groovy"
+
     ```groovy
     var builder = new StringBuilder('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
     ```
 === "Kotlin"
+
     ```kotlin
     val builder = StringBuilder("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
     ```
 === "Python"
+
     ```python
     builder = ('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
     ```
@@ -1396,6 +1562,7 @@ Length of a line should not exceed 100 characters.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     StringBuilder builder =
         new StringBuilder(
@@ -1403,6 +1570,7 @@ Length of a line should not exceed 100 characters.
         );
     ```
 === "Groovy"
+
     ```groovy
     var builder =
         new StringBuilder(
@@ -1410,6 +1578,7 @@ Length of a line should not exceed 100 characters.
         )
     ```
 === "Kotlin"
+
     ```kotlin
     val builder =
         StringBuilder(
@@ -1417,6 +1586,7 @@ Length of a line should not exceed 100 characters.
         )
     ```
 === "Python"
+
     ```python
     builder = (
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
@@ -1424,6 +1594,7 @@ Length of a line should not exceed 100 characters.
     ```
 
 ??? Configuration
+
     :material-language-java:{ .lg .middle } Checkstyle | Default value
     --- | ---
     LineLength#max | `100`
@@ -1433,6 +1604,44 @@ Length of a line should not exceed 100 characters.
     rulebook_max_line_length | `100`
     **:material-language-python: Pylint**
     rulebook-max-line-length | `100`
+
+### Unnecessary blank file
+
+Empty files should be removed. JVM source files with only package declaration
+is considered empty.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    package awesome.company;
+    ```
+=== "Groovy"
+
+    ```groovy
+    package awesome.company
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    package awesome.company
+    ```
+=== "Python"
+
+    ```python
+
+    ```
+=== "JavaScript"
+
+    ```js
+
+    ```
+=== "TypeScript"
+
+    ```ts
+
+    ```
 
 ## Naming
 
@@ -1444,53 +1653,61 @@ always capitalized.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     class RestAPI {
         String httpURL = "https://example.com";
     }
     ```
 === "Groovy"
+
     ```groovy
     class RestAPI {
         var httpURL = 'https://example.com'
     }
     ```
-=== "Python"
-    ```python
-    class RestAPI:
-        http_url = 'https://example.com'
-    ```
 === "Kotlin"
+
     ```kotlin
     class RestAPI {
         val httpURL = "https://example.com"
     }
     ```
+=== "Python"
+
+    ```python
+    class RestAPI:
+        http_url = 'https://example.com'
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     class RestApi {
         String httpUrl = "https://example.com";
     }
     ```
 === "Groovy"
+
     ```groovy
     class RestApi {
         var httpUrl = 'https://example.com'
     }
     ```
-=== "Python"
-    ```python
-    class RestApi:
-        http_url = 'https://example.com'
-    ```
 === "Kotlin"
+
     ```kotlin
     class RestApi {
         val httpUrl = "https://example.com"
     }
+    ```
+=== "Python"
+
+    ```python
+    class RestApi:
+        http_url = 'https://example.com'
     ```
 
 ### Class name
@@ -1500,41 +1717,49 @@ Class, interface and object names are written in `PascalCase`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     class train_station {}
     ```
 === "Groovy"
+
     ```groovy
     class train_station {}
     ```
+=== "Kotlin"
+
+    ```kotlin
+    class train_station
+    ```
 === "Python"
+
     ```python
     class train_station:
         pass
-    ```
-=== "Kotlin"
-    ```kotlin
-    class train_station
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     class TrainStation {}
     ```
 === "Groovy"
+
     ```groovy
     class TrainStation {}
     ```
+=== "Kotlin"
+
+    ```kotlin
+    class TrainStation
+    ```
 === "Python"
+
     ```python
     class TrainStation:
         pass
-    ```
-=== "Kotlin"
-    ```kotlin
-    class TrainStation
     ```
 
 ### Constant property name
@@ -1544,14 +1769,17 @@ Constant fields should be written in `SCREAMING_SNAKE_CASE`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     static final int maxValue = 99;
     ```
 === "Groovy"
+
     ```groovy
     static final var maxValue = 99
     ```
 === "Kotlin"
+
     ```kotlin
     const val maxValue = 99
     ```
@@ -1559,14 +1787,17 @@ Constant fields should be written in `SCREAMING_SNAKE_CASE`.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     static final int MAX_VALUE = 99;
     ```
 === "Groovy"
+
     ```groovy
     static final var MAX_VALUE = 99
     ```
 === "Kotlin"
+
     ```kotlin
     const val MAX_VALUE = 99
     ```
@@ -1626,24 +1857,28 @@ Non-constant fields, functions and parameters should be written in
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     void DebugUser(User User) {
         User AnotherUser = User;
     }
     ```
 === "Groovy"
+
     ```groovy
     def DebugUser(User User) {
         var AnotherUser = User
     }
     ```
 === "Kotlin"
+
     ```kotlin
     fun DebugUser(User: User) {
         val AnotherUser = User
     }
     ```
 === "Python"
+
     ```python
     def DebugUser(User):
         AnotherUser = User
@@ -1652,24 +1887,28 @@ Non-constant fields, functions and parameters should be written in
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     void debugUser(User user) {
         User anotherUser = user;
     }
     ```
 === "Groovy"
+
     ```groovy
     def debugUser(User user) {
         var anotherUser = user
     }
     ```
 === "Kotlin"
+
     ```kotlin
     fun debugUser(user: User) {
         val anotherUser = user
     }
     ```
 === "Python"
+
     ```python
     def debug_user(user):
         another_user = user
@@ -1684,18 +1923,22 @@ class.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     class SpaceshipWrapper {}
     ```
 === "Groovy"
+
     ```groovy
     class SpaceshipWrapper {}
     ```
 === "Kotlin"
+
     ```kotlin
     class SpaceshipWrapper
     ```
 === "Python"
+
     ```python
     class SpaceshipWrapper():
         pass
@@ -1704,24 +1947,29 @@ class.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     class Spaceship {}
     ```
 === "Groovy"
+
     ```groovy
     class Spaceship {}
     ```
 === "Kotlin"
+
     ```kotlin
     class Spaceship
     ```
 === "Python"
+
     ```python
     class Spaceship():
         pass
     ```
 
 ??? Configuration
+
     :material-language-java:{ .lg .middle } Checkstyle | Default value
     --- | ---
     IllegalClassNameSuffix#names | `Util, Utility, Helper, Manager, Wrapper`
@@ -1741,24 +1989,28 @@ identifier should be descriptive and meaningful.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     String string;
 
     List<Person> list;
     ```
 === "Groovy"
+
     ```groovy
     var string
 
     var list
     ```
 === "Kotlin"
+
     ```kotlin
     val string: String
 
     val list: List<Person>
     ```
 === "Python"
+
     ```python
     string: str
 
@@ -1768,24 +2020,28 @@ identifier should be descriptive and meaningful.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     String name;
 
     List<Person> people;
     ```
 === "Groovy"
+
     ```groovy
     var name
 
     var people
     ```
 === "Kotlin"
+
     ```kotlin
     val name: String
 
     val people: List<Person>
     ```
 === "Python"
+
     ```python
     name: str
 
@@ -1793,6 +2049,7 @@ identifier should be descriptive and meaningful.
     ```
 
 ??? Configuration
+
     :material-language-java:{ .lg .middle } Checkstyle | Default value
     --- | ---
     IllegalIdentifierName#format | `object, integer, string, objects, integers, strings`
@@ -1810,14 +2067,17 @@ Package names should be written in lowercase with no separators.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     package com.example.user_management;
     ```
 === "Groovy"
+
     ```groovy
     package com.example.user_management
     ```
 === "Kotlin"
+
     ```kotlin
     package com.example.user_management
     ```
@@ -1830,18 +2090,22 @@ Package names should be written in lowercase with no separators.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     package com.example.usermanagement;
     ```
 === "Groovy"
+
     ```groovy
     package com.example.usermanagement
     ```
 === "Kotlin"
+
     ```kotlin
     package com.example.usermanagement
     ```
 === "Python"
+
     ```python
     └─ user_management
        └─ user_config.py
@@ -1855,6 +2119,7 @@ Otherwise, the compiler will generate a getter method with `get` prefix.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
+
     ```kotlin
     val active: Boolean
     ```
@@ -1865,6 +2130,7 @@ Otherwise, the compiler will generate a getter method with `get` prefix.
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
+
     ```kotlin
     val isActive: Boolean
     ```
@@ -1880,24 +2146,28 @@ declaration is ignored.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     class Box<A> {}
 
     void <X> rotate(Box<X> box) {}
     ```
 === "Groovy"
+
     ```groovy
     class Box<A> {}
 
     void <X> rotate(Box<X> box) {}
     ```
 === "Kotlin"
+
     ```kotlin
     class Box<A>() {}
 
     fun <X> rotate(box: Box<X>) {}
     ```
 === "Python"
+
     ```python
     from typing import TypeVar
 
@@ -1916,24 +2186,28 @@ declaration is ignored.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     class Box<E> {}
 
     void <T> rotate(Box<T> box) {}
     ```
 === "Groovy"
+
     ```groovy
     class Box<E> {}
 
     void <T> rotate(Box<T> box) {}
     ```
 === "Kotlin"
+
     ```kotlin
     class Box<E>() {}
 
     fun <T> rotate(box: Box<T>) {}
     ```
 === "Python"
+
     ```python
     from typing import TypeVar
 
@@ -1950,6 +2224,7 @@ declaration is ignored.
     ```
 
 ??? Configuration
+
     :material-language-java:{ .lg .middle } Checkstyle | Default value
     --- | ---
     ClassTypeParameterName#format | `E, K, N, T, V`
@@ -1974,6 +2249,7 @@ Block tags should be ordered in the following sequence: `@constructor`,
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2-4"
     /**
      * @see User
@@ -1983,6 +2259,7 @@ Block tags should be ordered in the following sequence: `@constructor`,
     abstract User createUser(String name);
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-4"
     /**
      * @see User
@@ -1992,6 +2269,7 @@ Block tags should be ordered in the following sequence: `@constructor`,
     abstract def createUser(String name)
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2-4"
     /**
      * @see User
@@ -2004,6 +2282,7 @@ Block tags should be ordered in the following sequence: `@constructor`,
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2-4"
     /**
      * @param name The name of the user.
@@ -2013,6 +2292,7 @@ Block tags should be ordered in the following sequence: `@constructor`,
     abstract User createUser(String name);
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-4"
     /**
      * @param name The name of the user.
@@ -2022,6 +2302,7 @@ Block tags should be ordered in the following sequence: `@constructor`,
     abstract def createUser(String name)
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2-4"
     /**
      * @param name The name of the user.
@@ -2039,6 +2320,7 @@ at the end of the class.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="8-11"
     class Notification {
         private String message;
@@ -2058,6 +2340,7 @@ at the end of the class.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="8-11"
     class Notification {
         private var message
@@ -2077,6 +2360,7 @@ at the end of the class.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     class Notification(private val message: String) {
         public override fun toString(): String = message
@@ -2087,6 +2371,7 @@ at the end of the class.
     }
     ```
 === "Python"
+
     ```python hl_lines="6-7"
     class Notification:
         def __init__(self, message):
@@ -2103,6 +2388,7 @@ at the end of the class.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="12-15"
     class Notification {
         private String message;
@@ -2122,6 +2408,7 @@ at the end of the class.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="12-15"
     class Notification {
         private var message
@@ -2141,6 +2428,7 @@ at the end of the class.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="6"
     class Notification(private val message: String) {
         public fun notify() {
@@ -2151,6 +2439,7 @@ at the end of the class.
     }
     ```
 === "Python"
+
     ```python hl_lines="9-10"
     class Notification:
         def __init__(self, message):
@@ -2171,24 +2460,28 @@ Import directives should be ordered alphabetically without any blank lines.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     import java.util.List;
 
     import com.example.User;
     ```
 === "Groovy"
+
     ```groovy
     import java.util.List
 
     import com.example.User
     ```
 === "Kotlin"
+
     ```kotlin
     import java.util.List
 
     import com.example.User
     ```
 === "Python"
+
     ```python
     import utils
 
@@ -2198,21 +2491,25 @@ Import directives should be ordered alphabetically without any blank lines.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     import com.example.User;
     import java.util.List;
     ```
 === "Groovy"
+
     ```groovy
     import com.example.User
     import java.util.List
     ```
 === "Kotlin"
+
     ```kotlin
     import com.example.User
     import java.util.List
     ```
 === "Python"
+
     ```python
     import user
     import utils
@@ -2225,6 +2522,7 @@ Place inner classes at the end of the class.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2"
     class Article {
         class Author {}
@@ -2235,6 +2533,7 @@ Place inner classes at the end of the class.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2"
     class Article {
         class Author {}
@@ -2245,6 +2544,7 @@ Place inner classes at the end of the class.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     class Article(content: String, author: Author) {
         class Author(name: String)
@@ -2253,6 +2553,7 @@ Place inner classes at the end of the class.
     }
     ```
 === "Python"
+
     ```python hl_lines="2"
     class Article:
         class Author:
@@ -2265,6 +2566,7 @@ Place inner classes at the end of the class.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="6"
     class Article {
         Article(String content, Author author) {}
@@ -2275,6 +2577,7 @@ Place inner classes at the end of the class.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="6"
     class Article {
         Article(String content, Author author) {}
@@ -2285,6 +2588,7 @@ Place inner classes at the end of the class.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="4"
     class Article(content: String, author: Author) {
         constructor(content: String) : this(content, null)
@@ -2293,6 +2597,7 @@ Place inner classes at the end of the class.
     }
     ```
 === "Python"
+
     ```python hl_lines="5"
     class Article:
         def __init__(self, content, author = None):
@@ -2311,6 +2616,7 @@ to the last member that uses them.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     class Car {
         static void log(String message) {
@@ -2331,6 +2637,7 @@ to the last member that uses them.
     }
     ```
 === "Groovy"
+
     ```groovy
     class Car {
         static def log(String message) {
@@ -2351,6 +2658,7 @@ to the last member that uses them.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     class Car(brand: String, model: String) {
         companion object {
@@ -2373,6 +2681,7 @@ to the last member that uses them.
     }
     ```
 === "Python"
+
     ```python
     class Car:
         @staticmethod
@@ -2391,6 +2700,7 @@ to the last member that uses them.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     class Car {
         int wheels = 4;
@@ -2411,6 +2721,7 @@ to the last member that uses them.
     }
     ```
 === "Groovy"
+
     ```groovy
     class Car {
         var wheels = 4
@@ -2431,6 +2742,7 @@ to the last member that uses them.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     class Car(brand: String, model: String) {
         override val wheels = 4
@@ -2453,6 +2765,7 @@ to the last member that uses them.
     }
     ```
 === "Python"
+
     ```python
     class Car:
         wheels = 4
@@ -2469,6 +2782,7 @@ to the last member that uses them.
     ```
 
 ??? Configuration
+
     :material-language-java:{ .lg .middle } Checkstyle | Default value
     --- | ---
     MemberOrder#order | `property, constructor, method, static`
@@ -2486,6 +2800,7 @@ Place overloaded functions next to each other.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="9-11"
     int sum(int a, int b) {
         return a + b;
@@ -2500,6 +2815,7 @@ Place overloaded functions next to each other.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="9-11"
     def sum(int a, int b) {
         return a + b
@@ -2514,6 +2830,7 @@ Place overloaded functions next to each other.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="5"
     fun sum(a: Int, b: Int): Int = a + b
 
@@ -2525,6 +2842,7 @@ Place overloaded functions next to each other.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="5-7"
     int sum(int a, int b) {
         return a + b;
@@ -2539,6 +2857,7 @@ Place overloaded functions next to each other.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="5-7"
     def sum(int a, int b) {
         return a + b
@@ -2553,6 +2872,7 @@ Place overloaded functions next to each other.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3"
     fun sum(a: Int, b: Int): Int = a + b
 
@@ -2569,12 +2889,14 @@ by a blank line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="3"
     import java.util.List;
 
     import static java.lang.Math.PI;
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     import java.util.List
 
@@ -2584,12 +2906,14 @@ by a blank line.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1"
     import static java.lang.Math.PI;
 
     import java.util.List;
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     import static java.lang.Math.PI
 
@@ -2606,16 +2930,19 @@ comments, each line after the asterisk should be indented by a whitespace.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="1"
     /**Pass on user behavior.*/
     void report() {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     /**Pass on user behavior.*/
     def report() {}
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     /**Pass on user behavior.*/
     fun report()
@@ -2624,16 +2951,19 @@ comments, each line after the asterisk should be indented by a whitespace.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1"
     /** Pass on user behavior. */
     void report() {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     /** Pass on user behavior. */
     def report() {}
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     /** Pass on user behavior. */
     fun report()
@@ -2647,6 +2977,7 @@ spaces from the leading asterisk.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="3"
     /**
      * @param num the number to return
@@ -2655,6 +2986,7 @@ spaces from the leading asterisk.
     void abs(int num) {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     /**
      * @param num the number to return
@@ -2663,6 +2995,7 @@ spaces from the leading asterisk.
     def abs(int num) {}
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3"
     /**
      * @param num the number to return
@@ -2674,6 +3007,7 @@ spaces from the leading asterisk.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="3"
     /**
      * @param num the number to return
@@ -2682,6 +3016,7 @@ spaces from the leading asterisk.
     void abs(int num) {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     /**
      * @param num the number to return
@@ -2690,6 +3025,7 @@ spaces from the leading asterisk.
     def abs(int num) {}
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3"
     /**
      * @param num the number to return
@@ -2706,6 +3042,7 @@ joined.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="8"
     switch (event) {
         case CANCELLED:
@@ -2719,6 +3056,7 @@ joined.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="8"
     switch (event) {
         case CANCELLED:
@@ -2732,6 +3070,7 @@ joined.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="8"
     when {
         event.isCancelled() -> return
@@ -2744,6 +3083,7 @@ joined.
     }
     ```
 === "Python"
+
     ```python hl_lines="8"
     match event:
         case CANCELLED:
@@ -2759,6 +3099,7 @@ joined.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     switch (event) {
         case CANCELLED:
@@ -2773,6 +3114,7 @@ joined.
     }
     ```
 === "Groovy"
+
     ```groovy
     switch (event) {
         case CANCELLED:
@@ -2787,6 +3129,7 @@ joined.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     when {
         event.isCancelled() -> return
@@ -2800,6 +3143,7 @@ joined.
     }
     ```
 === "Python"
+
     ```python
     match event:
         case CANCELLED:
@@ -2821,18 +3165,22 @@ preceding code, and start with a single whitespace.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     System.out.println("This is a code");//This is a comment
     ```
 === "Groovy"
+
     ```groovy
     println('This is a code')//This is a comment
     ```
 === "Kotlin"
+
     ```kotlin
     println("This is a code")//This is a comment
     ```
 === "Python"
+
     ```python
     print('This is a code')#This is a comment
     ```
@@ -2840,18 +3188,22 @@ preceding code, and start with a single whitespace.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     System.out.println("This is a code"); // This is a comment
     ```
 === "Groovy"
+
     ```groovy
     println('This is a code') // This is a comment
     ```
 === "Kotlin"
+
     ```kotlin
     println("This is a code") // This is a comment
     ```
 === "Python"
+
     ```python
     print('This is a code')  # This is a comment
     ```
@@ -2867,6 +3219,7 @@ There is an exception for single-line properties.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     interface Vehicle {
         int getWheels();
@@ -2874,6 +3227,7 @@ There is an exception for single-line properties.
     }
     ```
 === "Groovy"
+
     ```groovy
     interface Vehicle {
         def getWheels();
@@ -2881,6 +3235,7 @@ There is an exception for single-line properties.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     interface Vehicle {
         val wheels: Int
@@ -2888,6 +3243,7 @@ There is an exception for single-line properties.
     }
     ```
 === "Python"
+
     ```python
     class Vehicle:
         wheels: int
@@ -2898,6 +3254,7 @@ There is an exception for single-line properties.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="3"
     interface Vehicle {
         int getWheels();
@@ -2906,6 +3263,7 @@ There is an exception for single-line properties.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     interface Vehicle {
         def getWheels();
@@ -2914,6 +3272,7 @@ There is an exception for single-line properties.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3"
     interface Vehicle {
         val wheels: Int
@@ -2922,6 +3281,7 @@ There is an exception for single-line properties.
     }
     ```
 === "Python"
+
     ```python hl_lines="3"
     class Vehicle:
         wheels: int
@@ -2937,6 +3297,7 @@ Separate block tag group from the summary with a blank line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     /**
      * Returns the absolute value of the given number.
@@ -2946,6 +3307,7 @@ Separate block tag group from the summary with a blank line.
     void abs(int number) {}
     ```
 === "Groovy"
+
     ```groovy
     /**
      * Returns the absolute value of the given number.
@@ -2955,6 +3317,7 @@ Separate block tag group from the summary with a blank line.
     def abs(int number) {}
     ```
 === "Kotlin"
+
     ```kotlin
     /**
      * Returns the absolute value of the given number.
@@ -2967,6 +3330,7 @@ Separate block tag group from the summary with a blank line.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="3"
     /**
      * Returns the absolute value of the given number.
@@ -2977,6 +3341,7 @@ Separate block tag group from the summary with a blank line.
     void abs(int number) {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     /**
      * Returns the absolute value of the given number.
@@ -2987,6 +3352,7 @@ Separate block tag group from the summary with a blank line.
     def abs(int number) {}
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3"
     /**
      * Returns the absolute value of the given number.
@@ -3007,6 +3373,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="3"
     try {
         unsafeOperation();
@@ -3015,6 +3382,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     try {
         unsafeOperation()
@@ -3023,6 +3391,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
     }
     ```
 === "Python"
+
     ```python hl_lines="3"
     try:
         unsafe_operation()
@@ -3033,6 +3402,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="3"
     try {
         unsafeOperation();
@@ -3041,6 +3411,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     try {
         unsafeOperation()
@@ -3049,6 +3420,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
     }
     ```
 === "Python"
+
     ```python hl_lines="3"
     try:
         unsafe_operation()
@@ -3063,18 +3435,22 @@ Throw a narrower exception type instead of `Exception`, `Error` or `Throwable`.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     throw new Exception();
     ```
 === "Groovy"
+
     ```groovy
     throw new Exception()
     ```
 === "Kotlin"
+
     ```kotlin
     throw Exception()
     ```
 === "Python"
+
     ```python
     raise Exception()
     ```
@@ -3082,18 +3458,22 @@ Throw a narrower exception type instead of `Exception`, `Error` or `Throwable`.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     throw new IllegalStateException();
     ```
 === "Groovy"
+
     ```groovy
     throw new IllegalStateException()
     ```
 === "Kotlin"
+
     ```kotlin
     throw IllegalStateException()
     ```
 === "Python"
+
     ```python
     raise ValueError()
     ```
@@ -3106,6 +3486,7 @@ statements.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="1 3"
     if (validateCart(cart))
         processPayment(credentials);
@@ -3113,6 +3494,7 @@ statements.
         showError();
     ```
 === "Groovy"
+
     ```groovy hl_lines="1 3"
     if (validateCart(cart))
         processPayment(credentials)
@@ -3120,6 +3502,7 @@ statements.
         showError()
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1 3"
     if (validateCart(cart))
         processPayment(credentials)
@@ -3130,6 +3513,7 @@ statements.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1 3 5"
     if (validateCart(cart)) {
         processPayment(credentials);
@@ -3138,6 +3522,7 @@ statements.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="1 3 5"
     if (validateCart(cart)) {
         processPayment(credentials)
@@ -3146,6 +3531,7 @@ statements.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1 3 5"
     if (validateCart(cart)) {
         processPayment(credentials)
@@ -3162,6 +3548,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2 3"
     void login(User user) {
         if (user.isValid()) {
@@ -3173,6 +3560,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2 3"
     def login(User user) {
         if (user.isValid()) {
@@ -3184,6 +3572,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2 3"
     fun login(user: User) {
         if (user.isValid()) {
@@ -3195,6 +3584,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     }
     ```
 === "Python"
+
     ```python hl_lines="2 3"
     def login(user: User):
         if user.is_valid():
@@ -3206,6 +3596,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2 5"
     void login(User user) {
         if (!user.isValid()) {
@@ -3219,6 +3610,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2 5"
     def login(User user) {
         if (!user.isValid()) {
@@ -3232,6 +3624,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2 5"
     fun login(user: User) {
         if (!user.isValid()) {
@@ -3245,6 +3638,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     }
     ```
 === "Python"
+
     ```python hl_lines="2 5"
     def login(user: User):
         if not user.is_valid():
@@ -3263,6 +3657,7 @@ default branch can be lifted.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="7-8"
     void park(Car car) {
         switch (car) {
@@ -3276,6 +3671,7 @@ default branch can be lifted.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="7-8"
     def park(Car car) {
         switch (car) {
@@ -3289,6 +3685,7 @@ default branch can be lifted.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="5"
     fun park(car: Car) {
         when {
@@ -3299,6 +3696,7 @@ default branch can be lifted.
     }
     ```
 === "Python"
+
     ```python hl_lines="7-8"
     def park(car: Car):
         match car:
@@ -3313,6 +3711,7 @@ default branch can be lifted.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="8"
     void park(Car car) {
         switch (car) {
@@ -3325,6 +3724,7 @@ default branch can be lifted.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="8"
     def park(Car car) {
         switch (car) {
@@ -3337,6 +3737,7 @@ default branch can be lifted.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="6"
     fun park(car: Car) {
         when {
@@ -3347,6 +3748,7 @@ default branch can be lifted.
     }
     ```
 === "Python"
+
     ```python hl_lines="7"
     def park(car: Car):
         match car:
@@ -3365,6 +3767,7 @@ can be lifted.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="4 6"
     void park(Car car) {
         if (car.isMoving()) {
@@ -3377,6 +3780,7 @@ can be lifted.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="4 6"
     def park(Car car) {
         if (car.isMoving()) {
@@ -3389,6 +3793,7 @@ can be lifted.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="4 6"
     fun park(car: Car) {
         if (car.isMoving()) {
@@ -3401,6 +3806,7 @@ can be lifted.
     }
     ```
 === "Python"
+
     ```python hl_lines="4 6"
     def park(car: Car):
         if car.is_moving():
@@ -3414,6 +3820,7 @@ can be lifted.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="5 8"
     void park(Car car) {
         if (car.isMoving()) {
@@ -3426,6 +3833,7 @@ can be lifted.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="5 8"
     def park(Car car) {
         if (car.isMoving()) {
@@ -3438,6 +3846,7 @@ can be lifted.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="5 8"
     fun park(car: Car) {
         if (car.isMoving()) {
@@ -3450,6 +3859,7 @@ can be lifted.
     }
     ```
 === "Python"
+
     ```python hl_lines="4 6"
     def park(car: Car):
         if car.is_moving():
@@ -3467,6 +3877,7 @@ statement.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     switch (token) {
         case VALUE_TOKEN:
@@ -3474,6 +3885,7 @@ statement.
     }
     ```
 === "Groovy"
+
     ```groovy
     switch (token) {
         case VALUE_TOKEN:
@@ -3481,12 +3893,14 @@ statement.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     when (token) {
         is Token.ValueToken -> callback(token)
     }
     ```
 === "Python"
+
     ```python
     match token:
         case Token.VALUE_TOKEN:
@@ -3496,24 +3910,28 @@ statement.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     if (token == Token.VALUE_TOKEN) {
         callback(token);
     }
     ```
 === "Groovy"
+
     ```groovy
     if (token == Token.VALUE_TOKEN) {
         callback(token)
     }
     ```
 === "Kotlin"
+
     ```kotlin
     if (token is Token.ValueToken) {
         callback(token)
     }
     ```
 === "Python"
+
     ```python
     if token == Token.VALUE_TOKEN:
         callback(token)
@@ -3528,6 +3946,7 @@ Do not start or end block comments with whitespaces.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2 5"
     /**
      *
@@ -3537,6 +3956,7 @@ Do not start or end block comments with whitespaces.
      */
     ```
 === "Groovy"
+
     ```groovy hl_lines="2 5"
     /**
      *
@@ -3546,6 +3966,7 @@ Do not start or end block comments with whitespaces.
      */
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2 5"
     /**
      *
@@ -3555,6 +3976,7 @@ Do not start or end block comments with whitespaces.
      */
     ```
 === "Python"
+
     ```python hl_lines="2 5"
     """
 
@@ -3567,6 +3989,7 @@ Do not start or end block comments with whitespaces.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     /**
      * AUTHOR: John Doe
@@ -3574,6 +3997,7 @@ Do not start or end block comments with whitespaces.
      */
     ```
 === "Groovy"
+
     ```groovy
     /**
      * AUTHOR: John Doe
@@ -3581,6 +4005,7 @@ Do not start or end block comments with whitespaces.
      */
     ```
 === "Kotlin"
+
     ```kotlin
     /**
      * AUTHOR: John Doe
@@ -3588,6 +4013,7 @@ Do not start or end block comments with whitespaces.
      */
     ```
 === "Python"
+
     ```python
     """
     AUTHOR: John Doe
@@ -3602,6 +4028,7 @@ Prohibits empty first and last lines in code blocks.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2 5"
     void onReceive(Integer value) {
 
@@ -3612,6 +4039,7 @@ Prohibits empty first and last lines in code blocks.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2 5"
     def onReceive(Integer value) {
 
@@ -3622,6 +4050,7 @@ Prohibits empty first and last lines in code blocks.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2 5"
     fun onReceive(value: Int?) {
 
@@ -3632,6 +4061,7 @@ Prohibits empty first and last lines in code blocks.
     }
     ```
 === "Python"
+
     ```python hl_lines="2 6"
     foo = {
 
@@ -3645,6 +4075,7 @@ Prohibits empty first and last lines in code blocks.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     void onReceive(Integer value) {
         if (value != null) {
@@ -3653,6 +4084,7 @@ Prohibits empty first and last lines in code blocks.
     }
     ```
 === "Groovy"
+
     ```groovy
     def onReceive(Integer value) {
         if (value != null) {
@@ -3661,6 +4093,7 @@ Prohibits empty first and last lines in code blocks.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     fun onReceive(value: Int?) {
         if (value != null) {
@@ -3669,6 +4102,7 @@ Prohibits empty first and last lines in code blocks.
     }
     ```
 === "Python"
+
     ```python
     foo = {
         'bar',
@@ -3684,6 +4118,7 @@ Prohibits empty first and last lines in collection initializers.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Groovy"
+
     ```groovy hl_lines="2 6"
     var pond = [
 
@@ -3694,6 +4129,7 @@ Prohibits empty first and last lines in collection initializers.
     ]
     ```
 === "Python"
+
     ```python hl_lines="2 6"
     pond = [
 
@@ -3707,6 +4143,7 @@ Prohibits empty first and last lines in collection initializers.
 **:material-star-four-points:{ #accent } After**
 
 === "Groovy"
+
     ```groovy
     var pond = [
         Fish('Nemo'),
@@ -3715,6 +4152,7 @@ Prohibits empty first and last lines in collection initializers.
     ]
     ```
 === "Python"
+
     ```python
     pond = [
         Fish('Nemo'),
@@ -3730,6 +4168,7 @@ Prohibits empty first and last lines in EOL comments.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="1 4"
     //
     // This is a
@@ -3737,6 +4176,7 @@ Prohibits empty first and last lines in EOL comments.
     //
     ```
 === "Groovy"
+
     ```groovy hl_lines="1 4"
     //
     // This is a
@@ -3744,6 +4184,7 @@ Prohibits empty first and last lines in EOL comments.
     //
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1 4"
     //
     // This is a
@@ -3751,6 +4192,7 @@ Prohibits empty first and last lines in EOL comments.
     //
     ```
 === "Python"
+
     ```python hl_lines="1 4"
     #
     # This is a
@@ -3761,21 +4203,25 @@ Prohibits empty first and last lines in EOL comments.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     // This is a
     // multiline comment
     ```
 === "Groovy"
+
     ```groovy
     // This is a
     // multiline comment
     ```
 === "Kotlin"
+
     ```kotlin
     // This is a
     // multiline comment
     ```
 === "Python"
+
     ```python
     # This is a
     # multiline comment
@@ -3788,6 +4234,7 @@ Prohibits consecutive blank lines in the code.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="3"
     String message = "Hello";
 
@@ -3795,6 +4242,7 @@ Prohibits consecutive blank lines in the code.
     System.out.println(message);
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     var message = 'Hello'
 
@@ -3802,6 +4250,7 @@ Prohibits consecutive blank lines in the code.
     println(message)
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3"
     val message = "Hello"
 
@@ -3809,6 +4258,7 @@ Prohibits consecutive blank lines in the code.
     println(message)
     ```
 === "Python"
+
     ```python hl_lines="3"
     message = 'Hello'
 
@@ -3823,24 +4273,28 @@ Prohibits consecutive blank lines in the code.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     String message = "Hello";
 
     System.out.println(message);
     ```
 === "Groovy"
+
     ```groovy
     var message = 'Hello'
 
     println(message)
     ```
 === "Kotlin"
+
     ```kotlin
     val message = "Hello"
 
     println(message)
     ```
 === "Python"
+
     ```python
     message = 'Hello'
 
@@ -3854,6 +4308,7 @@ Prohibits consecutive blank lines in block comments.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="4"
     /**
      * This is a
@@ -3863,6 +4318,7 @@ Prohibits consecutive blank lines in block comments.
      */
     ```
 === "Groovy"
+
     ```groovy hl_lines="4"
     /**
      * This is a
@@ -3872,6 +4328,7 @@ Prohibits consecutive blank lines in block comments.
      */
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="4"
     /**
      * This is a
@@ -3881,6 +4338,7 @@ Prohibits consecutive blank lines in block comments.
      */
     ```
 === "Python"
+
     ```python hl_lines="4"
     """
     This is a
@@ -3893,6 +4351,7 @@ Prohibits consecutive blank lines in block comments.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     /**
      * This is a
@@ -3901,6 +4360,7 @@ Prohibits consecutive blank lines in block comments.
      */
     ```
 === "Groovy"
+
     ```groovy
     /**
      * This is a
@@ -3909,6 +4369,7 @@ Prohibits consecutive blank lines in block comments.
      */
     ```
 === "Kotlin"
+
     ```kotlin
     /**
      * This is a
@@ -3917,6 +4378,7 @@ Prohibits consecutive blank lines in block comments.
      */
     ```
 === "Python"
+
     ```python
     """
     This is a
@@ -3932,6 +4394,7 @@ Prohibits consecutive blank lines in comments.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="3"
     // This is a
     //
@@ -3939,6 +4402,7 @@ Prohibits consecutive blank lines in comments.
     // very long comment
     ```
 === "Groovy"
+
     ```groovy hl_lines="3"
     // This is a
     //
@@ -3946,6 +4410,7 @@ Prohibits consecutive blank lines in comments.
     // very long comment
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3"
     // This is a
     //
@@ -3953,6 +4418,7 @@ Prohibits consecutive blank lines in comments.
     // very long comment
     ```
 === "Python"
+
     ```python hl_lines="3"
     # This is a
     #
@@ -3963,24 +4429,28 @@ Prohibits consecutive blank lines in comments.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     // This is a
     //
     // very long comment
     ```
 === "Groovy"
+
     ```groovy
     // This is a
     //
     // very long comment
     ```
 === "Kotlin"
+
     ```kotlin
     // This is a
     //
     // very long comment
     ```
 === "Python"
+
     ```python
     # This is a
     #
@@ -3994,24 +4464,28 @@ Prohibits consecutive spaces in the code.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     double tax      = 0.2;
     double subtotal = bill     * tax;
     double total    = subtotal + bill;
     ```
 === "Groovy"
+
     ```groovy
     var tax      = 0.2d
     var subtotal = bill     * tax
     var total    = subtotal + bill
     ```
 === "Kotlin"
+
     ```kotlin
     val tax      = 0.2d
     val subtotal = bill     * tax
     val total    = subtotal + bill
     ```
 === "Python"
+
     ```python
     tax      = 0.2
     subtotal = bill     * tax
@@ -4021,24 +4495,28 @@ Prohibits consecutive spaces in the code.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     double tax = 0.2;
     double subtotal = bill * tax;
     double total = subtotal + bill;
     ```
 === "Groovy"
+
     ```groovy
     var tax = 0.2d
     var subtotal = bill * tax
     var total = subtotal + bill
     ```
 === "Kotlin"
+
     ```kotlin
     val tax = 0.2d
     val subtotal = bill * tax
     val total = subtotal + bill
     ```
 === "Python"
+
     ```python
     tax = 0.2
     subtotal = bill * tax
@@ -4052,6 +4530,7 @@ Prohibits empty first and last lines in method declarations and calls.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2 8"
     void swim(
 
@@ -4065,6 +4544,7 @@ Prohibits empty first and last lines in method declarations and calls.
     }
     ```
 === "Groovy"
+
     ```groovy hl_lines="2 8"
     def swim(
 
@@ -4078,6 +4558,7 @@ Prohibits empty first and last lines in method declarations and calls.
     }
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2 8"
     fun swim(
 
@@ -4091,6 +4572,7 @@ Prohibits empty first and last lines in method declarations and calls.
     }
     ```
 === "Python"
+
     ```python hl_lines="3 12 15 17"
     def swim(
 
@@ -4106,6 +4588,7 @@ Prohibits empty first and last lines in method declarations and calls.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     void swim(
         Fish fish,
@@ -4117,6 +4600,7 @@ Prohibits empty first and last lines in method declarations and calls.
     }
     ```
 === "Groovy"
+
     ```groovy
     def swim(
         Fish fish,
@@ -4128,6 +4612,7 @@ Prohibits empty first and last lines in method declarations and calls.
     }
     ```
 === "Kotlin"
+
     ```kotlin
     fun swim(
         fish: Fish,
@@ -4139,6 +4624,7 @@ Prohibits empty first and last lines in method declarations and calls.
     }
     ```
 === "Python"
+
     ```python
     def swim(
         fish: Fish,
@@ -4156,6 +4642,7 @@ Prohibits empty first and last lines in generic type parameters.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2 6"
     Triple<
 
@@ -4166,6 +4653,7 @@ Prohibits empty first and last lines in generic type parameters.
     > userAgeMarried = new Triple<>("Hank Hill", 41, true);
     ```
 === "Groovy"
+
     ```groovy hl_lines="2 6"
     Triple<
 
@@ -4176,6 +4664,7 @@ Prohibits empty first and last lines in generic type parameters.
     > userAgeMarried = new Triple<>('Hank Hill', 41, true)
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3 7"
     val userAgeMarried =
         new Triple<
@@ -4190,6 +4679,7 @@ Prohibits empty first and last lines in generic type parameters.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     Triple<
         String,
@@ -4198,6 +4688,7 @@ Prohibits empty first and last lines in generic type parameters.
     > userAgeMarried = new Triple<>("Hank Hill", 41, true);
     ```
 === "Groovy"
+
     ```groovy
     Triple<
         String,
@@ -4206,6 +4697,7 @@ Prohibits empty first and last lines in generic type parameters.
     > userAgeMarried = new Triple<>('Hank Hill', 41, true)
     ```
 === "Kotlin"
+
     ```kotlin
     val userAgeMarried =
         Triple<
@@ -4224,6 +4716,7 @@ Prohibits first empty line in Python function and class definitions.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Python"
+
     ```python hl_lines="2"
     def on_receive(value):
 
@@ -4234,6 +4727,7 @@ Prohibits first empty line in Python function and class definitions.
 **:material-star-four-points:{ #accent } After**
 
 === "Python"
+
     ```python
     def on_receive(value):
         if value is not None:
@@ -4247,6 +4741,7 @@ The first line of a file cannot be a blank line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="1"
     \n
 
@@ -4255,6 +4750,7 @@ The first line of a file cannot be a blank line.
     void execute() {}
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     \n
 
@@ -4263,6 +4759,7 @@ The first line of a file cannot be a blank line.
     def execute() {}
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     \n
 
@@ -4271,6 +4768,7 @@ The first line of a file cannot be a blank line.
     fun execute() {}
     ```
 === "Python"
+
     ```python hl_lines="1"
     \n
 
@@ -4281,24 +4779,28 @@ The first line of a file cannot be a blank line.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     package com.example;
 
     void execute() {}
     ```
 === "Groovy"
+
     ```groovy
     package com.example
 
     def execute() {}
     ```
 === "Kotlin"
+
     ```kotlin
     package com.example
 
     fun execute() {}
     ```
 === "Python"
+
     ```python
     def execute():
         pass
@@ -4314,18 +4816,21 @@ by a newline.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="1"
     String message = new StringBuilder()
         .append("Hello")
         .toString();
     ```
 === "Groovy"
+
     ```groovy hl_lines="1"
     var message = new StringBuilder()
         .append('Hello')
         .toString()
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1"
     val message = buildString {
         append("Hello")
@@ -4335,6 +4840,7 @@ by a newline.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="1-2"
     String message =
         new StringBuilder()
@@ -4342,6 +4848,7 @@ by a newline.
             .toString();
     ```
 === "Groovy"
+
     ```groovy hl_lines="1-2"
     var message =
         new StringBuilder()
@@ -4349,6 +4856,7 @@ by a newline.
             .toString()
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="1-2"
     val message =
         buildString {
@@ -4363,18 +4871,21 @@ Each method call in a chain should be aligned with the dot operator.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2"
     int senderId =
         notification.getSender()
             .getId();
     ```
 === "Groovy"
+
     ```groovy hl_lines="2"
     var senderId =
         notification.getSender()
             .getId()
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     val senderId =
         notification.getSender()
@@ -4384,6 +4895,7 @@ Each method call in a chain should be aligned with the dot operator.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2-3"
     int senderId =
         notification
@@ -4391,6 +4903,7 @@ Each method call in a chain should be aligned with the dot operator.
             .getId();
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-3"
     var senderId =
         notification
@@ -4398,6 +4911,7 @@ Each method call in a chain should be aligned with the dot operator.
             .getId()
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2-3"
     val senderId =
         notification
@@ -4413,6 +4927,7 @@ instead of trailing the statement.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     user.name
         .takeIf { it.isNotBlank() } ?: "Unknown"
@@ -4421,6 +4936,7 @@ instead of trailing the statement.
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
+
     ```kotlin hl_lines="3"
     user.name
         .takeIf { it.isNotBlank() }
@@ -4435,6 +4951,7 @@ of the line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
+
     ```kotlin hl_lines="4 6"
     val ages =
         mapOf(
@@ -4448,6 +4965,7 @@ of the line.
 **:material-star-four-points:{ #accent } After**
 
 === "Kotlin"
+
     ```kotlin hl_lines="3 5"
     val ages =
         mapOf(
@@ -4466,6 +4984,7 @@ line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="4"
     int sum =
         IntStream
@@ -4475,6 +4994,7 @@ line.
             ).sum();
     ```
 === "Groovy"
+
     ```groovy hl_lines="4"
     var sum =
         IntStream
@@ -4487,6 +5007,7 @@ line.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="5"
     int sum =
         IntStream
@@ -4496,6 +5017,7 @@ line.
             ).sum();
     ```
 === "Groovy"
+
     ```groovy hl_lines="5"
     var sum =
         IntStream
@@ -4512,6 +5034,7 @@ A line break should be placed after the operator in a binary expression.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="3-4"
     int total =
         subtotal
@@ -4519,6 +5042,7 @@ A line break should be placed after the operator in a binary expression.
         - discount;
     ```
 === "Groovy"
+
     ```groovy hl_lines="3-4"
     var total =
         subtotal
@@ -4526,6 +5050,7 @@ A line break should be placed after the operator in a binary expression.
         - discount
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="3-4"
     val total =
         subtotal
@@ -4536,6 +5061,7 @@ A line break should be placed after the operator in a binary expression.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2-3"
     int total =
         subtotal +
@@ -4543,6 +5069,7 @@ A line break should be placed after the operator in a binary expression.
         discount;
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-3"
     var total =
         subtotal +
@@ -4550,6 +5077,7 @@ A line break should be placed after the operator in a binary expression.
         discount
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2-3"
     val total =
         subtotal +
@@ -4565,24 +5093,28 @@ new line.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java hl_lines="2"
     void createUser(
         String name, String email, int age
     )
     ```
 === "Groovy"
+
     ```groovy hl_lines="2"
     def createUser(
         String name, String email, int age
     )
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2"
     fun createUser(
         name: String, email: String, age: Int
     )
     ```
 === "Python"
+
     ```python hl_lines="2"
     def create_user(
         name: str, email: str, age: int
@@ -4592,6 +5124,7 @@ new line.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java hl_lines="2-4"
     void createUser(
         String name,
@@ -4600,6 +5133,7 @@ new line.
     )
     ```
 === "Groovy"
+
     ```groovy hl_lines="2-4"
     def createUser(
         String name,
@@ -4608,6 +5142,7 @@ new line.
     )
     ```
 === "Kotlin"
+
     ```kotlin hl_lines="2-4"
     fun createUser(
         name: String,
@@ -4616,6 +5151,7 @@ new line.
     )
     ```
 === "Python"
+
     ```python
     def create_user(
         name: str,
@@ -4631,18 +5167,22 @@ Compound statements are not allowed.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```java
     int x = 0; int y = 0;
     ```
 === "Groovy"
+
     ```groovy
     var x = 0; var y = 0
     ```
 === "Kotlin"
+
     ```kotlin
     val x = 0; val y = 0
     ```
 === "Python"
+
     ```python
     x = 0; y = 0
     ```
@@ -4650,21 +5190,25 @@ Compound statements are not allowed.
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```java
     int x = 0;
     int y = 0;
     ```
 === "Groovy"
+
     ```groovy
     var x = 0
     var y = 0
     ```
 === "Kotlin"
+
     ```kotlin
     val x = 0
     val y = 0
     ```
 === "Python"
+
     ```python
     x = 0
     y = 0

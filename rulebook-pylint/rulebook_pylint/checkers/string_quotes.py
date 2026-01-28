@@ -11,8 +11,8 @@ if TYPE_CHECKING:
 
 class StringQuotesChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#string-quotes"""
-    MSG_SINGLE: str = 'string-quotes-single'
-    MSG_DOUBLE: str = 'string-quotes-double'
+    MSG_SINGLE: str = 'string.quotes.single'
+    MSG_DOUBLE: str = 'string.quotes.double'
 
     name: str = 'string-quotes'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_SINGLE, MSG_DOUBLE)

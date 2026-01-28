@@ -10,8 +10,8 @@ if TYPE_CHECKING:
 
 class TrailingCommaChecker(RulebookTokenChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#trailing-comma-in-call"""
-    MSG_SINGLE: str = 'trailing-comma-single'
-    MSG_MULTI: str = 'trailing-comma-multi'
+    MSG_SINGLE: str = 'trailing.comma.single'
+    MSG_MULTI: str = 'trailing.comma.multi'
 
     name: str = 'trailing-comma'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_SINGLE, MSG_MULTI)

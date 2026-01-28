@@ -11,8 +11,8 @@ if TYPE_CHECKING:
 
 class CaseSeparatorChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#case-separator"""
-    MSG_MISSING: str = 'case-separator-missing'
-    MSG_UNEXPECTED: str = 'case-separator-unexpected'
+    MSG_MISSING: str = 'case.separator.missing'
+    MSG_UNEXPECTED: str = 'case.separator.unexpected'
 
     name: str = 'case-separator'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_MISSING, MSG_UNEXPECTED)

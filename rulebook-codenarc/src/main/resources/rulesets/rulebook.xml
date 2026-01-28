@@ -25,6 +25,9 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UtilityClassDefinitionRule"/>
 
+  <!-- Formatting -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryBlankFileRule"/>
+
   <!-- Naming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.ClassNameAbbreviationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalClassNameSuffixRule"/>

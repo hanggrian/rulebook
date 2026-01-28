@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class ExceptionInheritanceChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#exception-inheritance"""
-    MSG: str = 'exception-inheritance'
+    MSG: str = 'exception.inheritance'
 
     name: str = 'exception-inheritance'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

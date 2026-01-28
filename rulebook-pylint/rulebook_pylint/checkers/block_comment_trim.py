@@ -10,8 +10,8 @@ if TYPE_CHECKING:
 
 class BlockCommentTrimChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-comment-trim"""
-    MSG_FIRST: str = 'block-comment-trim-first'
-    MSG_LAST: str = 'block-comment-trim-last'
+    MSG_FIRST: str = 'block.comment.trim.first'
+    MSG_LAST: str = 'block.comment.trim.last'
 
     name: str = 'block-comment-trim'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_FIRST, MSG_LAST)

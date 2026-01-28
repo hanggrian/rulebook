@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class AbstractClassDefinitionChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#abstract-class-definition"""
-    MSG: str = 'abstract-class-definition'
+    MSG: str = 'abstract.class.definition'
 
     name: str = 'abstract-class-definition'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

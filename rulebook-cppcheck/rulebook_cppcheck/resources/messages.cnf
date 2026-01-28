@@ -1,0 +1,15 @@
+[default]
+# Clipping
+# Declaring
+# Formatting
+file.size=Reduce file size to '{}'.
+final.newline=Put a blank line at the end of the file.
+indent.style=Indent with '{}' spaces.
+line.length=Code exceeds max line length '{}'.
+# Naming
+# Ordering
+# Spacing
+# Stating
+unnecessary.switch=Replace 'switch' with 'if' condition.
+# Trimming
+# Wrapping

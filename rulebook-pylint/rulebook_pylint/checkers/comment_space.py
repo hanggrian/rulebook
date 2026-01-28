@@ -3,7 +3,6 @@ from tokenize import TokenInfo, COMMENT
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_pylint.messages import _Messages
-from rulebook_pylint.nodes import _is_comment_empty
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -11,7 +10,7 @@ if TYPE_CHECKING:
 
 class CommentSpaceChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#comment-space"""
-    MSG: str = 'comment-space'
+    MSG: str = 'comment.space'
 
     name: str = 'comment-space'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

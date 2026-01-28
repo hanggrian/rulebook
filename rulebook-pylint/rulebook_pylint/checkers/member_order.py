@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class MemberOrderChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#member-order"""
-    MSG: str = 'member-order'
+    MSG: str = 'member.order'
 
     name: str = 'member-order'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

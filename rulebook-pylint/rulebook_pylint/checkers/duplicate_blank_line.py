@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class DuplicateBlankLineChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line"""
-    MSG: str = 'duplicate-blank-line'
+    MSG: str = 'duplicate.blank.line'
 
     name: str = 'duplicate-blank-line'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

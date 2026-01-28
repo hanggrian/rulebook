@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import abstractClassDefinition, { MSG } from '../rules/abstract-class-definition';
-import messages from '../messages';
+import abstractClassDefinition, { MSG } from '../src/rules/abstract-class-definition';
+import messages from '../src/messages';
 import { AssertThat, assertThatRule } from './tests';
 
 describe('AbstractClassDefinitionTest', () => {

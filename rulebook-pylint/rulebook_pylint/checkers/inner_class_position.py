@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class InnerClassPositionChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#inner-class-position"""
-    MSG: str = 'inner-class-position'
+    MSG: str = 'inner.class.position'
 
     name: str = 'inner-class-position'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

@@ -10,8 +10,8 @@ if TYPE_CHECKING:
 
 class ParenthesesTrimChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#parentheses-trim"""
-    MSG_FIRST: str = 'parentheses-trim-first'
-    MSG_LAST: str = 'parentheses-trim-last'
+    MSG_FIRST: str = 'parentheses.trim.first'
+    MSG_LAST: str = 'parentheses.trim.last'
 
     name: str = 'parentheses-trim'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_FIRST, MSG_LAST)

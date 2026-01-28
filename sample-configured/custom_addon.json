@@ -1,0 +1,8 @@
+{
+  "script": "/home/hanggrian/GitHub/rulebook/rulebook-cppcheck/rulebook_cppcheck/checkset.py",
+  "args": [
+    "--max-file-size=50",
+    "--indent-size=2",
+    "--max-line-length=60"
+  ]
+}

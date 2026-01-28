@@ -1,0 +1,3 @@
+{
+  "script": "rulebook-cppcheck/rulebook_cppcheck/checkset.py"
+}

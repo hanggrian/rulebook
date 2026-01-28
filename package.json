@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build --workspaces",
-    "lint": "eslint packages/**/*.jsx",
+    "lint": "eslint sample/javascript/*.js sample/typescript/*.ts sample-configured/javascript/*.js sample-configured/typescript/*.ts",
     "preview": "vite preview",
     "test": "npm run test --workspaces",
     "coverage": "npm run coverage --workspaces",
@@ -25,12 +25,14 @@
     "eslint-vitest-rule-tester": "^3.0.1",
     "globals": "^16.0.0",
     "jsdom": "^26.0.0",
-    "rulebook-eslint": "^0.2",
-    "rulebook-typescript-eslint": "^0.2",
     "sinon": "^20.0.0",
     "typescript-eslint": "^8.31.1",
     "vite": "^7.3.1",
     "vitest": "^4.0.17",
     "vitest-dom": "^0.1.1"
+  },
+  "dependencies": {
+    "rulebook-eslint": "^0.2",
+    "rulebook-typescript-eslint": "^0.2"
   }
 }

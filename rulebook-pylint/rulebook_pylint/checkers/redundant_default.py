@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class RedundantDefaultChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#redundant-default"""
-    MSG: str = 'redundant-default'
+    MSG: str = 'redundant.default'
 
     name: str = 'redundant-default'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

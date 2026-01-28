@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class UnnecessaryBlankLineAfterColonChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-blank-line-after-colon"""
-    MSG: str = 'unnecessary-blank-line-after-colon'
+    MSG: str = 'unnecessary.blank.line.after.colon'
 
     name: str = 'unnecessary-blank-line-after-colon'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

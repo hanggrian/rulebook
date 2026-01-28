@@ -331,7 +331,7 @@ class TestAllCheckers:
         self.checkers = [c(self.linter) for c in self.CHECKER_CLASSES]
         for checker in self.checkers:
             for key, value in self.CONFIG.items():
-                setattr(checker.linter.config, key, value)
+                setattr(checker.linter.before_run, key, value)
             checker.open()
 
     @contextmanager

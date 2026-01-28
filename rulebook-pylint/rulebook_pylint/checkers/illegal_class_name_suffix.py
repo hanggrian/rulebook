@@ -11,8 +11,8 @@ if TYPE_CHECKING:
 
 class IllegalClassNameSuffixChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#illegal-class-name-suffix"""
-    MSG_ALL: str = 'illegal-class-name-suffix-all'
-    MSG_UTIL: str = 'illegal-class-name-suffix-util'
+    MSG_ALL: str = 'illegal.class.name.suffix.all'
+    MSG_UTIL: str = 'illegal.class.name.suffix.util'
 
     TITLE_CASE_REGEX: Pattern = \
         regex.compile(

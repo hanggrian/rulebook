@@ -14,7 +14,10 @@ jobs:
     steps:
       - checkout
       - run: ./gradlew check koverXmlReport
-      - run: pip install -r requirements-dev.txt && pytest --cov .
+      - run: |
+          pip install -r requirements-dev.txt
+          pytest rulebook-cppcheck --cov=rulebook-cppcheck
+          pytest rulebook-pylint --cov=rulebook-pylint --cov-append
       - run: npm i && npm run test && npm run coverage
       - codecov/upload
 

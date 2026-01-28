@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class UnnecessarySwitchChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-switch"""
-    MSG: str = 'unnecessary-switch'
+    MSG: str = 'unnecessary.switch'
 
     name: str = 'unnecessary-switch'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

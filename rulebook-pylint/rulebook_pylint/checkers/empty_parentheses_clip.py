@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class EmptyParenthesesClipChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#empty-parentheses-clip"""
-    MSG: str = 'empty-parentheses-clip'
+    MSG: str = 'empty.parentheses.clip'
 
     PARENTHESES: dict[str, str] = {
         '{': '}',

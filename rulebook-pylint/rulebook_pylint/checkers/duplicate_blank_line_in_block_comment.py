@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class DuplicateBlankLineInBlockCommentChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment"""
-    MSG: str = 'duplicate-blank-line-in-block-comment'
+    MSG: str = 'duplicate.blank.line.in.block.comment'
 
     name: str = 'duplicate-blank-line-in-block-comment'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

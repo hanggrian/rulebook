@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 class UnnecessaryBlankLineBeforePackageChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-blank-line-before-package"""
-    MSG: str = 'unnecessary-blank-line-before-package'
+    MSG: str = 'unnecessary.blank.line.before.package'
 
     name: str = 'unnecessary-blank-line-before-package'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

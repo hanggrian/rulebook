@@ -1,4 +1,5 @@
 !!! note inline end
+
     This section hopes to clarify some ambiguous terms used in rule names and
     messages.
 

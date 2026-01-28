@@ -14,8 +14,8 @@ if TYPE_CHECKING:
 # pylint: disable=todo-comment-keyword,todo-comment-separator
 class TodoCommentChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#todo-comment"""
-    MSG_KEYWORD: str = 'todo-comment-keyword'
-    MSG_SEPARATOR: str = 'todo-comment-separator'
+    MSG_KEYWORD: str = 'todo.comment.keyword'
+    MSG_SEPARATOR: str = 'todo.comment.separator'
 
     KEYWORD_REGEX: Pattern = regex.compile(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
     SEPARATOR_REGEX: Pattern = regex.compile(r'\b(todo|fixme)\S', IGNORECASE)

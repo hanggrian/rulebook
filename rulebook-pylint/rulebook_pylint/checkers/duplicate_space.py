@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class DuplicateSpaceChecker(RulebookTokenChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#duplicate-space"""
-    MSG: str = 'duplicate-space'
+    MSG: str = 'duplicate.space'
 
     name: str = 'duplicate-space'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)

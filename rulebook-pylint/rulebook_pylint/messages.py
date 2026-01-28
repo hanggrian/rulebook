@@ -1,19 +1,20 @@
-from json import load
+from configparser import ConfigParser
 from os.path import join, dirname
 
 from pylint.typing import MessageDefinitionTuple
 
 
 class _Messages:
-    FILENAME: str = 'resources/messages.json'
+    FILENAME: str = 'resources/messages.cnf'
     counter: int = 6142  # arbitrary number to distinguish from PEP
 
     with open(join(dirname(__file__), FILENAME), 'r', encoding='UTF-8') as file:
-        bundle: dict = load(file)
+        parser: ConfigParser = ConfigParser(interpolation=None)
+        parser.read_string(file.read())
 
     @staticmethod
     def get(key: str) -> str:
-        return _Messages.bundle[key]
+        return _Messages.parser.get('default', key)
 
     @staticmethod
     def of(*keys: str) -> dict[str, MessageDefinitionTuple]:
@@ -22,7 +23,7 @@ class _Messages:
         for key in keys:
             _Messages.counter = _Messages.counter + 1
             result[f'E{_Messages.counter:04d}'] = (
-                _Messages.bundle[key],
+                _Messages.parser.get('default', key),
                 key,
                 'https://github.com/hanggrian/rulebook',
             )

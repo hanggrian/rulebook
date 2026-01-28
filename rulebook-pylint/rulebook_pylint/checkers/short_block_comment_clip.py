@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class ShortBlockCommentClipChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#short-block-comment-clip"""
-    MSG: str = 'short-block-comment-clip'
+    MSG: str = 'short.block.comment.clip'
 
     SINGLELINE_TEMPLATE = 6  # """"""
 

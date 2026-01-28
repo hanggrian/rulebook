@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import wildcardImport, { MSG } from '../rules/wildcard-import';
-import messages from '../messages';
+import wildcardImport, { MSG } from '../src/rules/wildcard-import';
+import messages from '../src/messages';
 import { AssertThat, assertThatRule } from './tests';
 
 describe('WildcardImportTest', () => {

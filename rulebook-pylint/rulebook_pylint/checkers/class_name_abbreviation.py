@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class ClassNameAbbreviationChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#class-name-abbreviation"""
-    MSG: str = 'class-name-abbreviation'
+    MSG: str = 'class.name.abbreviation'
 
     ABBREVIATION_REGEX: Pattern = regex.compile(r'[A-Z]{3,}')
 

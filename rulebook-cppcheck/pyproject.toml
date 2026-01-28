@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=66.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rulebook-cppcheck"
+version = "0.2"
+license = { text = "Apache-2.0" }
+description = "Extended lint rules for JVM and Python"
+readme = "README.md"
+authors = [{ name = "Hendra Anggrian", email = "hanggrian@proton.me" }]
+keywords = ["lint rules", "lint checkers"]
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Source Code" = "https://github.com/hanggrian/rulebook"
+"Bug Tracker" = "https://github.com/hanggrian/rulebook/issues"
+
+[tool.setuptools]
+license-files = ["LICENSE"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rulebook_cppcheck*"]
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.setuptools.package-data]
+"rulebook_cppcheck" = ["resources/*"]
+
+[tool.aliases]
+test = "pytest"
+
+[tool.pytest.ini_options]
+testpaths = ["rulebook-cppcheck/tests"]
+python_files = ["*test_*.py"]
