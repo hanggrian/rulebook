@@ -1,7 +1,8 @@
-import regex
+from re import Pattern, compile as re
+
 from astroid.nodes import ClassDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from regex import Pattern
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
 
@@ -13,31 +14,26 @@ class ClassNameAbbreviationChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#class-name-abbreviation"""
     MSG: str = 'class.name.abbreviation'
 
-    ABBREVIATION_REGEX: Pattern = regex.compile(r'[A-Z]{3,}')
+    ABBREVIATION_REGEX: Pattern = re(r'[A-Z]{3,}(?=[A-Z][a-z]|$)')
 
     name: str = 'class-name-abbreviation'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
-        if not bool(self.ABBREVIATION_REGEX.search(node.name)):
+        class_name: str = node.name
+        if not self.ABBREVIATION_REGEX.findall(class_name):
             return
         self.add_message(
             self.MSG,
             node=node,
-            args=self._transform(node.name),
+            args= \
+                ClassNameAbbreviationChecker.ABBREVIATION_REGEX.sub(
+                    lambda m: m.group(0)[0] + m.group(0)[1:].lower(),
+                    class_name,
+                ),
             col_offset=node.col_offset + 6,
         )
-
-    @staticmethod
-    def _transform(name: str) -> str:
-        def replace_match(match):
-            group_value: str = match.group()
-            return group_value[0] + group_value[1:].lower() \
-                if match.end() == len(name) \
-                else group_value[0] + group_value[1:-1].lower() + group_value[-1]
-
-        return ClassNameAbbreviationChecker.ABBREVIATION_REGEX.sub(replace_match, name)
 
 
 def register(linter: 'PyLinter') -> None:

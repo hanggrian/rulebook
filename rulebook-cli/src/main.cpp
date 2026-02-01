@@ -1,9 +1,9 @@
+#include <boost/program_options.hpp>
 #include <filesystem>
 #include <iostream>
 #include <numeric>
 #include <string>
 #include <vector>
-#include <boost/program_options.hpp>
 #include "cli.h"
 #include "colors.h"
 #include "config_writer.h"
@@ -66,19 +66,19 @@ int main(const int argc, char **argv) {
                 RESET <<
                 ":" <<
                 endl <<
-                "  cppcheck           Qt coding style" <<
+                "  cppcheck           Core guidelines" <<
                 endl <<
                 "  checkstyle         Sun style" <<
                 endl <<
                 "  codenarc           Groovy style guide" <<
                 endl <<
-                "  eslint             Proxmox JavaScript style guide" <<
+                "  eslint             Crockford code conventions" <<
                 endl <<
                 "  ktlint             Ktlint official style" <<
                 endl <<
                 "  python             Pylint style" <<
                 endl <<
-                "  typescript-eslint  Microsoft TypeScript coding guidelines" <<
+                "  typescript-eslint  Crockford code conventions" <<
                 endl <<
                 endl;
         cout <<

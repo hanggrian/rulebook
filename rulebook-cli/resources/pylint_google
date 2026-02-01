@@ -20,7 +20,7 @@ persistent=no
 # List of plugins (as comma separated values of python modules names) to load,
 # usually to register additional checkers.
 load-plugins=
-  rulebook_pylint.checkers.file_size,
+  pylint.extensions.typing,
   rulebook_pylint.checkers.todo_comment,
   rulebook_pylint.checkers.trailing_comma,
   # Clipping
@@ -28,8 +28,10 @@ load-plugins=
   rulebook_pylint.checkers.short_block_comment_clip,
   # Declaring
   rulebook_pylint.checkers.abstract_class_definition,
+  pylint.extensions.docstyle,
   rulebook_pylint.checkers.exception_inheritance,
-  rulebook_pylint.checkers.string_quotes,
+  # Formatting
+  rulebook_pylint.checkers.file_size,
   # Naming
   rulebook_pylint.checkers.class_name_abbreviation,
   rulebook_pylint.checkers.illegal_class_name_suffix,
@@ -332,7 +334,7 @@ check-quote-consistency=yes
 [VARIABLES]
 
 # Tells whether we should check for unused import in __init__ files.
-init-import=no
+init-import=yes
 
 # A regular expression matching the name of dummy variables (i.e. expectedly
 # not used).

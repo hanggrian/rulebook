@@ -42,7 +42,7 @@ class RulebookRuleSetTest {
             MissingBlankLineBeforeBlockTagsRule::class,
             NestedIfElseRule::class,
             NullEqualityRule::class,
-            NumberSuffixForFloatRule::class,
+            LowercaseFRule::class,
             OverloadFunctionPositionRule::class,
             PropertyNameInteropRule::class,
             RedundantDefaultRule::class,

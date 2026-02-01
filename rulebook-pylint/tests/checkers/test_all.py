@@ -8,6 +8,7 @@ from astroid.nodes import NodeNG, ClassDef, Module, FunctionDef, Assign, Match, 
 from pylint.testutils import UnittestLinter, MessageTest, _tokenize_str
 from pylint.testutils.global_test_linter import linter
 from pylint.utils import ASTWalker
+
 from rulebook_pylint.checkers.abstract_class_definition import AbstractClassDefinitionChecker
 from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_pylint.checkers.built_in_function_position import BuiltInFunctionPositionChecker
@@ -23,7 +24,6 @@ from rulebook_pylint.checkers.duplicate_blank_line_in_comment import \
 from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_pylint.checkers.empty_parentheses_clip import EmptyParenthesesClipChecker
 from rulebook_pylint.checkers.exception_inheritance import ExceptionInheritanceChecker
-from rulebook_pylint.checkers.file_size import FileSizeChecker
 from rulebook_pylint.checkers.illegal_class_name_suffix import IllegalClassNameSuffixChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_pylint.checkers.member_order import MemberOrderChecker
@@ -34,7 +34,6 @@ from rulebook_pylint.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_pylint.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_pylint.checkers.required_generics_name import RequiredGenericsNameChecker
 from rulebook_pylint.checkers.short_block_comment_clip import ShortBlockCommentClipChecker
-from rulebook_pylint.checkers.string_quotes import StringQuotesChecker
 from rulebook_pylint.checkers.todo_comment import TodoCommentChecker
 from rulebook_pylint.checkers.trailing_comma import TrailingCommaChecker
 from rulebook_pylint.checkers.unnecessary_blank_line_after_colon import \
@@ -42,7 +41,6 @@ from rulebook_pylint.checkers.unnecessary_blank_line_after_colon import \
 from rulebook_pylint.checkers.unnecessary_blank_line_before_package import \
     UnnecessaryBlankLineBeforePackageChecker
 from rulebook_pylint.checkers.unnecessary_switch import UnnecessarySwitchChecker
-
 from ..tests import msg
 
 
@@ -74,8 +72,6 @@ class TestAllCheckers:
         RedundantDefaultChecker,
         RequiredGenericsNameChecker,
         ShortBlockCommentClipChecker,
-        # skip string quotes, too many errors
-        # StringQuotesChecker,
         TodoCommentChecker,
         TrailingCommaChecker,
         UnnecessaryBlankLineAfterColonChecker,

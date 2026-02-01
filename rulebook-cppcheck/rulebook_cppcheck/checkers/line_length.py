@@ -1,41 +1,42 @@
 from typing import override
 
-from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
+from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 
 try:
-    from cppcheckdata import Configuration
+    from cppcheckdata import Token
 except ImportError:
-    from cppcheck.Cppcheck.addons.cppcheckdata import Configuration
+    from cppcheck.Cppcheck.addons.cppcheckdata import Token
 
 
-class LineLengthChecker(RulebookChecker):
+class LineLengthChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#line-length"""
+    ID: str = 'line-length'
     MSG: str = 'line.length'
     ARG_MAX_LINE_LENGTH: str = 'max-line-length'
+    ARGS = [ARG_MAX_LINE_LENGTH]
 
-    id: str = 'line-length'
-    args = [ARG_MAX_LINE_LENGTH]
-
-    max_line_length: int = 100
+    def __init__(self):
+        super().__init__()
+        self._max_line_length: int = 100
+        self._processed_lines: dict[str, set[int]] = {}
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
-        self.max_line_length: int = int(args[self.ARG_MAX_LINE_LENGTH])
+        self._max_line_length = int(args[self.ARG_MAX_LINE_LENGTH])
 
     @override
-    def run_check(self, configuration: Configuration) -> None:
-        processed_lines: dict[str, set[int]] = {}
-        for token in configuration.tokenlist:
-            if token.file not in processed_lines:
-                processed_lines[token.file] = set()
-            if token.linenr in processed_lines[token.file]:
-                continue
-            processed_lines[token.file].add(token.linenr)
-            with open(token.file, 'r', encoding='UTF-8') as f:
-                for i, line in enumerate(f, 1):
-                    if i != token.linenr:
-                        continue
-                    if len(line.rstrip('\r\n')) > self.max_line_length:
-                        self.report_error(token, _Messages.get(self.MSG, self.max_line_length))
-                    break
+    def process_token(self, token: Token) -> None:
+        file_path: str = token.file
+        line_nr: int = token.linenr
+        if file_path not in self._processed_lines:
+            self._processed_lines[file_path] = set()
+        if line_nr in self._processed_lines[file_path]:
+            return
+        self._processed_lines[file_path].add(line_nr)
+        with open(file_path, 'r', encoding='UTF-8') as f:
+            for i, line in enumerate(f, 1):
+                if i != line_nr:
+                    continue
+                if len(line.rstrip('\r\n')) > self._max_line_length:
+                    self.report_error(token, _Messages.get(self.MSG, self._max_line_length))

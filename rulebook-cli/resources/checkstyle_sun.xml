@@ -206,8 +206,8 @@
     <!-- Declaring -->
     <module name="AbstractClassDefinition"/>
     <module name="ExceptionInheritance"/>
-    <module name="NumberSuffixForDouble"/>
-    <module name="NumberSuffixForFloat"/>
+    <module name="LowercaseD"/>
+    <module name="LowercaseF"/>
     <module name="UnnecessaryParenthesesInLambda"/>
 
     <!-- Naming -->

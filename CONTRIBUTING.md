@@ -63,7 +63,14 @@ TypeScript | JavaScript, TypeScript | `.json`
 
 Printing the AST tree to the console is possible with Checkstyle and Ktlint.
 
-### "Ktlint"
+### Checkstyle
+
+```shell
+checkstyle -T $file
+checkstyle -J $file # for javadoc
+```
+
+### Ktlint
 
 > This command is no longer available in newer versions of Ktlint, use version
   [0.47.0](https://github.com/pinterest/ktlint/releases/tag/0.47.0).
@@ -72,9 +79,8 @@ Printing the AST tree to the console is possible with Checkstyle and Ktlint.
 ktlint --color printAST $file
 ```
 
-### Checkstyle
+### Cppcheck
 
 ```shell
-checkstyle -T $file
-checkstyle -J $file # for javadoc
+cppcheck --dump $file
 ```

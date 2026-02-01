@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import parse
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.duplicate_blank_line import DuplicateBlankLineChecker
 
+from rulebook_pylint.checkers.duplicate_blank_line import DuplicateBlankLineChecker
 from ..tests import assert_properties, msg
 
 

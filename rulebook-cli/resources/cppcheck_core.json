@@ -1,0 +1,8 @@
+{
+  "script": "rulebook-cppcheck/rulebook_cppcheck/checkset.py",
+  "args": [
+    "--suppress=class-name,function-name,package-name",
+    "--indent-size=2",
+    "--max-line-length=80"
+  ]
+}

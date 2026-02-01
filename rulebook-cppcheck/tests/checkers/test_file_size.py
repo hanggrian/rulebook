@@ -1,26 +1,24 @@
-from unittest import TestCase, main
+from unittest import main
 from unittest.mock import MagicMock, patch, mock_open
 
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.messages import _Messages
+from ..tests import CheckerTestCase
 
 
-class TestFileSizeChecker(TestCase):
-    checker = FileSizeChecker()
+class TestFileSizeChecker(CheckerTestCase):
+    CHECKER_CLASS = FileSizeChecker
 
     @patch.object(FileSizeChecker, 'report_error')
     def test_valid_length(self, mock_report):
-        configuration = self._create_configuration(['token'], 'test.cpp')
         with patch('builtins.open', mock_open(read_data='int x = 0;')):
-            self.checker.run_check(configuration)
+            self.checker.run_check(self._create_configuration(['token'], 'test.cpp'))
         mock_report.assert_not_called()
 
     @patch.object(FileSizeChecker, 'report_error')
     def test_invalid_length(self, mock_report):
-        configuration = self._create_configuration(['token'], 'test.cpp')
-        long_lines = '// a\n' * 1001
-        with patch('builtins.open', mock_open(read_data=long_lines)):
-            self.checker.run_check(configuration)
+        with patch('builtins.open', mock_open(read_data='// a\n' * 1001)):
+            self.checker.run_check(self._create_configuration(['token'], 'test.cpp'))
         mock_report.assert_called_once()
         args, _ = mock_report.call_args
         self.assertEqual(args[1], _Messages.get(self.checker.MSG, 1000))

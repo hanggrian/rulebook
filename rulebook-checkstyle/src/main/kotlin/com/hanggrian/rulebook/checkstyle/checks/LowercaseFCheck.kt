@@ -1,0 +1,24 @@
+package com.hanggrian.rulebook.checkstyle.checks
+
+import com.hanggrian.rulebook.checkstyle.Messages
+import com.puppycrawl.tools.checkstyle.api.DetailAST
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.NUM_FLOAT
+
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#lowercase-f) */
+public class LowercaseFCheck : RulebookAstCheck() {
+    override fun getRequiredTokens(): IntArray = intArrayOf(NUM_FLOAT)
+
+    override fun visitToken(node: DetailAST) {
+        // checks for violation
+        node
+            .text
+            .last()
+            .takeIf { it == 'F' }
+            ?: return
+        log(node, Messages[MSG])
+    }
+
+    private companion object {
+        const val MSG = "lowercase.f"
+    }
+}

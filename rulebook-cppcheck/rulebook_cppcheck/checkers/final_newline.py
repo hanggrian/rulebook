@@ -11,9 +11,8 @@ except ImportError:
 
 class FinalNewlineChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#final-newline"""
+    ID: str = 'final-newline'
     MSG: str = 'final.newline'
-
-    id: str = 'final-newline'
 
     @override
     def check_file(self, token: Token, content: str) -> None:

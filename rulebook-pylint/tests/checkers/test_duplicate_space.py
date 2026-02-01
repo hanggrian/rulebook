@@ -1,8 +1,8 @@
 from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
-from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 
+from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 from ..tests import assert_properties, msg
 
 

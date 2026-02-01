@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.required_generics_name import RequiredGenericsNameChecker
 
+from rulebook_pylint.checkers.required_generics_name import RequiredGenericsNameChecker
 from ..tests import assert_properties, msg
 
 

@@ -1,9 +1,9 @@
 from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
+
 from rulebook_pylint.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
-
 from ..tests import assert_properties, msg
 
 

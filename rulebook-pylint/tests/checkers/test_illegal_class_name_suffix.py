@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.illegal_class_name_suffix import IllegalClassNameSuffixChecker
 
+from rulebook_pylint.checkers.illegal_class_name_suffix import IllegalClassNameSuffixChecker
 from ..tests import assert_properties, msg
 
 

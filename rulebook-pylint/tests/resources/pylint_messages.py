@@ -315,9 +315,9 @@ def _write_message_page(messages_dict: MessagesDict) -> None:
             _write_single_message_page(category_dir, message)
         for _, shared_messages in groupby(
             sorted(
-                (message for message in messages if message.shared), key=lambda m: m.id
+                (message for message in messages if message.shared), key=lambda m: m.ID
             ),
-            key=lambda m: m.id,
+            key=lambda m: m.ID,
         ):
             shared_messages_list = list(shared_messages)
             if len(shared_messages_list) > 1:

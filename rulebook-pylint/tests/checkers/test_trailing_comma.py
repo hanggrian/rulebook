@@ -1,8 +1,8 @@
 from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
-from rulebook_pylint.checkers.trailing_comma import TrailingCommaChecker
 
+from rulebook_pylint.checkers.trailing_comma import TrailingCommaChecker
 from ..tests import assert_properties, msg
 
 

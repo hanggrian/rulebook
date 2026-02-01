@@ -1,6 +1,8 @@
 #ifndef COLORS_H
 #define COLORS_H
 
+#include <string>
+
 using namespace std;
 
 inline constexpr string RESET = "\033[0m";

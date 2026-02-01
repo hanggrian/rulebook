@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 
+from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 from ..tests import assert_properties, msg
 
 

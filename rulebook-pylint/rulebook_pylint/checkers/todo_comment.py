@@ -1,9 +1,9 @@
 from codecs import decode
 
-import regex
 from astroid.nodes import Module
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
-from regex import Pattern, Match, IGNORECASE
+from regex import Pattern, Match, IGNORECASE, compile as regex
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.messages import _Messages
 
@@ -17,8 +17,8 @@ class TodoCommentChecker(RulebookFileChecker):
     MSG_KEYWORD: str = 'todo.comment.keyword'
     MSG_SEPARATOR: str = 'todo.comment.separator'
 
-    KEYWORD_REGEX: Pattern = regex.compile(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
-    SEPARATOR_REGEX: Pattern = regex.compile(r'\b(todo|fixme)\S', IGNORECASE)
+    KEYWORD_REGEX: Pattern = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
+    SEPARATOR_REGEX: Pattern = regex(r'\b(todo|fixme)\S', IGNORECASE)
 
     name: str = 'todo-comment'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_KEYWORD, MSG_SEPARATOR)

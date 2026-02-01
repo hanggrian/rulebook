@@ -1,5 +1,6 @@
 from astroid.nodes import Assign, Call, Name, AssignName
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
 from rulebook_pylint.nodes import _get_assignname
@@ -26,10 +27,10 @@ class RequiredGenericsNameChecker(RulebookChecker):
         ),
     )
 
-    _allow_generics_names: list[str]
+    _required_generics_names: list[str]
 
     def open(self) -> None:
-        self._allow_generics_names = self.linter.config.rulebook_required_generics_names
+        self._required_generics_names = self.linter.config.rulebook_required_generics_names
 
     def visit_assign(self, node: Assign) -> None:
         # only target TypeVar declaration
@@ -39,18 +40,16 @@ class RequiredGenericsNameChecker(RulebookChecker):
         if not isinstance(call.func, Name) or call.func.name != 'TypeVar':
             return
 
-        # get assigned property
+        # checks for violation
         target: AssignName | None = _get_assignname(node)
         if not target:
             return
-
-        # checks for violation
-        if target.name in self._allow_generics_names:
+        if target.name in self._required_generics_names:
             return
         self.add_message(
             self.MSG,
             node=target,
-            args=', '.join(self._allow_generics_names),
+            args=', '.join(self._required_generics_names),
         )
 
 

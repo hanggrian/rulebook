@@ -1,27 +1,27 @@
-from unittest import TestCase, main
+from unittest import main
 from unittest.mock import MagicMock, patch, mock_open
 
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
 from rulebook_cppcheck.messages import _Messages
+from ..tests import CheckerTestCase
 
 
-class TestLineLengthChecker(TestCase):
-    checker = LineLengthChecker()
+class TestLineLengthChecker(CheckerTestCase):
+    CHECKER_CLASS = LineLengthChecker
 
     @patch.object(LineLengthChecker, 'report_error')
-    def test_valid_length(self, mock_report):
-        configuration = self._create_configuration(line_nr=1)
-        with patch('builtins.open', mock_open(read_data='int x = 0;')):
-            self.checker.run_check(configuration)
+    @patch('builtins.open', new_callable=mock_open, read_data='int foo = 0;')
+    def test_valid_length(self, mock_file, mock_report):
+        self.checker.run_check(self._create_configuration(line_nr=1))
         mock_report.assert_not_called()
+        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
 
     @patch.object(LineLengthChecker, 'report_error')
-    def test_invalid_length(self, mock_report):
-        configuration = self._create_configuration(line_nr=1)
-        long_line = 'a' * 101
-        with patch('builtins.open', mock_open(read_data=long_line)):
-            self.checker.run_check(configuration)
+    @patch('builtins.open', new_callable=mock_open, read_data='a' * 101)
+    def test_invalid_length(self, mock_file, mock_report):
+        self.checker.run_check(self._create_configuration(line_nr=1))
         mock_report.assert_called_once()
+        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
         args, _ = mock_report.call_args
         self.assertEqual(args[1], _Messages.get(self.checker.MSG, 100))
 

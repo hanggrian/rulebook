@@ -1,8 +1,8 @@
 from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
-from rulebook_pylint.checkers.empty_parentheses_clip import EmptyParenthesesClipChecker
 
+from rulebook_pylint.checkers.empty_parentheses_clip import EmptyParenthesesClipChecker
 from ..tests import assert_properties, msg
 
 

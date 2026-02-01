@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import parse
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
 
+from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
 from ..tests import assert_properties, msg
 
 

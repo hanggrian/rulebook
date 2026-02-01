@@ -19,9 +19,9 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.ShortBlockCommentClipRule"/>
 
   <!-- Declaring -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.NumberSuffixForDoubleRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.NumberSuffixForFloatRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.NumberSuffixForIntegerRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseDRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseFRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseIRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UtilityClassDefinitionRule"/>
 

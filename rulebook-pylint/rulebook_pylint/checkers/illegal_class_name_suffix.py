@@ -1,7 +1,8 @@
-import regex
+from re import Pattern, compile as re
+
 from astroid.nodes import ClassDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
-from regex import Pattern
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
 
@@ -15,8 +16,8 @@ class IllegalClassNameSuffixChecker(RulebookChecker):
     MSG_UTIL: str = 'illegal.class.name.suffix.util'
 
     TITLE_CASE_REGEX: Pattern = \
-        regex.compile(
-            r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|' +
+        re(
+            r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|' + \
             r'([A-Z]+(?=([A-Z][a-z])|($)|([0-9]))))',
         )
 
@@ -42,8 +43,8 @@ class IllegalClassNameSuffixChecker(RulebookChecker):
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
         words: list[str] = [
-            m[0] for m in self.TITLE_CASE_REGEX.findall(node.name) \
-            if m[0] in self._illegal_class_name_suffixes
+            match[0] for match in self.TITLE_CASE_REGEX.findall(node.name) \
+            if match[0] in self._illegal_class_name_suffixes
         ]
         if not words:
             return

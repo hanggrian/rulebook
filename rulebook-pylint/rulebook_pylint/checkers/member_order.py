@@ -2,6 +2,7 @@ from typing import cast
 
 from astroid.nodes import NodeNG, Assign, AssignName, ClassDef, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
 from rulebook_pylint.nodes import _has_decorator
@@ -36,10 +37,10 @@ class MemberOrderChecker(RulebookChecker):
 
     def open(self) -> None:
         self._member_order = self.linter.config.rulebook_member_order
-        self._property_position: int = self._member_order.index('property')
-        self._constructor_position: int = self._member_order.index('constructor')
-        self._function_position: int = self._member_order.index('function')
-        self._static_position: int = self._member_order.index('static')
+        self._property_position = self._member_order.index('property')
+        self._constructor_position = self._member_order.index('constructor')
+        self._function_position = self._member_order.index('function')
+        self._static_position = self._member_order.index('static')
 
     def _get_member_position(self, node: NodeNG) -> int:
         if isinstance(node, Assign):

@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
 
+from rulebook_pylint.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
 from ..tests import assert_properties, msg
 
 

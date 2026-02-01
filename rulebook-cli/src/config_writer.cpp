@@ -28,7 +28,7 @@ int write(const string &linter, const path &dir, bool google) {
     }
 
     file source_file;
-    path target_file = dir;
+    path target_path = dir;
     const embedded_filesystem fs = resources::get_filesystem();
     if (linter == "checkstyle") {
         source_file =
@@ -37,29 +37,29 @@ int write(const string &linter, const path &dir, bool google) {
                         ? "resources/checkstyle_sun.xml"
                         : "resources/checkstyle_google.xml"
                 );
-        target_file /= "config/checkstyle/checkstyle.xml";
+        target_path /= "config/checkstyle/checkstyle.xml";
     } else if (linter == "cppcheck") {
         source_file =
                 fs.open(
                     !google
-                        ? "resources/cppcheck_google.json"
-                        : "resources/cppcheck_qt.json"
+                        ? "resources/cppcheck_core.json"
+                        : "resources/cppcheck_google.json"
                 );
-        target_file /= "addon.json";
+        target_path /= "addon.json";
     } else if (linter == "codenarc") {
         source_file = fs.open("resources/codenarc.xml");
-        target_file /= "config/codenarc/codenarc.xml";
+        target_path /= "config/codenarc/codenarc.xml";
     } else if (linter == "eslint") {
         source_file =
                 fs.open(
                     !google
-                        ? "resources/eslint_proxmox.config.js"
+                        ? "resources/eslint_crockford.config.js"
                         : "resources/eslint_google.config.js"
                 );
-        target_file /= "eslint.config.js";
+        target_path /= "eslint.config.js";
     } else if (linter == "ktlint") {
         source_file = fs.open("resources/ktlint.editorconfig");
-        target_file /= "config/codenarc/codenarc.xml";
+        target_path /= "config/codenarc/codenarc.xml";
     } else if (linter == "pylint") {
         source_file =
                 fs.open(
@@ -67,22 +67,22 @@ int write(const string &linter, const path &dir, bool google) {
                         ? "resources/pylint_pylint"
                         : "resources/pylint_google"
                 );
-        target_file /= ".pylintrc";
+        target_path /= ".pylintrc";
     } else if (linter == "typescript-eslint") {
         source_file =
                 fs.open(
                     !google
-                        ? "resources/typescript_eslint_microsoft.config.js"
+                        ? "resources/typescript_eslint_crockford.config.js"
                         : "resources/typescript_eslint_google.config.js"
                 );
-        target_file /= "eslint.config.js";
+        target_path /= "eslint.config.js";
     }
 
     cout << "Linter: " << BOLD << linter << RESET << endl;
     cout << "Flavor: " << BOLD << (google ? "google" : "default") << RESET << endl;
-    cout << "Config: " << BOLD << target_file << RESET << endl << endl;
+    cout << "Config: " << BOLD << target_path << RESET << endl << endl;
 
-    if (is_regular_file(target_file)) {
+    if (is_regular_file(target_path)) {
         cout << "File already exists." << endl;
         while (true) {
             cout << YELLOW << "Overwrite (yes/no)? " << RESET;
@@ -97,12 +97,12 @@ int write(const string &linter, const path &dir, bool google) {
             }
         }
     }
-    if (path path(target_file); path.has_parent_path()) {
-        create_directories(path.parent_path());
+    if (!target_path.has_parent_path()) {
+        create_directories(target_path.parent_path());
     }
-    ofstream out(target_file, ios::binary);
-    out.write(source_file.begin(), static_cast<streamsize>(source_file.size()));
-    out.close();
+    ofstream stream(target_path, ios::binary);
+    stream.write(source_file.begin(), static_cast<streamsize>(source_file.size()));
+    stream.close();
 
     cout << GREEN << "Done." << RESET << endl << endl;
     cout << "Goodbye!" << endl;

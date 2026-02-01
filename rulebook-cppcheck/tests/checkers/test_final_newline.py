@@ -1,26 +1,25 @@
-from unittest import TestCase, main
+from unittest import main
 from unittest.mock import MagicMock, mock_open, patch
 
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
 from rulebook_cppcheck.messages import _Messages
+from ..tests import CheckerTestCase
 
 
-class TestFinalNewlineChecker(TestCase):
-    checker = FinalNewlineChecker()
+class TestFinalNewlineChecker(CheckerTestCase):
+    CHECKER_CLASS = FinalNewlineChecker
 
     @patch.object(FinalNewlineChecker, 'report_error')
     @patch('builtins.open', new_callable=mock_open, read_data='content\n')
     def test_file_ends_with_newline(self, mock_file, mock_report):
-        configuration = self._create_configuration(['token'], 'test.cpp')
-        self.checker.run_check(configuration)
+        self.checker.run_check(self._create_configuration(['token'], 'test.cpp'))
         mock_report.assert_not_called()
         mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
 
     @patch.object(FinalNewlineChecker, 'report_error')
     @patch('builtins.open', new_callable=mock_open, read_data='content')
     def test_file_missing_newline(self, mock_file, mock_report):
-        configuration = self._create_configuration(['token'], 'test.cpp')
-        self.checker.run_check(configuration)
+        self.checker.run_check(self._create_configuration(['token'], 'test.cpp'))
         mock_report.assert_called_once()
         mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
         args, _ = mock_report.call_args
@@ -29,8 +28,7 @@ class TestFinalNewlineChecker(TestCase):
     @patch.object(FinalNewlineChecker, 'report_error')
     @patch('builtins.open', new_callable=mock_open, read_data='')
     def test_empty_file(self, mock_file, mock_report):
-        configuration = self._create_configuration(['token'], 'test.cpp')
-        self.checker.run_check(configuration)
+        self.checker.run_check(self._create_configuration(['token'], 'test.cpp'))
         mock_report.assert_not_called()
         mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
 

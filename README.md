@@ -15,15 +15,15 @@ with official ones. Most of the rules are opinionated personal code styles.
 However, some already exists in other linters, providing the same experience
 across multiple languages.
 
-Language | Linter | Variants
+Language | Linter | Styles
 --- | --- | ---
-Java | [Checkstyle](https://github.com/checkstyle/checkstyle/) | [Sun's Java Style](https://checkstyle.sourceforge.io/sun_style.html) or [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
+Java | [Checkstyle](https://github.com/checkstyle/checkstyle/) | [Sun Java Style](https://checkstyle.sourceforge.io/sun_style.html) or<br>[Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
 Groovy | [CodeNarc](https://github.com/CodeNarc/CodeNarc/) | [Groovy Style Guide](https://groovy-lang.org/style-guide.html)
 Kotlin | [Ktlint](https://github.com/pinterest/ktlint/) | [Ktlint Official Style](https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/)
-C/C++ | [Cppcheck](https://github.com/danmar/cppcheck/) | [Qt Coding Style](https://wiki.qt.io/Qt_Coding_Style) or [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
-Python | [Pylint](https://github.com/pylint-dev/pylint/) | [Pylint Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
-JavaScript | [ESLint](https://github.com/eslint/eslint/) | [Proxmox JavaScript Style Guide](https://pve.proxmox.com/wiki/Javascript_Style_Guide) or [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
-TypeScript | [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/) | [Microsoft TypeScript Coding Guidelines](https://github.com/microsoft/TypeScript/wiki/Coding-guidelines) or [Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html)
+C/C++ | [Cppcheck](https://github.com/danmar/cppcheck/) | [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) or<br>[Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+Python | [Pylint](https://github.com/pylint-dev/pylint/) | [Pylint Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or<br>[Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+JavaScript | [ESLint](https://github.com/eslint/eslint/) | [Crockford Code Conventions](https://www.crockford.com/code.html) or<br>[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+TypeScript | [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/) | [Crockford Code Conventions](https://www.crockford.com/code.html) or<br>[Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html)
 
 [View all rules](https://hanggrian.github.io/rulebook/rules/)
 

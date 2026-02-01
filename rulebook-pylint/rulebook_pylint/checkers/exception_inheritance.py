@@ -1,5 +1,6 @@
 from astroid.nodes import ClassDef, Name
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
 
@@ -19,7 +20,7 @@ class ExceptionInheritanceChecker(RulebookChecker):
         for base in [
             n for n in node.bases \
             if isinstance(n, Name) and n.name == 'BaseException' \
-        ]:
+            ]:
             self.add_message(self.MSG, node=base)
             continue
 

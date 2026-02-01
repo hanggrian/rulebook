@@ -1,0 +1,53 @@
+from re import DOTALL, Pattern, finditer, compile as re_compile
+from typing import override
+
+from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
+from rulebook_cppcheck.messages import _Messages
+
+try:
+    from cppcheckdata import Token
+except ImportError:
+    from cppcheck.Cppcheck.addons.cppcheckdata import Token
+
+
+class BlockTagIndentationChecker(RulebookFileChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#block-tag-indentation"""
+    ID: str = 'block-tag-indentation'
+    MSG: str = 'block.tag.indentation'
+
+    BLOCK_TAG: Pattern = re_compile(r'^\s*\*\s+@\w+')
+    CONTINUATION_LINE: Pattern = re_compile(r'^\s*\*(\s+)')
+
+    @override
+    def check_file(self, token: Token, content: str) -> None:
+        for match in finditer(r'/\*\*.*?\*/', content, DOTALL):
+            comment_text: str = match.group()
+            start_line: int = content.count('\n', 0, match.start()) + 1
+            lines: list[str] = comment_text.splitlines()
+            in_block_tag: bool = False
+            for i in range(len(lines)):
+                line = lines[i]
+                if self.BLOCK_TAG.search(line):
+                    in_block_tag = True
+                    continue
+                if not in_block_tag:
+                    continue
+                stripped = line.strip()
+                if not stripped or stripped == '*' or stripped == '*/':
+                    in_block_tag = False
+                    continue
+                if stripped.startswith('* @'):
+                    in_block_tag = True
+                    continue
+
+                match_indent = self.CONTINUATION_LINE.match(line)
+                if not match_indent:
+                    continue
+                indent_size = len(match_indent.group(1))
+                if indent_size == 5:
+                    continue
+                self.report_error(
+                    token,
+                    _Messages.get(self.MSG),
+                    line=start_line + i,
+                )

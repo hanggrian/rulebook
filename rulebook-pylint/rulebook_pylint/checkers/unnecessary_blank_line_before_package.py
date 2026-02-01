@@ -1,6 +1,7 @@
 from tokenize import TokenInfo, ENCODING, NL
 
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_pylint.messages import _Messages
 

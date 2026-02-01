@@ -1,5 +1,6 @@
 from astroid.nodes import ClassDef, Assign, FunctionDef, NodeNG
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.files import _get_fromlineno_before
 from rulebook_pylint.messages import _Messages

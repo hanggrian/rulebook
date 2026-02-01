@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.parameter_wrap import ParameterWrapChecker
 
+from rulebook_pylint.checkers.parameter_wrap import ParameterWrapChecker
 from ..tests import assert_properties, msg
 
 

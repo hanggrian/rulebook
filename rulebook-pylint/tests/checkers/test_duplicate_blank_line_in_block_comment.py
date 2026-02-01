@@ -2,9 +2,9 @@ from unittest import main
 
 from astroid import extract_node, parse
 from pylint.testutils import CheckerTestCase
+
 from rulebook_pylint.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
-
 from ..tests import assert_properties, msg
 
 

@@ -1,8 +1,8 @@
 from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
-from rulebook_pylint.checkers.comment_space import CommentSpaceChecker
 
+from rulebook_pylint.checkers.comment_space import CommentSpaceChecker
 from ..tests import assert_properties, msg
 
 

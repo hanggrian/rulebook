@@ -15,15 +15,15 @@ cmrc_add_resource_library(
         resources/checkstyle_google.xml
         resources/checkstyle_sun.xml
         resources/codenarc.xml
+        resources/cppcheck_core.json
         resources/cppcheck_google.json
-        resources/cppcheck_qt.json
+        resources/eslint_crockford.config.js
         resources/eslint_google.config.js
-        resources/eslint_proxmox.config.js
         resources/ktlint.editorconfig
         resources/pylint_google
         resources/pylint_pylint
+        resources/typescript_eslint_crockford.config.js
         resources/typescript_eslint_google.config.js
-        resources/typescript_eslint_microsoft.config.js
 )
 
 find_package(

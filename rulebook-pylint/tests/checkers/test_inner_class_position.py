@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
 
+from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
 from ..tests import assert_properties, msg
 
 

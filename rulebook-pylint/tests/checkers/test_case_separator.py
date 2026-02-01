@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import parse
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
 
+from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
 from ..tests import assert_properties, msg
 
 

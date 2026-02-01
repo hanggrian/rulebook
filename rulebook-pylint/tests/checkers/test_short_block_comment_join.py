@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import extract_node, parse
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.short_block_comment_clip import ShortBlockCommentClipChecker
 
+from rulebook_pylint.checkers.short_block_comment_clip import ShortBlockCommentClipChecker
 from ..tests import assert_properties, msg
 
 

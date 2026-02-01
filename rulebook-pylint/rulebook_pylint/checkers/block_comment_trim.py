@@ -1,6 +1,8 @@
-import regex
+from re import Pattern, compile as re
+
 from astroid.nodes import Const, Module, ClassDef, FunctionDef
 from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
 
@@ -12,6 +14,8 @@ class BlockCommentTrimChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-comment-trim"""
     MSG_FIRST: str = 'block.comment.trim.first'
     MSG_LAST: str = 'block.comment.trim.last'
+
+    MULTIPLE_EMPTY_LINES: Pattern = re(r'\n\n\s*$')
 
     name: str = 'block-comment-trim'
     msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_FIRST, MSG_LAST)
@@ -31,7 +35,7 @@ class BlockCommentTrimChecker(RulebookChecker):
             return
         if docstring.value.startswith('\n\n'):
             self.add_message(self.MSG_FIRST, node=docstring, line=docstring.lineno)
-        if regex.search(r'\n\n\s*$', docstring.value):
+        if self.MULTIPLE_EMPTY_LINES.search(docstring.value):
             self.add_message(self.MSG_LAST, node=docstring, line=docstring.end_lineno)
 
 

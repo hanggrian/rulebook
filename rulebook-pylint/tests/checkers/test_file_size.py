@@ -2,8 +2,8 @@ from unittest import main
 
 from astroid import parse
 from pylint.testutils import CheckerTestCase
-from rulebook_pylint.checkers.file_size import FileSizeChecker
 
+from rulebook_pylint.checkers.file_size import FileSizeChecker
 from ..tests import assert_properties, msg
 
 

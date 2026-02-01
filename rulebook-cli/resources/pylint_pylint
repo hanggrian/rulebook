@@ -35,13 +35,14 @@ load-plugins=
   pylint.extensions.set_membership,
   pylint.extensions.code_style,
   pylint.extensions.overlapping_exceptions,
-  pylint.extensions.typing,
   pylint.extensions.redefined_variable_type,
   pylint.extensions.comparison_placement,
   pylint.extensions.broad_try_clause,
   pylint.extensions.dict_init_mutate,
   pylint.extensions.consider_refactoring_into_while_condition,
-  rulebook_pylint.checkers.file_size,
+  pylint.extensions.dict_init_mutate,
+  # Extra
+  pylint.extensions.typing,
   rulebook_pylint.checkers.todo_comment,
   rulebook_pylint.checkers.trailing_comma,
   # Clipping
@@ -49,8 +50,11 @@ load-plugins=
   rulebook_pylint.checkers.short_block_comment_clip,
   # Declaring
   rulebook_pylint.checkers.abstract_class_definition,
+  pylint.extensions.docstyle,
   rulebook_pylint.checkers.exception_inheritance,
-  rulebook_pylint.checkers.string_quotes,
+  pylint.checkers.strings,
+  # Formatting
+  rulebook_pylint.checkers.file_size,
   # Naming
   rulebook_pylint.checkers.class_name_abbreviation,
   rulebook_pylint.checkers.illegal_class_name_suffix,
@@ -221,7 +225,7 @@ ignore-signatures=yes
 [VARIABLES]
 
 # Tells whether we should check for unused import in __init__ files.
-init-import=no
+init-import=yes
 
 # List of additional names supposed to be defined in builtins. Remember that
 # you should avoid defining new builtins when possible.
@@ -584,7 +588,7 @@ never-returning-functions=sys.exit,argparse.parse_error
 
 # This flag controls whether inconsistent-quotes generates a warning when the
 # character used as a quote delimiter is used inconsistently within a module.
-check-quote-consistency=no
+check-quote-consistency=yes
 
 # This flag controls whether the implicit-str-concat should generate a warning
 # on implicit string concatenation in sequences defined over several lines.

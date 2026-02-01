@@ -23,11 +23,11 @@ import com.hanggrian.rulebook.ktlint.rules.IllegalThrowRule
 import com.hanggrian.rulebook.ktlint.rules.IllegalVariableNameRule
 import com.hanggrian.rulebook.ktlint.rules.InfixCallWrapRule
 import com.hanggrian.rulebook.ktlint.rules.InnerClassPositionRule
+import com.hanggrian.rulebook.ktlint.rules.LowercaseFRule
 import com.hanggrian.rulebook.ktlint.rules.MemberOrderRule
 import com.hanggrian.rulebook.ktlint.rules.MissingBlankLineBeforeBlockTagsRule
 import com.hanggrian.rulebook.ktlint.rules.NestedIfElseRule
 import com.hanggrian.rulebook.ktlint.rules.NullEqualityRule
-import com.hanggrian.rulebook.ktlint.rules.NumberSuffixForFloatRule
 import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.PropertyNameInteropRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
@@ -57,7 +57,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { AbstractClassDefinitionRule() },
             RuleProvider { ContractFunctionDefinitionRule() },
             RuleProvider { ExceptionInheritanceRule() },
-            RuleProvider { NumberSuffixForFloatRule() },
+            RuleProvider { LowercaseFRule() },
             // Naming
             RuleProvider { ClassNameAbbreviationRule() },
             RuleProvider { IllegalClassNameSuffixRule() },

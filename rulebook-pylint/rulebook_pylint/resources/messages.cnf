@@ -10,8 +10,6 @@ short.block.comment.clip=Convert into single-line.
 # Declaring
 abstract.class.definition=Omit 'abstract' modifier.
 exception.inheritance=Extend from class 'Exception'.
-string.quotes.single=Use single quotes ''.
-string.quotes.double=Use double quotes \"\".
 # Formatting
 file.size=Reduce file size to '%d'.
 # Naming
@@ -21,8 +19,8 @@ illegal.class.name.suffix.util=Rename utility class to '%s'.
 required.generics.name=Use common generics '%s'.
 # Ordering
 built.in.function.position=Move '%s' to last.
-member.order=Arrange '%s' before '%s'.
 inner.class.position=Move inner class to the bottom.
+member.order=Arrange '%s' before '%s'.
 # Spacing
 case.separator.missing=Add blank line after multiline branch.
 case.separator.unexpected=Remove blank line after single-line branch.
@@ -35,12 +33,12 @@ redundant.default=Omit redundant 'case _' condition.
 unnecessary.switch=Replace 'match' with 'if' condition.
 unnecessary.blank.line.after.colon=Remove blank line after ':'.
 unnecessary.blank.line.before.package=Remove blank line at the beginning.
-# Trapping
-block.comment.trim.first=Remove blank line after '\"\"\"'.
-block.comment.trim.last=Remove blank line before '\"\"\"'.
+# Trimming
+block.comment.trim.first=Remove blank line after '"""'.
+block.comment.trim.last=Remove blank line before '"""'.
 comment.trim=Remove blank line after '#'.
 duplicate.blank.line=Remove consecutive blank line.
-duplicate.blank.line.in.block.comment=Remove consecutive blank line in '\"\"\"'.
+duplicate.blank.line.in.block.comment=Remove consecutive blank line in '"""'.
 duplicate.blank.line.in.comment=Remove consecutive blank line after '#'.
 duplicate.space=Remove consecutive space.
 parentheses.trim.first=Remove blank line after '%s'.

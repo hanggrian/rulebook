@@ -1,15 +1,38 @@
 [default]
 # Clipping
 # Declaring
+lowercase.f=Tag float literal by 'f'.
+uppercase.l=Tag long literal by 'L'.
 # Formatting
 file.size=Reduce file size to '{}'.
 final.newline=Put a blank line at the end of the file.
 indent.style=Indent with '{}' spaces.
 line.length=Code exceeds max line length '{}'.
 # Naming
+class.name.abbreviation=Rename abbreviation to '{}'.
+class.name=Rename class to '{}'.
+identifier.name=Rename identifier to '{}'.
+illegal.class.name.suffix=Avoid meaningless word '{}'.
+illegal.variable.name=Use descriptive name.
+package.name=Rename package to '{}'.
+required.generics.name=Use common generics '{}'.
 # Ordering
+import.order.sort=Arrange directive '{}' before '{}'.
+import.order.join=Remove blank line before directive '{}'.
+inner.class.position=Move inner class to the bottom.
+member.order=Arrange '{}' before '{}'.
 # Spacing
+block.comment.spaces.single.start=Add space after '/**'.
+block.comment.spaces.single.end=Add space before '*/'.
+block.comment.spaces.multi=Add space after '*'.
+block.tag.indentation=Indent block tag description by '4 spaces'.
+case.separator.missing=Add blank line after multiline branch.
+case.separator.unexpected=Remove blank line after single-line branch.
+comment.space=Put one space after '//'.
+member.separator=Add blank line after '{}'.
 # Stating
 unnecessary.switch=Replace 'switch' with 'if' condition.
 # Trimming
+duplicate.blank.line=Remove consecutive blank line.
+duplicate.space=Remove consecutive space.
 # Wrapping
