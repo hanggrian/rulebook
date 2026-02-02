@@ -23,13 +23,14 @@ const rule: TSESLint.RuleModule<string> = {
                     return;
                 }
                 const hasAbstractMember: boolean =
-                    node.body.body.some(member =>
-                        (
-                            ['MethodDefinition', 'PropertyDefinition'].includes(member.type) &&
-                            ('abstract' in member && member.abstract)
-                        ) ||
-                        ['TSAbstractMethodDefinition', 'TSAbstractPropertyDefinition']
-                            .includes(member.type),
+                    node.body.body.some(
+                        member =>
+                            (
+                                ['MethodDefinition', 'PropertyDefinition'].includes(member.type) &&
+                                ('abstract' in member && member.abstract)
+                            ) ||
+                            ['TSAbstractMethodDefinition', 'TSAbstractPropertyDefinition']
+                                .includes(member.type),
                     );
                 if (hasAbstractMember) {
                     return;
@@ -38,7 +39,7 @@ const rule: TSESLint.RuleModule<string> = {
                     node: node,
                     messageId: MSG,
                 });
-            }
+            },
         };
     },
 };

@@ -20,7 +20,7 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
         val funs =
             node
                 .children20
-                .filter { it.elementType == FUN }
+                .filter { it.elementType === FUN }
                 .toList()
 
         // checks for violation

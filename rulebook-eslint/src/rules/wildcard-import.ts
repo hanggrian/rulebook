@@ -20,8 +20,8 @@ const rule: Rule.RuleModule = {
         return {
             ImportDeclaration(node: ImportDeclaration) {
                 const hasWildcard: boolean =
-                    node.specifiers.some(specifier =>
-                        specifier.type === 'ImportNamespaceSpecifier',
+                    node.specifiers.some(
+                        specifier => specifier.type === 'ImportNamespaceSpecifier',
                     );
                 if (!hasWildcard) {
                     return;

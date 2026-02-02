@@ -18,7 +18,7 @@ public class BlockTagIndentationRule : RulebookRule(ID) {
         // find leading whitespace
         val text =
             node
-                .takeIf { it.treeParent.elementType == KDOC_TAG }
+                .takeIf { it.treeParent.elementType === KDOC_TAG }
                 ?.siblingsUntil(KDOC_LEADING_ASTERISK)
                 ?.joinToString("") { it.text }
                 ?.takeIf { it.firstOrNull()?.isWhitespace() ?: false }

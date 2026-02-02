@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.duplicate_blank_line import DuplicateBlankLineChec
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestDuplicateBlankLineChecker(CheckerTestCase):
     CHECKER_CLASS = DuplicateBlankLineChecker
 

@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.unnecessary_blank_line_before_package import \
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestUnnecessaryBlankLineBeforePackageChecker(CheckerTestCase):
     CHECKER_CLASS = UnnecessaryBlankLineBeforePackageChecker
 

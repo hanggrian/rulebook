@@ -19,7 +19,6 @@ class TestRequiredGenericsNameChecker(CheckerTestCase):
     def test_invalid_generic_name(self, mock_report):
         tokens = self._create_template_chain(['template', '<', 'typename', 'X', '>'])
         self.checker.process_token(tokens[0])
-
         mock_report.assert_called_once()
         args, _ = mock_report.call_args
         self.assertEqual(args[0].str, 'X')

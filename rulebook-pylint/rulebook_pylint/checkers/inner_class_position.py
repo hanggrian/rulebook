@@ -1,5 +1,5 @@
 from astroid.nodes import NodeNG, ClassDef, FunctionDef, AssignName, Assign
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -13,7 +13,7 @@ class InnerClassPositionChecker(RulebookChecker):
     MSG: str = 'inner.class.position'
 
     name: str = 'inner-class-position'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # consider only inner class

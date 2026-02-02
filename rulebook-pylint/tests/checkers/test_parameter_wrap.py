@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.parameter_wrap import ParameterWrapChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestParameterWrapChecker(CheckerTestCase):
     CHECKER_CLASS = ParameterWrapChecker
 

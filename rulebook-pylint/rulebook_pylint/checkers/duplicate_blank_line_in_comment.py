@@ -1,6 +1,6 @@
 from tokenize import TokenInfo, COMMENT
 
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_pylint.messages import _Messages
@@ -15,12 +15,12 @@ class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
     MSG: str = 'duplicate.blank.line.in.comment'
 
     name: str = 'duplicate-blank-line-in-comment'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         last_empty_token: TokenInfo | None = None
         # checks for violation
-        for token in [t for t in tokens if t.type == COMMENT and _is_comment_empty(t)]:
+        for token in [t for t in tokens if t.type is COMMENT and _is_comment_empty(t)]:
             if not last_empty_token:
                 last_empty_token = token
                 continue

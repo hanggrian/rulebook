@@ -1,5 +1,5 @@
 {
-  "script": "rulebook-cppcheck/rulebook_cppcheck/checkset.py",
+  "script": "rulebook-cppcheck/rulebook_cppcheck/check_set.py",
   "args": [
     "--indent-size=2",
     "--max-line-length=80"

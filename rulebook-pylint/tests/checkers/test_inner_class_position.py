@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChec
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestInnerClassPositionChecker(CheckerTestCase):
     CHECKER_CLASS = InnerClassPositionChecker
 

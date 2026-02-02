@@ -56,12 +56,12 @@ public class ShortBlockCommentClipRule :
             node
                 .takeIf { it.isMultiline() }
                 ?.children20
-                ?.singleOrNull { it.elementType == KDOC_SECTION }
+                ?.singleOrNull { it.elementType === KDOC_SECTION }
                 ?.takeUnless { KDOC_TAG in it || WHITE_SPACE in it }
                 ?.children20
                 ?.filter {
-                    it.elementType == KDOC_TEXT ||
-                        it.elementType == KDOC_MARKDOWN_INLINE_LINK
+                    it.elementType === KDOC_TEXT ||
+                        it.elementType === KDOC_MARKDOWN_INLINE_LINK
                 } ?: return
 
         // checks for violation
@@ -80,7 +80,7 @@ public class ShortBlockCommentClipRule :
             var current = this
             while (!current.isRoot20) {
                 current = current.treeParent
-                if (current.elementType == CLASS_BODY) {
+                if (current.elementType === CLASS_BODY) {
                     result++
                 }
             }

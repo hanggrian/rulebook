@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.abstract_class_definition import AbstractClassDefi
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestAbstractClassDefinitionChecker(CheckerTestCase):
     CHECKER_CLASS = AbstractClassDefinitionChecker
 

@@ -1,4 +1,4 @@
-from re import DOTALL, Pattern, finditer, compile as re_compile
+from re import DOTALL, Pattern, finditer, compile as re_compile, Match
 from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
@@ -25,14 +25,13 @@ class BlockTagIndentationChecker(RulebookFileChecker):
             start_line: int = content.count('\n', 0, match.start()) + 1
             lines: list[str] = comment_text.splitlines()
             in_block_tag: bool = False
-            for i in range(len(lines)):
-                line = lines[i]
+            for i, line in enumerate(lines):
                 if self.BLOCK_TAG.search(line):
                     in_block_tag = True
                     continue
                 if not in_block_tag:
                     continue
-                stripped = line.strip()
+                stripped: str = line.strip()
                 if not stripped or stripped == '*' or stripped == '*/':
                     in_block_tag = False
                     continue
@@ -40,14 +39,10 @@ class BlockTagIndentationChecker(RulebookFileChecker):
                     in_block_tag = True
                     continue
 
-                match_indent = self.CONTINUATION_LINE.match(line)
+                match_indent: Match | None = self.CONTINUATION_LINE.match(line)
                 if not match_indent:
                     continue
-                indent_size = len(match_indent.group(1))
+                indent_size: int = len(match_indent.group(1))
                 if indent_size == 5:
                     continue
-                self.report_error(
-                    token,
-                    _Messages.get(self.MSG),
-                    line=start_line + i,
-                )
+                self.report_error(token, _Messages.get(self.MSG), start_line + i)

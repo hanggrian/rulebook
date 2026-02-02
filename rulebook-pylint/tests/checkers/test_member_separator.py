@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestMemberSeparatorChecker(CheckerTestCase):
     CHECKER_CLASS = MemberSeparatorChecker
 

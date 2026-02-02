@@ -26,11 +26,11 @@ class ImportOrderChecker(RulebookFileChecker):
 
         for lineno, line in enumerate(content.splitlines(), 1):
             # distinguish between bracket and quote imports
-            match: Match[str] | None = self.INCLUDE_REGEX.search(line.strip())
+            match: Match | None = self.INCLUDE_REGEX.search(line.strip())
             if not match:
                 continue
-            is_quoted = match.group(1) == '"'
-            path = match.group(2).strip()
+            is_quoted: bool = match.group(1) == '"'
+            path: str = match.group(2).strip()
 
             # checks for violation
             if prev_lineno is not None:

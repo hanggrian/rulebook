@@ -1,5 +1,5 @@
 from astroid.nodes import NodeNG, FunctionDef
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -31,7 +31,7 @@ class BuiltInFunctionPositionChecker(RulebookChecker):
     )
 
     name: str = 'built-in-function-position'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
         # target special function

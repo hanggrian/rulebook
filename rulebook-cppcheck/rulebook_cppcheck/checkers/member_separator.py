@@ -2,6 +2,7 @@ from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.nodes import _next_sibling
 
 try:
     from cppcheckdata import Scope, Token
@@ -22,38 +23,45 @@ class MemberSeparatorChecker(RulebookChecker):
     def visit_scope(self, scope: Scope) -> None:
         # get member end token
         members: list[tuple[Token, Token, bool]] = []
-        curr: Token | None = scope.bodyStart.next
-        while curr and curr is not scope.bodyEnd:
-            if curr.scope is scope and (curr.variable or curr.function):
-                is_var: bool = curr.variable is not None
-                start_token: Token = curr
-                end_token: Token = curr
-                if not is_var and curr.function and curr.function.tokenDef:
-                    search: Token | None = curr.function.tokenDef
-                    while search and search.str not in ('{', ';') and search is not scope.bodyEnd:
-                        search = search.next
+        curr_token: Token | None = scope.bodyStart.next
+        while curr_token and curr_token is not scope.bodyEnd:
+            if curr_token.scope is scope and (curr_token.variable or curr_token.function):
+                is_var: bool = curr_token.variable is not None
+                start_token: Token = curr_token
+                end_token: Token = curr_token
+                if not is_var and curr_token.function and curr_token.function.tokenDef:
+                    search = \
+                        _next_sibling(
+                            curr_token.function.tokenDef,
+                            lambda t: t.str in {'{', ';'} or t is scope.bodyEnd,
+                        )
                     if search and search.str == '{' and search.link:
                         end_token = search.link
                     elif search and search.str == ';':
                         end_token = search
                 else:
-                    search: Token | None = curr
-                    while search and search.str != ';' and search.next and search.next.scope is scope:
-                        search = search.next
-                    if search and search.str == ';':
+                    search = \
+                        _next_sibling(
+                            curr_token,
+                            lambda t: \
+                                t.str == ';' or \
+                                not t.next or \
+                                t.next.scope is not scope,
+                        )
+                    if search:
                         end_token = search
                 members.append((start_token, end_token, is_var))
-                curr = end_token.next
+                curr_token = end_token.next
                 continue
-            curr = curr.next
+            curr_token = curr_token.next
 
         # checks for violation
         for i in range(1, len(members)):
             prev_start, prev_end, prev_is_var = members[i - 1]
-            curr_start, _, curr_is_var = members[i]
+            current_start, _, curr_is_var = members[i]
             if prev_is_var and curr_is_var:
                 continue
-            if curr_start.linenr - prev_end.linenr >= 2:
+            if current_start.linenr - prev_end.linenr >= 2:
                 continue
             key: str = 'property' if prev_is_var else 'function'
             if not prev_is_var and prev_start.str == scope.className:

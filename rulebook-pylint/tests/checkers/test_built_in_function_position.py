@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.built_in_function_position import BuiltInFunctionP
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestBuiltInFunctionPositionChecker(CheckerTestCase):
     CHECKER_CLASS = BuiltInFunctionPositionChecker
 

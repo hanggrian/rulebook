@@ -28,6 +28,7 @@ class TestPackageNameChecker(CheckerTestCase):
                 {'className': 'UIHandler'},
             ]),
         )
+        mock_report.assert_called()
         self.assertEqual(mock_report.call_count, 3)
         calls = mock_report.call_args_list
         self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG, 'my_namespace'))

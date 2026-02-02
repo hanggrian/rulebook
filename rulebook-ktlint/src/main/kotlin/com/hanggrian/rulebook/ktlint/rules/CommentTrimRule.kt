@@ -19,13 +19,13 @@ public class CommentTrimRule : RulebookRule(ID) {
             .treePrev
             .takeUnless {
                 it?.isWhitespaceSingleLine() == true &&
-                    it.treePrev?.elementType == EOL_COMMENT
+                    it.treePrev?.elementType === EOL_COMMENT
             } ?: return
 
         // iterate to find last
         var current = node
         while (current.treeNext?.isWhitespaceSingleLine() == true &&
-            current.treeNext?.treeNext?.elementType == EOL_COMMENT
+            current.treeNext?.treeNext?.elementType === EOL_COMMENT
         ) {
             current = current.treeNext.treeNext
         }

@@ -36,7 +36,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
         val kdocText =
             node
                 .lastChildNode
-                ?.takeIf { it.elementType == KDOC_TEXT && it.text.isNotBlank() }
+                ?.takeIf { it.elementType === KDOC_TEXT && it.text.isNotBlank() }
                 ?: return
 
         // checks for violation

@@ -19,5 +19,6 @@ class UppercaseLChecker(RulebookTokenChecker):
         # checks for violation
         if not token.isNumber:
             return
-        if 'l' in token.str:
-            self.report_error(token, _Messages.get(self.MSG))
+        if 'l' not in token.str:
+            return
+        self.report_error(token, _Messages.get(self.MSG))

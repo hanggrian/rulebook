@@ -1,5 +1,5 @@
 from astroid.nodes import Const, Module, ClassDef, FunctionDef
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -13,7 +13,7 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookChecker):
     MSG: str = 'duplicate.blank.line.in.block.comment'
 
     name: str = 'duplicate-blank-line-in-block-comment'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def visit_module(self, node: Module) -> None:
         self._process(node.doc_node)

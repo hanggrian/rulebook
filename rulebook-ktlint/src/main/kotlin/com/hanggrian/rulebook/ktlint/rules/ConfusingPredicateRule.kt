@@ -61,7 +61,7 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
             ?.findChildByType(OPERATION_REFERENCE)
             ?.firstChildNode
             ?.elementType
-            ?.takeIf { it == EXCLEQ || it == EXCL || it == NOT_IS }
+            ?.takeIf { it === EXCLEQ || it === EXCL || it === NOT_IS }
             ?: return
         emit(node.startOffset, Messages[msg, functionReplacement], false)
     }

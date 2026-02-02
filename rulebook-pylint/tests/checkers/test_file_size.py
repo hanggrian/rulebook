@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.file_size import FileSizeChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestFileSizeChecker(CheckerTestCase):
     CHECKER_CLASS = FileSizeChecker
     CHECKER_CLASS.options[0][1]['default'] = 3

@@ -34,13 +34,13 @@ public class NestedIfElseRule : RulebookRule(ID) {
         val block =
             node.takeUnless { it.treeParent.isTryCatch() }
                 ?: node.parent {
-                    it.elementType == BLOCK &&
+                    it.elementType === BLOCK &&
                         !it.treeParent.isTryCatch() &&
                         TRY in it
                 } ?: return
         block
             .takeUnless {
-                it.treeParent.elementType == THEN ||
+                it.treeParent.elementType === THEN ||
                     it.isPartOf(CLASS_INITIALIZER)
             } ?: return
 
@@ -48,13 +48,13 @@ public class NestedIfElseRule : RulebookRule(ID) {
         var `if`: ASTNode? = null
         for (child in node.children20.asIterable().reversed()) {
             when {
-                child.elementType == IF -> {
+                child.elementType === IF -> {
                     `if` = child
                     break
                 }
 
-                child.elementType == WHITE_SPACE ||
-                    child.elementType == RBRACE ||
+                child.elementType === WHITE_SPACE ||
+                    child.elementType === RBRACE ||
                     child.isComment() -> continue
             }
             return
@@ -88,11 +88,11 @@ public class NestedIfElseRule : RulebookRule(ID) {
                 ?.children20
                 .orEmpty()
                 .filterNot {
-                    it.elementType == LBRACE ||
-                        it.elementType == RBRACE ||
+                    it.elementType === LBRACE ||
+                        it.elementType === RBRACE ||
                         it.isWhiteSpace20
                 }.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
 
-        private fun ASTNode.isTryCatch() = elementType == TRY || elementType == CATCH
+        private fun ASTNode.isTryCatch() = elementType === TRY || elementType === CATCH
     }
 }

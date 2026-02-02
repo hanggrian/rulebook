@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.class_name_abbreviation import ClassNameAbbreviati
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestClassNameAbbreviationChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameAbbreviationChecker
 

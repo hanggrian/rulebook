@@ -20,7 +20,7 @@ public class BlockTagOrderRule : RulebookRule(ID) {
         val kdocTags =
             node
                 .children20
-                .filter { it.elementType == KDOC_SECTION }
+                .filter { it.elementType === KDOC_SECTION }
                 .mapNotNull { it.findChildByType(KDOC_TAG) }
                 .toList()
 

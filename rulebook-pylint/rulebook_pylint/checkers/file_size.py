@@ -1,5 +1,5 @@
 from astroid.nodes import Module
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
+from pylint.typing import TYPE_CHECKING, Options
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.messages import _Messages
@@ -13,7 +13,7 @@ class FileSizeChecker(RulebookFileChecker):
     MSG: str = 'file.size'
 
     name: str = 'file-size'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
     options: Options = (
         (
             'rulebook-max-file-size',

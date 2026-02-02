@@ -2,6 +2,7 @@ from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.nodes import _next_sibling
 
 try:
     from cppcheckdata import Scope, Token
@@ -23,18 +24,18 @@ class CaseSeparatorChecker(RulebookChecker):
     def visit_scope(self, scope: Scope) -> None:
         # collect cases
         groups: list[list[Token]] = []
-        curr: Token | None = scope.bodyStart.next
-        while curr and curr is not scope.bodyEnd:
-            if curr.str in ('case', 'default'):
-                group: list[Token] = [curr]
-                temp: Token | None = curr.next
-                while temp and temp is not scope.bodyEnd and temp.str not in ('case', 'default'):
-                    group.append(temp)
-                    temp = temp.next
-                groups.append(group)
-                curr = temp
+        curr_token: Token | None = scope.bodyStart.next
+        while curr_token and curr_token is not scope.bodyEnd:
+            if curr_token.str in {'case', 'default'}:
+                temp: Token | None = \
+                    _next_sibling(
+                        curr_token.next,
+                        lambda t: t is not scope.bodyEnd and t.str not in {'case', 'default'},
+                    )
+                groups.append([curr_token, temp])
+                curr_token = temp
                 continue
-            curr = curr.next
+            curr_token = curr_token.next
 
         # checks for violation
         if not groups:

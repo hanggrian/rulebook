@@ -27,9 +27,9 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
             set(args[self.ARG_ILLEGAL_VARIABLE_NAMES].split(','))
 
     def process_token(self, token: Token) -> None:
-        if token.variable and token == token.variable.nameToken:
+        if token.variable and token is token.variable.nameToken:
             self._process(token)
-        if token.function and token == token.function.tokenDef:
+        if token.function and token is token.function.tokenDef:
             self._process(token)
 
     def _process(self, token: Token) -> None:

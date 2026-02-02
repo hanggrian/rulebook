@@ -71,7 +71,7 @@ describe('ChainCallWrapTest', () => {
         ),
     );
 
-    it('Inconsistent dot position', () =>
+    it('Skip if all dots are in one line', () =>
         assertThat(
             `
             function foo() {
@@ -81,20 +81,18 @@ describe('ChainCallWrapTest', () => {
             }
 
             function bar() {
-                new Baz().baz()
-                    .baz();
+                new Baz(0).baz(0).baz(
+                    1
+                );
             }
 
             class Baz {
-                baz() {
+                baz(qux) {
                     return this;
                 }
             }
             `,
-        ).hasErrorMessages(
-            messages.get(MSG_MISSING),
-            messages.get(MSG_MISSING),
-        ),
+        ).hasNoError(),
     );
 
     it('Also capture non-method call', () =>

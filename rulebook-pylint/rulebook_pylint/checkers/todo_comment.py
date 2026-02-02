@@ -1,7 +1,7 @@
 from codecs import decode
 
 from astroid.nodes import Module
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 from regex import Pattern, Match, IGNORECASE, compile as regex
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
@@ -11,7 +11,6 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-# pylint: disable=todo-comment-keyword,todo-comment-separator
 class TodoCommentChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#todo-comment"""
     MSG_KEYWORD: str = 'todo.comment.keyword'
@@ -21,7 +20,7 @@ class TodoCommentChecker(RulebookFileChecker):
     SEPARATOR_REGEX: Pattern = regex(r'\b(todo|fixme)\S', IGNORECASE)
 
     name: str = 'todo-comment'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_KEYWORD, MSG_SEPARATOR)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_KEYWORD, MSG_SEPARATOR)
 
     def process_module(self, node: Module) -> None:
         with node.stream() as stream:

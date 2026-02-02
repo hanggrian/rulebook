@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.nested_if_else import NestedIfElseChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestNestedIfElseChecker(CheckerTestCase):
     CHECKER_CLASS = NestedIfElseChecker
 

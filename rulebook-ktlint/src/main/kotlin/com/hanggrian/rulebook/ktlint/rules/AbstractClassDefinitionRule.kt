@@ -37,7 +37,7 @@ public class AbstractClassDefinitionRule : RulebookRule(ID) {
                         ?.children20
                         .orEmpty()
                         .none {
-                            (it.elementType == FUN || it.elementType == PROPERTY) &&
+                            (it.elementType === FUN || it.elementType === PROPERTY) &&
                                 it.hasModifier(ABSTRACT_KEYWORD)
                         }
             } ?: return

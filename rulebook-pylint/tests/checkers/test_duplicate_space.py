@@ -6,6 +6,7 @@ from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestDuplicateSpaceChecker(CheckerTestCase):
     CHECKER_CLASS = DuplicateSpaceChecker
 

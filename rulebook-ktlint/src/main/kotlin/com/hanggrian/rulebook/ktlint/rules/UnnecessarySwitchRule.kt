@@ -20,7 +20,7 @@ public class UnnecessarySwitchRule : RulebookRule(ID) {
         val whenEntry =
             node
                 .children20
-                .singleOrNull { it.elementType == WHEN_ENTRY }
+                .singleOrNull { it.elementType === WHEN_ENTRY }
                 ?: return
 
         // checks for violation

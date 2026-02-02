@@ -1,8 +1,6 @@
 from configparser import ConfigParser
 from os.path import join, dirname
 
-from pylint.typing import MessageDefinitionTuple
-
 
 class _Messages:
     FILENAME: str = 'resources/messages.cnf'
@@ -17,8 +15,8 @@ class _Messages:
         return _Messages.parser.get('default', key)
 
     @staticmethod
-    def of(*keys: str) -> dict[str, MessageDefinitionTuple]:
-        result: dict[str, MessageDefinitionTuple] = {}
+    def of(*keys: str) -> dict[str, tuple[str, str, str]]:
+        result: dict[str, tuple[str, str, str]] = {}
         key: str
         for key in keys:
             _Messages.counter = _Messages.counter + 1

@@ -38,5 +38,6 @@ class LineLengthChecker(RulebookTokenChecker):
             for i, line in enumerate(f, 1):
                 if i != line_nr:
                     continue
-                if len(line.rstrip('\r\n')) > self._max_line_length:
-                    self.report_error(token, _Messages.get(self.MSG, self._max_line_length))
+                if len(line.rstrip('\r\n')) <= self._max_line_length:
+                    continue
+                self.report_error(token, _Messages.get(self.MSG, self._max_line_length))

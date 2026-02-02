@@ -40,6 +40,6 @@ public class MissingBlankLineBeforeBlockTagsRule : RulebookRule(ID) {
         private const val MSG = "missing.blank.line.before.block.tags"
 
         private val ASTNode.prevKdocLeadingAsterisk
-            get() = prevSibling { it.elementType == KDOC_LEADING_ASTERISK }
+            get() = prevSibling { it.elementType === KDOC_LEADING_ASTERISK }
     }
 }

@@ -1,6 +1,7 @@
+from collections.abc import Generator, Iterator
 from contextlib import contextmanager
 from os.path import join, dirname
-from typing import Any, Iterator, Generator
+from typing import Any
 from unittest import main
 
 from astroid import parse
@@ -107,21 +108,16 @@ class TestAllCheckers:
             msg(TrailingCommaChecker.MSG_MULTI, (160, 73)),
             msg(TrailingCommaChecker.MSG_MULTI, (165, 62)),
             msg(TrailingCommaChecker.MSG_MULTI, (178, 58)),
-            msg(TrailingCommaChecker.MSG_MULTI, (241, 44)),
             msg(TrailingCommaChecker.MSG_MULTI, (250, 54)),
             msg(TrailingCommaChecker.MSG_MULTI, (272, 46)),
             msg(TrailingCommaChecker.MSG_MULTI, (275, 50)),
             msg(TrailingCommaChecker.MSG_MULTI, (318, 87)),
             msg(TrailingCommaChecker.MSG_MULTI, (370, 53)),
             msg(TrailingCommaChecker.MSG_MULTI, (376, 51)),
-            msg(TrailingCommaChecker.MSG_MULTI, (384, 39)),
             msg(TrailingCommaChecker.MSG_MULTI, (385, 13)),
             msg(TrailingCommaChecker.MSG_MULTI, (398, 67)),
             msg(TrailingCommaChecker.MSG_MULTI, (417, 3)),
-            msg(TrailingCommaChecker.MSG_MULTI, (435, 73)),
-            msg(TrailingCommaChecker.MSG_MULTI, (438, 83)),
             msg(TrailingCommaChecker.MSG_MULTI, (460, 24)),
-            msg(TrailingCommaChecker.MSG_MULTI, (481, 76)),
         ):
             for checker in self.checkers:
                 self._assert_tokens(checker, tokens)
@@ -138,7 +134,8 @@ class TestAllCheckers:
             tokens = _tokenize_str(s)
         with self.assertAddsMessages(
             msg(
-                ShortBlockCommentClipChecker.MSG, (73, 8, 75, 11),
+                ShortBlockCommentClipChecker.MSG,
+                (73, 8, 75, 11),
                 node_all.body[14].body[3].doc_node,
             ),
             msg(TrailingCommaChecker.MSG_MULTI, (57, 61)),
@@ -286,6 +283,61 @@ class TestAllCheckers:
                 self._assert_tokens(checker, tokens)
                 self._assert_all(checker, node_all)
 
+    def setup_method(self) -> None:
+        """:func:`~pylint.testutils.checker_test_case.CheckerTestCase.setup_method`"""
+        self.linter = UnittestLinter()
+        self.checkers = [c(self.linter) for c in self.CHECKER_CLASSES]
+        for checker in self.checkers:
+            for key, value in self.CONFIG.items():
+                setattr(checker.linter.before_run, key, value)
+            checker.open()
+
+    def walk(self, node: NodeNG) -> None:
+        """:func:`~pylint.testutils.checker_test_case.CheckerTestCase.walk`"""
+        walker = ASTWalker(linter)
+        for checker in self.checkers:
+            walker.add_checker(checker)
+        walker.walk(node)
+
+    @contextmanager
+    def assertNoMessages(self) -> Iterator[None]:
+        """:func:`~pylint.testutils.checker_test_case.CheckerTestCase.assertNoMessages`"""
+        with self.assertAddsMessages():
+            yield
+
+    @contextmanager
+    def assertAddsMessages(
+        self,
+        *messages: MessageTest,
+        ignore_position: bool = False,
+    ) -> Generator[None]:
+        """:func:`~pylint.testutils.checker_test_case.CheckerTestCase.assertAddsMessages`"""
+        yield
+        got = self.linter.release_messages()
+        no_msg = 'No message.'
+        expected = '\n'.join(repr(m) for m in messages) or no_msg
+        got_str = '\n'.join(repr(m) for m in got) or no_msg
+        message = \
+            'Expected messages did not match actual.\n\n' + \
+            f'Expected:\n{expected}\n\nGot:\n{got_str}\n'
+
+        assert len(messages) == len(got), message
+
+        for expected_msg, gotten_msg in zip(messages, got):
+            assert expected_msg.msg_id == gotten_msg.msg_id, message
+            assert expected_msg.node == gotten_msg.node, message
+            assert expected_msg.args == gotten_msg.args, message
+            assert expected_msg.confidence == gotten_msg.confidence, message
+
+            if ignore_position:
+                # Do not check for line, col_offset etc...
+                continue
+
+            assert expected_msg.line == gotten_msg.line, message
+            assert expected_msg.col_offset == gotten_msg.col_offset, message
+            assert expected_msg.end_line == gotten_msg.end_line, message
+            assert expected_msg.end_col_offset == gotten_msg.end_col_offset, message
+
     @staticmethod
     def _assert_tokens(checker, tokens):
         if hasattr(checker, 'process_tokens'):
@@ -317,65 +369,10 @@ class TestAllCheckers:
                     checker.visit_call(n)
                 checker.visit_for(n)
                 TestAllCheckers._assert_all(checker, n)
-            if hasattr(checker, 'visit_while') and isinstance(n, While):
-                checker.visit_while(n)
-                TestAllCheckers._assert_all(checker, n)
-
-    def setup_method(self) -> None:
-        """:func:`~pylint.testutils.checker_test_case.CheckerTestCase.setup_method`"""
-        self.linter = UnittestLinter()
-        self.checkers = [c(self.linter) for c in self.CHECKER_CLASSES]
-        for checker in self.checkers:
-            for key, value in self.CONFIG.items():
-                setattr(checker.linter.before_run, key, value)
-            checker.open()
-
-    @contextmanager
-    def assertNoMessages(self) -> Iterator[None]:
-        """:func:`~pylint.testutils.checker_test_case.CheckerTestCase.assertNoMessages`"""
-        with self.assertAddsMessages():
-            yield
-
-    @contextmanager
-    def assertAddsMessages(
-        self,
-        *messages: MessageTest,
-        ignore_position: bool = False,
-    ) -> Generator[None]:
-        """:func:`~pylint.testutils.checker_test_case.CheckerTestCase.assertAddsMessages`"""
-        yield
-        got = self.linter.release_messages()
-        no_msg = "No message."
-        expected = "\n".join(repr(m) for m in messages) or no_msg
-        got_str = "\n".join(repr(m) for m in got) or no_msg
-        msg = (
-            "Expected messages did not match actual.\n"
-            f"\nExpected:\n{expected}\n\nGot:\n{got_str}\n"
-        )
-
-        assert len(messages) == len(got), msg
-
-        for expected_msg, gotten_msg in zip(messages, got):
-            assert expected_msg.msg_id == gotten_msg.msg_id, msg
-            assert expected_msg.node == gotten_msg.node, msg
-            assert expected_msg.args == gotten_msg.args, msg
-            assert expected_msg.confidence == gotten_msg.confidence, msg
-
-            if ignore_position:
-                # Do not check for line, col_offset etc...
+            if not hasattr(checker, 'visit_while') or not isinstance(n, While):
                 continue
-
-            assert expected_msg.line == gotten_msg.line, msg
-            assert expected_msg.col_offset == gotten_msg.col_offset, msg
-            assert expected_msg.end_line == gotten_msg.end_line, msg
-            assert expected_msg.end_col_offset == gotten_msg.end_col_offset, msg
-
-    def walk(self, node: NodeNG) -> None:
-        """:func:`~pylint.testutils.checker_test_case.CheckerTestCase.walk`"""
-        walker = ASTWalker(linter)
-        for checker in self.checkers:
-            walker.add_checker(checker)
-        walker.walk(node)
+            checker.visit_while(n)
+            TestAllCheckers._assert_all(checker, n)
 
 
 if __name__ == '__main__':

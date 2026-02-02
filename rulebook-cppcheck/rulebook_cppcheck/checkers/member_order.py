@@ -38,11 +38,11 @@ class MemberOrderChecker(RulebookTokenChecker):
         self._static_position = self._member_order.index('static')
 
     def _get_member_info(self, token: Token, scope: Scope) -> tuple[int, str] | None:
-        if token.scope != scope:
+        if token.scope is not scope:
             return None
         if token.function:
             func: Function = token.function
-            if token != func.tokenDef:
+            if token is not func.tokenDef:
                 return None
             if func.isStatic:
                 return self._static_position, 'static member'
@@ -51,7 +51,7 @@ class MemberOrderChecker(RulebookTokenChecker):
             return self._function_position, 'function'
         if token.variable:
             var: Variable = token.variable
-            if token != var.nameToken:
+            if token is not var.nameToken:
                 return None
             if var.isStatic:
                 return self._static_position, 'static member'
@@ -62,19 +62,19 @@ class MemberOrderChecker(RulebookTokenChecker):
     def process_token(self, token: Token) -> None:
         if not token.scope or token.scope.type not in ('Class', 'Struct'):
             return
-        if token != token.scope.bodyStart:
+        if token is not token.scope.bodyStart:
             return
 
         # checks for violation
         prev_weight: int | None = None
         prev_name: str | None = None
-        curr: Token = token.next
-        while curr and curr != token.scope.bodyEnd:
-            info: tuple[int, str] | None = self._get_member_info(curr, token.scope)
+        curr_token: Token | None = token.next
+        while curr_token and curr_token is not token.scope.bodyEnd:
+            info: tuple[int, str] | None = self._get_member_info(curr_token, token.scope)
             if info:
                 curr_weight, curr_name = info
                 if prev_weight is not None and curr_weight < prev_weight:
-                    self.report_error(curr, _Messages.get(self.MSG, curr_name, prev_name))
+                    self.report_error(curr_token, _Messages.get(self.MSG, curr_name, prev_name))
                 prev_weight = curr_weight
                 prev_name = curr_name
-            curr = curr.next
+            curr_token = curr_token.next

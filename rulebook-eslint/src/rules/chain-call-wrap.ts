@@ -36,18 +36,18 @@ const rule: Rule.RuleModule = {
                 }
 
                 // single call is by definition not chained
-                const dots = [];
+                const dots: Token[] = [];
                 let current: Rule.Node | Expression | Super | null = node;
                 while (current) {
-                    let object: Expression | Super | null = null;
+                    let obj: Expression | Super | null = null;
                     let dot: Token | null = null;
                     if (current.type === 'CallExpression' &&
                         current.callee.type === 'MemberExpression'
                     ) {
-                        object = current.callee.object;
+                        obj = current.callee.object;
                         dot = context.sourceCode.getTokenBefore(current.callee.property);
                     } else if (current.type === 'MemberExpression') {
-                        object = current.object;
+                        obj = current.object;
                         dot = context.sourceCode.getTokenBefore(current.property);
                     }
 
@@ -55,9 +55,10 @@ const rule: Rule.RuleModule = {
                         dots.push(dot);
                     }
 
-                    current = object;
+                    current = obj;
                 }
-                if (dots.length < 2) {
+                if (dots.length < 2 ||
+                    dots.every(dot => dot.loc.start.line === dots[0].loc.start.line)) {
                     return;
                 }
 

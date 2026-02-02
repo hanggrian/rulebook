@@ -2,9 +2,9 @@
  * Function description
  *
  * @param p Parameter
- *   description
+ *   description.
  * @return Return
- *       description
+ *       description.
  */
 void foo(int p) {}
 
@@ -12,8 +12,8 @@ void foo(int p) {}
  * Function description
  *
  * @param p Parameter
- *   description
+ *   description.
  * @return Return
- *       description
+ *       description.
  */
 void var(int p) {}

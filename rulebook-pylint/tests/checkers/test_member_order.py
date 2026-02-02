@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.member_order import MemberOrderChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestMemberOrderChecker(CheckerTestCase):
     CHECKER_CLASS = MemberOrderChecker
 

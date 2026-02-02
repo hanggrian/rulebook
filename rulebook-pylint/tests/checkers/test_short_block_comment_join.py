@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.short_block_comment_clip import ShortBlockCommentC
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestShortBlockCommentClipChecker(CheckerTestCase):
     CHECKER_CLASS = ShortBlockCommentClipChecker
 

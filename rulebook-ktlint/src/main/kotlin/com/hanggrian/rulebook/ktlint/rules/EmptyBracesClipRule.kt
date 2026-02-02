@@ -30,11 +30,11 @@ public class EmptyBracesClipRule : RulebookRule(ID) {
         node
             .treeParent
             .takeUnless {
-                it.elementType == TRY ||
-                    it.elementType == CATCH ||
-                    it.elementType == THEN ||
-                    it.elementType == ELSE ||
-                    (it.elementType == BODY && it.treeParent.elementType == DO_WHILE)
+                it.elementType === TRY ||
+                    it.elementType === CATCH ||
+                    it.elementType === THEN ||
+                    it.elementType === ELSE ||
+                    (it.elementType === BODY && it.treeParent.elementType === DO_WHILE)
             } ?: return
 
         // obtain corresponding braces
@@ -44,12 +44,12 @@ public class EmptyBracesClipRule : RulebookRule(ID) {
         val lbrace =
             node
                 .firstChildNode
-                .takeIf { it.elementType == LBRACE }
+                .takeIf { it.elementType === LBRACE }
                 ?: return
         val rbrace =
             node
                 .lastChildNode
-                .takeIf { it.elementType == RBRACE }
+                .takeIf { it.elementType === RBRACE }
                 ?: return
 
         // checks for violation

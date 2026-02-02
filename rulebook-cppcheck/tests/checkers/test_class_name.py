@@ -30,6 +30,7 @@ class TestClassNameChecker(CheckerTestCase):
                 {'type': 'Class', 'className': 'xmlParser'},
             ]),
         )
+        mock_report.assert_called()
         self.assertEqual(mock_report.call_count, 5)
         calls = mock_report.call_args_list
         self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG, 'MyClass'))

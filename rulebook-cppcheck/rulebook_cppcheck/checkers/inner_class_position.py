@@ -18,28 +18,29 @@ class InnerClassPositionChecker(RulebookTokenChecker):
     def process_token(self, token: Token) -> None:
         if not token.scope or token.scope.type not in ('Class', 'Struct'):
             return
-        if token != token.scope.bodyStart:
+        if token is not token.scope.bodyStart:
             return
         current_class_scope: Scope = token.scope
         has_seen_inner_class: bool = False
-        curr: Token = token.next
-        while curr and curr != current_class_scope.bodyEnd:
-            if curr.str in {'class', 'struct'} and curr.next:
-                if curr.next.typeScope and curr.next.typeScope.nestedIn == current_class_scope:
+        curr_token: Token | None = token.next
+        while curr_token and curr_token is not current_class_scope.bodyEnd:
+            if curr_token.str in {'class', 'struct'} and curr_token.next:
+                if curr_token.next.typeScope and \
+                    curr_token.next.typeScope.nestedIn is current_class_scope:
                     has_seen_inner_class = True
             if has_seen_inner_class:
                 # checks for violation
-                if self._is_member(curr, current_class_scope):
-                    self.report_error(curr, _Messages.get(self.MSG))
+                if self._is_member(curr_token, current_class_scope):
+                    self.report_error(curr_token, _Messages.get(self.MSG))
                     return
-            curr = curr.next
+            curr_token = curr_token.next
 
     @staticmethod
     def _is_member(token: Token, scope: Scope) -> bool:
-        if token.scope != scope:
+        if token.scope is not scope:
             return False
-        if token.function and token == token.function.tokenDef:
+        if token.function and token is token.function.tokenDef:
             return True
-        if token.variable and token == token.variable.nameToken:
+        if token.variable and token is token.variable.nameToken:
             return True
         return False

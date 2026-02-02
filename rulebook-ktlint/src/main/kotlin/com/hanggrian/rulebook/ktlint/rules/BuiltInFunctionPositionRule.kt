@@ -22,7 +22,7 @@ public class BuiltInFunctionPositionRule : RulebookRule(ID) {
         val funs =
             node
                 .children20
-                .filter { it.elementType == FUN }
+                .filter { it.elementType === FUN }
                 .toList()
 
         for ((i, `fun`) in funs.withIndex()) {

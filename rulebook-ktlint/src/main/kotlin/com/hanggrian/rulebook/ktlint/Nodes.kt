@@ -30,7 +30,7 @@ internal fun ASTNode.lastLeaf(): ASTNode {
 /** Collect sibling nodes until child node is found. */
 internal fun ASTNode.siblingsUntil(type: IElementType): Sequence<ASTNode> =
     generateSequence(treeNext) { it.treeNext }
-        .takeWhile { it.elementType != type }
+        .takeWhile { it.elementType !== type }
 
 /** Returns true if child node can be found in parent node. */
 internal operator fun ASTNode.contains(type: IElementType): Boolean = findChildByType(type) != null
@@ -49,16 +49,16 @@ internal fun ASTNode.isMultiline(): Boolean =
 
 /** Returns true if this node is of any comment type. */
 internal fun ASTNode.isComment(): Boolean =
-    elementType == EOL_COMMENT || elementType == BLOCK_COMMENT || elementType == KDOC
+    elementType === EOL_COMMENT || elementType === BLOCK_COMMENT || elementType === KDOC
 
 /** Returns true if this node is whitespace with single blank line. */
 internal fun ASTNode.isWhitespaceSingleLine(): Boolean =
-    elementType == WHITE_SPACE && text.count { it == '\n' } == 1
+    elementType === WHITE_SPACE && text.count { it == '\n' } == 1
 
 /** Returns true if this node is whitespace with multiple blank lines. */
 internal fun ASTNode.isWhitespaceMultiline(): Boolean =
-    elementType == WHITE_SPACE && text.count { it == '\n' } > 1
+    elementType === WHITE_SPACE && text.count { it == '\n' } > 1
 
 /** Returns true if this node is an EOL comment without content. */
 internal fun ASTNode.isEolCommentEmpty(): Boolean =
-    elementType == EOL_COMMENT && text.substringAfter("//").isBlank()
+    elementType === EOL_COMMENT && text.substringAfter("//").isBlank()

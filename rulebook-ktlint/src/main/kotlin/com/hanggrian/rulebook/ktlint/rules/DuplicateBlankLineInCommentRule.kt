@@ -26,7 +26,7 @@ public class DuplicateBlankLineInCommentRule : RulebookRule(ID) {
                 .treeNext
                 ?.takeIf { it.isWhitespaceSingleLine() }
                 ?.treeNext
-                ?.takeIf { it.elementType == EOL_COMMENT }
+                ?.takeIf { it.elementType === EOL_COMMENT }
                 ?: return
 
         // checks for violation

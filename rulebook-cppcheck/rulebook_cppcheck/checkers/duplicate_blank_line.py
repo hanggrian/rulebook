@@ -20,4 +20,4 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
         for i in range(1, len(lines)):
             if lines[i].strip() or lines[i - 1].strip():
                 continue
-            self.report_error(token, _Messages.get(self.MSG), line=i + 1)
+            self.report_error(token, _Messages.get(self.MSG), i + 1)

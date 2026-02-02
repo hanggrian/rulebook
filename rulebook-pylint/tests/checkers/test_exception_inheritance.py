@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.exception_inheritance import ExceptionInheritanceC
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestExceptionExtendingChecker(CheckerTestCase):
     CHECKER_CLASS = ExceptionInheritanceChecker
 

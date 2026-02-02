@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.todo_comment import TodoCommentChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 # pylint: disable=todo-comment-keyword,todo-comment-separator
 class TestTodoCommentChecker(CheckerTestCase):
     CHECKER_CLASS = TodoCommentChecker

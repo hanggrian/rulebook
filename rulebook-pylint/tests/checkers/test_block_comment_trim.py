@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestBlockCommentTrimChecker(CheckerTestCase):
     CHECKER_CLASS = BlockCommentTrimChecker
 

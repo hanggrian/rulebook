@@ -1,5 +1,5 @@
 from astroid.nodes import Match
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -13,7 +13,7 @@ class UnnecessarySwitchChecker(RulebookChecker):
     MSG: str = 'unnecessary.switch'
 
     name: str = 'unnecessary-switch'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def visit_match(self, node: Match) -> None:
         # checks for violation

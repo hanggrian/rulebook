@@ -1,6 +1,6 @@
 from tokenize import TokenInfo, OP, NL
 
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_pylint.messages import _Messages
@@ -15,12 +15,12 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
     MSG_LAST: str = 'parentheses.trim.last'
 
     name: str = 'parentheses-trim'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_FIRST, MSG_LAST)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_FIRST, MSG_LAST)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # find opening and closing parentheses
-            if token.type != OP:
+            if token.type is not OP:
                 continue
             if token.string in {'(', '[', '{'}:
                 # checks for violation
@@ -28,7 +28,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                     continue
                 next_token: TokenInfo = tokens[i + 1]
                 next_token2: TokenInfo = tokens[i + 2]
-                if next_token.type != NL or next_token2.type != NL:
+                if next_token.type is not NL or next_token2.type is not NL:
                     continue
                 self.add_message(
                     self.MSG_FIRST,
@@ -36,6 +36,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                     col_offset=next_token2.start[1],
                     args=token.string,
                 )
+
             # checks for violation
             if token.string not in {')', ']', '}'}:
                 continue
@@ -43,7 +44,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                 continue
             prev_token: TokenInfo = tokens[i - 1]
             prev_token2: TokenInfo = tokens[i - 2]
-            if prev_token.type != NL or prev_token2.type != NL:
+            if prev_token.type is not NL or prev_token2.type is not NL:
                 continue
             self.add_message(
                 self.MSG_LAST,

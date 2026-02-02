@@ -1,5 +1,5 @@
 from astroid.nodes import Assign, Call, Name, AssignName
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple, Options
+from pylint.typing import TYPE_CHECKING, Options
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -14,7 +14,7 @@ class RequiredGenericsNameChecker(RulebookChecker):
     MSG: str = 'required.generics.name'
 
     name: str = 'required-generics-name'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
     options: Options = (
         (
             'rulebook-required-generics-names',

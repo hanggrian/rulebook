@@ -1,7 +1,7 @@
 from re import Pattern, compile as re
 
 from astroid.nodes import Const, Module, ClassDef, FunctionDef
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -18,7 +18,7 @@ class BlockCommentTrimChecker(RulebookChecker):
     MULTIPLE_EMPTY_LINES: Pattern = re(r'\n\n\s*$')
 
     name: str = 'block-comment-trim'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_FIRST, MSG_LAST)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_FIRST, MSG_LAST)
 
     def visit_module(self, node: Module) -> None:
         self._process(node.doc_node)

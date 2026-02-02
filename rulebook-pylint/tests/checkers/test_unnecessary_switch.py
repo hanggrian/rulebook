@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.unnecessary_switch import UnnecessarySwitchChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestUnnecessarySwitchChecker(CheckerTestCase):
     CHECKER_CLASS = UnnecessarySwitchChecker
 

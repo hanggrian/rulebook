@@ -24,7 +24,7 @@ public class InnerClassPositionRule : RulebookRule(ID) {
         // consider only inner class
         node
             .treeParent
-            .takeIf { it.elementType == CLASS_BODY }
+            .takeIf { it.elementType === CLASS_BODY }
             ?.treeParent
             ?.takeIf { it.elementType in tokens }
             ?: return
@@ -34,17 +34,17 @@ public class InnerClassPositionRule : RulebookRule(ID) {
             // capture child types
             child
                 .takeUnless {
-                    it.elementType != PROPERTY &&
-                        it.elementType != CLASS_INITIALIZER &&
-                        it.elementType != SECONDARY_CONSTRUCTOR &&
-                        it.elementType != FUN &&
-                        it.elementType != OBJECT_DECLARATION
+                    it.elementType !== PROPERTY &&
+                        it.elementType !== CLASS_INITIALIZER &&
+                        it.elementType !== SECONDARY_CONSTRUCTOR &&
+                        it.elementType !== FUN &&
+                        it.elementType !== OBJECT_DECLARATION
                 } ?: continue
 
             // checks for violation
             child
                 .takeUnless {
-                    it.elementType == OBJECT_DECLARATION &&
+                    it.elementType === OBJECT_DECLARATION &&
                         !it.hasModifier(COMPANION_KEYWORD)
                 } ?: continue
             emit(node.startOffset, Messages[MSG], false)

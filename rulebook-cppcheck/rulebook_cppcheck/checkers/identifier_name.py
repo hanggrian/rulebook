@@ -19,15 +19,16 @@ class IdentifierNameChecker(RulebookTokenChecker):
 
     @override
     def process_token(self, token: Token) -> None:
-        if token.variable and token == token.variable.nameToken:
+        if token.variable and token is token.variable.nameToken:
             self._process(token)
-        if token.function and token == token.function.tokenDef:
+        if token.function and token is token.function.tokenDef:
             self._process(token)
 
     def _process(self, token: Token) -> None:
         # checks for violation
         name: str = token.str
-        if all(c.isupper() or c == '_' for c in name) or not any(c.isupper() for c in name):
+        if all(c.isupper() or c == '_' for c in name) or \
+            not any(c.isupper() for c in name):
             return
         self.report_error(
             token,

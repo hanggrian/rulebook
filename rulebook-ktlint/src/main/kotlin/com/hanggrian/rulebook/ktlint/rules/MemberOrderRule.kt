@@ -69,11 +69,11 @@ public class MemberOrderRule : RulebookRule(ID, MEMBER_ORDER_PROPERTY) {
         for (child in node
             .children20
             .filter {
-                it.elementType == PROPERTY ||
-                    it.elementType == CLASS_INITIALIZER ||
-                    it.elementType == SECONDARY_CONSTRUCTOR ||
-                    it.elementType == FUN ||
-                    it.elementType == OBJECT_DECLARATION
+                it.elementType === PROPERTY ||
+                    it.elementType === CLASS_INITIALIZER ||
+                    it.elementType === SECONDARY_CONSTRUCTOR ||
+                    it.elementType === FUN ||
+                    it.elementType === OBJECT_DECLARATION
             }) {
             // checks for violation
             val childMemberPosition = child.memberPosition ?: continue

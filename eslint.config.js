@@ -38,6 +38,10 @@ export default typescriptEslint.config(
         plugins: {
             'rulebook': rulebookTypescriptEslint,
         },
-        rules: microsoftTypeScriptStyleNamed('rulebook'),
+        rules: {
+            ...microsoftTypeScriptStyleNamed('rulebook'),
+
+            '@typescript-eslint/no-explicit-any': 'off',
+        },
     },
 );

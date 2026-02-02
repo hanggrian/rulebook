@@ -34,14 +34,14 @@ class RequiredGenericsNameChecker(RulebookTokenChecker):
         open_bracket: Token | None = _next_sibling(token, lambda t: t.str == '<')
         if not open_bracket or not open_bracket.link:
             return
-        closing: Token = open_bracket.link
+        closing: Token | None = open_bracket.link
         params: list[Token] = []
-        curr: Token | None = open_bracket.next
-        while curr and curr is not closing:
-            if curr.str == ',':
+        curr_token: Token | None = open_bracket.next
+        while curr_token and curr_token is not closing:
+            if curr_token.str == ',':
                 return
-            params.append(curr)
-            curr = curr.next
+            params.append(curr_token)
+            curr_token = curr_token.next
         if len(params) != 2:
             return
 
@@ -50,7 +50,8 @@ class RequiredGenericsNameChecker(RulebookTokenChecker):
         name_token: Token = params[1]
         if keyword_token.str not in ('typename', 'class'):
             return
-        if name_token.type != 'name' or name_token.str == '...':
+        if name_token.type != 'name' or \
+            name_token.str == '...':
             return
         if name_token.str in self._required_generics_names:
             return

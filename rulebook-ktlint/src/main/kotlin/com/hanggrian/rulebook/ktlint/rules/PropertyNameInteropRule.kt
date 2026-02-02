@@ -35,7 +35,7 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // collect fields declared in constructor
         val properties = mutableListOf<ASTNode>()
-        if (node.elementType == CLASS) {
+        if (node.elementType === CLASS) {
             val primaryConstructor =
                 node
                     .takeIf { it.isPublic() }
@@ -47,7 +47,7 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
                     ?.findChildByType(VALUE_PARAMETER_LIST)
                     ?.children20
                     ?.filter {
-                        it.elementType == VALUE_PARAMETER &&
+                        it.elementType === VALUE_PARAMETER &&
                             (VAL_KEYWORD in it || VAR_KEYWORD in it)
                     } ?: return
         }
@@ -58,7 +58,7 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
             properties +=
                 classBody
                     .children20
-                    .filter { it.elementType == PROPERTY }
+                    .filter { it.elementType === PROPERTY }
         }
 
         // checks for violation
@@ -97,7 +97,7 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
                 ?.children20
                 .orEmpty()
                 .any {
-                    it.elementType == ANNOTATION_ENTRY &&
+                    it.elementType === ANNOTATION_ENTRY &&
                         it
                             .findChildByType(CONSTRUCTOR_CALLEE)
                             ?.findChildByType(TYPE_REFERENCE)

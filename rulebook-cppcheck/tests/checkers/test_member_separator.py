@@ -14,7 +14,7 @@ class TestMemberSeparatorChecker(CheckerTestCase):
         scope = self._create_class_scope([
             {'name': 'x', 'type': 'var', 'line': 2, 'end_line': 2},
             {'name': 'y', 'type': 'var', 'line': 3, 'end_line': 3},
-            {'name': 'func', 'type': 'func', 'line': 5, 'end_line': 7}
+            {'name': 'func', 'type': 'func', 'line': 5, 'end_line': 7},
         ])
         self.checker.visit_scope(scope)
         mock_report.assert_not_called()
@@ -43,7 +43,8 @@ class TestMemberSeparatorChecker(CheckerTestCase):
         args, _ = mock_report.call_args
         self.assertEqual(args[1], _Messages.get(self.checker.MSG, 'property'))
 
-    def _create_class_scope(self, member_data):
+    @staticmethod
+    def _create_class_scope(member_data):
         scope = MagicMock()
         scope.className = 'MyClass'
 
@@ -62,35 +63,35 @@ class TestMemberSeparatorChecker(CheckerTestCase):
 
         tokens = [body_start]
         for data in member_data:
-            start_t = MagicMock()
-            start_t.str = data['name']
-            start_t.linenr = data['line']
-            start_t.scope = scope
+            start_token = MagicMock()
+            start_token.str = data['name']
+            start_token.linenr = data['line']
+            start_token.scope = scope
 
-            end_t = MagicMock()
-            end_t.linenr = data['end_line']
-            end_t.scope = scope
-            end_t.variable = end_t.function = None
+            end_token = MagicMock()
+            end_token.linenr = data['end_line']
+            end_token.scope = scope
+            end_token.variable = end_token.function = None
 
             if data['type'] == 'var':
-                start_t.variable = MagicMock()
-                start_t.function = None
-                end_t.str = ';'
-                tokens.extend([start_t, end_t])
-            else:
-                start_t.variable = None
-                func = MagicMock()
-                func.tokenDef = start_t
-                start_t.function = func
+                start_token.variable = MagicMock()
+                start_token.function = None
+                end_token.str = ';'
+                tokens.extend([start_token, end_token])
+                continue
+            start_token.variable = None
+            func = MagicMock()
+            func.tokenDef = start_token
+            start_token.function = func
 
-                brace_open = MagicMock()
-                brace_open.str = '{'
-                brace_open.variable = brace_open.function = None
-                brace_open.scope = scope
+            brace_open = MagicMock()
+            brace_open.str = '{'
+            brace_open.variable = brace_open.function = None
+            brace_open.scope = scope
 
-                end_t.str = '}'
-                brace_open.link = end_t
-                tokens.extend([start_t, brace_open, end_t])
+            end_token.str = '}'
+            brace_open.link = end_token
+            tokens.extend([start_token, brace_open, end_token])
 
         tokens.append(body_end)
 

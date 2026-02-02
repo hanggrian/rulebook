@@ -6,6 +6,7 @@ from rulebook_pylint.checkers.comment_space import CommentSpaceChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestCommentSpaceChecker(CheckerTestCase):
     CHECKER_CLASS = CommentSpaceChecker
 

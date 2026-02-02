@@ -23,7 +23,7 @@ public class ElvisWrapRule : RulebookRule(ID) {
         val operationReference =
             node
                 .treeParent
-                .takeIf { it.elementType == OPERATION_REFERENCE && it.treeParent.isMultiline() }
+                .takeIf { it.elementType === OPERATION_REFERENCE && it.treeParent.isMultiline() }
                 ?: return
 
         // checks for violation
@@ -32,7 +32,7 @@ public class ElvisWrapRule : RulebookRule(ID) {
                 .prevCodeSibling20
                 ?.lastLeaf()
                 ?: return
-        if (sibling.elementType == RBRACE &&
+        if (sibling.elementType === RBRACE &&
             sibling.treePrev.isWhiteSpaceWithNewline20
         ) {
             operationReference

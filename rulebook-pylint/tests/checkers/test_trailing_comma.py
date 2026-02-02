@@ -6,6 +6,7 @@ from rulebook_pylint.checkers.trailing_comma import TrailingCommaChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestTrailingCommaChecker(CheckerTestCase):
     CHECKER_CLASS = TrailingCommaChecker
 

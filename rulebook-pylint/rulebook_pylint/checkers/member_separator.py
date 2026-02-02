@@ -1,5 +1,5 @@
 from astroid.nodes import ClassDef, Assign, FunctionDef, NodeNG
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.files import _get_fromlineno_before
@@ -14,7 +14,7 @@ class MemberSeparatorChecker(RulebookFileChecker):
     MSG: str = 'member.separator'
 
     name: str = 'member-separator'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # collect members

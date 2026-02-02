@@ -20,7 +20,7 @@ public class DuplicateBlankLineInBlockCommentRule : RulebookRule(ID) {
                 .treeNext
                 ?.takeIf { it.isWhiteSpaceWithNewline20 }
                 ?.treeNext
-                ?.takeIf { it.elementType == KDOC_LEADING_ASTERISK }
+                ?.takeIf { it.elementType === KDOC_LEADING_ASTERISK }
                 ?: return
 
         // checks for violation

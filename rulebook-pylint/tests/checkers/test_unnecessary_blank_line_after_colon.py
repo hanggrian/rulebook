@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.unnecessary_blank_line_after_colon import \
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestUnnecessaryBlankLineAfterColonChecker(CheckerTestCase):
     CHECKER_CLASS = UnnecessaryBlankLineAfterColonChecker
 

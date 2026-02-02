@@ -41,6 +41,7 @@ class TestFinalNewlineChecker(CheckerTestCase):
                 ['file1.cpp', 'file2.cpp', 'file1.cpp'],
             )
         self.checker.run_check(configuration)
+        mock_report.assert_called()
         self.assertEqual(mock_report.call_count, 2)
         self.assertEqual(mock_file.call_count, 2)
 

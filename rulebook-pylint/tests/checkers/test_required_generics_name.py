@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.required_generics_name import RequiredGenericsName
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestRequiredGenericsNameChecker(CheckerTestCase):
     CHECKER_CLASS = RequiredGenericsNameChecker
 

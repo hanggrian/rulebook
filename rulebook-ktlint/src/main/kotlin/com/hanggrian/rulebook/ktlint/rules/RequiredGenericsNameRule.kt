@@ -33,7 +33,7 @@ public class RequiredGenericsNameRule : RulebookRule(ID, REQUIRED_GENERIC_NAMES_
             node
                 .findChildByType(TYPE_PARAMETER_LIST)
                 ?.children20
-                ?.singleOrNull { it.elementType == TYPE_PARAMETER }
+                ?.singleOrNull { it.elementType === TYPE_PARAMETER }
                 ?: return
 
         // checks for violation

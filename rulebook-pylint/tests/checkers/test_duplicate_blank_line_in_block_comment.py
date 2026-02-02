@@ -8,6 +8,7 @@ from rulebook_pylint.checkers.duplicate_blank_line_in_block_comment import \
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
     CHECKER_CLASS = DuplicateBlankLineInBlockCommentChecker
 

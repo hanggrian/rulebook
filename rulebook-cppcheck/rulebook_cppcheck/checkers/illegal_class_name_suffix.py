@@ -20,7 +20,7 @@ class IllegalClassNameSuffixChecker(RulebookChecker):
 
     TITLE_CASE_REGEX: Pattern = \
         re(
-            r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|' + \
+            r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|'
             r'([A-Z]+(?=([A-Z][a-z])|($)|([0-9]))))',
         )
 
@@ -42,7 +42,7 @@ class IllegalClassNameSuffixChecker(RulebookChecker):
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
         words: list[str] = [
-            match[0] for match in self.TITLE_CASE_REGEX.findall(scope.className) \
+            match[0] for match in self.TITLE_CASE_REGEX.findall(scope.className)
             if match[0] in self._illegal_class_name_suffixes
         ]
         if not words:

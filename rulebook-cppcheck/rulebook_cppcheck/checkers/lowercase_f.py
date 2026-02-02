@@ -19,5 +19,6 @@ class LowercaseFChecker(RulebookTokenChecker):
         # checks for violation
         if not token.isFloat:
             return
-        if 'F' in token.str:
-            self.report_error(token, _Messages.get(self.MSG))
+        if 'F' not in token.str:
+            return
+        self.report_error(token, _Messages.get(self.MSG))

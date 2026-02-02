@@ -21,7 +21,7 @@ public class RedundantDefaultRule : RulebookRule(ID) {
         val whenEntries =
             node
                 .children20
-                .filter { it.elementType == WHEN_ENTRY }
+                .filter { it.elementType === WHEN_ENTRY }
         val `else` =
             whenEntries
                 .lastOrNull()

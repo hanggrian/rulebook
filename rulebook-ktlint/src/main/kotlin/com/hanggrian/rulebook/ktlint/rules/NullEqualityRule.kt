@@ -17,8 +17,8 @@ public class NullEqualityRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // find null operand
-        node.firstChildNode.takeIf { it.elementType == NULL }
-            ?: node.lastChildNode.takeIf { it.elementType == NULL }
+        node.firstChildNode.takeIf { it.elementType === NULL }
+            ?: node.lastChildNode.takeIf { it.elementType === NULL }
             ?: return
 
         // checks for violation
@@ -26,11 +26,11 @@ public class NullEqualityRule : RulebookRule(ID) {
             node
                 .findChildByType(OPERATION_REFERENCE)
                 ?.firstChildNode
-                ?.takeIf { it.elementType == EQEQEQ || it.elementType == EXCLEQEQEQ }
+                ?.takeIf { it.elementType === EQEQEQ || it.elementType === EXCLEQEQEQ }
                 ?: return
         emit(
             operator.startOffset,
-            Messages[MSG, if (operator.elementType == EQEQEQ) "==" else "!="],
+            Messages[MSG, if (operator.elementType === EQEQEQ) "==" else "!="],
             false,
         )
     }

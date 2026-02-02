@@ -1,6 +1,6 @@
 from tokenize import TokenInfo, COMMENT, NL
 
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_pylint.messages import _Messages
@@ -15,40 +15,44 @@ class CommentTrimChecker(RulebookTokenChecker):
     MSG: str = 'comment.trim'
 
     name: str = 'comment-trim'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # target comment
-            if token.type != COMMENT:
+            if token.type is not COMMENT:
                 continue
 
             # continue if this comment is first line
             if i - 2 >= 0 and \
-                tokens[i - 1].type == NL and \
-                tokens[i - 2].type == COMMENT:
+                tokens[i - 1].type is NL and \
+                tokens[i - 2].type is COMMENT:
                 return
 
             # iterate to find last
             j: int = i
             while j + 2 < len(tokens) and \
-                tokens[j + 1].type == NL and \
-                tokens[j + 2].type == COMMENT:
+                tokens[j + 1].type is NL and \
+                tokens[j + 2].type is COMMENT:
                 j += 2
-            current_token: TokenInfo = tokens[j]
+            curr_token: TokenInfo = tokens[j]
 
             # skip blank comment
-            if current_token is token:
+            if curr_token is token:
                 return
 
             # checks for violation
             if _is_comment_empty(token):
-                self.add_message(self.MSG, line=token.start[0], col_offset=token.start[1])
-            if _is_comment_empty(current_token):
                 self.add_message(
                     self.MSG,
-                    line=current_token.start[0],
-                    col_offset=current_token.start[1],
+                    line=token.start[0],
+                    col_offset=token.start[1],
+                )
+            if _is_comment_empty(curr_token):
+                self.add_message(
+                    self.MSG,
+                    line=curr_token.start[0],
+                    col_offset=curr_token.start[1],
                 )
             return
 

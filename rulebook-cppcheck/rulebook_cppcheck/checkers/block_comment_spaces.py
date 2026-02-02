@@ -24,20 +24,20 @@ class BlockCommentSpacesChecker(RulebookFileChecker):
     @override
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'/\*.*?\*/', content, DOTALL):
-            comment_text = match.group()
-            start_line = content.count('\n', 0, match.start()) + 1
-            lines = comment_text.splitlines()
+            comment_text: str = match.group()
+            start_line: int = content.count('\n', 0, match.start()) + 1
+            lines: list[str] = comment_text.splitlines()
             if self.BLOCK_COMMENT_START.search(lines[0]):
                 self.report_error(
                     token,
                     _Messages.get(self.MSG_SINGLE_START),
-                    line=start_line,
+                    start_line,
                 )
             if self.BLOCK_COMMENT_END.search(lines[-1]):
                 self.report_error(
                     token,
                     _Messages.get(self.MSG_SINGLE_END),
-                    line=start_line + len(lines) - 1,
+                    start_line + len(lines) - 1,
                 )
             for i in range(1, len(lines)):
                 if not self.BLOCK_COMMENT_CENTER.search(lines[i]):
@@ -45,5 +45,5 @@ class BlockCommentSpacesChecker(RulebookFileChecker):
                 self.report_error(
                     token,
                     _Messages.get(self.MSG_MULTI),
-                    line=start_line + i,
+                    start_line + i,
                 )

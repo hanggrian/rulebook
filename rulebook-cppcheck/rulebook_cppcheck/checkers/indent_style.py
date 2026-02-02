@@ -29,15 +29,20 @@ class IndentStyleChecker(RulebookTokenChecker):
     def process_token(self, token: Token) -> None:
         file_path: str = token.file
         line_nr: int = token.linenr
+
         if file_path not in self._processed_lines:
             self._processed_lines[file_path] = set()
         if line_nr in self._processed_lines[file_path]:
             return
         self._processed_lines[file_path].add(line_nr)
+
         with open(file_path, 'r', encoding='UTF-8') as f:
             for i, line in enumerate(f, 1):
                 if i != line_nr:
                     continue
-                leading_spaces: int = len(line) - len(line.lstrip(' '))
+                line_stripped: str = line.lstrip(' ')
+                if not line_stripped.strip() or line_stripped.startswith('*'):
+                    continue
+                leading_spaces: int = len(line) - len(line_stripped)
                 if leading_spaces % self._indent_size != 0:
                     self.report_error(token, _Messages.get(self.MSG, self._indent_size))

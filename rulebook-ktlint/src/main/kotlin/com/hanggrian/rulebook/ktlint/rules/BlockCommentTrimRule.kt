@@ -17,7 +17,7 @@ public class BlockCommentTrimRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // initial node is always asterisk
-        val firstChild = node.firstChildNode.takeIf { it.elementType == KDOC_LEADING_ASTERISK }
+        val firstChild = node.firstChildNode.takeIf { it.elementType === KDOC_LEADING_ASTERISK }
         if (firstChild?.treeNext?.isWhiteSpace20 == true) {
             emit(firstChild.startOffset, Messages[MSG_FIRST], false)
         }

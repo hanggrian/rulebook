@@ -15,32 +15,25 @@ class TestDuplicateSpaceChecker(CheckerTestCase):
             self._create_token('int', 1, 1),
             self._create_token('x', 1, 5),
             self._create_token(';', 1, 6),
-            self._create_token('int', 2, 1),
-            self._create_token('y', 2, 6),
         ]
         self._link_tokens(tokens)
-        config = MagicMock()
-        config.tokenlist = tokens
-        self.checker.run_check(config)
-        mock_report.assert_called_once()
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG))
+        for token in tokens:
+            self.checker.process_token(token)
+        mock_report.assert_not_called()
 
     @patch.object(DuplicateSpaceChecker, 'report_error')
     def test_comments(self, mock_report):
         tokens = [
-            self._create_token(';', 1, 1),
-            self._create_token('//', 1, 4),
-            self._create_token(';', 2, 1),
-            self._create_token('/*', 2, 4),
-            self._create_token(';', 3, 1),
-            self._create_token('//', 3, 5),
+            self._create_token('int', 1, 1),
+            self._create_token('x', 1, 5),
+            self._create_token('//', 1, 9),
         ]
         self._link_tokens(tokens)
-        config = MagicMock()
-        config.tokenlist = tokens
-        self.checker.run_check(config)
+        for token in tokens:
+            self.checker.process_token(token)
         mock_report.assert_called_once()
+        args, _ = mock_report.call_args
+        self.assertEqual(args[1], _Messages.get(self.checker.MSG))
 
     @staticmethod
     def _create_token(text, line, col):
@@ -49,12 +42,14 @@ class TestDuplicateSpaceChecker(CheckerTestCase):
         token.linenr = line
         token.column = col
         token.next = None
+        token.previous = None
         return token
 
     @staticmethod
     def _link_tokens(tokens):
         for i in range(len(tokens) - 1):
             tokens[i].next = tokens[i + 1]
+            tokens[i + 1].previous = tokens[i]
 
 
 if __name__ == '__main__':

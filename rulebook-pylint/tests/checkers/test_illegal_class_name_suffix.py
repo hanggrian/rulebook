@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.illegal_class_name_suffix import IllegalClassNameS
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestIllegalClassNameSuffixChecker(CheckerTestCase):
     CHECKER_CLASS = IllegalClassNameSuffixChecker
 

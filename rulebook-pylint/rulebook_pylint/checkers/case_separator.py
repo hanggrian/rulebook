@@ -1,5 +1,5 @@
 from astroid.nodes import NodeNG, Match, MatchCase
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.files import _get_fromlineno_before, _has_comment_above
@@ -16,7 +16,7 @@ class CaseSeparatorChecker(RulebookFileChecker):
     MSG_UNEXPECTED: str = 'case.separator.unexpected'
 
     name: str = 'case-separator'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_MISSING, MSG_UNEXPECTED)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_MISSING, MSG_UNEXPECTED)
 
     def visit_match(self, node: Match) -> None:
         # collect cases

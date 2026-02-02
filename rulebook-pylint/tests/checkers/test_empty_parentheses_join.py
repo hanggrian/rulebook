@@ -6,6 +6,7 @@ from rulebook_pylint.checkers.empty_parentheses_clip import EmptyParenthesesClip
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestEmptyParenthesesClipChecker(CheckerTestCase):
     CHECKER_CLASS = EmptyParenthesesClipChecker
 

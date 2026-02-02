@@ -7,6 +7,7 @@ from rulebook_pylint.checkers.redundant_default import RedundantDefaultChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestRedundantDefaultChecker(CheckerTestCase):
     CHECKER_CLASS = RedundantDefaultChecker
 

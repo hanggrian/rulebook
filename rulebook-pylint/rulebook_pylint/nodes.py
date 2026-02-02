@@ -44,4 +44,4 @@ def _is_multiline(node: NodeNG) -> bool:
 
 
 def _is_comment_empty(token: TokenInfo) -> bool:
-    return token.type == COMMENT and token.string == '#'
+    return token.type is COMMENT and token.string == '#'

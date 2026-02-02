@@ -1,5 +1,5 @@
 from astroid.nodes import NodeNG, If, For, While, FunctionDef
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -15,7 +15,7 @@ class NestedIfElseChecker(RulebookChecker):
     MSG_LIFT: str = 'nested.if.else.lift'
 
     name: str = 'nested-if-else'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG_INVERT, MSG_LIFT)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_INVERT, MSG_LIFT)
 
     def visit_for(self, node: For) -> None:
         self._process(node.body)

@@ -1,5 +1,5 @@
 from astroid.nodes import ClassDef, FunctionDef, Name
-from pylint.typing import TYPE_CHECKING, MessageDefinitionTuple
+from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
@@ -10,17 +10,17 @@ if TYPE_CHECKING:
 
 
 class AbstractClassDefinitionChecker(RulebookChecker):
-    '''"""See detail: https://hanggrian.github.io/rulebook/rules/#abstract-class-definition"""'''
+    """See detail: https://hanggrian.github.io/rulebook/rules/#abstract-class-definition"""
     MSG: str = 'abstract.class.definition'
 
     name: str = 'abstract-class-definition'
-    msgs: dict[str, MessageDefinitionTuple] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # skip non-abstract class
         if not any(
-            isinstance(n, Name) and \
-            n.name == 'ABC' \
+            isinstance(n, Name) and
+            n.name == 'ABC'
             for n in node.bases
         ):
             return
@@ -28,8 +28,8 @@ class AbstractClassDefinitionChecker(RulebookChecker):
         # checks for violation
         if len(node.bases) > 1 or \
             any(
-                isinstance(n, FunctionDef) and \
-                _has_decorator(n, 'abstractmethod') \
+                isinstance(n, FunctionDef) and
+                _has_decorator(n, 'abstractmethod')
                 for n in node.body
             ):
             return

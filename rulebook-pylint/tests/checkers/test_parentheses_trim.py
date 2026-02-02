@@ -6,6 +6,7 @@ from rulebook_pylint.checkers.parentheses_trim import ParenthesesTrimChecker
 from ..tests import assert_properties, msg
 
 
+# noinspection PyTypeChecker
 class TestParenthesesTrimChecker(CheckerTestCase):
     CHECKER_CLASS = ParenthesesTrimChecker
 

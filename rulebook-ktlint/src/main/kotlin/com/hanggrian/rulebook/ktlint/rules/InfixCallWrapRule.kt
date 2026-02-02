@@ -27,7 +27,7 @@ public class InfixCallWrapRule : RulebookRule(ID) {
         val parent =
             node
                 .treeParent
-                .takeIf { it.elementType == BINARY_EXPRESSION && it.isMultiline() }
+                .takeIf { it.elementType === BINARY_EXPRESSION && it.isMultiline() }
                 ?: return
 
         // checks for violation
