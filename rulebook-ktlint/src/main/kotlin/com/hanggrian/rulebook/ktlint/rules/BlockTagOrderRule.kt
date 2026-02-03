@@ -46,7 +46,6 @@ public class BlockTagOrderRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-tag-order")
-
         private const val MSG = "block.tag.order"
 
         private val MEMBER_POSITIONS =

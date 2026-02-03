@@ -30,13 +30,13 @@
 
   <!-- Naming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.ClassNameAbbreviationRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalClassNameSuffixRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.GenericNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.RequiredGenericsNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.MeaninglessWordRule"/>
 
   <!-- Ordering -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagOrderRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.BuiltInFunctionPositionRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.CommonFunctionPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.ImportOrderRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.InnerClassPositionRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MemberOrderRule"/>

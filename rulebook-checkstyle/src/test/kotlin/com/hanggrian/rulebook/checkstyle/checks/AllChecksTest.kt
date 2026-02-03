@@ -19,15 +19,15 @@ class AllChecksTest : AbstractModuleTestSupport() {
                         addConfiguration<AssignmentWrapCheck>()
                         addConfiguration<BlockCommentTrimCheck>()
                         addConfiguration<BracesTrimCheck>()
-                        addConfiguration<BuiltInFunctionPositionCheck>()
                         addConfiguration<CaseSeparatorCheck>()
                         addConfiguration<ChainCallWrapCheck>()
                         addConfiguration<CommentSpaceCheck>()
+                        addConfiguration<CommonFunctionPositionCheck>()
                         addConfiguration<DuplicateBlankLineInBlockCommentCheck>()
                         addConfiguration<DuplicateBlankLineInCommentCheck>()
                         addConfiguration<ExceptionInheritanceCheck>()
-                        addConfiguration<IllegalClassNameSuffixCheck>()
                         addConfiguration<LambdaWrapCheck>()
+                        addConfiguration<MeaninglessWordCheck>()
                         addConfiguration<MemberOrderCheck>()
                         addConfiguration<NestedIfElseCheck>()
                         addConfiguration<LowercaseDCheck>()
@@ -77,7 +77,6 @@ class AllChecksTest : AbstractModuleTestSupport() {
             "223:40: Break assignment into newline.",
             "223:45: Put newline before ..",
             "248:22: Put newline before ..",
-            "252:52: Put newline before ..",
             "254:13: Omit newline before ..",
             "312:85: Break each parameter into newline.",
             "346:48: Break each parameter into newline.",

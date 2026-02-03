@@ -33,6 +33,7 @@ public class FileSizeRule : RulebookRule(ID, MAX_FILE_SIZE_PROPERTY) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:file-size")
+        private const val MSG = "file.size"
         public val MAX_FILE_SIZE_PROPERTY: EditorConfigProperty<Int> =
             EditorConfigProperty(
                 type =
@@ -43,7 +44,5 @@ public class FileSizeRule : RulebookRule(ID, MAX_FILE_SIZE_PROPERTY) {
                     ),
                 defaultValue = 1000,
             )
-
-        private const val MSG = "file.size"
     }
 }

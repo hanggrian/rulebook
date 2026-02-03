@@ -57,10 +57,10 @@ load-plugins=
   rulebook_pylint.checkers.file_size,
   # Naming
   rulebook_pylint.checkers.class_name_abbreviation,
-  rulebook_pylint.checkers.illegal_class_name_suffix,
-  rulebook_pylint.checkers.required_generics_name,
+  rulebook_pylint.checkers.generic_name,
+  rulebook_pylint.checkers.meaningless_word,
   # Ordering
-  rulebook_pylint.checkers.built_in_function_position,
+  rulebook_pylint.checkers.common_function_position,
   rulebook_pylint.checkers.inner_class_position,
   rulebook_pylint.checkers.member_order,
   # Spacing

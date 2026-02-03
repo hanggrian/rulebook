@@ -12,11 +12,11 @@ from pylint.utils import ASTWalker
 
 from rulebook_pylint.checkers.abstract_class_definition import AbstractClassDefinitionChecker
 from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
-from rulebook_pylint.checkers.built_in_function_position import BuiltInFunctionPositionChecker
 from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
 from rulebook_pylint.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
 from rulebook_pylint.checkers.comment_space import CommentSpaceChecker
 from rulebook_pylint.checkers.comment_trim import CommentTrimChecker
+from rulebook_pylint.checkers.common_function_position import CommonFunctionPositionChecker
 from rulebook_pylint.checkers.duplicate_blank_line import DuplicateBlankLineChecker
 from rulebook_pylint.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
@@ -25,15 +25,15 @@ from rulebook_pylint.checkers.duplicate_blank_line_in_comment import \
 from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_pylint.checkers.empty_parentheses_clip import EmptyParenthesesClipChecker
 from rulebook_pylint.checkers.exception_inheritance import ExceptionInheritanceChecker
-from rulebook_pylint.checkers.illegal_class_name_suffix import IllegalClassNameSuffixChecker
+from rulebook_pylint.checkers.generic_name import GenericNameChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
+from rulebook_pylint.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_pylint.checkers.member_order import MemberOrderChecker
 from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
 from rulebook_pylint.checkers.nested_if_else import NestedIfElseChecker
 from rulebook_pylint.checkers.parameter_wrap import ParameterWrapChecker
 from rulebook_pylint.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_pylint.checkers.redundant_default import RedundantDefaultChecker
-from rulebook_pylint.checkers.required_generics_name import RequiredGenericsNameChecker
 from rulebook_pylint.checkers.short_block_comment_clip import ShortBlockCommentClipChecker
 from rulebook_pylint.checkers.todo_comment import TodoCommentChecker
 from rulebook_pylint.checkers.trailing_comma import TrailingCommaChecker
@@ -49,11 +49,11 @@ class TestAllCheckers:
     CHECKER_CLASSES: tuple = (
         AbstractClassDefinitionChecker,
         BlockCommentTrimChecker,
-        BuiltInFunctionPositionChecker,
         CaseSeparatorChecker,
         ClassNameAbbreviationChecker,
         CommentSpaceChecker,
         CommentTrimChecker,
+        CommonFunctionPositionChecker,
         DuplicateBlankLineChecker,
         DuplicateBlankLineInBlockCommentChecker,
         DuplicateBlankLineInCommentChecker,
@@ -63,15 +63,15 @@ class TestAllCheckers:
         # TODO find out why this test shares config (max 3 lines) with `test_file_size` when running
         #   command `pytest`.
         # FileSizeChecker,
-        IllegalClassNameSuffixChecker,
+        GenericNameChecker,
         InnerClassPositionChecker,
+        MeaninglessWordChecker,
         MemberOrderChecker,
         MemberSeparatorChecker,
         NestedIfElseChecker,
         ParameterWrapChecker,
         ParenthesesTrimChecker,
         RedundantDefaultChecker,
-        RequiredGenericsNameChecker,
         ShortBlockCommentClipChecker,
         TodoCommentChecker,
         TrailingCommaChecker,

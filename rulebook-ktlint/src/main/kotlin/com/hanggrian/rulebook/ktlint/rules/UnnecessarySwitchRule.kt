@@ -32,7 +32,6 @@ public class UnnecessarySwitchRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:unnecessary-switch")
-
         private const val MSG = "unnecessary.switch"
     }
 }

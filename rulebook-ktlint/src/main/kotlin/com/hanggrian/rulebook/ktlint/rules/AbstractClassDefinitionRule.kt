@@ -46,7 +46,6 @@ public class AbstractClassDefinitionRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:abstract-class-definition")
-
         private const val MSG = "abstract.class.definition"
     }
 }

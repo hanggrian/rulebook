@@ -24,7 +24,6 @@ public class LowercaseFRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:lowercase-f")
-
         private const val MSG = "lowercase.f"
     }
 }

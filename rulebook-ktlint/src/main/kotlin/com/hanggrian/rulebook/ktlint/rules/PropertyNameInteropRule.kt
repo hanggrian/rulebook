@@ -89,7 +89,6 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:property-name-interop")
-
         private const val MSG = "property.name.interop"
 
         private fun ASTNode.hasAnnotation(name: String) =

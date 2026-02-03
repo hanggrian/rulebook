@@ -37,7 +37,6 @@ public class BlockTagIndentationRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-tag-indentation")
-
         private const val MSG = "block.tag.indentation"
     }
 }

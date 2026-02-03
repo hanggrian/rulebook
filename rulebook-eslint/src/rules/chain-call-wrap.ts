@@ -35,7 +35,7 @@ const rule: Rule.RuleModule = {
                     return;
                 }
 
-                // single call is by definition not chained
+                // collect dots
                 const dots: Token[] = [];
                 let current: Rule.Node | Expression | Super | null = node;
                 while (current) {
@@ -57,8 +57,13 @@ const rule: Rule.RuleModule = {
 
                     current = obj;
                 }
-                if (dots.length < 2 ||
-                    dots.every(dot => dot.loc.start.line === dots[0].loc.start.line)) {
+
+                // skip dots in single-line
+                if (dots.length < 2) {
+                    return;
+                }
+                const firstDot: Token = dots[0];
+                if (dots.every(node => node.loc.start.line === firstDot.loc.start.line)) {
                     return;
                 }
 

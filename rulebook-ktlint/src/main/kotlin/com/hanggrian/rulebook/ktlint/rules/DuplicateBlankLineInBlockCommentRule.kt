@@ -34,7 +34,6 @@ public class DuplicateBlankLineInBlockCommentRule : RulebookRule(ID) {
     public companion object {
         public val ID: RuleId =
             RuleId("${RulebookRuleSet.ID.value}:duplicate-blank-line-in-block-comment")
-
         private const val MSG = "duplicate.blank.line.in.block.comment"
     }
 }

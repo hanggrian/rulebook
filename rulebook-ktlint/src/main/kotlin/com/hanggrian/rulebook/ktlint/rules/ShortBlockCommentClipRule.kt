@@ -89,7 +89,6 @@ public class ShortBlockCommentClipRule :
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:short-block-comment-clip")
-
         private const val MSG = "short.block.comment.clip"
 
         private const val SINGLELINE_TEMPLATE = "/** */"

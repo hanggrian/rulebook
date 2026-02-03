@@ -40,24 +40,24 @@ class LambdaWrapRuleTest : AbstractRuleTestCase<LambdaWrapRule>() {
             def foo() {
                 Function<Int, String> bar = param ->
                     new StringBuilder()
-                        .append("")
+                        .append('')
                         .toString()
                 baz(
                     param -> {
                         new StringBuilder()
-                            .append("")
+                            .append('')
                             .toString()
                     },
                 )
 
                 Closure<String> bar2 = { param ->
                     new StringBuilder()
-                        .append("")
+                        .append('')
                         .toString()
                 }
                 baz2({ param ->
                     new StringBuilder()
-                        .append("")
+                        .append('')
                         .toString()
                 })
             }
@@ -74,21 +74,21 @@ class LambdaWrapRuleTest : AbstractRuleTestCase<LambdaWrapRule>() {
             """
             def foo() {
                 Function<Int, String> bar = param -> new StringBuilder()
-                    .append("")
+                    .append('')
                     .toString()
                 baz(
                     param -> { new StringBuilder()
-                        .append("")
+                        .append('')
                         .toString()
                     },
                 )
 
                 Closure<String> bar2 = { param -> new StringBuilder()
-                    .append("")
+                    .append('')
                     .toString()
                 }
                 baz2({ param -> new StringBuilder()
-                    .append("")
+                    .append('')
                     .toString()
                 })
             }

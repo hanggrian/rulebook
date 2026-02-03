@@ -45,6 +45,7 @@ public class IllegalVariableNameRule : RulebookRule(ID, ILLEGAL_VARIABLE_NAMES_P
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:illegal-variable-name")
+        private const val MSG = "illegal.variable.name"
         public val ILLEGAL_VARIABLE_NAMES_PROPERTY: EditorConfigProperty<Set<String>> =
             EditorConfigProperty(
                 type =
@@ -78,7 +79,5 @@ public class IllegalVariableNameRule : RulebookRule(ID, ILLEGAL_VARIABLE_NAMES_P
                     ),
                 propertyWriter = { it.joinToString() },
             )
-
-        private const val MSG = "illegal.variable.name"
     }
 }

@@ -1,13 +1,12 @@
 {
-  "script": "/home/hanggrian/GitHub/rulebook/rulebook-cppcheck/rulebook_cppcheck/checkset.py",
+  "script": "/home/hanggrian/GitHub/rulebook/rulebook-cppcheck/rulebook_cppcheck/check_set.py",
   "args": [
     "--block-tags=@see",
-    "--illegal-class-name-suffixes=Worker,Thread",
     "--illegal-variable-names=foo,bar",
     "--indent-size=2",
     "--max-file-size=50",
     "--max-line-length=60",
-    "--member-order=static,function,constructor,property",
-    "--required-generics-names=T"
+    "--meaningless-words=Worker,Thread",
+    "--member-order=static,function,constructor,property"
   ]
 }

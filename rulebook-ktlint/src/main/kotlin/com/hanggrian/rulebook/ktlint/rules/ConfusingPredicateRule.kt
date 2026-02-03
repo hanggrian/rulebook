@@ -68,7 +68,6 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:confusing-predicate")
-
         private const val MSG_EQUALS = "confusing.predicate.equals"
         private const val MSG_NEGATES = "confusing.predicate.negates"
 

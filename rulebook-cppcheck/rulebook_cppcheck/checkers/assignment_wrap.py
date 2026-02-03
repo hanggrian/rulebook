@@ -32,6 +32,8 @@ class AssignmentWrapChecker(RulebookTokenChecker):
             assignee_start.astParent.astOperand2 \
                 if assignee_start.astParent \
                 else _next_sibling(assignee_start, lambda t: t.linenr != assignee_start.linenr)
+        if not assignee_end:
+            return
 
         # checks for violation
         if not _is_multiline(assignee_start, assignee_end) or \

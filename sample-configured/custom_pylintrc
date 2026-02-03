@@ -42,9 +42,8 @@ load-plugins=
   pylint.extensions.dict_init_mutate,
   pylint.extensions.consider_refactoring_into_while_condition,
   rulebook_pylint.checkers.file_size,
-  rulebook_pylint.checkers.illegal_class_name_suffix,
+  rulebook_pylint.checkers.meaningless_word,
   rulebook_pylint.checkers.member_order,
-  rulebook_pylint.checkers.required_generics_name,
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
 # number of processors available to use.
@@ -567,7 +566,6 @@ check-str-concat-over-line-jumps=no
 
 [OTHERS]
 
-rulebook-illegal-class-name-suffixes=Hello, World
 rulebook-max-file-size=10
+rulebook-meaningless-words=Hello, World
 rulebook-member-order=static, function, constructor, property
-rulebook-required-generics-names=A

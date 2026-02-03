@@ -16,32 +16,37 @@ class ChainCallWrapChecker(RulebookTokenChecker):
 
     @override
     def process_token(self, token: Token) -> None:
-        if token.str != '.':
+        # target root chain call
+        if token.str != '.' or (token.previous and token.previous.str == '.'):
             return
 
-        prev_token: Token | None = token.previous
-        if not prev_token:
+        # collect dots
+        dots: list[Token] = []
+        curr: Token | None = token
+        while curr:
+            if curr.str == '.':
+                dots.append(curr)
+            elif curr.str in {';', '{', '}', '='}:
+                break
+            curr = curr.next
+
+        # skip dots in single-line
+        if len(dots) < 2:
+            return
+        first_dot: Token = dots[0]
+        if all(d.linenr == first_dot.linenr for d in dots):
             return
 
-        #  checks for violation
-        if prev_token.str in {')', '}'}:
-            if token.linenr != prev_token.linenr:
+        # checks for violation
+        for dot in dots:
+            prev_token: Token | None = dot.previous
+            if not prev_token:
+                continue
+            if prev_token.str in {')', '}'}:
                 if prev_token.previous and \
                     prev_token.linenr != prev_token.previous.linenr:
-                    self.report_error(token, _Messages.get(self.MSG_UNEXPECTED))
-                    return
-        if token.linenr != prev_token.linenr:
-            return
-        curr_token: Token | None = token.next
-        is_multiline_chain: bool = False
-        while curr_token:
-            if curr_token.str == '.' and \
-                curr_token.linenr != token.linenr:
-                is_multiline_chain = True
-                break
-            if curr_token.str in {';', '{', '}'}:
-                break
-            curr_token = curr_token.next
-        if not is_multiline_chain:
-            return
-        self.report_error(token, _Messages.get(self.MSG_MISSING))
+                    if dot.linenr != prev_token.linenr:
+                        self.report_error(dot, _Messages.get(self.MSG_UNEXPECTED))
+                    continue
+            if dot.linenr != prev_token.linenr + 1:
+                self.report_error(dot, _Messages.get(self.MSG_MISSING))

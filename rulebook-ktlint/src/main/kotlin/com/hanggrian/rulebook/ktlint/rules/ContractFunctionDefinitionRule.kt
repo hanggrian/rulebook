@@ -57,7 +57,6 @@ public class ContractFunctionDefinitionRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:contract-function-definition")
-
         private const val MSG = "contract.function.definition"
     }
 }

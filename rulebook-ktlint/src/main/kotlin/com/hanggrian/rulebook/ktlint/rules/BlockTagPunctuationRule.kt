@@ -50,6 +50,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-tag-punctuation")
+        private const val MSG = "block.tag.punctuation"
         public val PUNCTUATE_BLOCK_TAGS_PROPERTY: EditorConfigProperty<Set<String>> =
             EditorConfigProperty(
                 type =
@@ -68,8 +69,6 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
                     ),
                 propertyWriter = { it.joinToString() },
             )
-
-        private const val MSG = "block.tag.punctuation"
 
         private val END_PUNCTUATIONS = setOf('.', '!', '?', ')')
     }

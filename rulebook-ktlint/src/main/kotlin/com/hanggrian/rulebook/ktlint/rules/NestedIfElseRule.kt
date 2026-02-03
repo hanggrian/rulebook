@@ -79,7 +79,6 @@ public class NestedIfElseRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:nested-if-else")
-
         private const val MSG_INVERT = "nested.if.else.invert"
         private const val MSG_LIFT = "nested.if.else.lift"
 

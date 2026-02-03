@@ -51,7 +51,6 @@ public class ElvisWrapRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:elvis-wrap")
-
         private const val MSG_MISSING = "elvis.wrap.missing"
         private const val MSG_UNEXPECTED = "elvis.wrap.unexpected"
     }

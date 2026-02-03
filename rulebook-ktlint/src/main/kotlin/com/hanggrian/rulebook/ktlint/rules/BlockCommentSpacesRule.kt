@@ -53,7 +53,6 @@ public class BlockCommentSpacesRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-comment-spaces")
-
         private const val MSG_SINGLE_START = "block.comment.spaces.single.start"
         private const val MSG_SINGLE_END = "block.comment.spaces.single.end"
         private const val MSG_MULTI = "block.comment.spaces.multi"

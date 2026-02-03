@@ -6,24 +6,25 @@ import com.hanggrian.rulebook.ktlint.rules.BlockCommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagIndentationRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagOrderRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagPunctuationRule
-import com.hanggrian.rulebook.ktlint.rules.BuiltInFunctionPositionRule
-import com.hanggrian.rulebook.ktlint.rules.BuiltInTypesRule
 import com.hanggrian.rulebook.ktlint.rules.ClassNameAbbreviationRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
+import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
 import com.hanggrian.rulebook.ktlint.rules.ContractFunctionDefinitionRule
+import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
 import com.hanggrian.rulebook.ktlint.rules.ElvisWrapRule
 import com.hanggrian.rulebook.ktlint.rules.EmptyBracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.ExceptionInheritanceRule
 import com.hanggrian.rulebook.ktlint.rules.FileSizeRule
-import com.hanggrian.rulebook.ktlint.rules.IllegalClassNameSuffixRule
+import com.hanggrian.rulebook.ktlint.rules.GenericNameRule
 import com.hanggrian.rulebook.ktlint.rules.IllegalThrowRule
 import com.hanggrian.rulebook.ktlint.rules.IllegalVariableNameRule
 import com.hanggrian.rulebook.ktlint.rules.InfixCallWrapRule
 import com.hanggrian.rulebook.ktlint.rules.InnerClassPositionRule
 import com.hanggrian.rulebook.ktlint.rules.LowercaseFRule
+import com.hanggrian.rulebook.ktlint.rules.MeaninglessWordRule
 import com.hanggrian.rulebook.ktlint.rules.MemberOrderRule
 import com.hanggrian.rulebook.ktlint.rules.MissingBlankLineBeforeBlockTagsRule
 import com.hanggrian.rulebook.ktlint.rules.NestedIfElseRule
@@ -32,7 +33,6 @@ import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.PropertyNameInteropRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
-import com.hanggrian.rulebook.ktlint.rules.RequiredGenericsNameRule
 import com.hanggrian.rulebook.ktlint.rules.ShortBlockCommentClipRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryBlankLineBeforePackageRule
@@ -45,8 +45,8 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
     override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
             RuleProvider { BlockTagPunctuationRule() },
-            RuleProvider { BuiltInTypesRule() },
             RuleProvider { ConfusingPredicateRule() },
+            RuleProvider { DeprecatedTypeRule() },
             RuleProvider { FileSizeRule() },
             RuleProvider { NullEqualityRule() },
             RuleProvider { TodoCommentRule() },
@@ -60,13 +60,13 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { LowercaseFRule() },
             // Naming
             RuleProvider { ClassNameAbbreviationRule() },
-            RuleProvider { IllegalClassNameSuffixRule() },
+            RuleProvider { MeaninglessWordRule() },
             RuleProvider { IllegalVariableNameRule() },
             RuleProvider { PropertyNameInteropRule() },
-            RuleProvider { RequiredGenericsNameRule() },
+            RuleProvider { GenericNameRule() },
             // Ordering
             RuleProvider { BlockTagOrderRule() },
-            RuleProvider { BuiltInFunctionPositionRule() },
+            RuleProvider { CommonFunctionPositionRule() },
             RuleProvider { InnerClassPositionRule() },
             RuleProvider { MemberOrderRule() },
             RuleProvider { OverloadFunctionPositionRule() },

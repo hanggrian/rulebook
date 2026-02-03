@@ -1,7 +1,6 @@
 [*.kt]
-rulebook_illegal_class_name_suffixes = Hello, World
 rulebook_illegal_variable_names = mString, mList
-rulebook_punctuate_block_tags = @constructor
-rulebook_required_generics_names = A
+rulebook_meaningless_words = Hello, World
 rulebook_max_file_size = 10
 rulebook_member_order = companion, function, constructor, initializer, property
+rulebook_punctuate_block_tags = @constructor

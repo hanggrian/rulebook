@@ -25,13 +25,17 @@ class ChainCallWrapRuleTest : AbstractRuleTestCase<ChainCallWrapRule>() {
                     .append(1)
             }
 
-            def baz() {
-                new Bar()
+            def bar() {
+                baz()
                     .baz(
                         new String('Lorem ipsum'),
                     ).baz(
                         new String('Lorem ipsum'),
                     )
+            }
+
+            Baz baz() {
+                return Baz()
             }
 
             class Baz {
@@ -59,7 +63,7 @@ class ChainCallWrapRuleTest : AbstractRuleTestCase<ChainCallWrapRule>() {
             }
 
             def bar() {
-                new Bar()
+                baz()
                     .baz(
                         new String('Lorem ipsum'),
                     )
@@ -68,7 +72,15 @@ class ChainCallWrapRuleTest : AbstractRuleTestCase<ChainCallWrapRule>() {
                     )
             }
 
+            Baz baz() {
+                return Baz()
+            }
+
             class Baz {
+                Baz baz(String s) {
+                    return this
+                }
+
                 Baz baz() {
                     return this
                 }
@@ -87,27 +99,35 @@ class ChainCallWrapRuleTest : AbstractRuleTestCase<ChainCallWrapRule>() {
         assertTwoViolations(
             """
             def foo() {
-                new StringBuilder(
-                    'Lorem ipsum'
-                ).append(0).append(2)
+                new StringBuilder('Lorem ipsum')
+                    .append(0).append(1)
+                    .append(2)
             }
 
             def bar() {
-                new Baz().baz()
+                baz().baz()
                     .baz()
             }
 
+            Baz baz() {
+                return Baz()
+            }
+
             class Baz {
+                Baz baz(String s) {
+                    return this
+                }
+
                 Baz baz() {
                     return this
                 }
             }
             """.trimIndent(),
-            4,
-            ").append(0).append(2)",
+            3,
+            ".append(0).append(1)",
             "Put newline before '.'.",
             8,
-            "new Baz().baz()",
+            "baz().baz()",
             "Put newline before '.'.",
         )
 
@@ -116,13 +136,21 @@ class ChainCallWrapRuleTest : AbstractRuleTestCase<ChainCallWrapRule>() {
         assertSingleViolation(
             """
             def foo() {
-                new Baz()
-                    .baz().baz
+                baz()
+                    .baz().qux
                     .baz()
             }
 
+            Baz baz() {
+                return Baz()
+            }
+
             class Baz {
-                Baz baz = this
+                Baz qux = this;
+
+                Baz baz(String s) {
+                    return this
+                }
 
                 Baz baz() {
                     return this
@@ -130,23 +158,24 @@ class ChainCallWrapRuleTest : AbstractRuleTestCase<ChainCallWrapRule>() {
             }
             """.trimIndent(),
             3,
-            ".baz().baz",
+            ".baz().qux",
             "Put newline before '.'.",
         )
 
     @Test
-    fun `Allow single call`() =
+    fun `Allow dots on single-line`() =
         assertNoViolations(
             """
-            def foo(Runnable r) {
-                new ChainCallWrapCheck().foo(() -> {
-                    println()
-                    println()
-                })
-                new ChainCallWrapCheck().foo {
-                    println()
-                    println()
-                }
+            def foo() {
+                new StringBuilder(
+                    0,
+                ).append(1).append(2)
+            }
+
+            def bar() {
+                new StringBuilder(0).append(1).append(
+                    2,
+                )
             }
             """.trimIndent(),
         )

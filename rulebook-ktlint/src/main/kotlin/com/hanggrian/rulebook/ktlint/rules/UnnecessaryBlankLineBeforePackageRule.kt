@@ -25,7 +25,6 @@ public class UnnecessaryBlankLineBeforePackageRule : RulebookRule(ID) {
     public companion object {
         public val ID: RuleId =
             RuleId("${RulebookRuleSet.ID.value}:unnecessary-blank-line-before-package")
-
         private const val MSG = "unnecessary.blank.line.before.package"
     }
 }

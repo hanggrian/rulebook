@@ -16,10 +16,10 @@ line.length=Code exceeds max line length '{}'.
 class.name.abbreviation=Rename abbreviation to '{}'.
 class.name=Rename class to '{}'.
 identifier.name=Rename identifier to '{}'.
-illegal.class.name.suffix=Avoid meaningless word '{}'.
 illegal.variable.name=Use descriptive name.
+generic.name=Use common generics '{}'.
+meaningless.word=Avoid meaningless word '{}'.
 package.name=Rename package to '{}'.
-required.generics.name=Use common generics '{}'.
 # Ordering
 import.order.sort=Arrange directive '{}' before '{}'.
 import.order.join=Remove blank line before directive '{}'.

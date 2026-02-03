@@ -39,7 +39,6 @@ public class RedundantElseRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:redundant-else")
-
         private const val MSG = "redundant.else"
     }
 }

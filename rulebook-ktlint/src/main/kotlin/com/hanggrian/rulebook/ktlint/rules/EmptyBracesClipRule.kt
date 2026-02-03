@@ -67,7 +67,6 @@ public class EmptyBracesClipRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:empty-braces-clip")
-
         private const val MSG = "empty.braces.clip"
     }
 }

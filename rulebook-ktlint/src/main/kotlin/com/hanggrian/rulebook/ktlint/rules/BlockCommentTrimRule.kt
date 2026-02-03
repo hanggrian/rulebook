@@ -44,7 +44,6 @@ public class BlockCommentTrimRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-comment-trim")
-
         private const val MSG_FIRST = "block.comment.trim.first"
         private const val MSG_LAST = "block.comment.trim.last"
     }

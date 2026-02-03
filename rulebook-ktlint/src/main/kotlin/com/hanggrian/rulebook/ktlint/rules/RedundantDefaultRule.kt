@@ -39,7 +39,6 @@ public class RedundantDefaultRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:redundant-default")
-
         private const val MSG = "redundant.default"
     }
 }

@@ -46,7 +46,6 @@ public class CommentTrimRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:comment-trim")
-
         private const val MSG = "comment.trim"
     }
 }

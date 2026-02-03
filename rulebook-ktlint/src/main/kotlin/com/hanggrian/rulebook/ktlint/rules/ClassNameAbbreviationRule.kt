@@ -58,7 +58,6 @@ public class ClassNameAbbreviationRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:class-name-abbreviation")
-
         private const val MSG = "class.name.abbreviation"
 
         private val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")

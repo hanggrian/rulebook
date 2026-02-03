@@ -11,19 +11,13 @@ class ChainCallWrap {
     }
 
     void baz() {
-        new Bar()
+        baz()
             .baz(
                 new String("Lorem ipsum")
             ).baz();
     }
 
-    static class Baz {
-        Baz baz(String s) {
-            return this;
-        }
-
-        Baz baz() {
-            return this;
-        }
+    ChainCallWrap baz() {
+        return this;
     }
 }

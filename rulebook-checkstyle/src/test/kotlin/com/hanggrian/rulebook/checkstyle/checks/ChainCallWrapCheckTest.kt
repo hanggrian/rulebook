@@ -23,8 +23,8 @@ class ChainCallWrapCheckTest : CheckTest() {
     fun `Inconsistent dot position`() =
         assertAll(
             "ChainCallWrap3",
-            "7:20: Put newline before ..",
-            "11:18: Put newline before ..",
+            "7:23: Put newline before ..",
+            "11:14: Put newline before ..",
         )
 
     @Test
@@ -32,5 +32,5 @@ class ChainCallWrapCheckTest : CheckTest() {
         assertAll("ChainCallWrap4", "6:19: Put newline before ..")
 
     @Test
-    fun `Allow single call`() = assertAll("ChainCallWrap5")
+    fun `Allow dots on single-line`() = assertAll("ChainCallWrap5")
 }

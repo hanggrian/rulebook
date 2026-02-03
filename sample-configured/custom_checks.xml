@@ -171,8 +171,8 @@
       <property name="tags" value="@throws"/>
     </module>
 
-    <module name="IllegalClassNameSuffix">
-      <property name="names" value="Hello, World"/>
+    <module name="MeaninglessWord">
+      <property name="words" value="Hello, World"/>
     </module>
 
     <module name="MemberOrder">

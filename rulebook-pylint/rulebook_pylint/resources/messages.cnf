@@ -1,5 +1,4 @@
 [default]
-built.in.types=Use built-in type ''{0}''.
 todo.comment.keyword=Capitalize keyword '%s'.
 todo.comment.separator=Omit separator '%s'.
 trailing.comma.single=Remove trailing comma.
@@ -14,11 +13,11 @@ exception.inheritance=Extend from class 'Exception'.
 file.size=Reduce file size to '%d'.
 # Naming
 class.name.abbreviation=Rename abbreviation to '%s'.
-illegal.class.name.suffix.all=Avoid meaningless word '%s'.
-illegal.class.name.suffix.util=Rename utility class to '%s'.
-required.generics.name=Use common generics '%s'.
+generic.name=Use single uppercase letter.
+meaningless.word.all=Avoid meaningless word '%s'.
+meaningless.word.util=Rename utility class to '%s'.
 # Ordering
-built.in.function.position=Move '%s' to last.
+common.function.position=Move '%s' to last.
 inner.class.position=Move inner class to the bottom.
 member.order=Arrange '%s' before '%s'.
 # Spacing

@@ -28,7 +28,6 @@ public class IllegalThrowRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:illegal-throw")
-
         private const val MSG = "illegal.throw"
 
         private val BROAD_EXCEPTIONS =

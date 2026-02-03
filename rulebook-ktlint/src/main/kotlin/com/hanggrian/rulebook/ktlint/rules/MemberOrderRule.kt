@@ -91,6 +91,7 @@ public class MemberOrderRule : RulebookRule(ID, MEMBER_ORDER_PROPERTY) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:member-order")
+        private const val MSG = "member.order"
         public val MEMBER_ORDER_PROPERTY: EditorConfigProperty<Set<String>> =
             EditorConfigProperty(
                 type =
@@ -103,7 +104,5 @@ public class MemberOrderRule : RulebookRule(ID, MEMBER_ORDER_PROPERTY) {
                     setOf("property", "initializer", "constructor", "function", "companion"),
                 propertyWriter = { it.joinToString() },
             )
-
-        private const val MSG = "member.order"
     }
 }

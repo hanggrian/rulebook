@@ -1,8 +1,6 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
-import com.hanggrian.rulebook.checkstyle.contains
-import com.hanggrian.rulebook.checkstyle.isMultiline
 import com.hanggrian.rulebook.checkstyle.lastLeaf
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.DOT
@@ -15,39 +13,38 @@ public class ChainCallWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(METHOD_CALL)
 
     override fun visitToken(node: DetailAST) {
-        // target root multiline chain call
+        // target root chain call
         node
-            .takeIf { it.isMultiline() && it.parent.type != DOT }
+            .takeUnless { it.parent.type == DOT }
             ?: return
 
-        // single call is by definition not chained
-        var dot: DetailAST? =
-            node
-                .findFirstToken(DOT)
-                ?.takeUnless {
-                    DOT !in it &&
-                        it.findFirstToken(METHOD_CALL)?.findFirstToken(DOT) == null
-                } ?: return
+        // collect dots
+        val dots =
+            generateSequence(node.findFirstToken(DOT)) {
+                it.findFirstToken(DOT)
+                    ?: it.findFirstToken(METHOD_CALL)?.findFirstToken(DOT)
+            }
+
+        // skip dots in single-line
+        val firstDot = dots.firstOrNull() ?: return
+        if (dots.all { it.lineNo == firstDot.lineNo }) {
+            return
+        }
 
         // checks for violation
-        while (dot != null) {
-            val dotSibling = dot.firstChild?.lastLeaf()
-            if (dotSibling != null) {
-                if ((dotSibling.type == RPAREN || dotSibling.type == RCURLY) &&
-                    dotSibling.lineNo != dotSibling.previousSibling?.lineNo
-                ) {
-                    if (dot.lineNo != dotSibling.lineNo) {
-                        log(dot, Messages[MSG_UNEXPECTED])
-                    }
-                } else {
-                    if (dot.lineNo != dotSibling.lineNo + 1) {
-                        log(dot, Messages[MSG_MISSING])
-                    }
+        for (dot in dots) {
+            val dotSibling = dot.firstChild?.lastLeaf() ?: continue
+            if ((dotSibling.type == RPAREN || dotSibling.type == RCURLY) &&
+                dotSibling.lineNo != dotSibling.previousSibling?.lineNo
+            ) {
+                if (dot.lineNo != dotSibling.lineNo) {
+                    log(dot, Messages[MSG_UNEXPECTED])
                 }
+                continue
             }
-            dot =
-                dot.findFirstToken(DOT)
-                    ?: dot.findFirstToken(METHOD_CALL)?.findFirstToken(DOT)
+            if (dot.lineNo != dotSibling.lineNo + 1) {
+                log(dot, Messages[MSG_MISSING])
+            }
         }
     }
 

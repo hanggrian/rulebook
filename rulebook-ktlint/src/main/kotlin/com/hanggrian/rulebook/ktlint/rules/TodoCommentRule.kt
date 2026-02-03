@@ -64,7 +64,6 @@ public class TodoCommentRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:todo-comment")
-
         private const val MSG_KEYWORD = "todo.comment.keyword"
         private const val MSG_SEPARATOR = "todo.comment.separator"
 

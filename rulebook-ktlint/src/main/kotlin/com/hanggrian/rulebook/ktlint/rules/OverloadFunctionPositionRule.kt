@@ -37,7 +37,6 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:overload-function-position")
-
         private const val MSG = "overload.function.position"
     }
 }

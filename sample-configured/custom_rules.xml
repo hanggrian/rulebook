@@ -153,8 +153,8 @@
       <property name="tags" value="@throws"/>
     </rule-config>
 
-    <rule-config name="IllegalClassNameSuffix">
-      <property name="names" value="Hello, World"/>
+    <rule-config name="MeaninglessWord">
+      <property name="words" value="Hello, World"/>
     </rule-config>
 
     <rule-config name="IllegalVariableName">
@@ -163,10 +163,6 @@
 
     <rule-config name="MemberOrder">
       <property name="order" value="static, function, constructor, property"/>
-    </rule-config>
-
-    <rule-config name="RequiredGenericsName">
-      <property name="names" value="A"/>
     </rule-config>
   </ruleset-ref>
 </ruleset>

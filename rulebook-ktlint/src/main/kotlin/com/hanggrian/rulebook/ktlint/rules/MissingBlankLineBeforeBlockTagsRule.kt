@@ -36,7 +36,6 @@ public class MissingBlankLineBeforeBlockTagsRule : RulebookRule(ID) {
     public companion object {
         public val ID: RuleId =
             RuleId("${RulebookRuleSet.ID.value}:missing-blank-line-before-block-tags")
-
         private const val MSG = "missing.blank.line.before.block.tags"
 
         private val ASTNode.prevKdocLeadingAsterisk

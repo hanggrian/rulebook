@@ -51,7 +51,6 @@ public class ExceptionInheritanceRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:exception-inheritance")
-
         private const val MSG = "exception.inheritance"
 
         private val NON_APPLICATION_EXCEPTIONS =

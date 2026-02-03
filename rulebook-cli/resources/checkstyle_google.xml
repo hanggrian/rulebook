@@ -525,7 +525,6 @@
     <module name="ConstantName"/>
     <module name="LocalFinalVariableName"/>
     <module name="StaticVariableName"/>
-    <module name="IllegalClassNameSuffix"/>
     <module name="IllegalIdentifierName">
       <property
         name="format"
@@ -535,9 +534,10 @@
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF,
           RECORD_COMPONENT_DEF"/>
     </module>
+    <module name="MeaninglessWord"/>
 
     <!-- Ordering -->
-    <module name="BuiltInFunctionPosition"/>
+    <module name="CommonFunctionPosition"/>
     <module name="InnerTypeLast"/>
     <module name="MemberOrder"/>
 

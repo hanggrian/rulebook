@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
-import com.hanggrian.rulebook.codenarc.isMultiline
 import com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule.Companion.MSG_MISSING
 import com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule.Companion.MSG_UNEXPECTED
 import com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule.Companion.identifierOrSelf
@@ -61,39 +60,37 @@ public class ChainCallWrapVisitor : RulebookVisitor() {
     }
 
     private fun process(node: Expression) {
-        // target root multiline chain call
-        var expression: Expression? =
-            node
-                .takeIf { it.isMultiline() }
-                ?: return
+        // collect dots
+        val expressions =
+            generateSequence(node) { it.parent }
+                .takeWhile { it is MethodCallExpression || it is PropertyExpression }
 
-        // single call is by definition not chained
-        expression!!
-            .parent
-            ?.parent
-            ?.text
-            ?.takeUnless { it == "this" }
-            ?: return
+        // skip dots in single-line
+        val firstIdentifier = expressions.firstOrNull()?.identifierOrSelf ?: return
+        if (expressions.all { it.identifierOrSelf.lineNumber == firstIdentifier.lineNumber }) {
+            return
+        }
 
         // checks for violation
-        while (expression != null) {
-            val parent = expression.parent
-            if (parent != null) {
-                val line = lastSourceLine(parent).trimStart()
-                val identifier = expression.identifierOrSelf
-                if ((line.startsWith(')') || line.startsWith('}')) &&
-                    parent.lastLineNumber != parent.identifierOrSelf.lineNumber
-                ) {
-                    if (identifier.lineNumber != parent.lastLineNumber) {
-                        addViolation(identifier, Messages[MSG_UNEXPECTED])
-                    }
-                } else {
-                    if (identifier.lineNumber != parent.lastLineNumber + 1) {
-                        addViolation(expression.identifierOrSelf, Messages[MSG_MISSING])
-                    }
+        for (expression in expressions) {
+            val parent =
+                expression
+                    .parent
+                    ?.takeUnless { it.lastLineNumber < 0 }
+                    ?: continue
+            val line = lastSourceLine(parent).trimStart()
+            val identifier = expression.identifierOrSelf
+            if ((line.startsWith(')') || line.startsWith('}')) &&
+                parent.lastLineNumber != parent.identifierOrSelf.lineNumber
+            ) {
+                if (identifier.lineNumber != parent.lastLineNumber) {
+                    addViolation(identifier, Messages[MSG_UNEXPECTED])
                 }
+                continue
             }
-            expression = expression.parent
+            if (identifier.lineNumber != parent.lastLineNumber + 1) {
+                addViolation(identifier, Messages[MSG_MISSING])
+            }
         }
     }
 }

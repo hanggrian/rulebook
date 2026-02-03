@@ -215,11 +215,22 @@
       <property name="allowedAbbreviationLength" value="2"/>
     </module>
     <module name="OuterTypeFilename"/>
+    <module name="ClassTypeParameterName">
+      <property name="format" value="^[A-Z]{1}$"/>
+    </module>
+    <module name="InterfaceTypeParameterName">
+      <property name="format" value="^[A-Z]{1}$"/>
+    </module>
+    <module name="MethodTypeParameterName">
+      <property name="format" value="^[A-Z]{1}$"/>
+    </module>
+    <module name="RecordTypeParameterName">
+      <property name="format" value="^[A-Z]{1}$"/>
+    </module>
     <module name="CatchParameterName"/>
     <module name="LambdaParameterName"/>
     <module name="PatternVariableName"/>
     <module name="RecordComponentName"/>
-    <module name="IllegalClassNameSuffix"/>
     <module name="IllegalIdentifierName">
       <property
         name="format"
@@ -229,24 +240,13 @@
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF,
           RECORD_COMPONENT_DEF"/>
     </module>
-    <module name="ClassTypeParameterName">
-      <property name="format" value="E|K|N|T|V"/>
-    </module>
-    <module name="InterfaceTypeParameterName">
-      <property name="format" value="E|K|N|T|V"/>
-    </module>
-    <module name="MethodTypeParameterName">
-      <property name="format" value="E|K|N|T|V"/>
-    </module>
-    <module name="RecordTypeParameterName">
-      <property name="format" value="E|K|N|T|V"/>
-    </module>
+    <module name="MeaninglessWord"/>
 
     <!-- Ordering -->
     <module name="AtclauseOrder">
       <property name="tagOrder" value="@param, @return, @throws, @see"/>
     </module>
-    <module name="BuiltInFunctionPosition"/>
+    <module name="CommonFunctionPosition"/>
     <module name="CustomImportOrder">
       <property name="sortImportsInGroupAlphabetically" value="true"/>
       <property name="separateLineBetweenGroups" value="true"/>

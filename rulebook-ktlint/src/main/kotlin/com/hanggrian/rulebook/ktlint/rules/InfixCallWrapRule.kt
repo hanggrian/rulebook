@@ -44,7 +44,6 @@ public class InfixCallWrapRule : RulebookRule(ID) {
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:infix-call-wrap")
-
         private const val MSG_MISSING = "infix.call.wrap.missing"
         private const val MSG_UNEXPECTED = "infix.call.wrap.unexpected"
     }

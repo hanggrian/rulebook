@@ -20,9 +20,9 @@ from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_cppcheck.checkers.empty_parentheses_clip import EmptyParenthesesClipChecker
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
+from rulebook_cppcheck.checkers.generic_name import GenericNameChecker
 from rulebook_cppcheck.checkers.identifier_name import IdentifierNameChecker
 from rulebook_cppcheck.checkers.illegal_catch import IllegalCatchChecker
-from rulebook_cppcheck.checkers.illegal_class_name_suffix import IllegalClassNameSuffixChecker
 from rulebook_cppcheck.checkers.illegal_throw import IllegalThrowChecker
 from rulebook_cppcheck.checkers.illegal_variable_name import IllegalVariableNameChecker
 from rulebook_cppcheck.checkers.import_order import ImportOrderChecker
@@ -30,6 +30,7 @@ from rulebook_cppcheck.checkers.indent_style import IndentStyleChecker
 from rulebook_cppcheck.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
 from rulebook_cppcheck.checkers.lowercase_f import LowercaseFChecker
+from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_cppcheck.checkers.member_order import MemberOrderChecker
 from rulebook_cppcheck.checkers.member_separator import MemberSeparatorChecker
 from rulebook_cppcheck.checkers.nested_if_else import NestedIfElseChecker
@@ -39,7 +40,6 @@ from rulebook_cppcheck.checkers.parameter_wrap import ParameterWrapChecker
 from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
-from rulebook_cppcheck.checkers.required_generics_name import RequiredGenericsNameChecker
 from rulebook_cppcheck.checkers.rulebook_checkers import BaseChecker
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
 from rulebook_cppcheck.checkers.unnecessary_switch import UnnecessarySwitchChecker
@@ -68,10 +68,10 @@ if __name__ == '__main__':
         ClassNameAbbreviationChecker(),
         ClassNameChecker(),
         IdentifierNameChecker(),
-        IllegalClassNameSuffixChecker(),
         IllegalVariableNameChecker(),
+        GenericNameChecker(),
+        MeaninglessWordChecker(),
         PackageNameChecker(),
-        RequiredGenericsNameChecker(),
         # Ordering
         ImportOrderChecker(),
         InnerClassPositionChecker(),
