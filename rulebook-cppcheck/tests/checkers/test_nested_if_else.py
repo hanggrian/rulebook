@@ -15,83 +15,270 @@ class TestNestedIfElseChecker(CheckerTestCase):
     CHECKER_CLASS = NestedIfElseChecker
 
     @patch.object(NestedIfElseChecker, 'report_error')
-    def test_invert_violation(self, mock_report):
-        scope = MagicMock(name='scope')
-        scope.type = 'Function'
-        scope.bodyStart = MagicMock()
-        if_tok = self.create_token('if_token', 'if', 1)
-        l_paren = self.create_token('l_paren', '(', 1)
-        r_paren = self.create_token('r_paren', ')', 1)
-        l_brace = self.create_token('l_brace', '{', 2)
-        r_brace_inner = self.create_token('r_brace_inner', '}', 5)
-        r_brace_outer = self.create_token('r_brace_outer', '}', 6)
-        if_tok.scope = scope
-        r_brace_outer.scope = scope
-        if_tok.next = l_paren
-        l_paren.link = r_paren
-        r_paren.next = l_brace
-        l_brace.link = r_brace_inner
-        l_brace.next = r_brace_inner
-        r_brace_inner.next = r_brace_outer
-        r_brace_outer.previous = r_brace_inner
-        r_brace_inner.previous = l_brace
-        r_brace_inner.link = l_brace
-        l_brace.previous = r_paren
-        r_paren.previous = l_paren
-        l_paren.previous = if_tok
-        self.checker.run_check(MagicMock(tokenlist=[r_brace_outer]))
+    def test_empty_or_single_statement(self, mock_report):
+        scope = self._scope()
+        fn_open = self._token('{', 1, scope)
+        scope.bodyStart = fn_open
+        if_tok, lp, rp, if_open, if_close = self._if_block(scope, 2, 2, 3)
+        s, semi = self._stmt(2)
+        fn_close = self._token('}', 4, scope)
+        self._chain([fn_open, if_tok, lp, rp, if_open, s, semi, if_close, fn_close])
+        self.checker.process_token(fn_close)
+        mock_report.assert_not_called()
+
+    @patch.object(NestedIfElseChecker, 'report_error')
+    def test_invert_multiline(self, mock_report):
+        scope = self._scope()
+        fn_open = self._token('{', 1, scope)
+        scope.bodyStart = fn_open
+        if_tok, lp, rp, if_open, if_close = self._if_block(scope, 2, 2, 5)
+        s1, semi1 = self._stmt(3)
+        s2, semi2 = self._stmt(4)
+        fn_close = self._token('}', 6, scope)
+        self._chain([fn_open, if_tok, lp, rp, if_open, s1, semi1, s2, semi2, if_close, fn_close])
+        self.checker.process_token(fn_close)
         mock_report.assert_called_once_with(if_tok, _Messages.get(self.checker.MSG_INVERT))
 
     @patch.object(NestedIfElseChecker, 'report_error')
-    def test_lift_violation(self, mock_report):
-        scope = MagicMock(name='scope')
-        scope.type = 'Function'
-        scope.bodyStart = MagicMock()
-        if_token = self.create_token('if_token', 'if', 1)
-        l_paren = self.create_token('l_paren', '(', 1)
-        r_paren = self.create_token('r_paren', ')', 1)
-        if_l_brace = self.create_token('if_l', '{', 2)
-        if_r_brace = self.create_token('if_r', '}', 2)
-        else_token = self.create_token('else_token', 'else', 3)
-        else_l_brace = self.create_token('else_l', '{', 10)
-        else_r_brace = self.create_token('else_r', '}', 13)
-        r_brace_outer = self.create_token('outer_r', '}', 14)
-        if_token.scope = scope
-        else_token.scope = scope
-        r_brace_outer.scope = scope
-        if_token.next = l_paren
-        l_paren.link = r_paren
-        r_paren.next = if_l_brace
-        if_l_brace.link = if_r_brace
-        if_l_brace.next = if_r_brace
-        if_r_brace.next = else_token
-        else_token.next = else_l_brace
-        else_l_brace.link = else_r_brace
-        else_l_brace.next = else_r_brace
-        else_r_brace.next = r_brace_outer
-        r_brace_outer.previous = else_r_brace
-        else_r_brace.previous = else_l_brace
-        else_r_brace.link = else_l_brace
-        else_l_brace.previous = else_token
-        else_token.previous = if_r_brace
-        if_r_brace.previous = if_l_brace
-        if_r_brace.link = if_l_brace
-        if_l_brace.previous = r_paren
-        r_paren.previous = l_paren
-        l_paren.previous = if_token
-        self.checker.run_check(MagicMock(tokenlist=[r_brace_outer]))
-        mock_report.assert_called_once_with(else_token, _Messages.get(self.checker.MSG_LIFT))
+    def test_lift_else(self, mock_report):
+        scope = self._scope()
+        fn_open = self._token('{', 1, scope)
+        scope.bodyStart = fn_open
+        if_tok, lp, rp, if_open, if_close = self._if_block(scope, 2, 2, 4)
+        s1, semi1 = self._stmt(3)
+        else_tok, else_open, else_close = self._else_block(4, 7)
+        s2, semi2 = self._stmt(5)
+        s3, semi3 = self._stmt(6)
+        fn_close = self._token('}', 8, scope)
+        self._chain([
+            fn_open,
+            if_tok,
+            lp,
+            rp,
+            if_open,
+            s1,
+            semi1,
+            if_close,
+            else_tok,
+            else_open,
+            s2,
+            semi2,
+            s3,
+            semi3,
+            else_close,
+            fn_close,
+        ])
+        self.checker.process_token(fn_close)
+        mock_report.assert_called_once_with(else_tok, _Messages.get(self.checker.MSG_LIFT))
+
+    @patch('rulebook_cppcheck.checkers.nested_if_else._has_jump_statement', return_value=False)
+    @patch.object(NestedIfElseChecker, 'report_error')
+    def test_skip_else_if(self, mock_report, _mock_jump):
+        scope = self._scope()
+        fn_open = self._token('{', 1, scope)
+        scope.bodyStart = fn_open
+        if_tok, lp, rp, if_open, if_close = self._if_block(scope, 2, 2, 5)
+        s1, semi1 = self._stmt(3)
+        s2, semi2 = self._stmt(4)
+        else_tok = self._token('else', 5)
+        elif_tok, elif_lp, elif_rp, elif_open, elif_close = self._if_block(scope, 5, 5, 6)
+        s3, semi3 = self._stmt(5)
+        fn_close = self._token('}', 7, scope)
+        self._chain([
+            fn_open,
+            if_tok,
+            lp,
+            rp,
+            if_open,
+            s1,
+            semi1,
+            s2,
+            semi2,
+            if_close,
+            else_tok,
+            elif_tok,
+            elif_lp,
+            elif_rp,
+            elif_open,
+            s3,
+            semi3,
+            elif_close,
+            fn_close,
+        ])
+        self.checker.process_token(fn_close)
+        mock_report.assert_not_called()
+
+    @patch('rulebook_cppcheck.checkers.nested_if_else._has_jump_statement', return_value=True)
+    @patch.object(NestedIfElseChecker, 'report_error')
+    def test_skip_jump_statement(self, mock_report, _mock_jump):
+        scope = self._scope()
+        fn_open = self._token('{', 1, scope)
+        scope.bodyStart = fn_open
+        if_tok, lp, rp, if_open, if_close = self._if_block(scope, 2, 2, 5)
+        s, semi = self._stmt(3)
+        ret = self._token('return', 4)
+        ret_semi = self._token(';', 4)
+        fn_close = self._token('}', 6, scope)
+        self._chain([fn_open, if_tok, lp, rp, if_open, s, semi, ret, ret_semi, if_close, fn_close])
+        self.checker.process_token(fn_close)
+        mock_report.assert_not_called()
+
+    @patch('rulebook_cppcheck.checkers.nested_if_else._has_jump_statement', return_value=False)
+    @patch.object(NestedIfElseChecker, 'report_error')
+    def test_trailing_non_ifs(self, mock_report, _mock_jump):
+        scope = self._scope()
+        fn_open = self._token('{', 1, scope)
+        scope.bodyStart = fn_open
+        if_tok, lp, rp, if_open, if_close = self._if_block(scope, 2, 2, 5)
+        s1, semi1 = self._stmt(3)
+        s2, semi2 = self._stmt(4)
+        trailing_semi = self._token(';', 6)
+        fn_close = self._token('}', 7, scope)
+        self._chain([
+            fn_open,
+            if_tok,
+            lp,
+            rp,
+            if_open,
+            s1,
+            semi1,
+            s2,
+            semi2,
+            if_close,
+            trailing_semi,
+            fn_close,
+        ])
+        self.checker.process_token(fn_close)
+        mock_report.assert_called_once_with(if_tok, _Messages.get(self.checker.MSG_INVERT))
+
+    @patch.object(NestedIfElseChecker, 'report_error')
+    def test_skip_recursive_if(self, mock_report):
+        fn_scope = self._scope()
+        inner_scope = self._scope()
+        fn_open = self._token('{', 1, fn_scope)
+        fn_scope.bodyStart = fn_open
+        outer_if = self._token('if', 2, fn_scope)
+        outer_lp = self._token('(', 2)
+        outer_rp = self._token(')', 2)
+        outer_lp.link = outer_rp
+        outer_rp.link = outer_lp
+        outer_open = self._token('{', 2)
+        outer_close = self._token('}', 7)
+        outer_open.link = outer_close
+        outer_close.link = outer_open
+        inner_if, inner_lp, inner_rp, inner_open, inner_close = self._if_block(inner_scope, 3, 3, 6)
+        s1, semi1 = self._stmt(4)
+        s2, semi2 = self._stmt(5)
+        trailing_call, trailing_semi = self._stmt(8)
+        fn_close = self._token('}', 9, fn_scope)
+        self._chain([
+            fn_open,
+            outer_if,
+            outer_lp,
+            outer_rp,
+            outer_open,
+            inner_if,
+            inner_lp,
+            inner_rp,
+            inner_open,
+            s1,
+            semi1,
+            s2,
+            semi2,
+            inner_close,
+            outer_close,
+            trailing_call,
+            trailing_semi,
+            fn_close,
+        ])
+        self.checker.process_token(fn_close)
+        mock_report.assert_not_called()
+
+    @patch.object(NestedIfElseChecker, 'report_error')
+    def test_skip_try_catch_scope(self, mock_report):
+        scope = self._scope('Try')
+        fn_close = self._token('}', 5, scope)
+        self.checker.process_token(fn_close)
+        mock_report.assert_not_called()
+
+    @patch.object(NestedIfElseChecker, 'report_error')
+    def test_skip_else_block_single_statement(self, mock_report):
+        scope = self._scope()
+        fn_open = self._token('{', 1, scope)
+        scope.bodyStart = fn_open
+        if_tok, lp, rp, if_open, if_close = self._if_block(scope, 2, 2, 4)
+        s1, semi1 = self._stmt(3)
+        else_tok, else_open, else_close = self._else_block(4, 5)
+        s2, semi2 = self._stmt(4)
+        fn_close = self._token('}', 6, scope)
+        self._chain([
+            fn_open,
+            if_tok,
+            lp,
+            rp,
+            if_open,
+            s1,
+            semi1,
+            if_close,
+            else_tok,
+            else_open,
+            s2,
+            semi2,
+            else_close,
+            fn_close,
+        ])
+        self.checker.process_token(fn_close)
+        mock_report.assert_not_called()
 
     @staticmethod
-    def create_token(name, string, linenr=1):
-        token = MagicMock(spec=Token, name=name)
-        token.str = string
-        token.linenr = linenr
-        token.next = None
-        token.previous = None
-        token.link = None
-        token.scope = None
-        return token
+    def _token(s, linenr=1, scope=None):
+        tok = MagicMock(spec=Token)
+        tok.str = s
+        tok.linenr = linenr
+        tok.scope = scope
+        return tok
+
+    @staticmethod
+    def _chain(tokens):
+        for i in range(len(tokens) - 1):
+            tokens[i].next = tokens[i + 1]
+            tokens[i + 1].previous = tokens[i]
+        tokens[0].previous = None
+        tokens[-1].next = None
+
+    @staticmethod
+    def _scope(scope_type='Function'):
+        scope = MagicMock()
+        scope.type = scope_type
+        return scope
+
+    @staticmethod
+    def _if_block(scope, if_line, open_line, close_line):
+        if_tok = TestNestedIfElseChecker._token('if', if_line, scope)
+        lp = TestNestedIfElseChecker._token('(', if_line)
+        rp = TestNestedIfElseChecker._token(')', if_line)
+        lp.link = rp
+        rp.link = lp
+        open_brace = TestNestedIfElseChecker._token('{', open_line)
+        close_brace = TestNestedIfElseChecker._token('}', close_line)
+        open_brace.link = close_brace
+        close_brace.link = open_brace
+        return if_tok, lp, rp, open_brace, close_brace
+
+    @staticmethod
+    def _else_block(open_line, close_line):
+        else_tok = TestNestedIfElseChecker._token('else', open_line)
+        open_brace = TestNestedIfElseChecker._token('{', open_line)
+        close_brace = TestNestedIfElseChecker._token('}', close_line)
+        open_brace.link = close_brace
+        close_brace.link = open_brace
+        return else_tok, open_brace, close_brace
+
+    @staticmethod
+    def _stmt(linenr=1):
+        s = TestNestedIfElseChecker._token('baz', linenr)
+        semi = TestNestedIfElseChecker._token(';', linenr)
+        return s, semi
 
 
 if __name__ == '__main__':

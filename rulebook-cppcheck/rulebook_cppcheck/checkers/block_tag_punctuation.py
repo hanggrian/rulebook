@@ -35,18 +35,51 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'/\*(.*?)\*/', content, DOTALL):
             comment_body: str = match.group(1)
-            start_line: int = content.count('\n', 0, match.start()) + 1
+            start_line: int = content.count('\n', 0, match.start())
             lines: list[str] = comment_body.splitlines()
+
+            # strategy to capture continuation indent
+            current_tag: str | None = None
+            last_text: str = ''
+            last_text_line_idx: int = -1
+
             for i, line in enumerate(lines):
                 stripped: str = line.strip().lstrip('*').strip()
                 if not stripped:
                     continue
-                for tag in self._block_tags:
-                    if not stripped.startswith(tag):
-                        continue
-                    description: str = stripped[len(tag):].strip()
-                    if not description:
-                        continue
-                    if description[-1] in self.PUNCTUATIONS:
-                        continue
-                    self.report_error(token, _Messages.get(self.MSG, tag), start_line + i)
+
+                # only enforce certain tags
+                found_tag: str = \
+                    next((t for t in self._block_tags if stripped.startswith(t)), None)
+
+                # long descriptions have multiple lines, take only the last one
+                if found_tag:
+                    if current_tag and last_text and last_text[-1] not in self.PUNCTUATIONS:
+                        self.report_error(
+                            token,
+                            _Messages.get(self.MSG, current_tag),
+                            start_line + last_text_line_idx,
+                        )
+
+                    current_tag = found_tag
+                    remainder: str = stripped[len(found_tag):].strip()
+                    if current_tag == '@param':
+                        parts: list[str] = remainder.split(maxsplit=1)
+                        last_text = parts[1] if len(parts) > 1 else ''
+                    else:
+                        last_text = remainder
+                    last_text_line_idx = i if last_text else -1
+                elif current_tag:
+                    last_text = stripped
+                    last_text_line_idx = i
+
+            # checks for violation
+            if not current_tag or \
+                not last_text or \
+                last_text[-1] in self.PUNCTUATIONS:
+                continue
+            self.report_error(
+                token,
+                _Messages.get(self.MSG, current_tag),
+                start_line + last_text_line_idx,
+            )

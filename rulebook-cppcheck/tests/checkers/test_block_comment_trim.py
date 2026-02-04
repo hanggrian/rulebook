@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_cppcheck.messages import _Messages
@@ -10,59 +10,93 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     CHECKER_CLASS = BlockCommentTrimChecker
 
     @patch.object(BlockCommentTrimChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_block_comment_without_initial_and_final_newline(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
             '''
             /**
-             * Lorem ipsum
+             * Lorem ipsum.
              */
+            void foo() {}
             ''',
-    )
-    def test_no_violations(self, mock_file, mock_report):
-        token = MagicMock()
-        token.file = 'test.c'
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        )
         mock_report.assert_not_called()
-        mock_file.assert_called_once_with('test.c', 'r', encoding='UTF-8')
 
     @patch.object(BlockCommentTrimChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_block_comment_with_initial_and_final_newline(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
             '''
-            int main() {
-                /**
-                 *
-                 * Lorem ipsum
-                 *
-                 *
-                 */
-                return 0;
-            }
+            /**
+             *
+             * Lorem ipsum.
+             *
+             *
+             */
+            void foo() {}
             ''',
-    )
-    def test_trim_violations(self, mock_file, mock_report):
-        token = MagicMock()
-        token.file = 'test.c'
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        )
         self.assertEqual(mock_report.call_count, 2)
-        mock_report.assert_called()
-        mock_file.assert_called_once_with('test.c', 'r', encoding='UTF-8')
-        self.assertEqual(
-            mock_report.call_args_list[0][0][1],
-            _Messages.get(self.checker.MSG_FIRST),
+        calls = mock_report.call_args_list
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG_FIRST))
+        self.assertEqual(calls[0][0][2], 3)
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG_LAST))
+        self.assertEqual(calls[1][0][2], 7)
+
+    @patch.object(BlockCommentTrimChecker, 'report_error')
+    def test_block_tag_description_with_final_newline(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
+            '''
+            /**
+             * @return a number.
+             *
+             */
+            int foo() {}
+            ''',
         )
-        self.assertEqual(
-            mock_report.call_args_list[1][0][1],
-            _Messages.get(self.checker.MSG_LAST),
+        mock_report.assert_called_once()
+        args, _ = mock_report.call_args
+        self.assertEqual(args[1], _Messages.get(self.checker.MSG_LAST))
+        self.assertEqual(args[2], 5)
+
+    @patch.object(BlockCommentTrimChecker, 'report_error')
+    def test_skip_single_line_block_comment(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
+            '''
+            /** Lorem ipsum. */
+            int foo() {}
+            ''',
         )
+        mock_report.assert_not_called()
+
+    @patch.object(BlockCommentTrimChecker, 'report_error')
+    def test_skip_blank_block_comment(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
+            '''
+            /**
+             *
+             */
+            int foo() {}
+            ''',
+        )
+        mock_report.assert_not_called()
+
+    @patch.object(BlockCommentTrimChecker, 'report_error')
+    def test_skip_multiline_block_tag_description(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
+            '''
+            /**
+             * @param bar Lorem ipsum
+             * dolor sit amet.
+             */
+            int foo(int bar) {}
+            ''',
+        )
+        mock_report.assert_not_called()
 
 
 if __name__ == '__main__':

@@ -21,7 +21,8 @@ class CommentSpaceChecker(RulebookFileChecker):
             line_stripped: str = line.lstrip()
             if '//' not in line_stripped:
                 continue
-            if line_stripped.startswith('// ') or \
+            line_stripped = line_stripped.split('//')[1]
+            if line_stripped.startswith(' ') or \
                 line_stripped.replace('/', '').strip() == '':
                 continue
             self.report_error(token, _Messages.get(self.MSG), lineno, line.find('//') + 1)

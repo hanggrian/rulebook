@@ -14,11 +14,4 @@ export default {
     get(key: string): string {
         return messages[key];
     },
-
-    of(key: string, ...args: string[]): string {
-        let result = messages[key];
-        let count = 0;
-        args.forEach(arg => result = result.replace(`{{ $${count++} }}`, String(arg)));
-        return result;
-    },
 };

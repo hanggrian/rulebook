@@ -1,16 +1,26 @@
-import js from '@eslint/js';
 import globals from 'globals';
+import eslint from '@eslint/js';
 import typescriptEslint from 'typescript-eslint';
-import rulebookEslint, { proxmoxJavaScriptStyleNamed } from 'rulebook-eslint';
-import rulebookTypescriptEslint, { microsoftTypeScriptStyleNamed } from 'rulebook-typescript-eslint';
+import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
+import eslintPluginStylistic from '@stylistic/eslint-plugin';
+import eslintPluginSortClassMembers from 'eslint-plugin-sort-class-members';
+import rulebookTypescriptEslint from 'rulebook-typescript-eslint';
 
 export default typescriptEslint.config(
     { ignores: ['dist'] },
     {
         files: ['**/*.{ts,tsx}'],
+        plugins: {
+            '@jsdoc': eslintPluginJsdoc,
+            '@stylistic': eslintPluginStylistic,
+            '@sort-class-members': eslintPluginSortClassMembers,
+            '@rulebook': rulebookTypescriptEslint,
+        },
         extends: [
-            js.configs.recommended,
+            eslint.configs.recommended,
+            typescriptEslint.configs.eslintRecommended,
             ...typescriptEslint.configs.recommendedTypeChecked,
+            rulebookTypescriptEslint.configs.crockford,
         ],
         languageOptions: {
             ecmaVersion: 2020,
@@ -19,9 +29,5 @@ export default typescriptEslint.config(
                 projectService: true,
             },
         },
-        plugins: {
-            'rulebook': rulebookTypescriptEslint,
-        },
-        rules: microsoftTypeScriptStyleNamed('rulebook'),
     },
 );

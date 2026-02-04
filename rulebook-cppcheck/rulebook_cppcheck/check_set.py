@@ -17,7 +17,6 @@ from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
 from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
-from rulebook_cppcheck.checkers.empty_parentheses_clip import EmptyParenthesesClipChecker
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
 from rulebook_cppcheck.checkers.generic_name import GenericNameChecker
@@ -37,6 +36,7 @@ from rulebook_cppcheck.checkers.nested_if_else import NestedIfElseChecker
 from rulebook_cppcheck.checkers.operator_wrap import OperatorWrapChecker
 from rulebook_cppcheck.checkers.package_name import PackageNameChecker
 from rulebook_cppcheck.checkers.parameter_wrap import ParameterWrapChecker
+from rulebook_cppcheck.checkers.parentheses_clip import ParenthesesClipChecker
 from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
@@ -55,7 +55,7 @@ if __name__ == '__main__':
         BlockTagPunctuationChecker(),
         TodoCommentChecker(),
         # Clipping
-        EmptyParenthesesClipChecker(),
+        ParenthesesClipChecker(),
         # Declaring
         LowercaseFChecker(),
         UppercaseLChecker(),

@@ -12,11 +12,11 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.TrailingCommaInCallRule"/>
 
   <!-- Clipping -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyBracesClipRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyBracketsClipRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyParenthesesClipRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyTagsClipRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ShortBlockCommentClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BlockCommentClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BracesClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ParenthesesClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.TagsClipRule"/>
 
   <!-- Declaring -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseDRule"/>
@@ -26,7 +26,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.UtilityClassDefinitionRule"/>
 
   <!-- Formatting -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryBlankFileRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
 
   <!-- Naming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.ClassNameAbbreviationRule"/>

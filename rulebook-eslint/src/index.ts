@@ -1,38 +1,24 @@
-import eslintPluginJs from '@stylistic/eslint-plugin-js';
-import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
-import { sortClassMembersRule } from 'eslint-plugin-sort-class-members/dist/rules/sort-class-members.js';
+import { ESLint } from 'eslint';
 import assignmentWrap from './rules/assignment-wrap.js';
 import chainCallWrap from './rules/chain-call-wrap.js';
 import todoComment from './rules/todo-comment.js';
 import wildcardImport from './rules/wildcard-import.js';
 
-const plugin = {
-    rules: {
-        ...eslintPluginJs.rules,
-        ...eslintPluginJsdoc.rules,
-        'sort-class-members': sortClassMembersRule,
-        'assignment-wrap': assignmentWrap,
-        'wildcard-import': wildcardImport,
-        'todo-comment': todoComment,
-        'chain-call-wrap': chainCallWrap,
-    },
-};
-
-const proxmoxJavaScriptStyleNamed = (plugin: string) => ({
+const crockfordConfig: Record<string, any> = {
     'consistent-return': 'error',
     'no-undef': 'error',
-    [`${plugin}/semi`]: 'error',
-    [`${plugin}/semi-spacing`]: 'error',
+    '@stylistic/semi': 'error',
+    '@stylistic/semi-spacing': 'error',
 
-    [`${plugin}/comma-dangle`]: ['error', 'always-multiline'],
+    '@stylistic/comma-dangle': ['error', 'always-multiline'],
     'no-unused-vars': 'error',
-    [`${plugin}/todo-comment`]: 'error',
-    [`${plugin}/wildcard-import`]: 'error',
+    '@rulebook/todo-comment': 'error',
+    '@rulebook/wildcard-import': 'error',
     // Clipping
-    [`${plugin}/object-curly-spacing`]: ['error', 'always'],
-    [`${plugin}/array-bracket-spacing`]: ['error', 'never'],
-    [`${plugin}/space-in-parens`]: 'error',
-    [`${plugin}/multiline-blocks`]: [
+    '@stylistic/object-curly-spacing': ['error', 'always'],
+    '@stylistic/array-bracket-spacing': ['error', 'never'],
+    '@stylistic/space-in-parens': 'error',
+    '@jsdoc/multiline-blocks': [
         'error',
         {
             noMultilineBlocks: true,
@@ -40,7 +26,7 @@ const proxmoxJavaScriptStyleNamed = (plugin: string) => ({
         },
     ],
     // Declaring
-    [`${plugin}/quotes`]: [
+    '@stylistic/quotes': [
         'error',
         'single',
         {
@@ -48,12 +34,12 @@ const proxmoxJavaScriptStyleNamed = (plugin: string) => ({
             'allowTemplateLiterals': 'avoidEscape',
         },
     ],
-    [`${plugin}/arrow-parens`]: ['error', 'as-needed'],
+    '@stylistic/arrow-parens': ['error', 'as-needed'],
     // Formatting
     'max-lines': ['error', 1000],
-    [`${plugin}/eol-last`]: 'error',
+    '@stylistic/eol-last': 'error',
     'indent': ['error', 4],
-    [`${plugin}/max-len`]: [
+    '@stylistic/max-len': [
         'error',
         {
             code: 100,
@@ -62,7 +48,6 @@ const proxmoxJavaScriptStyleNamed = (plugin: string) => ({
             ignorePattern: '(module|require|import)',
         },
     ],
-    'no-empty': ['error'],
     // Naming
     'id-denylist': [
         'error',
@@ -74,8 +59,8 @@ const proxmoxJavaScriptStyleNamed = (plugin: string) => ({
         'strings',
     ],
     // Ordering
-    [`${plugin}/sort-tags`]: 'error',
-    [`${plugin}/sort-class-members`]: [
+    '@jsdoc/sort-tags': 'error',
+    '@sort-class-members/sort-class-members': [
         'error',
         {
             order: [
@@ -102,9 +87,31 @@ const proxmoxJavaScriptStyleNamed = (plugin: string) => ({
         },
     ],
     // Spacing
-    [`${plugin}/spaced-comment`]: 'error',
-    [`${plugin}/check-indentation`]: 'error',
-    [`${plugin}/tag-lines`]: [
+    '@stylistic/spaced-comment': 'error',
+    '@jsdoc/check-indentation': 'error',
+    '@stylistic/lines-between-class-members': [
+        'error',
+        {
+            enforce: [
+                {
+                    blankLine: 'always',
+                    prev: 'method',
+                    next: '*',
+                },
+                {
+                    blankLine: 'always',
+                    prev: '*',
+                    next: 'method',
+                },
+                {
+                    blankLine: 'never',
+                    prev: 'field',
+                    next: 'field',
+                },
+            ],
+        },
+    ],
+    '@jsdoc/tag-lines': [
         'error',
         'any',
         {
@@ -122,41 +129,41 @@ const proxmoxJavaScriptStyleNamed = (plugin: string) => ({
         },
     ],
     // Trimming
-    [`${plugin}/no-blank-block-descriptions`]: 'error',
-    [`${plugin}/padded-blocks`]: ['error', 'never'],
-    [`${plugin}/no-multiple-empty-lines`]: [
+    '@jsdoc/no-blank-block-descriptions': 'error',
+    '@stylistic/padded-blocks': ['error', 'never'],
+    '@stylistic/no-multiple-empty-lines': [
         'error',
         {
             max: 1,
         },
     ],
-    [`${plugin}/no-multi-spaces`]: 'error',
+    '@stylistic/no-multi-spaces': 'error',
     // Wrapping
-    [`${plugin}/assignment-wrap`]: 'error',
-    [`${plugin}/chain-call-wrap`]: 'error',
+    '@rulebook/assignment-wrap': 'error',
+    '@rulebook/chain-call-wrap': 'error',
     'arrow-body-style': ['error', 'as-needed'],
-    [`${plugin}/operator-linebreak`]: 'error',
-    [`${plugin}/array-element-newline`]: ['error', 'consistent'],
-    [`${plugin}/function-call-argument-newline`]: ['error', 'consistent'],
-    [`${plugin}/function-paren-newline`]: ['error', 'multiline-arguments'],
-    [`${plugin}/max-statements-per-line`]: 'error',
-});
+    '@stylistic/operator-linebreak': 'error',
+    '@stylistic/array-element-newline': ['error', 'consistent'],
+    '@stylistic/function-call-argument-newline': ['error', 'consistent'],
+    '@stylistic/function-paren-newline': ['error', 'multiline-arguments'],
+    '@stylistic/max-statements-per-line': 'error',
+};
 
-const googleJavaScriptStyleNamed = (plugin: string) => ({
+const googleConfig: Record<string, any> = {
     'consistent-return': 'error',
     'no-undef': 'error',
-    [`${plugin}/semi`]: 'error',
-    [`${plugin}/semi-spacing`]: 'error',
+    '@stylistic/semi': 'error',
+    '@stylistic/semi-spacing': 'error',
 
-    [`${plugin}/comma-dangle`]: ['error', 'always-multiline'],
+    '@stylistic/comma-dangle': ['error', 'always-multiline'],
     'no-unused-vars': ['error', { args: 'none' }],
-    [`${plugin}/todo-comment`]: 'error',
-    [`${plugin}/wildcard-import`]: 'error',
+    '@rulebook/todo-comment': 'error',
+    '@rulebook/wildcard-import': 'error',
     // Clipping
-    [`${plugin}/object-curly-spacing`]: ['error', 'never'],
-    [`${plugin}/array-bracket-spacing`]: ['error', 'never'],
-    [`${plugin}/space-in-parens`]: 'error',
-    [`${plugin}/multiline-blocks`]: [
+    '@stylistic/object-curly-spacing': ['error', 'never'],
+    '@stylistic/array-bracket-spacing': ['error', 'never'],
+    '@stylistic/space-in-parens': 'error',
+    '@jsdoc/multiline-blocks': [
         'error',
         {
             noMultilineBlocks: true,
@@ -164,11 +171,11 @@ const googleJavaScriptStyleNamed = (plugin: string) => ({
         },
     ],
     // Declaring
-    [`${plugin}/quotes`]: ['error', 'single', { allowTemplateLiterals: true }],
-    [`${plugin}/arrow-parens`]: ['error', 'always'],
+    '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: true }],
+    '@stylistic/arrow-parens': ['error', 'always'],
     // Formatting
     'max-lines': ['error', 1000],
-    [`${plugin}/eol-last`]: 'error',
+    '@stylistic/eol-last': 'error',
     'indent': [
         'error',
         2,
@@ -192,7 +199,7 @@ const googleJavaScriptStyleNamed = (plugin: string) => ({
             ],
         },
     ],
-    [`${plugin}/max-len`]: [
+    '@stylistic/max-len': [
         'error',
         {
             code: 80,
@@ -201,7 +208,6 @@ const googleJavaScriptStyleNamed = (plugin: string) => ({
             ignorePattern: 'goog.(module|require)',
         },
     ],
-    'no-empty': ['error'],
     // Naming
     'id-denylist': [
         'error',
@@ -213,8 +219,8 @@ const googleJavaScriptStyleNamed = (plugin: string) => ({
         'strings',
     ],
     // Ordering
-    [`${plugin}/sort-tags`]: 'error',
-    [`${plugin}/sort-class-members`]: [
+    '@jsdoc/sort-tags': 'error',
+    '@sort-class-members/sort-class-members': [
         'error',
         {
             order: [
@@ -241,9 +247,31 @@ const googleJavaScriptStyleNamed = (plugin: string) => ({
         },
     ],
     // Spacing
-    [`${plugin}/spaced-comment`]: 'error',
-    [`${plugin}/check-indentation`]: 'error',
-    [`${plugin}/tag-lines`]: [
+    '@stylistic/spaced-comment': 'error',
+    '@jsdoc/check-indentation': 'error',
+    '@stylistic/lines-between-class-members': [
+        'error',
+        {
+            enforce: [
+                {
+                    blankLine: 'always',
+                    prev: 'method',
+                    next: '*',
+                },
+                {
+                    blankLine: 'always',
+                    prev: '*',
+                    next: 'method',
+                },
+                {
+                    blankLine: 'never',
+                    prev: 'field',
+                    next: 'field',
+                },
+            ],
+        },
+    ],
+    '@jsdoc/tag-lines': [
         'error',
         'any',
         {
@@ -261,24 +289,24 @@ const googleJavaScriptStyleNamed = (plugin: string) => ({
         },
     ],
     // Trimming
-    [`${plugin}/no-blank-block-descriptions`]: 'error',
-    [`${plugin}/padded-blocks`]: ['error', 'never'],
-    [`${plugin}/no-multiple-empty-lines`]: [
+    '@jsdoc/no-blank-block-descriptions': 'error',
+    '@stylistic/padded-blocks': ['error', 'never'],
+    '@stylistic/no-multiple-empty-lines': [
         'error',
         {
             max: 1,
         },
     ],
-    [`${plugin}/no-multi-spaces`]: 'error',
+    '@stylistic/no-multi-spaces': 'error',
     // Wrapping
-    [`${plugin}/assignment-wrap`]: 'error',
-    [`${plugin}/chain-call-wrap`]: 'error',
+    '@rulebook/assignment-wrap': 'error',
+    '@rulebook/chain-call-wrap': 'error',
     'arrow-body-style': ['error', 'as-needed'],
-    [`${plugin}/operator-linebreak`]: 'error',
-    [`${plugin}/array-element-newline`]: ['error', 'consistent'],
-    [`${plugin}/function-call-argument-newline`]: ['error', 'consistent'],
-    [`${plugin}/function-paren-newline`]: ['error', 'multiline-arguments'],
-    [`${plugin}/max-statements-per-line`]: 'error',
+    '@stylistic/operator-linebreak': 'error',
+    '@stylistic/array-element-newline': ['error', 'consistent'],
+    '@stylistic/function-call-argument-newline': ['error', 'consistent'],
+    '@stylistic/function-paren-newline': ['error', 'multiline-arguments'],
+    '@stylistic/max-statements-per-line': 'error',
 
     'no-cond-assign': 'off',
     'no-irregular-whitespace': 'error',
@@ -339,6 +367,23 @@ const googleJavaScriptStyleNamed = (plugin: string) => ({
     'prefer-spread': 'error',
     'rest-spread-spacing': 'error',
     'yield-star-spacing': ['error', 'after'],
-});
+};
 
-export { plugin as default, proxmoxJavaScriptStyleNamed, googleJavaScriptStyleNamed };
+const plugin: ESLint.Plugin = {
+    rules: {
+        'assignment-wrap': assignmentWrap,
+        'wildcard-import': wildcardImport,
+        'todo-comment': todoComment,
+        'chain-call-wrap': chainCallWrap,
+    },
+    configs: {
+        crockford: {
+            rules: crockfordConfig,
+        },
+        google: {
+            rules: googleConfig,
+        },
+    },
+};
+
+export { plugin as default, crockfordConfig, googleConfig };

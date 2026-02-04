@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.block_tag_punctuation import BlockTagPunctuationChecker
 from rulebook_cppcheck.messages import _Messages
@@ -10,52 +10,84 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
     CHECKER_CLASS = BlockTagPunctuationChecker
 
     @patch.object(BlockTagPunctuationChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_no_description(self, mock_report):
+        self.checker.before_run({
+            'block-tags': '@constructor,@receiver,@property,@param,@return',
+        })
+        self.checker.check_file(
+            MagicMock(file='test.c'),
             '''
             /**
-             * @param p Parameter description!
-             * @return Return description.
+             * @param num
+             * @return
              */
+            int add(int num) {}
             ''',
-    )
-    def test_no_violations(self, mock_file, mock_report):
-        token = MagicMock(file='test.c')
-        config = MagicMock(tokenlist=[token])
-        self.checker.before_run({'block-tags': '@param,@return'})
-        self.checker.run_check(config)
+        )
         mock_report.assert_not_called()
-        mock_file.assert_called_once_with('test.c', 'r', encoding='UTF-8')
 
     @patch.object(BlockTagPunctuationChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_descriptions_end_with_a_period(self, mock_report):
+        self.checker.before_run({
+            'block-tags': '@constructor,@receiver,@property,@param,@return',
+        })
+        self.checker.check_file(
+            MagicMock(file='test.c'),
             '''
             /**
-             * @param p Parameter
-             * @return Return
+             * @param num value.
+             * @return total value.
              */
+            int add(int num) {}
             ''',
-    )
-    def test_block_tag_punctuation_violations(self, mock_file, mock_report):
-        token = MagicMock(file='test.c')
-        config = MagicMock(tokenlist=[token])
-        self.checker.before_run({'block-tags': '@param,@return'})
-        self.checker.run_check(config)
-        mock_report.assert_called()
-        self.assertEqual(
-            mock_report.call_args_list[0][0][1],
-            _Messages.get(self.checker.MSG, '@param'),
         )
-        self.assertEqual(
-            mock_report.call_args_list[1][0][1],
-            _Messages.get(self.checker.MSG, '@return'),
+        mock_report.assert_not_called()
+
+    @patch.object(BlockTagPunctuationChecker, 'report_error')
+    def test_descriptions_end_without_a_period(self, mock_report):
+        self.checker.before_run({
+            'block-tags': '@constructor,@receiver,@property,@param,@return',
+        })
+        self.checker.check_file(
+            MagicMock(file='test.c'),
+            '''
+            /**
+             * @param num value
+             * @return total value
+             */
+            int add(int num) {}
+            ''',
         )
-        mock_file.assert_called_once_with('test.c', 'r', encoding='UTF-8')
+        self.assertEqual(mock_report.call_count, 2)
+        calls = mock_report.call_args_list
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG, '@param'))
+        self.assertEqual(calls[0][0][2], 2)
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG, '@return'))
+        self.assertEqual(calls[1][0][2], 3)
+
+    @patch.object(BlockTagPunctuationChecker, 'report_error')
+    def test_long_descriptions(self, mock_report):
+        self.checker.before_run({
+            'block-tags': '@constructor,@receiver,@property,@param,@return',
+        })
+        self.checker.check_file(
+            MagicMock(file='test.c'),
+            '''
+            /**
+             * @param num
+             *     value
+             * @return total
+             *     value
+             */
+            int add(int num) {}
+            ''',
+        )
+        self.assertEqual(mock_report.call_count, 2)
+        calls = mock_report.call_args_list
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG, '@param'))
+        self.assertEqual(calls[0][0][2], 3)
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG, '@return'))
+        self.assertEqual(calls[1][0][2], 5)
 
 
 if __name__ == '__main__':

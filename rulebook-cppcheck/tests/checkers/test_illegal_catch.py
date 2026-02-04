@@ -16,14 +16,10 @@ class TestIllegalCatchChecker(CheckerTestCase):
         l_paren = MagicMock(str='(')
         ells = MagicMock(str='...')
         r_paren = MagicMock(str=')')
-
         token.next = l_paren
         l_paren.next = ells
         ells.next = r_paren
-
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        self.checker.process_token(token)
         mock_report.assert_called_once()
 
     @patch.object(IllegalCatchChecker, 'report_error')
@@ -33,14 +29,10 @@ class TestIllegalCatchChecker(CheckerTestCase):
         l_paren = MagicMock(str='(')
         exc = MagicMock(str='std::exception')
         r_paren = MagicMock(str=')')
-
         token.next = l_paren
         l_paren.next = exc
         exc.next = r_paren
-
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        self.checker.process_token(token)
         mock_report.assert_called_once()
         args, _ = mock_report.call_args
         self.assertEqual(args[1], _Messages.get(self.checker.MSG))
@@ -52,14 +44,10 @@ class TestIllegalCatchChecker(CheckerTestCase):
         l_paren = MagicMock(str='(')
         exc = MagicMock(str='std::runtime_error')
         r_paren = MagicMock(str=')')
-
         token.next = l_paren
         l_paren.next = exc
         exc.next = r_paren
-
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        self.checker.process_token(token)
         mock_report.assert_not_called()
 
 

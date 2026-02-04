@@ -8,7 +8,7 @@ except ImportError:
 
 def _is_multiline(start_token: Token, end_token: Token) -> bool:
     curr_token: Token | None = start_token
-    while curr_token and curr_token is not end_token.next:
+    while curr_token and curr_token is not end_token:
         if curr_token.linenr > start_token.linenr:
             return True
         curr_token = curr_token.next

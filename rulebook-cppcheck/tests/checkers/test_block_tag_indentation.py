@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.block_tag_indentation import BlockTagIndentationChecker
 from rulebook_cppcheck.messages import _Messages
@@ -10,48 +10,41 @@ class TestBlockTagIndentationChecker(CheckerTestCase):
     CHECKER_CLASS = BlockTagIndentationChecker
 
     @patch.object(BlockTagIndentationChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_indented_block_tag_description(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
             '''
             /**
-             * @param p1
-             *     valid
+             * @constructor lorem
+             *     ipsum.
+             * @param bar lorem
+             *     ipsum.
              */
+            class Foo(val bar: Int)
             ''',
-    )
-    def test_valid_indentation(self, mock_file, mock_report):
-        token = MagicMock()
-        token.file = 'test.c'
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        )
         mock_report.assert_not_called()
-        mock_file.assert_called_once_with('test.c', 'r', encoding='UTF-8')
 
     @patch.object(BlockTagIndentationChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_unindented_block_tag_description(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
             '''
             /**
-             * @param p1
-             *   invalid
+             * @constructor lorem
+             *   ipsum.
+             * @param bar lorem
+             *    ipsum.
              */
+            class Foo(val bar: Int)
             ''',
-    )
-    def test_invalid_indentation(self, mock_file, mock_report):
-        token = MagicMock()
-        token.file = 'test.c'
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
-        mock_report.assert_called_once()
-        mock_file.assert_called_once_with('test.c', 'r', encoding='UTF-8')
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG))
+        )
+        self.assertEqual(mock_report.call_count, 2)
+        calls = mock_report.call_args_list
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG))
+        self.assertEqual(calls[0][0][2], 4)
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG))
+        self.assertEqual(calls[1][0][2], 6)
 
 
 if __name__ == '__main__':

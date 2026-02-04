@@ -10,7 +10,6 @@ except ImportError:
 
 
 class ParameterWrapChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#parameter-wrap"""
     ID: str = 'parameter-wrap'
     MSG: str = 'parameter.wrap'
 
@@ -19,6 +18,7 @@ class ParameterWrapChecker(RulebookTokenChecker):
         if token.str != '(':
             return
 
+        # collect parameters
         params: list[Token] = []
         curr_token: Token | None = token.next
         depth: int = 1
@@ -32,17 +32,16 @@ class ParameterWrapChecker(RulebookTokenChecker):
             elif depth == 1 and not params and curr_token.str != ')':
                 params.append(curr_token)
             curr_token = curr_token.next
-
         if not params:
             return
 
-        first: Token = params[0]
+        # checks for violation
         last: Token = params[-1]
-        if first.linenr == last.linenr:
+        if token.linenr == last.linenr:
             return
         for i in range(1, len(params)):
-            prev = params[i - 1]
-            curr_param = params[i]
+            prev: Token = params[i - 1]
+            curr_param: Token = params[i]
             if curr_param.linenr != prev.linenr:
                 continue
             self.report_error(curr_param, _Messages.get(self.MSG))

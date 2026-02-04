@@ -1,11 +1,13 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.rules.AbstractClassDefinitionRule
+import com.hanggrian.rulebook.ktlint.rules.BlockCommentClipRule
 import com.hanggrian.rulebook.ktlint.rules.BlockCommentSpacesRule
 import com.hanggrian.rulebook.ktlint.rules.BlockCommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagIndentationRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagOrderRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagPunctuationRule
+import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.ClassNameAbbreviationRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
@@ -15,7 +17,6 @@ import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
 import com.hanggrian.rulebook.ktlint.rules.ElvisWrapRule
-import com.hanggrian.rulebook.ktlint.rules.EmptyBracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.ExceptionInheritanceRule
 import com.hanggrian.rulebook.ktlint.rules.FileSizeRule
 import com.hanggrian.rulebook.ktlint.rules.GenericNameRule
@@ -33,7 +34,6 @@ import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.PropertyNameInteropRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
-import com.hanggrian.rulebook.ktlint.rules.ShortBlockCommentClipRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryBlankLineBeforePackageRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessarySwitchRule
@@ -51,8 +51,8 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { NullEqualityRule() },
             RuleProvider { TodoCommentRule() },
             // Clipping
-            RuleProvider { EmptyBracesClipRule() },
-            RuleProvider { ShortBlockCommentClipRule() },
+            RuleProvider { BlockCommentClipRule() },
+            RuleProvider { BracesClipRule() },
             // Declaring
             RuleProvider { AbstractClassDefinitionRule() },
             RuleProvider { ContractFunctionDefinitionRule() },

@@ -16,6 +16,11 @@ class FinalNewlineChecker(RulebookFileChecker):
 
     @override
     def check_file(self, token: Token, content: str) -> None:
+        # ignore empty file
+        if len(content.strip()) == 0:
+            return
+
+        # checks for violation
         if content.endswith('\n'):
             return
         self.report_error(token, _Messages.get(self.MSG))

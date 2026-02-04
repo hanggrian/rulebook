@@ -10,30 +10,107 @@ class TestRedundantDefaultChecker(CheckerTestCase):
     CHECKER_CLASS = RedundantDefaultChecker
 
     @patch.object(RedundantDefaultChecker, 'report_error')
-    def test_no_violations(self, mock_report):
-        r_brace = MagicMock(str='}', next=None)
-        default_token = MagicMock(str='default', next=MagicMock(str=':', next=r_brace))
-        case_token = MagicMock(str='case', next=MagicMock(str=':', next=default_token))
-        l_brace = MagicMock(str='{', link=r_brace, next=case_token)
-        r_paren = MagicMock(str=')', next=l_brace)
-        l_paren = MagicMock(str='(', link=r_paren)
-        switch_token = MagicMock(str='switch', next=l_paren)
-        self.checker.run_check(MagicMock(tokenlist=[switch_token]))
+    def test_no_throw_or_return_in_case(self, mock_report):
+        switch_token = self._create_token('switch')
+        l_paren = self._create_token('(')
+        r_paren = self._create_token(')')
+        l_brace = self._create_token('{')
+        case0 = self._create_token('case')
+        colon0 = self._create_token(':')
+        baz0 = self._create_token('baz')
+        case1 = self._create_token('case')
+        colon1 = self._create_token(':')
+        baz1 = self._create_token('baz')
+        default_token = self._create_token('default')
+        colon_def = self._create_token(':')
+        baz_def = self._create_token('baz')
+        r_brace = self._create_token('}')
+        switch_token.next = l_paren
+        l_paren.link = r_paren
+        r_paren.next = l_brace
+        l_brace.link = r_brace
+        l_brace.next = case0
+        case0.next = colon0
+        colon0.next = baz0
+        baz0.next = case1
+        case1.next = colon1
+        colon1.next = baz1
+        baz1.next = default_token
+        default_token.next = colon_def
+        colon_def.next = baz_def
+        baz_def.next = r_brace
+        self.checker.process_token(switch_token)
         mock_report.assert_not_called()
 
     @patch.object(RedundantDefaultChecker, 'report_error')
-    def test_redundant_default_violation(self, mock_report):
-        r_brace = MagicMock(str='}', next=None)
-        default_token = MagicMock(str='default', next=MagicMock(str=':', next=r_brace))
-        break_token = MagicMock(str='break', next=default_token)
-        case_token = MagicMock(str='case', next=MagicMock(str=':', next=break_token))
-        l_brace = MagicMock(str='{', link=r_brace, next=case_token)
-        r_paren = MagicMock(str=')', next=l_brace)
-        l_paren = MagicMock(str='(', link=r_paren)
-        switch_token = MagicMock(str='switch', next=l_paren)
-        self.checker.run_check(MagicMock(tokenlist=[switch_token]))
-        mock_report.assert_called_once()
-        self.assertEqual(mock_report.call_args[0][1], _Messages.get(self.checker.MSG))
+    def test_lift_else_when_case_has_return(self, mock_report):
+        switch_token = self._create_token('switch')
+        l_paren = self._create_token('(')
+        r_paren = self._create_token(')')
+        l_brace = self._create_token('{')
+        case0 = self._create_token('case')
+        colon0 = self._create_token(':')
+        throw_token = self._create_token('throw')
+        case1 = self._create_token('case')
+        colon1 = self._create_token(':')
+        return_token = self._create_token('return')
+        default_token = self._create_token('default')
+        colon_def = self._create_token(':')
+        baz_def = self._create_token('baz')
+        r_brace = self._create_token('}')
+        switch_token.next = l_paren
+        l_paren.link = r_paren
+        r_paren.next = l_brace
+        l_brace.link = r_brace
+        l_brace.next = case0
+        case0.next = colon0
+        colon0.next = throw_token
+        throw_token.next = case1
+        case1.next = colon1
+        colon1.next = return_token
+        return_token.next = default_token
+        default_token.next = colon_def
+        colon_def.next = baz_def
+        baz_def.next = r_brace
+        self.checker.process_token(switch_token)
+        mock_report.assert_called_once_with(colon_def, _Messages.get(self.checker.MSG))
+
+    @patch.object(RedundantDefaultChecker, 'report_error')
+    def test_skip_if_not_all_case_blocks_have_jump_statement(self, mock_report):
+        switch_token = self._create_token('switch')
+        l_paren = self._create_token('(')
+        r_paren = self._create_token(')')
+        l_brace = self._create_token('{')
+        case0 = self._create_token('case')
+        colon0 = self._create_token(':')
+        return_token = self._create_token('return')
+        case1 = self._create_token('case')
+        colon1 = self._create_token(':')
+        baz_token = self._create_token('baz')
+        default_token = self._create_token('default')
+        colon_def = self._create_token(':')
+        baz_def = self._create_token('baz')
+        r_brace = self._create_token('}')
+        switch_token.next = l_paren
+        l_paren.link = r_paren
+        r_paren.next = l_brace
+        l_brace.link = r_brace
+        l_brace.next = case0
+        case0.next = colon0
+        colon0.next = return_token
+        return_token.next = case1
+        case1.next = colon1
+        colon1.next = baz_token
+        baz_token.next = default_token
+        default_token.next = colon_def
+        colon_def.next = baz_def
+        baz_def.next = r_brace
+        self.checker.process_token(switch_token)
+        mock_report.assert_not_called()
+
+    @staticmethod
+    def _create_token(s):
+        return MagicMock(str=s)
 
 
 if __name__ == '__main__':

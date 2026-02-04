@@ -72,6 +72,7 @@ class TrailingCommaChecker(RulebookTokenChecker):
                         has_comma_at_root = True
             elif token.type == NAME and token.string == 'for' and nesting == 0:
                 has_for = True
+                has_comma_at_root = False
         return False
 
 

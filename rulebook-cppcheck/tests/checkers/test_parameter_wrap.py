@@ -10,27 +10,118 @@ class TestParameterWrapChecker(CheckerTestCase):
     CHECKER_CLASS = ParameterWrapChecker
 
     @patch.object(ParameterWrapChecker, 'report_error')
-    def test_missing_newline(self, mock_report):
-        lparen = MagicMock(name='lparen', str='(', linenr='1')
-        p1 = MagicMock(name='p1', str='a', linenr='2')
-        comma = MagicMock(name='comma', str=',', linenr='2')
-        p2 = MagicMock(name='p2', str='b', linenr='2')
-        p3 = MagicMock(name='p3', str='c', linenr='3')
-        comma2 = MagicMock(name='comma2', str=',', linenr='2')
-        rparen = MagicMock(name='rparen', str=')', linenr='4')
-
-        lparen.next = p1
+    def test_single_line_parameters(self, mock_report):
+        l_paren = self._create_token('(', 1)
+        p1 = self._create_token('a', 1)
+        comma = self._create_token(',', 1)
+        p2 = self._create_token('b', 1)
+        r_paren = self._create_token(')', 1)
+        l_paren.next = p1
         p1.next = comma
         comma.next = p2
+        p2.next = r_paren
+        self.checker.process_token(l_paren)
+        mock_report.assert_not_called()
+
+    @patch.object(ParameterWrapChecker, 'report_error')
+    def test_multiline_parameters_each_with_newline(self, mock_report):
+        l_paren = self._create_token('(', 1)
+        p1 = self._create_token('a', 2)
+        comma = self._create_token(',', 2)
+        p2 = self._create_token('b', 3)
+        r_paren = self._create_token(')', 4)
+        l_paren.next = p1
+        p1.next = comma
+        comma.next = p2
+        p2.next = r_paren
+        self.checker.process_token(l_paren)
+        mock_report.assert_not_called()
+
+    @patch.object(ParameterWrapChecker, 'report_error')
+    def test_multiline_parameters_each_without_newline(self, mock_report):
+        l_paren = self._create_token('(', 1)
+        p1 = self._create_token('a', 2)
+        comma = self._create_token(',', 2)
+        p2 = self._create_token('b', 2)
+        r_paren = self._create_token(')', 3)
+        l_paren.next = p1
+        p1.next = comma
+        comma.next = p2
+        p2.next = r_paren
+        self.checker.process_token(l_paren)
+        mock_report.assert_called_once_with(p2, _Messages.get(self.checker.MSG))
+
+    @patch.object(ParameterWrapChecker, 'report_error')
+    def test_multiline_parameters_each_hugging_parenthesis(self, mock_report):
+        l_paren = self._create_token('(', 1)
+        p1 = self._create_token('a', 1)
+        comma = self._create_token(',', 1)
+        p2 = self._create_token('b', 2)
+        r_paren = self._create_token(')', 2)
+        l_paren.next = p1
+        p1.next = comma
+        comma.next = p2
+        p2.next = r_paren
+        self.checker.process_token(l_paren)
+        mock_report.assert_not_called()
+
+    @patch.object(ParameterWrapChecker, 'report_error')
+    def test_aware_of_chained_single_line_calls(self, mock_report):
+        l_paren = self._create_token('(', 3)
+        p1 = self._create_token("'Hello'", 3)
+        comma1 = self._create_token(',', 3)
+        p2 = self._create_token('1', 3)
+        comma2 = self._create_token(',', 3)
+        p3 = self._create_token('2', 3)
+        r_paren = self._create_token(')', 3)
+        l_paren.next = p1
+        p1.next = comma1
+        comma1.next = p2
         p2.next = comma2
         comma2.next = p3
-        p3.next = rparen
-        rparen.next = None
+        p3.next = r_paren
+        self.checker.process_token(l_paren)
+        mock_report.assert_not_called()
 
-        self.checker.run_check(MagicMock(tokenlist=[lparen, p1, comma, p2, comma2, p3, rparen]))
+    @patch.object(ParameterWrapChecker, 'report_error')
+    def test_allow_comments_between_parameters(self, mock_report):
+        l_paren = self._create_token('(', 1)
+        p1 = self._create_token('a', 2)
+        comma1 = self._create_token(',', 2)
+        p2 = self._create_token('b', 4)
+        comma2 = self._create_token(',', 4)
+        p3 = self._create_token('c', 6)
+        r_paren = self._create_token(')', 12)
+        l_paren.next = p1
+        p1.next = comma1
+        comma1.next = p2
+        p2.next = comma2
+        comma2.next = p3
+        p3.next = r_paren
+        self.checker.process_token(l_paren)
+        mock_report.assert_not_called()
 
-        mock_report.assert_called_once()
-        mock_report.assert_called_once_with(p2, _Messages.get(self.checker.MSG))
+    @patch.object(ParameterWrapChecker, 'report_error')
+    def test_allow_sam(self, mock_report):
+        l_paren = self._create_token('(', 2)
+        lambda_start = self._create_token('(', 2)
+        lambda_end = self._create_token(')', 2)
+        arrow = self._create_token('->', 2)
+        brace_start = self._create_token('{', 2)
+        brace_end = self._create_token('}', 5)
+        r_paren = self._create_token(')', 5)
+        l_paren.next = lambda_start
+        lambda_start.next = lambda_end
+        lambda_end.next = arrow
+        arrow.next = brace_start
+        brace_start.next = brace_end
+        brace_end.next = r_paren
+        self.checker.process_token(l_paren)
+        mock_report.assert_not_called()
+
+    @staticmethod
+    def _create_token(s, line):
+        return MagicMock(str=s, linenr=line)
 
 
 if __name__ == '__main__':

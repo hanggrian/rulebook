@@ -10,44 +10,44 @@ class TestClassNameAbbreviationChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameAbbreviationChecker
 
     @patch.object(ClassNameAbbreviationChecker, 'report_error')
-    def test_valid_name(self, mock_report):
-        self.checker.run_check(
-            self._create_configuration([
-                {'type': 'Class', 'className': 'MySqlParser', 'line': 1},
-            ]),
-        )
+    def test_class_names_with_lowercase_abbreviation(self, mock_report):
+        self.checker.visit_scope(self._create_scope('Class', 'MySqlClass', 1))
+        self.checker.visit_scope(self._create_scope('Interface', 'MySqlInterface', 3))
+        self.checker.visit_scope(self._create_scope('Annotation', 'MySqlAnnotation', 5))
+        self.checker.visit_scope(self._create_scope('Enum', 'MySqlEnum', 7))
         mock_report.assert_not_called()
 
     @patch.object(ClassNameAbbreviationChecker, 'report_error')
-    def test_invalid_name(self, mock_report):
-        self.checker.run_check(
-            self._create_configuration([
-                {'type': 'Class', 'className': 'MySQLParser', 'line': 10},
-            ]),
-        )
-        mock_report.assert_called_once()
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG, 'MySqlParser'))
+    def test_class_names_with_uppercase_abbreviation(self, mock_report):
+        for i, scope in enumerate([
+            self._create_scope('Class', 'MySQLClass', 1),
+            self._create_scope('Interface', 'MySQLInterface', 3),
+            self._create_scope('Annotation', 'MySQLAnnotation', 5),
+            self._create_scope('Enum', 'MySQLEnum', 7),
+        ]):
+            self.checker.visit_scope(scope)
 
-    def _create_configuration(self, scopes_data):
-        mock_scopes = []
-        for data in scopes_data:
-            scope = MagicMock()
-            scope.type = data['type']
-            scope.className = data['className']
-            body_start = MagicMock()
-            name_token = MagicMock()
-            body_start.linenr = data['line']
-            body_start.str = '{'
-            name_token.str = data['className']
-            body_start.previous = name_token
-            name_token.previous = None
-            scope.bodyStart = body_start
-            self.last_name_token = name_token
-            mock_scopes.append(scope)
-        configuration = MagicMock()
-        configuration.scopes = mock_scopes
-        return configuration
+        self.assertEqual(mock_report.call_count, 4)
+        calls = mock_report.call_args_list
+
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG, 'MySqlClass'))
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG, 'MySqlInterface'))
+        self.assertEqual(calls[2][0][1], _Messages.get(self.checker.MSG, 'MySqlAnnotation'))
+        self.assertEqual(calls[3][0][1], _Messages.get(self.checker.MSG, 'MySqlEnum'))
+
+    @staticmethod
+    def _create_scope(scope_type, class_name, line):
+        scope = MagicMock()
+        scope.type = scope_type
+        scope.className = class_name
+        body_start = MagicMock()
+        name_token = MagicMock()
+        body_start.linenr = line
+        body_start.str = '{'
+        name_token.str = class_name
+        body_start.previous = name_token
+        scope.bodyStart = body_start
+        return scope
 
 
 if __name__ == '__main__':

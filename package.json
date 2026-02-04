@@ -1,4 +1,5 @@
 {
+  "private": true,
   "type": "module",
   "workspaces": [
     "rulebook-eslint",
@@ -11,28 +12,20 @@
     "preview": "vite preview",
     "test": "npm run test --workspaces",
     "coverage": "npm run coverage --workspaces",
-    "docs": "npm run docs --workspaces --if-present"
+    "docs": "npm run docs --workspaces"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin-js": "^4.2.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.6.1",
     "@types/css-modules": "^1.0.5",
     "@types/sinon": "^17.0.4",
     "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^9.25.1",
     "eslint-vitest-rule-tester": "^3.0.1",
-    "globals": "^16.0.0",
     "jsdom": "^26.0.0",
     "sinon": "^20.0.0",
-    "typescript-eslint": "^8.31.1",
     "vite": "^7.3.1",
     "vitest": "^4.0.17",
     "vitest-dom": "^0.1.1"
-  },
-  "dependencies": {
-    "rulebook-eslint": "^0.2",
-    "rulebook-typescript-eslint": "^0.2"
   }
 }

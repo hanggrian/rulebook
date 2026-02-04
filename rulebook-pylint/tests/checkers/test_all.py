@@ -11,6 +11,7 @@ from pylint.testutils.global_test_linter import linter
 from pylint.utils import ASTWalker
 
 from rulebook_pylint.checkers.abstract_class_definition import AbstractClassDefinitionChecker
+from rulebook_pylint.checkers.block_comment_clip import BlockCommentClipChecker
 from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
 from rulebook_pylint.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
@@ -23,7 +24,6 @@ from rulebook_pylint.checkers.duplicate_blank_line_in_block_comment import \
 from rulebook_pylint.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
 from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
-from rulebook_pylint.checkers.empty_parentheses_clip import EmptyParenthesesClipChecker
 from rulebook_pylint.checkers.exception_inheritance import ExceptionInheritanceChecker
 from rulebook_pylint.checkers.generic_name import GenericNameChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
@@ -32,9 +32,9 @@ from rulebook_pylint.checkers.member_order import MemberOrderChecker
 from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
 from rulebook_pylint.checkers.nested_if_else import NestedIfElseChecker
 from rulebook_pylint.checkers.parameter_wrap import ParameterWrapChecker
+from rulebook_pylint.checkers.parentheses_clip import ParenthesesClipChecker
 from rulebook_pylint.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_pylint.checkers.redundant_default import RedundantDefaultChecker
-from rulebook_pylint.checkers.short_block_comment_clip import ShortBlockCommentClipChecker
 from rulebook_pylint.checkers.todo_comment import TodoCommentChecker
 from rulebook_pylint.checkers.trailing_comma import TrailingCommaChecker
 from rulebook_pylint.checkers.unnecessary_blank_line_after_colon import \
@@ -48,6 +48,7 @@ from ..tests import msg
 class TestAllCheckers:
     CHECKER_CLASSES: tuple = (
         AbstractClassDefinitionChecker,
+        BlockCommentClipChecker,
         BlockCommentTrimChecker,
         CaseSeparatorChecker,
         ClassNameAbbreviationChecker,
@@ -58,7 +59,6 @@ class TestAllCheckers:
         DuplicateBlankLineInBlockCommentChecker,
         DuplicateBlankLineInCommentChecker,
         DuplicateSpaceChecker,
-        EmptyParenthesesClipChecker,
         ExceptionInheritanceChecker,
         # TODO find out why this test shares config (max 3 lines) with `test_file_size` when running
         #   command `pytest`.
@@ -70,9 +70,9 @@ class TestAllCheckers:
         MemberSeparatorChecker,
         NestedIfElseChecker,
         ParameterWrapChecker,
+        ParenthesesClipChecker,
         ParenthesesTrimChecker,
         RedundantDefaultChecker,
-        ShortBlockCommentClipChecker,
         TodoCommentChecker,
         TrailingCommaChecker,
         UnnecessaryBlankLineAfterColonChecker,
@@ -134,7 +134,7 @@ class TestAllCheckers:
             tokens = _tokenize_str(s)
         with self.assertAddsMessages(
             msg(
-                ShortBlockCommentClipChecker.MSG,
+                BlockCommentClipChecker.MSG,
                 (73, 8, 75, 11),
                 node_all.body[14].body[3].doc_node,
             ),
@@ -203,6 +203,9 @@ class TestAllCheckers:
         clim = node_all.body[122]
         matshow = node_all.body[127]
         with self.assertAddsMessages(
+            msg(BlockCommentClipChecker.MSG, (1361, 4, 1363, 7), delaxes.doc_node),
+            msg(BlockCommentClipChecker.MSG, (1370, 4, 1372, 7), sca.doc_node),
+            msg(BlockCommentClipChecker.MSG, (2494, 4, 2496, 7), cla.doc_node),
             msg(BlockCommentTrimChecker.MSG_LAST, (388, 4, 7), switch_backend.doc_node),
             msg(BlockCommentTrimChecker.MSG_LAST, (1516, 4, 7), subplot.doc_node),
             msg(BlockCommentTrimChecker.MSG_LAST, (1776, 4, 7), last_subplots.doc_node),
@@ -231,9 +234,6 @@ class TestAllCheckers:
             ),
             msg(ParameterWrapChecker.MSG, (1963, 28, 48), subplot2grid.args.args[1]),
             msg(ParameterWrapChecker.MSG, (1964, 22, 34), subplot2grid.args.args[3]),
-            msg(ShortBlockCommentClipChecker.MSG, (1361, 4, 1363, 7), delaxes.doc_node),
-            msg(ShortBlockCommentClipChecker.MSG, (1370, 4, 1372, 7), sca.doc_node),
-            msg(ShortBlockCommentClipChecker.MSG, (2494, 4, 2496, 7), cla.doc_node),
             msg(TrailingCommaChecker.MSG_MULTI, (166, 30)),
             msg(TrailingCommaChecker.MSG_MULTI, (177, 40)),
             msg(TrailingCommaChecker.MSG_MULTI, (183, 31)),

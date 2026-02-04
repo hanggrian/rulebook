@@ -1,57 +1,100 @@
 from unittest import main
 from unittest.mock import MagicMock, patch, mock_open
-
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
 from rulebook_cppcheck.messages import _Messages
 from ..tests import CheckerTestCase
-
 
 class TestTodoCommentChecker(CheckerTestCase):
     CHECKER_CLASS = TodoCommentChecker
 
     @patch.object(TodoCommentChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_uppercase_todo_comments(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
             '''
-            // TODO standard
-            /*
-             * FIXME standard
-             */
+            // TODO add tests
+            // FIXME fix bug
             ''',
-    )
-    def test_no_violations(self, mock_file, mock_report):
-        token = MagicMock(file='test.c')
-        config = MagicMock(tokenlist=[token])
-        self.checker.run_check(config)
+        )
         mock_report.assert_not_called()
-        mock_file.assert_called_once_with('test.c', 'r', encoding='UTF-8')
 
     @patch.object(TodoCommentChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_lowercase_todo_comments(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
             '''
-            // todo: lowercase and colon
-            /*
-             * fixme-dash
+            // todo add tests
+            // fixme fix bug
+            ''',
+        )
+        self.assertEqual(mock_report.call_count, 2)
+        self.assertEqual(
+            mock_report.call_args_list[0][0][1],
+            _Messages.get(self.checker.MSG_KEYWORD, 'todo'),
+        )
+        self.assertEqual(
+            mock_report.call_args_list[1][0][1],
+            _Messages.get(self.checker.MSG_KEYWORD, 'fixme'),
+        )
+
+    @patch.object(TodoCommentChecker, 'report_error')
+    def test_unknown_todo_comments(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
+            '''
+            // TODO: add tests
+            // FIXME1 fix bug
+            ''',
+        )
+        self.assertEqual(mock_report.call_count, 2)
+        self.assertEqual(
+            mock_report.call_args_list[0][0][1],
+            _Messages.get(self.checker.MSG_SEPARATOR, ':'),
+        )
+        self.assertEqual(
+            mock_report.call_args_list[1][0][1],
+            _Messages.get(self.checker.MSG_SEPARATOR, '1'),
+        )
+
+    @patch.object(TodoCommentChecker, 'report_error')
+    def test_todos_in_block_comments(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
+            '''
+            /** todo add tests */
+
+            /**
+             * FIXME: memory leak
              */
             ''',
-    )
-    def test_todo_violations(self, mock_file, mock_report):
-        token = MagicMock(file='test.c')
-        config = MagicMock(tokenlist=[token])
-        self.checker.run_check(config)
-        mock_report.assert_called()
-        mock_file.assert_called_once_with('test.c', 'r', encoding='UTF-8')
-        self.assertEqual(mock_report.call_count, 4)
-        args0, _ = mock_report.call_args_list[0]
-        self.assertEqual(args0[1], _Messages.get(self.checker.MSG_KEYWORD, 'todo'))
-        args1, _ = mock_report.call_args_list[1]
-        self.assertEqual(args1[1], _Messages.get(self.checker.MSG_SEPARATOR, ':'))
+        )
+        self.assertEqual(mock_report.call_count, 2)
+        self.assertEqual(
+            mock_report.call_args_list[0][0][1],
+            _Messages.get(self.checker.MSG_KEYWORD, 'todo'),
+        )
+        self.assertEqual(
+            mock_report.call_args_list[1][0][1],
+            _Messages.get(self.checker.MSG_SEPARATOR, ':'),
+        )
 
+    @patch.object(TodoCommentChecker, 'report_error')
+    def test_todo_keyword_mid_sentence(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
+            '''
+            // Untested. Todo: add tests.
+            ''',
+        )
+        self.assertEqual(mock_report.call_count, 2)
+        self.assertEqual(
+            mock_report.call_args_list[0][0][1],
+            _Messages.get(self.checker.MSG_KEYWORD, 'Todo'),
+        )
+        self.assertEqual(
+            mock_report.call_args_list[1][0][1],
+            _Messages.get(self.checker.MSG_SEPARATOR, ':'),
+        )
 
 if __name__ == '__main__':
     main()

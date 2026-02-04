@@ -1,67 +1,76 @@
 import { describe, it } from 'vitest';
-import todoComment, { MSG_KEYWORD, MSG_SEPARATOR } from '../src/rules/todo-comment';
-import messages from '../src/messages';
+import todoComment from '../src/rules/todo-comment';
 import { AssertThat, assertThatRule } from './tests';
 
 describe('TodoCommentTest', () => {
     const assertThat: AssertThat = assertThatRule(todoComment, 'todo-comment');
 
-    it('Uppercase TODO comments', () =>
-        assertThat(
-            `
-            // TODO add tests
-            // FIXME fix bug
-            `,
-        ).hasNoError(),
+    it(
+        'Uppercase TODO comments',
+        () =>
+            assertThat(
+                `
+                // TODO add tests
+                // FIXME fix bug
+                `,
+            ).hasNoError(),
     );
 
-    it('Lowercase TODO comments', () =>
-        assertThat(
-            `
-            // todo add tests
-            // fixme fix bug
-            `,
-        ).hasErrorMessages(
-            messages.of(MSG_KEYWORD, 'todo'),
-            messages.of(MSG_KEYWORD, 'fixme'),
-        ),
+    it(
+        'Lowercase TODO comments',
+        () =>
+            assertThat(
+                `
+                // todo add tests
+                // fixme fix bug
+                `,
+            ).hasErrorMessages(
+                "Capitalize keyword 'todo'.",
+                "Capitalize keyword 'fixme'.",
+            ),
     );
 
-    it('Unknown TODO comments', () =>
-        assertThat(
-            `
-            // TODO: add tests
-            // FIXME1 fix bug
-            `,
-        ).hasErrorMessages(
-            messages.of(MSG_SEPARATOR, ':'),
-            messages.of(MSG_SEPARATOR, '1'),
-        ),
+    it(
+        'Unknown TODO comments',
+        () =>
+            assertThat(
+                `
+                // TODO: add tests
+                // FIXME1 fix bug
+                `,
+            ).hasErrorMessages(
+                "Omit separator ':'.",
+                "Omit separator '1'.",
+            ),
     );
 
-    it('TODOs in block comments', () =>
-        assertThat(
-            `
-            /** todo add tests */
+    it(
+        'TODOs in block comments',
+        () =>
+            assertThat(
+                `
+                /** todo add tests */
 
-            /**
-             * FIXME: memory leak
-             */
-            `,
-        ).hasErrorMessages(
-            messages.of(MSG_KEYWORD, 'todo'),
-            messages.of(MSG_SEPARATOR, ':'),
-        ),
+                /**
+                 * FIXME: memory leak
+                 */
+                `,
+            ).hasErrorMessages(
+                "Capitalize keyword 'todo'.",
+                "Omit separator ':'.",
+            ),
     );
 
-    it('TODO keyword mid-sentence', () =>
-        assertThat(
-            `
-            // Untested. Todo: add tests.
-            `,
-        ).hasErrorMessages(
-            messages.of(MSG_KEYWORD, 'Todo'),
-            messages.of(MSG_SEPARATOR, ':'),
-        ),
+    it(
+        'TODO keyword mid-sentence',
+        () =>
+            assertThat(
+                `
+                // Untested. Todo: add tests.
+                `,
+            ).hasErrorMessages(
+                "Capitalize keyword 'Todo'.",
+                "Omit separator ':'.",
+            ),
     );
 });

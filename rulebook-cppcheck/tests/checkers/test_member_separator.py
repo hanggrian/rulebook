@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, call
 
 from rulebook_cppcheck.checkers.member_separator import MemberSeparatorChecker
 from rulebook_cppcheck.messages import _Messages
@@ -10,95 +10,91 @@ class TestMemberSeparatorChecker(CheckerTestCase):
     CHECKER_CLASS = MemberSeparatorChecker
 
     @patch.object(MemberSeparatorChecker, 'report_error')
-    def test_valid_separation(self, mock_report):
-        scope = self._create_class_scope([
-            {'name': 'x', 'type': 'var', 'line': 2, 'end_line': 2},
-            {'name': 'y', 'type': 'var', 'line': 3, 'end_line': 3},
-            {'name': 'func', 'type': 'func', 'line': 5, 'end_line': 7},
-        ])
-        self.checker.visit_scope(scope)
+    def test_single_line_members_with_separator(self, mock_report):
+        self.checker.visit_scope(self._create_class_scope([
+            {'name': 'bar', 'type': 'var', 'line': 2, 'end_line': 2},
+            {'name': 'Foo', 'type': 'func', 'line': 4, 'end_line': 4},
+            {'name': 'baz', 'type': 'func', 'line': 6, 'end_line': 6},
+        ]))
         mock_report.assert_not_called()
 
     @patch.object(MemberSeparatorChecker, 'report_error')
-    def test_invalid_separation(self, mock_report):
-        self.checker.visit_scope(
-            self._create_class_scope([
-                {'name': 'MyClass', 'type': 'func', 'line': 2, 'end_line': 4},
-                {'name': 'getVal', 'type': 'func', 'line': 5, 'end_line': 6},
-            ]),
-        )
-        mock_report.assert_called_once()
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG, 'constructor'))
+    def test_single_line_members_without_separator(self, mock_report):
+        scope = self._create_class_scope([
+            {'name': 'bar', 'type': 'var', 'line': 2, 'end_line': 2},
+            {'name': 'Foo', 'type': 'func', 'line': 3, 'end_line': 3},
+            {'name': 'baz', 'type': 'func', 'line': 4, 'end_line': 4},
+        ])
+        self.checker.visit_scope(scope)
+        self.assertEqual(mock_report.call_count, 2)
+        mock_report.assert_has_calls([
+            call(scope.bodyStart.next.next, _Messages.get(self.checker.MSG, 'property')),
+            call(
+                scope.bodyStart.next.next.next.next.next,
+                _Messages.get(self.checker.MSG, 'constructor'),
+            ),
+        ])
 
     @patch.object(MemberSeparatorChecker, 'report_error')
-    def test_variable_to_function_requires_line(self, mock_report):
-        self.checker.visit_scope(
-            self._create_class_scope([
-                {'name': 'data', 'type': 'var', 'line': 2, 'end_line': 2},
-                {'name': 'process', 'type': 'func', 'line': 3, 'end_line': 4},
-            ]),
-        )
-        mock_report.assert_called_once()
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG, 'property'))
+    def test_multiline_members_without_separator(self, mock_report):
+        scope = self._create_class_scope([
+            {'name': 'bar', 'type': 'var', 'line': 2, 'end_line': 4},
+            {'name': 'Foo', 'type': 'func', 'line': 5, 'end_line': 7},
+            {'name': 'baz', 'type': 'func', 'line': 8, 'end_line': 10},
+        ])
+        self.checker.visit_scope(scope)
+        self.assertEqual(mock_report.call_count, 2)
+
+    @patch.object(MemberSeparatorChecker, 'report_error')
+    def test_skip_fields_grouped_together(self, mock_report):
+        self.checker.visit_scope(self._create_class_scope([
+            {'name': 'bar', 'type': 'var', 'line': 2, 'end_line': 2},
+            {'name': 'baz', 'type': 'var', 'line': 3, 'end_line': 3},
+            {'name': 'qux', 'type': 'var', 'line': 4, 'end_line': 6},
+        ]))
+        mock_report.assert_not_called()
 
     @staticmethod
     def _create_class_scope(member_data):
         scope = MagicMock()
-        scope.className = 'MyClass'
-
-        body_start = MagicMock()
-        body_start.str = '{'
-        body_start.linenr = 1
-        body_start.variable = body_start.function = None
-
-        body_end = MagicMock()
-        body_end.str = '}'
-        body_end.linenr = 100
-        body_end.variable = body_end.function = None
-
+        scope.className = 'Foo'
+        body_start = MagicMock(linenr=1, variable=None, function=None)
+        body_end = MagicMock(linenr=100, variable=None, function=None)
         scope.bodyStart = body_start
         scope.bodyEnd = body_end
-
         tokens = [body_start]
         for data in member_data:
-            start_token = MagicMock()
-            start_token.str = data['name']
-            start_token.linenr = data['line']
-            start_token.scope = scope
-
-            end_token = MagicMock()
-            end_token.linenr = data['end_line']
-            end_token.scope = scope
-            end_token.variable = end_token.function = None
-
+            start = MagicMock(str=data['name'], linenr=data['line'], scope=scope)
+            end = \
+                MagicMock(
+                    str=';' if data['type'] == 'var' else '}',
+                    linenr=data['end_line'],
+                    scope=scope,
+                    variable=None,
+                    function=None,
+                )
             if data['type'] == 'var':
-                start_token.variable = MagicMock()
-                start_token.function = None
-                end_token.str = ';'
-                tokens.extend([start_token, end_token])
+                v = MagicMock()
+                v.nameToken = start
+                start.variable, start.function = v, None
+                tokens.extend([start, end])
                 continue
-            start_token.variable = None
-            func = MagicMock()
-            func.tokenDef = start_token
-            start_token.function = func
-
-            brace_open = MagicMock()
-            brace_open.str = '{'
-            brace_open.variable = brace_open.function = None
-            brace_open.scope = scope
-
-            end_token.str = '}'
-            brace_open.link = end_token
-            tokens.extend([start_token, brace_open, end_token])
-
+            f = MagicMock()
+            f.tokenDef = start
+            start.variable, start.function = None, f
+            brace = \
+                MagicMock(
+                    str='{',
+                    scope=scope,
+                    variable=None,
+                    function=None,
+                    link=end,
+                )
+            tokens.extend([start, brace, end])
         tokens.append(body_end)
-
         for i in range(len(tokens) - 1):
             tokens[i].next = tokens[i + 1]
         tokens[-1].next = None
-
         return scope
 
 

@@ -10,47 +10,87 @@ class TestCaseSeparatorChecker(CheckerTestCase):
     CHECKER_CLASS = CaseSeparatorChecker
 
     @patch.object(CaseSeparatorChecker, 'report_error')
-    def test_valid_multiline_separation(self, mock_report):
+    def test_single_line_branches_without_line_break(self, mock_report):
         self.checker.visit_scope(
             self._create_switch_scope([
-                {'type': 'case', 'lines': [2, 3]},
-                {'type': 'case', 'lines': [5, 5]},
-                {'type': 'default', 'lines': [7, 7]},
+                {'type': 'case', 'lines': [3, 3]},
+                {'type': 'case', 'lines': [4, 4]},
+                {'type': 'default', 'lines': [5, 5]},
             ]),
         )
         mock_report.assert_not_called()
 
     @patch.object(CaseSeparatorChecker, 'report_error')
-    def test_missing_separator(self, mock_report):
+    def test_multiline_branches_with_line_break(self, mock_report):
         self.checker.visit_scope(
             self._create_switch_scope([
-                {'type': 'case', 'lines': [2, 3]},
-                {'type': 'case', 'lines': [4, 4]},
+                {'type': 'case', 'lines': [3, 4]},
+                {'type': 'case', 'lines': [6, 8]},
+                {'type': 'default', 'lines': [10, 11]},
             ]),
         )
-        mock_report.assert_called_once()
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG_MISSING))
+        mock_report.assert_not_called()
 
     @patch.object(CaseSeparatorChecker, 'report_error')
-    def test_unexpected_separator(self, mock_report):
+    def test_single_line_branches_with_line_break(self, mock_report):
         self.checker.visit_scope(
             self._create_switch_scope([
-                {'type': 'case', 'lines': [2, 2]},
-                {'type': 'case', 'lines': [4, 4]},
+                {'type': 'case', 'lines': [3, 3]},
+                {'type': 'case', 'lines': [5, 5]},
+                {'type': 'default', 'lines': [7, 7]},
             ]),
         )
-        mock_report.assert_called_once()
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG_UNEXPECTED))
+        self.assertEqual(mock_report.call_count, 2)
+        calls = mock_report.call_args_list
+        self.assertEqual(calls[0][0][0].linenr, 3)
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG_UNEXPECTED))
+        self.assertEqual(calls[1][0][0].linenr, 5)
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG_UNEXPECTED))
+
+    @patch.object(CaseSeparatorChecker, 'report_error')
+    def test_multiline_branches_without_line_break(self, mock_report):
+        self.checker.visit_scope(
+            self._create_switch_scope([
+                {'type': 'case', 'lines': [3, 4]},
+                {'type': 'case', 'lines': [5, 7]},
+                {'type': 'default', 'lines': [8, 9]},
+            ]),
+        )
+        self.assertEqual(mock_report.call_count, 2)
+        calls = mock_report.call_args_list
+        self.assertEqual(calls[0][0][0].linenr, 4)
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG_MISSING))
+        self.assertEqual(calls[1][0][0].linenr, 7)
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG_MISSING))
+
+    @patch.object(CaseSeparatorChecker, 'report_error')
+    def test_branches_with_comment_are_always_multiline(self, mock_report):
+        self.checker.visit_scope(
+            self._create_switch_scope([
+                {'type': 'case', 'lines': [3, 5]},
+                {'type': 'case', 'lines': [6, 8]},
+                {'type': 'case', 'lines': [9, 11]},
+                {'type': 'default', 'lines': [12, 13]},
+            ]),
+        )
+        self.assertEqual(mock_report.call_count, 3)
+        calls = mock_report.call_args_list
+        self.assertEqual(calls[0][0][0].linenr, 5)
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG_MISSING))
+        self.assertEqual(calls[1][0][0].linenr, 8)
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG_MISSING))
+        self.assertEqual(calls[2][0][0].linenr, 11)
+        self.assertEqual(calls[2][0][1], _Messages.get(self.checker.MSG_MISSING))
 
     @staticmethod
     def _create_switch_scope(group_data):
         scope = MagicMock()
         body_start = MagicMock()
         body_start.str = '{'
+        body_start.linenr = 1
         body_end = MagicMock()
         body_end.str = '}'
+        body_end.linenr = 20
         scope.bodyStart = body_start
         scope.bodyEnd = body_end
         tokens = [body_start]

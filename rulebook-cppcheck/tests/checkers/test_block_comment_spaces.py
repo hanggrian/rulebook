@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.block_comment_spaces import BlockCommentSpacesChecker
 from rulebook_cppcheck.messages import _Messages
@@ -10,60 +10,75 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
     CHECKER_CLASS = BlockCommentSpacesChecker
 
     @patch.object(BlockCommentSpacesChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_untrimmed_block_comment(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
             '''
+            /** Summary. */
+            fun foo() {}
+
             /**
-             * Valid description
+             * Summary.
+             *
+             * @param num description.
              */
-            /* Single line *
+            fun bar(num: Int) {}
             ''',
-    )
-    def test_valid_comments(self, mock_file, mock_report):
-        token = MagicMock()
-        token.file = 'test.cpp'
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        )
         mock_report.assert_not_called()
-        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
 
     @patch.object(BlockCommentSpacesChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_trimmed_block_comment(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
             '''
-            /**Function description
-             * @return ...
-             */
+            /**Summary.*/
+            fun foo() {}
+
             /**
-             * Function description*/
-            /**
-             *Function description
+             *Summary.
+             *
+             *@param num description.
              */
+            fun bar(num: Int) {}
             ''',
-    )
-    def test_violations(self, mock_file, mock_report):
-        token = MagicMock()
-        token.file = 'test.cpp'
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
-        self.assertEqual(mock_report.call_count, 3)
+        )
+        self.assertEqual(mock_report.call_count, 4)
         calls = mock_report.call_args_list
-        print('calls')
-        print(calls)
         self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG_SINGLE_START))
         self.assertEqual(calls[0][0][2], 2)
         self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG_SINGLE_END))
-        self.assertEqual(calls[1][0][2], 6)
+        self.assertEqual(calls[1][0][2], 2)
         self.assertEqual(calls[2][0][1], _Messages.get(self.checker.MSG_MULTI))
-        self.assertEqual(calls[2][0][2], 8)
-        mock_report.assert_called()
-        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
+        self.assertEqual(calls[2][0][2], 6)
+        self.assertEqual(calls[3][0][1], _Messages.get(self.checker.MSG_MULTI))
+        self.assertEqual(calls[3][0][2], 8)
+
+    @patch.object(BlockCommentSpacesChecker, 'report_error')
+    def test_unconventional_block_tags(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.cpp'),
+            '''
+            /**
+             *Summary.
+             *
+             *@param num description.
+             *@goodtag
+             *@awesometag with description.
+             */
+            fun foo(num: Int) {}
+            ''',
+        )
+        self.assertEqual(mock_report.call_count, 4)
+        calls = mock_report.call_args_list
+        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG_MULTI))
+        self.assertEqual(calls[0][0][2], 3)
+        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG_MULTI))
+        self.assertEqual(calls[1][0][2], 5)
+        self.assertEqual(calls[2][0][1], _Messages.get(self.checker.MSG_MULTI))
+        self.assertEqual(calls[2][0][2], 6)
+        self.assertEqual(calls[3][0][1], _Messages.get(self.checker.MSG_MULTI))
+        self.assertEqual(calls[3][0][2], 7)
 
 
 if __name__ == '__main__':

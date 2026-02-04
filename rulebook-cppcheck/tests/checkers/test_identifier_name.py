@@ -38,7 +38,6 @@ class TestIdentifierNameChecker(CheckerTestCase):
         token.str = name
         token.variable = MagicMock()
         token.variable.nameToken = token
-        token.function = None
         return token
 
     @staticmethod
@@ -47,7 +46,6 @@ class TestIdentifierNameChecker(CheckerTestCase):
         token.str = name
         token.function = MagicMock()
         token.function.tokenDef = token
-        token.variable = None
         return token
 
     @staticmethod

@@ -24,8 +24,8 @@ load-plugins=
   rulebook_pylint.checkers.todo_comment,
   rulebook_pylint.checkers.trailing_comma,
   # Clipping
-  rulebook_pylint.checkers.empty_parentheses_clip,
-  rulebook_pylint.checkers.short_block_comment_clip,
+  rulebook_pylint.checkers.block_comment_clip,
+  rulebook_pylint.checkers.parentheses_clip,
   # Declaring
   rulebook_pylint.checkers.abstract_class_definition,
   pylint.extensions.docstyle,
@@ -177,6 +177,7 @@ disable=
   missing-module-docstring,
   missing-class-docstring,
   missing-type-doc,
+  too-many-locals,
 
 
 [REPORTS]

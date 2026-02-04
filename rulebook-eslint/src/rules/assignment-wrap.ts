@@ -5,7 +5,7 @@ import messages from '../messages.js';
 const MSG: string = 'assignment.wrap';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#assignment-wrap|See detail} */
-const rule: Rule.RuleModule = {
+export default {
     meta: {
         type: 'problem',
         docs: {
@@ -53,6 +53,4 @@ const rule: Rule.RuleModule = {
             },
         };
     },
-};
-
-export { rule as default, MSG };
+} as Rule.RuleModule;

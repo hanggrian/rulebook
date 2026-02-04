@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.duplicate_blank_line import DuplicateBlankLineChecker
 from rulebook_cppcheck.messages import _Messages
@@ -10,47 +10,38 @@ class TestDuplicateBlankLineChecker(CheckerTestCase):
     CHECKER_CLASS = DuplicateBlankLineChecker
 
     @patch.object(DuplicateBlankLineChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_single_empty_line(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.c'),
             '''
-            int x = 0;
+            void foo() {
 
-            int y = 0;
+            }
             ''',
-    )
-    def test_valid_lines(self, mock_file, mock_report):
-        token = MagicMock()
-        token.file = 'test.cpp'
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        )
         mock_report.assert_not_called()
-        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
 
     @patch.object(DuplicateBlankLineChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data= \
+    def test_multiple_empty_lines(self, mock_report):
+        self.checker.check_file(
+            MagicMock(file='test.c'),
             '''
-            int x = 0;
+
+            class Bar {
+                void foo() {
 
 
-            int y = 0;
+                }
+            }
             ''',
-    )
-    def test_blank_lines(self, mock_file, mock_report):
-        token = MagicMock()
-        token.file = 'test.cpp'
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
-        mock_report.assert_called_once()
-        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG))
+        )
+        self.assertEqual(mock_report.call_count, 2)
+        calls = mock_report.call_args_list
+        msg = _Messages.get(self.checker.MSG)
+        self.assertEqual(calls[0][0][1], msg)
+        self.assertEqual(calls[0][0][2], 2)
+        self.assertEqual(calls[1][0][1], msg)
+        self.assertEqual(calls[1][0][2], 6)
 
 
 if __name__ == '__main__':

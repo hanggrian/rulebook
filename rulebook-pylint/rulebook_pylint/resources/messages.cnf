@@ -4,8 +4,8 @@ todo.comment.separator=Omit separator '%s'.
 trailing.comma.single=Remove trailing comma.
 trailing.comma.multi=Put trailing comma.
 # Clipping
-empty.parentheses.clip=Convert into '%s'.
-short.block.comment.clip=Convert into single-line.
+block.comment.clip=Convert into single-line.
+parentheses.clip=Convert into '%s'.
 # Declaring
 abstract.class.definition=Omit 'abstract' modifier.
 exception.inheritance=Extend from class 'Exception'.

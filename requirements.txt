@@ -1,5 +1,5 @@
 # main
 pylint==4.0.4
 astroid==4.0.2
-regex>=2025.11.3
 cppcheck==1.5.1
+regex>=2025.11.3

@@ -5,7 +5,7 @@ import messages from '../messages.js';
 const MSG: string = 'wildcard.import';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#wildcard-import|See detail} */
-const rule: Rule.RuleModule = {
+export default {
     meta: {
         type: 'problem',
         docs: {
@@ -33,6 +33,4 @@ const rule: Rule.RuleModule = {
             },
         };
     },
-};
-
-export { rule as default, MSG };
+} as Rule.RuleModule;

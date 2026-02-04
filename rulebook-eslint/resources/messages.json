@@ -1,6 +1,6 @@
 {
-  "todo.comment.keyword": "Capitalize keyword {{ $0 }}.",
-  "todo.comment.separator": "Omit separator {{ $0 }}.",
+  "todo.comment.keyword": "Capitalize keyword '{{ $0 }}'.",
+  "todo.comment.separator": "Omit separator '{{ $0 }}'.",
   "wildcard.import": "Use single-type import.",
 
   "assignment.wrap": "Break assignment into newline.",

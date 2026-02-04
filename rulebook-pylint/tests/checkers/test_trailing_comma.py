@@ -124,6 +124,35 @@ class TestTrailingCommaChecker(CheckerTestCase):
         with self.assertNoMessages():
             self.checker.process_tokens(tokens)
 
+    def test_skip_sole_generator(self):
+        tokens = \
+            _tokenize_str(
+                '''
+                def foo(collection: list[int]):
+                    any(
+                        c for c in collection
+                    )
+                    var = [
+                        c for c in collection
+                    ]
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.process_tokens(tokens)
+
+    def test_aaa(self):
+        tokens = \
+            _tokenize_str(
+                '''
+                def foo(collection: list[int]):
+                    content_indices = [
+                        i for i, line in enumerate(lines) if line.strip() not in {'*', ''}
+                    ]
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.process_tokens(tokens)
+
 
 if __name__ == '__main__':
     main()

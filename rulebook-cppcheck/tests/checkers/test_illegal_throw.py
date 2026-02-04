@@ -16,9 +16,7 @@ class TestIllegalThrowChecker(CheckerTestCase):
         semi = MagicMock(str=';')
         token.next = exc
         exc.next = semi
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        self.checker.process_token(token)
         mock_report.assert_not_called()
 
     @patch.object(IllegalThrowChecker, 'report_error')
@@ -32,9 +30,7 @@ class TestIllegalThrowChecker(CheckerTestCase):
         std.next = colon
         colon.next = exc
         exc.next = semi
-        config = MagicMock()
-        config.tokenlist = [token]
-        self.checker.run_check(config)
+        self.checker.process_token(token)
         mock_report.assert_called_once()
         self.assertEqual(mock_report.call_args[0][0].str, 'exception')
         args, _ = mock_report.call_args

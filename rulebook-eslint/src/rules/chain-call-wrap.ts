@@ -7,7 +7,7 @@ const MSG_MISSING: string = 'chain.call.wrap.missing';
 const MSG_UNEXPECTED: string = 'chain.call.wrap.unexpected';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#chain-call-wrap|See detail} */
-const rule: Rule.RuleModule = {
+export default {
     meta: {
         type: 'problem',
         docs: {
@@ -89,6 +89,4 @@ const rule: Rule.RuleModule = {
             },
         };
     },
-};
-
-export { rule as default, MSG_MISSING, MSG_UNEXPECTED };
+} as Rule.RuleModule;

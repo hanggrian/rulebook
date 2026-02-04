@@ -11,23 +11,14 @@ class TestPackageNameChecker(CheckerTestCase):
 
     @patch.object(PackageNameChecker, 'report_error')
     def test_valid_namespace(self, mock_report):
-        configuration = self._create_configuration([{'className': 'my_namespace'}])
-        self.checker.run_check(configuration)
+        self.checker.visit_scope(self._create_scope('my_namespace'))
         mock_report.assert_not_called()
 
     @patch.object(PackageNameChecker, 'report_error')
     def test_invalid_namespaces(self, mock_report):
-        self.checker.run_check(
-            self._create_configuration([
-                {'className': 'MyNamespace'},
-            ]),
-        )
-        self.checker.run_check(
-            self._create_configuration([
-                {'className': 'xmlParser'},
-                {'className': 'UIHandler'},
-            ]),
-        )
+        self.checker.visit_scope(self._create_scope('MyNamespace'))
+        self.checker.visit_scope(self._create_scope('xmlParser'))
+        self.checker.visit_scope(self._create_scope('UIHandler'))
         mock_report.assert_called()
         self.assertEqual(mock_report.call_count, 3)
         calls = mock_report.call_args_list
@@ -36,23 +27,13 @@ class TestPackageNameChecker(CheckerTestCase):
         self.assertEqual(calls[2][0][1], _Messages.get(self.checker.MSG, 'ui_handler'))
 
     @staticmethod
-    def _create_configuration(scopes_data):
-        mock_scopes = []
-        for data in scopes_data:
-            scope = MagicMock()
-            scope.type = 'Namespace'
-            scope.className = data['className']
-            body_start = MagicMock()
-            name_token = MagicMock()
-            body_start.str = '{'
-            name_token.str = data['className']
-            body_start.previous = name_token
-            name_token.previous = None
-            scope.bodyStart = body_start
-            mock_scopes.append(scope)
-        configuration = MagicMock()
-        configuration.scopes = mock_scopes
-        return configuration
+    def _create_scope(class_name):
+        scope = MagicMock(type='Namespace', className=class_name)
+        body_start = MagicMock(str='{')
+        name_token = MagicMock(str=class_name)
+        scope.bodyStart = body_start
+        body_start.previous = name_token
+        return scope
 
 
 if __name__ == '__main__':

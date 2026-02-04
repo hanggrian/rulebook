@@ -11,26 +11,18 @@ class TestClassNameChecker(CheckerTestCase):
 
     @patch.object(ClassNameChecker, 'report_error')
     def test_valid_pascal_case(self, mock_report):
-        self.checker.run_check(
-            self._create_configuration([
-                {'type': 'Class', 'className': 'MyClass'},
-                {'type': 'Struct', 'className': 'DataNode'},
-            ]),
-        )
+        self.checker.visit_scope(self._create_scope('Class', 'MyClass'))
+        self.checker.visit_scope(self._create_scope('Struct', 'DataNode'))
         mock_report.assert_not_called()
 
     @patch.object(ClassNameChecker, 'report_error')
     def test_invalid_formats(self, mock_report):
-        self.checker.run_check(
-            self._create_configuration([
-                {'type': 'Class', 'className': 'my_class'},
-                {'type': 'Struct', 'className': 'data_node'},
-                {'type': 'Union', 'className': 'raw_data'},
-                {'type': 'Enum', 'className': 'color_type'},
-                {'type': 'Class', 'className': 'xmlParser'},
-            ]),
-        )
-        mock_report.assert_called()
+        self.checker.visit_scope(self._create_scope('Class', 'my_class'))
+        self.checker.visit_scope(self._create_scope('Struct', 'data_node'))
+        self.checker.visit_scope(self._create_scope('Union', 'raw_data'))
+        self.checker.visit_scope(self._create_scope('Enum', 'color_type'))
+        self.checker.visit_scope(self._create_scope('Class', 'xmlParser'))
+
         self.assertEqual(mock_report.call_count, 5)
         calls = mock_report.call_args_list
         self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG, 'MyClass'))
@@ -40,23 +32,17 @@ class TestClassNameChecker(CheckerTestCase):
         self.assertEqual(calls[4][0][1], _Messages.get(self.checker.MSG, 'XmlParser'))
 
     @staticmethod
-    def _create_configuration(scopes_data):
-        mock_scopes = []
-        for data in scopes_data:
-            scope = MagicMock()
-            scope.type = data['type']
-            scope.className = data['className']
-            body_start = MagicMock()
-            name_token = MagicMock()
-            body_start.str = '{'
-            name_token.str = data['className']
-            body_start.previous = name_token
-            name_token.previous = None
-            scope.bodyStart = body_start
-            mock_scopes.append(scope)
-        configuration = MagicMock()
-        configuration.scopes = mock_scopes
-        return configuration
+    def _create_scope(scope_type, class_name):
+        scope = MagicMock()
+        scope.type = scope_type
+        scope.className = class_name
+        body_start = MagicMock()
+        name_token = MagicMock()
+        body_start.str = '{'
+        name_token.str = class_name
+        body_start.previous = name_token
+        scope.bodyStart = body_start
+        return scope
 
 
 if __name__ == '__main__':

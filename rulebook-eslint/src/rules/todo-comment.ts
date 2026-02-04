@@ -9,7 +9,7 @@ const KEYWORD_REGEX =
 const SEPARATOR_REGEX = new RegExp('\\b(todo|fixme)\\S', 'gi');
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#todo-comment|See detail} */
-const rule: Rule.RuleModule = {
+export default {
     meta: {
         type: 'problem',
         docs: {
@@ -48,6 +48,4 @@ const rule: Rule.RuleModule = {
             },
         };
     },
-};
-
-export { rule as default, MSG_KEYWORD, MSG_SEPARATOR };
+} as Rule.RuleModule;
