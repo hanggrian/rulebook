@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.block_tag_indentation import BlockTagIndentationChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestBlockTagIndentationChecker(CheckerTestCase):
     CHECKER_CLASS = BlockTagIndentationChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(BlockTagIndentationChecker, 'report_error')
     def test_indented_block_tag_description(self, mock_report):

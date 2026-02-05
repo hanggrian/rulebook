@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.import_order import ImportOrderChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestImportOrderChecker(CheckerTestCase):
     CHECKER_CLASS = ImportOrderChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ImportOrderChecker, 'report_error')
     def test_valid_order(self, mock_report):

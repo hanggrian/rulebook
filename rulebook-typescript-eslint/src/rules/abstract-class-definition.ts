@@ -1,28 +1,19 @@
 import { TSESLint, TSESTree } from '@typescript-eslint/utils';
+import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
-import createRule from '../rules.js';
-
-const MSG: string = 'abstract.class.definition';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#abstract-class-definition|See detail} */
-export default createRule({
-    name: 'abstract-class-definition',
-    defaultOptions: [],
-    meta: {
-        type: 'suggestion',
-        docs: {
-            description:
-                'Enforce that abstract classes must contain at least one abstract method.',
-        },
-        schema: [],
-        messages: {
-            [MSG]: messages.get(MSG),
-        },
-    },
+class AbstractClassDefinitionRule extends RulebookRule {
+    constructor() {
+        super('abstract-class-definition', {
+            [AbstractClassDefinitionRule.MSG]: messages.get(AbstractClassDefinitionRule.MSG),
+        });
+    }
+
     create(context: TSESLint.RuleContext<string, any>) {
         return {
             ClassDeclaration(node: TSESTree.ClassDeclaration) {
-                if (!node.abstract || node.superClass) {
+                if (!node.abstract || node.superClass || node.implements.length > 0) {
                     return;
                 }
                 const hasAbstractMember: boolean =
@@ -41,9 +32,13 @@ export default createRule({
                 }
                 context.report({
                     node: node,
-                    messageId: MSG,
+                    messageId: AbstractClassDefinitionRule.MSG,
                 });
             },
         };
-    },
-}) as TSESLint.RuleModule<string, any, any, TSESLint.RuleListener> & { name: string };
+    }
+
+    static MSG: string = 'abstract.class.definition';
+}
+
+export default new AbstractClassDefinitionRule();

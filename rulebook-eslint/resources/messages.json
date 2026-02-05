@@ -3,6 +3,8 @@
   "todo.comment.separator": "Omit separator '{{ $0 }}'.",
   "wildcard.import": "Use single-type import.",
 
+  "empty.file": "Delete the empty file.",
+
   "assignment.wrap": "Break assignment into newline.",
   "chain.call.wrap.missing": "Put newline before '.'.",
   "chain.call.wrap.unexpected": "Omit newline before '.'."

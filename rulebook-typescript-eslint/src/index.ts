@@ -28,6 +28,12 @@ const typescriptCrockfordConfig: Record<string, any> = {
         },
         {
             selector: 'property',
+            format: ['UPPER_CASE'],
+            modifiers: ['static'],
+            leadingUnderscore: 'allow',
+        },
+        {
+            selector: 'property',
             format: null,
             modifiers: ['requiresQuotes'],
             leadingUnderscore: 'allow',
@@ -78,6 +84,12 @@ const typescriptGoogleConfig: Record<string, any> = {
         {
             selector: 'property',
             format: ['camelCase'],
+            leadingUnderscore: 'allow',
+        },
+        {
+            selector: 'property',
+            format: ['UPPER_CASE'],
+            modifiers: ['static'],
             leadingUnderscore: 'allow',
         },
         {

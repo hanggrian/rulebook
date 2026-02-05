@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.illegal_variable_name import IllegalVariableNameChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestIllegalVariableNameChecker(CheckerTestCase):
     CHECKER_CLASS = IllegalVariableNameChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(IllegalVariableNameChecker, 'report_error')
     def test_descriptive_names(self, mock_report):

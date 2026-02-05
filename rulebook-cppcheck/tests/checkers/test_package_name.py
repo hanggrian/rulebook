@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.package_name import PackageNameChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestPackageNameChecker(CheckerTestCase):
     CHECKER_CLASS = PackageNameChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(PackageNameChecker, 'report_error')
     def test_valid_namespace(self, mock_report):

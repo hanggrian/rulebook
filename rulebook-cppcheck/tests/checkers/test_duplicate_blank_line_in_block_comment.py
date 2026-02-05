@@ -4,11 +4,14 @@ from unittest.mock import MagicMock, patch
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
     CHECKER_CLASS = DuplicateBlankLineInBlockCommentChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(DuplicateBlankLineInBlockCommentChecker, 'report_error')
     def test_single_empty_line_in_block_comment(self, mock_report):

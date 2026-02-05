@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.chain_call_wrap import ChainCallWrapChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestChainCallWrapChecker(CheckerTestCase):
     CHECKER_CLASS = ChainCallWrapChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ChainCallWrapChecker, 'report_error')
     def test_unexpected_newline(self, mock_report):

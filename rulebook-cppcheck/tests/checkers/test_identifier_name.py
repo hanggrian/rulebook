@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.identifier_name import IdentifierNameChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestIdentifierNameChecker(CheckerTestCase):
     CHECKER_CLASS = IdentifierNameChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(IdentifierNameChecker, 'report_error')
     def test_valid_names(self, mock_report):

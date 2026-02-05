@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.assignment_wrap import AssignmentWrapChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestAssignmentWrapChecker(CheckerTestCase):
     CHECKER_CLASS = AssignmentWrapChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(AssignmentWrapChecker, 'report_error')
     def test_single_line_assignment(self, mock_report):

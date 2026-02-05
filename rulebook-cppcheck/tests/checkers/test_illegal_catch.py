@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.illegal_catch import IllegalCatchChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestIllegalCatchChecker(CheckerTestCase):
     CHECKER_CLASS = IllegalCatchChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(IllegalCatchChecker, 'report_error')
     def test_ellipsis_violation(self, mock_report):

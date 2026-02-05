@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.operator_wrap import OperatorWrapChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestOperatorWrapChecker(CheckerTestCase):
     CHECKER_CLASS = OperatorWrapChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(OperatorWrapChecker, 'report_error')
     def test_operators_in_single_line_statement(self, mock_report):

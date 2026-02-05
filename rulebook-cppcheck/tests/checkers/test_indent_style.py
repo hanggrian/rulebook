@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch, mock_open
 
 from rulebook_cppcheck.checkers.indent_style import IndentStyleChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestIndentStyleChecker(CheckerTestCase):
     CHECKER_CLASS = IndentStyleChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(IndentStyleChecker, 'report_error')
     @patch(

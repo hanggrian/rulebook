@@ -1,6 +1,20 @@
 import { createRuleTester, NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult } from 'eslint-vitest-rule-tester';
-import { RuleOptions } from '@stylistic/eslint-plugin-js';
+import { RuleOptions } from '@stylistic/eslint-plugin';
 import typescriptEslint from 'typescript-eslint';
+import { TSESLint } from '@typescript-eslint/utils';
+import { expect } from 'vitest';
+
+function assertProperties(module: TSESLint.RuleModule<string, any>): void {
+    const ruleName: string = module.meta.docs.description;
+    expect(
+        module.constructor.name
+            .replace(/Rule$/, '')
+            .replace(/([a-z])([A-Z])/g, '$1-$2')
+            .toLowerCase(),
+    ).toBe(ruleName);
+    expect(module.meta.docs.url)
+        .toBe(`https://hanggrian.github.io/rulebook/rules/#${ruleName}`);
+}
 
 class Asserter {
     nativeTester: RuleTester;
@@ -59,4 +73,4 @@ function assertThatRule(rule: RuleModule, name: string): AssertThat {
         );
 }
 
-export { assertThatRule, AssertThat };
+export { assertProperties, assertThatRule, AssertThat };

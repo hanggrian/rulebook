@@ -1,19 +1,21 @@
 import { describe, it } from 'vitest';
 import assignmentWrap from '../src/rules/assignment-wrap';
-import { AssertThat, assertThatRule } from './tests';
+import { assertProperties, AssertThat, assertThatRule } from './tests';
 
 describe('AssignmentWrapTest', () => {
     const assertThat: AssertThat = assertThatRule(assignmentWrap, 'assignment-wrap');
+
+    it('Rule properties', () => assertProperties(assignmentWrap));
 
     it(
         'Single-type assignment',
         () =>
             assertThat(
                 `
-            function foo() {
-                const bar = 1 + 2;
-            }
-            `,
+                function foo() {
+                    const bar = 1 + 2;
+                }
+                `,
             ).hasNoError(),
     );
 
@@ -22,12 +24,12 @@ describe('AssignmentWrapTest', () => {
         () =>
             assertThat(
                 `
-            function foo() {
-                const bar =
-                    1 +
-                    2;
-            }
-            `,
+                function foo() {
+                    const bar =
+                        1 +
+                        2;
+                }
+                `,
             ).hasNoError(),
     );
 

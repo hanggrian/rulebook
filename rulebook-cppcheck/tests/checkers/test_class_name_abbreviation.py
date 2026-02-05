@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestClassNameAbbreviationChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameAbbreviationChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ClassNameAbbreviationChecker, 'report_error')
     def test_class_names_with_lowercase_abbreviation(self, mock_report):

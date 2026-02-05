@@ -1,9 +1,11 @@
 import { describe, it } from 'vitest';
 import wildcardImport from '../src/rules/wildcard-import';
-import { AssertThat, assertThatRule } from './tests';
+import { assertProperties, AssertThat, assertThatRule } from './tests';
 
 describe('WildcardImportTest', () => {
     const assertThat: AssertThat = assertThatRule(wildcardImport, 'wildcard-import');
+
+    it('Rule properties', () => assertProperties(wildcardImport));
 
     it(
         'Single-type import',

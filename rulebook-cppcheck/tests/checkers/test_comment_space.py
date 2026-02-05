@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.comment_space import CommentSpaceChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestCommentSpaceChecker(CheckerTestCase):
     CHECKER_CLASS = CommentSpaceChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(CommentSpaceChecker, 'report_error')
     def test_with_whitespace(self, mock_report):

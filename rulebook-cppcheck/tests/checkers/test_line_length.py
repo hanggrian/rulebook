@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch, mock_open
 
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestLineLengthChecker(CheckerTestCase):
     CHECKER_CLASS = LineLengthChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(LineLengthChecker, 'report_error')
     @patch(

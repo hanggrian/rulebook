@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.class_name import ClassNameChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestClassNameChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ClassNameChecker, 'report_error')
     def test_valid_pascal_case(self, mock_report):

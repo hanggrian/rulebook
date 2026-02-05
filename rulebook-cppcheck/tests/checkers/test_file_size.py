@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestFileSizeChecker(CheckerTestCase):
     CHECKER_CLASS = FileSizeChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(FileSizeChecker, 'report_error')
     def test_small_file(self, mock_report):

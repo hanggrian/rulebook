@@ -1,22 +1,16 @@
 import { AST, Rule } from 'eslint';
 import { Expression, VariableDeclarator } from 'estree';
+import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
 
-const MSG: string = 'assignment.wrap';
-
 /** {@link https://hanggrian.github.io/rulebook/rules/#assignment-wrap|See detail} */
-export default {
-    meta: {
-        type: 'problem',
-        docs: {
-            description: 'Enforce a newline before multiline variable initializers.',
-            category: 'Wrapping',
-        },
-        schema: [],
-        messages: {
-            [MSG]: messages.get(MSG),
-        },
-    },
+class AssignmentWrapRule extends RulebookRule {
+    constructor() {
+        super('assignment-wrap', {
+            [AssignmentWrapRule.MSG]: messages.get(AssignmentWrapRule.MSG),
+        });
+    }
+
     create(context: Rule.RuleContext) {
         return {
             VariableDeclarator(node: VariableDeclarator) {
@@ -48,9 +42,13 @@ export default {
                 }
                 context.report({
                     node: init,
-                    messageId: MSG,
+                    messageId: AssignmentWrapRule.MSG,
                 });
             },
         };
-    },
-} as Rule.RuleModule;
+    }
+
+    static MSG: string = 'assignment.wrap';
+}
+
+export default new AssignmentWrapRule();

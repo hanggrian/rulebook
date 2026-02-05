@@ -1,6 +1,7 @@
 import { ESLint } from 'eslint';
 import assignmentWrap from './rules/assignment-wrap.js';
 import chainCallWrap from './rules/chain-call-wrap.js';
+import emptyFile from './rules/empty-file.js';
 import todoComment from './rules/todo-comment.js';
 import wildcardImport from './rules/wildcard-import.js';
 
@@ -36,6 +37,7 @@ const crockfordConfig: Record<string, any> = {
     ],
     '@stylistic/arrow-parens': ['error', 'as-needed'],
     // Formatting
+    '@rulebook/empty-file': 'error',
     'max-lines': ['error', 1000],
     '@stylistic/eol-last': 'error',
     'indent': ['error', 4],
@@ -103,11 +105,6 @@ const crockfordConfig: Record<string, any> = {
                     prev: '*',
                     next: 'method',
                 },
-                {
-                    blankLine: 'never',
-                    prev: 'field',
-                    next: 'field',
-                },
             ],
         },
     ],
@@ -174,6 +171,7 @@ const googleConfig: Record<string, any> = {
     '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: true }],
     '@stylistic/arrow-parens': ['error', 'always'],
     // Formatting
+    '@rulebook/empty-file': 'error',
     'max-lines': ['error', 1000],
     '@stylistic/eol-last': 'error',
     'indent': [
@@ -262,11 +260,6 @@ const googleConfig: Record<string, any> = {
                     blankLine: 'always',
                     prev: '*',
                     next: 'method',
-                },
-                {
-                    blankLine: 'never',
-                    prev: 'field',
-                    next: 'field',
                 },
             ],
         },
@@ -372,9 +365,10 @@ const googleConfig: Record<string, any> = {
 const plugin: ESLint.Plugin = {
     rules: {
         'assignment-wrap': assignmentWrap,
-        'wildcard-import': wildcardImport,
-        'todo-comment': todoComment,
         'chain-call-wrap': chainCallWrap,
+        'empty-file': emptyFile,
+        'todo-comment': todoComment,
+        'wildcard-import': wildcardImport,
     },
     configs: {
         crockford: {

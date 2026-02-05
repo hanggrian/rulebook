@@ -1,21 +1,16 @@
 import { Rule } from 'eslint';
 import { ImportDeclaration } from 'estree';
+import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
 
-const MSG: string = 'wildcard.import';
-
 /** {@link https://hanggrian.github.io/rulebook/rules/#wildcard-import|See detail} */
-export default {
-    meta: {
-        type: 'problem',
-        docs: {
-            description: "Disallow wildcard imports (import * as foo from 'bar').",
-        },
-        schema: [],
-        messages: {
-            [MSG]: messages.get(MSG),
-        },
-    },
+class WildcardImportRule extends RulebookRule {
+    constructor() {
+        super('wildcard-import', {
+            [WildcardImportRule.MSG]: messages.get(WildcardImportRule.MSG),
+        });
+    }
+
     create(context: Rule.RuleContext) {
         return {
             ImportDeclaration(node: ImportDeclaration) {
@@ -28,9 +23,13 @@ export default {
                 }
                 context.report({
                     node: node,
-                    messageId: MSG,
+                    messageId: WildcardImportRule.MSG,
                 });
             },
         };
-    },
-} as Rule.RuleModule;
+    }
+
+    static MSG: string = 'wildcard.import';
+}
+
+export default new WildcardImportRule();

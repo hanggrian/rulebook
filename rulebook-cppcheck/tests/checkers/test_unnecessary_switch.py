@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.unnecessary_switch import UnnecessarySwitchChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestUnnecessarySwitchChecker(CheckerTestCase):
     CHECKER_CLASS = UnnecessarySwitchChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(UnnecessarySwitchChecker, 'report_error')
     def test_multiple_switch_branches(self, mock_report):

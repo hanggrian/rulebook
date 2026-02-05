@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.generic_name import GenericNameChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestGenericNameChecker(CheckerTestCase):
     CHECKER_CLASS = GenericNameChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(GenericNameChecker, 'report_error')
     def test_correct_generic_name_in_class(self, mock_report):

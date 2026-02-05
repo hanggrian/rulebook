@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.nested_if_else import NestedIfElseChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 try:
     from cppcheckdata import Token
@@ -13,6 +13,9 @@ except ImportError:
 
 class TestNestedIfElseChecker(CheckerTestCase):
     CHECKER_CLASS = NestedIfElseChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(NestedIfElseChecker, 'report_error')
     def test_empty_or_single_statement(self, mock_report):

@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestFinalNewlineChecker(CheckerTestCase):
     CHECKER_CLASS = FinalNewlineChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(FinalNewlineChecker, 'report_error')
     def test_file_ends_with_newline(self, mock_report):

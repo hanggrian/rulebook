@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.parameter_wrap import ParameterWrapChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestParameterWrapChecker(CheckerTestCase):
     CHECKER_CLASS = ParameterWrapChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ParameterWrapChecker, 'report_error')
     def test_single_line_parameters(self, mock_report):

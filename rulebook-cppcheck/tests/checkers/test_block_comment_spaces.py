@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.block_comment_spaces import BlockCommentSpacesChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestBlockCommentSpacesChecker(CheckerTestCase):
     CHECKER_CLASS = BlockCommentSpacesChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(BlockCommentSpacesChecker, 'report_error')
     def test_untrimmed_block_comment(self, mock_report):

@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.case_separator import CaseSeparatorChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestCaseSeparatorChecker(CheckerTestCase):
     CHECKER_CLASS = CaseSeparatorChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(CaseSeparatorChecker, 'report_error')
     def test_single_line_branches_without_line_break(self, mock_report):

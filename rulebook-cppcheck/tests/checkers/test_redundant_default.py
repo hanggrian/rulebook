@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestRedundantDefaultChecker(CheckerTestCase):
     CHECKER_CLASS = RedundantDefaultChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(RedundantDefaultChecker, 'report_error')
     def test_no_throw_or_return_in_case(self, mock_report):

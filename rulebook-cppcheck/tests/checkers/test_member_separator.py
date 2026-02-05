@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch, call
 
 from rulebook_cppcheck.checkers.member_separator import MemberSeparatorChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestMemberSeparatorChecker(CheckerTestCase):
     CHECKER_CLASS = MemberSeparatorChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(MemberSeparatorChecker, 'report_error')
     def test_single_line_members_with_separator(self, mock_report):

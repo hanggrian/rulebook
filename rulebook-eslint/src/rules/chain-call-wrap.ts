@@ -1,25 +1,18 @@
 import { AST, Rule } from 'eslint';
 import { Expression, Super } from 'estree';
+import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
 import Token = AST.Token;
 
-const MSG_MISSING: string = 'chain.call.wrap.missing';
-const MSG_UNEXPECTED: string = 'chain.call.wrap.unexpected';
-
 /** {@link https://hanggrian.github.io/rulebook/rules/#chain-call-wrap|See detail} */
-export default {
-    meta: {
-        type: 'problem',
-        docs: {
-            description: 'Enforce a newline before the start of a multiline chained call.',
-            category: 'Wrapping',
-        },
-        schema: [],
-        messages: {
-            [MSG_MISSING]: messages.get(MSG_MISSING),
-            [MSG_UNEXPECTED]: messages.get(MSG_UNEXPECTED),
-        },
-    },
+class ChainCallWrapRule extends RulebookRule {
+    constructor() {
+        super('chain-call-wrap', {
+            [ChainCallWrapRule.MSG_MISSING]: messages.get(ChainCallWrapRule.MSG_MISSING),
+            [ChainCallWrapRule.MSG_UNEXPECTED]: messages.get(ChainCallWrapRule.MSG_UNEXPECTED),
+        });
+    }
+
     create(context: Rule.RuleContext) {
         return {
             'CallExpression, MemberExpression'(node: Rule.Node) {
@@ -78,15 +71,26 @@ export default {
                         context.sourceCode.getTokenBefore(prevToken)?.loc.end.line
                     ) {
                         if (dot.loc.start.line !== prevToken.loc.start.line) {
-                            context.report({ node: dot, messageId: MSG_UNEXPECTED });
+                            context.report({
+                                node: dot,
+                                messageId: ChainCallWrapRule.MSG_UNEXPECTED,
+                            });
                         }
                     } else {
                         if (dot.loc.start.line !== prevToken.loc.end.line + 1) {
-                            context.report({ node: dot, messageId: MSG_MISSING });
+                            context.report({
+                                node: dot,
+                                messageId: ChainCallWrapRule.MSG_MISSING,
+                            });
                         }
                     }
                 });
             },
         };
-    },
-} as Rule.RuleModule;
+    }
+
+    static MSG_MISSING: string = 'chain.call.wrap.missing';
+    static MSG_UNEXPECTED: string = 'chain.call.wrap.unexpected';
+}
+
+export default new ChainCallWrapRule();

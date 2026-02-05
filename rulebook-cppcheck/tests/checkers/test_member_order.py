@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.member_order import MemberOrderChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestMemberOrderChecker(CheckerTestCase):
     CHECKER_CLASS = MemberOrderChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(MemberOrderChecker, 'report_error')
     def test_correct_member_layout(self, mock_report):

@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.comment_trim import CommentTrimChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestCommentTrimChecker(CheckerTestCase):
     CHECKER_CLASS = CommentTrimChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(CommentTrimChecker, 'report_error')
     def test_comment_without_initial_and_final_newline(self, mock_report):

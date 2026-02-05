@@ -8,7 +8,7 @@ parentheses.clip=Convert into '{}'.
 lowercase.f=Tag float literal by 'f'.
 uppercase.l=Tag long literal by 'L'.
 # Formatting
-empty.file='Delete the empty file.'
+empty.file=Delete the empty file.
 file.size=Reduce file size to '{}'.
 final.newline=Put a blank line at the end of the file.
 indent.style=Indent with '{}' spaces.

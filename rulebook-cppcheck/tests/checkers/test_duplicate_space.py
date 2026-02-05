@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestDuplicateSpaceChecker(CheckerTestCase):
     CHECKER_CLASS = DuplicateSpaceChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(DuplicateSpaceChecker, 'report_error')
     def test_single_space_between_token(self, mock_report):

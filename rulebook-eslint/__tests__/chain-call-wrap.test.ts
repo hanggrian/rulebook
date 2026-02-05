@@ -1,9 +1,11 @@
 import { describe, it } from 'vitest';
 import chainCallWrap from '../src/rules/chain-call-wrap';
-import { AssertThat, assertThatRule } from './tests';
+import { assertProperties, AssertThat, assertThatRule } from './tests';
 
 describe('ChainCallWrapTest', () => {
     const assertThat: AssertThat = assertThatRule(chainCallWrap, 'chain-call-wrap');
+
+    it('Rule properties', () => assertProperties(chainCallWrap));
 
     it(
         'Aligned chain method call continuation',

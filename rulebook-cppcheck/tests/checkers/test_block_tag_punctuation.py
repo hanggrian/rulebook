@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.block_tag_punctuation import BlockTagPunctuationChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestBlockTagPunctuationChecker(CheckerTestCase):
     CHECKER_CLASS = BlockTagPunctuationChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(BlockTagPunctuationChecker, 'report_error')
     def test_no_description(self, mock_report):

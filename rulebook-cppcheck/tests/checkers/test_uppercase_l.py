@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestUppercaseLChecker(CheckerTestCase):
     CHECKER_CLASS = UppercaseLChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(UppercaseLChecker, 'report_error')
     def test_uppercase_literal_longs(self, mock_report):

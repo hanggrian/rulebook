@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch, mock_open
 
 from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestParenthesesTrimChecker(CheckerTestCase):
     CHECKER_CLASS = ParenthesesTrimChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ParenthesesTrimChecker, 'report_error')
     @patch(

@@ -3,11 +3,14 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.empty_file import EmptyFileChecker
 from rulebook_cppcheck.messages import _Messages
-from ..tests import CheckerTestCase
+from ..tests import assert_properties, CheckerTestCase
 
 
 class TestEmptyFileChecker(CheckerTestCase):
     CHECKER_CLASS = EmptyFileChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
 
     @patch.object(EmptyFileChecker, 'report_error')
     def test_non_empty_file(self, mock_report):
