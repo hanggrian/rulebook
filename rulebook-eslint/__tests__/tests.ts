@@ -18,10 +18,16 @@ function assertProperties(module: Rule.RuleModule): void {
 class Asserter {
     nativeTester: RuleTester;
     code: string;
+    filename: string | undefined = undefined;
 
     constructor(ruleTester: RuleTester, code: string) {
         this.nativeTester = ruleTester;
         this.code = code;
+    }
+
+    withFilename(filename: string): Asserter {
+        this.filename = filename;
+        return this;
     }
 
     hasNoError(): Promise<{
@@ -30,6 +36,7 @@ class Asserter {
     }> {
         return this.nativeTester.valid({
             code: this.code,
+            filename: this.filename,
         });
     }
 
@@ -45,6 +52,7 @@ class Asserter {
         }
         return this.nativeTester.invalid({
             code: this.code,
+            filename: this.filename,
             errors: errors,
         })
     }

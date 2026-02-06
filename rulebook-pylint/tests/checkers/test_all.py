@@ -10,11 +10,11 @@ from pylint.testutils import UnittestLinter, MessageTest, _tokenize_str
 from pylint.testutils.global_test_linter import linter
 from pylint.utils import ASTWalker
 
+from rulebook_pylint.checkers.abbreviation_as_word import AbbreviationAsWordChecker
 from rulebook_pylint.checkers.abstract_class_definition import AbstractClassDefinitionChecker
 from rulebook_pylint.checkers.block_comment_clip import BlockCommentClipChecker
 from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
-from rulebook_pylint.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
 from rulebook_pylint.checkers.comment_space import CommentSpaceChecker
 from rulebook_pylint.checkers.comment_trim import CommentTrimChecker
 from rulebook_pylint.checkers.common_function_position import CommonFunctionPositionChecker
@@ -47,11 +47,11 @@ from ..tests import msg
 
 class TestAllCheckers:
     CHECKER_CLASSES: tuple = (
+        AbbreviationAsWordChecker,
         AbstractClassDefinitionChecker,
         BlockCommentClipChecker,
         BlockCommentTrimChecker,
         CaseSeparatorChecker,
-        ClassNameAbbreviationChecker,
         CommentSpaceChecker,
         CommentTrimChecker,
         CommonFunctionPositionChecker,

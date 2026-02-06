@@ -10,13 +10,13 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class ClassNameAbbreviationChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#class-name-abbreviation"""
-    MSG: str = 'class.name.abbreviation'
+class AbbreviationAsWordChecker(RulebookChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#abbreviation-as-word"""
+    MSG: str = 'abbreviation.as.word'
 
     ABBREVIATION_REGEX: Pattern = re(r'[A-Z]{3,}(?=[A-Z][a-z]|$)')
 
-    name: str = 'class-name-abbreviation'
+    name: str = 'abbreviation-as-word'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
@@ -28,7 +28,7 @@ class ClassNameAbbreviationChecker(RulebookChecker):
             self.MSG,
             node=node,
             args= \
-                ClassNameAbbreviationChecker.ABBREVIATION_REGEX.sub(
+                AbbreviationAsWordChecker.ABBREVIATION_REGEX.sub(
                     lambda m: m.group(0)[0] + m.group(0)[1:].lower(),
                     class_name,
                 ),
@@ -37,4 +37,4 @@ class ClassNameAbbreviationChecker(RulebookChecker):
 
 
 def register(linter: 'PyLinter') -> None:
-    linter.register_checker(ClassNameAbbreviationChecker(linter))
+    linter.register_checker(AbbreviationAsWordChecker(linter))

@@ -1,26 +1,26 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
-import com.hanggrian.rulebook.codenarc.rules.ClassNameAbbreviationRule.Companion.ABBREVIATION_REGEX
-import com.hanggrian.rulebook.codenarc.rules.ClassNameAbbreviationRule.Companion.MSG
+import com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule.Companion.ABBREVIATION_REGEX
+import com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule.Companion.MSG
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.MethodNode
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#class-name-abbreviation) */
-public class ClassNameAbbreviationRule : RulebookAstRule() {
-    override fun getName(): String = "ClassNameAbbreviation"
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#abbreviation-as-word) */
+public class AbbreviationAsWordRule : RulebookAstRule() {
+    override fun getName(): String = "AbbreviationAsWord"
 
-    override fun getAstVisitorClass(): Class<*> = ClassNameAbbreviationVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = AbbreviationAsWordVisitor::class.java
 
     internal companion object {
-        const val MSG = "class.name.abbreviation"
+        const val MSG = "abbreviation.as.word"
 
         val ABBREVIATION_REGEX = Regex("[A-Z]{3,}")
     }
 }
 
-public class ClassNameAbbreviationVisitor : RulebookVisitor() {
+public class AbbreviationAsWordVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
         super.visitClassEx(node)
 

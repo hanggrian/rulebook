@@ -29,7 +29,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
 
   <!-- Naming -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ClassNameAbbreviationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.GenericNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MeaninglessWordRule"/>

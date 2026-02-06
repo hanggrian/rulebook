@@ -14,8 +14,7 @@ class TodoCommentRule extends RulebookRule {
     create(context: Rule.RuleContext) {
         return {
             Program() {
-                const sourceCode = context.sourceCode;
-                sourceCode.getAllComments().forEach(comment => {
+                context.sourceCode.getAllComments().forEach(comment => {
                     for (const match of comment.value.matchAll(TodoCommentRule.KEYWORD_REGEX)) {
                         context.report({
                             loc: comment.loc!,
@@ -42,9 +41,9 @@ class TodoCommentRule extends RulebookRule {
     static MSG_KEYWORD: string = 'todo.comment.keyword';
     static MSG_SEPARATOR: string = 'todo.comment.separator';
 
-    static KEYWORD_REGEX =
+    static KEYWORD_REGEX: RegExp =
         new RegExp('\\b(?:[Ff][Ii][Xx][Mm][Ee]|[Tt][Oo][Dd][Oo])\\b(?<!FIXME|TODO)\\b', 'g');
-    static SEPARATOR_REGEX = new RegExp('\\b(todo|fixme)\\S', 'gi');
+    static SEPARATOR_REGEX: RegExp = new RegExp('\\b(todo|fixme)\\S', 'gi');
 }
 
 export default new TodoCommentRule();

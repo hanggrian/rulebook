@@ -1,5 +1,6 @@
 package com.hanggrian.rulebook.ktlint
 
+import com.hanggrian.rulebook.ktlint.rules.AbbreviationAsWordRule
 import com.hanggrian.rulebook.ktlint.rules.AbstractClassDefinitionRule
 import com.hanggrian.rulebook.ktlint.rules.BlockCommentClipRule
 import com.hanggrian.rulebook.ktlint.rules.BlockCommentSpacesRule
@@ -7,8 +8,8 @@ import com.hanggrian.rulebook.ktlint.rules.BlockCommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagIndentationRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagOrderRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagPunctuationRule
+import com.hanggrian.rulebook.ktlint.rules.BooleanPropertyInteropRule
 import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
-import com.hanggrian.rulebook.ktlint.rules.ClassNameAbbreviationRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
@@ -31,7 +32,6 @@ import com.hanggrian.rulebook.ktlint.rules.MissingBlankLineBeforeBlockTagsRule
 import com.hanggrian.rulebook.ktlint.rules.NestedIfElseRule
 import com.hanggrian.rulebook.ktlint.rules.NullEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
-import com.hanggrian.rulebook.ktlint.rules.PropertyNameInteropRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
@@ -59,10 +59,10 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { ExceptionInheritanceRule() },
             RuleProvider { LowercaseFRule() },
             // Naming
-            RuleProvider { ClassNameAbbreviationRule() },
+            RuleProvider { AbbreviationAsWordRule() },
             RuleProvider { MeaninglessWordRule() },
             RuleProvider { IllegalVariableNameRule() },
-            RuleProvider { PropertyNameInteropRule() },
+            RuleProvider { BooleanPropertyInteropRule() },
             RuleProvider { GenericNameRule() },
             // Ordering
             RuleProvider { BlockTagOrderRule() },

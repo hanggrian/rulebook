@@ -13,9 +13,12 @@ class AbstractClassDefinitionRule extends RulebookRule {
     create(context: TSESLint.RuleContext<string, any>) {
         return {
             ClassDeclaration(node: TSESTree.ClassDeclaration) {
+                // skip non-abstract class
                 if (!node.abstract || node.superClass || node.implements.length > 0) {
                     return;
                 }
+
+                // checks for violation
                 const hasAbstractMember: boolean =
                     node.body.body.some(
                         member =>

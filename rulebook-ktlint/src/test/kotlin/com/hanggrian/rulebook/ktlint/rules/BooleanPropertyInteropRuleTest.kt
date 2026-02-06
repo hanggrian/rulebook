@@ -5,11 +5,11 @@ import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class PropertyNameInteropRuleTest {
-    private val assertThatCode = assertThatRule { PropertyNameInteropRule() }
+class BooleanPropertyInteropRuleTest {
+    private val assertThatCode = assertThatRule { BooleanPropertyInteropRule() }
 
     @Test
-    fun `Rule properties`() = PropertyNameInteropRule().assertProperties()
+    fun `Rule properties`() = BooleanPropertyInteropRule().assertProperties()
 
     @Test
     fun `Properties with is prefix`() =

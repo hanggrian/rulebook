@@ -28,8 +28,8 @@ import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#property-name-interop) */
-public class PropertyNameInteropRule : RulebookRule(ID) {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#boolean-property-interop) */
+public class BooleanPropertyInteropRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -88,8 +88,8 @@ public class PropertyNameInteropRule : RulebookRule(ID) {
     }
 
     public companion object {
-        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:property-name-interop")
-        private const val MSG = "property.name.interop"
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:boolean-property-interop")
+        private const val MSG = "boolean.property.interop"
 
         private fun ASTNode.hasAnnotation(name: String) =
             findChildByType(MODIFIER_LIST)

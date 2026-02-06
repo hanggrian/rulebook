@@ -19,6 +19,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
 
     @override
     def process_token(self, token: Token) -> None:
+        # find opening and closing parentheses
         if token.str in self.OPENING:
             next_token: Token | None = token.next
             if not next_token or next_token.linenr <= token.linenr + 1:
@@ -27,6 +28,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                 return
             self.report_error(token, _Messages.get(self.MSG_FIRST, token.str), token.linenr + 1)
 
+        # checks for violation
         if token.str not in self.CLOSING:
             return
         prev_token: Token | None = token.previous

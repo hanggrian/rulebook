@@ -3,13 +3,13 @@ from unittest import main
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 
-from rulebook_pylint.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
+from rulebook_pylint.checkers.abbreviation_as_word import AbbreviationAsWordChecker
 from ..tests import assert_properties, msg
 
 
 # noinspection PyTypeChecker
-class TestClassNameAbbreviationChecker(CheckerTestCase):
-    CHECKER_CLASS = ClassNameAbbreviationChecker
+class TestAbbreviationAsWordChecker(CheckerTestCase):
+    CHECKER_CLASS = AbbreviationAsWordChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -34,7 +34,7 @@ class TestClassNameAbbreviationChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ClassNameAbbreviationChecker.MSG, (2, 6, 16), node1, 'MySqlClass'),
+            msg(AbbreviationAsWordChecker.MSG, (2, 6, 16), node1, 'MySqlClass'),
         ):
             self.checker.visit_classdef(node1)
 

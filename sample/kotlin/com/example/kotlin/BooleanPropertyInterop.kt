@@ -1,6 +1,6 @@
 package com.example.kotlin
 
-class PropertyNameInterop(
+class BooleanPropertyInterop(
     private val isPropertyInPrimaryConstructor: Boolean,
     isPropertyInPrimaryConstructor2: Boolean,
 ) {

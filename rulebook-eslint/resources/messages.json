@@ -5,6 +5,19 @@
 
   "empty.file": "Delete the empty file.",
 
+  "file.name": "Rename file to '{{ $0 }}'.",
+  "meaningless.word.all": "Avoid meaningless word '{{ $0 }}'.",
+  "meaningless.word.util": "Rename utility class to '{{ $0 }}'.",
+
+  "case.separator.missing": "Add blank line after multiline branch.",
+  "case.separator.unexpected": "Remove blank line after single-line branch.",
+
+  "comment.trim": "Remove blank line after '//'.",
+  "duplicate.blank.line.in.block.comment": "Remove consecutive blank line after '*'.",
+  "duplicate.blank.line.in.comment": "Remove consecutive blank line after '//'",
+  "parentheses.trim.first": "Remove blank line after '{{ $0 }}'.",
+  "parentheses.trim.last": "Remove blank line before '{{ $0 }}'.",
+
   "assignment.wrap": "Break assignment into newline.",
   "chain.call.wrap.missing": "Put newline before '.'.",
   "chain.call.wrap.unexpected": "Omit newline before '.'."

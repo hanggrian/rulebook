@@ -11,10 +11,10 @@ except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Scope, Token
 
 
-class ClassNameAbbreviationChecker(RulebookChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#class-name-abbreviation"""
-    ID: str = 'class-name-abbreviation'
-    MSG: str = 'class.name.abbreviation'
+class AbbreviationAsWordChecker(RulebookChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#abbreviation-as-word"""
+    ID: str = 'abbreviation-as-word'
+    MSG: str = 'abbreviation.as.word'
 
     ABBREVIATION_REGEX: Pattern = re(r'[A-Z]{3,}(?=[A-Z][a-z]|$)')
 

@@ -3,15 +3,19 @@ import { Rule } from 'eslint';
 abstract class RulebookRule implements Rule.RuleModule {
     readonly meta: Rule.RuleMetaData;
 
-    protected constructor(name: string, messageIds: Record<string, string>) {
+    protected constructor(
+        description: string,
+        messages: Record<string, string>,
+        schema: any[] = [],
+    ) {
         this.meta = {
             type: 'problem',
             docs: {
-                description: name,
-                url: `https://hanggrian.github.io/rulebook/rules/#${name}`,
+                description,
+                url: `https://hanggrian.github.io/rulebook/rules/#${description}`,
             },
-            schema: [],
-            messages: messageIds,
+            messages,
+            schema,
         };
     }
 

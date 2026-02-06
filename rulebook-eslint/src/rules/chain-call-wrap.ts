@@ -17,11 +17,9 @@ class ChainCallWrapRule extends RulebookRule {
         return {
             'CallExpression, MemberExpression'(node: Rule.Node) {
                 // target root multiline chain call
-                if (
-                    !node.parent ||
+                if (!node.parent ||
                     node.parent.type === 'CallExpression' ||
-                    node.parent.type === 'MemberExpression'
-                ) {
+                    node.parent.type === 'MemberExpression') {
                     return;
                 }
                 if (node.loc!.start.line === node.loc!.end.line) {
@@ -35,8 +33,7 @@ class ChainCallWrapRule extends RulebookRule {
                     let obj: Expression | Super | null = null;
                     let dot: Token | null = null;
                     if (current.type === 'CallExpression' &&
-                        current.callee.type === 'MemberExpression'
-                    ) {
+                        current.callee.type === 'MemberExpression') {
                         obj = current.callee.object;
                         dot = context.sourceCode.getTokenBefore(current.callee.property);
                     } else if (current.type === 'MemberExpression') {

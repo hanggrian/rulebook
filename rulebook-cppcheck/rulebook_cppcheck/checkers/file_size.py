@@ -26,5 +26,7 @@ class FileSizeChecker(RulebookFileChecker):
 
     @override
     def check_file(self, token: Token, content: str) -> None:
-        if len(content.splitlines()) > self._max_file_size:
-            self.report_error(token, _Messages.get(self.MSG, self._max_file_size))
+        # checks for violation
+        if len(content.splitlines()) <= self._max_file_size:
+            return
+        self.report_error(token, _Messages.get(self.MSG, self._max_file_size))

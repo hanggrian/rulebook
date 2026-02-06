@@ -56,7 +56,7 @@ load-plugins=
   # Formatting
   rulebook_pylint.checkers.file_size,
   # Naming
-  rulebook_pylint.checkers.class_name_abbreviation,
+  rulebook_pylint.checkers.abbreviation_as_word,
   rulebook_pylint.checkers.generic_name,
   rulebook_pylint.checkers.meaningless_word,
   # Ordering

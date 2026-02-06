@@ -73,6 +73,16 @@ class GenericNameRuleTest {
         )
 
     @Test
+    fun `Skip multiple generics`() =
+        assertThatCode(
+            """
+            class Foo<Xa, Ax>
+
+            fun <Bar, Baz> bar(list: List<Bar, Baz>) {}
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
     fun `Skip inner generics`() =
         assertThatCode(
             """

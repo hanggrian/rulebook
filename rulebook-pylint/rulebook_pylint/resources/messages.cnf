@@ -12,7 +12,7 @@ exception.inheritance=Extend from class 'Exception'.
 # Formatting
 file.size=Reduce file size to '%d'.
 # Naming
-class.name.abbreviation=Rename abbreviation to '%s'.
+abbreviation.as.word=Rename abbreviation to '%s'.
 generic.name=Use single uppercase letter.
 meaningless.word.all=Avoid meaningless word '%s'.
 meaningless.word.util=Rename utility class to '%s'.

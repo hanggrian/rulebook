@@ -43,11 +43,15 @@ public class RequiredGenericsNameVisitor : RulebookVisitor() {
                 ?.singleOrNull()
                 ?: return
 
-        // checks for violation
+        // skip inner generics
         node
+            .takeUnless { it.hasParentWithGenerics() }
+            ?: return
+
+        // checks for violation
+        genericsType
             .takeUnless {
-                it.hasParentWithGenerics() ||
-                    genericsType.name.singleOrNull()?.isUpperCase() == true
+                it.name.singleOrNull()?.isUpperCase() == true
             } ?: return
         addViolation(genericsType, Messages[MSG])
     }

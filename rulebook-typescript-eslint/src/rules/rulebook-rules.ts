@@ -3,15 +3,19 @@ import { TSESLint } from '@typescript-eslint/utils';
 abstract class RulebookRule implements TSESLint.RuleModule<string, any> {
     readonly meta: TSESLint.RuleMetaData<string, any, any>;
 
-    protected constructor(name: string, messageIds: Record<string, string>) {
+    protected constructor(
+        description: string,
+        messages: Record<string, string>,
+        schema: any[] = [],
+    ) {
         this.meta = {
             type: 'problem',
             docs: {
-                description: name,
-                url: `https://hanggrian.github.io/rulebook/rules/#${name}`,
+                description,
+                url: `https://hanggrian.github.io/rulebook/rules/#${description}`,
             },
-            schema: [],
-            messages: messageIds,
+            messages,
+            schema,
         };
     }
 

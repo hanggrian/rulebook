@@ -26,14 +26,18 @@ public class GenericNameRule : RulebookRule(ID) {
                 ?.singleOrNull { it.elementType === TYPE_PARAMETER }
                 ?: return
 
-        // checks for violation
+        // skip inner generics
         val identifier =
             typeParameter
                 .findChildByType(IDENTIFIER)
-                ?.takeUnless {
-                    node.hasParentWithGenerics() ||
-                        it.text.singleOrNull()?.isUpperCase() == true
-                } ?: return
+                ?.takeUnless { node.hasParentWithGenerics() }
+                ?: return
+
+        // checks for violation
+        identifier
+            .takeUnless {
+                it.text.singleOrNull()?.isUpperCase() == true
+            } ?: return
         emit(identifier.startOffset, Messages[MSG], false)
     }
 

@@ -1,11 +1,11 @@
-abstract class Foo {
-    bar(): void {
+abstract class Abstracted {
+    foo(): void {
     }
 }
 
-class Bar extends Foo {
-    bar(): void {
+class NonAbstract extends Abstracted {
+    foo(): void {
     }
 }
 
-new Bar().bar();
+new NonAbstract().foo();

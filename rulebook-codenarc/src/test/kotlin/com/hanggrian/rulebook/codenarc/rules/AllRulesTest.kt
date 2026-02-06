@@ -17,6 +17,7 @@ import kotlin.test.assertTrue
 class AllRulesTest : AbstractTestCase() {
     private val rules =
         setOf<Rule>(
+            AbbreviationAsWordRule(),
             AssignmentWrapRule(),
             BlockCommentClipRule(),
             BlockTagIndentationRule(),
@@ -27,7 +28,6 @@ class AllRulesTest : AbstractTestCase() {
             BracketsTrimRule(),
             CaseSeparatorRule(),
             ChainCallWrapRule(),
-            ClassNameAbbreviationRule(),
             CommentTrimRule(),
             CommonFunctionPositionRule(),
             DuplicateBlankLineInCommentRule(),

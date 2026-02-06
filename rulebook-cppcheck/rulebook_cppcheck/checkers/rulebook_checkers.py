@@ -76,12 +76,9 @@ class RulebookFileChecker(BaseChecker, ABC):
 
     @override
     def run_check(self, configuration: Configuration) -> None:
-        file_tokens: set[str] = set()
         for token in reversed(configuration.tokenlist):
-            if token.file in file_tokens:
+            if not token.file:
                 continue
-            file_tokens.add(token.file)
             with open(token.file, 'r', encoding='UTF-8') as file:
-                content: str = file.read()
-                if content:
-                    self.check_file(token, content)
+                self.check_file(token, file.read())
+            return

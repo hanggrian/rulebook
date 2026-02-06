@@ -60,6 +60,16 @@ class GenericNameRuleTest : AbstractRuleTestCase<GenericNameRule>() {
         )
 
     @Test
+    fun `Skip multiple generics`() =
+        assertNoViolations(
+            """
+            class Foo<Xa, Ax> {}
+
+            fun <Bar, Baz> bar(list: List<Bar, Baz>) {}
+            """.trimIndent(),
+        )
+
+    @Test
     fun `Skip inner generics`() =
         assertNoViolations(
             """

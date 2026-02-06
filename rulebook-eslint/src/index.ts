@@ -1,7 +1,14 @@
 import { ESLint } from 'eslint';
 import assignmentWrap from './rules/assignment-wrap.js';
+import caseSeparator from './rules/case-separator.js';
+import commentTrim from './rules/comment-trim.js';
 import chainCallWrap from './rules/chain-call-wrap.js';
+import duplicateBlankLineInBlockComment from './rules/duplicate-blank-line-in-block-comment.js';
+import duplicateBlankLineInComment from './rules/duplicate-blank-line-in-comment.js';
 import emptyFile from './rules/empty-file.js';
+import fileName from './rules/file-name.js';
+import meaninglessWord from './rules/meaningless-word.js';
+import parenthesesTrim from './rules/parentheses-trim.js';
 import todoComment from './rules/todo-comment.js';
 import wildcardImport from './rules/wildcard-import.js';
 
@@ -40,7 +47,7 @@ const crockfordConfig: Record<string, any> = {
     '@rulebook/empty-file': 'error',
     'max-lines': ['error', 1000],
     '@stylistic/eol-last': 'error',
-    'indent': ['error', 4],
+    '@stylistic/indent': ['error', 4],
     '@stylistic/max-len': [
         'error',
         {
@@ -60,6 +67,8 @@ const crockfordConfig: Record<string, any> = {
         'numbers',
         'strings',
     ],
+    '@rulebook/file-name': 'error',
+    '@rulebook/meaningless-word': 'error',
     // Ordering
     '@jsdoc/sort-tags': 'error',
     '@sort-class-members/sort-class-members': [
@@ -89,6 +98,7 @@ const crockfordConfig: Record<string, any> = {
         },
     ],
     // Spacing
+    '@rulebook/case-separator': 'error',
     '@stylistic/spaced-comment': 'error',
     '@jsdoc/check-indentation': 'error',
     '@stylistic/lines-between-class-members': [
@@ -128,6 +138,10 @@ const crockfordConfig: Record<string, any> = {
     // Trimming
     '@jsdoc/no-blank-block-descriptions': 'error',
     '@stylistic/padded-blocks': ['error', 'never'],
+    '@rulebook/comment-trim': 'error',
+    '@rulebook/duplicate-blank-line-in-comment': 'error',
+    '@rulebook/duplicate-blank-line-in-block-comment': 'error',
+    '@rulebook/parentheses-trim': 'error',
     '@stylistic/no-multiple-empty-lines': [
         'error',
         {
@@ -174,7 +188,7 @@ const googleConfig: Record<string, any> = {
     '@rulebook/empty-file': 'error',
     'max-lines': ['error', 1000],
     '@stylistic/eol-last': 'error',
-    'indent': [
+    '@stylistic/indent': [
         'error',
         2,
         {
@@ -216,6 +230,8 @@ const googleConfig: Record<string, any> = {
         'numbers',
         'strings',
     ],
+    '@rulebook/file-name': 'error',
+    '@rulebook/meaningless-word': 'error',
     // Ordering
     '@jsdoc/sort-tags': 'error',
     '@sort-class-members/sort-class-members': [
@@ -245,6 +261,7 @@ const googleConfig: Record<string, any> = {
         },
     ],
     // Spacing
+    '@rulebook/case-separator': 'error',
     '@stylistic/spaced-comment': 'error',
     '@jsdoc/check-indentation': 'error',
     '@stylistic/lines-between-class-members': [
@@ -284,6 +301,10 @@ const googleConfig: Record<string, any> = {
     // Trimming
     '@jsdoc/no-blank-block-descriptions': 'error',
     '@stylistic/padded-blocks': ['error', 'never'],
+    '@rulebook/comment-trim': 'error',
+    '@rulebook/duplicate-blank-line-in-block-comment': 'error',
+    '@rulebook/duplicate-blank-line-in-comment': 'error',
+    '@rulebook/parentheses-trim': 'error',
     '@stylistic/no-multiple-empty-lines': [
         'error',
         {
@@ -365,8 +386,15 @@ const googleConfig: Record<string, any> = {
 const plugin: ESLint.Plugin = {
     rules: {
         'assignment-wrap': assignmentWrap,
+        'case-separator': caseSeparator,
+        'comment-trim': commentTrim,
         'chain-call-wrap': chainCallWrap,
+        'duplicate-blank-line-in-block-comment': duplicateBlankLineInBlockComment,
+        'duplicate-blank-line-in-comment': duplicateBlankLineInComment,
         'empty-file': emptyFile,
+        'file-name': fileName,
+        'meaningless-word': meaninglessWord,
+        'parentheses-trim': parenthesesTrim,
         'todo-comment': todoComment,
         'wildcard-import': wildcardImport,
     },

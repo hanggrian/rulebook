@@ -1,3 +1,5 @@
 {
-  "abstract.class.definition": "Omit 'abstract' modifier."
+  "abstract.class.definition": "Omit 'abstract' modifier.",
+
+  "generic.name": "Use single uppercase letter."
 }

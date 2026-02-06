@@ -1,6 +1,2 @@
-class MyHello:
-    print()
-
-
-class MyWorld:
+class HelloWrapper:
     print()

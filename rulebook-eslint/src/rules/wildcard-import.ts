@@ -1,5 +1,5 @@
 import { Rule } from 'eslint';
-import { ImportDeclaration } from 'estree';
+import { ImportDeclaration, ImportNamespaceSpecifier } from 'estree';
 import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
 
@@ -14,15 +14,16 @@ class WildcardImportRule extends RulebookRule {
     create(context: Rule.RuleContext) {
         return {
             ImportDeclaration(node: ImportDeclaration) {
-                const hasWildcard: boolean =
-                    node.specifiers.some(
+                // checks for violation
+                const wildcard: ImportNamespaceSpecifier | undefined =
+                    node.specifiers.find(
                         specifier => specifier.type === 'ImportNamespaceSpecifier',
                     );
-                if (!hasWildcard) {
+                if (!wildcard) {
                     return;
                 }
                 context.report({
-                    node: node,
+                    node: wildcard,
                     messageId: WildcardImportRule.MSG,
                 });
             },

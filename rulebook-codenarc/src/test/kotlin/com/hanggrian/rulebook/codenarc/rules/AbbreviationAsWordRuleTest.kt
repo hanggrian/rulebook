@@ -6,13 +6,13 @@ import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class ClassNameAbbreviationRuleTest : AbstractRuleTestCase<ClassNameAbbreviationRule>() {
-    override fun createRule() = ClassNameAbbreviationRule()
+class AbbreviationAsWordRuleTest : AbstractRuleTestCase<AbbreviationAsWordRule>() {
+    override fun createRule() = AbbreviationAsWordRule()
 
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-        assertIs<ClassNameAbbreviationVisitor>(rule.astVisitor)
+        assertIs<AbbreviationAsWordVisitor>(rule.astVisitor)
     }
 
     @Test

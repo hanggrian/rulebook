@@ -1,5 +1,6 @@
 from sys import argv
 
+from rulebook_cppcheck.checkers.abbreviation_as_word import AbbreviationAsWordChecker
 from rulebook_cppcheck.checkers.assignment_wrap import AssignmentWrapChecker
 from rulebook_cppcheck.checkers.block_comment_spaces import BlockCommentSpacesChecker
 from rulebook_cppcheck.checkers.block_comment_trim import BlockCommentTrimChecker
@@ -8,7 +9,6 @@ from rulebook_cppcheck.checkers.block_tag_punctuation import BlockTagPunctuation
 from rulebook_cppcheck.checkers.case_separator import CaseSeparatorChecker
 from rulebook_cppcheck.checkers.chain_call_wrap import ChainCallWrapChecker
 from rulebook_cppcheck.checkers.class_name import ClassNameChecker
-from rulebook_cppcheck.checkers.class_name_abbreviation import ClassNameAbbreviationChecker
 from rulebook_cppcheck.checkers.comment_space import CommentSpaceChecker
 from rulebook_cppcheck.checkers.comment_trim import CommentTrimChecker
 from rulebook_cppcheck.checkers.duplicate_blank_line import DuplicateBlankLineChecker
@@ -17,6 +17,7 @@ from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
 from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
+from rulebook_cppcheck.checkers.file_name import FileNameChecker
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
 from rulebook_cppcheck.checkers.generic_name import GenericNameChecker
@@ -65,8 +66,9 @@ if __name__ == '__main__':
         IndentStyleChecker(),
         LineLengthChecker(),
         # Naming
-        ClassNameAbbreviationChecker(),
+        AbbreviationAsWordChecker(),
         ClassNameChecker(),
+        FileNameChecker(),
         IdentifierNameChecker(),
         IllegalVariableNameChecker(),
         GenericNameChecker(),

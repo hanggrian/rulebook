@@ -5,11 +5,11 @@ import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class ClassNameAbbreviationRuleTest {
-    private val assertThatCode = assertThatRule { ClassNameAbbreviationRule() }
+class AbbreviationAsWordRuleTest {
+    private val assertThatCode = assertThatRule { AbbreviationAsWordRule() }
 
     @Test
-    fun `Rule properties`() = ClassNameAbbreviationRule().assertProperties()
+    fun `Rule properties`() = AbbreviationAsWordRule().assertProperties()
 
     @Test
     fun `Class names with lowercase abbreviation`() =
