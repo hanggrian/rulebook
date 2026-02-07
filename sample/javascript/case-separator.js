@@ -3,6 +3,7 @@ function caseSeparator(item) {
         switch (item) {
             case 'foo':
                 continue;
+
             default:
                 return;
         }

@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    const char *foo = "                                      ";
-    printf(foo);
-    return 0;
+  const char *foo2 = "                         ";
+  printf(foo2);
+  return 0;
 }

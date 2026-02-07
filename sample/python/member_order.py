@@ -1,6 +1,6 @@
 class Foo:
-    def baz(self):
+    def __init__(self):
         print()
 
-    def __init__(self):
+    def baz(self):
         print()

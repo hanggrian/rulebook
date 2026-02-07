@@ -3,7 +3,6 @@ void redundant_default() {
         switch (i) {
             case 0: return;
             case 1: continue;
-            default: break;
         }
     }
 }

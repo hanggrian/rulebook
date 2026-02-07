@@ -1,4 +1,7 @@
 class Foo:
+    def bar(self):
+        print()
+
     def __str__(self):
         return 'baz'
 
@@ -7,6 +10,3 @@ class Foo:
 
     def __eq__(self, other):
         return False
-
-    def bar(self):
-        print()

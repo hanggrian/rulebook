@@ -2,7 +2,6 @@
 function commentTrim() {
     // Lorem
     //
-    //
     // ipsum
 }
 

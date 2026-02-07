@@ -1,3 +1,6 @@
+local.addon.json
+sample-configured/local.custom_addon.json
+
 # macOS
 .DS_Store
 ._*

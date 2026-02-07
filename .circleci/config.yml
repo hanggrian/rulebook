@@ -1,27 +1,89 @@
 version: 2.1
 
 orbs:
-  codecov: codecov/codecov@3
+  codecov: codecov/codecov@5.4.3
 
 executors:
-  linux:
+  minimal:
+    docker:
+      - image: cimg/base:stable
+  multiplatform:
     docker:
       - image: hanggrian/cimg-multiplatform:openjdk21.0-python3.13-node
 
 jobs:
-  upload-coverage:
-    executor: linux
+  setup-workspace:
+    executor: minimal
     steps:
       - checkout
-      - run: ./gradlew check koverXmlReport
-      - run: |
-          pip install -r requirements-dev.txt
-          pytest rulebook-cppcheck --cov=rulebook-cppcheck
-          pytest rulebook-pylint --cov=rulebook-pylint --cov-append
-      - run: npm i && npm run test && npm run coverage
+      - persist_to_workspace:
+          root: .
+          paths: [.]
+  run-lint:
+    executor: multiplatform
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Check JVM
+          command: ./gradlew check
+      - run:
+          name: Check Python
+          command: |
+            pip install -r requirements-dev.txt
+            pip install -e rulebook-pylint
+            pip install -e rulebook-cppcheck
+            pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/
+            pylint rulebook-cppcheck/
+            pylint sample/python/
+            pylint --rcfile=sample-configured/custom_pylintrc sample-configured/python/
+      - run:
+          name: Check C/C++
+          command: |
+            cppcheck \
+              --enable=warning \
+              --addon=addon.json \
+              sample/c/*.c \
+              sample/cpp/*.cpp
+            cppcheck \
+              --enable=warning \
+              --addon=sample-configured/custom_addon.json \
+              sample-configured/c/*.c \
+              sample-configured/cpp/*.cpp
+      - run:
+          name: Check JS/TS
+          command: |
+            npm i
+            npm run build
+            npm run lint
+            npm run lint2
+  upload-coverage:
+    executor: multiplatform
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Report JVM
+          command: ./gradlew koverXmlReport
+      - run:
+          name: Report Python
+          command: |
+            pip install -r requirements-dev.txt
+            pytest rulebook-cppcheck --cov=rulebook-cppcheck
+            pytest rulebook-pylint --cov=rulebook-pylint --cov-append
+      - run:
+          name: Report JS/TS
+          command: |
+            npm i
+            npm run test
+            npm run coverage
       - codecov/upload
 
 workflows:
-  build:
+  code-analysis:
     jobs:
-      - upload-coverage
+      - setup-workspace
+      - run-lint:
+          requires: [setup-workspace]
+      - upload-coverage:
+          requires: [setup-workspace]

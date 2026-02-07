@@ -1,4 +1,4 @@
-struct rest_api {
+struct RestApi {
     int a;
     double b;
 };

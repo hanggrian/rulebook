@@ -5,15 +5,15 @@ using namespace std;
 class Outer {
 public:
     void show() {
-        cout << "This is the Outer class" << endl;
+        cout << "outer" << endl;
     }
 
     class Inner {
     public:
-        int my_variable = 0;
-
         void my_function() {
-            cout << "This is the Inner class" << endl;
+            cout << "inner" << endl;
         }
+
+        int my_variable = 0;
     };
 };

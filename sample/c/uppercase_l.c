@@ -1,4 +1,4 @@
 int main() {
-    long foo = 1l;
-    long long bar = 1ll;
+    long foo = 1L;
+    long long bar = 1LL;
 }

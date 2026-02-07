@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
+# pylint: disable=todo-comment
 class TodoCommentChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#todo-comment"""
     MSG_KEYWORD: str = 'todo.comment.keyword'

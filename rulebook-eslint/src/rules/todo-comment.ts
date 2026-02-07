@@ -2,6 +2,7 @@ import { Rule } from 'eslint';
 import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
 
+/* eslint-disable @rulebook/todo-comment */
 /** {@link https://hanggrian.github.io/rulebook/rules/#todo-comment|See detail} */
 class TodoCommentRule extends RulebookRule {
     constructor() {

@@ -17,7 +17,7 @@ class GenericNameRule extends RulebookRule {
                 const parent: TSESTree.TSInferType |
                     TSESTree.TSMappedType |
                     TSESTree.TSTypeParameterDeclaration =
-                    node.parent;
+                        node.parent;
                 if (parent?.type !== AST_NODE_TYPES.TSTypeParameterDeclaration ||
                     parent.params.length > 1) {
                     return;

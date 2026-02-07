@@ -22,7 +22,7 @@ class TestAbbreviationAsWordChecker(CheckerTestCase):
 
     @patch.object(AbbreviationAsWordChecker, 'report_error')
     def test_class_names_with_uppercase_abbreviation(self, mock_report):
-        for i, scope in enumerate([
+        for _, scope in enumerate([
             self._create_scope('Class', 'MySQLClass', 1),
             self._create_scope('Interface', 'MySQLInterface', 3),
             self._create_scope('Annotation', 'MySQLAnnotation', 5),

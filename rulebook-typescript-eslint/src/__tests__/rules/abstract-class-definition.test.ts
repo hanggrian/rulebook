@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import abstractClassDefinition from '../src/rules/abstract-class-definition';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import abstractClassDefinition from '../../rules/abstract-class-definition';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('AbstractClassDefinitionTest', () => {
     const assertThat: AssertThat =

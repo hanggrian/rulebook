@@ -34,6 +34,7 @@ class LineLengthChecker(RulebookTokenChecker):
         if line_nr in self._processed_lines[file_path]:
             return
         self._processed_lines[file_path].add(line_nr)
+
         with open(file_path, 'r', encoding='UTF-8') as f:
             for i, line in enumerate(f, 1):
                 if i != line_nr:

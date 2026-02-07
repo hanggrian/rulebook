@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import wildcardImport from '../src/rules/wildcard-import';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import wildcardImport from '../../rules/wildcard-import';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('WildcardImportTest', () => {
     const assertThat: AssertThat = assertThatRule(wildcardImport, 'wildcard-import');

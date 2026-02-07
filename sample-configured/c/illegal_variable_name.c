@@ -1,4 +1,4 @@
 struct Api {
-    int foo;
-    char bar[];
+  int foo2;
+  char bar2[];
 };

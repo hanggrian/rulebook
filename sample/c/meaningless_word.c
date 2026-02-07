@@ -1,4 +1,4 @@
-struct ApiManager {
+struct ApiManag {
     int a;
     double b;
 };

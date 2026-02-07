@@ -1,10 +1,9 @@
-void foo( ) {
-}
+void foo() {}
 
-auto vglambda = [ ](auto printer) {
+auto vglambda = [](auto printer) {
     return 9;
 };
 
-template < > int my_max() {
+template <> int my_max() {
     return 0;
 }

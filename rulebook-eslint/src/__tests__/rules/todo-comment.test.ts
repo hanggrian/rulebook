@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import todoComment from '../src/rules/todo-comment';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import todoComment from '../../rules/todo-comment';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('TodoCommentTest', () => {
     const assertThat: AssertThat = assertThatRule(todoComment, 'todo-comment');

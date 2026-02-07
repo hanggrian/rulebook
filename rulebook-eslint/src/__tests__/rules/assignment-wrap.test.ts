@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import assignmentWrap from '../src/rules/assignment-wrap';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import assignmentWrap from '../../rules/assignment-wrap';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('AssignmentWrapTest', () => {
     const assertThat: AssertThat = assertThatRule(assignmentWrap, 'assignment-wrap');

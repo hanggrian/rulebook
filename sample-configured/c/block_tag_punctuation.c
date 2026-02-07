@@ -1,7 +1,7 @@
 /**
  * Function description
  *
- * @see Parameter description
+ * @see Parameter description.
  */
 void foo2(int p) {}
 

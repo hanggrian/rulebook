@@ -1,7 +1,7 @@
-template <typename XA> XA my_max(XA x, XA y) {
+template <typename X> X my_max(X x, X y) {
     return (x > y) ? x : y;
 }
 
-template <typename A_X, typename X_A> int my_max(A_X x, X_A y) {
+template <typename X, typename X> int my_max(X x, X y) {
     return 0;
 }

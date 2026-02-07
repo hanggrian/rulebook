@@ -1,4 +1,4 @@
 struct Api {
-    int integer;
-    char string[];
+    int intege;
+    char strin[];
 };

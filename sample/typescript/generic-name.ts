@@ -6,7 +6,7 @@ class Foo<T> {
     }
 }
 
-function bar<TX>(t: TX) {
+function bar<T>(t: T) {
     console.log(t);
 }
 

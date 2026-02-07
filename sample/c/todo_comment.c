@@ -1,7 +1,7 @@
 /**
- * TODO: foo
+ * TODO foo
  */
 int main() {
-    // fixme bar
+    // FIXME bar
     return 0;
 }

@@ -11,8 +11,6 @@
     "allowImportingTsExtensions": false
   },
   "include": [
-    "src/*.ts",
-    "src/**/*.ts"
-  ],
-  "exclude": ["node_modules", "__tests__", "dist"]
+    "src/"
+  ]
 }

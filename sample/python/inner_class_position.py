@@ -1,6 +1,6 @@
 class Foo:
-    class Bar:
+    def baz(self):
         print()
 
-    def baz(self):
+    class Bar:
         print()

@@ -11,6 +11,7 @@ except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Token
 
 
+# pylint: disable=todo-comment
 class TodoCommentChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#todo-comment"""
     ID: str = 'todo-comment'

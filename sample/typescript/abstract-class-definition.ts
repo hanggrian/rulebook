@@ -1,6 +1,5 @@
 abstract class Abstracted {
-    foo(): void {
-    }
+    abstract foo(): void;
 }
 
 class NonAbstract extends Abstracted {

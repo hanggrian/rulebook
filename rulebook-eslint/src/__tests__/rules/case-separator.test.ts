@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import caseSeparator from '../src/rules/case-separator';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import caseSeparator from '../../rules/case-separator';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('CaseSeparatorTest', () => {
     const assertThat: AssertThat = assertThatRule(caseSeparator, 'case-separator');

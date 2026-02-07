@@ -1,8 +1,8 @@
-namespace MyNamespace {
+namespace my_namespace {
     int x = 42;
 }
 
 int main() {
-    cout << MyNamespace::x;
+    cout << my_namespace::x;
     return 0;
 }

@@ -1,2 +1,2 @@
-class MyException(BaseException):
+class MyException(Exception):
     pass

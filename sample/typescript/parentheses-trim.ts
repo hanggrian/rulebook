@@ -1,7 +1,5 @@
 class ParenthesesTrim<
-
     X,
-
 > {
     x: X;
 

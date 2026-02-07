@@ -1,13 +1,13 @@
-class Foo(str, int, ):
-    print(1, 2, )
+class Foo(str, int):
+    print(1, 2)
 
 
 def bar(
     a,
-    b
+    b,
 ):
     print(
         a,
         b + \
-        5
+        5,
     )

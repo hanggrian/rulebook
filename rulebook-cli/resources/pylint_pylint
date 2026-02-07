@@ -154,6 +154,8 @@ disable=
   fixme,
   consider-using-assignment-expr,
   # custom
+  duplicate-code,
+  expression-not-assigned,
   missing-module-docstring,
   missing-class-docstring,
   missing-type-doc,

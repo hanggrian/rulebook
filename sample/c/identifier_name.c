@@ -1,8 +1,8 @@
 int main() {
-    int fooBar = 0;
-    return fooBar;
+    int foo_bar = 0;
+    return foo_bar;
 }
 
-int fooBar() {
+int foo_bar() {
     return 0;
 }

@@ -27,6 +27,7 @@ class TestDuplicateBlankLineChecker(CheckerTestCase):
         with self.assertNoMessages():
             self.checker.process_module(node_all)
 
+    # pylint: disable=duplicate-blank-line
     def test_multiple_empty_lines(self):
         node_all = \
             parse(

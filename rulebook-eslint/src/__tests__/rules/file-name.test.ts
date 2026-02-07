@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import fileName from '../src/rules/file-name';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import fileName from '../../rules/file-name';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('FileNameTest', () => {
     const assertThat: AssertThat = assertThatRule(fileName, 'file-name');
@@ -17,13 +17,13 @@ describe('FileNameTest', () => {
 
     it(
         'Incorrect file names',
-        () => {
-            assertThat('')
+        async () => {
+            await assertThat('')
                 .withFilename('helloWorld.js')
-                .hasErrorMessages("Rename file to 'helloworld.js'.")
-            assertThat('')
+                .hasErrorMessages("Rename file to 'helloworld.js'.");
+            await assertThat('')
                 .withFilename('HELLO_WORLD.js')
-                .hasErrorMessages("Rename file to 'hello-world.js'.")
-        }
+                .hasErrorMessages("Rename file to 'hello-world.js'.");
+        },
     );
 });

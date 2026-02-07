@@ -1,2 +1,2 @@
-class RestAPI:
+class RestApi:
     http_url = 'https://example.com'

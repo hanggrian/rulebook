@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import emptyFile from '../src/rules/empty-file';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import emptyFile from '../../rules/empty-file';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('EmptyFileTest', () => {
     const assertThat: AssertThat = assertThatRule(emptyFile, 'empty-file');
@@ -27,7 +27,7 @@ describe('EmptyFileTest', () => {
             assertThat(
                 `
 
-                `
+                `,
             ).hasErrorMessages('Delete the empty file.'),
     );
 });

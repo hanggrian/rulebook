@@ -1,2 +1,2 @@
-class HelloWorld:
+class HellWorl:
     stub = 1

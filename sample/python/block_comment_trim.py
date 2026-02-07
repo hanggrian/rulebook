@@ -1,7 +1,31 @@
 def foo():
-    """
-
-    Lorem ipsum.
-
-    """
+    """Lorem
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum
+    ipsum"""
     print()

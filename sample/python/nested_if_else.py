@@ -1,19 +1,22 @@
 def foo(condition: bool):
-    if condition:
-        print()
-        print()
+    if not condition:
+        return
+    print()
+    print()
 
 
 def bar(condition: bool):
-    if condition:
-        print(
-            0,
-        )
+    if not condition:
+        return
+    print(
+        0,
+    )
+
 
 def baz(condition: bool):
+    if not condition:
+        return
     if condition:
-        if condition:
-            print()
-            return
-        else:
-            print()
+        print()
+        return
+    print()

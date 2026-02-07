@@ -6,5 +6,6 @@ match foo:
     case 1:
         print()
         print()
+
     case _:
         print()

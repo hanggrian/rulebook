@@ -174,6 +174,8 @@ disable=
   xrange-builtin,
   zip-builtin-not-iterating,
   # custom
+  duplicate-code,
+  expression-not-assigned,
   missing-module-docstring,
   missing-class-docstring,
   missing-type-doc,

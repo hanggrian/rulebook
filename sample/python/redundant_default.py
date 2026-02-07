@@ -4,8 +4,5 @@ def foo(bar: int):
             raise ValueError()
         case 1:
             return
-        case _:
-            print()
-            print()
     print()
     print()

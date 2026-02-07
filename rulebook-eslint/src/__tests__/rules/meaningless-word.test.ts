@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import meaninglessWord from '../src/rules/meaningless-word';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import meaninglessWord from '../../rules/meaningless-word';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('MeaninglessWordTest', () => {
     const assertThat: AssertThat = assertThatRule(meaninglessWord, 'meaningless-word');

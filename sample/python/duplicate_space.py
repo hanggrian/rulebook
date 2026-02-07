@@ -1,2 +1,3 @@
 def foo():
-    bar  = 1 + 2
+    bar = 1 + 2
+    print(bar)

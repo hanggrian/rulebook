@@ -1,24 +1,27 @@
 #!/bin/bash
 
 SOURCE_ROOT=$(cd "$(dirname "$0")" && pwd) && readonly SOURCE_ROOT
-CLI_BUILD_DIR="rulebook-cli/build"
 
 source "$SOURCE_ROOT/.activate_python.sh"
 cd "$SOURCE_ROOT/.." || exit
 
-# should show success
+./gradlew check
 
-./gradlew sample:check sample-configured:check
+pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/
+pylint rulebook-cppcheck/
+pylint sample/python/
+pylint --rcfile=sample-configured/custom_pylintrc sample-configured/python/
 
-# expect errors
-
-pylint sample
-pylint sample-configured
+cppcheck \
+  --enable=warning \
+  --addon=local.addon.json \
+  sample/c/*.c \
+  sample/cpp/*.cpp
+cppcheck \
+  --enable=warning \
+  --addon=sample-configured/local.custom_addon.json \
+  sample-configured/c/*.c \
+  sample-configured/cpp/*.cpp
 
 npm run lint
-
-cppcheck --enable=warning --addon=addon.json sample/c/*.c
-
-# test binary
-
-"$CLI_BUILD_DIR/rulebook" -h
+npm run lint2

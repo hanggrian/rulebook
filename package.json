@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build --workspaces",
-    "lint": "eslint sample/javascript/*.js sample/typescript/*.ts sample-configured/javascript/*.js sample-configured/typescript/*.ts",
+    "lint": "eslint rulebook-eslint/src/ rulebook-typescript-eslint/src/ sample/javascript/ sample/typescript",
+    "lint2": "eslint --config sample-configured/eslint.config.js sample-configured/javascript/",
     "preview": "vite preview",
     "test": "npm run test --workspaces",
     "coverage": "npm run coverage --workspaces",

@@ -1,2 +1,2 @@
-class HelloWrapper:
+class HelloWrappe:
     print()

@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
-import duplicateBlankLineInBlockComment from '../src/rules/duplicate-blank-line-in-block-comment';
-import { assertProperties, AssertThat, assertThatRule } from './tests';
+import duplicateBlankLineInBlockComment from '../../rules/duplicate-blank-line-in-block-comment';
+import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
 describe('DuplicateBlankLineInBlockCommentTest', () => {
     const assertThat: AssertThat =

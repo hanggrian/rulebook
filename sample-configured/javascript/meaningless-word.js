@@ -1,3 +1,3 @@
-class MyWorld {}
+class MyWorl {}
 
-console.log(MyWorld);
+console.log(MyWorl);

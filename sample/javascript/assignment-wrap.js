@@ -4,7 +4,8 @@ const bar =
     1 +
     2;
 
-const baz = 1 +
+const baz =
+    1 +
     2;
 
 console.log(foo, bar, baz);

@@ -1,7 +1,7 @@
 from typing import TypeVar
 
-Auto = TypeVar('Auto')
+A = TypeVar('A')
 
 
-class MyClass(Auto):
+class MyClass(A):
     print()

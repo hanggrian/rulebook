@@ -1,18 +1,20 @@
-import { createRuleTester, NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult } from 'eslint-vitest-rule-tester';
+import { NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult, createRuleTester } from 'eslint-vitest-rule-tester';
 import { RuleOptions } from '@stylistic/eslint-plugin';
 import typescriptEslint from 'typescript-eslint';
 import { TSESLint } from '@typescript-eslint/utils';
 import { expect } from 'vitest';
+import { RuleMetaData } from '@typescript-eslint/utils/ts-eslint';
 
 function assertProperties(module: TSESLint.RuleModule<string, any>): void {
-    const ruleName: string = module.meta.docs.description;
+    const meta: RuleMetaData<string, unknown, any> = module.meta;
+    const ruleName: string = meta.docs!.description;
     expect(
         module.constructor.name
             .replace(/Rule$/, '')
             .replace(/([a-z])([A-Z])/g, '$1-$2')
             .toLowerCase(),
     ).toBe(ruleName);
-    expect(module.meta.docs.url)
+    expect(meta.docs!.url)
         .toBe(`https://hanggrian.github.io/rulebook/rules/#${ruleName}`);
 }
 
@@ -38,16 +40,16 @@ class Asserter {
         testcase: NormalizedTestCase<RuleOptions>;
         result: TestExecutionResult;
     }> {
-        let errors = [];
+        const errors = [];
         for (const message of messages) {
             errors.push({
                 message: message,
-            })
+            });
         }
         return this.nativeTester.invalid({
             code: this.code,
             errors: errors,
-        })
+        });
     }
 }
 
@@ -57,6 +59,7 @@ function assertThatRule(rule: RuleModule, name: string): AssertThat {
     return (code: string) =>
         new Asserter(
             createRuleTester({
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 rule: rule,
                 name: name,
                 configs: {

@@ -1,5 +1,5 @@
 struct RestApi {
-    //Hello
+    // Hello
     int a;
-    double b; //World
+    double b; // World
 };

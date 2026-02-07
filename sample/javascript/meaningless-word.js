@@ -1,3 +1,3 @@
-class SomeKindOfWrapper {}
+class SomeKindOfWrappe {}
 
-console.log(SomeKindOfWrapper);
+console.log(SomeKindOfWrappe);

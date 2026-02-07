@@ -8,7 +8,7 @@ from ..tests import assert_properties, msg
 
 
 # noinspection PyTypeChecker
-# pylint: disable=todo-comment-keyword,todo-comment-separator
+# pylint: disable=todo-comment
 class TestTodoCommentChecker(CheckerTestCase):
     CHECKER_CLASS = TodoCommentChecker
 
