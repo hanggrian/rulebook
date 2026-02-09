@@ -11,6 +11,7 @@ except ImportError:
 
 
 class AssignmentWrapChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#assignment-wrap"""
     ID: str = 'assignment-wrap'
     MSG: str = 'assignment.wrap'
 

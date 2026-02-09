@@ -14,4 +14,10 @@ class BracesClip {
 
         [].collect {}
     }
+
+    def baz() {
+        try {
+        } catch (IOException e) {
+        }
+    }
 }

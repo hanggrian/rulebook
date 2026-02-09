@@ -103,4 +103,14 @@ class UtilityClassDefinitionRuleTest : AbstractRuleTestCase<UtilityClassDefiniti
             }
             """.trimIndent(),
         )
+
+    @Test
+    fun `Skip classes with main`() =
+        assertNoViolations(
+            """
+            class Main {
+                static void main(String[] args) {}
+            }
+            """.trimIndent(),
+        )
 }

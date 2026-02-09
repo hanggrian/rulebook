@@ -55,6 +55,24 @@ class MeaninglessWordRuleTest {
         )
 
     @Test
+    fun `Allow meaningless prefix`() =
+        assertThatCode(
+            """
+            class WrapperSpaceship
+
+            annotation class WrapperRocket
+
+            data class WrapperNavigation
+
+            sealed class WrapperPlanet
+
+            interface WrapperRoute
+
+            object WrapperLogger
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
     fun `Utility class found`() =
         assertThatCode(
             """

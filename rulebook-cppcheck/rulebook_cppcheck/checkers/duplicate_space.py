@@ -10,6 +10,7 @@ except ImportError:
 
 
 class DuplicateSpaceChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-space"""
     ID: str = 'duplicate-space'
     MSG: str = 'duplicate.space'
 

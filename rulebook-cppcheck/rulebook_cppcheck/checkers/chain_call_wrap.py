@@ -10,6 +10,7 @@ except ImportError:
 
 
 class ChainCallWrapChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#chain-call-wrap"""
     ID: str = 'chain-call-wrap'
     MSG_MISSING: str = 'chain.call.wrap.missing'
     MSG_UNEXPECTED: str = 'chain.call.wrap.unexpected'

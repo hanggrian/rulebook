@@ -68,6 +68,16 @@ class TestCommentSpaceChecker(CheckerTestCase):
         ):
             self.checker.process_tokens(tokens)
 
+    def test_ignore_env_string(self):
+        tokens = \
+            _tokenize_str(
+                '''
+                #!/usr/bin/env python3
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.process_tokens(tokens)
+
 
 if __name__ == '__main__':
     main()

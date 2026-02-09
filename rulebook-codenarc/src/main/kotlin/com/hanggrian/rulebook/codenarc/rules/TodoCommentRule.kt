@@ -5,7 +5,7 @@ import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 import kotlin.text.RegexOption.IGNORE_CASE
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-indentation) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#todo-comment) */
 public class TodoCommentRule : RulebookFileRule() {
     override fun getName(): String = "TodoComment"
 

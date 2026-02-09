@@ -10,6 +10,7 @@ except ImportError:
 
 
 class ParenthesesTrimChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#parentheses-trim"""
     ID: str = 'parentheses-trim'
     MSG_FIRST: str = 'parentheses.trim.first'
     MSG_LAST: str = 'parentheses.trim.last'

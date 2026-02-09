@@ -4,7 +4,7 @@ import com.hanggrian.rulebook.codenarc.Messages
 import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#empty-brackets-clip) */
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#brackets-clip) */
 public class BracketsClipRule : RulebookFileRule() {
     override fun getName(): String = "BracketsClip"
 

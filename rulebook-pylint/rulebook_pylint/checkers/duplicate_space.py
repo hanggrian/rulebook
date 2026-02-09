@@ -35,13 +35,14 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
 
     @staticmethod
     def _is_duplicate_space(token: TokenInfo, last_token: TokenInfo) -> bool:
+        token_type: int = token.type
         if any(
-            (t in (NEWLINE, NL, INDENT, DEDENT, ENDMARKER)
-             for t in (token.type, last_token.type)),
+            t in (NEWLINE, NL, INDENT, DEDENT, ENDMARKER)
+            for t in (token_type, last_token.type)
         ):
             return False
         return token.start[1] - last_token.end[1] > 2 \
-            if token.type is COMMENT \
+            if token_type is COMMENT \
             else token.start[1] - last_token.end[1] > 1
 
 

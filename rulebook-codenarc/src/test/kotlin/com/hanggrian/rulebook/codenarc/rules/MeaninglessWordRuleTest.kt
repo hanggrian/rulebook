@@ -53,6 +53,20 @@ class MeaninglessWordRuleTest : AbstractRuleTestCase<MeaninglessWordRule>() {
         )
 
     @Test
+    fun `Allow meaningless prefix`() =
+        assertNoViolations(
+            """
+            class WrapperSpaceship {}
+
+            interface WrapperRocket {}
+
+            @interface WrapperNavigator {}
+
+            enum WrapperPlanet {}
+            """.trimIndent(),
+        )
+
+    @Test
     fun `Utility class found`() =
         assertSingleViolation(
             """

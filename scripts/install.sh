@@ -10,13 +10,11 @@ cd "$SOURCE_ROOT/.." || exit
 
 pip install -r requirements-dev.txt
 pip install -r website/requirements.txt
-pip install -e rulebook-cppcheck
-pip install -e rulebook-pylint
+pip install -e rulebook-cppcheck/
+pip install -e rulebook-pylint/
 
 npm i
 npm run build
-npm i file:rulebook-eslint
-npm i file:rulebook-typescript-eslint
 
 mkdir -p "$CLI_BUILD_DIR"
 cd "$CLI_BUILD_DIR" || exit

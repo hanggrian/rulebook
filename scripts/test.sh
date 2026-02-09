@@ -7,7 +7,7 @@ cd "$SOURCE_ROOT/.." || exit
 
 ./gradlew test
 
-pytest rulebook-cppcheck
-pytest rulebook-pylint
+pytest rulebook-cppcheck/
+pytest rulebook-pylint/
 
 npm run test

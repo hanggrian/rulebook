@@ -31,8 +31,8 @@ jobs:
           name: Check Python
           command: |
             pip install -r requirements-dev.txt
-            pip install -e rulebook-pylint
-            pip install -e rulebook-cppcheck
+            pip install -e rulebook-pylint/
+            pip install -e rulebook-cppcheck/
             pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/
             pylint rulebook-cppcheck/
             pylint sample/python/
@@ -69,8 +69,8 @@ jobs:
           name: Report Python
           command: |
             pip install -r requirements-dev.txt
-            pytest rulebook-cppcheck --cov=rulebook-cppcheck
-            pytest rulebook-pylint --cov=rulebook-pylint --cov-append
+            pytest rulebook-cppcheck/ --cov=rulebook-cppcheck
+            pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append
       - run:
           name: Report JS/TS
           command: |

@@ -43,6 +43,19 @@ class TestMeaninglessWordChecker(CheckerTestCase):
                 _Messages.get(self.checker.MSG, 'Manager'),
             )
 
+    @patch.object(MeaninglessWordChecker, 'report_error')
+    def test_allow_meaningless_prefix(self, mock_report):
+        for name in (
+                'WrapperSpaceship',
+                'WrapperRocket',
+                'WrapperNavigation',
+                'WrapperPlanet',
+                'WrapperRoute',
+                'WrapperLogger',
+        ):
+            self.checker.visit_scope(self._create_scope_mock(name))
+        mock_report.assert_not_called()
+
     @staticmethod
     def _create_scope_mock(class_name):
         scope = MagicMock()

@@ -28,6 +28,9 @@ class MeaninglessWordCheckTest : CheckTest() {
         )
 
     @Test
+    fun `Allow meaningless prefix`() = assertAll("MeaninglessWord3")
+
+    @Test
     fun `Utility class found`() =
-        assertAll("MeaninglessWord3", "4:11: Rename utility class to 'Spaceships'.")
+        assertAll("MeaninglessWord4", "4:11: Rename utility class to 'Spaceships'.")
 }

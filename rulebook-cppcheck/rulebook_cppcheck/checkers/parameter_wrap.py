@@ -10,6 +10,7 @@ except ImportError:
 
 
 class ParameterWrapChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#parameter-wrap"""
     ID: str = 'parameter-wrap'
     MSG: str = 'parameter.wrap'
 

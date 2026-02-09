@@ -11,6 +11,7 @@ except ImportError:
 
 
 class DuplicateBlankLineInBlockCommentChecker(RulebookFileChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment"""
     ID: str = 'duplicate-blank-line-in-block-comment'
     MSG: str = 'duplicate.blank.line.in.block.comment'
 

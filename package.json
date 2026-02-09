@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build --workspaces",
-    "lint": "eslint rulebook-eslint/src/ rulebook-typescript-eslint/src/ sample/javascript/ sample/typescript",
+    "lint": "eslint rulebook-eslint/src/ rulebook-typescript-eslint/src/ sample/javascript/ sample/typescript/",
     "lint2": "eslint --config sample-configured/eslint.config.js sample-configured/javascript/",
     "preview": "vite preview",
     "test": "npm run test --workspaces",
@@ -28,5 +28,8 @@
     "vite": "^7.3.1",
     "vitest": "^4.0.17",
     "vitest-dom": "^0.1.1"
+  },
+  "dependencies": {
+    "rulebook-eslint": "^0.2.0"
   }
 }

@@ -4,9 +4,9 @@ from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 
 try:
-    from cppcheckdata import Token
+    from cppcheckdata import Token, Scope
 except ImportError:
-    from cppcheck.Cppcheck.addons.cppcheckdata import Token
+    from cppcheck.Cppcheck.addons.cppcheckdata import Token, Scope
 
 
 class ParenthesesClipChecker(RulebookTokenChecker):
@@ -23,9 +23,21 @@ class ParenthesesClipChecker(RulebookTokenChecker):
 
     @override
     def process_token(self, token: Token) -> None:
-        # checks for violation
+        # filter out non-parentheses
         if token.str not in self.PARENTHESES:
             return
+
+        # skip statements that can have multiple braces
+        scope: Scope | None = token.scope
+        if scope and scope.type in {'Try', 'Catch', 'If', 'Else'}:
+            if scope.type != 'If':
+                return
+            if scope.bodyEnd.next and scope.bodyEnd.next.str == 'else':
+                return
+            if scope.nestedIn and scope.nestedIn.type == 'Else':
+                return
+
+        # checks for violation
         closing_parenthesis: str = self.PARENTHESES[token.str]
         next_token: Token | None = token.next
         if not next_token or next_token.str != closing_parenthesis:

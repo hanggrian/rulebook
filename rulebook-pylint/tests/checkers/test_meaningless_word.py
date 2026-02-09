@@ -38,6 +38,17 @@ class TestMeaninglessWordChecker(CheckerTestCase):
         ):
             self.checker.visit_classdef(node1)
 
+    def test_allow_meaningless_prefix(self):
+        node1 = \
+            extract_node(
+                '''
+                class WrapperSpaceship:  #@
+                    print()
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.visit_classdef(node1)
+
     def test_utility_class_found(self):
         node1 = \
             extract_node(

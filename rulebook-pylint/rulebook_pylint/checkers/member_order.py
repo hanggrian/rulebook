@@ -42,32 +42,6 @@ class MemberOrderChecker(RulebookChecker):
         self._function_position = self._member_order.index('function')
         self._static_position = self._member_order.index('static')
 
-    def _get_member_position(self, node: NodeNG) -> int:
-        if isinstance(node, Assign):
-            if _has_decorator(node, 'staticmethod'):
-                return self._static_position
-            return self._property_position
-        if isinstance(node, AssignName):
-            return self._property_position
-        if _has_decorator(node, 'staticmethod'):
-            return self._static_position
-        return self._constructor_position \
-            if cast(FunctionDef, node).name == '__init__' \
-            else self._function_position
-
-    def _get_member_argument(self, node: NodeNG) -> str:
-        if isinstance(node, Assign):
-            if _has_decorator(node, 'staticmethod'):
-                return 'static member'
-            return 'property'
-        if isinstance(node, AssignName):
-            return 'property'
-        if _has_decorator(node, 'staticmethod'):
-            return 'static member'
-        return 'constructor' \
-            if cast(FunctionDef, node).name == '__init__' \
-            else 'function'
-
     def visit_classdef(self, node: ClassDef) -> None:
         # in Python, static members have are annotated
         last_child: FunctionDef | None = None
@@ -88,6 +62,33 @@ class MemberOrderChecker(RulebookChecker):
                 )
 
             last_child = child
+
+    def _get_member_position(self, node: NodeNG) -> int:
+        if isinstance(node, Assign):
+            if _has_decorator(node, 'staticmethod'):
+                return self._static_position
+            return self._property_position
+        if isinstance(node, AssignName):
+            return self._property_position
+        if _has_decorator(node, 'staticmethod'):
+            return self._static_position
+        return self._constructor_position \
+            if cast(FunctionDef, node).name == '__init__' \
+            else self._function_position
+
+    @staticmethod
+    def _get_member_argument(node: NodeNG) -> str:
+        if isinstance(node, Assign):
+            if _has_decorator(node, 'staticmethod'):
+                return 'static member'
+            return 'property'
+        if isinstance(node, AssignName):
+            return 'property'
+        if _has_decorator(node, 'staticmethod'):
+            return 'static member'
+        return 'constructor' \
+            if cast(FunctionDef, node).name == '__init__' \
+            else 'function'
 
 
 def register(linter: 'PyLinter') -> None:

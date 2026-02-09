@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 class TrailingCommaChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#trailing-comma-in-call"""
+    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#trailing-comma"""
     MSG_SINGLE: str = 'trailing.comma.single'
     MSG_MULTI: str = 'trailing.comma.multi'
 

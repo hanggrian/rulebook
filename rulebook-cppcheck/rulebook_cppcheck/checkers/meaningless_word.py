@@ -26,12 +26,12 @@ class MeaninglessWordChecker(RulebookChecker):
 
     def __init__(self):
         super().__init__()
-        self._illegal_class_name_suffixes: set[str] = \
+        self._words: set[str] = \
             {'Util', 'Utility', 'Helper', 'Manager', 'Wrapper'}
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
-        self._illegal_class_name_suffixes = \
+        self._words = \
             set(args[self.ARG_MEANINGLESS_WORDS].split(','))
 
     @override
@@ -41,11 +41,8 @@ class MeaninglessWordChecker(RulebookChecker):
     @override
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
-        words: list[str] = [
-            match[0] for match in self.TITLE_CASE_REGEX.findall(scope.className)
-            if match[0] in self._illegal_class_name_suffixes
-        ]
-        if not words:
+        words: list[str] = [match[0] for match in self.TITLE_CASE_REGEX.findall(scope.className)]
+        if not words or words[-1] not in self._words:
             return
         name_token: Token | None = \
             _prev_sibling(scope.bodyStart, lambda t: t.str == scope.className)

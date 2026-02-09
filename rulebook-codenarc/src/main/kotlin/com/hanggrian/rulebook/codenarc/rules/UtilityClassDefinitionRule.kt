@@ -25,14 +25,21 @@ public class UtilityClassDefinitionVisitor : RulebookVisitor() {
         super.visitClassEx(node)
 
         // skip empty class, inheritance or containing non-static members
-        node
-            .takeIf { n ->
-                (n.methods.isNotEmpty() || n.fields.isNotEmpty()) &&
-                    n.interfaces.isEmpty() &&
-                    n.superClass.name == "java.lang.Object" &&
-                    n.methods.all { it.isStatic } &&
-                    n.fields.all { it.isStatic }
-            } ?: return
+        val methods =
+            node
+                .takeIf { n ->
+                    (n.methods.isNotEmpty() || n.fields.isNotEmpty()) &&
+                        n.interfaces.isEmpty() &&
+                        n.superClass.name == "java.lang.Object" &&
+                        n.methods.all { it.isStatic } &&
+                        n.fields.all { it.isStatic }
+                }?.methods
+                ?: return
+
+        // skip class with main function
+        methods
+            .takeUnless { m -> m.any { it.name == "main" } }
+            ?: return
 
         // checks for violation
         if (!Modifier.isFinal(node.modifiers)) {

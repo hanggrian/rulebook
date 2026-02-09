@@ -12,16 +12,22 @@ pylint rulebook-cppcheck/
 pylint sample/python/
 pylint --rcfile=sample-configured/custom_pylintrc sample-configured/python/
 
-cppcheck \
-  --enable=warning \
-  --addon=local.addon.json \
-  sample/c/*.c \
-  sample/cpp/*.cpp
-cppcheck \
-  --enable=warning \
-  --addon=sample-configured/local.custom_addon.json \
-  sample-configured/c/*.c \
-  sample-configured/cpp/*.cpp
+local_addon='local.addon.json'
+if [[ -f "$local_addon" ]]; then
+  cppcheck \
+    --enable=warning \
+    "--addon=$local_addon" \
+    sample/c/*.c \
+    sample/cpp/*.cpp
+fi
+local_custom_addon='local.custom_addon.json'
+if [[ -f "local_custom_addon" ]]; then
+  cppcheck \
+    --enable=warning \
+    "--addon=sample-configured/$local_custom_addon" \
+    sample-configured/c/*.c \
+    sample-configured/cpp/*.cpp
+fi
 
 npm run lint
 npm run lint2

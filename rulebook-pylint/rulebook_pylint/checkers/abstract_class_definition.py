@@ -1,4 +1,4 @@
-from astroid.nodes import ClassDef, FunctionDef, Name
+from astroid.nodes import ClassDef, FunctionDef, Name, NodeNG
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
@@ -18,22 +18,19 @@ class AbstractClassDefinitionChecker(RulebookChecker):
 
     def visit_classdef(self, node: ClassDef) -> None:
         # skip non-abstract class
-        if not any(
-            isinstance(n, Name) and
-            n.name == 'ABC'
-            for n in node.bases
-        ):
+        bases: list[NodeNG] = node.bases
+        if not any(isinstance(n, Name) and n.name == 'ABC' for n in bases):
             return
 
         # checks for violation
-        if len(node.bases) > 1 or \
+        if len(bases) > 1 or \
             any(
                 isinstance(n, FunctionDef) and
                 _has_decorator(n, 'abstractmethod')
                 for n in node.body
             ):
             return
-        self.add_message(self.MSG, node=node.bases[0])
+        self.add_message(self.MSG, node=bases[0])
 
 
 def register(linter: 'PyLinter') -> None:

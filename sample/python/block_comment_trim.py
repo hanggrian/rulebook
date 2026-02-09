@@ -1,4 +1,4 @@
-def foo():
+def foo(bar):
     """Lorem
     ipsum
     ipsum
@@ -29,3 +29,10 @@ def foo():
     ipsum
     ipsum"""
     print()
+
+    if bar == 0:
+        print()
+        print()
+    elif bar == 1:
+        print()
+        print()

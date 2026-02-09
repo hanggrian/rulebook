@@ -11,6 +11,7 @@ except ImportError:
 
 
 class NestedIfElseChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#nested-if-else"""
     ID: str = 'nested-if-else'
     MSG_INVERT: str = 'nested.if.else.invert'
     MSG_LIFT: str = 'nested.if.else.lift'
