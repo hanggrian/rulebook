@@ -11,8 +11,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-qualifier) */
 public class RedundantQualifierCheck : RulebookAstCheck() {
-    private val importNodes = mutableSetOf<DetailAST>()
-    private val targetNodes = mutableSetOf<DetailAST>()
+    private val importNodes = linkedSetOf<DetailAST>()
+    private val targetNodes = linkedSetOf<DetailAST>()
 
     override fun getRequiredTokens(): IntArray = intArrayOf(IMPORT, TYPE, METHOD_CALL)
 

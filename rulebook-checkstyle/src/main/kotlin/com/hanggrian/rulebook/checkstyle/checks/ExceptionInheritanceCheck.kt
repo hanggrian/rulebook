@@ -25,7 +25,7 @@ public class ExceptionInheritanceCheck : RulebookAstCheck() {
         const val MSG = "exception.inheritance"
 
         val NON_APPLICATION_EXCEPTIONS =
-            setOf(
+            hashSetOf(
                 "Error",
                 "Throwable",
                 "java.lang.Error",

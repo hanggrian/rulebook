@@ -43,8 +43,8 @@ public class CommonFunctionPositionCheck : RulebookAstCheck() {
     private companion object {
         const val MSG = "common.function.position"
 
-        private val BUILTIN_FUNCTIONS =
-            setOf(
+        private val COMMON_FUNCTIONS =
+            hashSetOf(
                 "toString",
                 "hashCode",
                 "equals",
@@ -54,6 +54,6 @@ public class CommonFunctionPositionCheck : RulebookAstCheck() {
 
         fun DetailAST.isBuiltInFunction() =
             hasAnnotation("Override") &&
-                findFirstToken(IDENT)?.text in BUILTIN_FUNCTIONS
+                findFirstToken(IDENT)?.text in COMMON_FUNCTIONS
     }
 }

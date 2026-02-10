@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import Match
 from pylint.typing import TYPE_CHECKING
 
@@ -22,5 +24,5 @@ class UnnecessarySwitchChecker(RulebookChecker):
         self.add_message(self.MSG, node=node)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(UnnecessarySwitchChecker(linter))

@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 from astroid.nodes import Module
 from pylint.typing import TYPE_CHECKING, Options
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.messages import _Messages
+from rulebook_pylint.options import MAX_FILE_SIZE_OPTION
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -15,15 +18,7 @@ class FileSizeChecker(RulebookFileChecker):
     name: str = 'file-size'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
     options: Options = (
-        (
-            'rulebook-max-file-size',
-            {
-                'default': 1000,
-                'type': 'int',
-                'metavar': '<integer>',
-                'help': 'Max lines of code that is allowed.',
-            },
-        ),
+        MAX_FILE_SIZE_OPTION,
     )
 
     _max_file_size: int
@@ -40,5 +35,5 @@ class FileSizeChecker(RulebookFileChecker):
             self.add_message(self.MSG, line=0, args=self._max_file_size)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(FileSizeChecker(linter))

@@ -201,6 +201,11 @@ class AllRulesTest : AbstractTestCase() {
             ),
             violationOf(138, "* @return The signed JWT token", "End '@return' with a period."),
             violationOf(
+                158,
+                "return resp.signedToken",
+                "Lift 'else' and add 'return' in 'if' block.",
+            ),
+            violationOf(
                 175,
                 "* @return The new HttpClient instance",
                 "End '@return' with a period.",

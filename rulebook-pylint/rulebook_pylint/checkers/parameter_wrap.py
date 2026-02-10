@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import NodeNG, FunctionDef, Call
 from pylint.typing import TYPE_CHECKING
 
@@ -37,5 +39,5 @@ class ParameterWrapChecker(RulebookChecker):
             self.add_message(self.MSG, node=parameter)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(ParameterWrapChecker(linter))

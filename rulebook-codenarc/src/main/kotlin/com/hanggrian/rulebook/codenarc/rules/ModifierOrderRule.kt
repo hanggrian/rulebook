@@ -6,24 +6,6 @@ import org.codenarc.source.SourceCode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#modifier-order) */
 public class ModifierOrderRule : RulebookFileRule() {
-    private val orderList =
-        listOf(
-            "public",
-            "protected",
-            "private",
-            "abstract",
-            "default",
-            "static",
-            "sealed",
-            "non-sealed",
-            "final",
-            "transient",
-            "volatile",
-            "synchronized",
-            "native",
-            "strictfp",
-        )
-
     override fun getName(): String = "ModifierOrder"
 
     override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
@@ -33,12 +15,12 @@ public class ModifierOrderRule : RulebookFileRule() {
                 line
                     .trim()
                     .split(Regex("\\s+"))
-                    .filter { it in orderList }
+                    .filter { it in ORDER_SET }
                     .takeIf { it.size > 1 }
                     ?: continue
             val sortedModifiers =
                 modifiers
-                    .sortedBy { orderList.indexOf(it) }
+                    .sortedBy { ORDER_SET.indexOf(it) }
                     .takeUnless { modifiers == it }
                     ?: continue
             violations +=
@@ -52,5 +34,23 @@ public class ModifierOrderRule : RulebookFileRule() {
 
     internal companion object {
         const val MSG = "modifier.order"
+
+        private val ORDER_SET =
+            linkedSetOf(
+                "public",
+                "protected",
+                "private",
+                "abstract",
+                "default",
+                "static",
+                "sealed",
+                "non-sealed",
+                "final",
+                "transient",
+                "volatile",
+                "synchronized",
+                "native",
+                "strictfp",
+            )
     }
 }

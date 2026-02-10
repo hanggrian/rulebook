@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tokenize import TokenInfo, ENCODING, NL
 
 from pylint.typing import TYPE_CHECKING
@@ -29,5 +31,5 @@ class UnnecessaryBlankLineBeforePackageChecker(RulebookTokenChecker):
             return
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(UnnecessaryBlankLineBeforePackageChecker(linter))

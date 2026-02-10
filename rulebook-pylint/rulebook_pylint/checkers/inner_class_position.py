@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import NodeNG, ClassDef, FunctionDef, AssignName, Assign
 from pylint.typing import TYPE_CHECKING
 
@@ -30,5 +32,5 @@ class InnerClassPositionChecker(RulebookChecker):
                 return
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(InnerClassPositionChecker(linter))

@@ -1,8 +1,8 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.properties.ConfigurableNames
 import com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule.Companion.MSG
-import com.hanggrian.rulebook.codenarc.splitToList
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.FieldNode
 import org.codehaus.groovy.ast.MethodNode
@@ -15,14 +15,11 @@ import org.codehaus.groovy.ast.expr.TupleExpression
 import org.codehaus.groovy.ast.expr.VariableExpression
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-variable-name) */
-public class IllegalVariableNameRule : RulebookAstRule() {
-    internal var nameList = listOf("object", "integer", "string", "objects", "integers", "strings")
-
-    public var names: String
-        get() = throw UnsupportedOperationException()
-        set(value) {
-            nameList = value.splitToList()
-        }
+public class IllegalVariableNameRule :
+    RulebookAstRule(),
+    ConfigurableNames {
+    override val nameSet: HashSet<String> =
+        hashSetOf("object", "integer", "string", "objects", "integers", "strings")
 
     override fun getName(): String = "IllegalVariableName"
 
@@ -62,7 +59,7 @@ public class IllegalVariableNameVisitor : RulebookAnyCallVisitor() {
 
     private fun process(node: ASTNode, name: String) {
         // checks for violation
-        val names = (rule as IllegalVariableNameRule).nameList
+        val names = (rule as IllegalVariableNameRule).nameSet
         name
             .takeIf { it in names }
             ?: return

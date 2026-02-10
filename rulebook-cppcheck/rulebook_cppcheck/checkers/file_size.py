@@ -2,6 +2,7 @@ from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.options import MAX_FILE_SIZE_OPTION
 
 try:
     from cppcheckdata import Token
@@ -13,8 +14,7 @@ class FileSizeChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#file-size"""
     ID: str = 'file-size'
     MSG: str = 'file.size'
-    ARG_MAX_FILE_SIZE: str = 'max-file-size'
-    ARGS = [ARG_MAX_FILE_SIZE]
+    ARGS: list[str] = [MAX_FILE_SIZE_OPTION]
 
     def __init__(self):
         super().__init__()
@@ -22,7 +22,7 @@ class FileSizeChecker(RulebookFileChecker):
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
-        self._max_file_size = int(args[self.ARG_MAX_FILE_SIZE])
+        self._max_file_size = int(args[MAX_FILE_SIZE_OPTION])
 
     @override
     def check_file(self, token: Token, content: str) -> None:

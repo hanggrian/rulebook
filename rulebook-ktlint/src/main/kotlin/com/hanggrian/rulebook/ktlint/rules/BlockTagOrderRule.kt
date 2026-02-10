@@ -49,7 +49,7 @@ public class BlockTagOrderRule : RulebookRule(ID) {
         private const val MSG = "block.tag.order"
 
         private val MEMBER_POSITIONS =
-            mapOf(
+            hashMapOf(
                 "@constructor" to 0,
                 "@receiver" to 1,
                 "@param" to 2,

@@ -15,7 +15,7 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
     @patch.object(BlockTagPunctuationChecker, 'report_error')
     def test_no_description(self, mock_report):
         self.checker.before_run({
-            'block-tags': '@constructor,@receiver,@property,@param,@return',
+            'punctuate-block-tags': '@constructor,@receiver,@property,@param,@return',
         })
         self.checker.check_file(
             MagicMock(file='test.c'),
@@ -32,7 +32,7 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
     @patch.object(BlockTagPunctuationChecker, 'report_error')
     def test_descriptions_end_with_a_period(self, mock_report):
         self.checker.before_run({
-            'block-tags': '@constructor,@receiver,@property,@param,@return',
+            'punctuate-block-tags': '@constructor,@receiver,@property,@param,@return',
         })
         self.checker.check_file(
             MagicMock(file='test.c'),
@@ -49,7 +49,7 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
     @patch.object(BlockTagPunctuationChecker, 'report_error')
     def test_descriptions_end_without_a_period(self, mock_report):
         self.checker.before_run({
-            'block-tags': '@constructor,@receiver,@property,@param,@return',
+            'punctuate-block-tags': '@constructor,@receiver,@property,@param,@return',
         })
         self.checker.check_file(
             MagicMock(file='test.c'),
@@ -71,7 +71,7 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
     @patch.object(BlockTagPunctuationChecker, 'report_error')
     def test_long_descriptions(self, mock_report):
         self.checker.before_run({
-            'block-tags': '@constructor,@receiver,@property,@param,@return',
+            'punctuate-block-tags': '@constructor,@receiver,@property,@param,@return',
         })
         self.checker.check_file(
             MagicMock(file='test.c'),

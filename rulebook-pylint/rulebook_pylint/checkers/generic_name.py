@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import Assign, Call, Name, AssignName
 from pylint.typing import TYPE_CHECKING
 
@@ -34,5 +36,5 @@ class GenericNameChecker(RulebookChecker):
         self.add_message(self.MSG, node=target)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(GenericNameChecker(linter))

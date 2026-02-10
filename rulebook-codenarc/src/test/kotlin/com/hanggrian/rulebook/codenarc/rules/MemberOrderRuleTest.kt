@@ -14,9 +14,8 @@ class MemberOrderRuleTest : AbstractRuleTestCase<MemberOrderRule>() {
         rule.assertProperties()
         assertIs<MemberOrderVisitor>(rule.astVisitor)
 
-        val rule = MemberOrderRule()
-        rule.order = "static, function, constructor, property"
-        assertThat(rule.orderList).containsExactly("static", "function", "constructor", "property")
+        rule.setOrder("static, function, constructor, property")
+        assertThat(rule.orderSet).containsExactly("static", "function", "constructor", "property")
     }
 
     @Test

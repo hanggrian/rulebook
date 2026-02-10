@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.checkstyle.checks
 
 import com.google.common.truth.Truth.assertThat
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
 class MeaninglessWordCheckTest : CheckTest() {
     override val check = MeaninglessWordCheck()
@@ -10,8 +11,8 @@ class MeaninglessWordCheckTest : CheckTest() {
     fun `Rule properties`() {
         check.assertProperties()
 
-        check.words = "Hello, World"
-        assertThat(check.wordList).containsExactly("Hello", "World")
+        check.setWords("Hello", "World")
+        assertThat(check.wordSet).containsExactly("Hello", "World")
     }
 
     @Test

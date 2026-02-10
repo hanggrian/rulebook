@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tokenize import TokenInfo, OP, NL
 
 from pylint.typing import TYPE_CHECKING
@@ -54,5 +56,5 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
             )
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(ParenthesesTrimChecker(linter))

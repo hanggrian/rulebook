@@ -12,6 +12,7 @@ import org.codehaus.groovy.ast.stmt.DoWhileStatement
 import org.codehaus.groovy.ast.stmt.ForStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 import org.codehaus.groovy.ast.stmt.Statement
+import org.codehaus.groovy.ast.stmt.WhileStatement
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#nested-if-else) */
 public class NestedIfElseRule : RulebookAstRule() {
@@ -34,6 +35,11 @@ public class NestedIfElseRule : RulebookAstRule() {
 public class NestedIfElseVisitor : RulebookVisitor() {
     override fun visitForLoop(node: ForStatement) {
         super.visitForLoop(node)
+        process(node.loopBlock as? BlockStatement ?: return)
+    }
+
+    override fun visitWhileLoop(node: WhileStatement) {
+        super.visitWhileLoop(node)
         process(node.loopBlock as? BlockStatement ?: return)
     }
 

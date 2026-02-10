@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import ClassDef, FunctionDef, Name, NodeNG
 from pylint.typing import TYPE_CHECKING
 
@@ -33,5 +35,5 @@ class AbstractClassDefinitionChecker(RulebookChecker):
         self.add_message(self.MSG, node=bases[0])
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(AbstractClassDefinitionChecker(linter))

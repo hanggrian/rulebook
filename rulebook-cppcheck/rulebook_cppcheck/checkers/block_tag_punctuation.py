@@ -3,6 +3,7 @@ from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.options import PUNCTUATE_BLOCK_TAGS_OPTION
 
 try:
     from cppcheckdata import Token
@@ -14,8 +15,7 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation"""
     ID: str = 'block-tag-punctuation'
     MSG: str = 'block.tag.punctuation'
-    ARG_BLOCK_TAGS: str = 'block-tags'
-    ARGS = [ARG_BLOCK_TAGS]
+    ARGS: list[str] = [PUNCTUATE_BLOCK_TAGS_OPTION]
 
     PUNCTUATIONS: set[str] = {'.', '!', '?', ')'}
 
@@ -29,7 +29,7 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
-        self._block_tags = set(args[self.ARG_BLOCK_TAGS].split(','))
+        self._block_tags = set(args[PUNCTUATE_BLOCK_TAGS_OPTION].split(','))
 
     @override
     def check_file(self, token: Token, content: str) -> None:

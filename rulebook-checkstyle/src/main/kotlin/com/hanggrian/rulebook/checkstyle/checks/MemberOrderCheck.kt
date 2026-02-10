@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.checkstyle.checks
 import com.hanggrian.rulebook.checkstyle.Messages
 import com.hanggrian.rulebook.checkstyle.children
 import com.hanggrian.rulebook.checkstyle.hasModifier
-import com.hanggrian.rulebook.checkstyle.splitToList
+import com.hanggrian.rulebook.checkstyle.properties.ConfigurableOrder
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMPACT_CTOR_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CTOR_DEF
@@ -13,24 +13,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.VARIABLE_DEF
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#member-order) */
-public class MemberOrderCheck : RulebookAstCheck() {
-    internal var orderList = listOf("property", "constructor", "function", "static")
+public class MemberOrderCheck :
+    RulebookAstCheck(),
+    ConfigurableOrder {
+    override val orderSet: LinkedHashSet<String> =
+        linkedSetOf("property", "constructor", "function", "static")
     private var propertyPosition = 0
     private var constructorPosition = 1
     private var functionPosition = 2
     private var staticPosition = 3
 
-    public var order: String
-        get() = throw UnsupportedOperationException()
-        set(value) {
-            orderList = value.splitToList()
-            require(orderList.size == 4)
+    override fun setOrder(vararg order: String) {
+        super.setOrder(*order)
+        require(orderSet.size == 4)
 
-            propertyPosition = orderList.indexOf("property")
-            constructorPosition = orderList.indexOf("constructor")
-            functionPosition = orderList.indexOf("function")
-            staticPosition = orderList.indexOf("static")
-        }
+        propertyPosition = orderSet.indexOf("property")
+        constructorPosition = orderSet.indexOf("constructor")
+        functionPosition = orderSet.indexOf("function")
+        staticPosition = orderSet.indexOf("static")
+    }
 
     private val DetailAST.memberPosition: Int
         get() =

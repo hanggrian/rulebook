@@ -2,6 +2,7 @@ import { AST, Rule } from 'eslint';
 import { BaseNode, ClassDeclaration } from 'estree';
 import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
+import meaninglessWordsOptions from '../schema/meaningless-words.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#meaningless-word|See detail} */
 class MeaninglessWordRule extends RulebookRule {
@@ -12,16 +13,7 @@ class MeaninglessWordRule extends RulebookRule {
                 [MeaninglessWordRule.MSG_ALL]: messages.get(MeaninglessWordRule.MSG_ALL),
                 [MeaninglessWordRule.MSG_UTIL]: messages.get(MeaninglessWordRule.MSG_UTIL),
             },
-            [{
-                type: 'object',
-                properties: {
-                    words: {
-                        type: 'array',
-                        items: { type: 'string' },
-                    },
-                },
-                additionalProperties: false,
-            }],
+            [meaninglessWordsOptions],
         );
     }
 

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import ClassDef, Name
 from pylint.typing import TYPE_CHECKING
 
@@ -25,5 +27,5 @@ class ExceptionInheritanceChecker(RulebookChecker):
             continue
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(ExceptionInheritanceChecker(linter))

@@ -1,7 +1,7 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
-import com.hanggrian.rulebook.checkstyle.splitToList
+import com.hanggrian.rulebook.checkstyle.properties.ConfigurableWords
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CLASS_DEF
@@ -11,14 +11,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.INTERFACE_DEF
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RECORD_DEF
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#meaningless-word) */
-public class MeaninglessWordCheck : RulebookAstCheck() {
-    internal var wordList = listOf("Util", "Utility", "Helper", "Manager", "Wrapper")
-
-    public var words: String
-        get() = throw UnsupportedOperationException()
-        set(value) {
-            wordList = value.splitToList()
-        }
+public class MeaninglessWordCheck :
+    RulebookAstCheck(),
+    ConfigurableWords {
+    override val wordSet: HashSet<String> =
+        hashSetOf("Util", "Utility", "Helper", "Manager", "Wrapper")
 
     override fun getRequiredTokens(): IntArray =
         intArrayOf(
@@ -33,7 +30,7 @@ public class MeaninglessWordCheck : RulebookAstCheck() {
         // checks for violation
         val ident = node.findFirstToken(IDENT) ?: return
         val finalName =
-            wordList
+            wordSet
                 .singleOrNull { ident.text.endsWith(it) }
                 ?: return
         if (finalName in UTILITY_FINAL_NAMES) {
@@ -50,6 +47,6 @@ public class MeaninglessWordCheck : RulebookAstCheck() {
         const val MSG_ALL = "meaningless.word.all"
         const val MSG_UTIL = "meaningless.word.util"
 
-        val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
+        val UTILITY_FINAL_NAMES = hashSetOf("Util", "Utility")
     }
 }

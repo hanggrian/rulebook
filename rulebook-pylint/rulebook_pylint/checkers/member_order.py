@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import cast
 
 from astroid.nodes import NodeNG, Assign, AssignName, ClassDef, FunctionDef
@@ -6,6 +8,7 @@ from pylint.typing import TYPE_CHECKING, Options
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
 from rulebook_pylint.nodes import _has_decorator
+from rulebook_pylint.options import MEMBER_ORDER_OPTION
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -18,15 +21,7 @@ class MemberOrderChecker(RulebookChecker):
     name: str = 'member-order'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
     options: Options = (
-        (
-            'rulebook-member-order',
-            {
-                'default': ('property', 'constructor', 'function', 'static'),
-                'type': 'csv',
-                'metavar': '<comma-separated values>',
-                'help': 'The structure of a class body.',
-            },
-        ),
+        MEMBER_ORDER_OPTION,
     )
 
     _member_order: list[str]
@@ -91,5 +86,5 @@ class MemberOrderChecker(RulebookChecker):
             else 'function'
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(MemberOrderChecker(linter))

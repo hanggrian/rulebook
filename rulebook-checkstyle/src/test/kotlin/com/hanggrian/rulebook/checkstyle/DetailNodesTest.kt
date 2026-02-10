@@ -117,6 +117,11 @@ class DetailNodesTest {
 
         sequenceOf(rootAst, parentAst1).forEach { verify(it).type }
         verify(leafAst1).parent
+
+        `when`(rootAst.parent).thenReturn(null)
+        assertThat(rootAst.parent { it.type == COMPILATION_UNIT }).isNull()
+
+        verify(rootAst).parent
     }
 
     @Test
@@ -136,6 +141,11 @@ class DetailNodesTest {
 
         verify(leafNode1).parent
         verify(rootNode).children
+
+        `when`(rootAst.nextSibling).thenReturn(null)
+        assertThat(rootAst.nextSibling { it.type == COMPILATION_UNIT }).isNull()
+
+        verify(rootAst).nextSibling
     }
 
     @Test

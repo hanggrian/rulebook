@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from re import Pattern, compile as re
 
 from astroid.nodes import Const, Module, ClassDef, FunctionDef
@@ -40,5 +42,5 @@ class BlockCommentTrimChecker(RulebookChecker):
             self.add_message(self.MSG_LAST, node=docstring, line=docstring.end_lineno)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(BlockCommentTrimChecker(linter))

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tokenize import TokenInfo, COMMENT
 
 from pylint.typing import TYPE_CHECKING
@@ -31,5 +33,5 @@ class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
             last_empty_token = token
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(DuplicateBlankLineInCommentChecker(linter))

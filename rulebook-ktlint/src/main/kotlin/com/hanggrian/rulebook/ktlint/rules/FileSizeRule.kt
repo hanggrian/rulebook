@@ -2,12 +2,10 @@ package com.hanggrian.rulebook.ktlint.rules
 
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
+import com.hanggrian.rulebook.ktlint.properties.MAX_FILE_SIZE_PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
-import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
-import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
-import org.ec4j.core.model.PropertyType.PropertyValueParser.POSITIVE_INT_VALUE_PARSER
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -34,15 +32,5 @@ public class FileSizeRule : RulebookRule(ID, MAX_FILE_SIZE_PROPERTY) {
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:file-size")
         private const val MSG = "file.size"
-        public val MAX_FILE_SIZE_PROPERTY: EditorConfigProperty<Int> =
-            EditorConfigProperty(
-                type =
-                    LowerCasingPropertyType(
-                        "rulebook_max_file_size",
-                        "Max lines of code that is allowed.",
-                        POSITIVE_INT_VALUE_PARSER,
-                    ),
-                defaultValue = 1000,
-            )
     }
 }

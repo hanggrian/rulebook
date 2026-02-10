@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 from astroid.nodes import Const, Module, ClassDef, FunctionDef
 from pylint.typing import TYPE_CHECKING, Options
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
+from rulebook_pylint.options import MAX_LINE_LENGTH_OPTION
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -17,15 +20,7 @@ class BlockCommentClipChecker(RulebookChecker):
     name: str = 'block-comment-clip'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
     options: Options = (
-        (
-            'rulebook-max-line-length',
-            {
-                'default': 100,
-                'type': 'int',
-                'metavar': '<integer>',
-                'help': 'Max length of a line.',
-            },
-        ),
+        MAX_LINE_LENGTH_OPTION,
     )
 
     _max_line_length: int = 100
@@ -57,5 +52,5 @@ class BlockCommentClipChecker(RulebookChecker):
             self.add_message(self.MSG, node=docstring)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(BlockCommentClipChecker(linter))

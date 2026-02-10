@@ -2,6 +2,7 @@ from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.options import MAX_LINE_LENGTH_OPTION
 
 try:
     from cppcheckdata import Token
@@ -13,8 +14,7 @@ class LineLengthChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#line-length"""
     ID: str = 'line-length'
     MSG: str = 'line.length'
-    ARG_MAX_LINE_LENGTH: str = 'max-line-length'
-    ARGS = [ARG_MAX_LINE_LENGTH]
+    ARGS: list[str] = [MAX_LINE_LENGTH_OPTION]
 
     def __init__(self):
         super().__init__()
@@ -23,7 +23,7 @@ class LineLengthChecker(RulebookTokenChecker):
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
-        self._max_line_length = int(args[self.ARG_MAX_LINE_LENGTH])
+        self._max_line_length = int(args[MAX_LINE_LENGTH_OPTION])
 
     @override
     def process_token(self, token: Token) -> None:

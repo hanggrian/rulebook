@@ -1,7 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
-import com.hanggrian.rulebook.codenarc.splitToList
+import com.hanggrian.rulebook.codenarc.properties.ConfigurableOrder
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.ConstructorNode
@@ -9,24 +9,25 @@ import org.codehaus.groovy.ast.FieldNode
 import org.codehaus.groovy.ast.MethodNode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#member-order) */
-public class MemberOrderRule : RulebookAstRule() {
-    internal var orderList = listOf("property", "constructor", "function", "static")
+public class MemberOrderRule :
+    RulebookAstRule(),
+    ConfigurableOrder {
+    override val orderSet: LinkedHashSet<String> =
+        linkedSetOf("property", "constructor", "function", "static")
     internal var propertyPosition = 0
     internal var constructorPosition = 1
     internal var functionPosition = 2
     internal var staticPosition = 3
 
-    public var order: String
-        get() = throw UnsupportedOperationException()
-        set(value) {
-            orderList = value.splitToList()
-            require(orderList.size == 4)
+    override fun setOrder(order: String) {
+        super.setOrder(order)
+        require(orderSet.size == 4)
 
-            propertyPosition = orderList.indexOf("property")
-            constructorPosition = orderList.indexOf("constructor")
-            functionPosition = orderList.indexOf("function")
-            staticPosition = orderList.indexOf("static")
-        }
+        propertyPosition = orderSet.indexOf("property")
+        constructorPosition = orderSet.indexOf("constructor")
+        functionPosition = orderSet.indexOf("function")
+        staticPosition = orderSet.indexOf("static")
+    }
 
     override fun getName(): String = "MemberOrder"
 

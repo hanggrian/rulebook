@@ -53,7 +53,7 @@ public class BlockTagOrderRule : RulebookFileRule() {
         val REGEX = Regex("""$JAVADOC_LINE_PREFIX@(?:param|return|throws|see)""")
 
         val MEMBER_POSITIONS =
-            mapOf(
+            hashMapOf(
                 "@param" to 0,
                 "@return" to 1,
                 "@throws" to 2,

@@ -68,7 +68,7 @@ public class DeprecatedTypeRule : RulebookRule(ID) {
         private const val MSG = "deprecated.type"
 
         private val COLLECTIONS_REPLACEMENT =
-            mapOf(
+            hashMapOf(
                 "java.util.Iterator" to "kotlin.collections.Iterator",
                 "java.util.Iterable" to "kotlin.collections.Iterable",
                 "java.util.Collection" to "kotlin.collections.Collection",
@@ -83,7 +83,7 @@ public class DeprecatedTypeRule : RulebookRule(ID) {
             )
 
         private val TEST_LIBRARIES =
-            setOf(
+            hashSetOf(
                 "io.kotest",
                 "junit.framework",
                 "kotlin.test",
@@ -92,7 +92,7 @@ public class DeprecatedTypeRule : RulebookRule(ID) {
             )
 
         private val TEST_ANNOTATIONS_REPLACEMENT =
-            mapOf(
+            hashMapOf(
                 "org.junit.Test" to "kotlin.test.Test",
                 "org.junit.Ignore" to "kotlin.test.Ignore",
                 "org.junit.Before" to "kotlin.test.BeforeTest",

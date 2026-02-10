@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tokenize import TokenInfo, INDENT, DEDENT, ENDMARKER, NEWLINE, NL, COMMENT, FSTRING_START, \
     FSTRING_END
 
@@ -46,5 +48,5 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
             else token.start[1] - last_token.end[1] > 1
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(DuplicateSpaceChecker(linter))

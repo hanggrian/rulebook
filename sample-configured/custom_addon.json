@@ -1,7 +1,7 @@
 {
   "script": "/home/circleci/project/rulebook-cppcheck/rulebook_cppcheck/check_set.py",
   "args": [
-    "--block-tags=@see",
+    "--punctuate-block-tags=@see",
     "--illegal-variable-names=foo,bar",
     "--indent-size=2",
     "--max-file-size=20",

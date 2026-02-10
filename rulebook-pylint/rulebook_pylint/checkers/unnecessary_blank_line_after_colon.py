@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tokenize import TokenInfo, OP, NEWLINE, NL
 
 from pylint.typing import TYPE_CHECKING
@@ -34,5 +36,5 @@ class UnnecessaryBlankLineAfterColonChecker(RulebookTokenChecker):
             self.add_message(self.MSG, line=next_token2.start[0], col_offset=next_token2.start[1])
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(UnnecessaryBlankLineAfterColonChecker(linter))

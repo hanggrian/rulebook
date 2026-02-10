@@ -1,21 +1,17 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
-import com.hanggrian.rulebook.checkstyle.splitToList
+import com.hanggrian.rulebook.checkstyle.properties.ConfigurableTags
 import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation) */
-public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
-    internal var tagList = listOf("@param", "@return")
-
-    public var tags: String
-        get() = throw UnsupportedOperationException()
-        set(value) {
-            tagList = value.splitToList()
-        }
+public class BlockTagPunctuationCheck :
+    RulebookJavadocCheck(),
+    ConfigurableTags {
+    override val tagSet: HashSet<String> = hashSetOf("@param", "@return")
 
     override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
 
@@ -25,7 +21,7 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
             node
                 .children
                 .first()
-                .takeIf { it.text in tagList }
+                .takeIf { it.text in tagSet }
                 ?: return
 
         // long descriptions have multiple lines, take only the last one
@@ -49,6 +45,6 @@ public class BlockTagPunctuationCheck : RulebookJavadocCheck() {
     private companion object {
         const val MSG = "block.tag.punctuation"
 
-        val END_PUNCTUATIONS = setOf('.', '!', '?', ')')
+        val END_PUNCTUATIONS = hashSetOf('.', '!', '?', ')')
     }
 }

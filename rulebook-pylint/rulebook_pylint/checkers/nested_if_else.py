@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import NodeNG, If, For, While, FunctionDef
 from pylint.typing import TYPE_CHECKING
 
@@ -66,5 +68,5 @@ class NestedIfElseChecker(RulebookChecker):
         return length > 1
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(NestedIfElseChecker(linter))

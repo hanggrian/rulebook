@@ -30,6 +30,7 @@ codenarc = { module = "org.codenarc:CodeNarc", version.ref = "codenarc" }
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
 mockito-junit-jupiter = "org.mockito:mockito-junit-jupiter:5.20.0"
+mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:6.2.3"
 truth = "com.google.truth:truth:1.4.5"
 logback = "ch.qos.logback:logback-classic:1.5.18"
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
@@ -40,5 +41,6 @@ junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.12.2"
 junit5 = [
   "junit-jupiter",
   "mockito-junit-jupiter",
+  "mockito-kotlin",
   "truth",
 ]

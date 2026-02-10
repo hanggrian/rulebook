@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import Const, Module, ClassDef, FunctionDef
 from pylint.typing import TYPE_CHECKING
 
@@ -31,5 +33,5 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookChecker):
         self.add_message(self.MSG, node=docstring)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(DuplicateBlankLineInBlockCommentChecker(linter))

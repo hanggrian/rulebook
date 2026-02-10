@@ -3,14 +3,12 @@ package com.hanggrian.rulebook.ktlint.rules
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.endOffset
+import com.hanggrian.rulebook.ktlint.properties.PUNCTUATE_BLOCK_TAGS_PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG_NAME
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
-import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
-import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
-import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -51,25 +49,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:block-tag-punctuation")
         private const val MSG = "block.tag.punctuation"
-        public val PUNCTUATE_BLOCK_TAGS_PROPERTY: EditorConfigProperty<Set<String>> =
-            EditorConfigProperty(
-                type =
-                    LowerCasingPropertyType(
-                        "rulebook_punctuate_block_tags",
-                        "Block tags that have to end with a period.",
-                        CommaSeparatedListValueParser(),
-                    ),
-                defaultValue =
-                    setOf(
-                        "@constructor",
-                        "@receiver",
-                        "@property",
-                        "@param",
-                        "@return",
-                    ),
-                propertyWriter = { it.joinToString() },
-            )
 
-        private val END_PUNCTUATIONS = setOf('.', '!', '?', ')')
+        private val END_PUNCTUATIONS = hashSetOf('.', '!', '?', ')')
     }
 }

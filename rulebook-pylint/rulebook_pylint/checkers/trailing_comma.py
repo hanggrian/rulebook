@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tokenize import TokenInfo, OP, NL, COMMENT, NAME
 
 from pylint.typing import TYPE_CHECKING
@@ -76,5 +78,5 @@ class TrailingCommaChecker(RulebookTokenChecker):
         return False
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(TrailingCommaChecker(linter))

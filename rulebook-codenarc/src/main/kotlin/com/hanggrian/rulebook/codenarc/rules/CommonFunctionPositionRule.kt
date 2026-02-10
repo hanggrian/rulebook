@@ -16,8 +16,8 @@ public class CommonFunctionPositionRule : RulebookAstRule() {
     internal companion object {
         const val MSG = "common.function.position"
 
-        private val BUILTIN_FUNCTIONS =
-            setOf(
+        private val COMMON_FUNCTIONS =
+            hashSetOf(
                 "toString",
                 "hashCode",
                 "equals",
@@ -25,7 +25,7 @@ public class CommonFunctionPositionRule : RulebookAstRule() {
                 "finalize",
             )
 
-        fun MethodNode.isBuiltInFunction() = hasAnnotation("Override") && name in BUILTIN_FUNCTIONS
+        fun MethodNode.isBuiltInFunction() = hasAnnotation("Override") && name in COMMON_FUNCTIONS
     }
 }
 

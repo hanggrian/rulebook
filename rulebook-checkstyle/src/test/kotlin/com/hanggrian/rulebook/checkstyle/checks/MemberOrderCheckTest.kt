@@ -10,8 +10,8 @@ class MemberOrderCheckTest : CheckTest() {
     fun `Rule properties`() {
         check.assertProperties()
 
-        check.order = "constructor, property, static, method"
-        assertThat(check.orderList).containsExactly("constructor", "property", "static", "method")
+        check.setOrder("constructor", "property", "static", "method")
+        assertThat(check.orderSet).containsExactly("constructor", "property", "static", "method")
     }
 
     @Test

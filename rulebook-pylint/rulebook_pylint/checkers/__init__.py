@@ -1,4 +1,4 @@
-"""main"""
+from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
@@ -8,5 +8,8 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-def initialize(linter: 'PyLinter') -> None:
+def initialize(linter: PyLinter) -> None:
     register_plugins(linter, __path__[0])
+
+
+__all__ = ['initialize']

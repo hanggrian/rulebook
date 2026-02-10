@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import Match, MatchAs, MatchCase
 from pylint.typing import TYPE_CHECKING
 
@@ -31,5 +33,5 @@ class RedundantDefaultChecker(RulebookChecker):
         self.add_message(self.MSG, node=default)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(RedundantDefaultChecker(linter))

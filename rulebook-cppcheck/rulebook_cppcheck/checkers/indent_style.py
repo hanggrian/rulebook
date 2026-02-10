@@ -2,6 +2,7 @@ from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.options import INDENT_STYLE_OPTION
 
 try:
     from cppcheckdata import Token
@@ -13,8 +14,7 @@ class IndentStyleChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#indent-style"""
     ID: str = 'indent-style'
     MSG: str = 'indent.style'
-    ARG_INDENT_STYLE: str = 'indent-size'
-    ARGS = [ARG_INDENT_STYLE]
+    ARGS: list[str] = [INDENT_STYLE_OPTION]
 
     def __init__(self):
         super().__init__()
@@ -23,7 +23,7 @@ class IndentStyleChecker(RulebookTokenChecker):
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
-        self._indent_size = int(args[self.ARG_INDENT_STYLE])
+        self._indent_size = int(args[INDENT_STYLE_OPTION])
 
     @override
     def process_token(self, token: Token) -> None:

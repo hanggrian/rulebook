@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from re import Pattern, compile as re
 
 from astroid.nodes import ClassDef
@@ -28,7 +30,7 @@ class AbbreviationAsWordChecker(RulebookChecker):
             self.MSG,
             node=node,
             args= \
-                AbbreviationAsWordChecker.ABBREVIATION_REGEX.sub(
+                self.ABBREVIATION_REGEX.sub(
                     lambda m: m.group(0)[0] + m.group(0)[1:].lower(),
                     class_name,
                 ),
@@ -36,5 +38,5 @@ class AbbreviationAsWordChecker(RulebookChecker):
         )
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(AbbreviationAsWordChecker(linter))

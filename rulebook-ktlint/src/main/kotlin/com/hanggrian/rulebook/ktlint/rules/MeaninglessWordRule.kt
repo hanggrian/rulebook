@@ -3,15 +3,13 @@ package com.hanggrian.rulebook.ktlint.rules
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.getFileName
+import com.hanggrian.rulebook.ktlint.properties.MEANINGLESS_WORDS_PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
-import com.pinterest.ktlint.rule.engine.core.api.editorconfig.CommaSeparatedListValueParser
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
-import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
-import org.ec4j.core.model.PropertyType.LowerCasingPropertyType
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -60,18 +58,7 @@ public class MeaninglessWordRule : RulebookRule(ID, MEANINGLESS_WORDS_PROPERTY) 
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:meaningless-word")
         private const val MSG_ALL = "meaningless.word.all"
         private const val MSG_UTIL = "meaningless.word.util"
-        public val MEANINGLESS_WORDS_PROPERTY: EditorConfigProperty<Set<String>> =
-            EditorConfigProperty(
-                type =
-                    LowerCasingPropertyType(
-                        "rulebook_meaningless_words",
-                        "A set of banned names.",
-                        CommaSeparatedListValueParser(),
-                    ),
-                defaultValue = setOf("Util", "Utility", "Helper", "Manager", "Wrapper"),
-                propertyWriter = { it.joinToString() },
-            )
 
-        private val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
+        private val UTILITY_FINAL_NAMES = hashSetOf("Util", "Utility")
     }
 }

@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.assertProperties
+import com.hanggrian.rulebook.codenarc.violationOf
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
@@ -28,12 +29,26 @@ class NestedIfElseRuleTest : AbstractRuleTestCase<NestedIfElseRule>() {
                     baz()
                 }
             }
+
+            def baz() {
+                for (i in listOf(0)) {
+                    if (true) {
+                    }
+                }
+                while (true) {
+                    if (true) {
+                    }
+                }
+                do {
+                    baz()
+                } while (true)
+            }
             """.trimIndent(),
         )
 
     @Test
     fun `Invert if with multiline statement or two statements`() =
-        assertTwoViolations(
+        assertViolations(
             """
             def foo() {
                 if (true) {
@@ -45,17 +60,59 @@ class NestedIfElseRuleTest : AbstractRuleTestCase<NestedIfElseRule>() {
             def bar() {
                 if (true) {
                     baz(
-                        0
+                        0,
                     )
                 }
             }
+
+            def baz() {
+                for (i in listOf(0)) {
+                    if (true) {
+                        baz()
+                        baz()
+                    }
+                }
+                while (true) {
+                    if (true) {
+                        baz(
+                            0,
+                        )
+                    }
+                }
+                do {
+                    if (true) {
+                        baz(
+                            0,
+                        )
+                    }
+                } while (true)
+            }
             """.trimIndent(),
-            2,
-            "if (true) {",
-            "Invert 'if' condition.",
-            9,
-            "if (true) {",
-            "Invert 'if' condition.",
+            violationOf(
+                2,
+                "if (true) {",
+                "Invert 'if' condition.",
+            ),
+            violationOf(
+                9,
+                "if (true) {",
+                "Invert 'if' condition.",
+            ),
+            violationOf(
+                18,
+                "if (true) {",
+                "Invert 'if' condition.",
+            ),
+            violationOf(
+                24,
+                "if (true) {",
+                "Invert 'if' condition.",
+            ),
+            violationOf(
+                31,
+                "if (true) {",
+                "Invert 'if' condition.",
+            ),
         )
 
     @Test

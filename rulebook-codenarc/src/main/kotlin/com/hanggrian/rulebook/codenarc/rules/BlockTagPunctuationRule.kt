@@ -1,26 +1,22 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
-import com.hanggrian.rulebook.codenarc.splitToList
+import com.hanggrian.rulebook.codenarc.properties.ConfigurableTags
 import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation) */
-public class BlockTagPunctuationRule : RulebookFileRule() {
-    internal var tagList = listOf("@param", "@return")
-
-    public var tags: String
-        get() = throw UnsupportedOperationException()
-        set(value) {
-            tagList = value.splitToList()
-        }
+public class BlockTagPunctuationRule :
+    RulebookFileRule(),
+    ConfigurableTags {
+    override val tagSet: HashSet<String> = hashSetOf("@param", "@return")
 
     override fun getName(): String = "BlockTagPunctuation"
 
     override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
         // checks for violation
         violations +=
-            buildRegex(tagList)
+            buildRegex(tagSet)
                 .findAll(sourceCode.text)
                 .filter { ' ' in it.value && it.value.last() !in END_PUNCTUATIONS }
                 .map {
@@ -36,7 +32,7 @@ public class BlockTagPunctuationRule : RulebookFileRule() {
     internal companion object {
         const val MSG = "block.tag.punctuation"
 
-        val END_PUNCTUATIONS = setOf('.', '!', '?', ')')
+        val END_PUNCTUATIONS = hashSetOf('.', '!', '?', ')')
 
         fun buildRegex(tags: Collection<String>): Regex {
             val tagGroup =

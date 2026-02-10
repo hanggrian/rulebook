@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tokenize import TokenInfo, COMMENT, NL
 
 from pylint.typing import TYPE_CHECKING
@@ -57,5 +59,5 @@ class CommentTrimChecker(RulebookTokenChecker):
             return
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(CommentTrimChecker(linter))

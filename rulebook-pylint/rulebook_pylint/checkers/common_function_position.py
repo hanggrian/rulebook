@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import NodeNG, FunctionDef
 from pylint.typing import TYPE_CHECKING
 
@@ -13,7 +15,7 @@ class CommonFunctionPositionChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#common-function-position"""
     MSG: str = 'common.function.position'
 
-    SPECIAL_FUNCTIONS = (
+    COMMON_FUNCTIONS = (
         '__str__',
         '__hash__',
         '__eq__',
@@ -36,7 +38,7 @@ class CommonFunctionPositionChecker(RulebookChecker):
     def visit_functiondef(self, node: FunctionDef) -> None:
         # target special function
         name: str = node.name
-        if name not in self.SPECIAL_FUNCTIONS:
+        if name not in self.COMMON_FUNCTIONS:
             return
 
         current: NodeNG = node
@@ -44,12 +46,12 @@ class CommonFunctionPositionChecker(RulebookChecker):
             # checks for violation
             if isinstance(current, FunctionDef) and \
                 not _has_decorator(current, 'staticmethod') and \
-                current.name not in self.SPECIAL_FUNCTIONS:
+                current.name not in self.COMMON_FUNCTIONS:
                 self.add_message(self.MSG, node=node, args=name)
                 return
 
             current = current.next_sibling()
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(CommonFunctionPositionChecker(linter))

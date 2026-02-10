@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from re import Pattern, compile as re
 
 from astroid.nodes import ClassDef
@@ -5,6 +7,7 @@ from pylint.typing import TYPE_CHECKING, Options
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages
+from rulebook_pylint.options import MEANINGLESS_WORDS_OPTION
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -24,15 +27,7 @@ class MeaninglessWordChecker(RulebookChecker):
     name: str = 'meaningless-word'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_ALL, MSG_UTIL)
     options: Options = (
-        (
-            'rulebook-meaningless-words',
-            {
-                'default': ('Util', 'Utility', 'Helper', 'Manager', 'Wrapper'),
-                'type': 'csv',
-                'metavar': '<comma-separated values>',
-                'help': 'A set of banned names.',
-            },
-        ),
+        MEANINGLESS_WORDS_OPTION,
     )
 
     _words: list[str]
@@ -57,5 +52,5 @@ class MeaninglessWordChecker(RulebookChecker):
         self.add_message(self.MSG_ALL, node=node, args=word, col_offset=node.col_offset + 6)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(MeaninglessWordChecker(linter))

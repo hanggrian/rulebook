@@ -15,9 +15,8 @@ class MeaninglessWordRuleTest : AbstractRuleTestCase<MeaninglessWordRule>() {
         rule.assertProperties()
         assertIs<MeaninglessWordVisitor>(rule.astVisitor)
 
-        val rule = MeaninglessWordRule()
-        rule.words = "Hello, World"
-        assertThat(rule.wordList).containsExactly("Hello", "World")
+        rule.setWords("Hello, World")
+        assertThat(rule.wordSet).containsExactly("Hello", "World")
     }
 
     @Test

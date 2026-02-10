@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tokenize import TokenInfo, COMMENT
 
 from pylint.typing import TYPE_CHECKING
@@ -27,5 +29,5 @@ class CommentSpaceChecker(RulebookTokenChecker):
             self.add_message(self.MSG, line=token.start[0], col_offset=token.start[1])
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(CommentSpaceChecker(linter))

@@ -2,6 +2,7 @@ from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.options import ILLEGAL_VARIABLE_NAMES_OPTION
 
 try:
     from cppcheckdata import Token
@@ -13,8 +14,7 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#illegal-variable-name"""
     ID: str = 'illegal-variable-name'
     MSG: str = 'illegal.variable.name'
-    ARG_ILLEGAL_VARIABLE_NAMES: str = 'illegal-variable-names'
-    ARGS = [ARG_ILLEGAL_VARIABLE_NAMES]
+    ARGS: list[str] = [ILLEGAL_VARIABLE_NAMES_OPTION]
 
     def __init__(self):
         super().__init__()
@@ -24,7 +24,7 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
     @override
     def before_run(self, args: dict[str, str]) -> None:
         self._illegal_variable_names = \
-            set(args[self.ARG_ILLEGAL_VARIABLE_NAMES].split(','))
+            set(args[ILLEGAL_VARIABLE_NAMES_OPTION].split(','))
 
     def process_token(self, token: Token) -> None:
         if token.variable and token is token.variable.nameToken:

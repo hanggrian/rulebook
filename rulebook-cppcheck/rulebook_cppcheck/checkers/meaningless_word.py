@@ -4,6 +4,7 @@ from typing import override
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.nodes import _prev_sibling
+from rulebook_cppcheck.options import MEANINGLESS_WORDS_OPTION
 
 try:
     from cppcheckdata import Scope, Token
@@ -15,8 +16,7 @@ class MeaninglessWordChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#meaningless-word"""
     ID: str = 'meaningless-word'
     MSG: str = 'meaningless.word'
-    ARG_MEANINGLESS_WORDS: str = 'meaningless-words'
-    ARGS = [ARG_MEANINGLESS_WORDS]
+    ARGS: list[str] = [MEANINGLESS_WORDS_OPTION]
 
     TITLE_CASE_REGEX: Pattern = \
         re(
@@ -32,7 +32,7 @@ class MeaninglessWordChecker(RulebookChecker):
     @override
     def before_run(self, args: dict[str, str]) -> None:
         self._words = \
-            set(args[self.ARG_MEANINGLESS_WORDS].split(','))
+            set(args[MEANINGLESS_WORDS_OPTION].split(','))
 
     @override
     def get_scope_set(self) -> set[str]:

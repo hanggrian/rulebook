@@ -34,7 +34,7 @@ public class BooleanPropertyInteropRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // collect fields declared in constructor
-        val properties = mutableListOf<ASTNode>()
+        val properties = hashSetOf<ASTNode>()
         if (node.elementType === CLASS) {
             val primaryConstructor =
                 node

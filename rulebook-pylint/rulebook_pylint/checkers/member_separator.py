@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import ClassDef, Assign, FunctionDef, NodeNG
 from pylint.typing import TYPE_CHECKING
 
@@ -50,5 +52,5 @@ class MemberSeparatorChecker(RulebookFileChecker):
             )
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(MemberSeparatorChecker(linter))

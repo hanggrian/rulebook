@@ -11,4 +11,8 @@ internal val JAVADOC_REGEX = Regex("""$JAVADOC_START$JAVADOC_ANY_LINES$JAVADOC_E
 internal fun String.trimComment() = substringBefore("//").trimEnd()
 
 /** Interpret XML configuration as a collection. */
-internal fun String?.splitToList() = this?.split(',')?.map { it.trim() } ?: emptyList()
+internal fun String.splitToList() =
+    when {
+        isBlank() -> emptyList()
+        else -> split(',').map { it.trim() }
+    }

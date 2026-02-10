@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from astroid.nodes import Module
 from pylint.typing import TYPE_CHECKING
 
@@ -26,5 +28,5 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
                 self.add_message(self.MSG, line=i + 1)
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(DuplicateBlankLineChecker(linter))

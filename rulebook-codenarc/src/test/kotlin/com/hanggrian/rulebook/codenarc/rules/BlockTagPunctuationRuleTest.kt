@@ -1,5 +1,6 @@
 package com.hanggrian.rulebook.codenarc.rules
 
+import com.google.common.truth.Truth.assertThat
 import com.hanggrian.rulebook.codenarc.assertProperties
 import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
@@ -8,7 +9,12 @@ class BlockTagPunctuationRuleTest : AbstractRuleTestCase<BlockTagPunctuationRule
     override fun createRule() = BlockTagPunctuationRule()
 
     @Test
-    fun `Rule properties`() = rule.assertProperties()
+    fun `Rule properties`() {
+        rule.assertProperties()
+
+        rule.setTags("@author, @see")
+        assertThat(rule.tagSet).containsExactly("@author", "@see")
+    }
 
     @Test
     fun `No description`() =

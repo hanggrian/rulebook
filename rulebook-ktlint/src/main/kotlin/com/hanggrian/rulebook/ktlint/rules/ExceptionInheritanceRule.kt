@@ -54,7 +54,7 @@ public class ExceptionInheritanceRule : RulebookRule(ID) {
         private const val MSG = "exception.inheritance"
 
         private val NON_APPLICATION_EXCEPTIONS =
-            setOf(
+            hashSetOf(
                 "Error",
                 "Throwable",
                 "java.lang.Error",

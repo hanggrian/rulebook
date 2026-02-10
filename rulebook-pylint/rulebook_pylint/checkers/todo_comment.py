@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from codecs import decode
 
 from astroid.nodes import Module
@@ -42,5 +44,5 @@ class TodoCommentChecker(RulebookFileChecker):
                     self.add_message(self.MSG_SEPARATOR, line=line_no, args=match.group(0)[-1])
 
 
-def register(linter: 'PyLinter') -> None:
+def register(linter: PyLinter) -> None:
     linter.register_checker(TodoCommentChecker(linter))

@@ -2,6 +2,7 @@ from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.options import MEMBER_ORDER_OPTION
 
 try:
     from cppcheckdata import Scope, Token, Function, Variable
@@ -13,8 +14,7 @@ class MemberOrderChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#member-order"""
     ID: str = 'member-order'
     MSG: str = 'member.order'
-    ARG_MEMBER_ORDER: str = 'member-order'
-    ARGS = [ARG_MEMBER_ORDER]
+    ARGS: list[str] = [MEMBER_ORDER_OPTION]
 
     def __init__(self):
         super().__init__()
@@ -31,7 +31,7 @@ class MemberOrderChecker(RulebookTokenChecker):
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
-        self._member_order = args[self.ARG_MEMBER_ORDER].split(',')
+        self._member_order = args[MEMBER_ORDER_OPTION].split(',')
         self._property_position = self._member_order.index('property')
         self._constructor_position = self._member_order.index('constructor')
         self._function_position = self._member_order.index('function')

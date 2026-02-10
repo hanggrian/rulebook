@@ -46,8 +46,8 @@ public class CommonFunctionPositionRule : RulebookRule(ID) {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:common-function-position")
         private const val MSG = "common.function.position"
 
-        private val BUILTIN_FUNCTIONS =
-            setOf(
+        private val COMMON_FUNCTIONS =
+            hashSetOf(
                 "toString",
                 "hashCode",
                 "equals",
@@ -55,6 +55,6 @@ public class CommonFunctionPositionRule : RulebookRule(ID) {
 
         private fun ASTNode.isBuiltInFunction() =
             hasModifier(OVERRIDE_KEYWORD) &&
-                findChildByType(IDENTIFIER)?.text in BUILTIN_FUNCTIONS
+                findChildByType(IDENTIFIER)?.text in COMMON_FUNCTIONS
     }
 }
