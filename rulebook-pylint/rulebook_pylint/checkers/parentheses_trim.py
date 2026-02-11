@@ -16,6 +16,9 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
     MSG_FIRST: str = 'parentheses.trim.first'
     MSG_LAST: str = 'parentheses.trim.last'
 
+    OPENING_PARENTHESES: set[str] = {'(', '[', '{'}
+    CLOSING_PARENTHESES: set[str] = {')', ']', '}'}
+
     name: str = 'parentheses-trim'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_FIRST, MSG_LAST)
 
@@ -24,7 +27,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
             # find opening and closing parentheses
             if token.type is not OP:
                 continue
-            if token.string in {'(', '[', '{'}:
+            if token.string in self.OPENING_PARENTHESES:
                 # checks for violation
                 if i + 2 >= len(tokens):
                     continue
@@ -40,7 +43,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                 )
 
             # checks for violation
-            if token.string not in {')', ']', '}'}:
+            if token.string not in self.CLOSING_PARENTHESES:
                 continue
             if i - 2 < 0:
                 continue

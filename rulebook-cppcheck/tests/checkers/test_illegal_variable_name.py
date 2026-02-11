@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch, call
 
 from rulebook_cppcheck.checkers.illegal_variable_name import IllegalVariableNameChecker
 from rulebook_cppcheck.messages import _Messages
@@ -14,25 +14,39 @@ class TestIllegalVariableNameChecker(CheckerTestCase):
 
     @patch.object(IllegalVariableNameChecker, 'report_error')
     def test_descriptive_names(self, mock_report):
-        self.checker.process_token(self._create_var_token('age'))
-        self.checker.process_token(self._create_var_token('name'))
-        self.checker.process_token(self._create_var_token('height'))
-        self.checker.process_token(self._create_var_token('weight'))
+        [
+            self.checker.process_token(token) for token in self.dump_tokens(
+                '''
+                int age = 0;
+                string[1] names = {""};
+                ''',
+            )
+        ]
         mock_report.assert_not_called()
 
     @patch.object(IllegalVariableNameChecker, 'report_error')
     def test_prohibited_names(self, mock_report):
-        self.checker.process_token(self._create_var_token('integer'))
-        self.checker.process_token(self._create_var_token('string'))
-        self.assertEqual(mock_report.call_count, 2)
-        self.assertEqual(mock_report.call_args_list[0][0][1], _Messages.get(self.checker.MSG))
-        self.assertEqual(mock_report.call_args_list[1][0][1], _Messages.get(self.checker.MSG))
-
-    @staticmethod
-    def _create_var_token(name):
-        token = MagicMock(str=name, function=None)
-        token.variable = MagicMock(nameToken=token)
-        return token
+        tokens = \
+            self.dump_tokens(
+                '''
+                int integer = 0;
+                string strings[1] = {""};
+                ''',
+            )
+        [self.checker.process_token(token) for token in tokens]
+        mock_report.assert_has_calls(
+            [
+                call(
+                    next(t for t in tokens if t.str == 'integer'),
+                    _Messages.get(self.checker.MSG),
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'strings'),
+                    _Messages.get(self.checker.MSG),
+                ),
+            ],
+            any_order=True,
+        )
 
 
 if __name__ == '__main__':

@@ -15,6 +15,8 @@ class RedundantElseChecker(RulebookTokenChecker):
     ID: str = 'redundant-else'
     MSG: str = 'redundant.else'
 
+    ELSE_SIBLING_TOKENS: set[str] = {'else', ';'}
+
     @override
     def process_token(self, token: Token) -> None:
         if token.str != 'if':
@@ -52,7 +54,7 @@ class RedundantElseChecker(RulebookTokenChecker):
             curr_token = \
                 _next_sibling(
                     curr_token,
-                    lambda t: t.str in {'else', ';'},
+                    lambda t: t.str in RedundantElseChecker.ELSE_SIBLING_TOKENS,
                 )
             if curr_token and curr_token.str == ';':
                 curr_token = curr_token.next

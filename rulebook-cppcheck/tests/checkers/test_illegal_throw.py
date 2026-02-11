@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.illegal_throw import IllegalThrowChecker
 from rulebook_cppcheck.messages import _Messages
@@ -13,31 +13,50 @@ class TestIllegalThrowChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(IllegalThrowChecker, 'report_error')
-    def test_legal_throw(self, mock_report):
-        token = MagicMock(str='throw')
-        exc = MagicMock(str='std::invalid_argument')
-        semi = MagicMock(str=';')
-        token.next = exc
-        exc.next = semi
-        self.checker.process_token(token)
+    def test_throw_narrow_exceptions(self, mock_report):
+        [
+            self.checker.process_token(token) for token in self.dump_tokens(
+                '''
+                void foo() {
+                    throw std::invalid_argument("foo");
+                }
+                void bar() {
+                    throw std::runtime_error("bar");
+                }
+                ''',
+            )
+        ]
         mock_report.assert_not_called()
 
     @patch.object(IllegalThrowChecker, 'report_error')
-    def test_illegal_throw_violations(self, mock_report):
-        token = MagicMock(str='throw')
-        std = MagicMock(str='std')
-        colon = MagicMock(str='::')
-        exc = MagicMock(str='exception')
-        semi = MagicMock(str=';')
-        token.next = std
-        std.next = colon
-        colon.next = exc
-        exc.next = semi
-        self.checker.process_token(token)
-        mock_report.assert_called_once()
-        self.assertEqual(mock_report.call_args[0][0].str, 'exception')
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG))
+    def test_throw_broad_exceptions(self, mock_report):
+        tokens = \
+            self.dump_tokens(
+                '''
+                void foo() {
+                    throw std::exception();
+                }
+                ''',
+            )
+        [self.checker.process_token(token) for token in tokens]
+        mock_report.assert_called_once_with(
+            next(t for t in tokens if t.str == 'exception'),
+            _Messages.get(self.checker.MSG),
+        )
+
+    @patch.object(IllegalThrowChecker, 'report_error')
+    def test_skip_throwing_by_reference(self, mock_report):
+        [
+            self.checker.process_token(token) for token in self.dump_tokens(
+                '''
+                void foo() {
+                    auto e = std::exception();
+                    throw e;
+                }
+                ''',
+            )
+        ]
+        mock_report.assert_not_called()
 
 
 if __name__ == '__main__':

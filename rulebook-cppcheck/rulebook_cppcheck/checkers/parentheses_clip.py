@@ -14,6 +14,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
     ID: str = 'parentheses-clip'
     MSG: str = 'parentheses.clip'
 
+    TARGET_SCOPES: set[str] = {'Try', 'Catch', 'If', 'Else'}
     PARENTHESES: dict[str, str] = {
         '{': '}',
         '(': ')',
@@ -29,7 +30,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
 
         # skip statements that can have multiple braces
         scope: Scope | None = token.scope
-        if scope and scope.type in {'Try', 'Catch', 'If', 'Else'}:
+        if scope and scope.type in self.TARGET_SCOPES:
             if scope.type != 'If':
                 return
             if scope.bodyEnd.next and scope.bodyEnd.next.str == 'else':
@@ -43,6 +44,6 @@ class ParenthesesClipChecker(RulebookTokenChecker):
         if not next_token or next_token.str != closing_parenthesis:
             return
         if token.linenr == next_token.linenr and \
-            token.column + len(token.str) == next_token.column:
+            token.column + 1 == next_token.column:
             return
         self.report_error(token, _Messages.get(self.MSG, token.str + closing_parenthesis))

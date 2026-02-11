@@ -14,9 +14,12 @@ class InnerClassPositionChecker(RulebookTokenChecker):
     ID: str = 'inner-class-position'
     MSG: str = 'inner.class.position'
 
+    TARGET_SCOPES: set[str] = {'Class', 'Struct'}
+    TARGET_TOKENS: set[str] = {'class', 'struct'}
+
     @override
     def process_token(self, token: Token) -> None:
-        if not token.scope or token.scope.type not in ('Class', 'Struct'):
+        if not token.scope or token.scope.type not in self.TARGET_SCOPES:
             return
         if token is not token.scope.bodyStart:
             return
@@ -24,7 +27,7 @@ class InnerClassPositionChecker(RulebookTokenChecker):
         has_seen_inner_class: bool = False
         curr_token: Token | None = token.next
         while curr_token and curr_token is not current_class_scope.bodyEnd:
-            if curr_token.str in {'class', 'struct'} and curr_token.next:
+            if curr_token.str in self.TARGET_TOKENS and curr_token.next:
                 if curr_token.next.typeScope and \
                     curr_token.next.typeScope.nestedIn is current_class_scope:
                     has_seen_inner_class = True

@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.block_comment_spaces import BlockCommentSpacesChecker
 from rulebook_cppcheck.messages import _Messages
@@ -15,7 +15,7 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
     @patch.object(BlockCommentSpacesChecker, 'report_error')
     def test_untrimmed_block_comment(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /** Summary. */
             fun foo() {}
@@ -33,7 +33,7 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
     @patch.object(BlockCommentSpacesChecker, 'report_error')
     def test_trimmed_block_comment(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**Summary.*/
             fun foo() {}
@@ -60,7 +60,7 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
     @patch.object(BlockCommentSpacesChecker, 'report_error')
     def test_unconventional_block_tags(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**
              *Summary.

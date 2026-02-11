@@ -16,6 +16,9 @@ class TrailingCommaChecker(RulebookTokenChecker):
     MSG_SINGLE: str = 'trailing.comma.single'
     MSG_MULTI: str = 'trailing.comma.multi'
 
+    OPENING_PARENTHESES: set[str] = {'(', '[', '{'}
+    CLOSING_PARENTHESES: set[str] = {')', ']', '}'}
+
     name: str = 'trailing-comma'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_SINGLE, MSG_MULTI)
 
@@ -27,7 +30,7 @@ class TrailingCommaChecker(RulebookTokenChecker):
         for i, token in enumerate(tokens):
             # find closing parenthesis
             if token.type is not OP or \
-                token.string not in [')', ']', '}']:
+                token.string not in self.CLOSING_PARENTHESES:
                 continue
 
             # skip sole generator like `any(...)`
@@ -63,9 +66,9 @@ class TrailingCommaChecker(RulebookTokenChecker):
         for i in range(close_index - 1, -1, -1):
             token = tokens[i]
             if token.type is OP:
-                if token.string in {')', ']', '}'}:
+                if token.string in TrailingCommaChecker.CLOSING_PARENTHESES:
                     nesting += 1
-                elif token.string in {'(', '[', '{'}:
+                elif token.string in TrailingCommaChecker.OPENING_PARENTHESES:
                     if nesting == 0:
                         return has_for and not has_comma_at_root
                     nesting -= 1

@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_cppcheck.messages import _Messages
@@ -15,7 +15,7 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     @patch.object(BlockCommentTrimChecker, 'report_error')
     def test_block_comment_without_initial_and_final_newline(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**
              * Lorem ipsum.
@@ -28,7 +28,7 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     @patch.object(BlockCommentTrimChecker, 'report_error')
     def test_block_comment_with_initial_and_final_newline(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**
              *
@@ -49,7 +49,7 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     @patch.object(BlockCommentTrimChecker, 'report_error')
     def test_block_tag_description_with_final_newline(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**
              * @return a number.
@@ -66,7 +66,7 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     @patch.object(BlockCommentTrimChecker, 'report_error')
     def test_skip_single_line_block_comment(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /** Lorem ipsum. */
             int foo() {}
@@ -77,7 +77,7 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     @patch.object(BlockCommentTrimChecker, 'report_error')
     def test_skip_blank_block_comment(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**
              *
@@ -90,7 +90,7 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     @patch.object(BlockCommentTrimChecker, 'report_error')
     def test_skip_multiline_block_tag_description(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**
              * @param bar Lorem ipsum

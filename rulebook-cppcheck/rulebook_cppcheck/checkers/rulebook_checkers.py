@@ -61,7 +61,7 @@ class RulebookChecker(BaseChecker, ABC):
 
 class RulebookTokenChecker(BaseChecker, ABC):
     @abstractmethod
-    def process_token(self, token: list[Token]) -> None:
+    def process_token(self, token: Token) -> None:
         pass
 
     @override

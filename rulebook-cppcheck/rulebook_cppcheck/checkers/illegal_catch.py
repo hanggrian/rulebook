@@ -15,6 +15,13 @@ class IllegalCatchChecker(RulebookTokenChecker):
     ID: str = 'illegal-catch'
     MSG: str = 'illegal.catch'
 
+    ILLEGAL_EXCEPTIONS: set[str] = {
+        'exception',
+        'exception&',
+        'std::exception',
+        'std::exception&',
+    }
+
     @override
     def process_token(self, token: Token) -> None:
         if token.str != 'catch':
@@ -26,8 +33,6 @@ class IllegalCatchChecker(RulebookTokenChecker):
         if ellipses_token and ellipses_token.str == '...':
             self.report_error(token, _Messages.get(self.MSG))
             return
-        if _next_sibling(next_token.next, lambda t: t.str != ')').str \
-            not in {'exception', 'std::exception'}:
+        if not _next_sibling(next_token.next, lambda t: t.str in self.ILLEGAL_EXCEPTIONS):
             return
         self.report_error(token, _Messages.get(self.MSG))
-

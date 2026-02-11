@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch, call
 
 from rulebook_cppcheck.checkers.generic_name import GenericNameChecker
 from rulebook_cppcheck.messages import _Messages
@@ -14,88 +14,112 @@ class TestGenericNameChecker(CheckerTestCase):
 
     @patch.object(GenericNameChecker, 'report_error')
     def test_correct_generic_name_in_class(self, mock_report):
-        self.checker.process_token(
-            self._create_template_chain(
-                ['template', '<', 'typename', 'T', '>', 'class', 'MyClass'],
-            )[0],
-        )
-        self.checker.process_token(
-            self._create_template_chain(
-                ['template', '<', 'class', 'V', '>', 'class', 'MyInterface'],
-            )[0],
-        )
+        [
+            self.checker.process_token(token) for token in self.dump_tokens(
+                '''
+                template <typename T> class MyClass {}
+                template <class V> interface MyInterface {}
+                ''',
+            )
+        ]
         mock_report.assert_not_called()
 
     @patch.object(GenericNameChecker, 'report_error')
     def test_incorrect_generic_name_in_class(self, mock_report):
-        self.checker.process_token(
-            self._create_template_chain(
-                ['template', '<', 'typename', 'XA', '>', 'class', 'MyClass'],
-            )[0],
+        tokens = \
+            self.dump_tokens(
+                '''
+                template <typename XA> class MyClass {}
+                template <typename Xa> class MyClass2 {}
+                template <typename aX> class MyClass3 {}
+                template <typename a_x> class MyClass4 {}
+                template <typename A_X> class MyClass5 {}
+                ''',
+            )
+        [self.checker.process_token(token) for token in tokens]
+        mock_report.assert_has_calls(
+            [
+                call(
+                    next(t for t in tokens if t.str == 'XA'),
+                    _Messages.get(self.checker.MSG),
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'Xa'),
+                    _Messages.get(self.checker.MSG),
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'aX'),
+                    _Messages.get(self.checker.MSG),
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'a_x'),
+                    _Messages.get(self.checker.MSG),
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'A_X'),
+                    _Messages.get(self.checker.MSG),
+                ),
+            ],
+            any_order=True,
         )
-        self.checker.process_token(
-            self._create_template_chain(
-                ['template', '<', 'typename', 'Xa', '>', 'class', 'MyClass'],
-            )[0],
-        )
-        self.assertEqual(mock_report.call_count, 2)
-        msg = _Messages.get(self.checker.MSG)
-        self.assertEqual(mock_report.call_args_list[0][0][1], msg)
-        self.assertEqual(mock_report.call_args_list[0][0][0].str, 'XA')
 
     @patch.object(GenericNameChecker, 'report_error')
     def test_correct_generic_name_in_function(self, mock_report):
-        self.checker.process_token(
-            self._create_template_chain(
-                ['template', '<', 'typename', 'E', '>', 'void', 'execute'],
-            )[0],
-        )
+        [
+            self.checker.process_token(token)
+            for token in self.dump_tokens('template <typename E> void execute() {}')
+        ]
         mock_report.assert_not_called()
 
     @patch.object(GenericNameChecker, 'report_error')
     def test_incorrect_generic_name_in_function(self, mock_report):
-        self.checker.process_token(
-            self._create_template_chain(
-                ['template', '<', 'typename', 'Xa', '>', 'void', 'execute'],
-            )[0],
+        tokens = \
+            self.dump_tokens(
+                '''
+                template <typename Xa> void execute() {}
+                template <typename aX> void execute2() {}
+                ''',
+            )
+        [self.checker.process_token(token) for token in tokens]
+        mock_report.assert_has_calls(
+            [
+                call(
+                    next(t for t in tokens if t.str == 'Xa'),
+                    _Messages.get(self.checker.MSG),
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'aX'),
+                    _Messages.get(self.checker.MSG),
+                ),
+            ],
+            any_order=True,
         )
-        self.assertEqual(mock_report.call_count, 1)
-        self.assertEqual(mock_report.call_args[0][0].str, 'Xa')
+
+    @patch.object(GenericNameChecker, 'report_error')
+    def test_skip_multiple_generics(self, mock_report):
+        [
+            self.checker.process_token(token) for token in self.dump_tokens(
+                '''
+                template <typename Xa, typename Ax> class Foo {}
+                template <typename Bar, typename Baz> void bar() {}
+                ''',
+            )
+        ]
+        mock_report.assert_not_called()
 
     @patch.object(GenericNameChecker, 'report_error')
     def test_skip_inner_generics(self, mock_report):
-        self.checker.process_token(
-            self._create_template_chain(
-                ['template', '<', 'typename', 'T', '>', 'class', 'Foo'],
-            )[0],
-        )
+        [
+            self.checker.process_token(token) for token in self.dump_tokens(
+                '''
+                template <typename T> class Foo {
+                    template <typename X> class Bar {}
+                    template <typename Y> void bar() {}
+                };
+                ''',
+            )
+        ]
         mock_report.assert_not_called()
-
-    @staticmethod
-    def _create_template_chain(token_strs):
-        mocks = []
-        for s in token_strs:
-            t = MagicMock()
-            t.str = s
-            t.type = \
-                'name' if s not in {
-                    'template',
-                    '<',
-                    '>',
-                    ',',
-                    '...',
-                    'typename',
-                    'class',
-                    'void',
-                } else 'keyword'
-            mocks.append(t)
-        for i in range(len(mocks) - 1):
-            mocks[i].next = mocks[i + 1]
-        open_bracket = next((m for m in mocks if m.str == '<'), None)
-        close_bracket = next((m for m in reversed(mocks) if m.str == '>'), None)
-        if open_bracket and close_bracket:
-            open_bracket.link = close_bracket
-        return mocks
 
 
 if __name__ == '__main__':

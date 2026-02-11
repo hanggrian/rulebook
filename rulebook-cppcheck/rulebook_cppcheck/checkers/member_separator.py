@@ -15,6 +15,8 @@ class MemberSeparatorChecker(RulebookChecker):
     ID: str = 'member-separator'
     MSG: str = 'member.separator'
 
+    OPENING_TOKENS: set[str] = {'{', ';'}
+
     @override
     def get_scope_set(self) -> set[str]:
         return {'Class', 'Struct'}
@@ -33,7 +35,7 @@ class MemberSeparatorChecker(RulebookChecker):
                     search = \
                         _next_sibling(
                             curr_token.function.tokenDef,
-                            lambda t: t.str in {'{', ';'} or t is scope.bodyEnd,
+                            lambda t: t.str in self.OPENING_TOKENS or t is scope.bodyEnd,
                         )
                     if search and search.str == '{' and search.link:
                         end_token = search.link

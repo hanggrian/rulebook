@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.indent_style import IndentStyleChecker
 from rulebook_cppcheck.messages import _Messages
@@ -13,35 +13,33 @@ class TestIndentStyleChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(IndentStyleChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data='    int x = 0;',
-    )
-    def test_valid_indentation(self, mock_file, mock_report):
-        self.checker.process_token(self._create_token(line_nr=1))
+    def test_valid_indentation(self, mock_report):
+        [
+            self.checker.process_token(token) for token in self.dump_tokens(
+                '''
+                void foo() {
+                    int bar = 0;
+                }
+                ''',
+            )
+        ]
         mock_report.assert_not_called()
-        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
 
     @patch.object(IndentStyleChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data='  int x = 0;',
-    )
-    def test_invalid_indentation(self, mock_file, mock_report):
-        self.checker.process_token(self._create_token(line_nr=1))
-        mock_report.assert_called_once()
-        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG, 4))
-
-    @staticmethod
-    def _create_token(line_nr):
-        token = MagicMock()
-        token.file = 'test.cpp'
-        token.linenr = line_nr
-        return token
+    def test_invalid_indentation(self, mock_report):
+        tokens = \
+            self.dump_tokens(
+                '''
+                void foo() {
+                 int bar = 0;
+                }
+                ''',
+            )
+        [self.checker.process_token(token) for token in tokens]
+        mock_report.assert_called_once_with(
+            next(t for t in tokens if t.str == 'int'),
+            _Messages.get(self.checker.MSG, 4),
+        )
 
 
 if __name__ == '__main__':

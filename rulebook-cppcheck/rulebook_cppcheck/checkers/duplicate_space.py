@@ -14,6 +14,31 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
     ID: str = 'duplicate-space'
     MSG: str = 'duplicate.space'
 
+    TARGET_TOKENS: tuple[str, ...] = (
+        '=',
+        ',',
+        ';',
+        '::',
+        '(',
+        ')',
+        '{',
+        '}',
+        '<',
+        '>',
+        'if',
+        'else',
+        'while',
+        'for',
+        'switch',
+        'catch',
+        'return',
+        'string',
+        'constexpr',
+        'inline',
+        'static',
+        'const',
+    )
+
     @override
     def process_token(self, token: Token) -> None:
         next_token: Token | None = token.next
@@ -30,29 +55,6 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
         gap: int = next_token.column - (token.column + len(token.str))
         if next_token.str.startswith('//') or next_token.str.startswith('/*'):
             return gap > 2
-        if any(s in (token.str, next_token.str) for s in (
-                '=',
-                ',',
-                ';',
-                '::',
-                '(',
-                ')',
-                '{',
-                '}',
-                '<',
-                '>',
-                'if',
-                'else',
-                'while',
-                'for',
-                'switch',
-                'catch',
-                'return',
-                'string',
-                'constexpr',
-                'inline',
-                'static',
-                'const',
-        )):
+        if any(s in (token.str, next_token.str) for s in DuplicateSpaceChecker.TARGET_TOKENS):
             return False
         return gap > 1

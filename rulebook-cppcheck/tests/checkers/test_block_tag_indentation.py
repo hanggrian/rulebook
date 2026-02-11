@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.block_tag_indentation import BlockTagIndentationChecker
 from rulebook_cppcheck.messages import _Messages
@@ -15,7 +15,7 @@ class TestBlockTagIndentationChecker(CheckerTestCase):
     @patch.object(BlockTagIndentationChecker, 'report_error')
     def test_indented_block_tag_description(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**
              * @constructor lorem
@@ -31,7 +31,7 @@ class TestBlockTagIndentationChecker(CheckerTestCase):
     @patch.object(BlockTagIndentationChecker, 'report_error')
     def test_unindented_block_tag_description(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /**
              * @constructor lorem

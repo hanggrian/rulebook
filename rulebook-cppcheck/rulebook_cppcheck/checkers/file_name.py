@@ -15,12 +15,14 @@ class FileNameChecker(RulebookFileChecker):
     ID: str = 'file-name'
     MSG: str = 'file.name'
 
-    SNAKE_CASE_REGEX: Pattern = re(r'^[a-z0-9_]+\.(c|cpp)$')
+    SNAKE_CASE_REGEX: Pattern = re(r'^[a-z0-9_]+\.(c|cpp|h|hpp)$')
 
     @override
     def check_file(self, token: Token, content: str) -> None:
         # checks for violation
         filename: str = token.file.split('/')[-1]
+        if '_' in filename:  # remove prefix 'XXXXX_file.c' likely from dump
+            filename = filename.split('_')[-1]
         if self.SNAKE_CASE_REGEX.match(filename):
             return
         self.report_error(

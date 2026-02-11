@@ -33,7 +33,6 @@ from rulebook_cppcheck.checkers.lowercase_f import LowercaseFChecker
 from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_cppcheck.checkers.member_order import MemberOrderChecker
 from rulebook_cppcheck.checkers.member_separator import MemberSeparatorChecker
-from rulebook_cppcheck.checkers.nested_if_else import NestedIfElseChecker
 from rulebook_cppcheck.checkers.operator_wrap import OperatorWrapChecker
 from rulebook_cppcheck.checkers.package_name import PackageNameChecker
 from rulebook_cppcheck.checkers.parameter_wrap import ParameterWrapChecker
@@ -87,7 +86,6 @@ if __name__ == '__main__':
         # Stating
         IllegalCatchChecker(),
         IllegalThrowChecker(),
-        NestedIfElseChecker(),
         RedundantDefaultChecker(),
         RedundantElseChecker(),
         UnnecessarySwitchChecker(),

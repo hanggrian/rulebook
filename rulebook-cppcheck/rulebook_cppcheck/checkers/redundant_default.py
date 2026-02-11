@@ -15,6 +15,8 @@ class RedundantDefaultChecker(RulebookTokenChecker):
     ID: str = 'redundant-default'
     MSG: str = 'redundant.default'
 
+    BREAK_STATEMENTS: set[str] = {'return', 'continue', 'throw', 'goto'}
+
     @override
     def process_token(self, token: Token) -> None:
         if token.str != 'switch':
@@ -49,7 +51,7 @@ class RedundantDefaultChecker(RulebookTokenChecker):
             has_jump: bool = False
             search: Token | None = case_colon.next
             while search and search is not limit:
-                if search.str in {'return', 'break', 'continue', 'throw', 'goto'}:
+                if search.str in self.BREAK_STATEMENTS:
                     has_jump = True
                     break
                 search = search.next

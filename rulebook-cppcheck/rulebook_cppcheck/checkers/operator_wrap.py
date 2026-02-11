@@ -16,14 +16,17 @@ class OperatorWrapChecker(RulebookTokenChecker):
     MSG_MISSING: str = 'operator.wrap.missing'
     MSG_UNEXPECTED: str = 'operator.wrap.unexpected'
 
+    TARGET_TOKENS: set[str] = {'(', ')', '[', ']', '{', '}', ',', '.', '::', '?', ':'}
+
     @override
     def process_token(self, token: Token) -> None:
-        if not token.isOp or token.isAssignmentOp or token.str in \
-            {'(', ')', '[', ']', '{', '}', ',', '.', '::', '?', ':'}:
+        if not token.isOp or \
+            token.isAssignmentOp or \
+            not (token.astOperand1 and token.astOperand2) or \
+            token.str in self.TARGET_TOKENS:
             return
 
-        prev_token: Token | None = token.previous
-        if prev_token and token.linenr > prev_token.linenr:
+        if token.previous and token.linenr > token.previous.linenr:
             self.report_error(token, _Messages.get(self.MSG_UNEXPECTED, token.str))
             return
 
@@ -32,27 +35,13 @@ class OperatorWrapChecker(RulebookTokenChecker):
             return
 
         top_node: Token | None = _parent(token, lambda t: t.isOp and not t.isAssignmentOp)
-
         start_token: Token | None = top_node
         while start_token.astOperand1:
             start_token = start_token.astOperand1
-
         end_token: Token | None = top_node
         while end_token.astOperand2:
             end_token = end_token.astOperand2
 
-        if end_token.linenr <= start_token.linenr:
-            return
-        if next_token.linenr != token.linenr:
+        if end_token.linenr <= start_token.linenr or next_token.linenr != token.linenr:
             return
         self.report_error(token, _Messages.get(self.MSG_MISSING, token.str))
-
-    @staticmethod
-    def _get_expression_end(token: Token) -> Token:
-        curr_token: Token | None = token
-        while curr_token.astParent is token or \
-            (curr_token.astParent and curr_token.astParent.astOperand2 is curr_token):
-            if not curr_token.next or curr_token.next.str in {';', '}', ','}:
-                break
-            curr_token = curr_token.next
-        return curr_token

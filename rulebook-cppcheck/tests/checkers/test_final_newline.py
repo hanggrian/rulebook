@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
 from rulebook_cppcheck.messages import _Messages
@@ -15,7 +15,7 @@ class TestFinalNewlineChecker(CheckerTestCase):
     @patch.object(FinalNewlineChecker, 'report_error')
     def test_file_ends_with_newline(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             'content\n',
         )
         mock_report.assert_not_called()
@@ -23,7 +23,7 @@ class TestFinalNewlineChecker(CheckerTestCase):
     @patch.object(FinalNewlineChecker, 'report_error')
     def test_file_missing_newline(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             'content',
         )
         mock_report.assert_called_once()
@@ -33,7 +33,7 @@ class TestFinalNewlineChecker(CheckerTestCase):
     @patch.object(FinalNewlineChecker, 'report_error')
     def test_empty_file(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '',
         )
         mock_report.assert_not_called()

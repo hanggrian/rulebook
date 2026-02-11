@@ -39,8 +39,6 @@ member.separator=Add blank line after '{}'.
 # Stating
 illegal.catch=Catch a narrower type.
 illegal.throw=Throw a narrower type.
-nested.if.else.invert=Invert 'if' condition.
-nested.if.else.lift=Lift 'else' and add 'return' in 'if' block.
 redundant.default=Omit redundant 'default' condition.
 redundant.else=Omit redundant 'else' condition.
 unnecessary.switch=Replace 'switch' with 'if' condition.

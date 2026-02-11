@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.empty_file import EmptyFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -15,7 +15,7 @@ class TestEmptyFileChecker(CheckerTestCase):
     @patch.object(EmptyFileChecker, 'report_error')
     def test_non_empty_file(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '// comment',
         )
         mock_report.assert_not_called()
@@ -23,7 +23,7 @@ class TestEmptyFileChecker(CheckerTestCase):
     @patch.object(EmptyFileChecker, 'report_error')
     def test_empty_file(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '\n',
         )
         mock_report.assert_called_once()
@@ -33,7 +33,7 @@ class TestEmptyFileChecker(CheckerTestCase):
     @patch.object(EmptyFileChecker, 'report_error')
     def test_long_empty_file(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
 
             ''',

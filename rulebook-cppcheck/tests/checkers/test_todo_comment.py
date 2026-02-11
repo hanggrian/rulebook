@@ -1,8 +1,10 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
+
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
 from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
+
 
 class TestTodoCommentChecker(CheckerTestCase):
     CHECKER_CLASS = TodoCommentChecker
@@ -13,7 +15,7 @@ class TestTodoCommentChecker(CheckerTestCase):
     @patch.object(TodoCommentChecker, 'report_error')
     def test_uppercase_todo_comments(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             // TODO add tests
             // FIXME fix bug
@@ -24,7 +26,7 @@ class TestTodoCommentChecker(CheckerTestCase):
     @patch.object(TodoCommentChecker, 'report_error')
     def test_lowercase_todo_comments(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             // todo add tests
             // fixme fix bug
@@ -43,7 +45,7 @@ class TestTodoCommentChecker(CheckerTestCase):
     @patch.object(TodoCommentChecker, 'report_error')
     def test_unknown_todo_comments(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             // TODO: add tests
             // FIXME1 fix bug
@@ -62,7 +64,7 @@ class TestTodoCommentChecker(CheckerTestCase):
     @patch.object(TodoCommentChecker, 'report_error')
     def test_todos_in_block_comments(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             /** todo add tests */
 
@@ -84,7 +86,7 @@ class TestTodoCommentChecker(CheckerTestCase):
     @patch.object(TodoCommentChecker, 'report_error')
     def test_todo_keyword_mid_sentence(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             // Untested. Todo: add tests.
             ''',
@@ -98,6 +100,7 @@ class TestTodoCommentChecker(CheckerTestCase):
             mock_report.call_args_list[1][0][1],
             _Messages.get(self.checker.MSG_SEPARATOR, ':'),
         )
+
 
 if __name__ == '__main__':
     main()

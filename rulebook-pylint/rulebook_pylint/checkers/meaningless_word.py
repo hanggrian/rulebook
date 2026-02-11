@@ -18,6 +18,7 @@ class MeaninglessWordChecker(RulebookChecker):
     MSG_ALL: str = 'meaningless.word.all'
     MSG_UTIL: str = 'meaningless.word.util'
 
+    UTILITY_CLASS_NAMES: set[str] = {'Util', 'Utility'}
     TITLE_CASE_REGEX: Pattern = \
         re(
             r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|' +
@@ -41,7 +42,7 @@ class MeaninglessWordChecker(RulebookChecker):
         if not words or words[-1] not in self._words:
             return
         word: str = words[-1]
-        if word in {'Util', 'Utility'}:
+        if word in self.UTILITY_CLASS_NAMES:
             self.add_message(
                 self.MSG_UTIL,
                 node=node,

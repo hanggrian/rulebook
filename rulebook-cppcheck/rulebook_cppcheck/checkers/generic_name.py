@@ -15,6 +15,8 @@ class GenericNameChecker(RulebookTokenChecker):
     ID: str = 'generic-name'
     MSG: str = 'generic.name'
 
+    TARGET_TOKENS: set[str] = {'typename', 'class'}
+
     @override
     def process_token(self, token: Token) -> None:
         # only target template declaration
@@ -37,7 +39,7 @@ class GenericNameChecker(RulebookTokenChecker):
         # checks for violation
         keyword_token: Token = params[0]
         name_token: Token = params[1]
-        if keyword_token.str not in ('typename', 'class'):
+        if keyword_token.str not in self.TARGET_TOKENS:
             return
         name: str = name_token.str
         if name_token.type != 'name' or name == '...':

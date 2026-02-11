@@ -16,6 +16,8 @@ class CaseSeparatorChecker(RulebookChecker):
     MSG_MISSING: str = 'case.separator.missing'
     MSG_UNEXPECTED: str = 'case.separator.unexpected'
 
+    BRANCH_TOKENS: set[str] = {'case', 'default'}
+
     @override
     def get_scope_set(self) -> set[str]:
         return {'Switch'}
@@ -26,11 +28,11 @@ class CaseSeparatorChecker(RulebookChecker):
         groups: list[list[Token]] = []
         curr_token: Token | None = scope.bodyStart.next
         while curr_token and curr_token is not scope.bodyEnd:
-            if curr_token.str in {'case', 'default'}:
+            if curr_token.str in self.BRANCH_TOKENS:
                 temp: Token | None = \
                     _next_sibling(
                         curr_token.next,
-                        lambda t: t is not scope.bodyEnd and t.str not in {'case', 'default'},
+                        lambda t: t is not scope.bodyEnd and t.str not in self.BRANCH_TOKENS,
                     )
                 groups.append([curr_token, temp])
                 curr_token = temp

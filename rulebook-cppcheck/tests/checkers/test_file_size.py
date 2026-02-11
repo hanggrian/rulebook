@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.messages import _Messages
@@ -15,7 +15,7 @@ class TestFileSizeChecker(CheckerTestCase):
     @patch.object(FileSizeChecker, 'report_error')
     def test_small_file(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             'int x = 0;',
         )
         mock_report.assert_not_called()
@@ -23,7 +23,7 @@ class TestFileSizeChecker(CheckerTestCase):
     @patch.object(FileSizeChecker, 'report_error')
     def test_large_file(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '// a\n' * 1001,
         )
         mock_report.assert_called_once()

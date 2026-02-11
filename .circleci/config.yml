@@ -4,7 +4,7 @@ orbs:
   codecov: codecov/codecov@5.4.3
 
 executors:
-  minimal:
+  base:
     docker:
       - image: cimg/base:stable
   multiplatform:
@@ -13,7 +13,7 @@ executors:
 
 jobs:
   setup-workspace:
-    executor: minimal
+    executor: base
     steps:
       - checkout
       - persist_to_workspace:

@@ -15,7 +15,7 @@ class TestImportOrderChecker(CheckerTestCase):
     @patch.object(ImportOrderChecker, 'report_error')
     def test_valid_order(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             #include <numeric>
             #include <string>
@@ -27,7 +27,7 @@ class TestImportOrderChecker(CheckerTestCase):
     @patch.object(ImportOrderChecker, 'report_error')
     def test_invalid_sort(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             #include <string>
             #include <numeric>
@@ -40,7 +40,7 @@ class TestImportOrderChecker(CheckerTestCase):
     @patch.object(ImportOrderChecker, 'report_error')
     def test_invalid_group(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             #include "abc.h"
             #include <numeric>
@@ -53,7 +53,7 @@ class TestImportOrderChecker(CheckerTestCase):
     @patch.object(ImportOrderChecker, 'report_error')
     def test_invalid_join(self, mock_report):
         self.checker.check_file(
-            MagicMock(file='test.cpp'),
+            self.mock_file(),
             '''
             #include <numeric>
 

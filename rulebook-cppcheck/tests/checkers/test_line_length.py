@@ -1,5 +1,5 @@
 from unittest import main
-from unittest.mock import MagicMock, patch, mock_open
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
 from rulebook_cppcheck.messages import _Messages
@@ -13,35 +13,18 @@ class TestLineLengthChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(LineLengthChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data='int foo = 0;',
-    )
-    def test_valid_length(self, mock_file, mock_report):
-        self.checker.process_token(self._create_token(line_nr=1))
+    def test_valid_length(self, mock_report):
+        [self.checker.process_token(token) for token in self.dump_tokens('int foo = 0;')]
         mock_report.assert_not_called()
-        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
 
     @patch.object(LineLengthChecker, 'report_error')
-    @patch(
-        'builtins.open',
-        new_callable=mock_open,
-        read_data='a' * 101,
-    )
-    def test_invalid_length(self, mock_file, mock_report):
-        self.checker.process_token(self._create_token(line_nr=1))
-        mock_report.assert_called_once()
-        mock_file.assert_called_once_with('test.cpp', 'r', encoding='UTF-8')
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG, 100))
-
-    @staticmethod
-    def _create_token(line_nr):
-        token = MagicMock()
-        token.file = 'test.cpp'
-        token.linenr = line_nr
-        return token
+    def test_invalid_length(self, mock_report):
+        tokens = self.dump_tokens(' ' * 90 + 'int foo = 0;')
+        [self.checker.process_token(token) for token in tokens]
+        mock_report.assert_called_once_with(
+            tokens[0],
+            _Messages.get(self.checker.MSG, 100),
+        )
 
 
 if __name__ == '__main__':
