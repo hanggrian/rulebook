@@ -3,7 +3,6 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -14,7 +13,7 @@ class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(DuplicateBlankLineInBlockCommentChecker, 'report_error')
-    def test_single_empty_line_in_block_comment(self, mock_report):
+    def test_single_empty_line_in_block_comment(self, report_error):
         self.checker.check_file(
             MagicMock(file='test.c'),
             '''
@@ -26,10 +25,10 @@ class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
             void foo() {}
             ''',
         )
-        mock_report.assert_not_called()
+        report_error.assert_not_called()
 
     @patch.object(DuplicateBlankLineInBlockCommentChecker, 'report_error')
-    def test_multiple_empty_lines_in_block_comment(self, mock_report):
+    def test_multiple_empty_lines_in_block_comment(self, report_error):
         self.checker.check_file(
             MagicMock(file='test.c'),
             '''
@@ -42,9 +41,9 @@ class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
             void foo() {}
             ''',
         )
-        self.assertEqual(mock_report.call_count, 1)
-        args, _ = mock_report.call_args
-        self.assertEqual(args[1], _Messages.get(self.checker.MSG))
+        self.assertEqual(report_error.call_count, 1)
+        args, _ = report_error.call_args
+        self.assertEqual(args[1], "Remove consecutive blank line in '*'.")
         self.assertEqual(args[2], 5)
 
 

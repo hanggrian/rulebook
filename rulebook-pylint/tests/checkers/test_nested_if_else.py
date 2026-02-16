@@ -43,8 +43,8 @@ class TestNestedIfElseChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(NestedIfElseChecker.MSG_INVERT, (3, 4, 5, 13), node1.body[0]),
-            msg(NestedIfElseChecker.MSG_INVERT, (8, 4, 11, 9), node2.body[0]),
+            msg(NestedIfElseChecker._MSG_INVERT, (3, 4, 5, 13), node1.body[0]),
+            msg(NestedIfElseChecker._MSG_INVERT, (8, 4, 11, 9), node2.body[0]),
         ):
             self.checker.visit_functiondef(node1)
             self.checker.visit_functiondef(node2)
@@ -62,7 +62,7 @@ class TestNestedIfElseChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(NestedIfElseChecker.MSG_LIFT, (6, 8, 6, 13), node1.body[0].orelse[0]),
+            msg(NestedIfElseChecker._MSG_LIFT, (6, 8, 6, 13), node1.body[0].orelse[0]),
         ):
             self.checker.visit_functiondef(node1)
 
@@ -107,7 +107,7 @@ class TestNestedIfElseChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(NestedIfElseChecker.MSG_INVERT, (3, 4, 5, 13), node1.body[0]),
+            msg(NestedIfElseChecker._MSG_INVERT, (3, 4, 5, 13), node1.body[0]),
         ):
             self.checker.visit_functiondef(node1)
 

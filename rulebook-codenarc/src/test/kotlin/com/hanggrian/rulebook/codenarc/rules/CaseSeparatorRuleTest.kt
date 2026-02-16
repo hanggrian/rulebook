@@ -96,7 +96,7 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
         )
 
     @Test
-    fun `Branches with comment are always multiline`() =
+    fun `Branches with comment are considered multiline`() =
         assertViolations(
             """
             def foo(int bar) {
@@ -118,6 +118,21 @@ class CaseSeparatorRuleTest : AbstractRuleTestCase<CaseSeparatorRule>() {
             violationOf(5, "baz()", "Add blank line after multiline branch."),
             violationOf(8, "baz()", "Add blank line after multiline branch."),
             violationOf(11, "baz()", "Add blank line after multiline branch."),
+        )
+
+    @Test
+    fun `Multiple branches are considered multiline`() =
+        assertViolations(
+            """
+            def foo(int bar) {
+                switch (bar) {
+                    case 0:
+                    case 1: baz()
+                    case 2: baz()
+                }
+            }
+            """.trimIndent(),
+            violationOf(4, "baz()", "Add blank line after multiline branch."),
         )
 
     @Test

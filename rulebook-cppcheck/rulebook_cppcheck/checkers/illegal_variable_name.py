@@ -13,7 +13,7 @@ except ImportError:
 class IllegalVariableNameChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#illegal-variable-name"""
     ID: str = 'illegal-variable-name'
-    MSG: str = 'illegal.variable.name'
+    _MSG: str = 'illegal.variable.name'
     ARGS: list[str] = [ILLEGAL_VARIABLE_NAMES_OPTION]
 
     def __init__(self):
@@ -26,10 +26,9 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
         self._illegal_variable_names = \
             set(args[ILLEGAL_VARIABLE_NAMES_OPTION].split(','))
 
-    def process_token(self, token: Token) -> None:
+    def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
-        if not token.variable:
-            return
-        if token.str not in self._illegal_variable_names:
-            return
-        self.report_error(token, _Messages.get(self.MSG))
+        for token in [t for t in tokens if t.variable]:
+            if token.str not in self._illegal_variable_names:
+                continue
+            self.report_error(token, _Messages.get(self._MSG))

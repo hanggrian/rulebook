@@ -14,10 +14,10 @@ except ImportError:
 class BlockTagPunctuationChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation"""
     ID: str = 'block-tag-punctuation'
-    MSG: str = 'block.tag.punctuation'
+    _MSG: str = 'block.tag.punctuation'
     ARGS: list[str] = [PUNCTUATE_BLOCK_TAGS_OPTION]
 
-    PUNCTUATIONS: set[str] = {'.', '!', '?', ')'}
+    _PUNCTUATIONS: set[str] = {'.', '!', '?', ')'}
 
     def __init__(self):
         super().__init__()
@@ -54,10 +54,10 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
 
                 # long descriptions have multiple lines, take only the last one
                 if found_tag:
-                    if current_tag and last_text and last_text[-1] not in self.PUNCTUATIONS:
+                    if current_tag and last_text and last_text[-1] not in self._PUNCTUATIONS:
                         self.report_error(
                             token,
-                            _Messages.get(self.MSG, current_tag),
+                            _Messages.get(self._MSG, current_tag),
                             start_line + last_text_line_idx,
                         )
 
@@ -76,10 +76,10 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
             # checks for violation
             if not current_tag or \
                 not last_text or \
-                last_text[-1] in self.PUNCTUATIONS:
+                last_text[-1] in self._PUNCTUATIONS:
                 continue
             self.report_error(
                 token,
-                _Messages.get(self.MSG, current_tag),
+                _Messages.get(self._MSG, current_tag),
                 start_line + last_text_line_idx,
             )

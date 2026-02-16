@@ -15,18 +15,18 @@ if TYPE_CHECKING:
 
 class MeaninglessWordChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#meaningless-word"""
-    MSG_ALL: str = 'meaningless.word.all'
-    MSG_UTIL: str = 'meaningless.word.util'
+    _MSG_ALL: str = 'meaningless.word.all'
+    _MSG_UTIL: str = 'meaningless.word.util'
 
-    UTILITY_CLASS_NAMES: set[str] = {'Util', 'Utility'}
-    TITLE_CASE_REGEX: Pattern = \
+    _UTILITY_CLASS_NAMES: set[str] = {'Util', 'Utility'}
+    _TITLE_CASE_REGEX: Pattern = \
         re(
             r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|' +
             r'([A-Z]+(?=([A-Z][a-z])|($)|([0-9]))))',
         )
 
     name: str = 'meaningless-word'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_ALL, MSG_UTIL)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_ALL, _MSG_UTIL)
     options: Options = (
         MEANINGLESS_WORDS_OPTION,
     )
@@ -38,19 +38,19 @@ class MeaninglessWordChecker(RulebookChecker):
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
-        words: list[str] = [match[0] for match in self.TITLE_CASE_REGEX.findall(node.name)]
+        words: list[str] = [match[0] for match in self._TITLE_CASE_REGEX.findall(node.name)]
         if not words or words[-1] not in self._words:
             return
         word: str = words[-1]
-        if word in self.UTILITY_CLASS_NAMES:
+        if word in self._UTILITY_CLASS_NAMES:
             self.add_message(
-                self.MSG_UTIL,
+                self._MSG_UTIL,
                 node=node,
                 args=node.name[:node.name.index(word)] + 's',
                 col_offset=node.col_offset + 6,
             )
             return
-        self.add_message(self.MSG_ALL, node=node, args=word, col_offset=node.col_offset + 6)
+        self.add_message(self._MSG_ALL, node=node, args=word, col_offset=node.col_offset + 6)
 
 
 def register(linter: PyLinter) -> None:

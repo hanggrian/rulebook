@@ -47,7 +47,7 @@ class TestMemberOrderChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(MemberOrderChecker.MSG, (6, 4, 7), node2.targets[0], ('property', 'constructor')),
+            msg(MemberOrderChecker._MSG, (6, 4, 7), node2.targets[0], ('property', 'constructor')),
         ):
             self.checker.visit_classdef(node1)
 
@@ -64,7 +64,7 @@ class TestMemberOrderChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(MemberOrderChecker.MSG, (6, 4, 16), node2, ('constructor', 'function')),
+            msg(MemberOrderChecker._MSG, (6, 4, 16), node2, ('constructor', 'function')),
         ):
             self.checker.visit_classdef(node1)
 
@@ -82,7 +82,7 @@ class TestMemberOrderChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(MemberOrderChecker.MSG, (7, 4, 11), node2, ('function', 'static member')),
+            msg(MemberOrderChecker._MSG, (7, 4, 11), node2, ('function', 'static member')),
         ):
             self.checker.visit_classdef(node1)
 

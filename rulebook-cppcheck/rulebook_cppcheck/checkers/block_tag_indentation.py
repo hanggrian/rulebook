@@ -13,10 +13,10 @@ except ImportError:
 class BlockTagIndentationChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-tag-indentation"""
     ID: str = 'block-tag-indentation'
-    MSG: str = 'block.tag.indentation'
+    _MSG: str = 'block.tag.indentation'
 
-    BLOCK_TAG: Pattern = re_compile(r'^\s*\*\s+@\w+')
-    CONTINUATION_LINE: Pattern = re_compile(r'^\s*\*(\s+)')
+    _BLOCK_TAG_REGEX: Pattern = re_compile(r'^\s*\*\s+@\w+')
+    _CONTINUATION_LINE_REGEX: Pattern = re_compile(r'^\s*\*(\s+)')
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -26,7 +26,7 @@ class BlockTagIndentationChecker(RulebookFileChecker):
             lines: list[str] = comment_text.splitlines()
             in_block_tag: bool = False
             for i, line in enumerate(lines):
-                if self.BLOCK_TAG.search(line):
+                if self._BLOCK_TAG_REGEX.search(line):
                     in_block_tag = True
                     continue
                 if not in_block_tag:
@@ -39,10 +39,10 @@ class BlockTagIndentationChecker(RulebookFileChecker):
                     in_block_tag = True
                     continue
 
-                match_indent: Match | None = self.CONTINUATION_LINE.match(line)
+                match_indent: Match | None = self._CONTINUATION_LINE_REGEX.match(line)
                 if not match_indent:
                     continue
                 indent_size: int = len(match_indent.group(1))
                 if indent_size == 5:
                     continue
-                self.report_error(token, _Messages.get(self.MSG), start_line + i)
+                self.report_error(token, _Messages.get(self._MSG), start_line + i)

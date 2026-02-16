@@ -13,8 +13,10 @@ except ImportError:
 class MemberOrderChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#member-order"""
     ID: str = 'member-order'
-    MSG: str = 'member.order'
+    _MSG: str = 'member.order'
     ARGS: list[str] = [MEMBER_ORDER_OPTION]
+
+    _TARGET_TOKENS: tuple[str, ...] = ('Class', 'Struct')
 
     def __init__(self):
         super().__init__()
@@ -59,22 +61,23 @@ class MemberOrderChecker(RulebookTokenChecker):
         return None
 
     @override
-    def process_token(self, token: Token) -> None:
-        if not token.scope or token.scope.type not in ('Class', 'Struct'):
-            return
-        if token is not token.scope.bodyStart:
-            return
-
+    def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
-        prev_weight: int | None = None
-        prev_name: str | None = None
-        curr_token: Token | None = token.next
-        while curr_token and curr_token is not token.scope.bodyEnd:
-            info: tuple[int, str] | None = self._get_member_info(curr_token, token.scope)
-            if info:
-                curr_weight, curr_name = info
-                if prev_weight is not None and curr_weight < prev_weight:
-                    self.report_error(curr_token, _Messages.get(self.MSG, curr_name, prev_name))
-                prev_weight = curr_weight
-                prev_name = curr_name
-            curr_token = curr_token.next
+        for token in [
+            t for t in tokens
+            if t.scope and
+               t.scope.type in self._TARGET_TOKENS and
+               t is t.scope.bodyStart
+        ]:
+            prev_weight: int | None = None
+            prev_name: str | None = None
+            curr_token: Token | None = token.next
+            while curr_token and curr_token is not token.scope.bodyEnd:
+                info: tuple[int, str] | None = self._get_member_info(curr_token, token.scope)
+                if info:
+                    curr_weight, curr_name = info
+                    if prev_weight is not None and curr_weight < prev_weight:
+                        self.report_error(curr_token, _Messages.get(self._MSG, curr_name, prev_name))
+                    prev_weight = curr_weight
+                    prev_name = curr_name
+                curr_token = curr_token.next

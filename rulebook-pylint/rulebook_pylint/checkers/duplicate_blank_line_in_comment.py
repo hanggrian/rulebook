@@ -14,10 +14,10 @@ if TYPE_CHECKING:
 
 class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment"""
-    MSG: str = 'duplicate.blank.line.in.comment'
+    _MSG: str = 'duplicate.blank.line.in.comment'
 
     name: str = 'duplicate-blank-line-in-comment'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         last_empty_token: TokenInfo | None = None
@@ -27,7 +27,7 @@ class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
                 last_empty_token = token
                 continue
             if last_empty_token.start[0] + 1 == token.start[0]:
-                self.add_message(self.MSG, line=token.start[0], col_offset=token.start[1])
+                self.add_message(self._MSG, line=token.start[0], col_offset=token.start[1])
 
             # keep previous token for comparison
             last_empty_token = token

@@ -13,21 +13,21 @@ if TYPE_CHECKING:
 
 class ParenthesesTrimChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#parentheses-trim"""
-    MSG_FIRST: str = 'parentheses.trim.first'
-    MSG_LAST: str = 'parentheses.trim.last'
+    _MSG_FIRST: str = 'parentheses.trim.first'
+    _MSG_LAST: str = 'parentheses.trim.last'
 
-    OPENING_PARENTHESES: set[str] = {'(', '[', '{'}
-    CLOSING_PARENTHESES: set[str] = {')', ']', '}'}
+    _OPENING_PARENTHESES: set[str] = {'(', '[', '{'}
+    _CLOSING_PARENTHESES: set[str] = {')', ']', '}'}
 
     name: str = 'parentheses-trim'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_FIRST, MSG_LAST)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_FIRST, _MSG_LAST)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # find opening and closing parentheses
             if token.type is not OP:
                 continue
-            if token.string in self.OPENING_PARENTHESES:
+            if token.string in self._OPENING_PARENTHESES:
                 # checks for violation
                 if i + 2 >= len(tokens):
                     continue
@@ -36,14 +36,14 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                 if next_token.type is not NL or next_token2.type is not NL:
                     continue
                 self.add_message(
-                    self.MSG_FIRST,
+                    self._MSG_FIRST,
                     line=next_token2.start[0],
                     col_offset=next_token2.start[1],
                     args=token.string,
                 )
 
             # checks for violation
-            if token.string not in self.CLOSING_PARENTHESES:
+            if token.string not in self._CLOSING_PARENTHESES:
                 continue
             if i - 2 < 0:
                 continue
@@ -52,7 +52,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
             if prev_token.type is not NL or prev_token2.type is not NL:
                 continue
             self.add_message(
-                self.MSG_LAST,
+                self._MSG_LAST,
                 line=prev_token.start[0],
                 col_offset=prev_token.start[1],
                 args=token.string,

@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.member_order import MemberOrderChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,9 +12,9 @@ class TestMemberOrderChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(MemberOrderChecker, 'report_error')
-    def test_correct_member_layout(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_correct_member_layout(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 class MyClass {
                 public:
@@ -27,13 +26,13 @@ class TestMemberOrderChecker(CheckerTestCase):
                 };
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
     @patch.object(MemberOrderChecker, 'report_error')
-    def test_property_after_constructor(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_property_after_constructor(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 class MyClass {
                 public:
@@ -44,16 +43,16 @@ class TestMemberOrderChecker(CheckerTestCase):
                 };
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_called_once_with(
+        self.checker.process_tokens(tokens)
+        report_error.assert_called_once_with(
             next(t for t in tokens if t.str == 'bar'),
-            _Messages.get(self.checker.MSG, 'property', 'constructor'),
+            "Arrange 'property' before 'constructor'.",
         )
 
     @patch.object(MemberOrderChecker, 'report_error')
-    def test_constructor_after_function(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_constructor_after_function(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 class MyClass {
                 public:
@@ -64,10 +63,10 @@ class TestMemberOrderChecker(CheckerTestCase):
                 };
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_called_once_with(
+        self.checker.process_tokens(tokens)
+        report_error.assert_called_once_with(
             next(t for t in tokens if t.str == 'MyClass' and t.linenr == 5),
-            _Messages.get(self.checker.MSG, 'constructor', 'function'),
+            "Arrange 'constructor' before 'function'.",
         )
 
 

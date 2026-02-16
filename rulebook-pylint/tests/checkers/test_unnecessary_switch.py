@@ -37,7 +37,7 @@ class TestUnnecessarySwitchChecker(CheckerTestCase):
                         baz()
                 ''',
             )
-        with self.assertAddsMessages(msg(UnnecessarySwitchChecker.MSG, (2, 0, 4, 13), node1)):
+        with self.assertAddsMessages(msg(UnnecessarySwitchChecker._MSG, (2, 0, 4, 13), node1)):
             self.checker.visit_match(node1)
 
 

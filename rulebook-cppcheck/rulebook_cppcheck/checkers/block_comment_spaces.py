@@ -13,13 +13,13 @@ except ImportError:
 class BlockCommentSpacesChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-comment-spaces"""
     ID: str = 'block-comment-spaces'
-    MSG_SINGLE_START: str = 'block.comment.spaces.single.start'
-    MSG_SINGLE_END: str = 'block.comment.spaces.single.end'
-    MSG_MULTI: str = 'block.comment.spaces.multi'
+    _MSG_SINGLE_START: str = 'block.comment.spaces.single.start'
+    _MSG_SINGLE_END: str = 'block.comment.spaces.single.end'
+    _MSG_MULTI: str = 'block.comment.spaces.multi'
 
-    BLOCK_COMMENT_START: Pattern = re(r'^/\*+[^/*\s]')
-    BLOCK_COMMENT_CENTER: Pattern = re(r'^\s*\*[^\s/]')
-    BLOCK_COMMENT_END: Pattern = re(r'[^\s\*]\*/$')
+    _BLOCK_COMMENT_START_REGEX: Pattern = re(r'^/\*+[^/*\s]')
+    _BLOCK_COMMENT_CENTER_REGEX: Pattern = re(r'^\s*\*[^\s/]')
+    _BLOCK_COMMENT_END_REGEX: Pattern = re(r'[^\s\*]\*/$')
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -27,23 +27,23 @@ class BlockCommentSpacesChecker(RulebookFileChecker):
             comment_text: str = match.group()
             start_line: int = content.count('\n', 0, match.start()) + 1
             lines: list[str] = comment_text.splitlines()
-            if self.BLOCK_COMMENT_START.search(lines[0]):
+            if self._BLOCK_COMMENT_START_REGEX.search(lines[0]):
                 self.report_error(
                     token,
-                    _Messages.get(self.MSG_SINGLE_START),
+                    _Messages.get(self._MSG_SINGLE_START),
                     start_line,
                 )
-            if self.BLOCK_COMMENT_END.search(lines[-1]):
+            if self._BLOCK_COMMENT_END_REGEX.search(lines[-1]):
                 self.report_error(
                     token,
-                    _Messages.get(self.MSG_SINGLE_END),
+                    _Messages.get(self._MSG_SINGLE_END),
                     start_line + len(lines) - 1,
                 )
             for i in range(1, len(lines)):
-                if not self.BLOCK_COMMENT_CENTER.search(lines[i]):
+                if not self._BLOCK_COMMENT_CENTER_REGEX.search(lines[i]):
                     continue
                 self.report_error(
                     token,
-                    _Messages.get(self.MSG_MULTI),
+                    _Messages.get(self._MSG_MULTI),
                     start_line + i,
                 )

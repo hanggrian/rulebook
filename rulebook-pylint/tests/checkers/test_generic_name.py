@@ -40,7 +40,7 @@ class TestGenericNameChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(GenericNameChecker.MSG, (2, 0, 2), node1.targets[0]),
+            msg(GenericNameChecker._MSG, (2, 0, 2), node1.targets[0]),
         ):
             self.checker.visit_assign(node1)
 

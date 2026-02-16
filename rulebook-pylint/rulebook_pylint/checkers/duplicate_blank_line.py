@@ -12,10 +12,10 @@ if TYPE_CHECKING:
 
 class DuplicateBlankLineChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line"""
-    MSG: str = 'duplicate.blank.line'
+    _MSG: str = 'duplicate.blank.line'
 
     name: str = 'duplicate-blank-line'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_module(self, node: Module) -> None:
         # checks for violation
@@ -25,7 +25,7 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
                 counter = counter + 1 if not line.strip() else 0
                 if counter < 3:
                     continue
-                self.add_message(self.MSG, line=i + 1)
+                self.add_message(self._MSG, line=i + 1)
 
 
 def register(linter: PyLinter) -> None:

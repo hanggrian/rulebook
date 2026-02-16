@@ -12,7 +12,7 @@ except ImportError:
 class DuplicateBlankLineChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line"""
     ID: str = 'duplicate-blank-line'
-    MSG: str = 'duplicate.blank.line'
+    _MSG: str = 'duplicate.blank.line'
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -20,4 +20,4 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
         for i in range(1, len(lines)):
             if lines[i].strip() or lines[i - 1].strip():
                 continue
-            self.report_error(token, _Messages.get(self.MSG), i + 1)
+            self.report_error(token, _Messages.get(self._MSG), i + 1)

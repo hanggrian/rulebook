@@ -13,10 +13,10 @@ except ImportError:
 class UnnecessarySwitchChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-switch"""
     ID: str = 'unnecessary-switch'
-    MSG: str = 'unnecessary.switch'
+    _MSG: str = 'unnecessary.switch'
 
     @override
-    def get_scope_set(self) -> set[str]:
+    def get_scopeset(self) -> set[str]:
         return {'Switch'}
 
     @override
@@ -32,4 +32,4 @@ class UnnecessarySwitchChecker(RulebookChecker):
         switch_token: Token | None = _prev_sibling(scope.bodyStart, lambda t: t.str == 'switch')
         if not switch_token:
             return
-        self.report_error(switch_token, _Messages.get(self.MSG))
+        self.report_error(switch_token, _Messages.get(self._MSG))

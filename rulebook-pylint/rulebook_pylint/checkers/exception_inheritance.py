@@ -12,10 +12,10 @@ if TYPE_CHECKING:
 
 class ExceptionInheritanceChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#exception-inheritance"""
-    MSG: str = 'exception.inheritance'
+    _MSG: str = 'exception.inheritance'
 
     name: str = 'exception-inheritance'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
@@ -23,7 +23,7 @@ class ExceptionInheritanceChecker(RulebookChecker):
             n for n in node.bases
             if isinstance(n, Name) and n.name == 'BaseException'
         ]:
-            self.add_message(self.MSG, node=base)
+            self.add_message(self._MSG, node=base)
             continue
 
 

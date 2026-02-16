@@ -13,9 +13,9 @@ except ImportError:
 class FileNameChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#file-name"""
     ID: str = 'file-name'
-    MSG: str = 'file.name'
+    _MSG: str = 'file.name'
 
-    SNAKE_CASE_REGEX: Pattern = re(r'^[a-z0-9_]+\.(c|cpp|h|hpp)$')
+    _SNAKE_CASE_REGEX: Pattern = re(r'^[a-z0-9_]+\.(c|cpp|h|hpp)$')
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -23,9 +23,9 @@ class FileNameChecker(RulebookFileChecker):
         filename: str = token.file.split('/')[-1]
         if '_' in filename:  # remove prefix 'XXXXX_file.c' likely from dump
             filename = filename.split('_')[-1]
-        if self.SNAKE_CASE_REGEX.match(filename):
+        if self._SNAKE_CASE_REGEX.match(filename):
             return
         self.report_error(
             token,
-            _Messages.get(self.MSG, filename.lower().replace('-', '_')),
+            _Messages.get(self._MSG, filename.lower().replace('-', '_')),
         )

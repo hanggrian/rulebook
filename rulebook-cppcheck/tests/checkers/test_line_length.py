@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,17 +12,18 @@ class TestLineLengthChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(LineLengthChecker, 'report_error')
-    def test_valid_length(self, mock_report):
-        [self.checker.process_token(token) for token in self.dump_tokens('int foo = 0;')]
-        mock_report.assert_not_called()
+    def test_valid_length(self, report_error):
+        tokens, _ = self.dump_code('int foo = 0;')
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
     @patch.object(LineLengthChecker, 'report_error')
-    def test_invalid_length(self, mock_report):
-        tokens = self.dump_tokens(' ' * 90 + 'int foo = 0;')
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_called_once_with(
+    def test_invalid_length(self, report_error):
+        tokens, _ = self.dump_code(' ' * 90 + 'int foo = 0;')
+        self.checker.process_tokens(tokens)
+        report_error.assert_called_once_with(
             tokens[0],
-            _Messages.get(self.checker.MSG, 100),
+            "Code exceeds max line length of '100'.",
         )
 
 

@@ -15,14 +15,15 @@ class IdentifierNameChecker(RulebookTokenChecker):
     MSG: str = 'identifier.name'
     ID: str = 'identifier-name'
 
-    SNAKE_CASE_REGEX: Pattern = re(r'(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])')
+    _SNAKE_CASE_REGEX: Pattern = re(r'(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])')
 
     @override
-    def process_token(self, token: Token) -> None:
-        if token.variable and token is token.variable.nameToken:
-            self._process(token)
-        if token.function and token is token.function.tokenDef:
-            self._process(token)
+    def process_tokens(self, tokens: list[Token]) -> None:
+        for token in tokens:
+            if token.variable and token is token.variable.nameToken:
+                self._process(token)
+            if token.function and token is token.function.tokenDef:
+                self._process(token)
 
     def _process(self, token: Token) -> None:
         # checks for violation
@@ -34,6 +35,6 @@ class IdentifierNameChecker(RulebookTokenChecker):
             token,
             _Messages.get(
                 self.MSG,
-                sub(r'_+', '_', self.SNAKE_CASE_REGEX.sub('_', name).lower()),
+                sub(r'_+', '_', self._SNAKE_CASE_REGEX.sub('_', name).lower()),
             ),
         )

@@ -33,11 +33,11 @@ class TestDuplicateSpaceChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(DuplicateSpaceChecker.MSG, (2, 27)),
-            msg(DuplicateSpaceChecker.MSG, (3, 20)),
-            msg(DuplicateSpaceChecker.MSG, (3, 25)),
-            msg(DuplicateSpaceChecker.MSG, (3, 28)),
-            msg(DuplicateSpaceChecker.MSG, (3, 31)),
+            msg(DuplicateSpaceChecker._MSG, (2, 27)),
+            msg(DuplicateSpaceChecker._MSG, (3, 20)),
+            msg(DuplicateSpaceChecker._MSG, (3, 25)),
+            msg(DuplicateSpaceChecker._MSG, (3, 28)),
+            msg(DuplicateSpaceChecker._MSG, (3, 31)),
         ):
             self.checker.process_tokens(tokens)
 

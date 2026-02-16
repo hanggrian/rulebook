@@ -13,12 +13,12 @@ if TYPE_CHECKING:
 
 class BlockCommentClipChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-comment-clip"""
-    MSG: str = 'block.comment.clip'
+    _MSG: str = 'block.comment.clip'
 
-    SINGLELINE_TEMPLATE = 6  # """"""
+    _SINGLELINE_TEMPLATE = 6  # """"""
 
     name: str = 'block-comment-clip'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
     options: Options = (
         MAX_LINE_LENGTH_OPTION,
     )
@@ -48,8 +48,8 @@ class BlockCommentClipChecker(RulebookChecker):
         if '\n' in line:
             return
         text_length: int = docstring.col_offset + len(line)
-        if text_length + self.SINGLELINE_TEMPLATE <= self._max_line_length:
-            self.add_message(self.MSG, node=docstring)
+        if text_length + self._SINGLELINE_TEMPLATE <= self._max_line_length:
+            self.add_message(self._MSG, node=docstring)
 
 
 def register(linter: PyLinter) -> None:

@@ -42,12 +42,12 @@ class TestParenthesesClipChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ParenthesesClipChecker.MSG, (2, 23, 3, 17), args='()'),
-            msg(ParenthesesClipChecker.MSG, (4, 26, 5, 21), args='{}'),
-            msg(ParenthesesClipChecker.MSG, (6, 26, 7, 21), args='[]'),
-            msg(ParenthesesClipChecker.MSG, (9, 24, 9, 27), args='()'),
-            msg(ParenthesesClipChecker.MSG, (10, 27, 10, 30), args='{}'),
-            msg(ParenthesesClipChecker.MSG, (11, 27, 11, 30), args='[]'),
+            msg(ParenthesesClipChecker._MSG, (2, 23, 3, 17), args='()'),
+            msg(ParenthesesClipChecker._MSG, (4, 26, 5, 21), args='{}'),
+            msg(ParenthesesClipChecker._MSG, (6, 26, 7, 21), args='[]'),
+            msg(ParenthesesClipChecker._MSG, (9, 24, 9, 27), args='()'),
+            msg(ParenthesesClipChecker._MSG, (10, 27, 10, 30), args='{}'),
+            msg(ParenthesesClipChecker._MSG, (11, 27, 11, 30), args='[]'),
         ):
             self.checker.process_tokens(tokens)
 

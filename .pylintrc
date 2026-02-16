@@ -160,6 +160,7 @@ disable=
   missing-class-docstring,
   missing-type-doc,
   too-many-locals,
+  too-many-arguments,
 
 
 [REPORTS]

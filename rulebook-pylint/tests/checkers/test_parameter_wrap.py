@@ -69,8 +69,8 @@ class TestParameterWrapChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ParameterWrapChecker.MSG, (3, 7, 8), node1.args.args[1]),
-            msg(ParameterWrapChecker.MSG, (10, 11, 12), node2.args[1]),
+            msg(ParameterWrapChecker._MSG, (3, 7, 8), node1.args.args[1]),
+            msg(ParameterWrapChecker._MSG, (10, 11, 12), node2.args[1]),
         ):
             self.checker.visit_functiondef(node1)
             self.checker.visit_call(node2)

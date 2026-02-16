@@ -10,23 +10,28 @@ except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Scope, Token
 
 
+# TODO implement logic for test_capture_members_with_comments
 class MemberSeparatorChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#member-separator"""
     ID: str = 'member-separator'
-    MSG: str = 'member.separator'
+    _MSG: str = 'member.separator'
 
-    OPENING_TOKENS: set[str] = {'{', ';'}
+    _OPENING_TOKENS: set[str] = {'{', ';'}
 
     @override
-    def get_scope_set(self) -> set[str]:
+    def get_scopeset(self) -> set[str]:
         return {'Class', 'Struct'}
 
     @override
     def visit_scope(self, scope: Scope) -> None:
         # get member end token
         members: list[tuple[Token, Token, bool]] = []
-        curr_token: Token | None = scope.bodyStart.next
-        while curr_token and curr_token is not scope.bodyEnd:
+        body_start: Token | None = scope.bodyStart
+        body_end: Token | None = scope.bodyEnd
+        if not body_start or not body_end:
+            return
+        curr_token: Token | None = body_start.next
+        while curr_token and curr_token is not body_end:
             if curr_token.scope is scope and (curr_token.variable or curr_token.function):
                 is_var: bool = curr_token.variable is not None
                 start_token: Token = curr_token
@@ -35,7 +40,7 @@ class MemberSeparatorChecker(RulebookChecker):
                     search = \
                         _next_sibling(
                             curr_token.function.tokenDef,
-                            lambda t: t.str in self.OPENING_TOKENS or t is scope.bodyEnd,
+                            lambda t: t.str in self._OPENING_TOKENS or t is body_end,
                         )
                     if search and search.str == '{' and search.link:
                         end_token = search.link
@@ -65,7 +70,7 @@ class MemberSeparatorChecker(RulebookChecker):
                 continue
             if current_start.linenr - prev_end.linenr >= 2:
                 continue
-            key: str = 'property' if prev_is_var else 'function'
+            msg_arg: str = 'property' if prev_is_var else 'function'
             if not prev_is_var and prev_start.str == scope.className:
-                key = 'constructor'
-            self.report_error(prev_end, _Messages.get(self.MSG, key))
+                msg_arg = 'constructor'
+            self.report_error(prev_end, _Messages.get(self._MSG, msg_arg))

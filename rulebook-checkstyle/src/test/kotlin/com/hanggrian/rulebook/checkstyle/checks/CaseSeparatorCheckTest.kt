@@ -31,11 +31,18 @@ class CaseSeparatorCheckTest : CheckTest() {
         )
 
     @Test
-    fun `Branches with comment are always multiline`() =
+    fun `Branches with comment are considered multiline`() =
         assertAll(
             "CaseSeparator5",
             "8:22: Add blank line after multiline branch.",
             "11:22: Add blank line after multiline branch.",
             "14:22: Add blank line after multiline branch.",
+        )
+
+    @Test
+    fun `Multiple branches are considered multiline`() =
+        assertAll(
+            "CaseSeparator6",
+            "7:26: Add blank line after multiline branch.",
         )
 }

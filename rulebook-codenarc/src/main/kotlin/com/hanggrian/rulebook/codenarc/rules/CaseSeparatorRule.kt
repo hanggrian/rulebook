@@ -9,6 +9,7 @@ import com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule.Companion.MSG_MIS
 import com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule.Companion.MSG_UNEXPECTED
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.CaseStatement
+import org.codehaus.groovy.ast.stmt.EmptyStatement
 import org.codehaus.groovy.ast.stmt.Statement
 import org.codehaus.groovy.ast.stmt.SwitchStatement
 
@@ -40,7 +41,12 @@ public class CaseSeparatorVisitor : RulebookVisitor() {
                 ?: return
 
         // checks for violation
-        val hasMultiline = statements.any { it.isMultiline() || hasCommentAbove(it) }
+        val hasMultiline =
+            statements.any {
+                it.isMultiline() ||
+                    hasCommentAbove(it) ||
+                    (it as? CaseStatement)?.code is EmptyStatement
+            }
         for ((i, statement) in statements.withIndex()) {
             val lastBody =
                 ((statements.getOrNull(i - 1) as? CaseStatement)?.code as? BlockStatement)

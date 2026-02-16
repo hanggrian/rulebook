@@ -14,10 +14,10 @@ if TYPE_CHECKING:
 
 class CommentTrimChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#comment-trim"""
-    MSG: str = 'comment.trim'
+    _MSG: str = 'comment.trim'
 
     name: str = 'comment-trim'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
@@ -46,13 +46,13 @@ class CommentTrimChecker(RulebookTokenChecker):
             # checks for violation
             if _is_comment_empty(token):
                 self.add_message(
-                    self.MSG,
+                    self._MSG,
                     line=token.start[0],
                     col_offset=token.start[1],
                 )
             if _is_comment_empty(curr_token):
                 self.add_message(
-                    self.MSG,
+                    self._MSG,
                     line=curr_token.start[0],
                     col_offset=curr_token.start[1],
                 )

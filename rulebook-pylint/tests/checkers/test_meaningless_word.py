@@ -34,7 +34,7 @@ class TestMeaninglessWordChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(MeaninglessWordChecker.MSG_ALL, (2, 6, 22), node1, 'Manager'),
+            msg(MeaninglessWordChecker._MSG_ALL, (2, 6, 22), node1, 'Manager'),
         ):
             self.checker.visit_classdef(node1)
 
@@ -58,7 +58,7 @@ class TestMeaninglessWordChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(MeaninglessWordChecker.MSG_UTIL, (2, 6, 19), node1, 'Spaceships'),
+            msg(MeaninglessWordChecker._MSG_UTIL, (2, 6, 19), node1, 'Spaceships'),
         ):
             self.checker.visit_classdef(node1)
 

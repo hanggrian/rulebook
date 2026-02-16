@@ -1,4 +1,4 @@
-void foo() {}
+void parentheses_clip() {}
 
 auto vglambda = [](auto printer) {
     return 9;

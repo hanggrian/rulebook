@@ -13,10 +13,10 @@ except ImportError:
 class BlockCommentTrimChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-comment-trim"""
     ID: str = 'block-comment-trim'
-    MSG_FIRST: str = 'block.comment.trim.first'
-    MSG_LAST: str = 'block.comment.trim.last'
+    _MSG_FIRST: str = 'block.comment.trim.first'
+    _MSG_LAST: str = 'block.comment.trim.last'
 
-    EMPTY_LINES: set[str] = {'*', ''}
+    _EMPTY_LINES: set[str] = {'*', ''}
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -31,7 +31,7 @@ class BlockCommentTrimChecker(RulebookFileChecker):
 
             # collect content
             content_indices = [
-                i for i, line in enumerate(lines) if line.strip() not in self.EMPTY_LINES
+                i for i, line in enumerate(lines) if line.strip() not in self._EMPTY_LINES
             ]
             if not content_indices:
                 continue
@@ -39,11 +39,11 @@ class BlockCommentTrimChecker(RulebookFileChecker):
             # check first line
             first_line: str = lines[0].strip()
             second_line: str = lines[1].strip()
-            if (first_line in self.EMPTY_LINES) and second_line == '*':
+            if (first_line in self._EMPTY_LINES) and second_line == '*':
                 if content_indices[0] > 1:
                     self.report_error(
                         token,
-                        _Messages.get(self.MSG_FIRST),
+                        _Messages.get(self._MSG_FIRST),
                         start_line + 1,
                     )
 
@@ -56,6 +56,6 @@ class BlockCommentTrimChecker(RulebookFileChecker):
                 continue
             self.report_error(
                 token,
-                _Messages.get(self.MSG_LAST),
+                _Messages.get(self._MSG_LAST),
                 start_line + len(lines) - 1,
             )

@@ -13,35 +13,37 @@ except ImportError:
 class RedundantElseChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#redundant-else"""
     ID: str = 'redundant-else'
-    MSG: str = 'redundant.else'
+    _MSG: str = 'redundant.else'
 
-    ELSE_SIBLING_TOKENS: set[str] = {'else', ';'}
+    _ELSE_SIBLING_TOKENS: set[str] = {'else', ';'}
 
     @override
-    def process_token(self, token: Token) -> None:
-        if token.str != 'if':
-            return
+    def process_tokens(self, tokens: list[Token]) -> None:
+        for token in [t for t in tokens if t.str == 'if']:
+            if_token: Token | None = token
+            continue_outer: bool = False
+            while if_token:
+                # skip single if
+                else_token = self._get_else_token(if_token)
+                if not else_token:
+                    break
 
-        if_token: Token | None = token
-        while if_token:
-            # skip single if
-            else_token = self._get_else_token(if_token)
-            if not else_token:
-                break
+                # checks for violation
+                then_token: Token | None = if_token.next
+                if then_token and then_token.str == '(':
+                    then_token = then_token.link.next
+                if not _has_jump_statement(then_token, else_token):
+                    continue_outer = True
+                    break
+                if continue_outer:
+                    continue
+                self.report_error(else_token, _Messages.get(self._MSG))
 
-            # checks for violation
-            then_token: Token | None = if_token.next
-            if then_token and then_token.str == '(':
-                then_token = then_token.link.next
-            if not _has_jump_statement(then_token, else_token):
-                return
-            self.report_error(else_token, _Messages.get(self.MSG))
-
-            next_token: Token | None = else_token.next
-            if next_token and next_token.str == 'if':
-                if_token = next_token
-            else:
-                if_token = None
+                next_token: Token | None = else_token.next
+                if next_token and next_token.str == 'if':
+                    if_token = next_token
+                else:
+                    if_token = None
 
     @staticmethod
     def _get_else_token(if_token: Token) -> Token | None:
@@ -54,7 +56,7 @@ class RedundantElseChecker(RulebookTokenChecker):
             curr_token = \
                 _next_sibling(
                     curr_token,
-                    lambda t: t.str in RedundantElseChecker.ELSE_SIBLING_TOKENS,
+                    lambda t: t.str in RedundantElseChecker._ELSE_SIBLING_TOKENS,
                 )
             if curr_token and curr_token.str == ';':
                 curr_token = curr_token.next

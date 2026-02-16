@@ -13,7 +13,7 @@ except ImportError:
 class FileSizeChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#file-size"""
     ID: str = 'file-size'
-    MSG: str = 'file.size'
+    _MSG: str = 'file.size'
     ARGS: list[str] = [MAX_FILE_SIZE_OPTION]
 
     def __init__(self):
@@ -29,4 +29,4 @@ class FileSizeChecker(RulebookFileChecker):
         # checks for violation
         if len(content.splitlines()) <= self._max_file_size:
             return
-        self.report_error(token, _Messages.get(self.MSG, self._max_file_size))
+        self.report_error(token, _Messages.get(self._MSG, self._max_file_size))

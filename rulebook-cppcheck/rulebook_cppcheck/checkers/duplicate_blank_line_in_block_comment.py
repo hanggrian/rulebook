@@ -13,7 +13,7 @@ except ImportError:
 class DuplicateBlankLineInBlockCommentChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment"""
     ID: str = 'duplicate-blank-line-in-block-comment'
-    MSG: str = 'duplicate.blank.line.in.block.comment'
+    _MSG: str = 'duplicate.blank.line.in.block.comment'
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -28,4 +28,4 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookFileChecker):
                     continue
                 if i == 0 or i + 1 == len(lines) - 1:
                     continue
-                self.report_error(token, _Messages.get(self.MSG), start_line + i + 1)
+                self.report_error(token, _Messages.get(self._MSG), start_line + i + 1)

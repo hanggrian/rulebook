@@ -67,7 +67,7 @@ class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(DuplicateBlankLineInBlockCommentChecker.MSG, (2, 0, 7, 3), node_all.doc_node),
+            msg(DuplicateBlankLineInBlockCommentChecker._MSG, (2, 0, 7, 3), node_all.doc_node),
         ):
             self.checker.visit_module(node_all)
 
@@ -95,8 +95,8 @@ class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(DuplicateBlankLineInBlockCommentChecker.MSG, (3, 4, 8, 7), node1.doc_node),
-            msg(DuplicateBlankLineInBlockCommentChecker.MSG, (13, 4, 18, 7), node2.doc_node),
+            msg(DuplicateBlankLineInBlockCommentChecker._MSG, (3, 4, 8, 7), node1.doc_node),
+            msg(DuplicateBlankLineInBlockCommentChecker._MSG, (13, 4, 18, 7), node2.doc_node),
         ):
             self.checker.visit_classdef(node1)
             self.checker.visit_functiondef(node2)

@@ -12,14 +12,14 @@ empty.file=Delete the empty file.
 file.size=Reduce file size to '{}'.
 final.newline=Put a blank line at the end of the file.
 indent.style=Indent with '{}' spaces.
-line.length=Code exceeds max line length '{}'.
+line.length=Code exceeds max line length of '{}'.
 # Naming
 abbreviation.as.word=Rename abbreviation to '{}'.
 class.name=Rename class to '{}'.
 file.name=Rename file to '{}'.
 identifier.name=Rename identifier to '{}'.
 illegal.variable.name=Use descriptive name.
-generic.name=Use common generics '{}'.
+generic.name=Use single uppercase letter.
 meaningless.word=Avoid meaningless word '{}'.
 package.name=Rename package to '{}'.
 # Ordering

@@ -16,10 +16,10 @@ if TYPE_CHECKING:
 
 class MemberOrderChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#member-order"""
-    MSG: str = 'member.order'
+    _MSG: str = 'member.order'
 
     name: str = 'member-order'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
     options: Options = (
         MEMBER_ORDER_OPTION,
     )
@@ -48,7 +48,7 @@ class MemberOrderChecker(RulebookChecker):
             if last_child and \
                 self._get_member_position(last_child) > self._get_member_position(child):
                 self.add_message(
-                    self.MSG,
+                    self._MSG,
                     node=child,
                     args=(
                         self._get_member_argument(child),

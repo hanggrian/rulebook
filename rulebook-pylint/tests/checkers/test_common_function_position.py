@@ -57,8 +57,8 @@ class TestCommonFunctionPositionChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CommonFunctionPositionChecker.MSG, (3, 4, 15), node1, '__str__'),
-            msg(CommonFunctionPositionChecker.MSG, (9, 4, 16), node3, '__hash__'),
+            msg(CommonFunctionPositionChecker._MSG, (3, 4, 15), node1, '__str__'),
+            msg(CommonFunctionPositionChecker._MSG, (9, 4, 16), node3, '__hash__'),
         ):
             self.checker.visit_functiondef(node1)
             self.checker.visit_functiondef(node2)

@@ -13,11 +13,11 @@ if TYPE_CHECKING:
 
 class NestedIfElseChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#nested-if-else"""
-    MSG_INVERT: str = 'nested.if.else.invert'
-    MSG_LIFT: str = 'nested.if.else.lift'
+    _MSG_INVERT: str = 'nested.if.else.invert'
+    _MSG_LIFT: str = 'nested.if.else.lift'
 
     name: str = 'nested-if-else'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_INVERT, MSG_LIFT)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_INVERT, _MSG_LIFT)
 
     def visit_for(self, node: For) -> None:
         self._process(node.body)
@@ -49,12 +49,12 @@ class NestedIfElseChecker(RulebookChecker):
             if self._else_has_if(else2):
                 return
             if self._has_multiple_lines(else2):
-                self.add_message(self.MSG_LIFT, node=else_first_child)
+                self.add_message(self._MSG_LIFT, node=else_first_child)
             return
         if _has_jump_statement(if2):
             return
         if self._has_multiple_lines(if2.body):
-            self.add_message(self.MSG_INVERT, node=if2)
+            self.add_message(self._MSG_INVERT, node=if2)
 
     @staticmethod
     def _else_has_if(nodes: list[NodeNG]) -> bool:

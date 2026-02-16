@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,9 +12,9 @@ class TestRedundantDefaultChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(RedundantDefaultChecker, 'report_error')
-    def test_no_throw_or_return_in_case(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_no_throw_or_return_in_case(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo(int bar) {
                     switch (bar) {
@@ -32,13 +31,13 @@ class TestRedundantDefaultChecker(CheckerTestCase):
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
     @patch.object(RedundantDefaultChecker, 'report_error')
-    def test_lift_else_when_case_has_return(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_lift_else_when_case_has_return(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo(int bar) {
                     switch (bar) {
@@ -53,16 +52,16 @@ class TestRedundantDefaultChecker(CheckerTestCase):
                 }
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_called_once_with(
+        self.checker.process_tokens(tokens)
+        report_error.assert_called_once_with(
             next(t for t in tokens if t.str == ':' and t.linenr == 8),
-            _Messages.get(self.checker.MSG),
+            "Omit redundant 'default' condition.",
         )
 
     @patch.object(RedundantDefaultChecker, 'report_error')
-    def test_skip_if_not_all_case_blocks_have_jump_statement(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_skip_if_not_all_case_blocks_have_jump_statement(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo(int bar) {
                     switch (bar) {
@@ -78,8 +77,8 @@ class TestRedundantDefaultChecker(CheckerTestCase):
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
 
 if __name__ == '__main__':

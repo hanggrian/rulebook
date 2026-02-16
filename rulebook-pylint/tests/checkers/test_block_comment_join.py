@@ -44,7 +44,7 @@ class TestBlockCommentClipChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(BlockCommentClipChecker.MSG, (2, 0, 4, 3), node_all.doc_node),
+            msg(BlockCommentClipChecker._MSG, (2, 0, 4, 3), node_all.doc_node),
         ):
             self.checker.visit_module(node_all)
 

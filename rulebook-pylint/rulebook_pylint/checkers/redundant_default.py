@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 
 class RedundantDefaultChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#redundant-default"""
-    MSG: str = 'redundant.default'
+    _MSG: str = 'redundant.default'
 
     name: str = 'redundant-default'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_match(self, node: Match) -> None:
         # skip no default
@@ -30,7 +30,7 @@ class RedundantDefaultChecker(RulebookChecker):
         # checks for violation
         if not all(_has_jump_statement(node) for node in cases[:-1]):
             return
-        self.add_message(self.MSG, node=default)
+        self.add_message(self._MSG, node=default)
 
 
 def register(linter: PyLinter) -> None:

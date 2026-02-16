@@ -14,13 +14,13 @@ if TYPE_CHECKING:
 
 class BlockCommentTrimChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#block-comment-trim"""
-    MSG_FIRST: str = 'block.comment.trim.first'
-    MSG_LAST: str = 'block.comment.trim.last'
+    _MSG_FIRST: str = 'block.comment.trim.first'
+    _MSG_LAST: str = 'block.comment.trim.last'
 
-    MULTIPLE_EMPTY_LINES: Pattern = re(r'\n\n\s*$')
+    _MULTIPLE_EMPTY_LINES: Pattern = re(r'\n\n\s*$')
 
     name: str = 'block-comment-trim'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_FIRST, MSG_LAST)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_FIRST, _MSG_LAST)
 
     def visit_module(self, node: Module) -> None:
         self._process(node.doc_node)
@@ -37,9 +37,9 @@ class BlockCommentTrimChecker(RulebookChecker):
             return
         docstring_val: str = docstring.value
         if docstring_val.startswith('\n\n'):
-            self.add_message(self.MSG_FIRST, node=docstring, line=docstring.lineno)
-        if self.MULTIPLE_EMPTY_LINES.search(docstring_val):
-            self.add_message(self.MSG_LAST, node=docstring, line=docstring.end_lineno)
+            self.add_message(self._MSG_FIRST, node=docstring, line=docstring.lineno)
+        if self._MULTIPLE_EMPTY_LINES.search(docstring_val):
+            self.add_message(self._MSG_LAST, node=docstring, line=docstring.end_lineno)
 
 
 def register(linter: PyLinter) -> None:

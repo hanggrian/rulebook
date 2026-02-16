@@ -12,7 +12,7 @@ except ImportError:
 class FinalNewlineChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#final-newline"""
     ID: str = 'final-newline'
-    MSG: str = 'final.newline'
+    _MSG: str = 'final.newline'
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -23,4 +23,4 @@ class FinalNewlineChecker(RulebookFileChecker):
         # checks for violation
         if content.endswith('\n'):
             return
-        self.report_error(token, _Messages.get(self.MSG))
+        self.report_error(token, _Messages.get(self._MSG))

@@ -1,8 +1,7 @@
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch, call
 
 from rulebook_cppcheck.checkers.package_name import PackageNameChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,30 +12,52 @@ class TestPackageNameChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(PackageNameChecker, 'report_error')
-    def test_valid_namespace(self, mock_report):
-        self.checker.visit_scope(self._create_scope('my_namespace'))
-        mock_report.assert_not_called()
+    def test_valid_namespace(self, report_error):
+        _, scopes = \
+            self.dump_code(
+                '''
+                namespace my_namespace {
+                    int x = 0;
+                }
+                ''',
+            )
+        [self.checker.visit_scope(scope) for scope in scopes]
+        report_error.assert_not_called()
 
     @patch.object(PackageNameChecker, 'report_error')
-    def test_invalid_namespaces(self, mock_report):
-        self.checker.visit_scope(self._create_scope('MyNamespace'))
-        self.checker.visit_scope(self._create_scope('xmlParser'))
-        self.checker.visit_scope(self._create_scope('UIHandler'))
-        mock_report.assert_called()
-        self.assertEqual(mock_report.call_count, 3)
-        calls = mock_report.call_args_list
-        self.assertEqual(calls[0][0][1], _Messages.get(self.checker.MSG, 'my_namespace'))
-        self.assertEqual(calls[1][0][1], _Messages.get(self.checker.MSG, 'xml_parser'))
-        self.assertEqual(calls[2][0][1], _Messages.get(self.checker.MSG, 'ui_handler'))
-
-    @staticmethod
-    def _create_scope(class_name):
-        scope = MagicMock(type='Namespace', className=class_name)
-        body_start = MagicMock(str='{')
-        name_token = MagicMock(str=class_name)
-        scope.bodyStart = body_start
-        body_start.previous = name_token
-        return scope
+    def test_invalid_namespaces(self, report_error):
+        tokens, scopes = \
+            self.dump_code(
+                '''
+                namespace MyNamespace {
+                    int x = 0;
+                }
+                namespace xmlParser {
+                    int x = 0;
+                }
+                namespace UIHandler {
+                    int x = 0;
+                }
+                ''',
+            )
+        [self.checker.visit_scope(scope) for scope in scopes]
+        report_error.assert_has_calls(
+            [
+                call(
+                    next(t for t in tokens if t.str == 'MyNamespace'),
+                    "Rename package to 'my_namespace'.",
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'xmlParser'),
+                    "Rename package to 'xml_parser'.",
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'UIHandler'),
+                    "Rename package to 'ui_handler'.",
+                ),
+            ],
+            any_order=True,
+        )
 
 
 if __name__ == '__main__':

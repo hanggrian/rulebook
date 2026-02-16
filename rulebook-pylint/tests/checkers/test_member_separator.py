@@ -43,8 +43,8 @@ class TestMemberSeparatorChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(MemberSeparatorChecker.MSG, (3, 4, 11), args='property'),
-            msg(MemberSeparatorChecker.MSG, (4, 24, 31), args='constructor'),
+            msg(MemberSeparatorChecker._MSG, (3, 4, 11), args='property'),
+            msg(MemberSeparatorChecker._MSG, (4, 24, 31), args='constructor'),
         ):
             self.checker.process_module(node_all)
             self.checker.visit_classdef(node_all.body[0])
@@ -84,8 +84,8 @@ class TestMemberSeparatorChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(MemberSeparatorChecker.MSG, (3, 4, 67), args='property'),
-            msg(MemberSeparatorChecker.MSG, (5, 8, 15), args='constructor'),
+            msg(MemberSeparatorChecker._MSG, (3, 4, 67), args='property'),
+            msg(MemberSeparatorChecker._MSG, (5, 8, 15), args='constructor'),
         ):
             self.checker.process_module(node_all)
             self.checker.visit_classdef(node_all.body[0])
@@ -124,8 +124,8 @@ class TestMemberSeparatorChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(MemberSeparatorChecker.MSG, (4, 4, 67), args='property'),
-            msg(MemberSeparatorChecker.MSG, (7, 8, 15), args='constructor'),
+            msg(MemberSeparatorChecker._MSG, (4, 4, 67), args='property'),
+            msg(MemberSeparatorChecker._MSG, (7, 8, 15), args='constructor'),
         ):
             self.checker.process_module(node_all)
             self.checker.visit_classdef(node_all.body[0])

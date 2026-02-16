@@ -15,11 +15,11 @@ except ImportError:
 class TodoCommentChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#todo-comment"""
     ID: str = 'todo-comment'
-    MSG_KEYWORD: str = 'todo.comment.keyword'
-    MSG_SEPARATOR: str = 'todo.comment.separator'
+    _MSG_KEYWORD: str = 'todo.comment.keyword'
+    _MSG_SEPARATOR: str = 'todo.comment.separator'
 
-    KEYWORD_REGEX = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
-    SEPARATOR_REGEX = regex(r'\b(?i:todo|fixme)([^ \t\n])')
+    _KEYWORD_REGEX = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
+    _SEPARATOR_REGEX = regex(r'\b(?i:todo|fixme)([^ \t\n])')
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -30,19 +30,19 @@ class TodoCommentChecker(RulebookFileChecker):
             for i, line in enumerate(comment_text.splitlines()):
                 line_no: int = start_line + i
 
-                keyword_match: Match | None = self.KEYWORD_REGEX.search(line)
+                keyword_match: Match | None = self._KEYWORD_REGEX.search(line)
                 if keyword_match:
                     self.report_error(
                         token,
-                        _Messages.get(self.MSG_KEYWORD, keyword_match.group(0)),
+                        _Messages.get(self._MSG_KEYWORD, keyword_match.group(0)),
                         line_no,
                     )
 
-                separator_match: Match | None = self.SEPARATOR_REGEX.search(line)
+                separator_match: Match | None = self._SEPARATOR_REGEX.search(line)
                 if not separator_match:
                     continue
                 self.report_error(
                     token,
-                    _Messages.get(self.MSG_SEPARATOR, separator_match.group(1)),
+                    _Messages.get(self._MSG_SEPARATOR, separator_match.group(1)),
                     line_no,
                 )

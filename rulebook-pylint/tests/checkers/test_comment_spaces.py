@@ -33,8 +33,8 @@ class TestCommentSpaceChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CommentSpaceChecker.MSG, (2, 16)),
-            msg(CommentSpaceChecker.MSG, (3, 16)),
+            msg(CommentSpaceChecker._MSG, (2, 16)),
+            msg(CommentSpaceChecker._MSG, (3, 16)),
         ):
             self.checker.process_tokens(tokens)
 
@@ -63,8 +63,8 @@ class TestCommentSpaceChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CommentSpaceChecker.MSG, (6, 16)),
-            msg(CommentSpaceChecker.MSG, (8, 16)),
+            msg(CommentSpaceChecker._MSG, (6, 16)),
+            msg(CommentSpaceChecker._MSG, (8, 16)),
         ):
             self.checker.process_tokens(tokens)
 

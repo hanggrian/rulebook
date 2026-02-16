@@ -12,13 +12,12 @@ except ImportError:
 class LowercaseFChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#lowercase-f"""
     ID: str = 'lowercase-f'
-    MSG: str = 'lowercase.f'
+    _MSG: str = 'lowercase.f'
 
     @override
-    def process_token(self, token: Token) -> None:
+    def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
-        if not token.isFloat:
-            return
-        if 'F' not in token.str:
-            return
-        self.report_error(token, _Messages.get(self.MSG))
+        for token in [t for t in tokens if t.isFloat]:
+            if 'F' not in token.str:
+                continue
+            self.report_error(token, _Messages.get(self._MSG))

@@ -13,14 +13,14 @@ if TYPE_CHECKING:
 
 class TrailingCommaChecker(RulebookTokenChecker):
     """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#trailing-comma"""
-    MSG_SINGLE: str = 'trailing.comma.single'
-    MSG_MULTI: str = 'trailing.comma.multi'
+    _MSG_SINGLE: str = 'trailing.comma.single'
+    _MSG_MULTI: str = 'trailing.comma.multi'
 
-    OPENING_PARENTHESES: set[str] = {'(', '[', '{'}
-    CLOSING_PARENTHESES: set[str] = {')', ']', '}'}
+    _OPENING_PARENTHESES: set[str] = {'(', '[', '{'}
+    _CLOSING_PARENTHESES: set[str] = {')', ']', '}'}
 
     name: str = 'trailing-comma'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_SINGLE, MSG_MULTI)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_SINGLE, _MSG_MULTI)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         # filter out comments
@@ -30,7 +30,7 @@ class TrailingCommaChecker(RulebookTokenChecker):
         for i, token in enumerate(tokens):
             # find closing parenthesis
             if token.type is not OP or \
-                token.string not in self.CLOSING_PARENTHESES:
+                token.string not in self._CLOSING_PARENTHESES:
                 continue
 
             # skip sole generator like `any(...)`
@@ -42,7 +42,7 @@ class TrailingCommaChecker(RulebookTokenChecker):
             prev_token2: TokenInfo = tokens[i - 2]
             if prev_token.type is OP and prev_token.string == ',':
                 self.add_message(
-                    self.MSG_SINGLE,
+                    self._MSG_SINGLE,
                     line=prev_token.start[0],
                     col_offset=prev_token.end[1],
                 )
@@ -53,7 +53,7 @@ class TrailingCommaChecker(RulebookTokenChecker):
                 continue
 
             self.add_message(
-                self.MSG_MULTI,
+                self._MSG_MULTI,
                 line=prev_token2.start[0],
                 col_offset=prev_token2.end[1],
             )
@@ -66,9 +66,9 @@ class TrailingCommaChecker(RulebookTokenChecker):
         for i in range(close_index - 1, -1, -1):
             token = tokens[i]
             if token.type is OP:
-                if token.string in TrailingCommaChecker.CLOSING_PARENTHESES:
+                if token.string in TrailingCommaChecker._CLOSING_PARENTHESES:
                     nesting += 1
-                elif token.string in TrailingCommaChecker.OPENING_PARENTHESES:
+                elif token.string in TrailingCommaChecker._OPENING_PARENTHESES:
                     if nesting == 0:
                         return has_for and not has_comma_at_root
                     nesting -= 1

@@ -8,9 +8,9 @@ from unittest.mock import MagicMock
 from rulebook_cppcheck.checkers.rulebook_checkers import BaseChecker
 
 try:
-    from cppcheckdata import Token, parsedump
+    from cppcheckdata import parsedump
 except ImportError:
-    from cppcheck.Cppcheck.addons.cppcheckdata import Token, parsedump
+    from cppcheck.Cppcheck.addons.cppcheckdata import parsedump
 
 
 def assert_properties(checker_class: type[BaseChecker]):
@@ -33,12 +33,12 @@ class CheckerTestCase(TestCase):
         self.checker = self.CHECKER_CLASS()
         self.temp_dir = None
 
-    def dump_tokens(self, code: str):
+    def dump_code(self, code: str):
         if not self.temp_dir:
             # pylint: disable=consider-using-with
             self.temp_dir = TemporaryDirectory()
         temp_dir_name = self.temp_dir.name
-        source_file: Path = Path(temp_dir_name) / 'test.cpp'
+        source_file = Path(temp_dir_name) / 'test.cpp'
         source_file.write_text(code)
         run(
             ['cppcheck', '--dump', '--quiet', str(source_file)],
@@ -46,10 +46,12 @@ class CheckerTestCase(TestCase):
             check=True,
             capture_output=True,
         )
-        tokens: list[Token] = []
+        tokens = []
+        scopes = []
         for config in parsedump(str(source_file) + '.dump').configurations:
             tokens.extend(config.tokenlist)
-        return tokens
+            scopes.extend(config.scopes)
+        return tokens, scopes
 
     def tearDown(self):
         if self.temp_dir:

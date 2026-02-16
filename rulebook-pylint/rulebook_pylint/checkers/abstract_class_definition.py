@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 
 class AbstractClassDefinitionChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#abstract-class-definition"""
-    MSG: str = 'abstract.class.definition'
+    _MSG: str = 'abstract.class.definition'
 
     name: str = 'abstract-class-definition'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # skip non-abstract class
@@ -32,7 +32,7 @@ class AbstractClassDefinitionChecker(RulebookChecker):
                 for n in node.body
             ):
             return
-        self.add_message(self.MSG, node=bases[0])
+        self.add_message(self._MSG, node=bases[0])
 
 
 def register(linter: PyLinter) -> None:

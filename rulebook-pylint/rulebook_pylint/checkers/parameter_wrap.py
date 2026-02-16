@@ -12,10 +12,10 @@ if TYPE_CHECKING:
 
 class ParameterWrapChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#parameter-wrap"""
-    MSG: str = 'parameter.wrap'
+    _MSG: str = 'parameter.wrap'
 
     name: str = 'parameter-wrap'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
         if isinstance(node, NodeNG):
@@ -36,7 +36,7 @@ class ParameterWrapChecker(RulebookChecker):
             if i == 0 or \
                 parameters[i - 1].end_lineno != parameter.lineno:
                 continue
-            self.add_message(self.MSG, node=parameter)
+            self.add_message(self._MSG, node=parameter)
 
 
 def register(linter: PyLinter) -> None:

@@ -34,7 +34,7 @@ class TestAbbreviationAsWordChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(AbbreviationAsWordChecker.MSG, (2, 6, 16), node1, 'MySqlClass'),
+            msg(AbbreviationAsWordChecker._MSG, (2, 6, 16), node1, 'MySqlClass'),
         ):
             self.checker.visit_classdef(node1)
 

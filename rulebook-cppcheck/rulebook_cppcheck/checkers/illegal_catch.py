@@ -13,9 +13,9 @@ except ImportError:
 class IllegalCatchChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#illegal-catch"""
     ID: str = 'illegal-catch'
-    MSG: str = 'illegal.catch'
+    _MSG: str = 'illegal.catch'
 
-    ILLEGAL_EXCEPTIONS: set[str] = {
+    _ILLEGAL_EXCEPTIONS: set[str] = {
         'exception',
         'exception&',
         'std::exception',
@@ -23,16 +23,15 @@ class IllegalCatchChecker(RulebookTokenChecker):
     }
 
     @override
-    def process_token(self, token: Token) -> None:
-        if token.str != 'catch':
-            return
-        next_token: Token | None = token.next
-        if not next_token or next_token.str != '(':
-            return
-        ellipses_token: Token | None = next_token.next
-        if ellipses_token and ellipses_token.str == '...':
-            self.report_error(token, _Messages.get(self.MSG))
-            return
-        if not _next_sibling(next_token.next, lambda t: t.str in self.ILLEGAL_EXCEPTIONS):
-            return
-        self.report_error(token, _Messages.get(self.MSG))
+    def process_tokens(self, tokens: list[Token]) -> None:
+        for token in [t for t in tokens if t.str == 'catch']:
+            next_token: Token | None = token.next
+            if not next_token or next_token.str != '(':
+                continue
+            ellipses_token: Token | None = next_token.next
+            if ellipses_token and ellipses_token.str == '...':
+                self.report_error(token, _Messages.get(self._MSG))
+                continue
+            if not _next_sibling(next_token.next, lambda t: t.str in self._ILLEGAL_EXCEPTIONS):
+                continue
+            self.report_error(token, _Messages.get(self._MSG))

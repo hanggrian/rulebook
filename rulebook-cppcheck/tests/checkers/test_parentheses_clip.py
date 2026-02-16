@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import patch, call
 
 from rulebook_cppcheck.checkers.parentheses_clip import ParenthesesClipChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,22 +12,22 @@ class TestParenthesesClipChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ParenthesesClipChecker, 'report_error')
-    def test_wrapped_parentheses(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_wrapped_parentheses(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     bar();
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
     @patch.object(ParenthesesClipChecker, 'report_error')
-    def test_unwrapped_parentheses(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_unwrapped_parentheses(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo(
                 ) {
@@ -38,20 +37,33 @@ class TestParenthesesClipChecker(CheckerTestCase):
                 }
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_has_calls(
+        self.checker.process_tokens(tokens)
+        report_error.assert_has_calls(
             [
                 call(
                     next(t for t in tokens if t.str == '(' and t.linenr == 2),
-                    _Messages.get(self.checker.MSG, '()'),
+                    "Convert into '()'.",
                 ),
                 call(
                     next(t for t in tokens if t.str == '(' and t.linenr == 4),
-                    _Messages.get(self.checker.MSG, '()'),
+                    "Convert into '()'.",
                 ),
             ],
             any_order=True,
         )
+
+    @patch.object(ParenthesesClipChecker, 'report_error')
+    def test_skip_parameter_without_identifier(self, report_error):
+        tokens, _ = \
+            self.dump_code(
+                '''
+                void foo(void) {
+                    bar();
+                }
+                ''',
+            )
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
 
 if __name__ == '__main__':

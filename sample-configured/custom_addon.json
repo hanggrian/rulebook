@@ -1,5 +1,5 @@
 {
-  "script": "/home/circleci/project/rulebook-cppcheck/rulebook_cppcheck/check_set.py",
+  "script": "/home/circleci/project/rulebook-cppcheck/rulebook_cppcheck/checkset.py",
   "args": [
     "--punctuate-block-tags=@see",
     "--illegal-variable-names=foo,bar",

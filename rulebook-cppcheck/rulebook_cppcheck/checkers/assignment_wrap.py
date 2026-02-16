@@ -12,29 +12,26 @@ except ImportError:
 class AssignmentWrapChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#assignment-wrap"""
     ID: str = 'assignment-wrap'
-    MSG: str = 'assignment.wrap'
+    _MSG: str = 'assignment.wrap'
 
-    START_TOKENS: set[str] = {'{', '[', '(', 'lambda'}
+    _START_TOKENS: set[str] = {'{', '[', '(', 'lambda'}
 
     @override
-    def process_token(self, token: Token) -> None:
-        # filter operator
-        if token.str != '=' or not token.isAssignmentOp:
-            return
-
-        rhs_start: Token | None = token.next
-        if not rhs_start or rhs_start.str in self.START_TOKENS:
-            return
-        rhs_end: Token | None = token.astOperand2
-        if not rhs_end:
-            return
-        last_rhs_token: Token = rhs_end
-        while last_rhs_token.astOperand2:
-            last_rhs_token = last_rhs_token.astOperand2
-        if last_rhs_token.str == ';':
-            last_rhs_token = last_rhs_token.previous
-
+    def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
-        if rhs_start.linenr != token.linenr or last_rhs_token.linenr <= token.linenr:
-            return
-        self.report_error(token, _Messages.get(self.MSG))
+        for token in [t for t in tokens if t.str == '=' and t.isAssignmentOp]:
+            rhs_start: Token | None = token.next
+            if not rhs_start or rhs_start.str in self._START_TOKENS:
+                continue
+            rhs_end: Token | None = token.astOperand2
+            if not rhs_end:
+                continue
+            last_rhs_token: Token = rhs_end
+            while last_rhs_token.astOperand2:
+                last_rhs_token = last_rhs_token.astOperand2
+            if last_rhs_token.str == ';':
+                last_rhs_token = last_rhs_token.previous
+
+            if rhs_start.linenr != token.linenr or last_rhs_token.linenr <= token.linenr:
+                continue
+            self.report_error(token, _Messages.get(self._MSG))

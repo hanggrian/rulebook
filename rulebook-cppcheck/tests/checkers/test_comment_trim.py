@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.comment_trim import CommentTrimChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,7 +12,7 @@ class TestCommentTrimChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(CommentTrimChecker, 'report_error')
-    def test_comment_without_initial_and_final_newline(self, mock_report):
+    def test_comment_without_initial_and_final_newline(self, report_error):
         self.checker.check_file(
             MagicMock(file='test.c'),
             '''
@@ -22,10 +21,10 @@ class TestCommentTrimChecker(CheckerTestCase):
             }
             ''',
         )
-        mock_report.assert_not_called()
+        report_error.assert_not_called()
 
     @patch.object(CommentTrimChecker, 'report_error')
-    def test_comment_with_initial_and_final_newline(self, mock_report):
+    def test_comment_with_initial_and_final_newline(self, report_error):
         self.checker.check_file(
             MagicMock(file='test.c'),
             '''
@@ -36,16 +35,15 @@ class TestCommentTrimChecker(CheckerTestCase):
             }
             ''',
         )
-        self.assertEqual(mock_report.call_count, 2)
-        calls = mock_report.call_args_list
-        msg = _Messages.get(self.checker.MSG)
-        self.assertEqual(calls[0][0][1], msg)
+        self.assertEqual(report_error.call_count, 2)
+        calls = report_error.call_args_list
+        self.assertEqual(calls[0][0][1], "Remove blank line after '//'.")
         self.assertEqual(calls[0][0][2], 3)
-        self.assertEqual(calls[1][0][1], msg)
+        self.assertEqual(calls[1][0][1], "Remove blank line after '//'.")
         self.assertEqual(calls[1][0][2], 5)
 
     @patch.object(CommentTrimChecker, 'report_error')
-    def test_skip_blank_comment(self, mock_report):
+    def test_skip_blank_comment(self, report_error):
         self.checker.check_file(
             MagicMock(file='test.c'),
             '''
@@ -56,10 +54,10 @@ class TestCommentTrimChecker(CheckerTestCase):
             }
             ''',
         )
-        mock_report.assert_not_called()
+        report_error.assert_not_called()
 
     @patch.object(CommentTrimChecker, 'report_error')
-    def test_skip_comment_with_code(self, mock_report):
+    def test_skip_comment_with_code(self, report_error):
         self.checker.check_file(
             MagicMock(file='test.c'),
             '''
@@ -70,7 +68,7 @@ class TestCommentTrimChecker(CheckerTestCase):
             }
             ''',
         )
-        mock_report.assert_not_called()
+        report_error.assert_not_called()
 
 
 if __name__ == '__main__':

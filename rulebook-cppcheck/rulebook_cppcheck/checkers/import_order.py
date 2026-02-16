@@ -13,10 +13,10 @@ except ImportError:
 class ImportOrderChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#import-order"""
     ID: str = 'import-order'
-    MSG_SORT: str = 'import.order.sort'
-    MSG_JOIN: str = 'import.order.join'
+    _MSG_SORT: str = 'import.order.sort'
+    _MSG_JOIN: str = 'import.order.join'
 
-    INCLUDE_REGEX: Pattern = re(r'#\s*include\s*([<"])(.+?)([>"])')
+    _INCLUDE_REGEX: Pattern = re(r'#\s*include\s*([<"])(.+?)([>"])')
 
     @override
     def check_file(self, token: Token, content: str) -> None:
@@ -26,7 +26,7 @@ class ImportOrderChecker(RulebookFileChecker):
 
         for lineno, line in enumerate(content.splitlines(), 1):
             # distinguish between bracket and quote imports
-            match: Match | None = self.INCLUDE_REGEX.search(line.strip())
+            match: Match | None = self._INCLUDE_REGEX.search(line.strip())
             if not match:
                 continue
             is_quoted: bool = match.group(1) == '"'
@@ -37,20 +37,20 @@ class ImportOrderChecker(RulebookFileChecker):
                 if not is_quoted and prev_is_quoted:
                     self.report_error(
                         token,
-                        _Messages.get(self.MSG_SORT, path, prev_path),
+                        _Messages.get(self._MSG_SORT, path, prev_path),
                         lineno,
                     )
                 elif is_quoted == prev_is_quoted:
                     if path < prev_path:
                         self.report_error(
                             token,
-                            _Messages.get(self.MSG_SORT, path, prev_path),
+                            _Messages.get(self._MSG_SORT, path, prev_path),
                             lineno,
                         )
                 if lineno != prev_lineno + 1:
                     self.report_error(
                         token,
-                        _Messages.get(self.MSG_JOIN, path),
+                        _Messages.get(self._MSG_JOIN, path),
                         lineno,
                     )
 

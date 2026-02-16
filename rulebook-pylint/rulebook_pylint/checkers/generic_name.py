@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 
 class GenericNameChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#generic-name"""
-    MSG: str = 'generic.name'
+    _MSG: str = 'generic.name'
 
     name: str = 'generic-name'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_assign(self, node: Assign) -> None:
         # only target TypeVar declaration
@@ -33,7 +33,7 @@ class GenericNameChecker(RulebookChecker):
         name: str = target.name
         if len(name) == 1 and name[0].isupper():
             return
-        self.add_message(self.MSG, node=target)
+        self.add_message(self._MSG, node=target)
 
 
 def register(linter: PyLinter) -> None:

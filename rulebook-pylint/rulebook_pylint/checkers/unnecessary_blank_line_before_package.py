@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 
 class UnnecessaryBlankLineBeforePackageChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-blank-line-before-package"""
-    MSG: str = 'unnecessary.blank.line.before.package'
+    _MSG: str = 'unnecessary.blank.line.before.package'
 
     name: str = 'unnecessary-blank-line-before-package'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for token in tokens:
@@ -27,7 +27,7 @@ class UnnecessaryBlankLineBeforePackageChecker(RulebookTokenChecker):
 
             # checks for violation
             if type2 is NL:
-                self.add_message(self.MSG, line=0)
+                self.add_message(self._MSG, line=0)
             return
 
 

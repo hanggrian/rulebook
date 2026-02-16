@@ -37,7 +37,7 @@ class TestDuplicateBlankLineInCommentChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(DuplicateBlankLineInCommentChecker.MSG, (4, 16)),
+            msg(DuplicateBlankLineInCommentChecker._MSG, (4, 16)),
         ):
             self.checker.process_tokens(tokens)
 

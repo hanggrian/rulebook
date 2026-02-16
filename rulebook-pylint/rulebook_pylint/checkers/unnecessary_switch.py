@@ -12,16 +12,16 @@ if TYPE_CHECKING:
 
 class UnnecessarySwitchChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-switch"""
-    MSG: str = 'unnecessary.switch'
+    _MSG: str = 'unnecessary.switch'
 
     name: str = 'unnecessary-switch'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_match(self, node: Match) -> None:
         # checks for violation
         if len(node.cases) > 1:
             return
-        self.add_message(self.MSG, node=node)
+        self.add_message(self._MSG, node=node)
 
 
 def register(linter: PyLinter) -> None:

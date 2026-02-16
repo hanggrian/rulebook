@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import patch, call
 
 from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,9 +12,9 @@ class TestParenthesesTrimChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ParenthesesTrimChecker, 'report_error')
-    def test_parentheses_without_newline_padding(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_parentheses_without_newline_padding(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo(
                     int bar
@@ -26,13 +25,13 @@ class TestParenthesesTrimChecker(CheckerTestCase):
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
     @patch.object(ParenthesesTrimChecker, 'report_error')
-    def test_parentheses_with_newline_padding(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_parentheses_with_newline_padding(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo(
 
@@ -47,27 +46,27 @@ class TestParenthesesTrimChecker(CheckerTestCase):
                 }
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_has_calls(
+        self.checker.process_tokens(tokens)
+        report_error.assert_has_calls(
             [
                 call(
                     next(t for t in tokens if t.str == '(' and t.linenr == 2),
-                    _Messages.get(self.checker.MSG_FIRST, '('),
+                    "Remove blank line after '('.",
                     3,
                 ),
                 call(
                     next(t for t in tokens if t.str == ')' and t.linenr == 6),
-                    _Messages.get(self.checker.MSG_LAST, ')'),
+                    "Remove blank line before ')'.",
                     5,
                 ),
                 call(
                     next(t for t in tokens if t.str == '(' and t.linenr == 7),
-                    _Messages.get(self.checker.MSG_FIRST, '('),
+                    "Remove blank line after '('.",
                     8,
                 ),
                 call(
                     next(t for t in tokens if t.str == ')' and t.linenr == 11),
-                    _Messages.get(self.checker.MSG_LAST, ')'),
+                    "Remove blank line before ')'.",
                     10,
                 ),
             ],
@@ -75,9 +74,9 @@ class TestParenthesesTrimChecker(CheckerTestCase):
         )
 
     @patch.object(ParenthesesTrimChecker, 'report_error')
-    def test_comments_are_considered_content(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_comments_are_considered_content(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo(
                     // Lorem
@@ -92,8 +91,8 @@ class TestParenthesesTrimChecker(CheckerTestCase):
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
 
 if __name__ == '__main__':

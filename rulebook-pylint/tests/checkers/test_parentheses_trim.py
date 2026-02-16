@@ -53,12 +53,12 @@ class TestParenthesesTrimChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ParenthesesTrimChecker.MSG_FIRST, (3, 0), args='('),
-            msg(ParenthesesTrimChecker.MSG_LAST, (5, 0), args=')'),
-            msg(ParenthesesTrimChecker.MSG_FIRST, (8, 0), args='{'),
-            msg(ParenthesesTrimChecker.MSG_LAST, (10, 0), args='}'),
-            msg(ParenthesesTrimChecker.MSG_FIRST, (13, 0), args='['),
-            msg(ParenthesesTrimChecker.MSG_LAST, (15, 0), args=']'),
+            msg(ParenthesesTrimChecker._MSG_FIRST, (3, 0), args='('),
+            msg(ParenthesesTrimChecker._MSG_LAST, (5, 0), args=')'),
+            msg(ParenthesesTrimChecker._MSG_FIRST, (8, 0), args='{'),
+            msg(ParenthesesTrimChecker._MSG_LAST, (10, 0), args='}'),
+            msg(ParenthesesTrimChecker._MSG_FIRST, (13, 0), args='['),
+            msg(ParenthesesTrimChecker._MSG_LAST, (15, 0), args=']'),
         ):
             self.checker.process_tokens(tokens)
 

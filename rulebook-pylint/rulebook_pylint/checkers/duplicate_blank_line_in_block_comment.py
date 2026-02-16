@@ -12,10 +12,10 @@ if TYPE_CHECKING:
 
 class DuplicateBlankLineInBlockCommentChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment"""
-    MSG: str = 'duplicate.blank.line.in.block.comment'
+    _MSG: str = 'duplicate.blank.line.in.block.comment'
 
     name: str = 'duplicate-blank-line-in-block-comment'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_module(self, node: Module) -> None:
         self._process(node.doc_node)
@@ -30,7 +30,7 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookChecker):
         # checks for violation
         if not docstring or '\n\n\n' not in docstring.value:
             return
-        self.add_message(self.MSG, node=docstring)
+        self.add_message(self._MSG, node=docstring)
 
 
 def register(linter: PyLinter) -> None:

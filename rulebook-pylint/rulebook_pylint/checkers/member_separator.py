@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 
 class MemberSeparatorChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#member-separator"""
-    MSG: str = 'member.separator'
+    _MSG: str = 'member.separator'
 
     name: str = 'member-separator'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # collect members
@@ -43,7 +43,7 @@ class MemberSeparatorChecker(RulebookFileChecker):
             if last_body.end_lineno != _get_fromlineno_before(self.lines, member, last_body):
                 continue
             self.add_message(
-                self.MSG,
+                self._MSG,
                 args=key,
                 line=last_body.lineno,
                 end_lineno=last_body.end_lineno,

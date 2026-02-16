@@ -14,23 +14,23 @@ if TYPE_CHECKING:
 
 class AbbreviationAsWordChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#abbreviation-as-word"""
-    MSG: str = 'abbreviation.as.word'
+    _MSG: str = 'abbreviation.as.word'
 
-    ABBREVIATION_REGEX: Pattern = re(r'[A-Z]{3,}(?=[A-Z][a-z]|$)')
+    _ABBREVIATION_REGEX: Pattern = re(r'[A-Z]{3,}(?=[A-Z][a-z]|$)')
 
     name: str = 'abbreviation-as-word'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
         class_name: str = node.name
-        if not self.ABBREVIATION_REGEX.findall(class_name):
+        if not self._ABBREVIATION_REGEX.findall(class_name):
             return
         self.add_message(
-            self.MSG,
+            self._MSG,
             node=node,
             args= \
-                self.ABBREVIATION_REGEX.sub(
+                self._ABBREVIATION_REGEX.sub(
                     lambda m: m.group(0)[0] + m.group(0)[1:].lower(),
                     class_name,
                 ),

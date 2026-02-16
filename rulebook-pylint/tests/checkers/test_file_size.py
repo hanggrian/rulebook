@@ -33,7 +33,7 @@ class TestFileSizeChecker(CheckerTestCase):
                 print()
                 ''',
             )
-        with self.assertAddsMessages(msg(FileSizeChecker.MSG, 0, args=3)):
+        with self.assertAddsMessages(msg(FileSizeChecker._MSG, 0, args=3)):
             self.checker.process_module(node_all)
         self.CHECKER_CLASS.options[0][1]['default'] = 1000
 

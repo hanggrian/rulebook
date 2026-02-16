@@ -14,11 +14,11 @@ if TYPE_CHECKING:
 
 class CaseSeparatorChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#case-separator"""
-    MSG_MISSING: str = 'case.separator.missing'
-    MSG_UNEXPECTED: str = 'case.separator.unexpected'
+    _MSG_MISSING: str = 'case.separator.missing'
+    _MSG_UNEXPECTED: str = 'case.separator.unexpected'
 
     name: str = 'case-separator'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG_MISSING, MSG_UNEXPECTED)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_MISSING, _MSG_UNEXPECTED)
 
     def visit_match(self, node: Match) -> None:
         # collect cases
@@ -43,7 +43,7 @@ class CaseSeparatorChecker(RulebookFileChecker):
             if has_multiline:
                 if last_body.tolineno - 1 != match_case_fromlineno - 2:
                     self.add_message(
-                        self.MSG_MISSING,
+                        self._MSG_MISSING,
                         line=last_body.lineno,
                         end_lineno=last_body.end_lineno,
                         col_offset=last_body.col_offset,
@@ -51,7 +51,7 @@ class CaseSeparatorChecker(RulebookFileChecker):
                     )
             elif last_body.tolineno - 1 != match_case_fromlineno - 1:
                 self.add_message(
-                    self.MSG_UNEXPECTED,
+                    self._MSG_UNEXPECTED,
                     line=last_body.lineno,
                     end_lineno=last_body.end_lineno,
                     col_offset=last_body.col_offset,

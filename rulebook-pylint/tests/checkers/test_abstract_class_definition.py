@@ -43,7 +43,7 @@ class TestAbstractClassDefinitionChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(AbstractClassDefinitionChecker.MSG, (5, 10, 13), node=node1.bases[0]),
+            msg(AbstractClassDefinitionChecker._MSG, (5, 10, 13), node=node1.bases[0]),
         ):
             self.checker.visit_classdef(node1)
 

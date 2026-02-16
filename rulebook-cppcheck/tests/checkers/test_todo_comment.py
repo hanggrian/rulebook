@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,7 +12,7 @@ class TestTodoCommentChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(TodoCommentChecker, 'report_error')
-    def test_uppercase_todo_comments(self, mock_report):
+    def test_uppercase_todo_comments(self, report_error):
         self.checker.check_file(
             self.mock_file(),
             '''
@@ -21,10 +20,10 @@ class TestTodoCommentChecker(CheckerTestCase):
             // FIXME fix bug
             ''',
         )
-        mock_report.assert_not_called()
+        report_error.assert_not_called()
 
     @patch.object(TodoCommentChecker, 'report_error')
-    def test_lowercase_todo_comments(self, mock_report):
+    def test_lowercase_todo_comments(self, report_error):
         self.checker.check_file(
             self.mock_file(),
             '''
@@ -32,18 +31,18 @@ class TestTodoCommentChecker(CheckerTestCase):
             // fixme fix bug
             ''',
         )
-        self.assertEqual(mock_report.call_count, 2)
+        self.assertEqual(report_error.call_count, 2)
         self.assertEqual(
-            mock_report.call_args_list[0][0][1],
-            _Messages.get(self.checker.MSG_KEYWORD, 'todo'),
+            report_error.call_args_list[0][0][1],
+            "Capitalize keyword 'todo'.",
         )
         self.assertEqual(
-            mock_report.call_args_list[1][0][1],
-            _Messages.get(self.checker.MSG_KEYWORD, 'fixme'),
+            report_error.call_args_list[1][0][1],
+            "Capitalize keyword 'fixme'.",
         )
 
     @patch.object(TodoCommentChecker, 'report_error')
-    def test_unknown_todo_comments(self, mock_report):
+    def test_unknown_todo_comments(self, report_error):
         self.checker.check_file(
             self.mock_file(),
             '''
@@ -51,18 +50,18 @@ class TestTodoCommentChecker(CheckerTestCase):
             // FIXME1 fix bug
             ''',
         )
-        self.assertEqual(mock_report.call_count, 2)
+        self.assertEqual(report_error.call_count, 2)
         self.assertEqual(
-            mock_report.call_args_list[0][0][1],
-            _Messages.get(self.checker.MSG_SEPARATOR, ':'),
+            report_error.call_args_list[0][0][1],
+            "Omit separator ':'.",
         )
         self.assertEqual(
-            mock_report.call_args_list[1][0][1],
-            _Messages.get(self.checker.MSG_SEPARATOR, '1'),
+            report_error.call_args_list[1][0][1],
+            "Omit separator '1'.",
         )
 
     @patch.object(TodoCommentChecker, 'report_error')
-    def test_todos_in_block_comments(self, mock_report):
+    def test_todos_in_block_comments(self, report_error):
         self.checker.check_file(
             self.mock_file(),
             '''
@@ -73,32 +72,32 @@ class TestTodoCommentChecker(CheckerTestCase):
              */
             ''',
         )
-        self.assertEqual(mock_report.call_count, 2)
+        self.assertEqual(report_error.call_count, 2)
         self.assertEqual(
-            mock_report.call_args_list[0][0][1],
-            _Messages.get(self.checker.MSG_KEYWORD, 'todo'),
+            report_error.call_args_list[0][0][1],
+            "Capitalize keyword 'todo'.",
         )
         self.assertEqual(
-            mock_report.call_args_list[1][0][1],
-            _Messages.get(self.checker.MSG_SEPARATOR, ':'),
+            report_error.call_args_list[1][0][1],
+            "Omit separator ':'.",
         )
 
     @patch.object(TodoCommentChecker, 'report_error')
-    def test_todo_keyword_mid_sentence(self, mock_report):
+    def test_todo_keyword_mid_sentence(self, report_error):
         self.checker.check_file(
             self.mock_file(),
             '''
             // Untested. Todo: add tests.
             ''',
         )
-        self.assertEqual(mock_report.call_count, 2)
+        self.assertEqual(report_error.call_count, 2)
         self.assertEqual(
-            mock_report.call_args_list[0][0][1],
-            _Messages.get(self.checker.MSG_KEYWORD, 'Todo'),
+            report_error.call_args_list[0][0][1],
+            "Capitalize keyword 'Todo'.",
         )
         self.assertEqual(
-            mock_report.call_args_list[1][0][1],
-            _Messages.get(self.checker.MSG_SEPARATOR, ':'),
+            report_error.call_args_list[1][0][1],
+            "Omit separator ':'.",
         )
 
 

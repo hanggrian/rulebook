@@ -42,8 +42,8 @@ class TestDuplicateBlankLineChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(DuplicateBlankLineChecker.MSG, 3),
-            msg(DuplicateBlankLineChecker.MSG, 7),
+            msg(DuplicateBlankLineChecker._MSG, 3),
+            msg(DuplicateBlankLineChecker._MSG, 7),
         ):
             self.checker.process_module(node_all)
 

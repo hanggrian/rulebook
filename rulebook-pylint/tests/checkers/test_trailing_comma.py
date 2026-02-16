@@ -37,10 +37,10 @@ class TestTrailingCommaChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(TrailingCommaChecker.MSG_SINGLE, (2, 43)),
-            msg(TrailingCommaChecker.MSG_SINGLE, (3, 31)),
-            msg(TrailingCommaChecker.MSG_SINGLE, (4, 32)),
-            msg(TrailingCommaChecker.MSG_SINGLE, (5, 33)),
+            msg(TrailingCommaChecker._MSG_SINGLE, (2, 43)),
+            msg(TrailingCommaChecker._MSG_SINGLE, (3, 31)),
+            msg(TrailingCommaChecker._MSG_SINGLE, (4, 32)),
+            msg(TrailingCommaChecker._MSG_SINGLE, (5, 33)),
         ):
             self.checker.process_tokens(tokens)
 
@@ -67,10 +67,10 @@ class TestTrailingCommaChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(TrailingCommaChecker.MSG_MULTI, (4, 28)),
-            msg(TrailingCommaChecker.MSG_MULTI, (8, 25)),
-            msg(TrailingCommaChecker.MSG_MULTI, (12, 25)),
-            msg(TrailingCommaChecker.MSG_MULTI, (16, 25)),
+            msg(TrailingCommaChecker._MSG_MULTI, (4, 28)),
+            msg(TrailingCommaChecker._MSG_MULTI, (8, 25)),
+            msg(TrailingCommaChecker._MSG_MULTI, (12, 25)),
+            msg(TrailingCommaChecker._MSG_MULTI, (16, 25)),
         ):
             self.checker.process_tokens(tokens)
 

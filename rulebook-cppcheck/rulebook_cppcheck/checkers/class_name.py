@@ -9,27 +9,27 @@ try:
 except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Scope, Token
 
-
+# TODO find out why Enum is not caught in tests
 class ClassNameChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#class-name"""
     ID: str = 'class-name'
-    MSG: str = 'class.name'
+    _MSG: str = 'class.name'
 
     @override
-    def get_scope_set(self) -> set[str]:
+    def get_scopeset(self) -> set[str]:
         return {'Class', 'Struct', 'Union', 'Enum'}
 
     @override
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
-        class_name: str = scope.className
-        if class_name[0].isupper() and '_' not in class_name:
+        class_name: str | None = scope.className
+        if not class_name or class_name[0].isupper() and '_' not in class_name:
             return
         name_token: Token | None = _prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
         self.report_error(
             name_token if name_token else scope.bodyStart,
             _Messages.get(
-                self.MSG,
+                self._MSG,
                 ''.join(p[0].upper() + p[1:] if p else '' for p in class_name.split('_')),
             ),
         )

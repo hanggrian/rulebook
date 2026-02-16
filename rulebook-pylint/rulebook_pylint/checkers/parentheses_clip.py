@@ -13,16 +13,16 @@ if TYPE_CHECKING:
 
 class ParenthesesClipChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#parentheses-clip"""
-    MSG: str = 'parentheses.clip'
+    _MSG: str = 'parentheses.clip'
 
-    PARENTHESES: dict[str, str] = {
+    _PARENTHESES: dict[str, str] = {
         '{': '}',
         '(': ')',
         '[': ']',
     }
 
     name: str = 'parentheses-clip'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
@@ -32,7 +32,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
 
     def _process(self, tokens: list[TokenInfo], i: int, token: TokenInfo) -> None:
         j: int = i + 1
-        end_parenthesis: str = self.PARENTHESES[token.string]
+        end_parenthesis: str = self._PARENTHESES[token.string]
 
         # compare position when there is only whitespace between parentheses
         if j < len(tokens):
@@ -42,7 +42,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
                 # checks for violation
                 if token.end[1] != next_token.start[1]:
                     self.add_message(
-                        self.MSG,
+                        self._MSG,
                         line=token.start[0],
                         col_offset=token.start[1],
                         end_lineno=next_token.end[0],
@@ -62,7 +62,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
                 curr_token.string == end_parenthesis:
                 if has_newline:
                     self.add_message(
-                        self.MSG,
+                        self._MSG,
                         line=token.start[0],
                         col_offset=token.start[1],
                         end_lineno=curr_token.end[0],

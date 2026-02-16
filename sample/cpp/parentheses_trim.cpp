@@ -1,4 +1,4 @@
-void foo(
+void parentheses_trim(
     int bar
 ) {}
 

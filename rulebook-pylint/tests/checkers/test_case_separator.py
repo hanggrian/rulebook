@@ -61,8 +61,8 @@ class TestCaseSeparatorChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CaseSeparatorChecker.MSG_UNEXPECTED, (3, 12, 17)),
-            msg(CaseSeparatorChecker.MSG_UNEXPECTED, (5, 19, 24)),
+            msg(CaseSeparatorChecker._MSG_UNEXPECTED, (3, 12, 17)),
+            msg(CaseSeparatorChecker._MSG_UNEXPECTED, (5, 19, 24)),
         ):
             self.checker.process_module(node_all)
             self.checker.visit_match(node_all.body[0])
@@ -82,8 +82,8 @@ class TestCaseSeparatorChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CaseSeparatorChecker.MSG_MISSING, (4, 8, 13)),
-            msg(CaseSeparatorChecker.MSG_MISSING, (7, 8, 13)),
+            msg(CaseSeparatorChecker._MSG_MISSING, (4, 8, 13)),
+            msg(CaseSeparatorChecker._MSG_MISSING, (7, 8, 13)),
         ):
             self.checker.process_module(node_all)
             self.checker.visit_match(node_all.body[0])
@@ -103,9 +103,9 @@ class TestCaseSeparatorChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CaseSeparatorChecker.MSG_MISSING, (4, 12, 17)),
-            msg(CaseSeparatorChecker.MSG_MISSING, (6, 12, 17)),
-            msg(CaseSeparatorChecker.MSG_MISSING, (8, 12, 17)),
+            msg(CaseSeparatorChecker._MSG_MISSING, (4, 12, 17)),
+            msg(CaseSeparatorChecker._MSG_MISSING, (6, 12, 17)),
+            msg(CaseSeparatorChecker._MSG_MISSING, (8, 12, 17)),
         ):
             self.checker.process_module(node_all)
             self.checker.visit_match(node_all.body[0])

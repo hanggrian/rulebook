@@ -8,6 +8,7 @@ import com.hanggrian.rulebook.checkstyle.maxLineNo
 import com.hanggrian.rulebook.checkstyle.minLineNo
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.CASE_GROUP
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CASE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
@@ -30,8 +31,10 @@ public class CaseSeparatorCheck : RulebookAstCheck() {
         // checks for violation
         val hasMultiline =
             caseGroups.any { caseGroup ->
+                val children = caseGroup.children()
                 caseGroup.findFirstToken(SLIST)?.isMultiline() == true ||
-                    caseGroup.children().any { it.isComment() }
+                    children.any { it.isComment() } ||
+                    children.count { it.type == LITERAL_CASE } > 1
             }
         for ((i, caseGroup) in caseGroups.withIndex()) {
             val lastSlist =

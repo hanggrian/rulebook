@@ -12,13 +12,12 @@ except ImportError:
 class UppercaseLChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#uppercase-l"""
     ID: str = 'uppercase-l'
-    MSG: str = 'uppercase.l'
+    _MSG: str = 'uppercase.l'
 
     @override
-    def process_token(self, token: Token) -> None:
+    def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
-        if not token.isNumber:
-            return
-        if 'l' not in token.str:
-            return
-        self.report_error(token, _Messages.get(self.MSG))
+        for token in [t for t in tokens if t.isNumber]:
+            if 'l' not in token.str:
+                return
+            self.report_error(token, _Messages.get(self._MSG))

@@ -12,10 +12,10 @@ if TYPE_CHECKING:
 
 class InnerClassPositionChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#inner-class-position"""
-    MSG: str = 'inner.class.position'
+    _MSG: str = 'inner.class.position'
 
     name: str = 'inner-class-position'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # consider only inner class
@@ -28,7 +28,7 @@ class InnerClassPositionChecker(RulebookChecker):
 
             # checks for violation
             if isinstance(next2, (FunctionDef, Assign, AssignName)):
-                self.add_message(self.MSG, node=node)
+                self.add_message(self._MSG, node=node)
                 return
 
 

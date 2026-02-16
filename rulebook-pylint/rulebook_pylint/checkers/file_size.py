@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 
 class FileSizeChecker(RulebookFileChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#file-size"""
-    MSG: str = 'file.size'
+    _MSG: str = 'file.size'
 
     name: str = 'file-size'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
     options: Options = (
         MAX_FILE_SIZE_OPTION,
     )
@@ -32,7 +32,7 @@ class FileSizeChecker(RulebookFileChecker):
             size: int = len(stream.readlines())
             if size < self._max_file_size:
                 return
-            self.add_message(self.MSG, line=0, args=self._max_file_size)
+            self.add_message(self._MSG, line=0, args=self._max_file_size)
 
 
 def register(linter: PyLinter) -> None:

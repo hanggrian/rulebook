@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import patch, call
 
 from rulebook_cppcheck.checkers.chain_call_wrap import ChainCallWrapChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,9 +12,9 @@ class TestChainCallWrapChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(ChainCallWrapChecker, 'report_error')
-    def test_aligned_chain_method_call_continuation(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_aligned_chain_method_call_continuation(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     StringBuilder("Lorem ipsum")
@@ -24,13 +23,13 @@ class TestChainCallWrapChecker(CheckerTestCase):
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
     @patch.object(ChainCallWrapChecker, 'report_error')
-    def test_misaligned_chain_method_call_continuation(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_misaligned_chain_method_call_continuation(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     StringBuilder(
@@ -41,16 +40,16 @@ class TestChainCallWrapChecker(CheckerTestCase):
                 }
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_called_once_with(
+        self.checker.process_tokens(tokens)
+        report_error.assert_called_once_with(
             next(t for t in tokens if t.str == '.' and t.linenr == 6),
-            _Messages.get(self.checker.MSG_UNEXPECTED),
+            "Omit newline before '.'.",
         )
 
     @patch.object(ChainCallWrapChecker, 'report_error')
-    def test_inconsistent_dot_position(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_inconsistent_dot_position(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     StringBuilder("Lorem ipsum")
@@ -59,21 +58,21 @@ class TestChainCallWrapChecker(CheckerTestCase):
                 }
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_has_calls(
+        self.checker.process_tokens(tokens)
+        report_error.assert_has_calls(
             [
                 call(
                     next(t for t in tokens if t.str == '.' and t.column == 35),
-                    _Messages.get(self.checker.MSG_MISSING),
+                    "Put newline before '.'.",
                 ),
             ],
             any_order=True,
         )
 
     @patch.object(ChainCallWrapChecker, 'report_error')
-    def test_also_capture_non_method_call(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_also_capture_non_method_call(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     baz()
@@ -82,21 +81,21 @@ class TestChainCallWrapChecker(CheckerTestCase):
                 }
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_has_calls(
+        self.checker.process_tokens(tokens)
+        report_error.assert_has_calls(
             [
                 call(
                     next(t for t in tokens if t.str == '.' and t.column == 31),
-                    _Messages.get(self.checker.MSG_MISSING),
+                    "Put newline before '.'.",
                 ),
             ],
             any_order=True,
         )
 
     @patch.object(ChainCallWrapChecker, 'report_error')
-    def test_allow_dots_on_single_line(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_allow_dots_on_single_line(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     StringBuilder(
@@ -108,8 +107,8 @@ class TestChainCallWrapChecker(CheckerTestCase):
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
 
 if __name__ == '__main__':

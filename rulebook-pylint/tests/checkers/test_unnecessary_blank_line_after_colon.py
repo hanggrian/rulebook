@@ -38,8 +38,8 @@ class TestUnnecessaryBlankLineAfterColonChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(UnnecessaryBlankLineAfterColonChecker.MSG, (3, 0)),
-            msg(UnnecessaryBlankLineAfterColonChecker.MSG, (5, 0)),
+            msg(UnnecessaryBlankLineAfterColonChecker._MSG, (3, 0)),
+            msg(UnnecessaryBlankLineAfterColonChecker._MSG, (5, 0)),
         ):
             self.checker.process_tokens(tokens)
 

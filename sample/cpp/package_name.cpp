@@ -2,7 +2,6 @@ namespace my_namespace {
     int x = 42;
 }
 
-int main() {
+void package_name() {
     cout << my_namespace::x;
-    return 0;
 }

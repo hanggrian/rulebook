@@ -33,8 +33,8 @@ class TestCommentTrimChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CommentTrimChecker.MSG, (2, 16)),
-            msg(CommentTrimChecker.MSG, (4, 16)),
+            msg(CommentTrimChecker._MSG, (2, 16)),
+            msg(CommentTrimChecker._MSG, (4, 16)),
         ):
             self.checker.process_tokens(tokens)
 

@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 
 class CommentSpaceChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#comment-space"""
-    MSG: str = 'comment.space'
+    _MSG: str = 'comment.space'
 
     name: str = 'comment-space'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         # checks for violation
@@ -26,7 +26,7 @@ class CommentSpaceChecker(RulebookTokenChecker):
                 token_str.startswith('#!') or \
                 all(c == '#' for c in token_str):
                 continue
-            self.add_message(self.MSG, line=token.start[0], col_offset=token.start[1])
+            self.add_message(self._MSG, line=token.start[0], col_offset=token.start[1])
 
 
 def register(linter: PyLinter) -> None:

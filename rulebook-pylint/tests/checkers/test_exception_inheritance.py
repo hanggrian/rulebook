@@ -34,7 +34,7 @@ class TestExceptionExtendingChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(ExceptionInheritanceChecker.MSG, (2, 10, 23), node=node1.bases[0]),
+            msg(ExceptionInheritanceChecker._MSG, (2, 10, 23), node=node1.bases[0]),
         ):
             self.checker.visit_classdef(node1)
 

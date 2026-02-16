@@ -12,37 +12,35 @@ except ImportError:
 class ParameterWrapChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#parameter-wrap"""
     ID: str = 'parameter-wrap'
-    MSG: str = 'parameter.wrap'
+    _MSG: str = 'parameter.wrap'
 
     @override
-    def process_token(self, token: Token) -> None:
-        if token.str != '(':
-            return
-
-        # collect parameters
-        params: list[Token] = []
-        curr_token: Token | None = token.next
-        depth: int = 1
-        while curr_token and depth > 0:
-            if curr_token.str == '(':
-                depth += 1
-            elif curr_token.str == ')':
-                depth -= 1
-            if depth == 1 and curr_token.str == ',':
-                params.append(curr_token.next)
-            elif depth == 1 and not params and curr_token.str != ')':
-                params.append(curr_token)
-            curr_token = curr_token.next
-        if not params:
-            return
-
-        # checks for violation
-        last: Token = params[-1]
-        if token.linenr == last.linenr:
-            return
-        for i in range(1, len(params)):
-            prev: Token = params[i - 1]
-            curr_param: Token = params[i]
-            if curr_param.linenr != prev.linenr:
+    def process_tokens(self, tokens: list[Token]) -> None:
+        for token in [t for t in tokens if t.str == '(']:
+            # collect parameters
+            params: list[Token] = []
+            curr_token: Token | None = token.next
+            depth: int = 1
+            while curr_token and depth > 0:
+                if curr_token.str == '(':
+                    depth += 1
+                elif curr_token.str == ')':
+                    depth -= 1
+                if depth == 1 and curr_token.str == ',':
+                    params.append(curr_token.next)
+                elif depth == 1 and not params and curr_token.str != ')':
+                    params.append(curr_token)
+                curr_token = curr_token.next
+            if not params:
                 continue
-            self.report_error(curr_param, _Messages.get(self.MSG))
+
+            # checks for violation
+            last: Token = params[-1]
+            if token.linenr == last.linenr:
+                continue
+            for i in range(1, len(params)):
+                prev: Token = params[i - 1]
+                curr_param: Token = params[i]
+                if curr_param.linenr != prev.linenr:
+                    continue
+                self.report_error(curr_param, _Messages.get(self._MSG))

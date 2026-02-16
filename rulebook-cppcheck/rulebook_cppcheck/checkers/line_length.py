@@ -13,32 +13,33 @@ except ImportError:
 class LineLengthChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#line-length"""
     ID: str = 'line-length'
-    MSG: str = 'line.length'
+    _MSG: str = 'line.length'
     ARGS: list[str] = [MAX_LINE_LENGTH_OPTION]
 
     def __init__(self):
         super().__init__()
         self._max_line_length: int = 100
-        self._processed_lines: dict[str, set[int]] = {}
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
         self._max_line_length = int(args[MAX_LINE_LENGTH_OPTION])
 
     @override
-    def process_token(self, token: Token) -> None:
-        file_path: str = token.file
-        line_nr: int = token.linenr
-        if file_path not in self._processed_lines:
-            self._processed_lines[file_path] = set()
-        if line_nr in self._processed_lines[file_path]:
-            return
-        self._processed_lines[file_path].add(line_nr)
+    def process_tokens(self, tokens: list[Token]) -> None:
+        processed_lines: dict[str, set[int]] = {}
+        cache: dict[str, list[str]] = {}
+        for token in [t for t in tokens if t.file and t.linenr]:
+            token_file: str = token.file
+            token_linenr: int = token.linenr
 
-        with open(file_path, 'r', encoding='UTF-8') as f:
-            for i, line in enumerate(f, 1):
-                if i != line_nr:
-                    continue
-                if len(line.rstrip('\r\n')) <= self._max_line_length:
-                    continue
-                self.report_error(token, _Messages.get(self.MSG, self._max_line_length))
+            if token_file not in processed_lines:
+                processed_lines[token_file] = set()
+            if token_linenr in processed_lines[token_file]:
+                continue
+            if token_file not in cache:
+                with open(token_file, 'r', encoding='UTF-8') as f:
+                    cache[token_file] = f.readlines()
+            processed_lines[token_file].add(token_linenr)
+            if len(cache[token_file][token_linenr - 1].rstrip('\r\n')) <= self._max_line_length:
+                continue
+            self.report_error(token, _Messages.get(self._MSG, self._max_line_length))

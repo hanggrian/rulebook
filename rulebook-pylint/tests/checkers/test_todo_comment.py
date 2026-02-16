@@ -35,8 +35,8 @@ class TestTodoCommentChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(TodoCommentChecker.MSG_KEYWORD, 2, args='todo'),
-            msg(TodoCommentChecker.MSG_KEYWORD, 3, args='fixme'),
+            msg(TodoCommentChecker._MSG_KEYWORD, 2, args='todo'),
+            msg(TodoCommentChecker._MSG_KEYWORD, 3, args='fixme'),
         ):
             self.checker.process_module(node_all)
 
@@ -49,8 +49,8 @@ class TestTodoCommentChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(TodoCommentChecker.MSG_SEPARATOR, 2, args=':'),
-            msg(TodoCommentChecker.MSG_SEPARATOR, 3, args='1'),
+            msg(TodoCommentChecker._MSG_SEPARATOR, 2, args=':'),
+            msg(TodoCommentChecker._MSG_SEPARATOR, 3, args='1'),
         ):
             self.checker.process_module(node_all)
 
@@ -62,8 +62,8 @@ class TestTodoCommentChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(TodoCommentChecker.MSG_KEYWORD, 2, args='Todo'),
-            msg(TodoCommentChecker.MSG_SEPARATOR, 2, args=':'),
+            msg(TodoCommentChecker._MSG_KEYWORD, 2, args='Todo'),
+            msg(TodoCommentChecker._MSG_SEPARATOR, 2, args=':'),
         ):
             self.checker.process_module(node_all)
 

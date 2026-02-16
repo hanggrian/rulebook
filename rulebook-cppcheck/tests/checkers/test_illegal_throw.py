@@ -2,7 +2,6 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.illegal_throw import IllegalThrowChecker
-from rulebook_cppcheck.messages import _Messages
 from ..tests import assert_properties, CheckerTestCase
 
 
@@ -13,9 +12,9 @@ class TestIllegalThrowChecker(CheckerTestCase):
         assert_properties(self.CHECKER_CLASS)
 
     @patch.object(IllegalThrowChecker, 'report_error')
-    def test_throw_narrow_exceptions(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_throw_narrow_exceptions(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     throw std::invalid_argument("foo");
@@ -25,29 +24,29 @@ class TestIllegalThrowChecker(CheckerTestCase):
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
     @patch.object(IllegalThrowChecker, 'report_error')
-    def test_throw_broad_exceptions(self, mock_report):
-        tokens = \
-            self.dump_tokens(
+    def test_throw_broad_exceptions(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     throw std::exception();
                 }
                 ''',
             )
-        [self.checker.process_token(token) for token in tokens]
-        mock_report.assert_called_once_with(
+        self.checker.process_tokens(tokens)
+        report_error.assert_called_once_with(
             next(t for t in tokens if t.str == 'exception'),
-            _Messages.get(self.checker.MSG),
+            'Throw a narrower type.',
         )
 
     @patch.object(IllegalThrowChecker, 'report_error')
-    def test_skip_throwing_by_reference(self, mock_report):
-        [
-            self.checker.process_token(token) for token in self.dump_tokens(
+    def test_skip_throwing_by_reference(self, report_error):
+        tokens, _ = \
+            self.dump_code(
                 '''
                 void foo() {
                     auto e = std::exception();
@@ -55,8 +54,8 @@ class TestIllegalThrowChecker(CheckerTestCase):
                 }
                 ''',
             )
-        ]
-        mock_report.assert_not_called()
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
 
 
 if __name__ == '__main__':

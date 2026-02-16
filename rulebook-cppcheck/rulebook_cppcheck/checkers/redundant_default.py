@@ -13,48 +13,57 @@ except ImportError:
 class RedundantDefaultChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#redundant-default"""
     ID: str = 'redundant-default'
-    MSG: str = 'redundant.default'
+    _MSG: str = 'redundant.default'
 
-    BREAK_STATEMENTS: set[str] = {'return', 'continue', 'throw', 'goto'}
+    _BREAK_STATEMENTS: set[str] = {'return', 'continue', 'throw', 'goto'}
 
     @override
-    def process_token(self, token: Token) -> None:
-        if token.str != 'switch':
-            return
+    def process_tokens(self, tokens: list[Token]) -> None:
+        for token in [t for t in tokens if t.str == 'switch']:
+            # find the opening brace of the switch
+            l_brace: Token | None = token.next
+            if l_brace and l_brace.str == '(':
+                l_brace = l_brace.link.next
+            if not l_brace or l_brace.str != '{':
+                continue
 
-        # find the opening brace of the switch
-        l_brace: Token | None = token.next
-        if l_brace and l_brace.str == '(':
-            l_brace = l_brace.link.next
-        if not l_brace or l_brace.str != '{':
-            return
-        r_brace: Token | None = l_brace.link
-        curr_token: Token | None = l_brace.next
+            # find default
+            default_token, cases = self._get_default(l_brace.next, l_brace.link)
+            if not default_token or not cases:
+                continue
+
+            # checks for violation
+            continue_outer: bool = False
+            for i, case_colon in enumerate(cases):
+                limit: Token = cases[i + 1] if i + 1 < len(cases) else default_token
+                has_jump: bool = False
+                search: Token | None = case_colon.next
+                while search and search is not limit:
+                    if search.str in self._BREAK_STATEMENTS:
+                        has_jump = True
+                        break
+                    search = search.next
+                if not has_jump:
+                    continue_outer = True
+                    break
+            if continue_outer:
+                continue
+            self.report_error(default_token, _Messages.get(self._MSG))
+
+    @staticmethod
+    def _get_default(
+        curr_token: Token | None,
+        r_brace: Token | None,
+    ) -> tuple[Token, list[Token]] | None:
         cases: list[Token] = []
         default_token: Token | None = None
-
-        # find default
         while curr_token and curr_token is not r_brace:
             if curr_token.str == 'case':
                 curr_token = _next_sibling(curr_token, lambda t: t is r_brace or t.str == ':')
                 if curr_token and curr_token.str == ':':
                     cases.append(curr_token)
             elif curr_token.str == 'default':
-                default_token = _next_sibling(curr_token, lambda t: t is r_brace or t.str == ':')
+                default_token = \
+                    _next_sibling(curr_token, lambda t: t is r_brace or t.str == ':')
             curr_token = curr_token.next
-        if not default_token or not cases:
-            return
-
-        # checks for violation
-        for i, case_colon in enumerate(cases):
-            limit: Token = cases[i + 1] if i + 1 < len(cases) else default_token
-            has_jump: bool = False
-            search: Token | None = case_colon.next
-            while search and search is not limit:
-                if search.str in self.BREAK_STATEMENTS:
-                    has_jump = True
-                    break
-                search = search.next
-            if not has_jump:
-                return
-        self.report_error(default_token, _Messages.get(self.MSG))
+        return default_token, cases

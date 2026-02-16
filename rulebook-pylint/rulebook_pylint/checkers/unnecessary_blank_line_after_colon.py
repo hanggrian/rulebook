@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 
 class UnnecessaryBlankLineAfterColonChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-blank-line-after-colon"""
-    MSG: str = 'unnecessary.blank.line.after.colon'
+    _MSG: str = 'unnecessary.blank.line.after.colon'
 
     name: str = 'unnecessary-blank-line-after-colon'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(MSG)
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
@@ -33,7 +33,7 @@ class UnnecessaryBlankLineAfterColonChecker(RulebookTokenChecker):
             if next_token.type is not NEWLINE or \
                 next_token2.type is not NL:
                 continue
-            self.add_message(self.MSG, line=next_token2.start[0], col_offset=next_token2.start[1])
+            self.add_message(self._MSG, line=next_token2.start[0], col_offset=next_token2.start[1])
 
 
 def register(linter: PyLinter) -> None:

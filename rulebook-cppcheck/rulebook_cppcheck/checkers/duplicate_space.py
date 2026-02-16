@@ -12,9 +12,9 @@ except ImportError:
 class DuplicateSpaceChecker(RulebookTokenChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-space"""
     ID: str = 'duplicate-space'
-    MSG: str = 'duplicate.space'
+    _MSG: str = 'duplicate.space'
 
-    TARGET_TOKENS: tuple[str, ...] = (
+    _IGNORE_TOKENS: tuple[str, ...] = (
         '=',
         ',',
         ';',
@@ -23,8 +23,12 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
         ')',
         '{',
         '}',
+        '[',
+        ']',
         '<',
         '>',
+        '*',
+        '&',
         'if',
         'else',
         'while',
@@ -37,24 +41,44 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
         'inline',
         'static',
         'const',
+        'struct',
+        'class',
+        'enum',
+        'union',
+        'typedef',
+        'typename',
+        'signed',
+        'unsigned',
+        'short',
+        'long',
+        'char',
+        'int',
+        'float',
+        'double',
+        'void',
+        'bool',
     )
 
     @override
-    def process_token(self, token: Token) -> None:
-        next_token: Token | None = token.next
-        if not next_token or token.linenr != next_token.linenr:
-            return
-        prev_token: Token | None = token.previous
-        if not prev_token or prev_token.linenr != token.linenr:
-            return
-        if self._is_duplicate_space(token, next_token):
-            self.report_error(token, _Messages.get(self.MSG))
+    def process_tokens(self, tokens: list[Token]) -> None:
+        for token in tokens:
+            # get last token to compare
+            next_token: Token | None = token.next
+            if not next_token or token.linenr != next_token.linenr:
+                continue
+
+            # checks for violation
+            if not self._is_duplicate_space(token, next_token):
+                continue
+            self.report_error(token, _Messages.get(self._MSG))
 
     @staticmethod
     def _is_duplicate_space(token: Token, next_token: Token) -> bool:
         gap: int = next_token.column - (token.column + len(token.str))
         if next_token.str.startswith('//') or next_token.str.startswith('/*'):
             return gap > 2
-        if any(s in (token.str, next_token.str) for s in DuplicateSpaceChecker.TARGET_TOKENS):
+        if any(s in (token.str, next_token.str) for s in DuplicateSpaceChecker._IGNORE_TOKENS):
+            return False
+        if next_token.isNumber:
             return False
         return gap > 1
