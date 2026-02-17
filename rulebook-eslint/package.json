@@ -28,6 +28,7 @@
     "@eslint/js": ">= 9",
     "@stylistic/eslint-plugin": ">= 5",
     "eslint": ">= 9",
+    "eslint-plugin-import": ">= 2",
     "eslint-plugin-jsdoc": ">= 62",
     "eslint-plugin-sort-class-members": ">= 1"
   },
@@ -36,6 +37,7 @@
     "@stylistic/eslint-plugin": "^5.7.1",
     "@types/node": "^25.0.10",
     "eslint": "^9.39.2",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsdoc": "^62.4.1",
     "eslint-plugin-sort-class-members": "^1.21.0",
     "globals": "^16.0.0",

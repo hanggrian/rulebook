@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.member_order import MemberOrderChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestMemberOrderChecker(CheckerTestCase):

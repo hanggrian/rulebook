@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.block_tag_punctuation import BlockTagPunctuationChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestBlockTagPunctuationChecker(CheckerTestCase):

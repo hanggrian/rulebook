@@ -1,17 +1,16 @@
 from collections.abc import Generator, Iterator
 from contextlib import contextmanager
-from os.path import join, dirname
+from os.path import dirname, join
 from typing import Any
 from unittest import main
 
 from astroid import parse
-from astroid.nodes import NodeNG, ClassDef, Module, FunctionDef, Assign, Match, For, While, Call
-from pylint.testutils import UnittestLinter, MessageTest, _tokenize_str
+from astroid.nodes import Assign, Call, ClassDef, For, FunctionDef, Match, Module, NodeNG, While
+from pylint.testutils import MessageTest, UnittestLinter, _tokenize_str
 from pylint.testutils.global_test_linter import linter
 from pylint.utils import ASTWalker
 
 from rulebook_pylint.checkers.abbreviation_as_word import AbbreviationAsWordChecker
-from rulebook_pylint.checkers.abstract_class_definition import AbstractClassDefinitionChecker
 from rulebook_pylint.checkers.block_comment_clip import BlockCommentClipChecker
 from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
@@ -30,6 +29,7 @@ from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChec
 from rulebook_pylint.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_pylint.checkers.member_order import MemberOrderChecker
 from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
+from rulebook_pylint.checkers.named_import_order import NamedImportOrderChecker
 from rulebook_pylint.checkers.nested_if_else import NestedIfElseChecker
 from rulebook_pylint.checkers.parameter_wrap import ParameterWrapChecker
 from rulebook_pylint.checkers.parentheses_clip import ParenthesesClipChecker
@@ -37,18 +37,19 @@ from rulebook_pylint.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_pylint.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_pylint.checkers.todo_comment import TodoCommentChecker
 from rulebook_pylint.checkers.trailing_comma import TrailingCommaChecker
+from rulebook_pylint.checkers.unnecessary_abstract import UnnecessaryAbstractChecker
 from rulebook_pylint.checkers.unnecessary_blank_line_after_colon import \
     UnnecessaryBlankLineAfterColonChecker
-from rulebook_pylint.checkers.unnecessary_blank_line_before_package import \
-    UnnecessaryBlankLineBeforePackageChecker
+from rulebook_pylint.checkers.unnecessary_initial_blank_line import \
+    UnnecessaryInitialBlankLineChecker
 from rulebook_pylint.checkers.unnecessary_switch import UnnecessarySwitchChecker
 from ..tests import msg
 
 
+# noinspection PyPep8Naming
 class TestAllCheckers:
     CHECKER_CLASSES: tuple = (
         AbbreviationAsWordChecker,
-        AbstractClassDefinitionChecker,
         BlockCommentClipChecker,
         BlockCommentTrimChecker,
         CaseSeparatorChecker,
@@ -68,6 +69,7 @@ class TestAllCheckers:
         MeaninglessWordChecker,
         MemberOrderChecker,
         MemberSeparatorChecker,
+        NamedImportOrderChecker,
         NestedIfElseChecker,
         ParameterWrapChecker,
         ParenthesesClipChecker,
@@ -75,57 +77,16 @@ class TestAllCheckers:
         RedundantDefaultChecker,
         TodoCommentChecker,
         TrailingCommaChecker,
+        UnnecessaryAbstractChecker,
         UnnecessaryBlankLineAfterColonChecker,
-        UnnecessaryBlankLineBeforePackageChecker,
+        UnnecessaryInitialBlankLineChecker,
         UnnecessarySwitchChecker,
     )
     CONFIG: dict[str, Any] = {}
 
-    def test_pylint_pylint_messages(self):
-        with open(
-            join(dirname(__file__), '../resources/pylint_messages.py'),
-            'r',
-            encoding='UTF-8',
-        ) as file:
-            s = file.read()
-            node_all = parse(s)
-            tokens = _tokenize_str(s)
-        with self.assertAddsMessages(
-            msg(NestedIfElseChecker._MSG_INVERT, (172, 4, 180, 75), node_all.body[33].body[-1]),
-            msg(
-                NestedIfElseChecker._MSG_INVERT,
-                (266, 8, 276, 21),
-                node_all.body[38].body[-2].body[-1],
-            ),
-            msg(TrailingCommaChecker._MSG_MULTI, (94, 50)),
-            msg(TrailingCommaChecker._MSG_MULTI, (101, 83)),
-            msg(TrailingCommaChecker._MSG_MULTI, (104, 78)),
-            msg(TrailingCommaChecker._MSG_MULTI, (114, 84)),
-            msg(TrailingCommaChecker._MSG_MULTI, (125, 43)),
-            msg(TrailingCommaChecker._MSG_MULTI, (134, 72)),
-            msg(TrailingCommaChecker._MSG_MULTI, (140, 71)),
-            msg(TrailingCommaChecker._MSG_MULTI, (156, 3)),
-            msg(TrailingCommaChecker._MSG_MULTI, (160, 73)),
-            msg(TrailingCommaChecker._MSG_MULTI, (165, 62)),
-            msg(TrailingCommaChecker._MSG_MULTI, (178, 58)),
-            msg(TrailingCommaChecker._MSG_MULTI, (250, 54)),
-            msg(TrailingCommaChecker._MSG_MULTI, (272, 46)),
-            msg(TrailingCommaChecker._MSG_MULTI, (275, 50)),
-            msg(TrailingCommaChecker._MSG_MULTI, (318, 87)),
-            msg(TrailingCommaChecker._MSG_MULTI, (370, 53)),
-            msg(TrailingCommaChecker._MSG_MULTI, (376, 51)),
-            msg(TrailingCommaChecker._MSG_MULTI, (385, 13)),
-            msg(TrailingCommaChecker._MSG_MULTI, (398, 67)),
-            msg(TrailingCommaChecker._MSG_MULTI, (417, 3)),
-            msg(TrailingCommaChecker._MSG_MULTI, (460, 24)),
-        ):
-            for checker in self.checkers:
-                self._assert_tokens(checker, tokens)
-                self._assert_all(checker, node_all)
-
     def test_django_paginator(self):
         with open(
-            join(dirname(__file__), '../resources/paginator.py'),
+            join(dirname(__file__), '../resources/django_paginator.py'),
             'r',
             encoding='UTF-8',
         ) as file:
@@ -157,32 +118,9 @@ class TestAllCheckers:
                 self._assert_tokens(checker, tokens)
                 self._assert_all(checker, node_all)
 
-    def test_numpy_matlib(self):
-        with open(
-            join(dirname(__file__), '../resources/matlib.py'),
-            'r',
-            encoding='UTF-8',
-        ) as file:
-            s = file.read()
-            node_all = parse(s)
-            tokens = _tokenize_str(s)
-        with self.assertAddsMessages(
-            msg(BlockCommentTrimChecker._MSG_LAST, (62, 4, 7), node_all.body[8].doc_node),
-            msg(BlockCommentTrimChecker._MSG_LAST, (105, 4, 7), node_all.body[9].doc_node),
-            msg(BlockCommentTrimChecker._MSG_LAST, (149, 4, 7), node_all.body[10].doc_node),
-            msg(BlockCommentTrimChecker._MSG_LAST, (184, 4, 7), node_all.body[11].doc_node),
-            msg(BlockCommentTrimChecker._MSG_LAST, (229, 4, 7), node_all.body[12].doc_node),
-            msg(BlockCommentTrimChecker._MSG_LAST, (273, 4, 7), node_all.body[13].doc_node),
-            msg(BlockCommentTrimChecker._MSG_LAST, (326, 4, 7), node_all.body[14].doc_node),
-            msg(BlockCommentTrimChecker._MSG_LAST, (367, 4, 7), node_all.body[15].doc_node),
-        ):
-            for checker in self.checkers:
-                self._assert_tokens(checker, tokens)
-                self._assert_all(checker, node_all)
-
     def test_matplotlib_pyplot(self):
         with open(
-            join(dirname(__file__), '../resources/pyplot.py'),
+            join(dirname(__file__), '../resources/matplotlib_pyplot.py'),
             'r',
             encoding='UTF-8',
         ) as file:
@@ -278,6 +216,71 @@ class TestAllCheckers:
             msg(TrailingCommaChecker._MSG_MULTI, (4393, 71)),
             msg(TrailingCommaChecker._MSG_MULTI, (4408, 71)),
             msg(UnnecessaryBlankLineAfterColonChecker._MSG, (456, 0)),
+        ):
+            for checker in self.checkers:
+                self._assert_tokens(checker, tokens)
+                self._assert_all(checker, node_all)
+
+    def test_numpy_matlib(self):
+        with open(
+            join(dirname(__file__), '../resources/numpy_matlib.py'),
+            'r',
+            encoding='UTF-8',
+        ) as file:
+            s = file.read()
+            node_all = parse(s)
+            tokens = _tokenize_str(s)
+        with self.assertAddsMessages(
+            msg(BlockCommentTrimChecker._MSG_LAST, (62, 4, 7), node_all.body[8].doc_node),
+            msg(BlockCommentTrimChecker._MSG_LAST, (105, 4, 7), node_all.body[9].doc_node),
+            msg(BlockCommentTrimChecker._MSG_LAST, (149, 4, 7), node_all.body[10].doc_node),
+            msg(BlockCommentTrimChecker._MSG_LAST, (184, 4, 7), node_all.body[11].doc_node),
+            msg(BlockCommentTrimChecker._MSG_LAST, (229, 4, 7), node_all.body[12].doc_node),
+            msg(BlockCommentTrimChecker._MSG_LAST, (273, 4, 7), node_all.body[13].doc_node),
+            msg(BlockCommentTrimChecker._MSG_LAST, (326, 4, 7), node_all.body[14].doc_node),
+            msg(BlockCommentTrimChecker._MSG_LAST, (367, 4, 7), node_all.body[15].doc_node),
+        ):
+            for checker in self.checkers:
+                self._assert_tokens(checker, tokens)
+                self._assert_all(checker, node_all)
+
+    def test_pylint_pylint_messages(self):
+        with open(
+            join(dirname(__file__), '../resources/pylint_messages.py'),
+            'r',
+            encoding='UTF-8',
+        ) as file:
+            s = file.read()
+            node_all = parse(s)
+            tokens = _tokenize_str(s)
+        with self.assertAddsMessages(
+            msg(NestedIfElseChecker._MSG_INVERT, (172, 4, 180, 75), node_all.body[33].body[-1]),
+            msg(
+                NestedIfElseChecker._MSG_INVERT,
+                (266, 8, 276, 21),
+                node_all.body[38].body[-2].body[-1],
+            ),
+            msg(TrailingCommaChecker._MSG_MULTI, (94, 50)),
+            msg(TrailingCommaChecker._MSG_MULTI, (101, 83)),
+            msg(TrailingCommaChecker._MSG_MULTI, (104, 78)),
+            msg(TrailingCommaChecker._MSG_MULTI, (114, 84)),
+            msg(TrailingCommaChecker._MSG_MULTI, (125, 43)),
+            msg(TrailingCommaChecker._MSG_MULTI, (134, 72)),
+            msg(TrailingCommaChecker._MSG_MULTI, (140, 71)),
+            msg(TrailingCommaChecker._MSG_MULTI, (156, 3)),
+            msg(TrailingCommaChecker._MSG_MULTI, (160, 73)),
+            msg(TrailingCommaChecker._MSG_MULTI, (165, 62)),
+            msg(TrailingCommaChecker._MSG_MULTI, (178, 58)),
+            msg(TrailingCommaChecker._MSG_MULTI, (250, 54)),
+            msg(TrailingCommaChecker._MSG_MULTI, (272, 46)),
+            msg(TrailingCommaChecker._MSG_MULTI, (275, 50)),
+            msg(TrailingCommaChecker._MSG_MULTI, (318, 87)),
+            msg(TrailingCommaChecker._MSG_MULTI, (370, 53)),
+            msg(TrailingCommaChecker._MSG_MULTI, (376, 51)),
+            msg(TrailingCommaChecker._MSG_MULTI, (385, 13)),
+            msg(TrailingCommaChecker._MSG_MULTI, (398, 67)),
+            msg(TrailingCommaChecker._MSG_MULTI, (417, 3)),
+            msg(TrailingCommaChecker._MSG_MULTI, (460, 24)),
         ):
             for checker in self.checkers:
                 self._assert_tokens(checker, tokens)

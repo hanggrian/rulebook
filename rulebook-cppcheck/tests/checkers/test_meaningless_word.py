@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestMeaninglessWordChecker(CheckerTestCase):
@@ -50,7 +50,6 @@ class TestMeaninglessWordChecker(CheckerTestCase):
                     "Avoid meaningless word 'Manager'.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(MeaninglessWordChecker, 'report_error')

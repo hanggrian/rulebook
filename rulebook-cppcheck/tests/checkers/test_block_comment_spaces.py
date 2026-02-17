@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.block_comment_spaces import BlockCommentSpacesChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestBlockCommentSpacesChecker(CheckerTestCase):

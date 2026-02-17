@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from astroid.nodes import NodeNG, If, For, While, FunctionDef
+from astroid.nodes import For, FunctionDef, If, NodeNG, While
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker

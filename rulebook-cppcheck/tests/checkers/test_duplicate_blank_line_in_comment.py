@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestDuplicateBlankLineInCommentChecker(CheckerTestCase):

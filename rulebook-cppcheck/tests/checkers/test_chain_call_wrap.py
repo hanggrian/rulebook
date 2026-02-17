@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.chain_call_wrap import ChainCallWrapChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestChainCallWrapChecker(CheckerTestCase):
@@ -66,7 +66,6 @@ class TestChainCallWrapChecker(CheckerTestCase):
                     "Put newline before '.'.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(ChainCallWrapChecker, 'report_error')
@@ -89,7 +88,6 @@ class TestChainCallWrapChecker(CheckerTestCase):
                     "Put newline before '.'.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(ChainCallWrapChecker, 'report_error')
@@ -104,6 +102,36 @@ class TestChainCallWrapChecker(CheckerTestCase):
                     StringBuilder(0).append(1).append(
                         2
                     );
+                }
+                ''',
+            )
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
+
+    @patch.object(ChainCallWrapChecker, 'report_error')
+    def test_skip_single_line_parameters(self, report_error):
+        tokens, _ = \
+            self.dump_code(
+                '''
+                const bool haveMisraAddon = std::any_of(settings.addonInfos.cbegin(),
+                                                        settings.addonInfos.cend(),
+                                                        [] (const AddonInfo &info) {
+                    return info.name == "misra";
+                });
+                ''',
+            )
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
+
+    @patch.object(ChainCallWrapChecker, 'report_error')
+    def test_skip_single_line_in_ternary(self, report_error):
+        tokens, _ = \
+            self.dump_code(
+                '''
+                int foo() {
+                    return m_long_names.empty()
+                        ? m_short_name
+                        : string(m_short_name).append(" [ --");
                 }
                 ''',
             )

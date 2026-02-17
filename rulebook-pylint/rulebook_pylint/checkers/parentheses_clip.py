@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from tokenize import TokenInfo, OP, NL
+from tokenize import NL, OP, TokenInfo
 
 from pylint.typing import TYPE_CHECKING
 
@@ -20,6 +20,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
         '(': ')',
         '[': ']',
     }
+    _OPENING_PARENTHESES: set[str] = {'{', '(', '['}
 
     name: str = 'parentheses-clip'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
@@ -27,8 +28,9 @@ class ParenthesesClipChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # find opening parenthesis
-            if token.type is OP and token.string in {'{', '(', '['}:
-                self._process(tokens, i, token)
+            if token.type is not OP or token.string not in self._OPENING_PARENTHESES:
+                continue
+            self._process(tokens, i, token)
 
     def _process(self, tokens: list[TokenInfo], i: int, token: TokenInfo) -> None:
         j: int = i + 1

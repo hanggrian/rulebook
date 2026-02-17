@@ -1,6 +1,6 @@
 import { Rule } from 'eslint';
-import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
+import RulebookRule from './rulebook-rules.js';
 
 /* eslint-disable @rulebook/todo-comment */
 /** {@link https://hanggrian.github.io/rulebook/rules/#todo-comment|See detail} */

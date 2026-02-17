@@ -1,12 +1,15 @@
 import { describe, it } from 'vitest';
-import duplicateBlankLineInBlockComment from '../../rules/duplicate-blank-line-in-block-comment';
+import duplicateBlankLineInBlockCommentRule from '../../rules/duplicate-blank-line-in-block-comment';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('DuplicateBlankLineInBlockCommentTest', () => {
+describe('DuplicateBlankLineInBlockCommentRuleTest', () => {
     const assertThat: AssertThat =
-        assertThatRule(duplicateBlankLineInBlockComment, 'duplicate-blank-line-in-block-comment');
+        assertThatRule(
+            duplicateBlankLineInBlockCommentRule,
+            'duplicate-blank-line-in-block-comment',
+        );
 
-    it('Rule properties', () => assertProperties(duplicateBlankLineInBlockComment));
+    it('Rule properties', () => assertProperties(duplicateBlankLineInBlockCommentRule));
 
     it(
         'Single empty line in block comment',

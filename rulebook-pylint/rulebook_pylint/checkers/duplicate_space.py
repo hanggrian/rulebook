@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from tokenize import TokenInfo, INDENT, DEDENT, ENDMARKER, NEWLINE, NL, COMMENT, FSTRING_START, \
-    FSTRING_END
+from tokenize import COMMENT, DEDENT, ENDMARKER, FSTRING_END, FSTRING_START, INDENT, NEWLINE, NL, \
+    TokenInfo
 
 from pylint.typing import TYPE_CHECKING
 

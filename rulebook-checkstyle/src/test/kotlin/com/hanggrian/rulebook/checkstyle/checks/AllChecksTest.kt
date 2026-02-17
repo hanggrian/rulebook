@@ -12,10 +12,10 @@ class AllChecksTest : AbstractModuleTestSupport() {
             DefaultConfiguration("root").apply {
                 addProperty("charset", StandardCharsets.UTF_8.name())
                 addConfiguration<DuplicateBlankLineCheck>()
-                addConfiguration<UnnecessaryBlankLineBeforePackageCheck>()
+                addConfiguration<UnnecessaryInitialBlankLineCheck>()
                 addChild(
                     DefaultConfiguration(TreeWalker::class.simpleName).apply {
-                        addConfiguration<AbstractClassDefinitionCheck>()
+                        addConfiguration<UnnecessaryAbstractCheck>()
                         addConfiguration<AssignmentWrapCheck>()
                         addConfiguration<BlockCommentTrimCheck>()
                         addConfiguration<BracesTrimCheck>()
@@ -46,24 +46,6 @@ class AllChecksTest : AbstractModuleTestSupport() {
         )
 
     override fun getPackageLocation(): String = "AllChecks"
-
-    @Test
-    fun com_google_common_truth_StringSubject(): Unit =
-        verify(
-            checker,
-            getPath("StringSubject.java"),
-            "217:9: Invert if condition.",
-            "270:15: Lift else and add return in if block.",
-            "273:74: Break each parameter into newline.",
-            "273:88: Break each parameter into newline.",
-            "291:15: Lift else and add return in if block.",
-            "294:71: Break each parameter into newline.",
-            "294:85: Break each parameter into newline.",
-            "310:66: Break each parameter into newline.",
-            "310:80: Break each parameter into newline.",
-            "325:70: Break each parameter into newline.",
-            "325:84: Break each parameter into newline.",
-        )
 
     @Test
     fun com_puppycrawl_tools_checkstyle_Checker(): Unit =
@@ -127,6 +109,24 @@ class AllChecksTest : AbstractModuleTestSupport() {
             "156:55: Break each parameter into newline.",
             "186:5: Arrange member 'function' before 'static member'.",
             "200:11: Lift else and add return in if block.",
+        )
+
+    @Test
+    fun com_google_common_truth_StringSubject(): Unit =
+        verify(
+            checker,
+            getPath("StringSubject.java"),
+            "217:9: Invert if condition.",
+            "270:15: Lift else and add return in if block.",
+            "273:74: Break each parameter into newline.",
+            "273:88: Break each parameter into newline.",
+            "291:15: Lift else and add return in if block.",
+            "294:71: Break each parameter into newline.",
+            "294:85: Break each parameter into newline.",
+            "310:66: Break each parameter into newline.",
+            "310:80: Break each parameter into newline.",
+            "325:70: Break each parameter into newline.",
+            "325:84: Break each parameter into newline.",
         )
 
     private inline fun <reified T> DefaultConfiguration.addConfiguration() =

@@ -19,7 +19,25 @@ class CommentSpaceChecker(RulebookFileChecker):
         # checks for violation
         for lineno, line in enumerate(content.splitlines(), 1):
             line_stripped: str = line.lstrip()
+            if line_stripped.startswith('*'):
+                continue
             if '//' not in line_stripped:
+                continue
+            comment_pos: int = line.find('//')
+            before_comment: str = line[:comment_pos]
+            double_quote_count: int = 0
+            single_quote_count: int = 0
+            i: int = 0
+            while i < len(before_comment):
+                if before_comment[i] == '\\':
+                    i += 2
+                    continue
+                if before_comment[i] == '"':
+                    double_quote_count += 1
+                elif before_comment[i] == "'":
+                    single_quote_count += 1
+                i += 1
+            if double_quote_count % 2 == 1 or single_quote_count % 2 == 1:
                 continue
             line_stripped = line_stripped.split('//')[1]
             if line_stripped.startswith(' ') or \

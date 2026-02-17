@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import assignmentWrap from '../../rules/assignment-wrap';
+import assignmentWrapRule from '../../rules/assignment-wrap';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('AssignmentWrapTest', () => {
-    const assertThat: AssertThat = assertThatRule(assignmentWrap, 'assignment-wrap');
+describe('AssignmentWrapRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(assignmentWrapRule, 'assignment-wrap');
 
-    it('Rule properties', () => assertProperties(assignmentWrap));
+    it('Rule properties', () => assertProperties(assignmentWrapRule));
 
     it(
         'Single-type assignment',

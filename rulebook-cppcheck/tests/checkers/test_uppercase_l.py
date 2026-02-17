@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestUppercaseLChecker(CheckerTestCase):

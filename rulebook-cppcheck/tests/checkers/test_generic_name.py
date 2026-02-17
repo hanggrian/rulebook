@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.generic_name import GenericNameChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestGenericNameChecker(CheckerTestCase):
@@ -59,7 +59,6 @@ class TestGenericNameChecker(CheckerTestCase):
                     'Use single uppercase letter.',
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(GenericNameChecker, 'report_error')
@@ -89,7 +88,6 @@ class TestGenericNameChecker(CheckerTestCase):
                     'Use single uppercase letter.',
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(GenericNameChecker, 'report_error')

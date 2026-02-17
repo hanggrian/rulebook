@@ -1,7 +1,7 @@
 import { AST, Rule } from 'eslint';
 import { Comment, SwitchCase, SwitchStatement } from 'estree';
-import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
+import RulebookRule from './rulebook-rules.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#case-separator|See detail} */
 class CaseSeparatorRule extends RulebookRule {

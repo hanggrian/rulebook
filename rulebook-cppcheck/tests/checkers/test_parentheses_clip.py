@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.parentheses_clip import ParenthesesClipChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestParenthesesClipChecker(CheckerTestCase):
@@ -49,7 +49,6 @@ class TestParenthesesClipChecker(CheckerTestCase):
                     "Convert into '()'.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(ParenthesesClipChecker, 'report_error')
@@ -59,6 +58,29 @@ class TestParenthesesClipChecker(CheckerTestCase):
                 '''
                 void foo(void) {
                     bar();
+                }
+                ''',
+            )
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
+
+    @patch.object(ParenthesesClipChecker, 'report_error')
+    def test_skip_control_flows_with_multi_blocks(self, report_error):
+        tokens, _ = \
+            self.dump_code(
+                '''
+                void foo() {
+                    try {
+                    } catch (std::exception& e) {
+                    }
+
+                    if (true) {
+                    } else if (false) {
+                    } else {
+                    }
+
+                    do {
+                    } while (true);
                 }
                 ''',
             )

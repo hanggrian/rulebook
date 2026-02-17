@@ -32,4 +32,7 @@ class CommentSpaceCheckTest : CheckTest() {
 
     @Test
     fun `Skip special comments`() = assertAll("CommentSpace5")
+
+    @Test
+    fun `Skip comment in comments`() = assertAll("CommentSpace6")
 }

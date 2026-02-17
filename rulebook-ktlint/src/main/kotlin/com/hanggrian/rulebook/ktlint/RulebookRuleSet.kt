@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.hanggrian.rulebook.ktlint.rules.AbbreviationAsWordRule
-import com.hanggrian.rulebook.ktlint.rules.AbstractClassDefinitionRule
 import com.hanggrian.rulebook.ktlint.rules.BlockCommentClipRule
 import com.hanggrian.rulebook.ktlint.rules.BlockCommentSpacesRule
 import com.hanggrian.rulebook.ktlint.rules.BlockCommentTrimRule
@@ -13,7 +12,6 @@ import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
-import com.hanggrian.rulebook.ktlint.rules.ContractFunctionDefinitionRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
@@ -29,13 +27,15 @@ import com.hanggrian.rulebook.ktlint.rules.LowercaseFRule
 import com.hanggrian.rulebook.ktlint.rules.MeaninglessWordRule
 import com.hanggrian.rulebook.ktlint.rules.MemberOrderRule
 import com.hanggrian.rulebook.ktlint.rules.MissingBlankLineBeforeBlockTagsRule
+import com.hanggrian.rulebook.ktlint.rules.MissingInlineInContractRule
 import com.hanggrian.rulebook.ktlint.rules.NestedIfElseRule
 import com.hanggrian.rulebook.ktlint.rules.NullEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessaryBlankLineBeforePackageRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryAbstractRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryInitialBlankLineRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessarySwitchRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
@@ -54,10 +54,10 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BlockCommentClipRule() },
             RuleProvider { BracesClipRule() },
             // Declaring
-            RuleProvider { AbstractClassDefinitionRule() },
-            RuleProvider { ContractFunctionDefinitionRule() },
             RuleProvider { ExceptionInheritanceRule() },
             RuleProvider { LowercaseFRule() },
+            RuleProvider { MissingInlineInContractRule() },
+            RuleProvider { UnnecessaryAbstractRule() },
             // Naming
             RuleProvider { AbbreviationAsWordRule() },
             RuleProvider { MeaninglessWordRule() },
@@ -74,7 +74,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BlockCommentSpacesRule() },
             RuleProvider { BlockTagIndentationRule() },
             RuleProvider { MissingBlankLineBeforeBlockTagsRule() },
-            RuleProvider { UnnecessaryBlankLineBeforePackageRule() },
+            RuleProvider { UnnecessaryInitialBlankLineRule() },
             // Stating
             RuleProvider { IllegalThrowRule() },
             RuleProvider { NestedIfElseRule() },

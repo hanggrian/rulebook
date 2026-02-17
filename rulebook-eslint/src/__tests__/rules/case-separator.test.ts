@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import caseSeparator from '../../rules/case-separator';
+import caseSeparatorRule from '../../rules/case-separator';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('CaseSeparatorTest', () => {
-    const assertThat: AssertThat = assertThatRule(caseSeparator, 'case-separator');
+describe('CaseSeparatorRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(caseSeparatorRule, 'case-separator');
 
-    it('Rule properties', () => assertProperties(caseSeparator));
+    it('Rule properties', () => assertProperties(caseSeparatorRule));
 
     it(
         'Single-line branches without line break',

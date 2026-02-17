@@ -76,7 +76,7 @@
 
   <!-- Trimming -->
   <module name="DuplicateBlankLine"/>
-  <module name="UnnecessaryBlankLineBeforePackage"/>
+  <module name="UnnecessaryInitialBlankLine"/>
 
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>
@@ -514,11 +514,11 @@
     <module name="UnusedImports"/>
 
     <!-- Declaring -->
-    <module name="AbstractClassDefinition"/>
     <module name="ExceptionInheritance"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
+    <module name="UnnecessaryAbstract"/>
     <module name="UnnecessaryParenthesesInLambda"/>
 
     <!-- Naming -->

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from astroid.nodes import Module
-from pylint.typing import TYPE_CHECKING, Options
+from pylint.typing import Options, TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.messages import _Messages
@@ -32,7 +32,7 @@ class FileSizeChecker(RulebookFileChecker):
             size: int = len(stream.readlines())
             if size < self._max_file_size:
                 return
-            self.add_message(self._MSG, line=0, args=self._max_file_size)
+            self.add_message(self._MSG, line=1, args=self._max_file_size)
 
 
 def register(linter: PyLinter) -> None:

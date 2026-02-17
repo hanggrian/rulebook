@@ -57,6 +57,7 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
         'double',
         'void',
         'bool',
+        'auto',
     )
 
     @override

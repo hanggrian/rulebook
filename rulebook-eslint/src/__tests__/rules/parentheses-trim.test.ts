@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import parenthesesTrim from '../../rules/parentheses-trim';
+import parenthesesTrimRule from '../../rules/parentheses-trim';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('ParenthesesTrimTest', () => {
-    const assertThat: AssertThat = assertThatRule(parenthesesTrim, 'parentheses-trim');
+describe('ParenthesesTrimRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(parenthesesTrimRule, 'parentheses-trim');
 
-    it('Rule properties', () => assertProperties(parenthesesTrim));
+    it('Rule properties', () => assertProperties(parenthesesTrimRule));
 
     it(
         'Parentheses without newline padding',

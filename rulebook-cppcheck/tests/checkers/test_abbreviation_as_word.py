@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.abbreviation_as_word import AbbreviationAsWordChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestAbbreviationAsWordChecker(CheckerTestCase):

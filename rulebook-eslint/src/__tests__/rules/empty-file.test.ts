@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import emptyFile from '../../rules/empty-file';
+import emptyFileRule from '../../rules/empty-file';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('EmptyFileTest', () => {
-    const assertThat: AssertThat = assertThatRule(emptyFile, 'empty-file');
+describe('EmptyFileRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(emptyFileRule, 'empty-file');
 
-    it('Rule properties', () => assertProperties(emptyFile));
+    it('Rule properties', () => assertProperties(emptyFileRule));
 
     it(
         'Non-empty file',

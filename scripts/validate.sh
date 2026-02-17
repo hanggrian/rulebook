@@ -13,6 +13,7 @@ pylint sample/python/
 pylint --rcfile=sample-configured/custom_pylintrc sample-configured/python/
 
 local_addon='local.addon.json'
+local_custom_addon='sample-configured/local.custom_addon.json'
 if [[ -f "$local_addon" ]]; then
   cppcheck \
     --enable=warning \
@@ -20,11 +21,10 @@ if [[ -f "$local_addon" ]]; then
     sample/c/*.c \
     sample/cpp/*.cpp
 fi
-local_custom_addon='local.custom_addon.json'
-if [[ -f "local_custom_addon" ]]; then
+if [[ -f "$local_custom_addon" ]]; then
   cppcheck \
     --enable=warning \
-    "--addon=sample-configured/$local_custom_addon" \
+    "--addon=$local_custom_addon" \
     sample-configured/c/*.c \
     sample-configured/cpp/*.cpp
 fi

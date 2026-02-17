@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.case_separator import CaseSeparatorChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestCaseSeparatorChecker(CheckerTestCase):
@@ -79,7 +79,6 @@ class TestCaseSeparatorChecker(CheckerTestCase):
                     'Remove blank line after single-line branch.',
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(CaseSeparatorChecker, 'report_error')
@@ -112,7 +111,6 @@ class TestCaseSeparatorChecker(CheckerTestCase):
                     'Add blank line after multiline branch.',
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(CaseSeparatorChecker, 'report_error')

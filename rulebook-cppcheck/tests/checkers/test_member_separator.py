@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.member_separator import MemberSeparatorChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestMemberSeparatorChecker(CheckerTestCase):
@@ -54,7 +54,6 @@ class TestMemberSeparatorChecker(CheckerTestCase):
                     "Add blank line after 'constructor'.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(MemberSeparatorChecker, 'report_error')
@@ -112,7 +111,6 @@ class TestMemberSeparatorChecker(CheckerTestCase):
                     "Add blank line after 'constructor'.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(MemberSeparatorChecker, 'report_error')

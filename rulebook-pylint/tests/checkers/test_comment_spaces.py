@@ -68,6 +68,16 @@ class TestCommentSpaceChecker(CheckerTestCase):
         ):
             self.checker.process_tokens(tokens)
 
+    def test_skip_comment_in_comments(self):
+        tokens = \
+            _tokenize_str(
+                '''
+                // https://www.website.com
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.process_tokens(tokens)
+
     def test_ignore_env_string(self):
         tokens = \
             _tokenize_str(

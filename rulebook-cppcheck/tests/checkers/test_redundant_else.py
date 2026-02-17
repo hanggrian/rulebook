@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestRedundantElseChecker(CheckerTestCase):
@@ -58,7 +58,6 @@ class TestRedundantElseChecker(CheckerTestCase):
                     "Omit redundant 'else' condition.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(RedundantElseChecker, 'report_error')
@@ -85,7 +84,6 @@ class TestRedundantElseChecker(CheckerTestCase):
                     "Omit redundant 'else' condition.",
                 ),
             ],
-            any_order=True,
         )
 
 

@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.import_order import ImportOrderChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestImportOrderChecker(CheckerTestCase):

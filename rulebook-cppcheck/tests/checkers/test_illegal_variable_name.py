@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.illegal_variable_name import IllegalVariableNameChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestIllegalVariableNameChecker(CheckerTestCase):
@@ -44,7 +44,6 @@ class TestIllegalVariableNameChecker(CheckerTestCase):
                     'Use descriptive name.',
                 ),
             ],
-            any_order=True,
         )
 
 

@@ -1,4 +1,4 @@
-from re import Pattern, sub, compile as re
+from re import Pattern, compile as re, sub
 from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker

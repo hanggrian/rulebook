@@ -1,9 +1,9 @@
-import { NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult, createRuleTester } from 'eslint-vitest-rule-tester';
 import { RuleOptions } from '@stylistic/eslint-plugin';
-import typescriptEslint from 'typescript-eslint';
 import { TSESLint } from '@typescript-eslint/utils';
-import { expect } from 'vitest';
 import { RuleMetaData } from '@typescript-eslint/utils/ts-eslint';
+import { NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult, createRuleTester } from 'eslint-vitest-rule-tester';
+import typescriptEslint from 'typescript-eslint';
+import { expect } from 'vitest';
 
 function assertProperties(module: TSESLint.RuleModule<string, any>): void {
     const meta: RuleMetaData<string, unknown, any> = module.meta;

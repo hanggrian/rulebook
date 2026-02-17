@@ -1,8 +1,8 @@
 import { AST, Rule } from 'eslint';
 import { BaseNode, ClassDeclaration } from 'estree';
-import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
 import meaninglessWordsOptions from '../schema/meaningless-words.js';
+import RulebookRule from './rulebook-rules.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#meaningless-word|See detail} */
 class MeaninglessWordRule extends RulebookRule {

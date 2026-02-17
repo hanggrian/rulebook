@@ -5,9 +5,9 @@ from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.options import MEMBER_ORDER_OPTION
 
 try:
-    from cppcheckdata import Scope, Token, Function, Variable
+    from cppcheckdata import Function, Scope, Token, Variable
 except ImportError:
-    from cppcheck.Cppcheck.addons.cppcheckdata import Scope, Token, Function, Variable
+    from cppcheck.Cppcheck.addons.cppcheckdata import Function, Scope, Token, Variable
 
 
 class MemberOrderChecker(RulebookTokenChecker):

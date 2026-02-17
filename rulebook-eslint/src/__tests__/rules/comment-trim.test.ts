@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import commentTrim from '../../rules/comment-trim';
+import commentTrimRule from '../../rules/comment-trim';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('CommentTrimTest', () => {
-    const assertThat: AssertThat = assertThatRule(commentTrim, 'comment-trim');
+describe('CommentTrimRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(commentTrimRule, 'comment-trim');
 
-    it('Rule properties', () => assertProperties(commentTrim));
+    it('Rule properties', () => assertProperties(commentTrimRule));
 
     it(
         'Comment without initial and final newline',

@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.inner_class_position import InnerClassPositionChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestInnerClassPositionChecker(CheckerTestCase):

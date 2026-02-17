@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestDuplicateSpaceChecker(CheckerTestCase):
@@ -42,7 +42,6 @@ class TestDuplicateSpaceChecker(CheckerTestCase):
                     'Remove consecutive space.',
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(DuplicateSpaceChecker, 'report_error')

@@ -1,4 +1,4 @@
-from re import DOTALL, Pattern, finditer, compile as re
+from re import DOTALL, Pattern, compile as re, finditer
 from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker

@@ -1,7 +1,7 @@
-from tokenize import TokenInfo, COMMENT
+from tokenize import COMMENT, TokenInfo
 
-from astroid.nodes import NodeNG, Name, Assign, AnnAssign, AssignName, FunctionDef, ClassDef, If, \
-    MatchCase, Return, Raise, Break, Continue, Attribute
+from astroid.nodes import AnnAssign, Assign, AssignName, Attribute, Break, ClassDef, Continue, \
+    FunctionDef, If, MatchCase, Name, NodeNG, Raise, Return
 
 
 def _get_assignname(node: Assign) -> AssignName | None:

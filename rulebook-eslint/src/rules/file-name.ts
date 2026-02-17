@@ -1,6 +1,6 @@
 import { AST, Rule } from 'eslint';
-import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
+import RulebookRule from './rulebook-rules.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#file-name|See detail} */
 class FileNameRule extends RulebookRule {

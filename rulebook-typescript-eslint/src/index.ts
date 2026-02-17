@@ -1,15 +1,15 @@
 import { TSESLint } from '@typescript-eslint/utils';
 import rulebookEslint, { crockfordConfig, googleConfig } from 'rulebook-eslint';
-import abstractClassDefinition from './rules/abstract-class-definition.js';
-import genericName from './rules/generic-name.js';
+import genericNameRule from './rules/generic-name.js';
+import unnecessaryAbstractRule from './rules/unnecessary-abstract.js';
 
 const typescriptConfig: Record<string, any> = {
     '@typescript-eslint/consistent-return': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
 
-    '@rulebook/abstract-class-definition': 'error',
     // Clipping
     // Declaring
+    '@rulebook/unnecessary-abstract': 'error',
     // Formatting
     // Naming
     '@typescript-eslint/naming-convention': [
@@ -67,8 +67,8 @@ const typescriptConfig: Record<string, any> = {
 export default {
     rules: {
         ...rulebookEslint.rules,
-        'abstract-class-definition': abstractClassDefinition,
-        'generic-name': genericName,
+        'generic-name': genericNameRule,
+        'unnecessary-abstract': unnecessaryAbstractRule,
     },
     configs: {
         crockford: {

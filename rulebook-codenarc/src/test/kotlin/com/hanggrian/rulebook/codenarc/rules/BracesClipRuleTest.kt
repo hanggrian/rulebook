@@ -50,7 +50,7 @@ class BracesClipRuleTest : AbstractRuleTestCase<BracesClipRule>() {
         )
 
     @Test
-    fun `Control flows with multi-blocks`() =
+    fun `Skip control flows with multi-blocks`() =
         assertNoViolations(
             """
             def foo() {

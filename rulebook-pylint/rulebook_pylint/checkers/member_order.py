@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import cast
 
-from astroid.nodes import NodeNG, Assign, AssignName, ClassDef, FunctionDef
-from pylint.typing import TYPE_CHECKING, Options
+from astroid.nodes import Assign, AssignName, ClassDef, FunctionDef, NodeNG
+from pylint.typing import Options, TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages

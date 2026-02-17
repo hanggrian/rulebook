@@ -15,7 +15,7 @@ class RulebookRuleSetTest {
                 .getRuleProviders()
                 .map { it.createNewRuleInstance().javaClass.kotlin },
         ).containsExactly(
-            AbstractClassDefinitionRule::class,
+            UnnecessaryAbstractRule::class,
             BlockCommentSpacesRule::class,
             BlockCommentTrimRule::class,
             BlockTagIndentationRule::class,
@@ -26,7 +26,7 @@ class RulebookRuleSetTest {
             AbbreviationAsWordRule::class,
             CommentTrimRule::class,
             ConfusingPredicateRule::class,
-            ContractFunctionDefinitionRule::class,
+            MissingInlineInContractRule::class,
             DuplicateBlankLineInBlockCommentRule::class,
             DuplicateBlankLineInCommentRule::class,
             ElvisWrapRule::class,
@@ -50,7 +50,7 @@ class RulebookRuleSetTest {
             GenericNameRule::class,
             BlockCommentClipRule::class,
             TodoCommentRule::class,
-            UnnecessaryBlankLineBeforePackageRule::class,
+            UnnecessaryInitialBlankLineRule::class,
             UnnecessarySwitchRule::class,
         )
     }

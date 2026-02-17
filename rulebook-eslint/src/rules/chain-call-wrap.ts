@@ -1,7 +1,7 @@
 import { AST, Rule } from 'eslint';
 import { Expression, Super } from 'estree';
-import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
+import RulebookRule from './rulebook-rules.js';
 import Token = AST.Token;
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#chain-call-wrap|See detail} */

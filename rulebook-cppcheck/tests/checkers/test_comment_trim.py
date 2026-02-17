@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.comment_trim import CommentTrimChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestCommentTrimChecker(CheckerTestCase):

@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import todoComment from '../../rules/todo-comment';
+import todoCommentRule from '../../rules/todo-comment';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('TodoCommentTest', () => {
-    const assertThat: AssertThat = assertThatRule(todoComment, 'todo-comment');
+describe('TodoCommentRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(todoCommentRule, 'todo-comment');
 
-    it('Rule properties', () => assertProperties(todoComment));
+    it('Rule properties', () => assertProperties(todoCommentRule));
 
     it(
         'Uppercase TODO comments',

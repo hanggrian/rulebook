@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import duplicateBlankLineInComment from '../../rules/duplicate-blank-line-in-comment';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('DuplicateBlankLineInCommentTest', () => {
+describe('DuplicateBlankLineInCommentRuleTest', () => {
     const assertThat: AssertThat =
         assertThatRule(duplicateBlankLineInComment, 'duplicate-blank-line-in-comment');
 

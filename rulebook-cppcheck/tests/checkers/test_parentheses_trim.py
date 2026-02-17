@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestParenthesesTrimChecker(CheckerTestCase):
@@ -70,7 +70,6 @@ class TestParenthesesTrimChecker(CheckerTestCase):
                     10,
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(ParenthesesTrimChecker, 'report_error')

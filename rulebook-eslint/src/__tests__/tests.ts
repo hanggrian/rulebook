@@ -1,5 +1,5 @@
-import { Rule } from 'eslint';
 import { RuleOptions } from '@stylistic/eslint-plugin';
+import { Rule } from 'eslint';
 import { NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult, createRuleTester } from 'eslint-vitest-rule-tester';
 import { expect } from 'vitest';
 

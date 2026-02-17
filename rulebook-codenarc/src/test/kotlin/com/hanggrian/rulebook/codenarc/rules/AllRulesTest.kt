@@ -60,10 +60,28 @@ class AllRulesTest : AbstractTestCase() {
             TrailingCommaInCallRule(),
             UnnecessaryParenthesesInLambdaRule(),
             UnnecessarySwitchRule(),
-            UtilityClassDefinitionRule(),
+            MissingPrivateConstructorRule(),
         )
     private val sourceCodeName = "AllRules.groovy"
     private val sourceCodePath = "com/hanggrian/rulebook/codenarc"
+
+    @Test
+    fun org_spockframework_gradle_AsciiDocLinkVerifier() =
+        assertViolations(
+            javaClass
+                .getResource("AsciiDocLinkVerifier.groovy")!!
+                .readText(),
+            violationOf(23, "class AsciiDocLinkVerifier {", "Put 'final' modifier."),
+            violationOf(23, "class AsciiDocLinkVerifier {", "Add private constructor."),
+            violationOf(38, ".tap {", "Omit newline before '.'."),
+            violationOf(58, "def relativeLinkTargets = subject", "Break assignment into newline."),
+            violationOf(73, "def result = relativeLinkTargets", "Break assignment into newline."),
+            violationOf(97, ".findAll()", "Omit newline before '.'."),
+            violationOf(97, ".findAll()", "Put trailing comma."),
+            violationOf(107, ".findAll()", "Put trailing comma."),
+            violationOf(111, "return result + subject", "Put newline after operator '+'."),
+            violationOf(121, ".tap {", "Omit newline before '.'."),
+        )
 
     @Test
     fun org_codenarc_CodeNarcRunner() =
@@ -290,24 +308,6 @@ class AllRulesTest : AbstractTestCase() {
                     "IllegalStateException {",
                 "Arrange member 'function' before 'static member'.",
             ),
-        )
-
-    @Test
-    fun org_spockframework_gradle_AsciiDocLinkVerifier() =
-        assertViolations(
-            javaClass
-                .getResource("AsciiDocLinkVerifier.groovy")!!
-                .readText(),
-            violationOf(23, "class AsciiDocLinkVerifier {", "Put 'final' modifier."),
-            violationOf(23, "class AsciiDocLinkVerifier {", "Add private constructor."),
-            violationOf(38, ".tap {", "Omit newline before '.'."),
-            violationOf(58, "def relativeLinkTargets = subject", "Break assignment into newline."),
-            violationOf(73, "def result = relativeLinkTargets", "Break assignment into newline."),
-            violationOf(97, ".findAll()", "Omit newline before '.'."),
-            violationOf(97, ".findAll()", "Put trailing comma."),
-            violationOf(107, ".findAll()", "Put trailing comma."),
-            violationOf(111, "return result + subject", "Put newline after operator '+'."),
-            violationOf(121, ".tap {", "Omit newline before '.'."),
         )
 
     /**

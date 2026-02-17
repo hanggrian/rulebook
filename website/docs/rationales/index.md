@@ -103,6 +103,18 @@ import java.lang.String
 val names = arrayListOf<String>()
 ```
 
+## Sort named imports
+
+When importing multiple members from the same package, they should be sorted
+alphabetically.
+
+```python hl_lines="1"
+from math import cos, sin
+
+alpha = cos(0.5)
+beta = sin(0.5)
+```
+
 ## Trim multiline brackets, parentheses and tags
 
 Method declaration, calls and collection initializers should not start or end

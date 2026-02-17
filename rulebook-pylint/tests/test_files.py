@@ -1,6 +1,6 @@
 from unittest import TestCase, main
 
-from astroid import parse, extract_node
+from astroid import extract_node, parse
 
 from rulebook_pylint.files import _get_fromlineno_before, _has_comment_above
 

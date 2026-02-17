@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.operator_wrap import OperatorWrapChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestOperatorWrapChecker(CheckerTestCase):
@@ -48,6 +48,10 @@ class TestOperatorWrapChecker(CheckerTestCase):
                     "Omit newline before operator '*'.",
                 ),
                 call(
+                    next(t for t in tokens if t.str == '<<'),
+                    "Put newline after operator '<<'.",
+                ),
+                call(
                     next(t for t in tokens if t.str == '+'),
                     "Omit newline before operator '+'.",
                 ),
@@ -56,7 +60,6 @@ class TestOperatorWrapChecker(CheckerTestCase):
                     "Omit newline before operator '-'.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(OperatorWrapChecker, 'report_error')
@@ -116,7 +119,6 @@ class TestOperatorWrapChecker(CheckerTestCase):
                     "Put newline after operator '-'.",
                 ),
             ],
-            any_order=True,
         )
 
     @patch.object(OperatorWrapChecker, 'report_error')

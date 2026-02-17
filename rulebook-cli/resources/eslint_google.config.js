@@ -1,16 +1,18 @@
-import globals from 'globals';
 import eslint from '@eslint/js';
-import typescriptEslint from 'typescript-eslint';
-import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginStylistic from '@stylistic/eslint-plugin';
+import eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginSortClassMembers from 'eslint-plugin-sort-class-members';
+import globals from 'globals';
 import rulebookEslint from 'rulebook-eslint';
+import typescriptEslint from 'typescript-eslint';
 
 export default typescriptEslint.config(
     { ignores: ['dist'] },
     {
         files: ['**/*.{js,jsx}'],
         plugins: {
+            '@import': eslintPluginImport,
             '@jsdoc': eslintPluginJsdoc,
             '@stylistic': eslintPluginStylistic,
             '@sort-class-members': eslintPluginSortClassMembers,

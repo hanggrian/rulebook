@@ -20,6 +20,7 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
         super().__init__()
         self._illegal_variable_names: set[str] = \
             {'integer', 'string', 'integers', 'strings'}
+        self._reported_variables: set[str] = set()
 
     @override
     def before_run(self, args: dict[str, str]) -> None:
@@ -31,4 +32,8 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
         for token in [t for t in tokens if t.variable]:
             if token.str not in self._illegal_variable_names:
                 continue
+            token_id: str = token.variableId
+            if token_id in self._reported_variables:
+                continue
+            self._reported_variables.add(token_id)
             self.report_error(token, _Messages.get(self._MSG))

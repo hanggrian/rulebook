@@ -1,7 +1,6 @@
 {
   "todo.comment.keyword": "Capitalize keyword '{{ $0 }}'.",
   "todo.comment.separator": "Omit separator '{{ $0 }}'.",
-  "wildcard.import": "Use single-type import.",
 
   "empty.file": "Delete the empty file.",
 
@@ -17,6 +16,7 @@
   "duplicate.blank.line.in.comment": "Remove consecutive blank line after '//'",
   "parentheses.trim.first": "Remove blank line after '{{ $0 }}'.",
   "parentheses.trim.last": "Remove blank line before '{{ $0 }}'.",
+  "unnecessary.initial.blank.line": "Remove blank line at the beginning.",
 
   "assignment.wrap": "Break assignment into newline.",
   "chain.call.wrap.missing": "Put newline before '.'.",

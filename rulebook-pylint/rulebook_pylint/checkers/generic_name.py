@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from astroid.nodes import Assign, Call, Name, AssignName
+from astroid.nodes import Assign, AssignName, Call, Name
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker

@@ -1,6 +1,6 @@
 import { AST_NODE_TYPES, TSESLint, TSESTree } from '@typescript-eslint/utils';
-import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
+import RulebookRule from './rulebook-rules.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#generic-name|See detail} */
 class GenericNameRule extends RulebookRule {

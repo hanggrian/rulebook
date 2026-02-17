@@ -1,7 +1,7 @@
 import { AST, Rule } from 'eslint';
 import { Expression, VariableDeclarator } from 'estree';
-import RulebookRule from './rulebook-rules.js';
 import messages from '../messages.js';
+import RulebookRule from './rulebook-rules.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#assignment-wrap|See detail} */
 class AssignmentWrapRule extends RulebookRule {

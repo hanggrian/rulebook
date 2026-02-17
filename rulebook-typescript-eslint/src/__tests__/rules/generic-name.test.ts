@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import genericName from '../../rules/generic-name';
+import genericNameRule from '../../rules/generic-name';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('GenericNameTest', () => {
-    const assertThat: AssertThat = assertThatRule(genericName, 'generic-name');
+describe('GenericNameRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(genericNameRule, 'generic-name');
 
-    it('Rule properties', () => assertProperties(genericName));
+    it('Rule properties', () => assertProperties(genericNameRule));
 
     it(
         'Correct generic name in class',

@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import meaninglessWord from '../../rules/meaningless-word';
+import meaninglessWordRule from '../../rules/meaningless-word';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('MeaninglessWordTest', () => {
-    const assertThat: AssertThat = assertThatRule(meaninglessWord, 'meaningless-word');
+describe('MeaninglessWordRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(meaninglessWordRule, 'meaningless-word');
 
-    it('Rule properties', () => assertProperties(meaninglessWord));
+    it('Rule properties', () => assertProperties(meaninglessWordRule));
 
     it(
         'Meaningful class names',

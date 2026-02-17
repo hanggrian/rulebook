@@ -1,16 +1,16 @@
 import { ESLint } from 'eslint';
-import assignmentWrap from './rules/assignment-wrap.js';
-import caseSeparator from './rules/case-separator.js';
-import commentTrim from './rules/comment-trim.js';
-import chainCallWrap from './rules/chain-call-wrap.js';
-import duplicateBlankLineInBlockComment from './rules/duplicate-blank-line-in-block-comment.js';
-import duplicateBlankLineInComment from './rules/duplicate-blank-line-in-comment.js';
-import emptyFile from './rules/empty-file.js';
-import fileName from './rules/file-name.js';
-import meaninglessWord from './rules/meaningless-word.js';
-import parenthesesTrim from './rules/parentheses-trim.js';
-import todoComment from './rules/todo-comment.js';
-import wildcardImport from './rules/wildcard-import.js';
+import assignmentWrapRule from './rules/assignment-wrap.js';
+import caseSeparatorRule from './rules/case-separator.js';
+import chainCallWrapRule from './rules/chain-call-wrap.js';
+import commentTrimRule from './rules/comment-trim.js';
+import duplicateBlankLineInBlockCommentRule from './rules/duplicate-blank-line-in-block-comment.js';
+import duplicateBlankLineInCommentRule from './rules/duplicate-blank-line-in-comment.js';
+import emptyFileRule from './rules/empty-file.js';
+import fileNameRule from './rules/file-name.js';
+import meaninglessWordRule from './rules/meaningless-word.js';
+import parenthesesTrimRule from './rules/parentheses-trim.js';
+import todoCommentRule from './rules/todo-comment.js';
+import unnecessaryInitialBlankLineRule from './rules/unnecessary-initial-blank-line.js';
 
 const crockfordConfig: Record<string, any> = {
     'consistent-return': 'error',
@@ -21,7 +21,7 @@ const crockfordConfig: Record<string, any> = {
     '@stylistic/comma-dangle': ['error', 'always-multiline'],
     'no-unused-vars': 'error',
     '@rulebook/todo-comment': 'error',
-    '@rulebook/wildcard-import': 'error',
+    '@import/no-namespace': 'error',
     // Clipping
     '@stylistic/object-curly-spacing': ['error', 'always'],
     '@stylistic/array-bracket-spacing': ['error', 'never'],
@@ -71,6 +71,26 @@ const crockfordConfig: Record<string, any> = {
     '@rulebook/meaningless-word': 'error',
     // Ordering
     '@jsdoc/sort-tags': 'error',
+    '@import/order': [
+        'error',
+        {
+            'groups': [
+                'builtin',
+                'external',
+                'internal',
+                'unknown',
+                'parent',
+                'sibling',
+                'index',
+                'object',
+                'type',
+            ],
+            'alphabetize': {
+                'order': 'asc',
+                'caseInsensitive': false,
+            },
+        },
+    ],
     '@sort-class-members/sort-class-members': [
         'error',
         {
@@ -149,6 +169,7 @@ const crockfordConfig: Record<string, any> = {
         },
     ],
     '@stylistic/no-multi-spaces': 'error',
+    '@rulebook/unnecessary-initial-blank-line': 'error',
     // Wrapping
     '@rulebook/assignment-wrap': 'error',
     '@rulebook/chain-call-wrap': 'error',
@@ -169,7 +190,7 @@ const googleConfig: Record<string, any> = {
     '@stylistic/comma-dangle': ['error', 'always-multiline'],
     'no-unused-vars': ['error', { args: 'none' }],
     '@rulebook/todo-comment': 'error',
-    '@rulebook/wildcard-import': 'error',
+    '@import/no-namespace': 'error',
     // Clipping
     '@stylistic/object-curly-spacing': ['error', 'never'],
     '@stylistic/array-bracket-spacing': ['error', 'never'],
@@ -234,6 +255,26 @@ const googleConfig: Record<string, any> = {
     '@rulebook/meaningless-word': 'error',
     // Ordering
     '@jsdoc/sort-tags': 'error',
+    '@import/order': [
+        'error',
+        {
+            'groups': [
+                'builtin',
+                'external',
+                'internal',
+                'unknown',
+                'parent',
+                'sibling',
+                'index',
+                'object',
+                'type',
+            ],
+            'alphabetize': {
+                'order': 'asc',
+                'caseInsensitive': false,
+            },
+        },
+    ],
     '@sort-class-members/sort-class-members': [
         'error',
         {
@@ -312,6 +353,7 @@ const googleConfig: Record<string, any> = {
         },
     ],
     '@stylistic/no-multi-spaces': 'error',
+    '@rulebook/unnecessary-initial-blank-line': 'error',
     // Wrapping
     '@rulebook/assignment-wrap': 'error',
     '@rulebook/chain-call-wrap': 'error',
@@ -385,18 +427,18 @@ const googleConfig: Record<string, any> = {
 
 const plugin: ESLint.Plugin = {
     rules: {
-        'assignment-wrap': assignmentWrap,
-        'case-separator': caseSeparator,
-        'comment-trim': commentTrim,
-        'chain-call-wrap': chainCallWrap,
-        'duplicate-blank-line-in-block-comment': duplicateBlankLineInBlockComment,
-        'duplicate-blank-line-in-comment': duplicateBlankLineInComment,
-        'empty-file': emptyFile,
-        'file-name': fileName,
-        'meaningless-word': meaninglessWord,
-        'parentheses-trim': parenthesesTrim,
-        'todo-comment': todoComment,
-        'wildcard-import': wildcardImport,
+        'assignment-wrap': assignmentWrapRule,
+        'case-separator': caseSeparatorRule,
+        'comment-trim': commentTrimRule,
+        'chain-call-wrap': chainCallWrapRule,
+        'duplicate-blank-line-in-block-comment': duplicateBlankLineInBlockCommentRule,
+        'duplicate-blank-line-in-comment': duplicateBlankLineInCommentRule,
+        'empty-file': emptyFileRule,
+        'file-name': fileNameRule,
+        'meaningless-word': meaninglessWordRule,
+        'parentheses-trim': parenthesesTrimRule,
+        'todo-comment': todoCommentRule,
+        'unnecessary-initial-blank-line': unnecessaryInitialBlankLineRule,
     },
     configs: {
         crockford: {

@@ -49,10 +49,10 @@ load-plugins=
   rulebook_pylint.checkers.block_comment_clip,
   rulebook_pylint.checkers.parentheses_clip,
   # Declaring
-  rulebook_pylint.checkers.abstract_class_definition,
   pylint.extensions.docstyle,
   rulebook_pylint.checkers.exception_inheritance,
   pylint.checkers.strings,
+  rulebook_pylint.checkers.unnecessary_abstract,
   # Formatting
   rulebook_pylint.checkers.file_size,
   # Naming
@@ -63,6 +63,7 @@ load-plugins=
   rulebook_pylint.checkers.common_function_position,
   rulebook_pylint.checkers.inner_class_position,
   rulebook_pylint.checkers.member_order,
+  rulebook_pylint.checkers.named_import_order,
   # Spacing
   rulebook_pylint.checkers.case_separator,
   rulebook_pylint.checkers.comment_space,
@@ -72,7 +73,7 @@ load-plugins=
   rulebook_pylint.checkers.redundant_default,
   rulebook_pylint.checkers.unnecessary_switch,
   rulebook_pylint.checkers.unnecessary_blank_line_after_colon,
-  rulebook_pylint.checkers.unnecessary_blank_line_before_package,
+  rulebook_pylint.checkers.unnecessary_initial_blank_line,
   # Trimming
   rulebook_pylint.checkers.block_comment_trim,
   rulebook_pylint.checkers.comment_trim,
@@ -161,6 +162,9 @@ disable=
   missing-type-doc,
   too-many-locals,
   too-many-arguments,
+  too-many-positional-arguments,
+  too-many-branches,
+  too-many-statements,
 
 
 [REPORTS]

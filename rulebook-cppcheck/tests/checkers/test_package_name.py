@@ -1,8 +1,8 @@
 from unittest import main
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers.package_name import PackageNameChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestPackageNameChecker(CheckerTestCase):
@@ -56,7 +56,6 @@ class TestPackageNameChecker(CheckerTestCase):
                     "Rename package to 'ui_handler'.",
                 ),
             ],
-            any_order=True,
         )
 
 

@@ -1,11 +1,11 @@
 import { describe, it } from 'vitest';
-import fileName from '../../rules/file-name';
+import fileNameRule from '../../rules/file-name';
 import { AssertThat, assertProperties, assertThatRule } from '../tests';
 
-describe('FileNameTest', () => {
-    const assertThat: AssertThat = assertThatRule(fileName, 'file-name');
+describe('FileNameRuleTest', () => {
+    const assertThat: AssertThat = assertThatRule(fileNameRule, 'file-name');
 
-    it('Rule properties', () => assertProperties(fileName));
+    it('Rule properties', () => assertProperties(fileNameRule));
 
     it(
         'Correct file name',

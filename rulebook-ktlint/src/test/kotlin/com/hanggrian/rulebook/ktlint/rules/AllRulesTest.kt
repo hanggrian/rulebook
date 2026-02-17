@@ -19,18 +19,16 @@ class AllRulesTest {
             }.assertThat()
 
     @Test
-    fun com_pinterest_ktlint_rule_engine_internal_RuleExecutionContext() {
+    fun org_jetbrains_dokka_gradle_DokkaExtension() {
         assertThatCodeAll(
             javaClass
-                .getResource("RuleExecutionContext.kt")!!
+                .getResource("DokkaExtension.kt")!!
                 .readText(),
         ).hasLintViolationsForAdditionalRule(
-            LintViolation(96, 9, "Invert 'if' condition.", false),
-            LintViolation(113, 19, "Omit redundant 'else' condition.", false),
-            LintViolation(239, 25, "Omit separator ':'.", false),
-            LintViolation(241, 25, "Omit separator ':'.", false),
-            LintViolation(287, 5, "Invert 'if' condition.", false),
-            LintViolation(300, 5, "Extend from class 'Exception'.", false),
+            LintViolation(26, 1, "Convert into single-line.", false),
+            LintViolation(313, 5, "Arrange member 'property' before 'function'.", false),
+            LintViolation(327, 8, "Add blank line before block tag group.", false),
+            LintViolation(333, 6, "Remove blank line after '/**'.", false),
         )
     }
 
@@ -56,16 +54,18 @@ class AllRulesTest {
     }
 
     @Test
-    fun org_jetbrains_dokka_gradle_DokkaExtension() {
+    fun com_pinterest_ktlint_rule_engine_internal_RuleExecutionContext() {
         assertThatCodeAll(
             javaClass
-                .getResource("DokkaExtension.kt")!!
+                .getResource("RuleExecutionContext.kt")!!
                 .readText(),
         ).hasLintViolationsForAdditionalRule(
-            LintViolation(3, 1, "Convert into single-line.", false),
-            LintViolation(288, 5, "Arrange member 'property' before 'function'.", false),
-            LintViolation(302, 8, "Add blank line before block tag group.", false),
-            LintViolation(308, 6, "Remove blank line after '/**'.", false),
+            LintViolation(96, 9, "Invert 'if' condition.", false),
+            LintViolation(113, 19, "Omit redundant 'else' condition.", false),
+            LintViolation(239, 25, "Omit separator ':'.", false),
+            LintViolation(241, 25, "Omit separator ':'.", false),
+            LintViolation(287, 5, "Invert 'if' condition.", false),
+            LintViolation(300, 5, "Extend from class 'Exception'.", false),
         )
     }
 

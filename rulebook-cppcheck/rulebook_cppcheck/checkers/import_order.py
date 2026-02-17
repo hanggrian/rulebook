@@ -1,4 +1,4 @@
-from re import compile as re, Pattern, Match
+from re import Match, Pattern, compile as re
 from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker

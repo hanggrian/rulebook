@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from tokenize import TokenInfo, COMMENT, NL
+from tokenize import COMMENT, NL, TokenInfo
 
 from pylint.typing import TYPE_CHECKING
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 from re import Pattern, compile as re
 
 from astroid.nodes import ClassDef
-from pylint.typing import TYPE_CHECKING, Options
+from pylint.typing import Options, TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import _Messages

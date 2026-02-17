@@ -1,7 +1,7 @@
 from abc import ABC
 
 from astroid.nodes import Module
-from pylint.checkers import BaseChecker, BaseTokenChecker, BaseRawFileChecker
+from pylint.checkers import BaseChecker, BaseRawFileChecker, BaseTokenChecker
 
 
 class RulebookChecker(BaseChecker):

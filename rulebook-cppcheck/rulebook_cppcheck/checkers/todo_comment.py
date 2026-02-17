@@ -1,6 +1,6 @@
 from typing import override
 
-from regex import DOTALL, finditer, compile as regex, Match
+from regex import DOTALL, Match, compile as regex, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages

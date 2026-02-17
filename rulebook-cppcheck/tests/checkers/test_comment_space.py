@@ -2,7 +2,7 @@ from unittest import main
 from unittest.mock import MagicMock, patch
 
 from rulebook_cppcheck.checkers.comment_space import CommentSpaceChecker
-from ..tests import assert_properties, CheckerTestCase
+from ..tests import CheckerTestCase, assert_properties
 
 
 class TestCommentSpaceChecker(CheckerTestCase):
@@ -81,6 +81,29 @@ class TestCommentSpaceChecker(CheckerTestCase):
             ////////////////////
             //
             ////////////////////
+            ''',
+        )
+        report_error.assert_not_called()
+
+    @patch.object(CommentSpaceChecker, 'report_error')
+    def test_skip_comment_in_comments(self, report_error):
+        self.checker.check_file(
+            MagicMock(file='test.c'),
+            '''
+            // https://www.website.com
+            /**
+             * https://www.website.com
+             */
+            ''',
+        )
+        report_error.assert_not_called()
+
+    @patch.object(CommentSpaceChecker, 'report_error')
+    def test_skip_comment_in_strings(self, report_error):
+        self.checker.check_file(
+            MagicMock(file='test.c'),
+            '''
+            std::string str = "//";
             ''',
         )
         report_error.assert_not_called()

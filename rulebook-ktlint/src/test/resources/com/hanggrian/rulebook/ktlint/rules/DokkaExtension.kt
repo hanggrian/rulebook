@@ -1,4 +1,27 @@
+/*
+ * Copyright 2014-2024 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+ */
+package org.jetbrains.dokka.gradle
 
+import org.gradle.api.NamedDomainObjectContainer
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.plugins.ExtensionAware
+import org.gradle.api.provider.MapProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Nested
+import org.gradle.kotlin.dsl.newInstance
+import org.jetbrains.dokka.gradle.dependencies.BaseDependencyManager
+import org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceSetSpec
+import org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceSetSpec.Companion.dokkaSourceSetSpecFactory
+import org.jetbrains.dokka.gradle.formats.DokkaPublication
+import org.jetbrains.dokka.gradle.internal.*
+import org.jetbrains.dokka.gradle.workers.ClassLoaderIsolation
+import org.jetbrains.dokka.gradle.workers.ProcessIsolation
+import org.jetbrains.dokka.gradle.workers.WorkerIsolation
+import java.io.Serializable
+import kotlin.DeprecationLevel.ERROR
 
 /**
  * Configure the behaviour of the [DokkaBasePlugin].
@@ -55,7 +78,8 @@ constructor(
     abstract val moduleVersion: Property<String>
 
     /**
-     * Control the subdirectory used for files when aggregating this project as a Dokka Module into a Dokka Publication.
+     * Specify the subdirectory this module will be placed into when
+     * aggregating this project as a Dokka Module into a Dokka Publication.
      *
      * When Dokka performs aggregation the files from each Module must be placed into separate
      * subdirectories, within the Publication directory.
@@ -74,7 +98,8 @@ constructor(
      * If paths overlap then Dokka could overwrite the Modules files during aggregation,
      * resulting in a corrupted Publication.
      *
-     * Default: the current project's [path][org.gradle.api.Project.getPath] as a file path.
+     * Default: the current project's [path][org.gradle.api.Project.getPath] as a file path,
+     * unless the current project is the root project, in which case the default is [org.gradle.api.Project.getName].
      */
     abstract val modulePath: Property<String>
 
