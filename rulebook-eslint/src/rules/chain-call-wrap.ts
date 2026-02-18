@@ -1,6 +1,7 @@
 import { AST, Rule } from 'eslint';
 import { Expression, Super } from 'estree';
 import messages from '../messages.js';
+import { isMultiline } from '../nodes.js';
 import RulebookRule from './rulebook-rules.js';
 import Token = AST.Token;
 
@@ -22,7 +23,7 @@ class ChainCallWrapRule extends RulebookRule {
                     node.parent.type === 'MemberExpression') {
                     return;
                 }
-                if (node.loc!.start.line === node.loc!.end.line) {
+                if (!isMultiline(node)) {
                     return;
                 }
 

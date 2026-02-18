@@ -1,6 +1,7 @@
 import { AST, Rule } from 'eslint';
 import { Expression, VariableDeclarator } from 'estree';
 import messages from '../messages.js';
+import { isMultiline } from '../nodes.js';
 import RulebookRule from './rulebook-rules.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#assignment-wrap|See detail} */
@@ -26,18 +27,14 @@ class AssignmentWrapRule extends RulebookRule {
                 }
 
                 // find multiline assignee
-                if (init.loc!.start.line === init.loc!.end.line) {
-                    return;
-                }
-                const loc: AST.SourceLocation | null | undefined = init.loc;
-                if (!loc) {
+                if (!isMultiline(init)) {
                     return;
                 }
 
                 // checks for violation
                 const operator: AST.Token | null =
                     context.sourceCode.getTokenAfter(node.id, token => token.value === '=');
-                if (!operator || operator.loc.end.line !== loc.start.line) {
+                if (!operator || operator.loc.end.line !== init.loc!.start.line) {
                     return;
                 }
                 context.report({

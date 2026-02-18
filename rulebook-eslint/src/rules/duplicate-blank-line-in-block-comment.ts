@@ -1,5 +1,5 @@
 import { Rule } from 'eslint';
-import { Comment } from 'estree';
+import { Comment, SourceLocation } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rules.js';
 
@@ -26,15 +26,19 @@ class DuplicateBlankLineInBlockCommentRule extends RulebookRule {
                         if (current !== '*' || next !== '*') {
                             continue;
                         }
+                        const loc: SourceLocation | null | undefined = comment.loc;
+                        if (!loc) {
+                            continue;
+                        }
                         context.report({
                             node: comment,
                             loc: {
                                 start: {
-                                    line: comment.loc!.start.line + i + 1,
+                                    line: loc.start.line + i + 1,
                                     column: 0,
                                 },
                                 end: {
-                                    line: comment.loc!.start.line + i + 1,
+                                    line: loc.start.line + i + 1,
                                     column: lines[i + 1].length,
                                 },
                             },

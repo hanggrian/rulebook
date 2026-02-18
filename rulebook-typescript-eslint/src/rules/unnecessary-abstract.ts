@@ -21,14 +21,16 @@ class UnnecessaryAbstractRule extends RulebookRule {
                 // checks for violation
                 const hasAbstractMember: boolean =
                     node.body.body.some(
-                        member =>
-                            (
+                        member => {
+                            const type = member.type;
+                            return (
                                 ['MethodDefinition', 'PropertyDefinition']
-                                    .includes(member.type) &&
+                                    .includes(type) &&
                                 ('abstract' in member && member.abstract)
                             ) ||
                             ['TSAbstractMethodDefinition', 'TSAbstractPropertyDefinition']
-                                .includes(member.type),
+                                .includes(type);
+                        },
                     );
                 if (hasAbstractMember) {
                     return;

@@ -1,4 +1,5 @@
 import { Rule } from 'eslint';
+import { SourceLocation } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rules.js';
 
@@ -17,8 +18,12 @@ class TodoCommentRule extends RulebookRule {
             Program() {
                 context.sourceCode.getAllComments().forEach(comment => {
                     for (const match of comment.value.matchAll(TodoCommentRule.KEYWORD_REGEX)) {
+                        const loc: SourceLocation | null | undefined = comment.loc;
+                        if (!loc) {
+                            continue;
+                        }
                         context.report({
-                            loc: comment.loc!,
+                            loc: loc,
                             messageId: TodoCommentRule.MSG_KEYWORD,
                             data: {
                                 $0: match[0],
@@ -26,8 +31,12 @@ class TodoCommentRule extends RulebookRule {
                         });
                     }
                     for (const match of comment.value.matchAll(TodoCommentRule.SEPARATOR_REGEX)) {
+                        const loc: SourceLocation | null | undefined = comment.loc;
+                        if (!loc) {
+                            continue;
+                        }
                         context.report({
-                            loc: comment.loc!,
+                            loc: loc,
                             messageId: TodoCommentRule.MSG_SEPARATOR,
                             data: {
                                 $0: match[0].slice(-1),

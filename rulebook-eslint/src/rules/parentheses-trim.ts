@@ -1,5 +1,5 @@
 import { AST, Rule, SourceCode } from 'eslint';
-import { Comment } from 'estree';
+import { Comment, SourceLocation } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rules.js';
 
@@ -51,20 +51,27 @@ class ParenthesesTrimRule extends RulebookRule {
                         sourceCode.getTokenAfter(openToken, { includeComments: true });
                     const lastContentToken: AST.Token | Comment | null =
                         sourceCode.getTokenBefore(closeToken, { includeComments: true });
-                    if (firstContentToken &&
-                        firstContentToken.loc &&
-                        firstContentToken.loc.start.line > openToken.loc.end.line + 1) {
-                        context.report({
-                            node: openToken,
-                            messageId: ParenthesesTrimRule.MSG_FIRST,
-                            data: {
-                                $0: openToken.value,
-                            },
-                        });
+                    if (firstContentToken) {
+                        const firstContentTokenLoc: SourceLocation | null | undefined =
+                            firstContentToken.loc;
+                        if (firstContentTokenLoc &&
+                            firstContentTokenLoc.start.line > openToken.loc.end.line + 1) {
+                            context.report({
+                                node: openToken,
+                                messageId: ParenthesesTrimRule.MSG_FIRST,
+                                data: {
+                                    $0: openToken.value,
+                                },
+                            });
+                        }
                     }
-                    if (!lastContentToken ||
-                        !lastContentToken.loc ||
-                        lastContentToken.loc.end.line >= closeToken.loc.start.line - 1) {
+                    if (!lastContentToken) {
+                        continue;
+                    }
+                    const lastContentTokenLoc: SourceLocation | null | undefined =
+                        lastContentToken.loc;
+                    if (!lastContentTokenLoc ||
+                        lastContentTokenLoc.end.line >= closeToken.loc.start.line - 1) {
                         continue;
                     }
                     context.report({

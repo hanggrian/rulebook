@@ -1,6 +1,7 @@
 import { AST, Rule } from 'eslint';
 import { Comment, SwitchCase, SwitchStatement } from 'estree';
 import messages from '../messages.js';
+import { isMultiline } from '../nodes.js';
 import RulebookRule from './rulebook-rules.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#case-separator|See detail} */
@@ -25,7 +26,7 @@ class CaseSeparatorRule extends RulebookRule {
                 // checks for violation
                 const hasMultiline: boolean =
                     cases.some(c => {
-                        if (c.loc!.start.line !== c.loc!.end.line) {
+                        if (isMultiline(c)) {
                             return true;
                         }
                         return sourceCode.getCommentsBefore(c).length > 0;
@@ -33,8 +34,12 @@ class CaseSeparatorRule extends RulebookRule {
                 for (let i = 1; i < cases.length; i++) {
                     const prevCase: SwitchCase = cases[i - 1];
                     const currentCase: SwitchCase = cases[i];
-                    const prevLastToken: AST.Token = sourceCode.getLastToken(prevCase)!;
-                    const currentFirstToken: AST.Token = sourceCode.getFirstToken(currentCase)!;
+                    const prevLastToken: AST.Token | null = sourceCode.getLastToken(prevCase);
+                    const currentFirstToken: AST.Token | null =
+                        sourceCode.getFirstToken(currentCase);
+                    if (!prevLastToken || !currentFirstToken) {
+                        continue;
+                    }
                     const commentsBetween: Comment[] = sourceCode.getCommentsBefore(currentCase);
                     const actualStartLine: number =
                         commentsBetween.length > 0
@@ -42,13 +47,13 @@ class CaseSeparatorRule extends RulebookRule {
                             : currentFirstToken.loc.start.line;
                     const lineDiff: number = actualStartLine - prevLastToken.loc.end.line;
                     if (hasMultiline) {
-                        if (lineDiff < 2) {
+                        if (lineDiff != 2) {
                             context.report({
                                 node: prevLastToken,
                                 messageId: CaseSeparatorRule.MSG_MISSING,
                             });
                         }
-                    } else if (lineDiff > 1) {
+                    } else if (lineDiff != 1) {
                         context.report({
                             node: prevLastToken,
                             messageId: CaseSeparatorRule.MSG_UNEXPECTED,

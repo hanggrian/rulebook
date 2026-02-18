@@ -13,6 +13,7 @@ class EmptyFileRule extends RulebookRule {
     create(context: Rule.RuleContext) {
         return {
             Program(node: AST.Program) {
+                // checks for violation
                 if (context.sourceCode.getText().trim().length > 0) {
                     return;
                 }

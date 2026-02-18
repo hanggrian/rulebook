@@ -1,5 +1,5 @@
 import { Rule } from 'eslint';
-import { Comment } from 'estree';
+import { Comment, SourceLocation } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rules.js';
 
@@ -21,13 +21,15 @@ class DuplicateBlankLineInCommentRule extends RulebookRule {
                 for (let i = 0; i < comments.length - 1; i++) {
                     const current: Comment = comments[i];
                     const next: Comment = comments[i + 1];
-                    if (!current.loc ||
-                        !next.loc ||
+                    const current_loc: SourceLocation | null | undefined = current.loc;
+                    const next_loc: SourceLocation | null | undefined = next.loc;
+                    if (!current_loc ||
+                        !next_loc ||
                         current.value.trim() !== '' ||
                         next.value.trim() !== '') {
                         continue;
                     }
-                    if (next.loc.start.line !== current.loc.end.line + 1) {
+                    if (next_loc.start.line !== current_loc.end.line + 1) {
                         continue;
                     }
                     context.report({
