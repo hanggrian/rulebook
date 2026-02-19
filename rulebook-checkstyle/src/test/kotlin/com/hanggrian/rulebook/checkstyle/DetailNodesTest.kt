@@ -279,9 +279,9 @@ class DetailNodesTest {
             leafAst3,
             leafAst4,
         ).forEach { node ->
-            verify(node, atLeast(1)).let {
-                it.isLeaf()
-                it.children()
+            verify(node, atLeast(1)).run {
+                isLeaf()
+                children()
             }
         }
 }

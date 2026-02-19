@@ -3,10 +3,32 @@ import rulebookEslint, { crockfordConfig, googleConfig } from 'rulebook-eslint';
 import genericNameRule from './rules/generic-name.js';
 import unnecessaryAbstractRule from './rules/unnecessary-abstract.js';
 
-const typescriptConfig: Record<string, any> = {
+const typescriptConfig: TSESLint.SharedConfig.RulesRecord = {
     '@typescript-eslint/consistent-return': 'error',
-    '@typescript-eslint/no-explicit-any': 'off',
 
+    '@typescript-eslint/no-restricted-types': [
+        'error',
+        {
+            types: {
+                any:
+                    "Use 'unknown' instead, as it is type-safe and requires a type check before " +
+                    'use.',
+                Function: {
+                    'message':
+                        "The 'Function' type accepts any function-like object, which is unsafe.",
+                    'suggest': ['(...args: any[]) => any'],
+                },
+                Object: {
+                    message: "The 'Object' type actually means 'any non-nullish value.'",
+                    fixWith: 'Record<string, unknown>',
+                },
+                '{}': {
+                    'message': 'Empty object types allow any non-nullish value.',
+                    'fixWith': 'Record<string, unknown>',
+                },
+            },
+        },
+    ],
     // Clipping
     // Declaring
     '@rulebook/unnecessary-abstract': 'error',
@@ -59,7 +81,6 @@ const typescriptConfig: Record<string, any> = {
     // Ordering
     // Spacing
     // Stating
-    '@typescript-eslint/switch-exhaustiveness-check': 'error',
     // Trimming
     // Wrapping
 };

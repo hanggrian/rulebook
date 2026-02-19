@@ -52,14 +52,15 @@ public class NestedIfElseCheck : RulebookAstCheck() {
         `if` ?: return
 
         // checks for violation
-        val `else` = `if`.findFirstToken(LITERAL_ELSE)
-        if (`else` != null) {
-            `else`
-                .takeIf { LITERAL_IF !in it && it.hasMultipleLines() }
-                ?: return
-            log(`else`, Messages[MSG_LIFT])
-            return
-        }
+        `if`
+            .findFirstToken(LITERAL_ELSE)
+            ?.let { `else` ->
+                `else`
+                    .takeIf { LITERAL_IF !in it && it.hasMultipleLines() }
+                    ?: return
+                log(`else`, Messages[MSG_LIFT])
+                return
+            }
         `if`
             .takeIf { !it.hasJumpStatement() && it.hasMultipleLines() }
             ?: return
@@ -75,7 +76,7 @@ public class NestedIfElseCheck : RulebookAstCheck() {
                 ?.children()
                 .orEmpty()
                 .filterNot { it.type == RCURLY || it.type == SEMI }
-                .let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+                .run { singleOrNull()?.isMultiline() ?: (count() > 1) }
 
         fun DetailAST.isTryCatch() = type == LITERAL_TRY || type == LITERAL_CATCH
     }

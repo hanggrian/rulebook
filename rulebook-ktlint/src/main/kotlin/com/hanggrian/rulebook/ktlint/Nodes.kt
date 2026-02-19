@@ -11,6 +11,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
+import com.pinterest.ktlint.rule.engine.core.api.nextSibling20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 
@@ -29,7 +30,7 @@ internal fun ASTNode.lastLeaf(): ASTNode {
 
 /** Collect sibling nodes until child node is found. */
 internal fun ASTNode.siblingsUntil(type: IElementType): Sequence<ASTNode> =
-    generateSequence(treeNext) { it.treeNext }
+    generateSequence(nextSibling20) { it.nextSibling20 }
         .takeWhile { it.elementType !== type }
 
 /** Returns true if child node can be found in parent node. */

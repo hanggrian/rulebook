@@ -14,7 +14,7 @@ max_line_length = 80
 [*.xml]
 max_line_length = 100
 
-[*.{java,groovy,kt,kts,cpp,py,js,ts}]
+[*.{java,groovy,gradle,kt,kts,cpp,py,js,ts}]
 indent_size = 4
 max_line_length = 100
 
@@ -23,7 +23,7 @@ ij_java_use_single_class_imports = true
 ij_java_class_count_to_use_import_on_demand = 99
 ij_java_names_count_to_use_import_on_demand = 99
 
-[*.groovy]
+[*.{groovy,gradle}]
 ij_groovy_use_single_class_imports = true
 ij_groovy_class_count_to_use_import_on_demand = 99
 ij_groovy_names_count_to_use_import_on_demand = 99

@@ -16,7 +16,7 @@ class ConfusingPredicateRuleTest {
         assertThatCode(
             """
             fun foo() {
-                "".takeUnless { it.isEmpty() }
+                ''.takeUnless { it.isEmpty() }
             }
 
             fun bar() {
@@ -34,7 +34,7 @@ class ConfusingPredicateRuleTest {
         assertThatCode(
             """
             fun foo() {
-                "".takeIf { !it.isEmpty() }
+                ''.takeIf { !it.isEmpty() }
             }
 
             fun bar() {
@@ -56,7 +56,7 @@ class ConfusingPredicateRuleTest {
         assertThatCode(
             """
             fun foo() {
-                "".takeIf { !it.isEmpty() && !it.isBlank() }
+                ''.takeIf { !it.isEmpty() && !it.isBlank() }
             }
 
             fun bar() {

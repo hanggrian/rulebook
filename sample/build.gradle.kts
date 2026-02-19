@@ -9,10 +9,6 @@ plugins {
     codenarc
 }
 
-checkstyle.toolVersion = libs.versions.checkstyle.get()
-
-codenarc.toolVersion = libs.versions.codenarc.get()
-
 dependencies {
     ktlintRuleset(project(":$releaseArtifact-ktlint"))
 
@@ -21,4 +17,16 @@ dependencies {
     codenarc(project(":$releaseArtifact-codenarc"))
 
     implementation(libs.groovy.all)
+}
+
+ktlint.kotlinScriptAdditionalPaths {
+    include(fileTree("kts/"))
+}
+
+tasks {
+    val codenarcScript by registering(CodeNarc::class) {
+        setSource(layout.projectDirectory.file("gradle/"))
+        include("*.gradle")
+    }
+    check { dependsOn(codenarcScript.get()) }
 }

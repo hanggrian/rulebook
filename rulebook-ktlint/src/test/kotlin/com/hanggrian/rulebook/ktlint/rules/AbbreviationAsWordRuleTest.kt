@@ -53,16 +53,4 @@ class AbbreviationAsWordRuleTest {
             LintViolation(9, 11, "Rename abbreviation to 'MySqlInterface'."),
             LintViolation(11, 8, "Rename abbreviation to 'MySqlObject'."),
         )
-
-    @Test
-    fun `File abbreviation`() =
-        assertThatCode("")
-            .asFileWithPath("/some/path/RestAPI.kt")
-            .hasLintViolationWithoutAutoCorrect(1, 1, "Rename abbreviation to 'RestApi'.")
-
-    @Test
-    fun `Skip a KTS file`() =
-        assertThatCode("class RestAPI")
-            .asFileWithPath("/some/path/RestAPI.kts")
-            .hasNoLintViolations()
 }

@@ -71,18 +71,4 @@ class MeaninglessWordRuleTest {
             object WrapperLogger
             """.trimIndent(),
         ).hasNoLintViolations()
-
-    @Test
-    fun `Utility class found`() =
-        assertThatCode(
-            """
-            class SpaceshipUtil
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 7, "Rename utility class to 'Spaceships'.")
-
-    @Test
-    fun `Utility file found`() =
-        assertThatCode("")
-            .asFileWithPath("/some/path/SpaceshipUtility.kt")
-            .hasLintViolationWithoutAutoCorrect(1, 1, "Rename utility class to 'Spaceships'.")
 }

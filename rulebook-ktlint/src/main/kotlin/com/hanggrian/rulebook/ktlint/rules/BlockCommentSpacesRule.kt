@@ -7,6 +7,8 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERI
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
+import com.pinterest.ktlint.rule.engine.core.api.nextSibling20
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -19,9 +21,9 @@ public class BlockCommentSpacesRule : RulebookRule(ID) {
             KDOC_SECTION -> {
                 // only target single line
                 node
-                    .treeParent
-                    .text
-                    .takeUnless { '\n' in it }
+                    .parent
+                    ?.text
+                    ?.takeUnless { '\n' in it }
                     ?: return
 
                 // checks for violation
@@ -37,7 +39,7 @@ public class BlockCommentSpacesRule : RulebookRule(ID) {
                 // take non-whitespace sibling
                 val next =
                     node
-                        .treeNext
+                        .nextSibling20
                         ?.takeUnless { it.isWhiteSpace20 }
                         ?: return
 

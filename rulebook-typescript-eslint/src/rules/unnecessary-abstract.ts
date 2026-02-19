@@ -10,7 +10,7 @@ class UnnecessaryAbstractRule extends RulebookRule {
         });
     }
 
-    create(context: TSESLint.RuleContext<string, any>) {
+    create(context: TSESLint.RuleContext<string, readonly unknown[]>) {
         return {
             ClassDeclaration(node: TSESTree.ClassDeclaration) {
                 // skip non-abstract class

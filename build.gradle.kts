@@ -27,21 +27,28 @@ plugins {
     kotlin("jvm") version libs.versions.kotlin apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.dokka.javadoc) apply false
-    alias(libs.plugins.ktlint) apply false
+    alias(libs.plugins.ktlint)
     alias(libs.plugins.maven.publish) apply false
 }
 
 allprojects {
     group = releaseGroup
     version = releaseVersion
+
+    plugins.withType<KtlintPlugin>().configureEach {
+        the<KtlintExtension>().version.set(libs.versions.ktlint.get())
+    }
 }
 
 subprojects {
+    plugins.withType<CheckstylePlugin>().configureEach {
+        the<CheckstyleExtension>().toolVersion = libs.versions.checkstyle.get()
+    }
+    plugins.withType<CodeNarcPlugin>().configureEach {
+        the<CodeNarcExtension>().toolVersion = libs.versions.codenarc.get()
+    }
     plugins.withType<KotlinPluginWrapper>().configureEach {
         the<KotlinJvmProjectExtension>().jvmToolchain(javaCompileVersion.asInt())
-    }
-    plugins.withType<KtlintPlugin>().configureEach {
-        the<KtlintExtension>().version.set(libs.versions.ktlint.get())
     }
     plugins.withType<MavenPublishBasePlugin> {
         configure<MavenPublishBaseExtension> {
@@ -110,6 +117,8 @@ subprojects {
 }
 
 dependencies {
+    ktlintRuleset(project(":$releaseArtifact-ktlint"))
+
     dokka(project(":$releaseArtifact-checkstyle"))
     dokka(project(":$releaseArtifact-codenarc"))
     dokka(project(":$releaseArtifact-ktlint"))

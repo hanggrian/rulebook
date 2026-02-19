@@ -10,6 +10,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_PARAMETER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_PARAMETER_LIST
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children20
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -46,12 +47,12 @@ public class GenericNameRule : RulebookRule(ID) {
         private const val MSG = "generic.name"
 
         private fun ASTNode.hasParentWithGenerics(): Boolean {
-            var next = treeParent
+            var next = parent
             while (next != null) {
                 next
                     .takeUnless { TYPE_PARAMETER_LIST in it }
                     ?: return true
-                next = next.treeParent
+                next = next.parent
             }
             return false
         }

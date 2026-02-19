@@ -12,6 +12,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.SECONDARY_CONSTRUCTOR
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
@@ -23,9 +24,9 @@ public class InnerClassPositionRule : RulebookRule(ID) {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // consider only inner class
         node
-            .treeParent
-            .takeIf { it.elementType === CLASS_BODY }
-            ?.treeParent
+            .parent
+            ?.takeIf { it.elementType === CLASS_BODY }
+            ?.parent
             ?.takeIf { it.elementType in tokens }
             ?: return
 

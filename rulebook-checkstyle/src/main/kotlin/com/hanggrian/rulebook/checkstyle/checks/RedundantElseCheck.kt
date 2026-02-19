@@ -25,11 +25,12 @@ public class RedundantElseCheck : RulebookAstCheck() {
             `if`
                 .takeIf { it.hasJumpStatement() }
                 ?: return
-            val lastElse = `if`.findFirstToken(LITERAL_ELSE)
-            if (lastElse != null) {
-                log(lastElse, Messages[MSG])
-            }
-            `if` = lastElse?.findFirstToken(LITERAL_IF)
+            val `else` =
+                `if`
+                    .findFirstToken(LITERAL_ELSE)
+                    ?: return
+            log(`else`, Messages[MSG])
+            `if` = `else`.findFirstToken(LITERAL_IF)
         }
     }
 

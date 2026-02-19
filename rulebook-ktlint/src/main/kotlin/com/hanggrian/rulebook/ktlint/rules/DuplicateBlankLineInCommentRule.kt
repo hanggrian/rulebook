@@ -7,6 +7,7 @@ import com.hanggrian.rulebook.ktlint.isEolCommentEmpty
 import com.hanggrian.rulebook.ktlint.isWhitespaceSingleLine
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.nextSibling20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -23,9 +24,9 @@ public class DuplicateBlankLineInCommentRule : RulebookRule(ID) {
         // find matching sibling
         val next =
             node
-                .treeNext
+                .nextSibling20
                 ?.takeIf { it.isWhitespaceSingleLine() }
-                ?.treeNext
+                ?.nextSibling20
                 ?.takeIf { it.elementType === EOL_COMMENT }
                 ?: return
 

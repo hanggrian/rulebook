@@ -109,7 +109,7 @@ When importing multiple members from the same package, they should be sorted
 alphabetically.
 
 ```python hl_lines="1"
-from math import cos, sin
+from math import sin, cos
 
 alpha = cos(0.5)
 beta = sin(0.5)
@@ -133,5 +133,16 @@ def getColors(
         blue,
 
     ]
+}
+```
+
+## Use named object directly
+
+Single calls in Gradle `NamedDomainObjectContainer` should not be wrapped in a
+block.
+
+```kotlin hl_lines="1"
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.0")
 }
 ```

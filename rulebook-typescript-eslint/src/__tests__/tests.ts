@@ -5,8 +5,8 @@ import { NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult, create
 import typescriptEslint from 'typescript-eslint';
 import { expect } from 'vitest';
 
-function assertProperties(module: TSESLint.RuleModule<string, any>): void {
-    const meta: RuleMetaData<string, unknown, any> = module.meta;
+function assertProperties(module: TSESLint.RuleModule<string, readonly unknown[]>): void {
+    const meta: RuleMetaData<string, unknown, readonly unknown[]> = module.meta;
     const ruleName: string = meta.docs!.description;
     expect(
         module.constructor.name

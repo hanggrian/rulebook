@@ -27,7 +27,7 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip non-predicate call
-        val predicateBlock =
+        val block =
             node
                 .findChildByType(LAMBDA_ARGUMENT)
                 ?.findChildByType(LAMBDA_EXPRESSION)
@@ -46,13 +46,13 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
 
         // checks for violation
         val (expression, msg) =
-            predicateBlock
+            block
                 .findChildByType(BINARY_EXPRESSION)
                 ?.to(MSG_EQUALS)
-                ?: predicateBlock
+                ?: block
                     .findChildByType(PREFIX_EXPRESSION)
                     ?.to(MSG_NEGATES)
-                ?: predicateBlock
+                ?: block
                     .findChildByType(IS_EXPRESSION)
                     ?.to(MSG_NEGATES)
                 ?: return

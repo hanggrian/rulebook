@@ -28,7 +28,7 @@ public class NestedIfElseRule : RulebookAstRule() {
             (this as? BlockStatement)
                 ?.statements
                 .orEmpty()
-                .let { it.singleOrNull()?.isMultiline() ?: (it.size > 1) }
+                .run { singleOrNull()?.isMultiline() ?: (size > 1) }
     }
 }
 

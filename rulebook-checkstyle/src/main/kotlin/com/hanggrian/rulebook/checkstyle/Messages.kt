@@ -20,9 +20,7 @@ internal object Messages {
     private val bundle: ResourceBundle
         get() {
             var bundle = bundleRef.get()
-            if (bundle != null) {
-                return bundle
-            }
+            bundle?.let { return it }
             bundle = ResourceBundle.getBundle(FILENAME)
             bundleRef = WeakReference(bundle)
             return bundle

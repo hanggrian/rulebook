@@ -53,13 +53,14 @@ public class BooleanPropertyInteropRule : RulebookRule(ID) {
         }
 
         // collect fields declared in block
-        val classBody = node.findChildByType(CLASS_BODY)
-        if (classBody != null) {
-            properties +=
-                classBody
-                    .children20
-                    .filter { it.elementType === PROPERTY }
-        }
+        node
+            .findChildByType(CLASS_BODY)
+            ?.let { classBody ->
+                properties +=
+                    classBody
+                        .children20
+                        .filter { it.elementType === PROPERTY }
+            }
 
         // checks for violation
         for (property in properties.filter {

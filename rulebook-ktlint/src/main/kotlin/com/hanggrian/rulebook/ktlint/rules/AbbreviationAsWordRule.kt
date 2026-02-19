@@ -2,9 +2,7 @@ package com.hanggrian.rulebook.ktlint.rules
 
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
-import com.hanggrian.rulebook.ktlint.getFileName
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.FILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OBJECT_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -13,33 +11,20 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#abbreviation-as-word) */
 public class AbbreviationAsWordRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION, FILE)
+    override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // obtain class name
-        val (node2, name) =
-            when (node.elementType) {
-                CLASS, OBJECT_DECLARATION -> {
-                    val identifier =
-                        node
-                            .findChildByType(IDENTIFIER)
-                            ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
-                            ?: return
-                    identifier to identifier.text
-                }
-
-                else ->
-                    node to
-                        (
-                            getFileName(node)
-                                ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
-                                ?: return
-                        )
-            }
+        val identifier =
+            node
+                .findChildByType(IDENTIFIER)
+                ?.takeIf { ABBREVIATION_REGEX.containsMatchIn(it.text) }
+                ?: return
 
         // checks for violation
         val transformation =
-            name
+            identifier
+                .text
                 .takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
                 ?.let { s ->
                     ABBREVIATION_REGEX.replace(s) {
@@ -53,7 +38,7 @@ public class AbbreviationAsWordRule : RulebookRule(ID) {
                             }
                     }
                 } ?: return
-        emit(node2.startOffset, Messages[MSG, transformation], false)
+        emit(identifier.startOffset, Messages[MSG, transformation], false)
     }
 
     public companion object {

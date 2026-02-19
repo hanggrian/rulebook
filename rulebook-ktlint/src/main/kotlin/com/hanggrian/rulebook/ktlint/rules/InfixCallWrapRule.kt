@@ -10,6 +10,9 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline20
+import com.pinterest.ktlint.rule.engine.core.api.nextSibling20
+import com.pinterest.ktlint.rule.engine.core.api.parent
+import com.pinterest.ktlint.rule.engine.core.api.prevSibling20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -26,17 +29,17 @@ public class InfixCallWrapRule : RulebookRule(ID) {
         // target multiline statement
         val parent =
             node
-                .treeParent
-                .takeIf { it.elementType === BINARY_EXPRESSION && it.isMultiline() }
+                .parent
+                ?.takeIf { it.elementType === BINARY_EXPRESSION && it.isMultiline() }
                 ?: return
 
         // checks for violation
-        if (node.treePrev.isWhiteSpaceWithNewline20) {
+        if (node.prevSibling20.isWhiteSpaceWithNewline20) {
             emit(node.startOffset, Messages[MSG_UNEXPECTED, node.text], false)
             return
         }
         node
-            .treeNext
+            .nextSibling20
             .takeIf { it.isWhiteSpaceWithoutNewline20 }
             ?: return
         emit(parent.lastChildNode.startOffset, Messages[MSG_MISSING, node.text], false)

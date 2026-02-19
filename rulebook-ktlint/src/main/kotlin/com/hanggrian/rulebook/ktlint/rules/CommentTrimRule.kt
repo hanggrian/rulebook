@@ -6,6 +6,8 @@ import com.hanggrian.rulebook.ktlint.isEolCommentEmpty
 import com.hanggrian.rulebook.ktlint.isWhitespaceSingleLine
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.nextSibling20
+import com.pinterest.ktlint.rule.engine.core.api.prevSibling20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -16,18 +18,18 @@ public class CommentTrimRule : RulebookRule(ID) {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // continue if this comment is first line
         node
-            .treePrev
-            .takeUnless {
-                it?.isWhitespaceSingleLine() == true &&
-                    it.treePrev?.elementType === EOL_COMMENT
+            .prevSibling20
+            ?.takeUnless {
+                it.isWhitespaceSingleLine() &&
+                    it.prevSibling20?.elementType === EOL_COMMENT
             } ?: return
 
         // iterate to find last
         var current = node
-        while (current.treeNext?.isWhitespaceSingleLine() == true &&
-            current.treeNext?.treeNext?.elementType === EOL_COMMENT
+        while (current.nextSibling20?.isWhitespaceSingleLine() == true &&
+            current.nextSibling20?.nextSibling20?.elementType === EOL_COMMENT
         ) {
-            current = current.treeNext.treeNext
+            current = current.nextSibling20!!.nextSibling20!!
         }
 
         // skip blank comment

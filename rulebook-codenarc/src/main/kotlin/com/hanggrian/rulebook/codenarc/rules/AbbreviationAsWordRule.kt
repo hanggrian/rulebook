@@ -39,7 +39,7 @@ public class AbbreviationAsWordVisitor : RulebookVisitor() {
     private fun process(node: ASTNode, name: String) {
         val transformation =
             name
-                .takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
+                .takeIf { AbbreviationAsWordRule.ABBREVIATION_REGEX.containsMatchIn(it) }
                 ?.let { s ->
                     ABBREVIATION_REGEX.replace(s) {
                         it.value.first() +

@@ -17,7 +17,7 @@ import kotlin.test.assertTrue
 class AllRulesTest : AbstractTestCase() {
     private val rules =
         setOf<Rule>(
-            AbbreviationAsWordRule(),
+            UnnecessaryScopeRule(),
             AssignmentWrapRule(),
             BlockCommentClipRule(),
             BlockTagIndentationRule(),
@@ -422,13 +422,10 @@ class AllRulesTest : AbstractTestCase() {
      */
     private fun prepareSourceCode(source: String): SourceCode {
         var sourceCode: AbstractSourceCode = SourceString(source, sourceCodePath, sourceCodeName)
-        val compilerPhase =
-            rules
-                .firstOrNull { it.compilerPhase != SourceCode.DEFAULT_COMPILER_PHASE }
-                ?.compilerPhase
-        if (compilerPhase != null) {
-            sourceCode = CustomCompilerPhaseSourceDecorator(sourceCode, compilerPhase)
-        }
+        rules
+            .firstOrNull { it.compilerPhase != SourceCode.DEFAULT_COMPILER_PHASE }
+            ?.compilerPhase
+            ?.run { sourceCode = CustomCompilerPhaseSourceDecorator(sourceCode, this) }
         return sourceCode
     }
 }

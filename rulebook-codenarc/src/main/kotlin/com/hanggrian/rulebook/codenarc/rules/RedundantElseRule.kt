@@ -3,7 +3,6 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.hasJumpStatement
 import com.hanggrian.rulebook.codenarc.rules.RedundantElseRule.Companion.MSG
-import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-else) */
@@ -17,30 +16,35 @@ public class RedundantElseRule : RulebookAstRule() {
     }
 }
 
-// do not use `visitIfElse` because it also tracks `if` and `else if` simultaneously
 public class RedundantElseVisitor : RulebookVisitor() {
-    override fun visitBlockStatement(node: BlockStatement) {
-        super.visitBlockStatement(node)
+    private val visited = hashSetOf<IfStatement>()
 
-        for (statement in node.statements.filterIsInstance<IfStatement>()) {
-            // skip single if
-            var `if`: IfStatement? =
-                statement
-                    .takeUnless { it.elseBlock.isEmpty }
-                    ?: continue
+    override fun visitIfElse(node: IfStatement) {
+        // target root if
+        val elseBlock = node.elseBlock
+        if (elseBlock is IfStatement) {
+            visited += elseBlock
+        }
+        if (node !in visited) {
+            process(node)
+        }
+        super.visitIfElse(node)
+    }
 
-            // checks for violation
-            while (`if` != null) {
+    private fun process(node: IfStatement) {
+        // checks for violation
+        var `if`: IfStatement? = node
+        while (`if` != null) {
+            `if`
+                .ifBlock
+                .takeIf { it.hasJumpStatement() }
+                ?: return
+            val `else` =
                 `if`
-                    .ifBlock
-                    .takeIf { it.hasJumpStatement() }
+                    .elseBlock
                     ?: return
-                val lastElse = `if`.elseBlock
-                if (lastElse != null) {
-                    addViolation(lastElse, Messages[MSG])
-                }
-                `if` = lastElse as? IfStatement
-            }
+            addViolation(`else`, Messages[MSG])
+            `if` = `else` as? IfStatement
         }
     }
 }

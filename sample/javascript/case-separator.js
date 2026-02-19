@@ -4,7 +4,7 @@ function caseSeparator(item) {
             case 'foo':
                 continue;
 
-            default:
+            case 'bar':
                 return;
         }
     }

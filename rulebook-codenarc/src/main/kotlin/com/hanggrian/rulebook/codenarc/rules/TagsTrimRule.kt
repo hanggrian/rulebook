@@ -35,7 +35,7 @@ public class TagsTrimVisitor : RulebookVisitor() {
         val (firstElement, lastElement) =
             parameters
                 .takeUnless { it.isEmpty() }
-                ?.let { it.first() to it.last() }
+                ?.run { first() to last() }
                 ?.takeIf { it.first.lineNumber > -1 && it.second.lineNumber > -1 }
                 ?: return
         var lineNumber = firstElement.lineNumber

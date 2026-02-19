@@ -41,7 +41,7 @@ public class ParenthesesTrimVisitor : RulebookAnyCallVisitor() {
         val (firstParameter, lastParameter) =
             parameters
                 .takeUnless { it.isEmpty() }
-                ?.let { it.first() to it.last() }
+                ?.run { first() to last() }
                 ?.takeIf {
                     it.first.lineNumber > -1 &&
                         it.second.lineNumber > -1 &&

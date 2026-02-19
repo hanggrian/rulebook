@@ -10,7 +10,9 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline20
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import com.pinterest.ktlint.rule.engine.core.api.prevCodeSibling20
+import com.pinterest.ktlint.rule.engine.core.api.prevSibling20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -22,9 +24,11 @@ public class ElvisWrapRule : RulebookRule(ID) {
         // target multiline statement
         val operationReference =
             node
-                .treeParent
-                .takeIf { it.elementType === OPERATION_REFERENCE && it.treeParent.isMultiline() }
-                ?: return
+                .parent
+                ?.takeIf {
+                    it.elementType === OPERATION_REFERENCE &&
+                        it.parent?.isMultiline() == true
+                } ?: return
 
         // checks for violation
         val sibling =
@@ -33,18 +37,18 @@ public class ElvisWrapRule : RulebookRule(ID) {
                 ?.lastLeaf()
                 ?: return
         if (sibling.elementType === RBRACE &&
-            sibling.treePrev.isWhiteSpaceWithNewline20
+            sibling.prevSibling20.isWhiteSpaceWithNewline20
         ) {
             operationReference
-                .treePrev
-                .takeIf { it.isWhiteSpaceWithNewline20 }
+                .prevSibling20
+                ?.takeIf { it.isWhiteSpaceWithNewline20 }
                 ?: return
             emit(node.startOffset, Messages[MSG_UNEXPECTED], false)
             return
         }
         operationReference
-            .treePrev
-            .takeIf { it.isWhiteSpaceWithoutNewline20 }
+            .prevSibling20
+            ?.takeIf { it.isWhiteSpaceWithoutNewline20 }
             ?: return
         emit(node.startOffset, Messages[MSG_MISSING], false)
     }

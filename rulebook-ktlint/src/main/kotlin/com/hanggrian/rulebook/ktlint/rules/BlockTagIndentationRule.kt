@@ -7,6 +7,7 @@ import com.hanggrian.rulebook.ktlint.siblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -18,7 +19,7 @@ public class BlockTagIndentationRule : RulebookRule(ID) {
         // find leading whitespace
         val text =
             node
-                .takeIf { it.treeParent.elementType === KDOC_TAG }
+                .takeIf { it.parent?.elementType === KDOC_TAG }
                 ?.siblingsUntil(KDOC_LEADING_ASTERISK)
                 ?.joinToString("") { it.text }
                 ?.takeIf { it.firstOrNull()?.isWhitespace() ?: false }

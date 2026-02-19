@@ -33,9 +33,11 @@ import com.hanggrian.rulebook.ktlint.rules.NullEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
+import com.hanggrian.rulebook.ktlint.rules.RootProjectNameRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryAbstractRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryInitialBlankLineRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryScopeRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessarySwitchRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
@@ -70,6 +72,9 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { InnerClassPositionRule() },
             RuleProvider { MemberOrderRule() },
             RuleProvider { OverloadFunctionPositionRule() },
+            // Scripting
+            RuleProvider { RootProjectNameRule() },
+            RuleProvider { UnnecessaryScopeRule() },
             // Spacing
             RuleProvider { BlockCommentSpacesRule() },
             RuleProvider { BlockTagIndentationRule() },

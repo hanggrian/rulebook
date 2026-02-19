@@ -32,15 +32,15 @@ public class NestedIfElseRule : RulebookRule(ID) {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip blocks without exit path
         val block =
-            node.takeUnless { it.treeParent.isTryCatch() }
+            node.takeUnless { it.parent?.isTryCatch() == true }
                 ?: node.parent {
                     it.elementType === BLOCK &&
-                        !it.treeParent.isTryCatch() &&
+                        it.parent?.isTryCatch() == false &&
                         TRY in it
                 } ?: return
         block
             .takeUnless {
-                it.treeParent.elementType === THEN ||
+                it.parent?.elementType === THEN ||
                     it.isPartOf(CLASS_INITIALIZER)
             } ?: return
 
@@ -62,14 +62,15 @@ public class NestedIfElseRule : RulebookRule(ID) {
         `if` ?: return
 
         // checks for violation
-        val `else` = `if`.findChildByType(ELSE)
-        if (`else` != null) {
-            `else`
-                .takeIf { IF !in it && it.hasMultipleLines() }
-                ?: return
-            emit(`if`.findChildByType(ELSE_KEYWORD)!!.startOffset, Messages[MSG_LIFT], false)
-            return
-        }
+        `if`
+            .findChildByType(ELSE)
+            ?.let { `else` ->
+                `else`
+                    .takeIf { IF !in it && it.hasMultipleLines() }
+                    ?: return
+                emit(`if`.findChildByType(ELSE_KEYWORD)!!.startOffset, Messages[MSG_LIFT], false)
+                return
+            }
         `if`
             .findChildByType(THEN)
             ?.takeIf { !it.hasJumpStatement() && it.hasMultipleLines() }
@@ -90,7 +91,7 @@ public class NestedIfElseRule : RulebookRule(ID) {
                     it.elementType === LBRACE ||
                         it.elementType === RBRACE ||
                         it.isWhiteSpace20
-                }.let { it.singleOrNull()?.isMultiline() ?: (it.count() > 1) }
+                }.run { singleOrNull()?.isMultiline() ?: (count() > 1) }
 
         private fun ASTNode.isTryCatch() = elementType === TRY || elementType === CATCH
     }

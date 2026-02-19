@@ -21,6 +21,7 @@ import com.pinterest.ktlint.rule.engine.core.api.editorconfig.INDENT_SIZE_PROPER
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.INDENT_STYLE_PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.MAX_LINE_LENGTH_PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.isRoot20
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -77,10 +78,10 @@ public class BlockCommentClipRule :
     private val ASTNode.indentLength: Int
         get() {
             var result = 0
-            var current = this
-            while (!current.isRoot20) {
-                current = current.treeParent
-                if (current.elementType === CLASS_BODY) {
+            var current: ASTNode? = this
+            while (current?.isRoot20 == false) {
+                current = current.parent
+                if (current?.elementType === CLASS_BODY) {
                     result++
                 }
             }

@@ -17,6 +17,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.TRY
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isLeaf20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.psi.psiUtil.siblings
@@ -28,13 +29,13 @@ public class BracesClipRule : RulebookRule(ID) {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip control flows that can have multi-blocks
         node
-            .treeParent
-            .takeUnless {
+            .parent
+            ?.takeUnless {
                 it.elementType === TRY ||
                     it.elementType === CATCH ||
                     it.elementType === THEN ||
                     it.elementType === ELSE ||
-                    (it.elementType === BODY && it.treeParent.elementType === DO_WHILE)
+                    (it.elementType === BODY && it.parent?.elementType === DO_WHILE)
             } ?: return
 
         // obtain corresponding braces
@@ -57,7 +58,7 @@ public class BracesClipRule : RulebookRule(ID) {
             .siblings()
             .filter {
                 when {
-                    it.elementType == BLOCK -> !it.isLeaf20
+                    it.elementType === BLOCK -> !it.isLeaf20
                     else -> it !== rbrace
                 }
             }.takeIf { nodes -> nodes.any() && nodes.all { it.isWhiteSpace20 } }

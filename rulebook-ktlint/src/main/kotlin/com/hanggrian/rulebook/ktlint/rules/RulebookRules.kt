@@ -1,10 +1,12 @@
 package com.hanggrian.rulebook.ktlint.rules
 
 import com.pinterest.ktlint.rule.engine.core.api.AutocorrectDecision
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.SCRIPT
 import com.pinterest.ktlint.rule.engine.core.api.Rule
 import com.pinterest.ktlint.rule.engine.core.api.RuleAutocorrectApproveHandler
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfigProperty
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
@@ -34,11 +36,20 @@ public abstract class RulebookRule(
     public constructor(ruleId: RuleId, vararg usesEditorConfigProperties: EditorConfigProperty<*>) :
         this(ruleId, setOf(*usesEditorConfigProperties))
 
+    public open fun isScript(): Boolean = false
+
     public abstract fun visitToken(node: ASTNode, emit: Emit)
 
     final override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
-        if (node.elementType in tokens) {
-            visitToken(node, emit)
+        if (isScript() &&
+            node.elementType != SCRIPT &&
+            node.parent { it.elementType == SCRIPT } == null
+        ) {
+            return
         }
+        if (node.elementType !in tokens) {
+            return
+        }
+        visitToken(node, emit)
     }
 }

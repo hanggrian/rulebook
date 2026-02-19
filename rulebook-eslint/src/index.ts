@@ -1,4 +1,4 @@
-import { ESLint } from 'eslint';
+import { ESLint, Linter } from 'eslint';
 import assignmentWrapRule from './rules/assignment-wrap.js';
 import caseSeparatorRule from './rules/case-separator.js';
 import chainCallWrapRule from './rules/chain-call-wrap.js';
@@ -10,10 +10,12 @@ import fileNameRule from './rules/file-name.js';
 import meaninglessWordRule from './rules/meaningless-word.js';
 import nestedIfElseRule from './rules/nested-if-else.js';
 import parenthesesTrimRule from './rules/parentheses-trim.js';
+import redundantDefaultRule from './rules/redundant-default.js';
+import redundantElseRule from './rules/redundant-else.js';
 import todoCommentRule from './rules/todo-comment.js';
 import unnecessaryInitialBlankLineRule from './rules/unnecessary-initial-blank-line.js';
 
-const crockfordConfig: Record<string, any> = {
+const crockfordConfig: Linter.RulesRecord = {
     'consistent-return': 'error',
     'no-undef': 'error',
     '@stylistic/semi': 'error',
@@ -149,7 +151,8 @@ const crockfordConfig: Record<string, any> = {
     // Stating
     'curly': ['error', 'multi-line'],
     '@rulebook/nested-if-else': 'error',
-    'no-else-return': 'error',
+    '@rulebook/redundant-default': 'error',
+    '@rulebook/redundant-else': 'error',
     'no-restricted-syntax': [
         'error',
         {
@@ -183,7 +186,7 @@ const crockfordConfig: Record<string, any> = {
     '@stylistic/max-statements-per-line': 'error',
 };
 
-const googleConfig: Record<string, any> = {
+const googleConfig: Linter.RulesRecord = {
     'consistent-return': 'error',
     'no-undef': 'error',
     '@stylistic/semi': 'error',
@@ -334,7 +337,8 @@ const googleConfig: Record<string, any> = {
     // Stating
     'curly': ['error', 'multi-line'],
     '@rulebook/nested-if-else': 'error',
-    'no-else-return': 'error',
+    '@rulebook/redundant-default': 'error',
+    '@rulebook/redundant-else': 'error',
     'no-restricted-syntax': [
         'error',
         {
@@ -440,6 +444,8 @@ const plugin: ESLint.Plugin = {
         'file-name': fileNameRule,
         'meaningless-word': meaninglessWordRule,
         'nested-if-else': nestedIfElseRule,
+        'redundant-default': redundantDefaultRule,
+        'redundant-else': redundantElseRule,
         'parentheses-trim': parenthesesTrimRule,
         'todo-comment': todoCommentRule,
         'unnecessary-initial-blank-line': unnecessaryInitialBlankLineRule,

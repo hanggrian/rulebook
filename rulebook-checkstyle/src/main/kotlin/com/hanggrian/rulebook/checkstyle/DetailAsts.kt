@@ -127,4 +127,4 @@ internal fun DetailAST.isComment(): Boolean = isCommentType(type)
 /** Returns true if this node is an EOL comment without content. */
 internal fun DetailAST.isEolCommentEmpty(): Boolean =
     type == SINGLE_LINE_COMMENT &&
-        firstChild.let { it.type == COMMENT_CONTENT && it.text == "\n" }
+        firstChild.run { type == COMMENT_CONTENT && text == "\n" }

@@ -6,7 +6,7 @@ abstract class RulebookRule implements Rule.RuleModule {
     protected constructor(
         description: string,
         messages: Record<string, string>,
-        schema: any[] = [],
+        schema: unknown[] = [],
     ) {
         this.meta = {
             type: 'problem',

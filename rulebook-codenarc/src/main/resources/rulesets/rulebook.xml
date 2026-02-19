@@ -29,10 +29,10 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
 
   <!-- Naming -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.GenericNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MeaninglessWordRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule"/>
 
   <!-- Ordering -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagOrderRule"/>
@@ -42,6 +42,10 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.MemberOrderRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.ModifierOrderRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.OverloadFunctionPositionRule"/>
+
+  <!-- Scripting -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule"/>
 
   <!-- Spacing -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagIndentationRule"/>
