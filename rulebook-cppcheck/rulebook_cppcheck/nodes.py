@@ -6,13 +6,18 @@ except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Token
 
 
-def _is_multiline(start_token: Token, end_token: Token) -> bool:
-    curr_token: Token | None = start_token
-    while curr_token and curr_token is not end_token:
-        if curr_token.linenr > start_token.linenr:
-            return True
-        curr_token = curr_token.next
-    return False
+def _has_jump_statement(start: Token, end: Token) -> bool:
+    return _next_sibling(
+        start,
+        lambda t: t is end or t.str in {'return', 'break', 'continue', 'throw', 'goto'},
+    ).str != end.str
+
+
+def _is_multiline(start: Token, end: Token) -> bool:
+    return _next_sibling(
+        start,
+        lambda t: t is end or t.linenr > start.linenr,
+    ).linenr > start.linenr
 
 
 def _parent(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
@@ -37,12 +42,3 @@ def _next_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | N
             return token
         token = token.next
     return None
-
-
-def _has_jump_statement(start: Token, end: Token) -> bool:
-    curr_token: Token | None = start
-    while curr_token and curr_token is not end:
-        if curr_token.str in {'return', 'break', 'continue', 'throw', 'goto'}:
-            return True
-        curr_token = curr_token.next
-    return False

@@ -16,7 +16,7 @@ class FileSizeChecker(RulebookFileChecker):
     _MSG: str = 'file.size'
     ARGS: list[str] = [MAX_FILE_SIZE_OPTION]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._max_file_size: int = 1000
 

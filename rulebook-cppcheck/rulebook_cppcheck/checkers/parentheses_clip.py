@@ -21,7 +21,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
     _MULTI_BLOCKS: set[str] = {'if', 'else', 'while', 'for', 'switch', 'try', 'catch', 'do'}
     _MULTI_BLOCK_STOPS: set[str] = {';', '{', '}'}
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._reported_errors: set[tuple[str, int, int, str]] = set()
 

@@ -16,7 +16,7 @@ class IndentStyleChecker(RulebookTokenChecker):
     _MSG: str = 'indent.style'
     ARGS: list[str] = [INDENT_STYLE_OPTION]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._indent_size: int = 4
 

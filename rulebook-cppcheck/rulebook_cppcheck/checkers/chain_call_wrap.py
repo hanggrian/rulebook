@@ -18,7 +18,7 @@ class ChainCallWrapChecker(RulebookTokenChecker):
     _SHOULD_BREAK: set[str] = {';', '{', '}', '=', '?', ':'}
     _CLOSING_PARENTHESES: set[str] = {')', '}'}
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._reported_errors: set[tuple[str, int, int, str]] = set()
 

@@ -59,10 +59,10 @@ class ChainCallWrapRule extends RulebookRule {
                 }
 
                 // checks for violation
-                dots.forEach(dot => {
+                for (const dot of dots) {
                     const prevToken = context.sourceCode.getTokenBefore(dot);
                     if (!prevToken) {
-                        return;
+                        continue;
                     }
                     if ([')', '}', ']'].includes(prevToken.value) &&
                         prevToken.loc.start.line !==
@@ -74,15 +74,15 @@ class ChainCallWrapRule extends RulebookRule {
                                 messageId: ChainCallWrapRule.MSG_UNEXPECTED,
                             });
                         }
-                    } else {
-                        if (dot.loc.start.line !== prevToken.loc.end.line + 1) {
-                            context.report({
-                                node: dot,
-                                messageId: ChainCallWrapRule.MSG_MISSING,
-                            });
-                        }
+                        continue;
                     }
-                });
+                    if (dot.loc.start.line !== prevToken.loc.end.line + 1) {
+                        context.report({
+                            node: dot,
+                            messageId: ChainCallWrapRule.MSG_MISSING,
+                        });
+                    }
+                }
             },
         };
     }

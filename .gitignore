@@ -29,7 +29,7 @@ dist/
 
 # WebStorm
 node_modules/
-docs/
+/docs/
 coverage/
 test-report.junit.xml
 

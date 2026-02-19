@@ -18,7 +18,7 @@ class MemberOrderChecker(RulebookTokenChecker):
 
     _TARGET_TOKENS: tuple[str, ...] = ('Class', 'Struct')
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._member_order: list[str] = [
             'property',

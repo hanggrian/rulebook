@@ -16,7 +16,7 @@ class LineLengthChecker(RulebookTokenChecker):
     _MSG: str = 'line.length'
     ARGS: list[str] = [MAX_LINE_LENGTH_OPTION]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._max_line_length: int = 100
 

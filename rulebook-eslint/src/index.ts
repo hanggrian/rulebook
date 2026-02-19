@@ -8,6 +8,7 @@ import duplicateBlankLineInCommentRule from './rules/duplicate-blank-line-in-com
 import emptyFileRule from './rules/empty-file.js';
 import fileNameRule from './rules/file-name.js';
 import meaninglessWordRule from './rules/meaningless-word.js';
+import nestedIfElseRule from './rules/nested-if-else.js';
 import parenthesesTrimRule from './rules/parentheses-trim.js';
 import todoCommentRule from './rules/todo-comment.js';
 import unnecessaryInitialBlankLineRule from './rules/unnecessary-initial-blank-line.js';
@@ -147,6 +148,7 @@ const crockfordConfig: Record<string, any> = {
     ],
     // Stating
     'curly': ['error', 'multi-line'],
+    '@rulebook/nested-if-else': 'error',
     'no-else-return': 'error',
     'no-restricted-syntax': [
         'error',
@@ -331,6 +333,7 @@ const googleConfig: Record<string, any> = {
     ],
     // Stating
     'curly': ['error', 'multi-line'],
+    '@rulebook/nested-if-else': 'error',
     'no-else-return': 'error',
     'no-restricted-syntax': [
         'error',
@@ -436,6 +439,7 @@ const plugin: ESLint.Plugin = {
         'empty-file': emptyFileRule,
         'file-name': fileNameRule,
         'meaningless-word': meaninglessWordRule,
+        'nested-if-else': nestedIfElseRule,
         'parentheses-trim': parenthesesTrimRule,
         'todo-comment': todoCommentRule,
         'unnecessary-initial-blank-line': unnecessaryInitialBlankLineRule,

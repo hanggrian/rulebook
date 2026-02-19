@@ -16,7 +16,7 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
     _MSG: str = 'illegal.variable.name'
     ARGS: list[str] = [ILLEGAL_VARIABLE_NAMES_OPTION]
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._illegal_variable_names: set[str] = \
             {'integer', 'string', 'integers', 'strings'}

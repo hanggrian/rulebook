@@ -18,7 +18,7 @@ class CaseSeparatorChecker(RulebookChecker):
 
     _BRANCH_TOKENS: set[str] = {'case', 'default'}
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._reported_errors: set[tuple[str, int, int, str]] = set()
 

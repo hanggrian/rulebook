@@ -24,7 +24,7 @@ class MeaninglessWordChecker(RulebookChecker):
             r'([A-Z]+(?=([A-Z][a-z])|($)|([0-9]))))',
         )
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._words: set[str] = \
             {'Util', 'Utility', 'Helper', 'Manager', 'Wrapper'}
