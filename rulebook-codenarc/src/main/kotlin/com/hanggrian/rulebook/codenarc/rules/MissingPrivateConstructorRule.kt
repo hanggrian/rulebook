@@ -22,7 +22,9 @@ public class MissingPrivateConstructorRule : RulebookAstRule() {
 
 public class MissingPrivateConstructorVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // skip empty class, inheritance or containing non-static members
         val methods =
@@ -34,12 +36,12 @@ public class MissingPrivateConstructorVisitor : RulebookVisitor() {
                         n.methods.all { it.isStatic } &&
                         n.fields.all { it.isStatic }
                 }?.methods
-                ?: return
+                ?: return super.visitClassEx(node)
 
         // skip class with main function
         methods
             .takeUnless { m -> m.any { it.name == "main" } }
-            ?: return
+            ?: return super.visitClassEx(node)
 
         // checks for violation
         if (!Modifier.isFinal(node.modifiers)) {
@@ -47,11 +49,13 @@ public class MissingPrivateConstructorVisitor : RulebookVisitor() {
         }
         if (node.declaredConstructors.isEmpty()) {
             addViolation(node, Messages[MSG_CONSTRUCTOR])
-            return
+            return super.visitClassEx(node)
         }
         node
             .declaredConstructors
             .filterNot { it.isPrivate }
             .forEach { addViolation(it, Messages[MSG_CONSTRUCTOR_MODIFIER]) }
+
+        super.visitClassEx(node)
     }
 }

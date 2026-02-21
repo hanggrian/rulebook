@@ -34,23 +34,35 @@ public class NestedIfElseRule : RulebookAstRule() {
 
 public class NestedIfElseVisitor : RulebookVisitor() {
     override fun visitForLoop(node: ForStatement) {
-        super.visitForLoop(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.loopBlock as? BlockStatement ?: return)
+        super.visitForLoop(node)
     }
 
     override fun visitWhileLoop(node: WhileStatement) {
-        super.visitWhileLoop(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.loopBlock as? BlockStatement ?: return)
+        super.visitWhileLoop(node)
     }
 
     override fun visitDoWhileLoop(node: DoWhileStatement) {
-        super.visitDoWhileLoop(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.loopBlock as? BlockStatement ?: return)
+        super.visitDoWhileLoop(node)
     }
 
     override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        super.visitConstructorOrMethod(node, isConstructor)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.code as? BlockStatement ?: return)
+        super.visitConstructorOrMethod(node, isConstructor)
     }
 
     private fun process(node: BlockStatement) {

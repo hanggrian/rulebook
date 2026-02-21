@@ -15,6 +15,7 @@ import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
+import com.hanggrian.rulebook.ktlint.rules.EagerApiRule
 import com.hanggrian.rulebook.ktlint.rules.ElvisWrapRule
 import com.hanggrian.rulebook.ktlint.rules.ExceptionInheritanceRule
 import com.hanggrian.rulebook.ktlint.rules.FileSizeRule
@@ -24,6 +25,7 @@ import com.hanggrian.rulebook.ktlint.rules.IllegalVariableNameRule
 import com.hanggrian.rulebook.ktlint.rules.InfixCallWrapRule
 import com.hanggrian.rulebook.ktlint.rules.InnerClassPositionRule
 import com.hanggrian.rulebook.ktlint.rules.LowercaseFRule
+import com.hanggrian.rulebook.ktlint.rules.LowercaseHexRule
 import com.hanggrian.rulebook.ktlint.rules.MeaninglessWordRule
 import com.hanggrian.rulebook.ktlint.rules.MemberOrderRule
 import com.hanggrian.rulebook.ktlint.rules.MissingBlankLineBeforeBlockTagsRule
@@ -58,6 +60,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             // Declaring
             RuleProvider { ExceptionInheritanceRule() },
             RuleProvider { LowercaseFRule() },
+            RuleProvider { LowercaseHexRule() },
             RuleProvider { MissingInlineInContractRule() },
             RuleProvider { UnnecessaryAbstractRule() },
             // Naming
@@ -73,6 +76,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { MemberOrderRule() },
             RuleProvider { OverloadFunctionPositionRule() },
             // Scripting
+            RuleProvider { EagerApiRule() },
             RuleProvider { RootProjectNameRule() },
             RuleProvider { UnnecessaryScopeRule() },
             // Spacing

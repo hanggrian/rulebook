@@ -17,19 +17,23 @@ public class UnnecessaryParenthesesInLambdaRule : RulebookAstRule() {
 
 public class UnnecessaryParenthesesInLambdaVisitor : RulebookVisitor() {
     override fun visitLambdaExpression(node: LambdaExpression) {
-        super.visitLambdaExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // skip multiple parameters
         val parameter =
             node
                 .parameters
                 ?.singleOrNull()
-                ?: return
+                ?: return super.visitLambdaExpression(node)
 
         // checks for violation
         sourceLine(parameter)
             .takeIf { ") ->" in it && parameter.isDynamicTyped }
-            ?: return
+            ?: return super.visitLambdaExpression(node)
         addViolation(parameter, Messages[MSG])
+
+        super.visitLambdaExpression(node)
     }
 }

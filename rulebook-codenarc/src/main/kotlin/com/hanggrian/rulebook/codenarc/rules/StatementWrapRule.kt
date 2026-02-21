@@ -29,23 +29,35 @@ public class StatementWrapRule : RulebookAstRule() {
 
 public class StatementWrapVisitor : RulebookVisitor() {
     override fun visitIfElse(node: IfStatement) {
-        super.visitIfElse(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         processControlFlow(node.ifBlock as? BlockStatement)
+        super.visitIfElse(node)
     }
 
     override fun visitForLoop(node: ForStatement) {
-        super.visitForLoop(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         processControlFlow(node.loopBlock as? BlockStatement)
+        super.visitForLoop(node)
     }
 
     override fun visitWhileLoop(node: WhileStatement) {
-        super.visitWhileLoop(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         processControlFlow(node.loopBlock as? BlockStatement)
+        super.visitWhileLoop(node)
     }
 
     override fun visitDoWhileLoop(node: DoWhileStatement) {
-        super.visitDoWhileLoop(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         processControlFlow(node.loopBlock as? BlockStatement)
+        super.visitDoWhileLoop(node)
     }
 
     private fun processControlFlow(blockStatement: BlockStatement?) {
@@ -64,7 +76,9 @@ public class StatementWrapVisitor : RulebookVisitor() {
     }
 
     override fun visitBlockStatement(node: BlockStatement) {
-        super.visitBlockStatement(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         for (statement in node.statements) {
             // checks for violation
@@ -76,5 +90,7 @@ public class StatementWrapVisitor : RulebookVisitor() {
                 } ?: continue
             addViolation(statement, Messages[MSG, ';'])
         }
+
+        super.visitBlockStatement(node)
     }
 }

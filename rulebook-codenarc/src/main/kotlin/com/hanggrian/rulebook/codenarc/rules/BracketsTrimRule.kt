@@ -23,13 +23,19 @@ public class BracketsTrimRule : RulebookAstRule() {
 
 public class BracketsTrimVisitor : RulebookVisitor() {
     override fun visitListExpression(node: ListExpression) {
-        super.visitListExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.expressions, node)
+        super.visitListExpression(node)
     }
 
     override fun visitMapExpression(node: MapExpression) {
-        super.visitMapExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.mapEntryExpressions, node)
+        super.visitMapExpression(node)
     }
 
     private fun process(parameters: List<Expression>, node: ASTNode) {

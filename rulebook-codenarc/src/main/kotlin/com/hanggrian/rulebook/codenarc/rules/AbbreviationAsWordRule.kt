@@ -22,18 +22,26 @@ public class AbbreviationAsWordRule : RulebookAstRule() {
 
 public class AbbreviationAsWordVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // checks for violation
         process(node, node.name)
+
+        super.visitClassEx(node)
     }
 
     override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        super.visitConstructorOrMethod(node, isConstructor)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // checks for violation
         node.parameters.forEach { process(it, it.name) }
         process(node, node.name)
+
+        super.visitConstructorOrMethod(node, isConstructor)
     }
 
     private fun process(node: ASTNode, name: String) {

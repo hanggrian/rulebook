@@ -1,12 +1,11 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
+import com.hanggrian.rulebook.codenarc.RuleTest
 import com.hanggrian.rulebook.codenarc.violationOf
-import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class UnnecessaryScopeRuleTest : AbstractRuleTestCase<UnnecessaryScopeRule>() {
+class UnnecessaryScopeRuleTest : RuleTest<UnnecessaryScopeRule>() {
     override fun createRule() = UnnecessaryScopeRule()
 
     @Test
@@ -17,7 +16,7 @@ class UnnecessaryScopeRuleTest : AbstractRuleTestCase<UnnecessaryScopeRule>() {
 
     @Test
     fun `Single named-domain calls without scopes`() {
-        sourceCodeName = "build.gradle"
+        asScript()
         assertNoViolations(
             """
             repositories mavenCentral()
@@ -39,7 +38,7 @@ class UnnecessaryScopeRuleTest : AbstractRuleTestCase<UnnecessaryScopeRule>() {
 
     @Test
     fun `Single named-domain calls with scopes`() {
-        sourceCodeName = "build.gradle"
+        asScript()
         assertViolations(
             """
             repositories { mavenCentral() }
@@ -62,21 +61,21 @@ class UnnecessaryScopeRuleTest : AbstractRuleTestCase<UnnecessaryScopeRule>() {
                 }
             }
             """.trimIndent(),
-            violationOf(1, "repositories { mavenCentral() }", "Call statement directly."),
+            violationOf(1, "repositories { mavenCentral() }", "Replace braces with dot call."),
             violationOf(
                 3,
                 "dependencies { implementation('some:library:1') }",
-                "Call statement directly.",
+                "Replace braces with dot call.",
             ),
-            violationOf(6, "resolvable('compileClasspath') {", "Call statement directly."),
-            violationOf(12, "register('clean') {}", "Call statement directly."),
-            violationOf(17, "main.srcDir('groovy')", "Call statement directly."),
+            violationOf(6, "resolvable('compileClasspath') {", "Replace braces with dot call."),
+            violationOf(12, "register('clean') {}", "Replace braces with dot call."),
+            violationOf(17, "main.srcDir('groovy')", "Replace braces with dot call."),
         )
     }
 
     @Test
     fun `Multiple named-domain calls`() {
-        sourceCodeName = "build.gradle"
+        sourceCodeName = "file.gradle"
         assertNoViolations(
             """
             repositories {

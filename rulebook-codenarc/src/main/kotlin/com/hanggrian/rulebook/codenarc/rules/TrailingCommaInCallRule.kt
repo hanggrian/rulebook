@@ -27,6 +27,10 @@ public class TrailingCommaInCallRule : RulebookAstRule() {
 
 public class TrailingCommaInCallVisitor : RulebookAnyCallVisitor() {
     override fun <T> visitAnyCallExpression(node: T) where T : Expression, T : MethodCall {
+        if (!isFirstVisit(node)) {
+            return
+        }
+
         // find last parameter
         val arguments = node.arguments as? ArgumentListExpression ?: return
         val expression =

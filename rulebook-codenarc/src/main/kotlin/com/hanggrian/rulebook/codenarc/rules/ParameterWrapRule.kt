@@ -23,22 +23,34 @@ public class ParameterWrapRule : RulebookAstRule() {
 
 public class ParameterWrapVisitor : RulebookAnyCallVisitor() {
     override fun <T> visitAnyCallExpression(node: T) where T : Expression, T : MethodCall {
+        if (!isFirstVisit(node)) {
+            return
+        }
         process((node.arguments as? ArgumentListExpression)?.expressions ?: return)
     }
 
     override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        super.visitConstructorOrMethod(node, isConstructor)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.parameters.asList())
+        super.visitConstructorOrMethod(node, isConstructor)
     }
 
     override fun visitListExpression(node: ListExpression) {
-        super.visitListExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.expressions)
+        super.visitListExpression(node)
     }
 
     override fun visitMapExpression(node: MapExpression) {
-        super.visitMapExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.mapEntryExpressions)
+        super.visitMapExpression(node)
     }
 
     private fun process(parameters: List<ASTNode>) {

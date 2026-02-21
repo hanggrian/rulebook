@@ -12,8 +12,6 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
-    ktlintRuleset(project(":$releaseArtifact-ktlint"))
-
     implementation(libs.checkstyle)
 
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))

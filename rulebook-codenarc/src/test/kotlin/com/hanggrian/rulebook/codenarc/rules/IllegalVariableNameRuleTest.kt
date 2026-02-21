@@ -1,12 +1,11 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.google.common.truth.Truth.assertThat
-import com.hanggrian.rulebook.codenarc.assertProperties
-import org.codenarc.rule.AbstractRuleTestCase
+import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class IllegalVariableNameRuleTest : AbstractRuleTestCase<IllegalVariableNameRule>() {
+class IllegalVariableNameRuleTest : RuleTest<IllegalVariableNameRule>() {
     override fun createRule() = IllegalVariableNameRule()
 
     @Test

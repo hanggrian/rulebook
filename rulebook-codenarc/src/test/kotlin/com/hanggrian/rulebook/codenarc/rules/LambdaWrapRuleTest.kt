@@ -1,12 +1,11 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
+import com.hanggrian.rulebook.codenarc.RuleTest
 import com.hanggrian.rulebook.codenarc.violationOf
-import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class LambdaWrapRuleTest : AbstractRuleTestCase<LambdaWrapRule>() {
+class LambdaWrapRuleTest : RuleTest<LambdaWrapRule>() {
     override fun createRule() = LambdaWrapRule()
 
     @Test

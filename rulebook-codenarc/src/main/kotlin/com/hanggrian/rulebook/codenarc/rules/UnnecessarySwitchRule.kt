@@ -19,14 +19,16 @@ public class UnnecessarySwitchRule : RulebookAstRule() {
 
 public class UnnecessarySwitchVisitor : RulebookVisitor() {
     override fun visitSwitch(node: SwitchStatement) {
-        super.visitSwitch(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // skip multiple branches
         val case =
             node
                 .caseStatements
                 .singleOrNull()
-                ?: return
+                ?: return super.visitSwitch(node)
 
         // checks for violation
         (case.code as? BlockStatement)
@@ -34,5 +36,7 @@ public class UnnecessarySwitchVisitor : RulebookVisitor() {
             ?.last()
             ?.takeUnless { it is BreakStatement }
         addViolation(node, Messages[MSG])
+
+        super.visitSwitch(node)
     }
 }

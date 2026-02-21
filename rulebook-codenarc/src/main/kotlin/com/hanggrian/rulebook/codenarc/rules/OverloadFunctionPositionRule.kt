@@ -17,7 +17,9 @@ public class OverloadFunctionPositionRule : RulebookAstRule() {
 
 public class OverloadFunctionPositionVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // collect functions
         val functions =
@@ -35,5 +37,7 @@ public class OverloadFunctionPositionVisitor : RulebookVisitor() {
                 addViolation(function, Messages[MSG, name])
             }
         }
+
+        super.visitClassEx(node)
     }
 }

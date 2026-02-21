@@ -22,13 +22,19 @@ public class TagsTrimRule : RulebookAstRule() {
 
 public class TagsTrimVisitor : RulebookVisitor() {
     override fun visitMethodEx(node: MethodNode) {
-        super.visitMethodEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.genericsTypes ?: return, node.lineNumber, node.code.lineNumber)
+        super.visitMethodEx(node)
     }
 
     override fun visitMethodCallExpression(node: MethodCallExpression) {
-        super.visitMethodCallExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.genericsTypes ?: return, node.lineNumber, node.lastLineNumber)
+        super.visitMethodCallExpression(node)
     }
 
     private fun process(parameters: Array<GenericsType>, start: Int, end: Int) {

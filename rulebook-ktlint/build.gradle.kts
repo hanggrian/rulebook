@@ -12,8 +12,6 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
-    ktlintRuleset(project)
-
     implementation(libs.ktlint.rule.engine.core)
     implementation(libs.ktlint.cli.ruleset.core)
 

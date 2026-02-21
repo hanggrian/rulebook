@@ -1,10 +1,10 @@
 package com.hanggrian.rulebook.ktlint.rules
 
-import com.hanggrian.rulebook.ktlint.assertProperties
+import com.hanggrian.rulebook.ktlint.RuleTest
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class DuplicateBlankLineInCommentRuleTest {
+class DuplicateBlankLineInCommentRuleTest : RuleTest() {
     private val assertThatCode = assertThatRule { DuplicateBlankLineInCommentRule() }
 
     @Test

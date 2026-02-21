@@ -1,11 +1,11 @@
 package com.hanggrian.rulebook.ktlint.rules
 
-import com.hanggrian.rulebook.ktlint.assertProperties
+import com.hanggrian.rulebook.ktlint.RuleTest
 import com.hanggrian.rulebook.ktlint.properties.MAX_FILE_SIZE_PROPERTY
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class FileSizeRuleTest {
+class FileSizeRuleTest : RuleTest() {
     private val assertThatCode = assertThatRule { FileSizeRule() }
 
     @Test

@@ -25,11 +25,17 @@ public class ParenthesesTrimRule : RulebookAstRule() {
 
 public class ParenthesesTrimVisitor : RulebookAnyCallVisitor() {
     override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        super.visitConstructorOrMethod(node, isConstructor)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node.parameters.asList(), node.lineNumber, node.code.lineNumber)
+        super.visitConstructorOrMethod(node, isConstructor)
     }
 
     override fun <T> visitAnyCallExpression(node: T) where T : Expression, T : MethodCall {
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(
             (node.arguments as? ArgumentListExpression)?.expressions ?: return,
             node.lineNumber,

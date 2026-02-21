@@ -32,19 +32,28 @@ public class IllegalVariableNameRule :
 
 public class IllegalVariableNameVisitor : RulebookAnyCallVisitor() {
     override fun visitField(node: FieldNode) {
-        super.visitField(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node, node.name)
+        super.visitField(node)
     }
 
     override fun visitDeclarationExpression(node: DeclarationExpression) {
-        super.visitDeclarationExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         (node.leftExpression as? TupleExpression)
             ?.expressions
             ?.filterIsInstance<VariableExpression>()
             ?.forEach { process(it, it.name) }
+        super.visitDeclarationExpression(node)
     }
 
     override fun <T> visitAnyCallExpression(node: T) where T : Expression, T : MethodCall {
+        if (!isFirstVisit(node)) {
+            return
+        }
         (node.arguments as? ArgumentListExpression)
             ?.expressions
             ?.filterIsInstance<ClosureExpression>()
@@ -53,8 +62,11 @@ public class IllegalVariableNameVisitor : RulebookAnyCallVisitor() {
     }
 
     override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        super.visitConstructorOrMethod(node, isConstructor)
+        if (!isFirstVisit(node)) {
+            return
+        }
         node.parameters.forEach { process(it, it.name) }
+        super.visitConstructorOrMethod(node, isConstructor)
     }
 
     private fun process(node: ASTNode, name: String) {

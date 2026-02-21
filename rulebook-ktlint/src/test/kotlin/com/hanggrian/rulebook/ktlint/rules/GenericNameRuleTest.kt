@@ -1,11 +1,11 @@
 package com.hanggrian.rulebook.ktlint.rules
 
-import com.hanggrian.rulebook.ktlint.assertProperties
+import com.hanggrian.rulebook.ktlint.RuleTest
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class GenericNameRuleTest {
+class GenericNameRuleTest : RuleTest() {
     private val assertThatCode = assertThatRule { GenericNameRule() }
 
     @Test

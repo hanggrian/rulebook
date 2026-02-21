@@ -21,6 +21,7 @@
   <!-- Declaring -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseDRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseFRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseHexRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseIRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MissingPrivateConstructorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule"/>
@@ -44,6 +45,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.OverloadFunctionPositionRule"/>
 
   <!-- Scripting -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.EagerApiRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule"/>
 

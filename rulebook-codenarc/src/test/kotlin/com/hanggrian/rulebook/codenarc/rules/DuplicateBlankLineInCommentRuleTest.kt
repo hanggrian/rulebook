@@ -1,11 +1,9 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
-import org.codenarc.rule.AbstractRuleTestCase
+import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 
-class DuplicateBlankLineInCommentRuleTest :
-    AbstractRuleTestCase<DuplicateBlankLineInCommentRule>() {
+class DuplicateBlankLineInCommentRuleTest : RuleTest<DuplicateBlankLineInCommentRule>() {
     override fun createRule() = DuplicateBlankLineInCommentRule()
 
     @Test

@@ -8,8 +8,6 @@ import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codehaus.groovy.ast.expr.PropertyExpression
 import org.codehaus.groovy.ast.expr.VariableExpression
-import org.codehaus.groovy.ast.stmt.BlockStatement
-import org.codehaus.groovy.ast.stmt.ExpressionStatement
 import java.io.File
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#root-project-name) */
@@ -59,17 +57,16 @@ public class RootProjectNameVisitor : RulebookVisitor() {
         sourceCode.name?.substringAfterLast(File.separator) == "settings.gradle"
 
     override fun visitClassComplete(node: ClassNode) {
-        super.visitClassComplete(node)
-
         // only target settings.gradle
-        if (isScript() && !hasRootProjectName) {
+        if (isFirstVisit(node) && isScript() && !hasRootProjectName) {
             addViolation(node, Messages[MSG_DEFAULT])
         }
+
+        super.visitClassComplete(node)
     }
 
     override fun visitBinaryExpression(node: BinaryExpression) {
-        super.visitBinaryExpression(node)
-        if (!isScript()) {
+        if (!isFirstVisit(node) || !isScript()) {
             return
         }
 
@@ -78,41 +75,15 @@ public class RootProjectNameVisitor : RulebookVisitor() {
             (left.objectExpression as? VariableExpression)?.name != "rootProject" ||
             (left.property as? ConstantExpression)?.value != "name"
         ) {
-            return
+            return super.visitBinaryExpression(node)
         }
         hasRootProjectName = true
-        val value = (node.rightExpression as? ConstantExpression)?.value as? String ?: return
-        if (value.any { it in RootProjectNameRule.BANNED_CHARACTERS }) {
-            addViolation(node.rightExpression, Messages[MSG_SPECIAL])
-        }
-    }
+        (node.rightExpression as? ConstantExpression)
+            ?.value
+            ?.takeIf { o -> o.toString().any { it in RootProjectNameRule.BANNED_CHARACTERS } }
+            ?: return super.visitBinaryExpression(node)
+        addViolation(node.rightExpression, Messages[MSG_SPECIAL])
 
-    public fun visitBlockStatement2(node: BlockStatement) {
-        super.visitBlockStatement(node)
-        if (!isScript() || node.statements.isEmpty()) {
-            return
-        }
-
-        // find root project name assignment
-        val assignment =
-            node.statements
-                .filterIsInstance<ExpressionStatement>()
-                .mapNotNull { it.expression as? BinaryExpression }
-                .firstOrNull { expr ->
-                    val left = expr.leftExpression
-                    left is PropertyExpression &&
-                        (left.objectExpression as? VariableExpression)?.name == "rootProject" &&
-                        (left.property as? ConstantExpression)?.value == "name"
-                }
-
-        // checks for violation
-        if (assignment == null) {
-            addViolation(node, Messages[MSG_DEFAULT])
-            return
-        }
-        val value = (assignment.rightExpression as? ConstantExpression)?.value as? String ?: return
-        if (value.any { it in RootProjectNameRule.BANNED_CHARACTERS }) {
-            addViolation(assignment.rightExpression, Messages[MSG_SPECIAL])
-        }
+        super.visitBinaryExpression(node)
     }
 }

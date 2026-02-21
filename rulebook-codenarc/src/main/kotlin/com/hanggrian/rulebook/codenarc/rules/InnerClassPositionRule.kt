@@ -22,7 +22,9 @@ public class InnerClassPositionRule : RulebookAstRule() {
 
 public class InnerClassPositionVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // checks for violation
         for (`class` in node.innerClasses) {
@@ -37,5 +39,7 @@ public class InnerClassPositionVisitor : RulebookVisitor() {
                 } ?: continue
             addViolation(`class`, Messages[MSG])
         }
+
+        super.visitClassEx(node)
     }
 }

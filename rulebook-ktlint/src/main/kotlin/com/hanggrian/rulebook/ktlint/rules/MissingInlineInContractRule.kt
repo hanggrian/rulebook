@@ -44,8 +44,7 @@ public class MissingInlineInContractRule : RulebookRule(ID) {
             ?.findChildByType(CALL_EXPRESSION)
             ?.findChildByType(REFERENCE_EXPRESSION)
             ?.findChildByType(IDENTIFIER)
-            ?.text
-            ?.takeIf { it == "callsInPlace" }
+            ?.takeIf { it.text == "callsInPlace" }
             ?: return
 
         // checks for violation

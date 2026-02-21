@@ -1,11 +1,10 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
-import org.codenarc.rule.AbstractRuleTestCase
+import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class RootProjectNameRuleTest : AbstractRuleTestCase<RootProjectNameRule>() {
+class RootProjectNameRuleTest : RuleTest<RootProjectNameRule>() {
     override fun createRule() = RootProjectNameRule()
 
     @Test
@@ -16,7 +15,7 @@ class RootProjectNameRuleTest : AbstractRuleTestCase<RootProjectNameRule>() {
 
     @Test
     fun `Correct project name`() {
-        sourceCodeName = "settings.gradle"
+        asScript("settings.gradle")
         assertNoViolations(
             """
             rootProject.name = 'my-project'
@@ -26,7 +25,7 @@ class RootProjectNameRuleTest : AbstractRuleTestCase<RootProjectNameRule>() {
 
     @Test
     fun `Incorrect project name`() {
-        sourceCodeName = "settings.gradle"
+        asScript("settings.gradle")
         assertSingleViolation(
             """
             rootProject.name = 'my project'
@@ -39,7 +38,7 @@ class RootProjectNameRuleTest : AbstractRuleTestCase<RootProjectNameRule>() {
 
     @Test
     fun `Missing project name`() {
-        sourceCodeName = "settings.gradle"
+        asScript("settings.gradle")
         assertSingleViolation(
             """
             pluginManagement.repositories.mavenCentral()

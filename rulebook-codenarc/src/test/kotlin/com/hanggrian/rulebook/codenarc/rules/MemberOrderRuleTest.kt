@@ -1,12 +1,11 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.google.common.truth.Truth.assertThat
-import com.hanggrian.rulebook.codenarc.assertProperties
-import org.codenarc.rule.AbstractRuleTestCase
+import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class MemberOrderRuleTest : AbstractRuleTestCase<MemberOrderRule>() {
+class MemberOrderRuleTest : RuleTest<MemberOrderRule>() {
     override fun createRule() = MemberOrderRule()
 
     @Test

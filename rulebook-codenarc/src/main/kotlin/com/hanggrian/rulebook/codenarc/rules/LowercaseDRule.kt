@@ -19,7 +19,6 @@ public class LowercaseDRule : RulebookAstRule() {
 
 public class LowercaseDVisitor : RulebookVisitor() {
     override fun visitConstantExpression(node: ConstantExpression) {
-        super.visitConstantExpression(node)
         if (!isFirstVisit(node)) {
             return
         }
@@ -28,13 +27,15 @@ public class LowercaseDVisitor : RulebookVisitor() {
         node
             .type
             .takeIf { it == double_TYPE }
-            ?: return
+            ?: return super.visitConstantExpression(node)
 
         // checks for violation
         getLiteral(node)
             ?.last()
             ?.takeIf { it == 'D' }
-            ?: return
+            ?: return super.visitConstantExpression(node)
         addViolation(node, Messages[MSG])
+
+        super.visitConstantExpression(node)
     }
 }

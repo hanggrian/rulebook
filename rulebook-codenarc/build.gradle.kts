@@ -13,8 +13,6 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
-    ktlintRuleset(project(":$releaseArtifact-ktlint"))
-
     api(libs.codenarc)
 
     implementation(libs.groovy)

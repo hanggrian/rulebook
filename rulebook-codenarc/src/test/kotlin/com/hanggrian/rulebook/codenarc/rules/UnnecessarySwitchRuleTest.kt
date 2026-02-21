@@ -1,11 +1,10 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
-import org.codenarc.rule.AbstractRuleTestCase
+import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class UnnecessarySwitchRuleTest : AbstractRuleTestCase<UnnecessarySwitchRule>() {
+class UnnecessarySwitchRuleTest : RuleTest<UnnecessarySwitchRule>() {
     override fun createRule() = UnnecessarySwitchRule()
 
     @Test

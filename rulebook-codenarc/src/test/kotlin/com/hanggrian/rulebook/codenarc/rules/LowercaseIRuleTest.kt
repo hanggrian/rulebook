@@ -1,11 +1,10 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
-import org.codenarc.rule.AbstractRuleTestCase
+import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class LowercaseIRuleTest : AbstractRuleTestCase<LowercaseIRule>() {
+class LowercaseIRuleTest : RuleTest<LowercaseIRule>() {
     override fun createRule() = LowercaseIRule()
 
     @Test
@@ -48,10 +47,10 @@ class LowercaseIRuleTest : AbstractRuleTestCase<LowercaseIRule>() {
     fun `Skip hexadecimals`() =
         assertNoViolations(
             """
-            var foo = 0x00f
+            var foo = 0x00I
 
             def bar() {
-                println(0x123f)
+                println(0x123I)
             }
             """.trimIndent(),
         )

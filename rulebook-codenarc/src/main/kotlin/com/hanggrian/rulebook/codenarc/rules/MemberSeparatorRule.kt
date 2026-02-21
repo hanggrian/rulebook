@@ -21,7 +21,9 @@ public class MemberSeparatorRule : RulebookAstRule() {
 
 public class MemberSeparatorVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // collect members
         val members =
@@ -54,5 +56,7 @@ public class MemberSeparatorVisitor : RulebookVisitor() {
                         )
             }
         }
+
+        super.visitClassEx(node)
     }
 }

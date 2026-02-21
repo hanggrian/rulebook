@@ -18,16 +18,20 @@ public class RedundantDefaultRule : RulebookAstRule() {
 
 public class RedundantDefaultVisitor : RulebookVisitor() {
     override fun visitSwitch(node: SwitchStatement) {
-        super.visitSwitch(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // find default
-        val default = node.defaultStatement ?: return
+        val default = node.defaultStatement ?: return super.visitSwitch(node)
 
         // checks for violation
         node
             .caseStatements
             .takeIf { cases2 -> cases2.all { it.code.hasJumpStatement(false) } }
-            ?: return
+            ?: return super.visitSwitch(node)
         addViolation(default, Messages[MSG])
+
+        super.visitSwitch(node)
     }
 }

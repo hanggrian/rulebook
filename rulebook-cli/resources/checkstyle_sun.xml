@@ -207,6 +207,7 @@
     <module name="ExceptionInheritance"/>
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
+    <module name="LowercaseHex"/>
     <module name="UnnecessaryAbstract"/>
     <module name="UnnecessaryParenthesesInLambda"/>
 

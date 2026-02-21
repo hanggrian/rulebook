@@ -19,7 +19,9 @@ public class LambdaWrapRule : RulebookAstRule() {
 
 public class LambdaWrapVisitor : RulebookVisitor() {
     override fun visitClosureExpression(node: ClosureExpression) {
-        super.visitClosureExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // target multiline lambda
         val expression =
@@ -27,7 +29,7 @@ public class LambdaWrapVisitor : RulebookVisitor() {
                 .code
                 .firstStatement()
                 .takeIf { it.isMultiline() }
-                ?: return
+                ?: return super.visitClosureExpression(node)
         val parameters =
             node.parameters?.firstOrNull()
                 ?: node
@@ -36,7 +38,9 @@ public class LambdaWrapVisitor : RulebookVisitor() {
         expression
             .lineNumber
             .takeIf { it == parameters.lastLineNumber }
-            ?: return
+            ?: return super.visitClosureExpression(node)
         addViolation(expression, Messages[MSG])
+
+        super.visitClosureExpression(node)
     }
 }

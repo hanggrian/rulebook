@@ -22,7 +22,9 @@ public class AssignmentWrapRule : RulebookAstRule() {
 
 public class AssignmentWrapVisitor : RulebookVisitor() {
     override fun visitBinaryExpression(node: BinaryExpression) {
-        super.visitBinaryExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // skip lambda and collection initializers
         val expression =
@@ -32,20 +34,22 @@ public class AssignmentWrapVisitor : RulebookVisitor() {
                     it is ListExpression ||
                         it is MapExpression ||
                         it is ClosureExpression
-                } ?: return
+                } ?: return super.visitBinaryExpression(node)
 
         // find multiline assignee
         val operation =
             node
                 .operation
                 .takeIf { it.type == ASSIGN && expression.isMultiline() }
-                ?: return
+                ?: return super.visitBinaryExpression(node)
 
         // checks for violation
         expression
             .lineNumber
             .takeIf { it == operation.startLine }
-            ?: return
+            ?: return super.visitBinaryExpression(node)
         addViolation(expression, Messages[MSG])
+
+        super.visitBinaryExpression(node)
     }
 }

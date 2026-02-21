@@ -27,7 +27,9 @@ public class CaseSeparatorRule : RulebookAstRule() {
 
 public class CaseSeparatorVisitor : RulebookVisitor() {
     override fun visitSwitch(node: SwitchStatement) {
-        super.visitSwitch(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // collect cases
         val statements =
@@ -38,7 +40,7 @@ public class CaseSeparatorVisitor : RulebookVisitor() {
                     ?.takeUnless { it.isEmpty }
                     ?.let { add(it) }
             }.takeUnless { it.isEmpty() }
-                ?: return
+                ?: return super.visitSwitch(node)
 
         // checks for violation
         val hasMultiline =
@@ -75,5 +77,7 @@ public class CaseSeparatorVisitor : RulebookVisitor() {
                         )
             }
         }
+
+        super.visitSwitch(node)
     }
 }

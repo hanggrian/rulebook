@@ -25,7 +25,9 @@ public class OperatorWrapRule : RulebookAstRule() {
 
 public class OperatorWrapVisitor : RulebookVisitor() {
     override fun visitBinaryExpression(node: BinaryExpression) {
-        super.visitBinaryExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // target multiline statement
         val operation =
@@ -33,7 +35,7 @@ public class OperatorWrapVisitor : RulebookVisitor() {
                 .takeIf { it.isMultiline() }
                 ?.operation
                 ?.takeUnless { it.type == ASSIGN }
-                ?: return
+                ?: return super.visitBinaryExpression(node)
 
         // left expression may be a compounded binary expression
         val leftExpression =
@@ -48,7 +50,7 @@ public class OperatorWrapVisitor : RulebookVisitor() {
                     sourceLine(node.rightExpression),
                     Messages[MSG_UNEXPECTED, operation.text],
                 )
-            return
+            return super.visitBinaryExpression(node)
         }
         node
             .rightExpression
@@ -58,12 +60,14 @@ public class OperatorWrapVisitor : RulebookVisitor() {
                     it is ClosureExpression
             }?.lineNumber
             ?.takeIf { it == operation.startLine }
-            ?: return
+            ?: return super.visitBinaryExpression(node)
         violations +=
             rule.createViolation(
                 operation.startLine,
                 sourceLine(node.rightExpression),
                 Messages[MSG_MISSING, operation.text],
             )
+
+        super.visitBinaryExpression(node)
     }
 }

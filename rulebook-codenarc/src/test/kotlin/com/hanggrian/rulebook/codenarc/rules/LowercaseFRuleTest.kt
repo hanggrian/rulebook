@@ -1,11 +1,10 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
-import org.codenarc.rule.AbstractRuleTestCase
+import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class LowercaseFRuleTest : AbstractRuleTestCase<LowercaseFRule>() {
+class LowercaseFRuleTest : RuleTest<LowercaseFRule>() {
     override fun createRule() = LowercaseFRule()
 
     @Test

@@ -1,11 +1,10 @@
 package com.hanggrian.rulebook.ktlint.rules
 
-import com.hanggrian.rulebook.ktlint.assertProperties
+import com.hanggrian.rulebook.ktlint.RuleTest
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
-import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class RootProjectNameRuleTest {
+class RootProjectNameRuleTest : RuleTest() {
     private val assertThatCode = assertThatRule { RootProjectNameRule() }
 
     @Test
@@ -17,7 +16,7 @@ class RootProjectNameRuleTest {
             """
             rootProject.name = "my-project"
             """.trimIndent(),
-        ).asFileWithPath("settings.gradle.kts")
+        ).asScript("settings.gradle.kts")
             .hasNoLintViolations()
 
     @Test
@@ -26,7 +25,7 @@ class RootProjectNameRuleTest {
             """
             rootProject.name = "my project"
             """.trimIndent(),
-        ).asFileWithPath("settings.gradle.kts")
+        ).asScript("settings.gradle.kts")
             .hasLintViolationWithoutAutoCorrect(
                 1,
                 21,
@@ -40,6 +39,6 @@ class RootProjectNameRuleTest {
             pluginManagement.repositories.mavenCentral()
             dependencyResolutionManagement.repositories.mavenCentral()
             """.trimIndent(),
-        ).asFileWithPath("settings.gradle.kts")
+        ).asScript("settings.gradle.kts")
             .hasLintViolationWithoutAutoCorrect(1, 1, "Set the root project name.")
 }

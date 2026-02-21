@@ -19,7 +19,6 @@ public class LowercaseIRule : RulebookAstRule() {
 
 public class LowercaseIVisitor : RulebookVisitor() {
     override fun visitConstantExpression(node: ConstantExpression) {
-        super.visitConstantExpression(node)
         if (!isFirstVisit(node)) {
             return
         }
@@ -28,13 +27,20 @@ public class LowercaseIVisitor : RulebookVisitor() {
         node
             .type
             .takeIf { it == int_TYPE }
-            ?: return
+            ?: return super.visitConstantExpression(node)
+        sourceCode
+            .lines[node.lineNumber - 1]
+            .substring(node.columnNumber - 1, node.lastColumnNumber - 1)
+            .takeUnless { it.startsWith("0x", true) }
+            ?: return super.visitConstantExpression(node)
 
         // checks for violation
         getLiteral(node)
             ?.last()
             ?.takeIf { it == 'I' }
-            ?: return
+            ?: return super.visitConstantExpression(node)
         addViolation(node, Messages[MSG])
+
+        super.visitConstantExpression(node)
     }
 }

@@ -40,8 +40,7 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
             node
                 .findChildByType(REFERENCE_EXPRESSION)
                 ?.findChildByType(IDENTIFIER)
-                ?.text
-                ?.let { PREDICATE_CALLS[it] }
+                ?.run { PREDICATE_CALLS[text] }
                 ?: return
 
         // checks for violation

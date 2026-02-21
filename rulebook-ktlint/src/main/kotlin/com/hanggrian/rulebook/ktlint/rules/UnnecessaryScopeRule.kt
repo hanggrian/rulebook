@@ -28,8 +28,7 @@ public class UnnecessaryScopeRule : RulebookRule(ID) {
         node
             .findChildByType(REFERENCE_EXPRESSION)
             ?.findChildByType(IDENTIFIER)
-            ?.text
-            ?.takeIf { it in NAMED_DOMAIN_FUNCTIONS }
+            ?.takeIf { it.text in NAMED_DOMAIN_FUNCTIONS }
             ?: return
 
         // checks for violation

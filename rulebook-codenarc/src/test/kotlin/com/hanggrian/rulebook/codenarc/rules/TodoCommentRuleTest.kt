@@ -1,10 +1,9 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
-import org.codenarc.rule.AbstractRuleTestCase
+import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 
-class TodoCommentRuleTest : AbstractRuleTestCase<TodoCommentRule>() {
+class TodoCommentRuleTest : RuleTest<TodoCommentRule>() {
     override fun createRule() = TodoCommentRule()
 
     @Test

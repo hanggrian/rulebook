@@ -27,13 +27,19 @@ public class GenericNameRule : RulebookAstRule() {
 
 public class RequiredGenericsNameVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node, node.genericsTypes)
+        super.visitClassEx(node)
     }
 
     override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        super.visitConstructorOrMethod(node, isConstructor)
+        if (!isFirstVisit(node)) {
+            return
+        }
         process(node, node.genericsTypes)
+        super.visitConstructorOrMethod(node, isConstructor)
     }
 
     private fun process(node: ASTNode, genericTypes: Array<GenericsType>?) {

@@ -14,8 +14,6 @@ checkstyle.configFile = projectDir.resolve("custom_checks.xml")
 codenarc.configFile = projectDir.resolve("custom_rules.xml")
 
 dependencies {
-    ktlintRuleset(project(":$releaseArtifact-ktlint"))
-
     checkstyle(project(":$releaseArtifact-checkstyle"))
 
     codenarc(project(":$releaseArtifact-codenarc"))

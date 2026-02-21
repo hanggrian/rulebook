@@ -25,32 +25,33 @@ public class UnnecessaryScopeRule : RulebookAstRule() {
 
 public class UnnecessaryScopeVisitor : RulebookVisitor() {
     override fun visitMethodCallExpression(node: MethodCallExpression) {
-        super.visitMethodCallExpression(node)
-        if (!isScript()) {
+        if (!isFirstVisit(node) || !isScript()) {
             return
         }
 
         // target named domain or handler with scope
         (node.method as? ConstantExpression)
             ?.takeIf { it.value in NAMED_DOMAIN_FUNCTIONS }
-            ?: return
+            ?: return super.visitMethodCallExpression(node)
 
         // checks for violation
         val expression =
             (node.arguments as? ArgumentListExpression)
                 ?.expressions
                 ?.singleOrNull()
-                ?: return
+                ?: return super.visitMethodCallExpression(node)
         val statement =
             ((expression as? ClosureExpression)?.code as? BlockStatement)
                 ?.statements
                 ?.singleOrNull()
-                ?: return
+                ?: return super.visitMethodCallExpression(node)
         val expression2 =
             (statement as? ExpressionStatement)
                 ?.expression
                 ?.takeIf { it is MethodCallExpression }
-                ?: return
+                ?: return super.visitMethodCallExpression(node)
         addViolation(expression2, Messages[UnnecessaryScopeRule.MSG])
+
+        super.visitMethodCallExpression(node)
     }
 }

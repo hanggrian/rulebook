@@ -58,7 +58,9 @@ public class MemberOrderVisitor : RulebookVisitor() {
             }
 
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // in Groovy, static members have specific keyword
         var lastChild: ASTNode? = null
@@ -74,5 +76,7 @@ public class MemberOrderVisitor : RulebookVisitor() {
 
             lastChild = child
         }
+
+        super.visitClassEx(node)
     }
 }

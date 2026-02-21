@@ -31,7 +31,9 @@ public class CommonFunctionPositionRule : RulebookAstRule() {
 
 public class CommonFunctionPositionVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // collect functions
         // in Groovy, static members have specific keyword
@@ -54,5 +56,7 @@ public class CommonFunctionPositionVisitor : RulebookVisitor() {
                 } ?: continue
             addViolation(method, Messages[MSG, method.name])
         }
+
+        super.visitClassEx(node)
     }
 }

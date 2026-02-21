@@ -26,34 +26,50 @@ public class RedundantQualifierVisitor : RulebookVisitor() {
     private val targetNodes = mutableSetOf<ASTNode>()
 
     override fun visitImports(node: ModuleNode) {
-        super.visitImports(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // keep import list
         node.imports.forEach { importPaths += it.type.name }
+
+        super.visitImports(node)
     }
 
     override fun visitField(node: FieldNode) {
-        super.visitField(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // checks for violation
         process(node, node.type.name)
+
+        super.visitField(node)
     }
 
     override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        super.visitConstructorOrMethod(node, isConstructor)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // checks for violation
         process(node, node.returnType.name)
         node.parameters.forEach { process(it, it.type.name) }
+
+        super.visitConstructorOrMethod(node, isConstructor)
     }
 
     override fun visitMethodCallExpression(node: MethodCallExpression) {
-        super.visitMethodCallExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // checks for violation
         val `class` = node.objectExpression
         process(`class`, `class`.text)
         process(`class`, "${`class`.text}.${node.methodAsString}")
+
+        super.visitMethodCallExpression(node)
     }
 
     private fun process(node: ASTNode, text: String) {

@@ -38,6 +38,10 @@ allprojects {
     plugins.withType<KtlintPlugin>().configureEach {
         the<KtlintExtension>().version.set(libs.versions.ktlint.get())
     }
+
+    afterEvaluate {
+        dependencies.ktlintRuleset(project(":$releaseArtifact-ktlint"))
+    }
 }
 
 subprojects {
@@ -50,6 +54,7 @@ subprojects {
     plugins.withType<KotlinPluginWrapper>().configureEach {
         the<KotlinJvmProjectExtension>().jvmToolchain(javaCompileVersion.asInt())
     }
+    @Suppress("ktlint:rulebook:eager-api")
     plugins.withType<MavenPublishBasePlugin> {
         configure<MavenPublishBaseExtension> {
             configure(KotlinJvm(JavadocJar.Dokka("dokkaGeneratePublicationJavadoc")))
@@ -117,8 +122,6 @@ subprojects {
 }
 
 dependencies {
-    ktlintRuleset(project(":$releaseArtifact-ktlint"))
-
     dokka(project(":$releaseArtifact-checkstyle"))
     dokka(project(":$releaseArtifact-codenarc"))
     dokka(project(":$releaseArtifact-ktlint"))

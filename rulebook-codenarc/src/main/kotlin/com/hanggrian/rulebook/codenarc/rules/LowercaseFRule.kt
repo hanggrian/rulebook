@@ -19,7 +19,6 @@ public class LowercaseFRule : RulebookAstRule() {
 
 public class LowercaseFVisitor : RulebookVisitor() {
     override fun visitConstantExpression(node: ConstantExpression) {
-        super.visitConstantExpression(node)
         if (!isFirstVisit(node)) {
             return
         }
@@ -28,13 +27,15 @@ public class LowercaseFVisitor : RulebookVisitor() {
         node
             .type
             .takeIf { it == float_TYPE }
-            ?: return
+            ?: return super.visitConstantExpression(node)
 
         // checks for violation
         getLiteral(node)
             ?.last()
             ?.takeIf { it == 'F' }
-            ?: return
+            ?: return super.visitConstantExpression(node)
         addViolation(node, Messages[MSG])
+
+        super.visitConstantExpression(node)
     }
 }

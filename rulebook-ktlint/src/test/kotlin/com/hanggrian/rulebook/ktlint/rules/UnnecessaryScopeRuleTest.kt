@@ -1,11 +1,11 @@
 package com.hanggrian.rulebook.ktlint.rules
 
-import com.hanggrian.rulebook.ktlint.assertProperties
+import com.hanggrian.rulebook.ktlint.RuleTest
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class UnnecessaryScopeRuleTest {
+class UnnecessaryScopeRuleTest : RuleTest() {
     private val assertThatCode = assertThatRule { UnnecessaryScopeRule() }
 
     @Test
@@ -29,7 +29,7 @@ class UnnecessaryScopeRuleTest {
                 sourceSets.main.srcDir("kotlin")
             }
             """.trimIndent(),
-        ).asFileWithPath("file.kts")
+        ).asScript()
             .hasNoLintViolations()
 
     @Test
@@ -56,13 +56,13 @@ class UnnecessaryScopeRuleTest {
                 }
             }
             """.trimIndent(),
-        ).asFileWithPath("file.kts")
+        ).asScript()
             .hasLintViolationsWithoutAutoCorrect(
-                LintViolation(1, 16, "Call statement directly."),
-                LintViolation(3, 16, "Call statement directly."),
-                LintViolation(6, 5, "Call statement directly."),
-                LintViolation(12, 5, "Call statement directly."),
-                LintViolation(17, 9, "Call statement directly."),
+                LintViolation(1, 16, "Replace braces with dot call."),
+                LintViolation(3, 16, "Replace braces with dot call."),
+                LintViolation(6, 5, "Replace braces with dot call."),
+                LintViolation(12, 5, "Replace braces with dot call."),
+                LintViolation(17, 9, "Replace braces with dot call."),
             )
 
     @Test
@@ -100,7 +100,7 @@ class UnnecessaryScopeRuleTest {
                 }
             }
             """.trimIndent(),
-        ).asFileWithPath("file.kts")
+        ).asScript()
             .hasNoLintViolations()
 
     @Test
@@ -111,6 +111,6 @@ class UnnecessaryScopeRuleTest {
                 "clean" {}
             }
             """.trimIndent(),
-        ).asFileWithPath("file.kts")
+        ).asScript()
             .hasNoLintViolations()
 }

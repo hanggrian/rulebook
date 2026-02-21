@@ -1,12 +1,10 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.assertProperties
+import com.hanggrian.rulebook.codenarc.RuleTest
 import com.hanggrian.rulebook.codenarc.violationOf
-import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 
-class MissingBlankLineBeforeBlockTagsRuleTest :
-    AbstractRuleTestCase<MissingBlankLineBeforeBlockTagsRule>() {
+class MissingBlankLineBeforeBlockTagsRuleTest : RuleTest<MissingBlankLineBeforeBlockTagsRule>() {
     override fun createRule() = MissingBlankLineBeforeBlockTagsRule()
 
     @Test

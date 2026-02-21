@@ -1,13 +1,12 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.google.common.truth.Truth.assertThat
-import com.hanggrian.rulebook.codenarc.assertProperties
+import com.hanggrian.rulebook.codenarc.RuleTest
 import com.hanggrian.rulebook.codenarc.violationOf
-import org.codenarc.rule.AbstractRuleTestCase
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class MeaninglessWordRuleTest : AbstractRuleTestCase<MeaninglessWordRule>() {
+class MeaninglessWordRuleTest : RuleTest<MeaninglessWordRule>() {
     override fun createRule() = MeaninglessWordRule()
 
     @Test

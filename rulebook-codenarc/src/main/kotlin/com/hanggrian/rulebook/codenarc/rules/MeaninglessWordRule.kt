@@ -28,21 +28,25 @@ public class MeaninglessWordRule :
 
 public class MeaninglessWordVisitor : RulebookVisitor() {
     override fun visitClassEx(node: ClassNode) {
-        super.visitClassEx(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         // checks for violation
         val finalName =
             (rule as MeaninglessWordRule)
                 .wordSet
                 .singleOrNull { node.name.endsWith(it) }
-                ?: return
+                ?: return super.visitClassEx(node)
         if (finalName in UTILITY_FINAL_NAMES) {
             addViolation(
                 node,
                 Messages[MSG_UTIL, node.name.substringBefore(finalName) + 's'],
             )
-            return
+            return super.visitClassEx(node)
         }
         addViolation(node, Messages[MSG_ALL, finalName])
+
+        super.visitClassEx(node)
     }
 }

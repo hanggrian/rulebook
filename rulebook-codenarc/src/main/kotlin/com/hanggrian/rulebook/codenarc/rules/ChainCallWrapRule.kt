@@ -41,7 +41,9 @@ public class ChainCallWrapRule : RulebookAstRule() {
 // do not use `visitMethodCallExpression` because there is no way to determine return call
 public class ChainCallWrapVisitor : RulebookVisitor() {
     override fun visitBlockStatement(node: BlockStatement) {
-        super.visitBlockStatement(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         for (statement in node.statements.filterIsInstance<ExpressionStatement>()) {
             process(
@@ -49,14 +51,20 @@ public class ChainCallWrapVisitor : RulebookVisitor() {
                     ?: statement.expression,
             )
         }
+
+        super.visitBlockStatement(node)
     }
 
     override fun visitMethodCallExpression(node: MethodCallExpression) {
-        super.visitMethodCallExpression(node)
+        if (!isFirstVisit(node)) {
+            return
+        }
 
         (node.arguments as? ArgumentListExpression)
             ?.filterIsInstance<MethodCallExpression>()
             ?.forEach(::process)
+
+        super.visitMethodCallExpression(node)
     }
 
     private fun process(node: Expression) {

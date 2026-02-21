@@ -10,8 +10,6 @@ plugins {
 }
 
 dependencies {
-    ktlintRuleset(project(":$releaseArtifact-ktlint"))
-
     checkstyle(project(":$releaseArtifact-checkstyle"))
 
     codenarc(project(":$releaseArtifact-codenarc"))
