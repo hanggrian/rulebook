@@ -37,9 +37,6 @@ def _is_multiline(node: NodeNG) -> bool:
     if isinstance(node, MatchCase):
         return node.body[-1].end_lineno > node.body[0].lineno or \
             _is_multiline(node.pattern)
-    if isinstance(node, ClassDef):
-        return node.body[-1].end_lineno > node.body[0].lineno or \
-            _is_multiline(node.bases)
     return node.end_lineno > node.lineno
 
 

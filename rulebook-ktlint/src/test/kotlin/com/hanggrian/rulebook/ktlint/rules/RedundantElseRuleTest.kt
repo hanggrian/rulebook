@@ -60,4 +60,44 @@ class RedundantElseRuleTest : RuleTest() {
             LintViolation(3, 5, "Omit redundant 'else' condition."),
             LintViolation(4, 5, "Omit redundant 'else' condition."),
         )
+
+    @Test
+    fun `Skip jump statement with elvis`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) {
+                    baz() ?: throw Exception()
+                } else if (false) {
+                    baz() ?: return
+                } else {
+                    baz()
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Skip property assignment`() =
+        assertThatCode(
+            """
+            fun foo() {
+                val foo =
+                    if (true) {
+                        return
+                    } else {
+                        baz()
+                    }
+            }
+
+            fun bar() {
+                val (bar1, bar2) =
+                    if (true) {
+                        return
+                    } else {
+                        baz()
+                    }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
 }

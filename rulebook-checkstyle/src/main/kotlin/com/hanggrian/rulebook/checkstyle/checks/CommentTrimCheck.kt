@@ -34,12 +34,12 @@ public class CommentTrimCheck : RulebookAstCheck() {
             ?: return
 
         // checks for violation
-        if (node.isEolCommentEmpty()) {
-            log(node, Messages[MSG])
-        }
-        if (current.isEolCommentEmpty()) {
-            log(current, Messages[MSG])
-        }
+        node
+            .takeIf { it.isEolCommentEmpty() }
+            ?.let { log(it, Messages[MSG]) }
+        current
+            .takeIf { it.isEolCommentEmpty() }
+            ?.let { log(it, Messages[MSG]) }
     }
 
     private companion object {

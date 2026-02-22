@@ -48,25 +48,29 @@ public class BracketsTrimVisitor : RulebookVisitor() {
         var lineNumber = firstElement.lineNumber
         var lastLineNumber = lastElement.lastLineNumber
         while (lineNumber > node.lineNumber) {
-            if (sourceCode.line(lineNumber - 1).isBlank()) {
-                violations +=
-                    rule.createViolation(
-                        lineNumber,
-                        "",
-                        Messages[MSG_FIRST],
-                    )
-            }
+            lineNumber
+                .takeIf { sourceCode.line(it - 1).isBlank() }
+                ?.let {
+                    violations +=
+                        rule.createViolation(
+                            lineNumber,
+                            "",
+                            Messages[MSG_FIRST],
+                        )
+                }
             lineNumber--
         }
         while (lastLineNumber < node.lastLineNumber) {
-            if (sourceCode.line(lastLineNumber - 1).isBlank()) {
-                violations +=
-                    rule.createViolation(
-                        lastLineNumber,
-                        "",
-                        Messages[MSG_LAST],
-                    )
-            }
+            lastLineNumber
+                .takeIf { sourceCode.line(it - 1).isBlank() }
+                ?.let {
+                    violations +=
+                        rule.createViolation(
+                            lastLineNumber,
+                            "",
+                            Messages[MSG_LAST],
+                        )
+                }
             lastLineNumber++
         }
     }

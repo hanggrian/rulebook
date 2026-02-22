@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import jdk.internal.joptsimple.internal.Strings.isNullOrEmpty
 import org.codehaus.groovy.ast.expr.ConstructorCallExpression
 import org.codehaus.groovy.ast.expr.Expression
 import org.codehaus.groovy.ast.expr.MethodCall
@@ -10,7 +9,6 @@ import org.codenarc.rule.AbstractAstVisitor
 import org.codenarc.rule.AbstractAstVisitorRule
 import org.codenarc.rule.AbstractRule
 import org.codenarc.rule.imports.AbstractImportRule
-import kotlin.text.isNullOrEmpty
 
 /** Rule that uses Groovy AST tree to validate a node. */
 public abstract class RulebookAstRule : AbstractAstVisitorRule() {

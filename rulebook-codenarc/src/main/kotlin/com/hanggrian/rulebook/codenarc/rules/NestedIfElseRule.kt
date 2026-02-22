@@ -73,14 +73,16 @@ public class NestedIfElseVisitor : RulebookVisitor() {
                 ?: return
 
         // checks for violation
-        val `else` = `if`.elseBlock
-        if (!`else`.isEmpty) {
-            `else`
-                .takeUnless { it is IfStatement }
-                ?: return
-            addViolation(`else`, Messages[MSG_LIFT])
-            return
-        }
+        `if`
+            .elseBlock
+            .takeUnless { it.isEmpty }
+            ?.let { `else` ->
+                `else`
+                    .takeUnless { it is IfStatement }
+                    ?: return
+                addViolation(`else`, Messages[MSG_LIFT])
+                return
+            }
         `if`
             .ifBlock
             ?.takeIf { !it.hasJumpStatement() && it.hasMultipleLines() }

@@ -12,6 +12,7 @@ import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
+import com.hanggrian.rulebook.ktlint.rules.DecentralizedDependencyRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
@@ -76,6 +77,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { MemberOrderRule() },
             RuleProvider { OverloadFunctionPositionRule() },
             // Scripting
+            RuleProvider { DecentralizedDependencyRule() },
             RuleProvider { EagerApiRule() },
             RuleProvider { RootProjectNameRule() },
             RuleProvider { UnnecessaryScopeRule() },

@@ -40,14 +40,16 @@ public class TrailingCommaInCallVisitor : RulebookAnyCallVisitor() {
                 ?: return
 
         // checks for violation
-        if (!arguments.isMultiline()) {
-            sourceLineNullable(expression)
-                ?.trimComment()
-                ?.takeIf { it.endsWith(",)") }
-                ?: return
-            addViolation(expression, Messages[MSG_SINGLE])
-            return
-        }
+        arguments
+            .takeUnless { it.isMultiline() }
+            ?.let {
+                sourceLineNullable(expression)
+                    ?.trimComment()
+                    ?.takeIf { it.endsWith(",)") }
+                    ?: return
+                addViolation(expression, Messages[MSG_SINGLE])
+                return
+            }
         lastSourceLineNullable(expression)
             ?.trimComment()
             ?.takeUnless { it.endsWith(',') }

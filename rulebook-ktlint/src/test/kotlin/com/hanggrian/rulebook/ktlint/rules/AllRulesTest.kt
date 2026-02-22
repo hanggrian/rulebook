@@ -86,6 +86,8 @@ class AllRulesTest {
             LintViolation(236, 1, "Convert into single-line.", false),
             LintViolation(257, 5, "Arrange member 'property' before 'function'.", false),
             LintViolation(348, 5, "Move 'join' next to each other.", false),
+            LintViolation(365, 10, "Use 'isEmpty' and replace call with 'filterNot'.", false),
+            LintViolation(366, 10, "Use 'isEmpty' and replace call with 'takeUnless'.", false),
             LintViolation(410, 13, "Invert 'if' condition.", false),
             LintViolation(419, 13, "Invert 'if' condition.", false),
             LintViolation(474, 8, "Add blank line before block tag group.", false),

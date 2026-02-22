@@ -3,13 +3,13 @@ package com.hanggrian.rulebook.ktlint.rules
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.isMultiline
-import com.hanggrian.rulebook.ktlint.lastLeaf
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELVIS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithoutNewline20
+import com.pinterest.ktlint.rule.engine.core.api.lastChildLeafOrSelf20
 import com.pinterest.ktlint.rule.engine.core.api.parent
 import com.pinterest.ktlint.rule.engine.core.api.prevCodeSibling20
 import com.pinterest.ktlint.rule.engine.core.api.prevSibling20
@@ -34,18 +34,20 @@ public class ElvisWrapRule : RulebookRule(ID) {
         val sibling =
             operationReference
                 .prevCodeSibling20
-                ?.lastLeaf()
+                ?.lastChildLeafOrSelf20
                 ?: return
-        if (sibling.elementType === RBRACE &&
-            sibling.prevSibling20.isWhiteSpaceWithNewline20
-        ) {
-            operationReference
-                .prevSibling20
-                ?.takeIf { it.isWhiteSpaceWithNewline20 }
-                ?: return
-            emit(node.startOffset, Messages[MSG_UNEXPECTED], false)
-            return
-        }
+        sibling
+            .takeIf {
+                it.elementType === RBRACE &&
+                    it.prevSibling20.isWhiteSpaceWithNewline20
+            }?.let {
+                operationReference
+                    .prevSibling20
+                    ?.takeIf { it.isWhiteSpaceWithNewline20 }
+                    ?: return
+                emit(node.startOffset, Messages[MSG_UNEXPECTED], false)
+                return
+            }
         operationReference
             .prevSibling20
             ?.takeIf { it.isWhiteSpaceWithoutNewline20 }

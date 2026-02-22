@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule.Companion.BANNED_CHARACTERS
 import com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule.Companion.MSG_DEFAULT
 import com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule.Companion.MSG_SPECIAL
 import org.codehaus.groovy.ast.ClassNode
@@ -70,17 +71,17 @@ public class RootProjectNameVisitor : RulebookVisitor() {
             return
         }
 
-        val left = node.leftExpression
-        if (left !is PropertyExpression ||
-            (left.objectExpression as? VariableExpression)?.name != "rootProject" ||
-            (left.property as? ConstantExpression)?.value != "name"
-        ) {
-            return super.visitBinaryExpression(node)
-        }
+        node
+            .leftExpression
+            .takeIf {
+                it !is PropertyExpression ||
+                    (it.objectExpression as? VariableExpression)?.name != "rootProject" ||
+                    (it.property as? ConstantExpression)?.value != "name"
+            }?.let { return super.visitBinaryExpression(node) }
         hasRootProjectName = true
         (node.rightExpression as? ConstantExpression)
             ?.value
-            ?.takeIf { o -> o.toString().any { it in RootProjectNameRule.BANNED_CHARACTERS } }
+            ?.takeIf { o -> o.toString().any { it in BANNED_CHARACTERS } }
             ?: return super.visitBinaryExpression(node)
         addViolation(node.rightExpression, Messages[MSG_SPECIAL])
 

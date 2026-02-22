@@ -31,17 +31,15 @@ public class NestedIfElseRule : RulebookRule(ID) {
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip blocks without exit path
-        val block =
-            node.takeUnless { it.parent?.isTryCatch() == true }
-                ?: node.parent {
-                    it.elementType === BLOCK &&
-                        it.parent?.isTryCatch() == false &&
-                        TRY in it
-                } ?: return
-        block
-            .takeUnless {
-                it.parent?.elementType === THEN ||
-                    it.isPartOf(CLASS_INITIALIZER)
+        node
+            .parent
+            ?.takeUnless {
+                it.elementType === TRY ||
+                    it.elementType === CATCH ||
+                    it.elementType === THEN ||
+                    it.elementType === IF ||
+                    it.elementType === ELSE ||
+                    node.isPartOf(CLASS_INITIALIZER)
             } ?: return
 
         // get last if
@@ -92,7 +90,5 @@ public class NestedIfElseRule : RulebookRule(ID) {
                         it.elementType === RBRACE ||
                         it.isWhiteSpace20
                 }.run { singleOrNull()?.isMultiline() ?: (count() > 1) }
-
-        private fun ASTNode.isTryCatch() = elementType === TRY || elementType === CATCH
     }
 }

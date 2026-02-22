@@ -26,12 +26,12 @@ public class BlockCommentSpacesRule : RulebookRule(ID) {
                     ?: return
 
                 // checks for violation
-                if (!node.text.startsWith(' ')) {
-                    emit(node.startOffset, Messages[MSG_SINGLE_START], false)
-                }
-                if (!node.text.endsWith(' ')) {
-                    emit(node.endOffset, Messages[MSG_SINGLE_END], false)
-                }
+                node
+                    .takeUnless { it.text.startsWith(' ') }
+                    ?.run { emit(startOffset, Messages[MSG_SINGLE_START], false) }
+                node
+                    .takeUnless { it.text.endsWith(' ') }
+                    ?.run { emit(endOffset, Messages[MSG_SINGLE_END], false) }
             }
 
             else -> {

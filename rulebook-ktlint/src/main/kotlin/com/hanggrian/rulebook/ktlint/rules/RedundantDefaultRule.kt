@@ -4,6 +4,7 @@ import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.contains
 import com.hanggrian.rulebook.ktlint.hasJumpStatement
+import com.hanggrian.rulebook.ktlint.isChildOfProperty
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
@@ -17,11 +18,15 @@ public class RedundantDefaultRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(WHEN)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
-        // find default
+        // skip property assignment
         val whenEntries =
             node
-                .children20
-                .filter { it.elementType === WHEN_ENTRY }
+                .takeUnless { it.isChildOfProperty() }
+                ?.children20
+                ?.filter { it.elementType === WHEN_ENTRY }
+                ?: return
+
+        // find default
         val `else` =
             whenEntries
                 .lastOrNull()

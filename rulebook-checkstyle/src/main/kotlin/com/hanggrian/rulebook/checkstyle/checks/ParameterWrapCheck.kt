@@ -40,9 +40,9 @@ public class ParameterWrapCheck : RulebookAstCheck() {
                 ?: return
 
         // checks for violation
-        if (parameters.size == 1 && parameters.single().type == LAMBDA) {
-            return
-        }
+        parameters
+            .takeUnless { it.singleOrNull()?.type == LAMBDA }
+            ?: return
         for ((i, parameter) in parameters.withIndex().drop(1)) {
             parameters[i - 1]
                 .maxLineNo

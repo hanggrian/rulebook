@@ -35,22 +35,21 @@ public class BooleanPropertyInteropRule : RulebookRule(ID) {
     override fun visitToken(node: ASTNode, emit: Emit) {
         // collect fields declared in constructor
         val properties = hashSetOf<ASTNode>()
-        if (node.elementType === CLASS) {
-            val primaryConstructor =
-                node
-                    .takeIf { it.isPublic() }
-                    ?.findChildByType(PRIMARY_CONSTRUCTOR)
-                    ?: return
-            properties +=
-                primaryConstructor
-                    .takeIf { it.isPublic() }
-                    ?.findChildByType(VALUE_PARAMETER_LIST)
-                    ?.children20
-                    ?.filter {
-                        it.elementType === VALUE_PARAMETER &&
-                            (VAL_KEYWORD in it || VAR_KEYWORD in it)
-                    } ?: return
-        }
+        node
+            .takeIf { it.elementType === CLASS }
+            ?.let {
+                properties +=
+                    node
+                        .takeIf { it.isPublic() }
+                        ?.findChildByType(PRIMARY_CONSTRUCTOR)
+                        ?.takeIf { it.isPublic() }
+                        ?.findChildByType(VALUE_PARAMETER_LIST)
+                        ?.children20
+                        ?.filter {
+                            it.elementType === VALUE_PARAMETER &&
+                                (VAL_KEYWORD in it || VAR_KEYWORD in it)
+                        } ?: return
+            }
 
         // collect fields declared in block
         node

@@ -27,9 +27,9 @@ public class ChainCallWrapCheck : RulebookAstCheck() {
 
         // skip dots in single-line
         val firstDot = dots.firstOrNull() ?: return
-        if (dots.all { it.lineNo == firstDot.lineNo }) {
-            return
-        }
+        dots
+            .takeUnless { d -> d.all { it.lineNo == firstDot.lineNo } }
+            ?: return
 
         // checks for violation
         for (dot in dots) {
@@ -37,14 +37,14 @@ public class ChainCallWrapCheck : RulebookAstCheck() {
             if ((dotSibling.type == RPAREN || dotSibling.type == RCURLY) &&
                 dotSibling.lineNo != dotSibling.previousSibling?.lineNo
             ) {
-                if (dot.lineNo != dotSibling.lineNo) {
-                    log(dot, Messages[MSG_UNEXPECTED])
-                }
+                dot
+                    .takeUnless { it.lineNo == dotSibling.lineNo }
+                    ?.let { log(it, Messages[MSG_UNEXPECTED]) }
                 continue
             }
-            if (dot.lineNo != dotSibling.lineNo + 1) {
-                log(dot, Messages[MSG_MISSING])
-            }
+            dot
+                .takeUnless { it.lineNo == dotSibling.lineNo + 1 }
+                ?.let { log(it, Messages[MSG_MISSING]) }
         }
     }
 

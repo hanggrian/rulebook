@@ -34,10 +34,13 @@ public class InfixCallWrapRule : RulebookRule(ID) {
                 ?: return
 
         // checks for violation
-        if (node.prevSibling20.isWhiteSpaceWithNewline20) {
-            emit(node.startOffset, Messages[MSG_UNEXPECTED, node.text], false)
-            return
-        }
+        node
+            .prevSibling20
+            .takeIf { it.isWhiteSpaceWithNewline20 }
+            ?.let {
+                emit(node.startOffset, Messages[MSG_UNEXPECTED, node.text], false)
+                return
+            }
         node
             .nextSibling20
             .takeIf { it.isWhiteSpaceWithoutNewline20 }

@@ -43,15 +43,13 @@ public class CaseSeparatorCheck : RulebookAstCheck() {
                     ?.findFirstToken(SLIST)
                     ?: continue
             when {
-                hasMultiline -> {
-                    if (caseGroup.minLineNo != lastSlist.maxLineNo + 2) {
-                        log(lastSlist.lastChild, Messages[MSG_MISSING])
-                    }
-                }
+                hasMultiline ->
+                    lastSlist
+                        .takeIf { caseGroup.minLineNo != it.maxLineNo + 2 }
+                        ?.run { log(lastChild, Messages[MSG_MISSING]) }
 
-                caseGroup.minLineNo != lastSlist.maxLineNo + 1 -> {
+                caseGroup.minLineNo != lastSlist.maxLineNo + 1 ->
                     log(lastSlist.lastChild, Messages[MSG_UNEXPECTED])
-                }
             }
         }
     }

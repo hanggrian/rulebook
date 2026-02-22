@@ -26,15 +26,15 @@ public class BlockCommentTrimCheck : RulebookJavadocCheck() {
 
         // initial node is always newline
         var children = node.filterEmpty()
-        val firstChild = children.first().takeIf { it.type == NEWLINE }
-        if (firstChild != null &&
-            children.indexOf(firstChild).let {
-                children.getOrNull(it + 1)?.type == LEADING_ASTERISK &&
-                    children.getOrNull(it + 2)?.type == NEWLINE
-            }
-        ) {
-            log(firstChild.lineNumber, firstChild.columnNumber, Messages[MSG_FIRST])
-        }
+        children
+            .first()
+            .takeIf { it.type == NEWLINE }
+            ?.takeIf {
+                children.indexOf(it).let { i ->
+                    children.getOrNull(i + 1)?.type == LEADING_ASTERISK &&
+                        children.getOrNull(i + 2)?.type == NEWLINE
+                }
+            }?.let { log(it.lineNumber, it.columnNumber, Messages[MSG_FIRST]) }
 
         // final node may be newline or tag
         val lastChild =

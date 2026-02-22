@@ -70,7 +70,6 @@ class AllChecksTest : AbstractModuleTestSupport() {
             "365:35: Break each parameter into newline.",
             "409:13: Invert if condition.",
             "446:46: Break assignment into newline.",
-            "476:13: Invert if condition.",
             "484:89: Break each parameter into newline.",
             "551:9: Invert if condition.",
             "658:55: Break assignment into newline.",

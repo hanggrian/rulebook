@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.ktlint.rules
 
 import com.hanggrian.rulebook.ktlint.RuleTest
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class RedundantDefaultRuleTest : RuleTest() {
@@ -48,6 +49,42 @@ class RedundantDefaultRuleTest : RuleTest() {
                     1 -> { baz() }
                     else -> baz()
                 }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Skip jump statement with elvis`() =
+        assertThatCode(
+            """
+            fun foo() {
+                when (bar) {
+                    0 -> baz() ?: throw Exception()
+                    1 -> { baz() ?: return }
+                    else -> baz()
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Skip property assignment`() =
+        assertThatCode(
+            """
+            fun foo() {
+                val foo =
+                    when (baz) {
+                        0 -> return
+                        else -> baz()
+                    }
+            }
+
+            fun bar() {
+                val (bar, bar2) =
+                    when (baz) {
+                        0 -> return
+                        else -> baz()
+                    }
             }
             """.trimIndent(),
         ).hasNoLintViolations()

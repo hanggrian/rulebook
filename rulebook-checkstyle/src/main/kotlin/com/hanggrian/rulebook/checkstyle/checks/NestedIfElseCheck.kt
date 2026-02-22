@@ -6,7 +6,6 @@ import com.hanggrian.rulebook.checkstyle.contains
 import com.hanggrian.rulebook.checkstyle.hasJumpStatement
 import com.hanggrian.rulebook.checkstyle.isComment
 import com.hanggrian.rulebook.checkstyle.isMultiline
-import com.hanggrian.rulebook.checkstyle.parent
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CATCH
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
@@ -24,14 +23,13 @@ public class NestedIfElseCheck : RulebookAstCheck() {
 
     override fun visitToken(node: DetailAST) {
         // skip blocks without exit path
-        val slist =
-            node.takeUnless { it.parent.isTryCatch() }
-                ?: node.parent { it.type == SLIST && !it.parent.isTryCatch() && LITERAL_TRY in it }
-                ?: return
-        slist
-            .takeUnless {
-                it.parent.type == LITERAL_IF ||
-                    it.parent.type == LITERAL_ELSE
+        node
+            .parent
+            ?.takeUnless {
+                it.type == LITERAL_TRY ||
+                    it.type == LITERAL_CATCH ||
+                    it.type == LITERAL_IF ||
+                    it.type == LITERAL_ELSE
             } ?: return
 
         // get last if
@@ -77,7 +75,5 @@ public class NestedIfElseCheck : RulebookAstCheck() {
                 .orEmpty()
                 .filterNot { it.type == RCURLY || it.type == SEMI }
                 .run { singleOrNull()?.isMultiline() ?: (count() > 1) }
-
-        fun DetailAST.isTryCatch() = type == LITERAL_TRY || type == LITERAL_CATCH
     }
 }

@@ -8,9 +8,12 @@ import org.codenarc.source.SourceCode
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.Mockito.atMost
+import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 import kotlin.test.Test
 
 @ExtendWith(MockitoExtension::class)
@@ -21,19 +24,10 @@ class VisitorsTest {
     @Mock
     private lateinit var code: SourceCode
 
-    @Mock
-    private lateinit var node1: ASTNode
-
-    @Mock
-    private lateinit var node2: ASTNode
-
-    @Mock
-    private lateinit var constantExpression: ConstantExpression
-
     @Test
     fun getLineNumberBefore() {
-        `when`(node1.lastLineNumber).thenReturn(1)
-        `when`(node2.lineNumber).thenReturn(2)
+        val node1 = mock<ASTNode> { on { lastLineNumber } doReturn 1 }
+        val node2 = mock<ASTNode> { on { lineNumber } doReturn 2 }
         `when`(code.line(1)).thenReturn("int i = 0")
         `when`(visitor.sourceCode).thenReturn(code)
         assertThat(visitor.getLineNumberBefore(node2, node1)).isEqualTo(1)
@@ -46,20 +40,24 @@ class VisitorsTest {
 
     @Test
     fun hasCommentAbove() {
-        `when`(node1.lineNumber).thenReturn(2)
+        val node = mock<ASTNode> { on { lineNumber } doReturn 1 }
+        `when`(node.lineNumber).thenReturn(2)
         `when`(code.line(1)).thenReturn("// comment")
         `when`(visitor.sourceCode).thenReturn(code)
-        assertThat(visitor.hasCommentAbove(node1)).isTrue()
+        assertThat(visitor.hasCommentAbove(node)).isTrue()
 
-        verify(node1).lineNumber
+        verify(node).lineNumber
         verify(code).line(1)
         verify(visitor).sourceCode
     }
 
     @Test
     fun getLiteral() {
-        `when`(constantExpression.lastColumnNumber).thenReturn(11)
-        `when`(constantExpression.lineNumber).thenReturn(1)
+        val constantExpression =
+            mock<ConstantExpression> {
+                on { lastColumnNumber } doReturn 11
+                on { lineNumber } doReturn 1
+            }
         `when`(code.lines).thenReturn(listOf("int l = 0L"))
         `when`(visitor.sourceCode).thenReturn(code)
         assertThat(visitor.getLiteral(constantExpression)).isEqualTo("L")
@@ -72,10 +70,10 @@ class VisitorsTest {
 
     @Test
     fun sourceLineNullable() {
-        `when`(node1.lineNumber).thenReturn(-1)
+        val node1 = mock<ASTNode> { on { lineNumber } doReturn -1 }
         assertThat(visitor.sourceLineNullable(node1)).isNull()
 
-        `when`(node2.lineNumber).thenReturn(1)
+        val node2 = mock<ASTNode> { on { lineNumber } doReturn 1 }
         `when`(code.lines).thenReturn(listOf("int i = 0", "int j = 1"))
         `when`(visitor.sourceCode).thenReturn(code)
         assertThat(visitor.sourceLineNullable(node2)).isNotNull()
@@ -88,10 +86,10 @@ class VisitorsTest {
 
     @Test
     fun lastSourceLineNullable() {
-        `when`(node1.lastLineNumber).thenReturn(-1)
+        val node1 = mock<ASTNode> { on { lastLineNumber } doReturn -1 }
         assertThat(visitor.lastSourceLineNullable(node1)).isNull()
 
-        `when`(node2.lastLineNumber).thenReturn(1)
+        val node2 = mock<ASTNode> { on { lastLineNumber } doReturn 1 }
         `when`(code.lines).thenReturn(listOf("int i = 0", "int j = 1"))
         `when`(visitor.sourceCode).thenReturn(code)
         assertThat(visitor.lastSourceLineNullable(node2)).isNotNull()

@@ -43,14 +43,14 @@ public class BracesTrimCheck : RulebookAstCheck() {
             }
 
         // checks for violation
-        val lcurlySiblingLineNo = lcurlySibling.minLineNo
-        val rcurlySiblingLineNo = rcurlySibling.maxLineNo
-        if (lcurlySiblingLineNo - lcurly.lineNo > 1) {
-            log(lcurlySiblingLineNo - 1, Messages[MSG_FIRST])
-        }
-        if (rcurly.lineNo - rcurlySiblingLineNo > 1) {
-            log(rcurlySiblingLineNo + 1, Messages[MSG_LAST])
-        }
+        lcurlySibling
+            .minLineNo
+            .takeIf { it - lcurly.lineNo > 1 }
+            ?.let { log(it - 1, Messages[MSG_FIRST]) }
+        rcurlySibling
+            .maxLineNo
+            .takeIf { rcurly.lineNo - it > 1 }
+            ?.let { log(it + 1, Messages[MSG_LAST]) }
     }
 
     private companion object {

@@ -7,7 +7,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMPILATION_UNIT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_BREAK
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CONTINUE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_PUBLIC
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
@@ -15,231 +14,240 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
-import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.Mock
 import org.mockito.Mockito.atLeast
 import org.mockito.Mockito.atMost
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
-import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 import kotlin.test.Test
 
-@ExtendWith(MockitoExtension::class)
 class DetailNodesTest {
-    @Mock
-    private lateinit var rootAst: DetailAST
-
-    @Mock
-    private lateinit var parentAst1: DetailAST
-
-    @Mock
-    private lateinit var parentAst2: DetailAST
-
-    @Mock
-    private lateinit var leafAst1: DetailAST
-
-    @Mock
-    private lateinit var leafAst2: DetailAST
-
-    @Mock
-    private lateinit var leafAst3: DetailAST
-
-    @Mock
-    private lateinit var leafAst4: DetailAST
-
-    @Mock
-    private lateinit var rootNode: DetailNode
-
-    @Mock
-    private lateinit var leafNode1: DetailNode
-
-    @Mock
-    private lateinit var leafNode2: DetailNode
-
     @Test
     fun maxLineNo() {
-        mockMinMaxLineTree(1, 2, 3, 4, 5, 6, 7)
-        assertThat(rootAst.maxLineNo).isEqualTo(7)
+        val tree = NodeTree(1, 2, 3, 4, 5, 6, 7)
+        assertThat(tree.root.maxLineNo).isEqualTo(7)
 
-        verifyMinMaxLineTree()
+        tree.verify()
+        tree.all().forEach { verify(it).lineNo }
     }
 
     @Test
     fun minLineNo() {
-        mockMinMaxLineTree(7, 6, 5, 4, 3, 2, 1)
-        assertThat(rootAst.minLineNo).isEqualTo(1)
+        val tree = NodeTree(7, 6, 5, 4, 3, 2, 1)
+        assertThat(tree.root.minLineNo).isEqualTo(1)
 
-        verifyMinMaxLineTree()
+        tree.verify()
+        tree.all().forEach { verify(it).lineNo }
     }
 
     @Test
     fun firstLeaf() {
-        `when`(rootAst.firstChild).thenReturn(parentAst1)
-        `when`(parentAst1.firstChild).thenReturn(leafAst1)
-        assertThat(rootAst.firstLeaf()).isEqualTo(leafAst1)
+        val leaf = mock<DetailAST>()
+        val parent = mock<DetailAST> { on { firstChild } doReturn leaf }
+        val root = mock<DetailAST> { on { firstChild } doReturn parent }
+        assertThat(root.firstLeaf()).isEqualTo(leaf)
 
-        sequenceOf(rootAst, parentAst1).forEach { verify(it, atMost(2)).firstChild }
+        sequenceOf(root, parent).forEach { verify(it, atMost(2)).firstChild }
     }
 
     @Test
     fun lastLeaf() {
-        `when`(rootAst.lastChild).thenReturn(parentAst2)
-        `when`(parentAst2.lastChild).thenReturn(leafAst4)
-        assertThat(rootAst.lastLeaf()).isEqualTo(leafAst4)
+        val leaf = mock<DetailAST>()
+        val parent = mock<DetailAST> { on { lastChild } doReturn leaf }
+        val root = mock<DetailAST> { on { lastChild } doReturn parent }
+        assertThat(root.lastLeaf()).isEqualTo(leaf)
 
-        sequenceOf(rootAst, parentAst1).forEach { verify(it, atMost(2)).lastChild }
+        sequenceOf(root, parent).forEach { verify(it, atMost(2)).lastChild }
     }
 
     @Test
     fun children() {
-        `when`(rootAst.firstChild).thenReturn(parentAst1)
-        `when`(parentAst1.nextSibling).thenReturn(parentAst2)
-        assertThat(rootAst.children().toList()).containsExactly(parentAst1, parentAst2)
+        val child1 = mock<DetailAST>()
+        val child2 = mock<DetailAST> { on { nextSibling } doReturn child1 }
+        val root = mock<DetailAST> { on { firstChild } doReturn child2 }
+        assertThat(root.children().toList()).containsExactly(child1, child2)
 
-        verify(rootAst, atMost(2)).firstChild
-        verify(parentAst1, atMost(2)).nextSibling
+        verify(root, atMost(2)).firstChild
+        verify(child1, atMost(2)).nextSibling
     }
 
     @Test
     fun contains() {
-        `when`(rootAst.findFirstToken(COMPILATION_UNIT)).thenReturn(parentAst1)
-        assertThat(COMPILATION_UNIT in rootAst).isTrue()
+        val node = mock<DetailAST> { on { findFirstToken(COMPILATION_UNIT) } doReturn mock() }
+        assertThat(COMPILATION_UNIT in node).isTrue()
 
-        verify(rootAst).findFirstToken(COMPILATION_UNIT)
+        verify(node).findFirstToken(COMPILATION_UNIT)
     }
 
     @Test
     fun parent() {
-        `when`(rootAst.type).thenReturn(COMPILATION_UNIT)
-        `when`(parentAst1.parent).thenReturn(rootAst)
-        `when`(leafAst1.parent).thenReturn(parentAst1)
-        assertThat(leafAst1.parent { it.type == COMPILATION_UNIT }).isEqualTo(rootAst)
+        val root = mock<DetailAST> { on { type } doReturn COMPILATION_UNIT }
+        val parent = mock<DetailAST> { on { this.parent } doReturn root }
+        val leaf = mock<DetailAST> { on { this.parent } doReturn parent }
+        assertThat(leaf.parent { it.type == COMPILATION_UNIT }).isEqualTo(root)
 
-        sequenceOf(rootAst, parentAst1).forEach { verify(it).type }
-        verify(leafAst1).parent
+        sequenceOf(root, parent).forEach { verify(it).type }
+        verify(leaf).parent
 
-        `when`(rootAst.parent).thenReturn(null)
-        assertThat(rootAst.parent { it.type == COMPILATION_UNIT }).isNull()
+        `when`(root.parent).thenReturn(null)
+        assertThat(root.parent { it.type == COMPILATION_UNIT }).isNull()
 
-        verify(rootAst).parent
+        verify(root).parent
     }
 
     @Test
     fun nextSibling() {
-        `when`(leafAst1.nextSibling).thenReturn(leafAst2)
-        `when`(leafAst2.nextSibling).thenReturn(leafAst3)
-        `when`(leafAst3.nextSibling).thenReturn(leafAst4)
-        `when`(leafAst4.type).thenReturn(COMPILATION_UNIT)
-        assertThat(leafAst1.nextSibling { it.type == COMPILATION_UNIT }).isEqualTo(leafAst4)
+        val leaf4 = mock<DetailAST> { on { type } doReturn COMPILATION_UNIT }
+        val leaf3 = mock<DetailAST> { on { nextSibling } doReturn leaf4 }
+        val leaf2 = mock<DetailAST> { on { nextSibling } doReturn leaf3 }
+        val leaf1 = mock<DetailAST> { on { nextSibling } doReturn leaf2 }
+        assertThat(leaf1.nextSibling { it.type == COMPILATION_UNIT }).isEqualTo(leaf4)
 
-        sequenceOf(leafAst1, leafAst2, leafAst3).forEach { verify(it).nextSibling }
-        verify(leafAst4).type
+        sequenceOf(leaf1, leaf2, leaf3).forEach { verify(it).nextSibling }
+        verify(leaf4).type
 
+        val leafNode1 = mock<DetailNode>()
+        val leafNode2 = mock<DetailNode>()
+        val rootNode = mock<DetailNode> { on { children } doReturn arrayOf(leafNode1, leafNode2) }
         `when`(leafNode1.parent).thenReturn(rootNode)
-        `when`(rootNode.children).thenReturn(arrayOf(leafNode1, leafNode2))
         assertThat(leafNode1.nextSibling()).isEqualTo(leafNode2)
 
         verify(leafNode1).parent
         verify(rootNode).children
 
-        `when`(rootAst.nextSibling).thenReturn(null)
-        assertThat(rootAst.nextSibling { it.type == COMPILATION_UNIT }).isNull()
+        val root = mock<DetailAST> { on { nextSibling } doReturn null }
+        assertThat(root.nextSibling { it.type == COMPILATION_UNIT }).isNull()
 
-        verify(rootAst).nextSibling
+        verify(root).nextSibling
     }
 
     @Test
     fun hasModifier() {
-        `when`(rootAst.findFirstToken(MODIFIERS)).thenReturn(parentAst1)
-        `when`(parentAst1.findFirstToken(LITERAL_PUBLIC)).thenReturn(leafAst1)
-        assertThat(rootAst.hasModifier(LITERAL_PUBLIC)).isTrue()
+        val publicContainer =
+            mock<DetailAST> {
+                on { findFirstToken(LITERAL_PUBLIC) } doReturn mock<DetailAST>()
+            }
+        val modifiersContainer =
+            mock<DetailAST> {
+                on { findFirstToken(MODIFIERS) } doReturn publicContainer
+            }
+        assertThat(modifiersContainer.hasModifier(LITERAL_PUBLIC)).isTrue()
 
-        verify(rootAst).findFirstToken(MODIFIERS)
-        verify(parentAst1).findFirstToken(LITERAL_PUBLIC)
-        LITERAL_PUBLIC in verify(parentAst1)
+        verify(modifiersContainer).findFirstToken(MODIFIERS)
+        verify(publicContainer).findFirstToken(LITERAL_PUBLIC)
+        LITERAL_PUBLIC in verify(publicContainer)
     }
 
     @Test
     fun hasAnnotation() {
-        `when`(rootAst.findFirstToken(MODIFIERS)).thenReturn(parentAst1)
-        `when`(parentAst1.firstChild).thenReturn(leafAst1)
+        val leaf2 = mock<DetailAST> { on { text } doReturn "Deprecated" }
+        val leaf1 =
+            mock<DetailAST> {
+                on { type } doReturn ANNOTATION
+                on { findFirstToken(IDENT) } doReturn leaf2
+            }
+        val parent = mock<DetailAST> { on { firstChild } doReturn leaf1 }
+        val root = mock<DetailAST> { on { findFirstToken(MODIFIERS) } doReturn parent }
+        `when`(root.findFirstToken(MODIFIERS)).thenReturn(parent)
+        `when`(parent.firstChild).thenReturn(leaf1)
+        assertThat(root.hasAnnotation("Deprecated")).isTrue()
 
-        `when`(leafAst1.type).thenReturn(ANNOTATION)
-        `when`(leafAst1.findFirstToken(IDENT)).thenReturn(leafAst2)
-        `when`(leafAst2.text).thenReturn("Deprecated")
-
-        assertThat(rootAst.hasAnnotation("Deprecated")).isTrue()
-
-        verify(rootAst).findFirstToken(MODIFIERS)
-        verify(parentAst1).firstChild
-        verify(leafAst1).type
-        verify(leafAst1).findFirstToken(IDENT)
-        verify(leafAst2).text
-        verify(parentAst1).children()
+        verify(root).findFirstToken(MODIFIERS)
+        verify(parent).firstChild
+        verify(leaf1).type
+        verify(leaf1).findFirstToken(IDENT)
+        verify(leaf2).text
+        verify(parent).children()
     }
 
     @Test
     fun hasJumpStatement() {
-        `when`(rootAst.findFirstToken(SLIST)).thenReturn(null)
-        `when`(rootAst.findFirstToken(LITERAL_RETURN)).thenReturn(null)
-        `when`(rootAst.findFirstToken(LITERAL_THROW)).thenReturn(null)
-        `when`(rootAst.findFirstToken(LITERAL_CONTINUE)).thenReturn(null)
-        `when`(rootAst.findFirstToken(LITERAL_BREAK)).thenReturn(parentAst1)
-        assertThat(rootAst.hasJumpStatement()).isTrue()
+        val returnContainer =
+            mock<DetailAST> {
+                on { findFirstToken(SLIST) } doReturn null
+                on { findFirstToken(LITERAL_RETURN) } doReturn mock()
+            }
+        val throwContainer =
+            mock<DetailAST> {
+                on { findFirstToken(SLIST) } doReturn null
+                on { findFirstToken(LITERAL_RETURN) } doReturn null
+                on { findFirstToken(LITERAL_THROW) } doReturn mock()
+            }
+        val continueContainer =
+            mock<DetailAST> {
+                on { findFirstToken(SLIST) } doReturn null
+                on { findFirstToken(LITERAL_RETURN) } doReturn null
+                on { findFirstToken(LITERAL_THROW) } doReturn null
+                on { findFirstToken(LITERAL_CONTINUE) } doReturn mock()
+            }
+        val breakContainer =
+            mock<DetailAST> {
+                on { findFirstToken(SLIST) } doReturn null
+                on { findFirstToken(LITERAL_RETURN) } doReturn null
+                on { findFirstToken(LITERAL_THROW) } doReturn null
+                on { findFirstToken(LITERAL_CONTINUE) } doReturn null
+            }
+        assertThat(returnContainer.hasJumpStatement()).isTrue()
+        assertThat(throwContainer.hasJumpStatement()).isTrue()
+        assertThat(breakContainer.hasJumpStatement(false)).isFalse()
+        assertThat(continueContainer.hasJumpStatement()).isTrue()
 
-        `when`(rootAst.findFirstToken(SLIST)).thenReturn(parentAst2)
-        `when`(parentAst2.findFirstToken(LITERAL_RETURN)).thenReturn(leafAst2)
-        assertThat(rootAst.hasJumpStatement(false)).isTrue()
-
-        verify(rootAst, atMost(2)).findFirstToken(SLIST)
-        verify(rootAst).findFirstToken(LITERAL_RETURN)
-        verify(rootAst).findFirstToken(LITERAL_THROW)
-        verify(rootAst).findFirstToken(LITERAL_CONTINUE)
-        verify(rootAst).findFirstToken(LITERAL_BREAK)
-        verify(parentAst2).findFirstToken(LITERAL_RETURN)
-        LITERAL_BREAK in verify(rootAst)
-        LITERAL_RETURN in verify(rootAst)
+        verify(returnContainer).findFirstToken(LITERAL_RETURN)
+        verify(throwContainer).findFirstToken(LITERAL_THROW)
+        verify(continueContainer).findFirstToken(LITERAL_CONTINUE)
+        sequenceOf(
+            returnContainer,
+            throwContainer,
+            continueContainer,
+        ).forEach { verify(it).findFirstToken(SLIST) }
     }
 
     @Test
     fun isLeaf() {
-        `when`(rootAst.childCount).thenReturn(2)
-        assertThat(rootAst.isLeaf()).isFalse()
+        val node = mock<DetailAST> { on { childCount } doReturn 2 }
+        assertThat(node.isLeaf()).isFalse()
 
-        verify(rootAst).childCount
+        verify(node).childCount
     }
 
     @Test
     fun isMultiline() {
-        mockMinMaxLineTree(1, 2, 3, 4, 5, 6, 7)
-        assertThat(rootAst.isMultiline()).isTrue()
-        assertThat(leafAst1.isMultiline()).isFalse()
+        val tree = NodeTree(1, 2, 3, 4, 5, 6, 7)
+        assertThat(tree.root.isMultiline()).isTrue()
+        assertThat(tree.leaf1.isMultiline()).isFalse()
 
-        verifyMinMaxLineTree()
+        tree.verify()
     }
 
     @Test
     fun isComment() {
-        `when`(rootAst.type).thenReturn(SINGLE_LINE_COMMENT)
-        assertThat(rootAst.isComment()).isTrue()
+        val comment = mock<DetailAST> { on { type } doReturn SINGLE_LINE_COMMENT }
+        assertThat(comment.isComment()).isTrue()
 
-        verify(rootAst).type
+        verify(comment).type
     }
 
     @Test
     fun isEolCommentEmpty() {
-        `when`(rootAst.type).thenReturn(SINGLE_LINE_COMMENT)
-        `when`(rootAst.firstChild).thenReturn(parentAst1)
-        `when`(parentAst1.type).thenReturn(COMMENT_CONTENT)
-        `when`(parentAst1.text).thenReturn("\n")
-        assertThat(rootAst.isEolCommentEmpty()).isTrue()
+        val content =
+            mock<DetailAST> {
+                on { type } doReturn COMMENT_CONTENT
+                on { text } doReturn "\n"
+            }
+        val comment =
+            mock<DetailAST> {
+                on { type } doReturn SINGLE_LINE_COMMENT
+                on { firstChild } doReturn content
+            }
+        assertThat(comment.isEolCommentEmpty()).isTrue()
 
-        sequenceOf(rootAst, parentAst1).forEach { verify(it).type }
-        verify(rootAst).firstChild
-        verify(parentAst1).text
+        sequenceOf(comment, content).forEach { verify(it).type }
+        verify(comment).firstChild
+        verify(content).text
     }
 
-    private fun mockMinMaxLineTree(
+    private class NodeTree(
         rootValue: Int,
         parent1Value: Int,
         parent2Value: Int,
@@ -248,40 +256,47 @@ class DetailNodesTest {
         leaf3Value: Int,
         leaf4Value: Int,
     ) {
-        `when`(rootAst.childCount).thenReturn(2)
-        `when`(parentAst1.childCount).thenReturn(2)
-        `when`(parentAst2.childCount).thenReturn(2)
-
-        `when`(rootAst.firstChild).thenReturn(parentAst1)
-        `when`(parentAst1.firstChild).thenReturn(leafAst1)
-        `when`(parentAst2.firstChild).thenReturn(leafAst3)
-
-        `when`(parentAst1.nextSibling).thenReturn(parentAst2)
-        `when`(leafAst1.nextSibling).thenReturn(leafAst2)
-        `when`(leafAst3.nextSibling).thenReturn(leafAst4)
-
-        `when`(rootAst.lineNo).thenReturn(rootValue)
-        `when`(parentAst1.lineNo).thenReturn(parent1Value)
-        `when`(parentAst2.lineNo).thenReturn(parent2Value)
-        `when`(leafAst1.lineNo).thenReturn(leaf1Value)
-        `when`(leafAst2.lineNo).thenReturn(leaf2Value)
-        `when`(leafAst3.lineNo).thenReturn(leaf3Value)
-        `when`(leafAst4.lineNo).thenReturn(leaf4Value)
-    }
-
-    private fun verifyMinMaxLineTree() =
-        sequenceOf(
-            rootAst,
-            parentAst1,
-            parentAst2,
-            leafAst1,
-            leafAst2,
-            leafAst3,
-            leafAst4,
-        ).forEach { node ->
-            verify(node, atLeast(1)).run {
-                isLeaf()
-                children()
+        val leaf4 = mock<DetailAST> { on { lineNo } doReturn leaf4Value }
+        val leaf3 =
+            mock<DetailAST> {
+                on { lineNo } doReturn leaf3Value
+                on { nextSibling } doReturn leaf4
             }
-        }
+        val leaf2 = mock<DetailAST> { on { lineNo } doReturn leaf2Value }
+        val leaf1 =
+            mock<DetailAST> {
+                on { lineNo } doReturn leaf1Value
+                on { nextSibling } doReturn leaf2
+            }
+
+        val parent2 =
+            mock<DetailAST> {
+                on { lineNo } doReturn parent2Value
+                on { childCount } doReturn 2
+                on { firstChild } doReturn leaf3
+            }
+        val parent1 =
+            mock<DetailAST> {
+                on { lineNo } doReturn parent1Value
+                on { childCount } doReturn 2
+                on { firstChild } doReturn leaf1
+                on { nextSibling } doReturn parent2
+            }
+        val root =
+            mock<DetailAST> {
+                on { lineNo } doReturn rootValue
+                on { childCount } doReturn 2
+                on { firstChild } doReturn parent1
+            }
+
+        fun all() = sequenceOf(root, parent1, parent2, leaf1, leaf2, leaf3, leaf4)
+
+        fun verify() =
+            all().forEach { node ->
+                verify(node, atLeast(1)).run {
+                    isLeaf()
+                    children()
+                }
+            }
+    }
 }

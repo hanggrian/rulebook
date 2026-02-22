@@ -1,10 +1,16 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.rules.EagerApiRule.Companion.BUILDSCRIPT_CALLEE
+import com.hanggrian.rulebook.codenarc.rules.EagerApiRule.Companion.BUILDSCRIPT_CALL_REPLACEMENT
+import com.hanggrian.rulebook.codenarc.rules.EagerApiRule.Companion.DOMAIN_OBJECTS_CALL_REPLACEMENT
+import com.hanggrian.rulebook.codenarc.rules.EagerApiRule.Companion.DOMAIN_OBJECT_CALLEES
+import com.hanggrian.rulebook.codenarc.rules.EagerApiRule.Companion.MSG
+import com.hanggrian.rulebook.codenarc.rules.EagerApiRule.Companion.TASK_CALLEE
+import com.hanggrian.rulebook.codenarc.rules.EagerApiRule.Companion.TASK_CALL_REPLACEMENT
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.expr.MethodCallExpression
 import org.codehaus.groovy.ast.expr.VariableExpression
-import kotlin.collections.plusAssign
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#eager-api) */
 public class EagerApiRule : RulebookAstRule() {
@@ -15,15 +21,15 @@ public class EagerApiRule : RulebookAstRule() {
     internal companion object {
         const val MSG = "eager.api"
 
-        const val TASK_CALLEE = "tasks"
+        const val BUILDSCRIPT_CALLEE = "buildscript"
+        const val BUILDSCRIPT_CALL_REPLACEMENT = "plugins"
 
         val DOMAIN_OBJECT_CALLEES =
             hashSetOf(
-                "plugins",
+                BUILDSCRIPT_CALL_REPLACEMENT,
                 "configurations",
                 "sourceSets",
             ) + TASK_CALLEE
-
         val DOMAIN_OBJECTS_CALL_REPLACEMENT =
             hashMapOf(
                 "all" to "configureEach",
@@ -31,6 +37,7 @@ public class EagerApiRule : RulebookAstRule() {
                 "whenObjectAdded" to "configureEach",
             )
 
+        const val TASK_CALLEE = "tasks"
         val TASK_CALL_REPLACEMENT =
             hashMapOf(
                 "create" to "register",
@@ -52,27 +59,29 @@ public class EagerApiVisitor : RulebookVisitor() {
     }
 
     override fun visitClassComplete(node: ClassNode) {
-        if (!isFirstVisit(node)) {
+        if (!isFirstVisit(node) && isScript()) {
             return
         }
 
         val domainBlocks =
             expressions.filter { expr ->
                 (expr.objectExpression as? VariableExpression)?.name == "this" &&
-                    expr.methodAsString in EagerApiRule.DOMAIN_OBJECT_CALLEES
+                    expr.methodAsString in DOMAIN_OBJECT_CALLEES
             }
 
         for (expression in expressions) {
             // collect callee
-            val receiverName =
-                (expression.objectExpression as? VariableExpression)
-                    ?.name
-                    ?: continue
-            val callee =
-                when {
-                    receiverName != "this" -> receiverName
-
-                    else ->
+            val callee: String =
+                if (expression.methodAsString == BUILDSCRIPT_CALLEE) {
+                    BUILDSCRIPT_CALLEE
+                } else {
+                    val receiverName =
+                        (expression.objectExpression as? VariableExpression)
+                            ?.name
+                            ?: continue
+                    if (receiverName != "this") {
+                        receiverName
+                    } else {
                         domainBlocks
                             .firstOrNull { block ->
                                 block !== expression &&
@@ -80,28 +89,27 @@ public class EagerApiVisitor : RulebookVisitor() {
                                     expression.lineNumber <= block.lastLineNumber
                             }?.methodAsString
                             ?: continue
+                    }
                 }
 
             // checks for violation
             val call = expression.methodAsString
             val callReplacement =
                 when (callee) {
-                    EagerApiRule.TASK_CALLEE -> EagerApiRule.TASK_CALL_REPLACEMENT[call]
-
-                    in EagerApiRule.DOMAIN_OBJECT_CALLEES ->
-                        EagerApiRule.DOMAIN_OBJECTS_CALL_REPLACEMENT[call]
-
+                    BUILDSCRIPT_CALLEE -> BUILDSCRIPT_CALL_REPLACEMENT
+                    TASK_CALLEE -> TASK_CALL_REPLACEMENT[call]
+                    in DOMAIN_OBJECT_CALLEES -> DOMAIN_OBJECTS_CALL_REPLACEMENT[call]
                     else -> null
                 } ?: continue
-            if (callReplacement == "configureEach" &&
-                expressions.any {
-                    it.objectExpression === expression &&
-                        it.methodAsString == callReplacement
-                }
-            ) {
-                continue
-            }
-            addViolation(expression, Messages[EagerApiRule.MSG, callReplacement])
+            callReplacement
+                .takeUnless { s ->
+                    s == "configureEach" &&
+                        expressions.any {
+                            it.objectExpression === expression &&
+                                it.methodAsString == s
+                        }
+                } ?: continue
+            addViolation(expression, Messages[MSG, callReplacement])
         }
 
         super.visitClassComplete(node)

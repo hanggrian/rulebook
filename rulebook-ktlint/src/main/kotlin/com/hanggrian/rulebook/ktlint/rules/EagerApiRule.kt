@@ -43,20 +43,21 @@ public class EagerApiRule : RulebookRule(ID) {
         val call = identifier.text
         val callReplacement =
             when (callee) {
+                BUILDSCRIPT_CALLEE -> BUILDSCRIPT_CALL_REPLACEMENT
                 TASK_CALLEE -> TASK_CALL_REPLACEMENT[call]
                 in DOMAIN_OBJECT_CALLEES -> DOMAIN_OBJECTS_CALL_REPLACEMENT[call]
                 else -> null
             } ?: return
-        if (callReplacement == "configureEach" &&
-            node
-                .parent
-                ?.nextSibling { it.elementType === CALL_EXPRESSION }
-                ?.findChildByType(REFERENCE_EXPRESSION)
-                ?.findChildByType(IDENTIFIER)
-                ?.text == callReplacement
-        ) {
-            return
-        }
+        callReplacement
+            .takeUnless { s ->
+                s == "configureEach" &&
+                    node
+                        .parent
+                        ?.nextSibling { it.elementType === CALL_EXPRESSION }
+                        ?.findChildByType(REFERENCE_EXPRESSION)
+                        ?.findChildByType(IDENTIFIER)
+                        ?.text == s
+            } ?: return
         emit(node.startOffset, Messages[MSG, callReplacement], false)
     }
 
@@ -64,15 +65,15 @@ public class EagerApiRule : RulebookRule(ID) {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:eager-api")
         private const val MSG = "eager.api"
 
-        private const val TASK_CALLEE = "tasks"
+        private const val BUILDSCRIPT_CALLEE = "buildscript"
+        private const val BUILDSCRIPT_CALL_REPLACEMENT = "plugins"
 
         private val DOMAIN_OBJECT_CALLEES =
             hashSetOf(
-                "plugins",
+                BUILDSCRIPT_CALL_REPLACEMENT,
                 "configurations",
                 "sourceSets",
             ) + TASK_CALLEE
-
         private val DOMAIN_OBJECTS_CALL_REPLACEMENT =
             hashMapOf(
                 "all" to "configureEach",
@@ -80,6 +81,7 @@ public class EagerApiRule : RulebookRule(ID) {
                 "whenObjectAdded" to "configureEach",
             )
 
+        private const val TASK_CALLEE = "tasks"
         private val TASK_CALL_REPLACEMENT =
             hashMapOf(
                 "create" to "register",

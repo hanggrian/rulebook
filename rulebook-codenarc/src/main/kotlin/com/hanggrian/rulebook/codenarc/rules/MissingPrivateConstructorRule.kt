@@ -44,13 +44,15 @@ public class MissingPrivateConstructorVisitor : RulebookVisitor() {
             ?: return super.visitClassEx(node)
 
         // checks for violation
-        if (!Modifier.isFinal(node.modifiers)) {
-            addViolation(node, Messages[MSG_MODIFIER])
-        }
-        if (node.declaredConstructors.isEmpty()) {
-            addViolation(node, Messages[MSG_CONSTRUCTOR])
-            return super.visitClassEx(node)
-        }
+        node
+            .takeUnless { Modifier.isFinal(it.modifiers) }
+            ?.let { addViolation(it, Messages[MSG_MODIFIER]) }
+        node
+            .takeIf { node.declaredConstructors.isEmpty() }
+            ?.let {
+                addViolation(node, Messages[MSG_CONSTRUCTOR])
+                return super.visitClassEx(it)
+            }
         node
             .declaredConstructors
             .filterNot { it.isPrivate }

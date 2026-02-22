@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule.Companion.NAMED_DOMAIN_FUNCTIONS
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
 import org.codehaus.groovy.ast.expr.ClosureExpression
@@ -50,7 +51,7 @@ public class UnnecessaryScopeVisitor : RulebookVisitor() {
                 ?.expression
                 ?.takeIf { it is MethodCallExpression }
                 ?: return super.visitMethodCallExpression(node)
-        addViolation(expression2, Messages[UnnecessaryScopeRule.MSG])
+        addViolation(expression2, Messages[MSG])
 
         super.visitMethodCallExpression(node)
     }

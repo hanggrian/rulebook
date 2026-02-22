@@ -15,6 +15,10 @@ class EagerApiRuleTest : RuleTest() {
     fun `Lazy API`() =
         assertThatCode(
             """
+            plugins {
+                id("some-plugin")
+            }
+
             plugins.withType<MyPlugin>().configureEach {
                 property = true
             }
@@ -30,6 +34,10 @@ class EagerApiRuleTest : RuleTest() {
     fun `Eager API`() =
         assertThatCode(
             """
+            buildscript {
+                dependencies("some:library:1")
+            }
+
             plugins.withType<MyPlugin> {
                 property = true
             }
@@ -40,7 +48,8 @@ class EagerApiRuleTest : RuleTest() {
             """.trimIndent(),
         ).asScript()
             .hasLintViolationsWithoutAutoCorrect(
-                LintViolation(1, 9, "Replace eager call with lazy 'configureEach'."),
-                LintViolation(6, 5, "Replace eager call with lazy 'register'."),
+                LintViolation(2, 5, "Replace eager call with lazy 'plugins'."),
+                LintViolation(5, 9, "Replace eager call with lazy 'configureEach'."),
+                LintViolation(10, 5, "Replace eager call with lazy 'register'."),
             )
 }

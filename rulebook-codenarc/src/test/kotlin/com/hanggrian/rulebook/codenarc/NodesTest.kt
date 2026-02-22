@@ -9,95 +9,78 @@ import org.codehaus.groovy.ast.expr.TupleExpression
 import org.codehaus.groovy.ast.stmt.BlockStatement
 import org.codehaus.groovy.ast.stmt.BreakStatement
 import org.codehaus.groovy.ast.stmt.CaseStatement
+import org.codehaus.groovy.ast.stmt.ContinueStatement
 import org.codehaus.groovy.ast.stmt.IfStatement
+import org.codehaus.groovy.ast.stmt.ReturnStatement
 import org.codehaus.groovy.ast.stmt.Statement
-import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.Mock
+import org.codehaus.groovy.ast.stmt.ThrowStatement
 import org.mockito.Mockito.atMost
 import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
-import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 import kotlin.test.Test
 
-@ExtendWith(MockitoExtension::class)
 class NodesTest {
-    @Mock
-    private lateinit var classNode: ClassNode
-
-    @Mock
-    private lateinit var annotationNode: AnnotationNode
-
-    @Mock
-    private lateinit var annotatedNode: AnnotatedNode
-
-    @Mock
-    private lateinit var blockStatement: BlockStatement
-
-    @Mock
-    private lateinit var ifStatement: IfStatement
-
-    @Mock
-    private lateinit var caseStatement: CaseStatement
-
-    @Mock
-    private lateinit var tupleExpression: TupleExpression
-
-    @Mock
-    private lateinit var statement1: Statement
-
-    @Mock
-    private lateinit var statement2: Statement
-
     @Test
     fun hasAnnotation() {
-        `when`(classNode.name).thenReturn("Override")
-        `when`(annotationNode.classNode).thenReturn(classNode)
-        `when`(annotatedNode.annotations).thenReturn(listOf(annotationNode))
-        assertThat(annotatedNode.hasAnnotation("Override")).isTrue()
+        val `class` = mock<ClassNode> { on { name } doReturn "Override" }
+        val annotation = mock<AnnotationNode> { on { classNode } doReturn `class` }
+        val annotated = mock<AnnotatedNode> { on { annotations } doReturn listOf(annotation) }
+        assertThat(annotated.hasAnnotation("Override")).isTrue()
 
-        verify(classNode).name
-        verify(annotationNode).classNode
-        verify(annotatedNode).annotations
+        verify(`class`).name
+        verify(annotation).classNode
+        verify(annotated).annotations
     }
 
     @Test
     fun firstStatement() {
-        `when`(blockStatement.statements).thenReturn(listOf(BreakStatement()))
-        assertThat(blockStatement.firstStatement())
+        val block =
+            mock<BlockStatement> { on { statements } doReturn listOf(mock<BreakStatement>()) }
+        assertThat(block.firstStatement())
             .isInstanceOf(BreakStatement::class.java)
 
-        verify(blockStatement).statements
+        verify(block).statements
     }
 
     @Test
     fun lastExpression() {
-        `when`(tupleExpression.expressions).thenReturn(listOf(ArgumentListExpression()))
-        assertThat(tupleExpression.lastExpression())
+        val tuple =
+            mock<TupleExpression> {
+                on { expressions } doReturn listOf(mock<ArgumentListExpression>())
+            }
+        assertThat(tuple.lastExpression())
             .isInstanceOf(ArgumentListExpression::class.java)
 
-        verify(tupleExpression).expressions
+        verify(tuple).expressions
     }
 
     @Test
     fun hasJumpStatement() {
-        `when`(blockStatement.statements).thenReturn(listOf(BreakStatement()))
-        assertThat(blockStatement.hasJumpStatement()).isTrue()
-        assertThat(blockStatement.hasJumpStatement(false)).isFalse()
+        val `return` = mock<ReturnStatement>()
+        assertThat(`return`.hasJumpStatement()).isTrue()
+        assertThat(mock<ThrowStatement>().hasJumpStatement()).isTrue()
+        assertThat(mock<ContinueStatement>().hasJumpStatement()).isTrue()
+        assertThat(mock<BreakStatement>().hasJumpStatement(false)).isFalse()
 
-        verify(blockStatement, atMost(2)).statements
+        val block = mock<BlockStatement> { on { statements } doReturn listOf(`return`) }
+        assertThat(block.hasJumpStatement()).isTrue()
+
+        verify(block).statements
     }
 
     @Test
     fun isMultiline() {
-        `when`(ifStatement.elseBlock).thenReturn(blockStatement)
-        assertThat(ifStatement.isMultiline()).isFalse()
+        val `if` = mock<IfStatement> { on { elseBlock } doReturn mock<BlockStatement>() }
+        assertThat(`if`.isMultiline()).isFalse()
 
-        `when`(caseStatement.code).thenReturn(blockStatement)
-        assertThat(caseStatement.isMultiline()).isFalse()
+        val case = mock<CaseStatement> { on { code } doReturn mock<BlockStatement>() }
+        assertThat(case.isMultiline()).isFalse()
 
-        `when`(statement1.lineNumber).thenReturn(1)
-        `when`(statement2.lastLineNumber).thenReturn(2)
-        `when`(blockStatement.statements).thenReturn(listOf(statement1, statement2))
+        val statement1 = mock<Statement> { on { lineNumber } doReturn 1 }
+        val statement2 = mock<Statement> { on { lastLineNumber } doReturn 2 }
+        val blockStatement =
+            mock<BlockStatement> { on { statements } doReturn listOf(statement1, statement2) }
         assertThat(blockStatement.isMultiline()).isTrue()
 
         verify(blockStatement, atMost(5)).statements

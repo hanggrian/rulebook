@@ -56,15 +56,15 @@ public class ParenthesesTrimVisitor : RulebookAnyCallVisitor() {
         var lineNumber = firstParameter.lineNumber
         var lastLineNumber = lastParameter.lastLineNumber
         while (lineNumber > start) {
-            if (sourceCode.line(lineNumber - 1).isBlank()) {
-                violations += rule.createViolation(lineNumber, "", Messages[MSG_FIRST])
-            }
+            lineNumber
+                .takeIf { sourceCode.line(it - 1).isBlank() }
+                ?.let { violations += rule.createViolation(it, "", Messages[MSG_FIRST]) }
             lineNumber--
         }
         while (lastLineNumber < end) {
-            if (sourceCode.line(lastLineNumber - 1).isBlank()) {
-                violations += rule.createViolation(lastLineNumber, "", Messages[MSG_LAST])
-            }
+            lastLineNumber
+                .takeIf { sourceCode.line(it - 1).isBlank() }
+                ?.let { violations += rule.createViolation(it, "", Messages[MSG_LAST]) }
             lastLineNumber++
         }
     }

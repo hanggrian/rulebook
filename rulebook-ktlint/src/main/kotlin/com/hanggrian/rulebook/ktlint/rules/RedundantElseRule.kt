@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.ktlint.rules
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.hasJumpStatement
+import com.hanggrian.rulebook.ktlint.isChildOfProperty
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
@@ -17,6 +18,11 @@ public class RedundantElseRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(IF)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
+        // skip property assignment
+        node
+            .takeUnless { it.isChildOfProperty() }
+            ?: return
+
         // target root if
         node
             .takeUnless { it.parent?.elementType === ELSE }

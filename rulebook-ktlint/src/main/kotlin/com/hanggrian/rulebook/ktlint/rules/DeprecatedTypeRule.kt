@@ -26,9 +26,11 @@ public class DeprecatedTypeRule : RulebookRule(ID) {
                     val path = (node.psi as KtImportDirective).importPath!!.pathStr
 
                     // check if running on test
-                    if (!isTestClass && TEST_LIBRARIES.any { path.startsWith(it) }) {
-                        isTestClass = true
-                    }
+                    path
+                        .takeIf { s ->
+                            !isTestClass &&
+                                TEST_LIBRARIES.any { s.startsWith(it) }
+                        }?.let { isTestClass = true }
 
                     (node.findChildByType(DOT_QUALIFIED_EXPRESSION) ?: return) to
                         path

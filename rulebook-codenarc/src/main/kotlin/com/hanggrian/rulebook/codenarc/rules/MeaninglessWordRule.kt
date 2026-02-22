@@ -38,13 +38,15 @@ public class MeaninglessWordVisitor : RulebookVisitor() {
                 .wordSet
                 .singleOrNull { node.name.endsWith(it) }
                 ?: return super.visitClassEx(node)
-        if (finalName in UTILITY_FINAL_NAMES) {
-            addViolation(
-                node,
-                Messages[MSG_UTIL, node.name.substringBefore(finalName) + 's'],
-            )
-            return super.visitClassEx(node)
-        }
+        node
+            .takeIf { finalName in UTILITY_FINAL_NAMES }
+            ?.let {
+                addViolation(
+                    it,
+                    Messages[MSG_UTIL, it.name.substringBefore(finalName) + 's'],
+                )
+                return super.visitClassEx(it)
+            }
         addViolation(node, Messages[MSG_ALL, finalName])
 
         super.visitClassEx(node)

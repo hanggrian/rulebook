@@ -59,14 +59,16 @@ public class CaseSeparatorVisitor : RulebookVisitor() {
             val statementLineNumber = getLineNumberBefore(statement, lastBody)
             when {
                 hasMultiline ->
-                    if (lastStatementLastLineNumber != statementLineNumber - 2) {
-                        violations +=
-                            rule.createViolation(
-                                lastStatementLastLineNumber + 1,
-                                sourceCode.line(lastStatementLastLineNumber),
-                                Messages[MSG_MISSING],
-                            )
-                    }
+                    lastStatementLastLineNumber
+                        .takeIf { it != statementLineNumber - 2 }
+                        ?.let {
+                            violations +=
+                                rule.createViolation(
+                                    it + 1,
+                                    sourceCode.line(it),
+                                    Messages[MSG_MISSING],
+                                )
+                        }
 
                 lastStatementLastLineNumber != statementLineNumber - 1 ->
                     violations +=

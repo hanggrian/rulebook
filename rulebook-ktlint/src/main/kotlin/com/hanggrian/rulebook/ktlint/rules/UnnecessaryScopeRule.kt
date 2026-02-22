@@ -43,10 +43,8 @@ public class UnnecessaryScopeRule : RulebookRule(ID) {
                 ?.takeIf {
                     it.elementType === DOT_QUALIFIED_EXPRESSION ||
                         it.elementType === CALL_EXPRESSION
-                } ?: return
-        if (statement.elementType === CALL_EXPRESSION && STRING_TEMPLATE in statement) {
-            return
-        }
+                }?.takeUnless { it.elementType === CALL_EXPRESSION && STRING_TEMPLATE in it }
+                ?: return
         emit(statement.startOffset, Messages[MSG], false)
     }
 

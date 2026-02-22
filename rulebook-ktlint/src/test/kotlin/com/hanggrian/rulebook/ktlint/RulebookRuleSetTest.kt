@@ -13,6 +13,7 @@ import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
+import com.hanggrian.rulebook.ktlint.rules.DecentralizedDependencyRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
@@ -50,8 +51,7 @@ class RulebookRuleSetTest {
     @Test
     fun `All rules`() {
         assertThat(
-            RulebookRuleSet()
-                .getRuleProviders()
+            AllRules
                 .map { it.createNewRuleInstance().javaClass.kotlin },
         ).containsExactly(
             AbbreviationAsWordRule::class,
@@ -66,6 +66,7 @@ class RulebookRuleSetTest {
             CommonFunctionPositionRule::class,
             CommentTrimRule::class,
             ConfusingPredicateRule::class,
+            DecentralizedDependencyRule::class,
             DeprecatedTypeRule::class,
             DuplicateBlankLineInBlockCommentRule::class,
             DuplicateBlankLineInCommentRule::class,

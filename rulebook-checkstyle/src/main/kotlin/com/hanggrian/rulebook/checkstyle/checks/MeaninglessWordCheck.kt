@@ -33,13 +33,15 @@ public class MeaninglessWordCheck :
             wordSet
                 .singleOrNull { ident.text.endsWith(it) }
                 ?: return
-        if (finalName in UTILITY_FINAL_NAMES) {
-            log(
-                ident,
-                Messages[MSG_UTIL, ident.text.substringBefore(finalName) + 's'],
-            )
-            return
-        }
+        ident
+            .takeIf { finalName in UTILITY_FINAL_NAMES }
+            ?.let {
+                log(
+                    it,
+                    Messages[MSG_UTIL, it.text.substringBefore(finalName) + 's'],
+                )
+                return
+            }
         log(ident, Messages[MSG_ALL, finalName])
     }
 

@@ -45,6 +45,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.OverloadFunctionPositionRule"/>
 
   <!-- Scripting -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.DecentralizedDependencyRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.EagerApiRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule"/>

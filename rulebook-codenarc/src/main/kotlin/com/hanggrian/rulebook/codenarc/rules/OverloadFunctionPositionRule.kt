@@ -30,12 +30,14 @@ public class OverloadFunctionPositionVisitor : RulebookVisitor() {
         // checks for violation
         val declaredIdentifiers = mutableSetOf<String>()
         for ((i, function) in functions.withIndex()) {
-            val name = function.name
-            if (functions.getOrNull(i - 1)?.name != name &&
-                !declaredIdentifiers.add(name)
-            ) {
-                addViolation(function, Messages[MSG, name])
-            }
+            val name =
+                function
+                    .name
+                    .takeIf {
+                        functions.getOrNull(i - 1)?.name != it &&
+                            !declaredIdentifiers.add(it)
+                    } ?: continue
+            addViolation(function, Messages[MSG, name])
         }
 
         super.visitClassEx(node)

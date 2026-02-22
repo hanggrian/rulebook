@@ -18,17 +18,19 @@ public class RedundantQualifierCheck : RulebookAstCheck() {
 
     override fun visitToken(node: DetailAST) {
         // keep import list
-        if (node.type == IMPORT) {
-            node.findFirstToken(DOT)?.let { importNodes += it }
-            return
-        }
+        node
+            .takeIf { it.type == IMPORT }
+            ?.let { n ->
+                n.findFirstToken(DOT)?.let { importNodes += it }
+                return
+            }
 
         // checks for violation
         val dot = node.findFirstToken(DOT) ?: return
         process(dot)
-        if (node.type == METHOD_CALL) {
-            process(dot.findFirstToken(DOT))
-        }
+        dot
+            .takeIf { node.type == METHOD_CALL }
+            ?.run { process(findFirstToken(DOT)) }
     }
 
     private fun process(dot: DetailAST?) {
@@ -45,9 +47,9 @@ public class RedundantQualifierCheck : RulebookAstCheck() {
             var dot1: DetailAST? = this
             var dot2: DetailAST? = other
             while (dot1 != null && dot2 != null) {
-                if (!dot1.dotIdentTexts.containsAll(dot2.dotIdentTexts)) {
-                    return false
-                }
+                dot1
+                    .takeIf { it.dotIdentTexts.containsAll(dot2.dotIdentTexts) }
+                    ?: return false
                 dot1 = dot1.findFirstToken(DOT)
                 dot2 = dot2.findFirstToken(DOT)
             }

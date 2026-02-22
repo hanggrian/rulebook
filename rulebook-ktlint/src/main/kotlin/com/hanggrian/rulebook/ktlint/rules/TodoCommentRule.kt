@@ -45,16 +45,18 @@ public class TodoCommentRule : RulebookRule(ID) {
             }
 
         // checks for violation
-        if (KEYWORD_REGEX.containsMatchIn(text)) {
-            emit(
-                node.startOffset,
-                Messages[MSG_KEYWORD, KEYWORD_REGEX.find(text)!!.value],
-                false,
-            )
-        }
-        if (!SEPARATOR_REGEX.containsMatchIn(text)) {
-            return
-        }
+        text
+            .takeIf { KEYWORD_REGEX.containsMatchIn(it) }
+            ?.let {
+                emit(
+                    node.startOffset,
+                    Messages[MSG_KEYWORD, KEYWORD_REGEX.find(it)!!.value],
+                    false,
+                )
+            }
+        text
+            .takeIf { SEPARATOR_REGEX.containsMatchIn(it) }
+            ?: return
         emit(
             node.startOffset,
             Messages[MSG_SEPARATOR, SEPARATOR_REGEX.find(text)!!.value.last()],

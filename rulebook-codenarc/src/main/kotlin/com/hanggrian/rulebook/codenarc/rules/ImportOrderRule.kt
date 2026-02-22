@@ -41,22 +41,26 @@ public class ImportOrderRule : RulebookImportRule() {
                     }
 
                     // checks for violation
-                    if (index != prevIndex!! + 1) {
-                        violations +=
-                            createViolation(
-                                index,
-                                line,
-                                Messages[MSG_JOIN, directive],
-                            )
-                    }
-                    if (directive < prevDirective!!) {
-                        violations +=
-                            createViolation(
-                                index,
-                                line,
-                                Messages[MSG_SORT, directive, prevDirective!!],
-                            )
-                    }
+                    index
+                        .takeUnless { it == prevIndex!! + 1 }
+                        ?.let {
+                            violations +=
+                                createViolation(
+                                    it,
+                                    line,
+                                    Messages[MSG_JOIN, directive],
+                                )
+                        }
+                    directive
+                        .takeIf { it < prevDirective!! }
+                        ?.let {
+                            violations +=
+                                createViolation(
+                                    index,
+                                    line,
+                                    Messages[MSG_SORT, it, prevDirective!!],
+                                )
+                        }
 
                     prevStatic = isStatic
                     prevIndex = index

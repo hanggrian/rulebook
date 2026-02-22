@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.rules.LowercaseHexRule.Companion.MSG
 import org.codehaus.groovy.ast.ClassHelper.int_TYPE
 import org.codehaus.groovy.ast.expr.ConstantExpression
 
@@ -39,7 +40,7 @@ public class LowercaseHexVisitor : RulebookVisitor() {
                 .lowercase()
                 .takeUnless { it == value }
                 ?: return super.visitConstantExpression(node)
-        addViolation(node, Messages[LowercaseHexRule.MSG, valueReplacement])
+        addViolation(node, Messages[MSG, valueReplacement])
 
         super.visitConstantExpression(node)
     }

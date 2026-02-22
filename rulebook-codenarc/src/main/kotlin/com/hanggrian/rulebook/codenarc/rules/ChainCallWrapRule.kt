@@ -75,9 +75,10 @@ public class ChainCallWrapVisitor : RulebookVisitor() {
 
         // skip dots in single-line
         val firstIdentifier = expressions.firstOrNull()?.identifierOrSelf ?: return
-        if (expressions.all { it.identifierOrSelf.lineNumber == firstIdentifier.lineNumber }) {
-            return
-        }
+        expressions
+            .takeUnless { e ->
+                e.all { it.identifierOrSelf.lineNumber == firstIdentifier.lineNumber }
+            } ?: return
 
         // checks for violation
         for (expression in expressions) {
@@ -91,14 +92,14 @@ public class ChainCallWrapVisitor : RulebookVisitor() {
             if ((line.startsWith(')') || line.startsWith('}')) &&
                 parent.lastLineNumber != parent.identifierOrSelf.lineNumber
             ) {
-                if (identifier.lineNumber != parent.lastLineNumber) {
-                    addViolation(identifier, Messages[MSG_UNEXPECTED])
-                }
+                identifier
+                    .takeUnless { it.lineNumber == parent.lastLineNumber }
+                    ?.let { addViolation(it, Messages[MSG_UNEXPECTED]) }
                 continue
             }
-            if (identifier.lineNumber != parent.lastLineNumber + 1) {
-                addViolation(identifier, Messages[MSG_MISSING])
-            }
+            identifier
+                .takeUnless { it.lineNumber == parent.lastLineNumber + 1 }
+                ?.let { addViolation(it, Messages[MSG_MISSING]) }
         }
     }
 }

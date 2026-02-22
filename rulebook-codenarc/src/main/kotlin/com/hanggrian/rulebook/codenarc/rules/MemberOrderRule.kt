@@ -2,6 +2,7 @@ package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.properties.ConfigurableOrder
+import com.hanggrian.rulebook.codenarc.rules.MemberOrderRule.Companion.MSG
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
 import org.codehaus.groovy.ast.ConstructorNode
@@ -70,7 +71,7 @@ public class MemberOrderVisitor : RulebookVisitor() {
             if ((lastChild?.memberPosition ?: -1) > child.memberPosition) {
                 addViolation(
                     child,
-                    Messages[MemberOrderRule.MSG, child.memberArgument, lastChild!!.memberArgument],
+                    Messages[MSG, child.memberArgument, lastChild!!.memberArgument],
                 )
             }
 

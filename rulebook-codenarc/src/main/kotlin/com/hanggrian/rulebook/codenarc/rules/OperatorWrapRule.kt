@@ -43,15 +43,17 @@ public class OperatorWrapVisitor : RulebookVisitor() {
                 ?: node.leftExpression
 
         // checks for violation
-        if (leftExpression.lastLineNumber < operation.startLine) {
-            violations +=
-                rule.createViolation(
-                    operation.startLine,
-                    sourceLine(node.rightExpression),
-                    Messages[MSG_UNEXPECTED, operation.text],
-                )
-            return super.visitBinaryExpression(node)
-        }
+        operation
+            .takeIf { leftExpression.lastLineNumber < it.startLine }
+            ?.let {
+                violations +=
+                    rule.createViolation(
+                        it.startLine,
+                        sourceLine(node.rightExpression),
+                        Messages[MSG_UNEXPECTED, it.text],
+                    )
+                return super.visitBinaryExpression(node)
+            }
         node
             .rightExpression
             .takeUnless {

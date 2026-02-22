@@ -190,4 +190,17 @@ class NestedIfElseRuleTest : RuleTest() {
             }
             """.trimIndent(),
         ).hasNoLintViolations()
+
+    @Test
+    fun `Capture jump statement with elvis`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) {
+                    baz()
+                        ?: return
+                }
+            }
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(2, 5, "Invert 'if' condition.")
 }

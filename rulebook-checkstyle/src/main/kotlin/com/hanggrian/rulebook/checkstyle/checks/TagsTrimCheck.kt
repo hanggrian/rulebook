@@ -23,14 +23,14 @@ public class TagsTrimCheck : RulebookAstCheck() {
         val genericEndSibling = genericEnd.previousSibling ?: return
 
         // checks for violation
-        val genericStartSiblingLineNo = genericStartSibling.minLineNo
-        val genericEndSiblingLineNo = genericEndSibling.maxLineNo
-        if (genericStartSiblingLineNo - genericStart.lineNo > 1) {
-            log(genericStartSiblingLineNo - 1, Messages[MSG_FIRST])
-        }
-        if (genericEnd.lineNo - genericEndSiblingLineNo > 1) {
-            log(genericEndSiblingLineNo + 1, Messages[MSG_LAST])
-        }
+        genericStartSibling
+            .minLineNo
+            .takeIf { it - genericStart.lineNo > 1 }
+            ?.let { log(it - 1, Messages[MSG_FIRST]) }
+        genericEndSibling
+            .maxLineNo
+            .takeIf { genericEnd.lineNo - it > 1 }
+            ?.let { log(it + 1, Messages[MSG_LAST]) }
     }
 
     private companion object {

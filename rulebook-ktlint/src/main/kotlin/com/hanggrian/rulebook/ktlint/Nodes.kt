@@ -4,29 +4,23 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BREAK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import com.pinterest.ktlint.rule.engine.core.api.nextSibling20
+import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.IElementType
 
 /** Returns the node's position from the end. */
 internal val ASTNode.endOffset: Int
     get() = startOffset + textLength
-
-/** Iterate to find the last leaf of the tree. */
-internal fun ASTNode.lastLeaf(): ASTNode {
-    var last = this
-    while (last.lastChildNode != null) {
-        last = last.lastChildNode
-    }
-    return last
-}
 
 /** Collect sibling nodes until child node is found. */
 internal fun ASTNode.siblingsUntil(type: IElementType): Sequence<ASTNode> =
@@ -40,6 +34,12 @@ internal operator fun ASTNode.contains(type: IElementType): Boolean = findChildB
 internal fun ASTNode.hasJumpStatement(): Boolean =
     (findChildByType(BLOCK) ?: this)
         .let { RETURN in it || THROW in it || BREAK in it || CONTINUE in it }
+
+internal fun ASTNode.isChildOfProperty(): Boolean =
+    parent?.let {
+        it.elementType == PROPERTY ||
+            it.elementType == DESTRUCTURING_DECLARATION
+    } ?: false
 
 /** Determine whether this node spans multiple lines of code. */
 internal fun ASTNode.isMultiline(): Boolean =

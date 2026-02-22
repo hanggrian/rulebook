@@ -32,9 +32,9 @@ public class CommentTrimRule : RulebookFileRule() {
                     ?: return
 
                 // checks for violation
-                if (line.isEolCommentEmpty()) {
-                    violations += createViolation(start + 1, line, Messages[MSG])
-                }
+                line
+                    .takeIf { it.isEolCommentEmpty() }
+                    ?.let { violations += createViolation(start + 1, it, Messages[MSG]) }
                 val endLine =
                     sourceCode
                         .line(end)

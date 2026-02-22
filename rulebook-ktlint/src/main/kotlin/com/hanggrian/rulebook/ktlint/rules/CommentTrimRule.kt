@@ -38,12 +38,12 @@ public class CommentTrimRule : RulebookRule(ID) {
             ?: return
 
         // checks for violation
-        if (node.isEolCommentEmpty()) {
-            emit(node.startOffset, Messages[MSG], false)
-        }
-        if (current.isEolCommentEmpty()) {
-            emit(current.startOffset, Messages[MSG], false)
-        }
+        node
+            .takeIf { it.isEolCommentEmpty() }
+            ?.run { emit(startOffset, Messages[MSG], false) }
+        current
+            .takeIf { it.isEolCommentEmpty() }
+            ?.run { emit(startOffset, Messages[MSG], false) }
     }
 
     public companion object {

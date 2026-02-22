@@ -43,13 +43,13 @@ public class ParenthesesTrimCheck : RulebookAstCheck() {
 
         // checks for violation
         val lparenSiblingLineNo = lparenSibling?.minLineNo ?: return
-        val rparenSiblingLineNo = rparenSibling.maxLineNo
-        if (lparenSiblingLineNo - lparen.lineNo > 1) {
-            log(lparenSiblingLineNo - 1, Messages[MSG_FIRST])
-        }
-        if (rparen.lineNo - rparenSiblingLineNo > 1) {
-            log(rparenSiblingLineNo + 1, Messages[MSG_LAST])
-        }
+        lparenSiblingLineNo
+            .takeIf { it - lparen.lineNo > 1 }
+            ?.let { log(it - 1, Messages[MSG_FIRST]) }
+        rparenSibling
+            .maxLineNo
+            .takeIf { rparen.lineNo - it > 1 }
+            ?.let { log(it + 1, Messages[MSG_LAST]) }
     }
 
     private companion object {

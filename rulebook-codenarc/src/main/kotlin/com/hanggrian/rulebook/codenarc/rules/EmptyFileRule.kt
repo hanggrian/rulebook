@@ -14,9 +14,9 @@ public class EmptyFileRule : RulebookFileRule() {
             if (line.trimStart().startsWith("package")) {
                 continue
             }
-            if (line.isNotBlank()) {
-                return
-            }
+            line
+                .takeUnless { it.isBlank() }
+                ?.let { return }
         }
         violations += createViolation(0, "", Messages[MSG])
     }

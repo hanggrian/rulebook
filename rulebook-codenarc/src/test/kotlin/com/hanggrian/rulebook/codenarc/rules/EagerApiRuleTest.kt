@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.RuleTest
+import com.hanggrian.rulebook.codenarc.violationOf
 import kotlin.test.Test
 import kotlin.test.assertIs
 
@@ -18,6 +19,10 @@ class EagerApiRuleTest : RuleTest<EagerApiRule>() {
         asScript()
         assertNoViolations(
             """
+            plugins {
+                id('some-plugin')
+            }
+
             plugins.withType(MyPlugin).configureEach {
                 property = true
             }
@@ -32,8 +37,12 @@ class EagerApiRuleTest : RuleTest<EagerApiRule>() {
     @Test
     fun `Eager API`() {
         asScript()
-        assertTwoViolations(
+        assertViolations(
             """
+            buildscript {
+                dependencies('some:library:1')
+            }
+
             plugins.withType(MyPlugin) {
                 property = true
             }
@@ -42,12 +51,21 @@ class EagerApiRuleTest : RuleTest<EagerApiRule>() {
                 create('myTask')
             }
             """.trimIndent(),
-            1,
-            "plugins.withType(MyPlugin) {",
-            "Replace eager call with lazy 'configureEach'.",
-            6,
-            "create('myTask')",
-            "Replace eager call with lazy 'register'.",
+            violationOf(
+                1,
+                "buildscript {",
+                "Replace eager call with lazy 'plugins'.",
+            ),
+            violationOf(
+                5,
+                "plugins.withType(MyPlugin) {",
+                "Replace eager call with lazy 'configureEach'.",
+            ),
+            violationOf(
+                10,
+                "create('myTask')",
+                "Replace eager call with lazy 'register'.",
+            ),
         )
     }
 }

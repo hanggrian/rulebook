@@ -35,11 +35,11 @@ allprojects {
     group = releaseGroup
     version = releaseVersion
 
-    plugins.withType<KtlintPlugin>().configureEach {
-        the<KtlintExtension>().version.set(libs.versions.ktlint.get())
-    }
+    plugins.apply(KtlintPlugin::class)
 
     afterEvaluate {
+        the<KtlintExtension>().version.set(libs.versions.ktlint.get())
+
         dependencies.ktlintRuleset(project(":$releaseArtifact-ktlint"))
     }
 }

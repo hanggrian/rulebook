@@ -2,135 +2,168 @@ package com.hanggrian.rulebook.ktlint
 
 import com.google.common.truth.Truth.assertThat
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.BREAK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
-import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.Mock
 import org.mockito.Mockito.atMost
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
-import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 import kotlin.test.Test
 
-@ExtendWith(MockitoExtension::class)
 class NodesTest {
-    @Mock
-    private lateinit var node1: ASTNode
-
-    @Mock
-    private lateinit var node2: ASTNode
-
-    @Mock
-    private lateinit var node3: ASTNode
-
     @Test
     fun endOffset() {
-        `when`(node1.startOffset).thenReturn(0)
-        `when`(node1.textLength).thenReturn(10)
-        assertThat(node1.endOffset).isEqualTo(10)
+        val node =
+            mock<ASTNode> {
+                on { startOffset } doReturn 0
+                on { textLength } doReturn 10
+            }
+        assertThat(node.endOffset).isEqualTo(10)
 
-        verify(node1).startOffset
-        verify(node1).textLength
-    }
-
-    @Test
-    fun lastLeaf() {
-        `when`(node1.lastChildNode).thenReturn(node2)
-        `when`(node2.lastChildNode).thenReturn(node3)
-        assertThat(node1.lastLeaf()).isEqualTo(node3)
-
-        sequenceOf(node1, node2).forEach { verify(it, atMost(2)).lastChildNode }
+        verify(node).startOffset
+        verify(node).textLength
     }
 
     @Test
     fun siblingsUntil() {
-        `when`(node1.treeNext).thenReturn(node2)
-        `when`(node2.treeNext).thenReturn(node3)
-        `when`(node3.elementType).thenReturn(IMPORT_KEYWORD)
-        assertThat(node1.siblingsUntil(IMPORT_KEYWORD).toList()).containsExactly(node2)
+        val third = mock<ASTNode> { on { elementType } doReturn IMPORT_KEYWORD }
+        val second = mock<ASTNode> { on { treeNext } doReturn third }
+        val first = mock<ASTNode> { on { treeNext } doReturn second }
+        assertThat(first.siblingsUntil(IMPORT_KEYWORD).toList()).containsExactly(second)
 
-        sequenceOf(node1, node2).forEach { verify(it).treeNext }
-        verify(node3).elementType
+        sequenceOf(first, second).forEach { verify(it).treeNext }
+        verify(third).elementType
     }
 
     @Test
     fun contains() {
-        `when`(node1.findChildByType(IMPORT_KEYWORD)).thenReturn(node2)
-        assertThat(IMPORT_KEYWORD in node1).isTrue()
+        val node = mock<ASTNode> { on { findChildByType(IMPORT_KEYWORD) } doReturn mock() }
+        assertThat(IMPORT_KEYWORD in node).isTrue()
 
-        verify(node1).findChildByType(IMPORT_KEYWORD)
+        verify(node).findChildByType(IMPORT_KEYWORD)
     }
 
     @Test
     fun hasJumpStatement() {
-        `when`(node1.findChildByType(BLOCK)).thenReturn(null)
-        `when`(node1.findChildByType(RETURN)).thenReturn(node2)
-        assertThat(node1.hasJumpStatement()).isTrue()
+        val returnContainer = mock<ASTNode> { on { findChildByType(RETURN) } doReturn mock() }
+        val throwContainer = mock<ASTNode> { on { findChildByType(THROW) } doReturn mock() }
+        val breakContainer = mock<ASTNode> { on { findChildByType(BREAK) } doReturn mock() }
+        val continueContainer = mock<ASTNode> { on { findChildByType(CONTINUE) } doReturn mock() }
+        assertThat(returnContainer.hasJumpStatement()).isTrue()
+        assertThat(throwContainer.hasJumpStatement()).isTrue()
+        assertThat(breakContainer.hasJumpStatement()).isTrue()
+        assertThat(continueContainer.hasJumpStatement()).isTrue()
 
-        `when`(node1.findChildByType(BLOCK)).thenReturn(node2)
-        `when`(node2.findChildByType(RETURN)).thenReturn(node3)
-        assertThat(node1.hasJumpStatement()).isTrue()
+        verify(returnContainer).findChildByType(RETURN)
+        verify(throwContainer).findChildByType(THROW)
+        verify(breakContainer).findChildByType(BREAK)
+        verify(continueContainer).findChildByType(CONTINUE)
+        sequenceOf(
+            returnContainer,
+            throwContainer,
+            breakContainer,
+            continueContainer,
+        ).forEach { verify(it).findChildByType(BLOCK) }
 
-        verify(node1, atMost(2)).findChildByType(BLOCK)
-        sequenceOf(node1, node2).forEach { verify(it).findChildByType(RETURN) }
+        val blockContainer =
+            mock<ASTNode> { on { findChildByType(BLOCK) } doReturn returnContainer }
+        assertThat(blockContainer.hasJumpStatement()).isTrue()
+
+        verify(blockContainer).findChildByType(BLOCK)
+        verify(returnContainer, atMost(2)).findChildByType(RETURN)
+    }
+
+    @Test
+    fun isChildOfProperty() {
+        val property = mock<ASTNode> { on { elementType } doReturn PROPERTY }
+        val node = mock<ASTNode> { on { treeParent } doReturn property }
+        assertThat(node.isChildOfProperty()).isTrue()
+
+        verify(property).elementType
+        verify(node).treeParent
+
+        val destructuringDeclaration =
+            mock<ASTNode> { on { elementType } doReturn DESTRUCTURING_DECLARATION }
+        `when`(node.treeParent).thenReturn(destructuringDeclaration)
+        assertThat(node.isChildOfProperty()).isTrue()
+
+        verify(destructuringDeclaration, atMost(2)).elementType
+        verify(node, atMost(2)).treeParent
     }
 
     @Test
     fun isMultiline() {
-        `when`(node1.elementType).thenReturn(WHITE_SPACE)
-        `when`(node1.textContains('\n')).thenReturn(true)
-        assertThat(node1.isMultiline()).isTrue()
+        val whitespace =
+            mock<ASTNode> {
+                on { elementType } doReturn WHITE_SPACE
+                on { textContains('\n') } doReturn true
+            }
+        assertThat(whitespace.isMultiline()).isTrue()
 
-        `when`(node2.firstChildNode).thenReturn(node3)
-        `when`(node3.elementType).thenReturn(WHITE_SPACE)
-        `when`(node3.textContains('\n')).thenReturn(true)
-        assertThat(node2.isMultiline()).isTrue()
+        verify(whitespace).elementType
+        verify(whitespace).textContains('\n')
 
-        sequenceOf(node1, node3).forEach {
-            verify(it).elementType
-            verify(it).textContains('\n')
-        }
-        verify(node2).firstChildNode
+        val parent = mock<ASTNode> { on { firstChildNode } doReturn whitespace }
+        assertThat(parent.isMultiline()).isTrue()
+
+        verify(whitespace, atMost(2)).elementType
+        verify(whitespace, atMost(2)).textContains('\n')
+        verify(parent).firstChildNode
     }
 
     @Test
     fun isComment() {
-        `when`(node1.elementType).thenReturn(EOL_COMMENT)
-        assertThat(node1.isComment()).isTrue()
+        val comment = mock<ASTNode> { on { elementType } doReturn EOL_COMMENT }
+        assertThat(comment.isComment()).isTrue()
 
-        verify(node1).elementType
+        verify(comment).elementType
     }
 
     @Test
     fun isWhitespaceSingleLine() {
-        `when`(node1.elementType).thenReturn(WHITE_SPACE)
-        `when`(node1.text).thenReturn("\n")
-        assertThat(node1.isWhitespaceSingleLine()).isTrue()
+        val whitespace =
+            mock<ASTNode> {
+                on { elementType } doReturn WHITE_SPACE
+                on { text } doReturn "\n"
+            }
+        assertThat(whitespace.isWhitespaceSingleLine()).isTrue()
 
-        verify(node1).elementType
-        verify(node1).text
+        verify(whitespace).elementType
+        verify(whitespace).text
     }
 
     @Test
     fun isWhitespaceMultiline() {
-        `when`(node1.elementType).thenReturn(WHITE_SPACE)
-        `when`(node1.text).thenReturn("\n\n")
-        assertThat(node1.isWhitespaceMultiline()).isTrue()
+        val whitespace =
+            mock<ASTNode> {
+                on { elementType } doReturn WHITE_SPACE
+                on { text } doReturn "\n\n"
+            }
+        assertThat(whitespace.isWhitespaceMultiline()).isTrue()
 
-        verify(node1).elementType
-        verify(node1).text
+        verify(whitespace).elementType
+        verify(whitespace).text
     }
 
     @Test
     fun isEolCommentEmpty() {
-        `when`(node1.elementType).thenReturn(EOL_COMMENT)
-        `when`(node1.text).thenReturn("// ")
-        assertThat(node1.isEolCommentEmpty()).isTrue()
+        val comment =
+            mock<ASTNode> {
+                on { elementType } doReturn EOL_COMMENT
+                on { text } doReturn "// "
+            }
+        assertThat(comment.isEolCommentEmpty()).isTrue()
 
-        verify(node1).elementType
-        verify(node1).text
+        verify(comment).elementType
+        verify(comment).text
     }
 }

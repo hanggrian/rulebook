@@ -6,6 +6,7 @@ import com.hanggrian.rulebook.ktlint.contains
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BINARY_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CALL_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EXCL
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EXCLEQ
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUNCTION_LITERAL
@@ -46,8 +47,11 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
         // checks for violation
         val (expression, msg) =
             block
-                .findChildByType(BINARY_EXPRESSION)
-                ?.to(MSG_EQUALS)
+                .findChildByType(DOT_QUALIFIED_EXPRESSION)
+                ?.to(MSG_EMPTY)
+                ?: block
+                    .findChildByType(BINARY_EXPRESSION)
+                    ?.to(MSG_EQUALS)
                 ?: block
                     .findChildByType(PREFIX_EXPRESSION)
                     ?.to(MSG_NEGATES)
@@ -55,18 +59,35 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
                     .findChildByType(IS_EXPRESSION)
                     ?.to(MSG_NEGATES)
                 ?: return
-        expression
-            .takeUnless { it.isChained() }
-            ?.findChildByType(OPERATION_REFERENCE)
-            ?.firstChildNode
-            ?.elementType
-            ?.takeIf { it === EXCLEQ || it === EXCL || it === NOT_IS }
-            ?: return
-        emit(node.startOffset, Messages[msg, functionReplacement], false)
+        when {
+            BINARY_EXPRESSION in expression ||
+                PREFIX_EXPRESSION in expression -> return
+
+            expression.elementType === DOT_QUALIFIED_EXPRESSION -> {
+                expression
+                    .findChildByType(CALL_EXPRESSION)
+                    ?.findChildByType(REFERENCE_EXPRESSION)
+                    ?.findChildByType(IDENTIFIER)
+                    ?.takeIf { it.text == "isNotEmpty" }
+                    ?: return
+                emit(node.startOffset, Messages[msg, functionReplacement], false)
+            }
+
+            else -> {
+                expression
+                    .findChildByType(OPERATION_REFERENCE)
+                    ?.firstChildNode
+                    ?.elementType
+                    ?.takeIf { it === EXCLEQ || it === EXCL || it === NOT_IS }
+                    ?: return
+                emit(node.startOffset, Messages[msg, functionReplacement], false)
+            }
+        }
     }
 
     public companion object {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:confusing-predicate")
+        private const val MSG_EMPTY = "confusing.predicate.empty"
         private const val MSG_EQUALS = "confusing.predicate.equals"
         private const val MSG_NEGATES = "confusing.predicate.negates"
 
@@ -83,7 +104,5 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
             PREDICATE_CALLS[positiveCall] = negativeCall
             PREDICATE_CALLS[negativeCall] = positiveCall
         }
-
-        private fun ASTNode.isChained() = BINARY_EXPRESSION in this || PREFIX_EXPRESSION in this
     }
 }

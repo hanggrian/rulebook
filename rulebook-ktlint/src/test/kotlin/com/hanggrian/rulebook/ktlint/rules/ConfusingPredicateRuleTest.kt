@@ -26,6 +26,10 @@ class ConfusingPredicateRuleTest : RuleTest() {
             fun baz() {
                 1.takeIf { it is Number }
             }
+
+            fun qux() {
+                setOf(1, 2).takeIf { it.isEmpty() }
+            }
             """.trimIndent(),
         ).hasNoLintViolations()
 
@@ -44,11 +48,16 @@ class ConfusingPredicateRuleTest : RuleTest() {
             fun baz() {
                 1.takeUnless { it !is Number }
             }
+
+            fun qux() {
+                setOf(1, 2).takeUnless { it.isNotEmpty() }
+            }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
             LintViolation(2, 8, "Omit negation and replace call with 'takeUnless'."),
             LintViolation(6, 18, "Use equals and replace call with 'filterNot'."),
             LintViolation(10, 7, "Omit negation and replace call with 'takeIf'."),
+            LintViolation(14, 17, "Use 'isEmpty' and replace call with 'takeIf'."),
         )
 
     @Test
@@ -65,6 +74,10 @@ class ConfusingPredicateRuleTest : RuleTest() {
 
             fun baz() {
                 1.takeIf { it !is Float && it !is Float }
+            }
+
+            fun qux() {
+                setOf(1, 2).takeUnless { it.isNotEmpty() || it.size == 1 }
             }
             """.trimIndent(),
         ).hasNoLintViolations()

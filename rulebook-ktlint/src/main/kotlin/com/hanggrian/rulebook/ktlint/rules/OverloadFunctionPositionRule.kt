@@ -26,12 +26,14 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
         // checks for violation
         val declaredIdentifiers = mutableSetOf<String>()
         for ((i, `fun`) in funs.withIndex()) {
-            val identifier = `fun`.findChildByType(IDENTIFIER) ?: continue
-            if (funs.getOrNull(i - 1)?.findChildByType(IDENTIFIER)?.text != identifier.text &&
-                !declaredIdentifiers.add(identifier.text)
-            ) {
-                emit(`fun`.startOffset, Messages[MSG, identifier.text], false)
-            }
+            val identifier =
+                `fun`
+                    .findChildByType(IDENTIFIER)
+                    ?.takeIf {
+                        funs.getOrNull(i - 1)?.findChildByType(IDENTIFIER)?.text != it.text &&
+                            !declaredIdentifiers.add(it.text)
+                    } ?: continue
+            emit(`fun`.startOffset, Messages[MSG, identifier.text], false)
         }
     }
 

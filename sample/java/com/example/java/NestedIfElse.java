@@ -22,4 +22,15 @@ public class NestedIfElse {
             }
         }
     }
+
+    public void baz() {
+        try {
+            if (true) {
+                System.out.println();
+                System.out.println();
+            }
+        } catch (RuntimeException e) {
+            System.out.println();
+        }
+    }
 }

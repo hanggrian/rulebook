@@ -34,14 +34,16 @@ public class MeaninglessWordRule : RulebookRule(ID, MEANINGLESS_WORDS_PROPERTY) 
             words
                 .singleOrNull { fullName.endsWith(it) }
                 ?: return
-        if (finalName in UTILITY_FINAL_NAMES) {
-            emit(
-                identifier.startOffset,
-                Messages[MSG_UTIL, fullName.substringBefore(finalName) + 's'],
-                false,
-            )
-            return
-        }
+        identifier
+            .takeIf { finalName in UTILITY_FINAL_NAMES }
+            ?.let {
+                emit(
+                    it.startOffset,
+                    Messages[MSG_UTIL, fullName.substringBefore(finalName) + 's'],
+                    false,
+                )
+                return
+            }
         emit(identifier.startOffset, Messages[MSG_ALL, finalName], false)
     }
 
