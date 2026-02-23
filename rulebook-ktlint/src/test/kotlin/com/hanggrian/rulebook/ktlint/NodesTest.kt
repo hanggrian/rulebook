@@ -2,11 +2,13 @@ package com.hanggrian.rulebook.ktlint
 
 import com.google.common.truth.Truth.assertThat
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BREAK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
@@ -123,13 +125,24 @@ class NodesTest {
     @Test
     fun isComment() {
         val comment = mock<ASTNode> { on { elementType } doReturn EOL_COMMENT }
+        val blockComment = mock<ASTNode> { on { elementType } doReturn BLOCK_COMMENT }
+        val kdoc = mock<ASTNode> { on { elementType } doReturn KDOC }
         assertThat(comment.isComment()).isTrue()
+        assertThat(blockComment.isComment()).isTrue()
+        assertThat(kdoc.isComment()).isTrue()
 
         verify(comment).elementType
+        verify(blockComment, atMost(2)).elementType
+        verify(kdoc, atMost(3)).elementType
     }
 
     @Test
     fun isWhitespaceSingleLine() {
+        val comment = mock<ASTNode> { on { elementType } doReturn EOL_COMMENT }
+        assertThat(comment.isWhitespaceSingleLine()).isFalse()
+
+        verify(comment).elementType
+
         val whitespace =
             mock<ASTNode> {
                 on { elementType } doReturn WHITE_SPACE
@@ -143,6 +156,9 @@ class NodesTest {
 
     @Test
     fun isWhitespaceMultiline() {
+        val comment = mock<ASTNode> { on { elementType } doReturn EOL_COMMENT }
+        assertThat(comment.isWhitespaceMultiline()).isFalse()
+
         val whitespace =
             mock<ASTNode> {
                 on { elementType } doReturn WHITE_SPACE
@@ -156,6 +172,9 @@ class NodesTest {
 
     @Test
     fun isEolCommentEmpty() {
+        val blockComment = mock<ASTNode> { on { elementType } doReturn BLOCK_COMMENT }
+        assertThat(blockComment.isEolCommentEmpty()).isFalse()
+
         val comment =
             mock<ASTNode> {
                 on { elementType } doReturn EOL_COMMENT

@@ -15,6 +15,6 @@ class DuplicateBlankLineInBlockCommentCheckTest : CheckTest() {
     fun `Multiple empty lines in block comment`() =
         assertAll(
             "DuplicateBlankLineInBlockComment2",
-            "7:1: Remove consecutive blank line after *.",
+            "7:1: Remove consecutive blank line after '*'.",
         )
 }

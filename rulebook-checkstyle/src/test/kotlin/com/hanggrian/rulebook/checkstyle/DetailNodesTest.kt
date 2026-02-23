@@ -230,6 +230,9 @@ class DetailNodesTest {
 
     @Test
     fun isEolCommentEmpty() {
+        val slist = mock<DetailAST> { on { type } doReturn SLIST }
+        assertThat(slist.isEolCommentEmpty()).isFalse()
+
         val content =
             mock<DetailAST> {
                 on { type } doReturn COMMENT_CONTENT

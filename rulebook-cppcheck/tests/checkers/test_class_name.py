@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,11 +16,13 @@ class TestClassNameChecker(CheckerTestCase):
     def test_valid_pascal_case(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                class MyClass {}
-                struct DataNode {}
-                union RawData {}
-                ''',
+                dedent(
+                    '''
+                    class MyClass {}
+                    struct DataNode {}
+                    union RawData {}
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -28,11 +31,13 @@ class TestClassNameChecker(CheckerTestCase):
     def test_invalid_formats(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                class my_class {}
-                struct data_node {}
-                union raw_data {}
-                ''',
+                dedent(
+                    '''
+                    class my_class {}
+                    struct data_node {}
+                    union raw_data {}
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_has_calls(

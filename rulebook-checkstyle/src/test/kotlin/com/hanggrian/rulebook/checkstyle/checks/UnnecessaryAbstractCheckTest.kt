@@ -13,7 +13,7 @@ class UnnecessaryAbstractCheckTest : CheckTest() {
 
     @Test
     fun `Abstract class without abstract function`() =
-        assertAll("UnnecessaryAbstract2", "4:5: Omit abstract modifier.")
+        assertAll("UnnecessaryAbstract2", "4:5: Omit 'abstract' modifier.")
 
     @Test
     fun `Skip class with inheritance`() = assertAll("UnnecessaryAbstract3")

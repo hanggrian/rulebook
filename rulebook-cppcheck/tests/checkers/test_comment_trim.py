@@ -1,5 +1,6 @@
+from textwrap import dedent
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.comment_trim import CommentTrimChecker
 from ..tests import CheckerTestCase, assert_properties
@@ -14,26 +15,30 @@ class TestCommentTrimChecker(CheckerTestCase):
     @patch.object(CommentTrimChecker, 'report_error')
     def test_comment_without_initial_and_final_newline(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            void foo() {
-                // Lorem ipsum.
-            }
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                void foo() {
+                    // Lorem ipsum.
+                }
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
     @patch.object(CommentTrimChecker, 'report_error')
     def test_comment_with_initial_and_final_newline(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            void foo() {
-                //
-                // Lorem ipsum.
-                //
-            }
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                void foo() {
+                    //
+                    // Lorem ipsum.
+                    //
+                }
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         calls = report_error.call_args_list
@@ -45,28 +50,32 @@ class TestCommentTrimChecker(CheckerTestCase):
     @patch.object(CommentTrimChecker, 'report_error')
     def test_skip_blank_comment(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            void foo() {
+            self.mock_file(),
+            dedent(
+                '''
+                void foo() {
 
-                //
+                    //
 
-            }
-            ''',
+                }
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
     @patch.object(CommentTrimChecker, 'report_error')
     def test_skip_comment_with_code(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            void foo() {
-                printf(""); //
-                printf(""); // Lorem ipsum.
-                printf(""); //
-            }
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                void foo() {
+                    printf(""); //
+                    printf(""); // Lorem ipsum.
+                    printf(""); //
+                }
+                ''',
+            ),
         )
         report_error.assert_not_called()
 

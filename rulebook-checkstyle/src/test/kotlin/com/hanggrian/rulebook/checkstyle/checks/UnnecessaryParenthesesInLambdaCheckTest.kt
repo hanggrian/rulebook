@@ -13,7 +13,7 @@ class UnnecessaryParenthesesInLambdaCheckTest : CheckTest() {
 
     @Test
     fun `Single parameter with parentheses`() =
-        assertAll("UnnecessaryParenthesesInLambda2", "9:23: Omit parentheses ().")
+        assertAll("UnnecessaryParenthesesInLambda2", "9:23: Omit parentheses '()'.")
 
     @Test
     fun `Multiple parameters`() = assertAll("UnnecessaryParenthesesInLambda3")

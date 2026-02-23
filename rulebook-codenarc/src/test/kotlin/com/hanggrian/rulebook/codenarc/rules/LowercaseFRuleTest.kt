@@ -17,7 +17,7 @@ class LowercaseFRuleTest : RuleTest<LowercaseFRule>() {
     fun `Lowercase literal floats`() =
         assertNoViolations(
             """
-            var foo = 0f
+            var foo = 0.0f
 
             def bar() {
                 println(123f)
@@ -29,14 +29,14 @@ class LowercaseFRuleTest : RuleTest<LowercaseFRule>() {
     fun `Uppercase literal floats`() =
         assertTwoViolations(
             """
-            var foo = 0F
+            var foo = 0.0F
 
             def bar() {
                 println(123F)
             }
             """.trimIndent(),
             1,
-            "var foo = 0F",
+            "var foo = 0.0F",
             "Tag float literal by 'f'.",
             4,
             "println(123F)",

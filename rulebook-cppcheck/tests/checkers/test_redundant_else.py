@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,17 +16,19 @@ class TestRedundantElseChecker(CheckerTestCase):
     def test_no_throw_or_return_in_if(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    if (true) {
-                        baz();
-                    } else if (false) {
-                        baz();
-                    } else {
-                        baz();
+                dedent(
+                    '''
+                    void foo() {
+                        if (true) {
+                            baz();
+                        } else if (false) {
+                            baz();
+                        } else {
+                            baz();
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -34,17 +37,19 @@ class TestRedundantElseChecker(CheckerTestCase):
     def test_lift_else_when_if_has_return(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    if (true) {
-                        throw std::exception();
-                    } else if (false) {
-                        return;
-                    } else {
-                        baz();
+                dedent(
+                    '''
+                    void foo() {
+                        if (true) {
+                            throw std::exception();
+                        } else if (false) {
+                            return;
+                        } else {
+                            baz();
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_has_calls(
@@ -64,13 +69,15 @@ class TestRedundantElseChecker(CheckerTestCase):
     def test_consider_if_else_without_blocks(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    if (true) throw std::exception();
-                    else if (false) return;
-                    else baz();
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        if (true) throw std::exception();
+                        else if (false) return;
+                        else baz();
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_has_calls(

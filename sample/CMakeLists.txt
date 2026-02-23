@@ -30,6 +30,7 @@ add_executable(
         c/indent_style.c
         c/line_length.c
         c/lowercase_f.c
+        c/lowercase_hex.c
         c/operator_wrap.c
         c/parameter_wrap.c
         c/todo_comment.c

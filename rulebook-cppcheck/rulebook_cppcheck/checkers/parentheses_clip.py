@@ -10,6 +10,7 @@ except ImportError:
 
 
 class ParenthesesClipChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#parentheses-clip"""
     ID: str = 'parentheses-clip'
     _MSG: str = 'parentheses.clip'
 

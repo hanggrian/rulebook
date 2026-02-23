@@ -15,8 +15,8 @@ class CommentSpaceCheckTest : CheckTest() {
     fun `Without whitespace`() =
         assertAll(
             "CommentSpace2",
-            "4:5: Put one space after //.",
-            "5:5: Put one space after //.",
+            "4:5: Put one space after '//'.",
+            "5:5: Put one space after '//'.",
         )
 
     @Test
@@ -26,8 +26,8 @@ class CommentSpaceCheckTest : CheckTest() {
     fun `Capture repeated slashes without content`() =
         assertAll(
             "CommentSpace4",
-            "8:5: Put one space after //.",
-            "10:5: Put one space after //.",
+            "8:5: Put one space after '//'.",
+            "10:5: Put one space after '//'.",
         )
 
     @Test

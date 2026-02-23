@@ -16,6 +16,7 @@ import org.codehaus.groovy.ast.stmt.Statement
 import org.codehaus.groovy.ast.stmt.ThrowStatement
 import org.mockito.Mockito.atMost
 import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when`
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import kotlin.test.Test
@@ -35,24 +36,28 @@ class NodesTest {
 
     @Test
     fun firstStatement() {
-        val block =
-            mock<BlockStatement> { on { statements } doReturn listOf(mock<BreakStatement>()) }
-        assertThat(block.firstStatement())
-            .isInstanceOf(BreakStatement::class.java)
+        val block = mock<BlockStatement> { on { statements } doReturn null }
+        assertThat(block.firstStatement()).isInstanceOf(BlockStatement::class.java)
 
         verify(block).statements
+
+        `when`(block.statements).thenReturn(listOf(mock<BreakStatement>()))
+        assertThat(block.firstStatement()).isInstanceOf(BreakStatement::class.java)
+
+        verify(block, atMost(2)).statements
     }
 
     @Test
     fun lastExpression() {
-        val tuple =
-            mock<TupleExpression> {
-                on { expressions } doReturn listOf(mock<ArgumentListExpression>())
-            }
-        assertThat(tuple.lastExpression())
-            .isInstanceOf(ArgumentListExpression::class.java)
+        val tuple = mock<TupleExpression> { on { expressions } doReturn null }
+        assertThat(tuple.lastExpression()).isInstanceOf(TupleExpression::class.java)
 
         verify(tuple).expressions
+
+        `when`(tuple.expressions).thenReturn(listOf(mock<ArgumentListExpression>()))
+        assertThat(tuple.lastExpression()).isInstanceOf(ArgumentListExpression::class.java)
+
+        verify(tuple, atMost(2)).expressions
     }
 
     @Test

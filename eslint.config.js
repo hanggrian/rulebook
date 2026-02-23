@@ -1,5 +1,6 @@
 import eslint from '@eslint/js';
 import eslintPluginStylistic from '@stylistic/eslint-plugin';
+import codecheck from 'codecheck';
 import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginSortClassMembers from 'eslint-plugin-sort-class-members';
@@ -18,10 +19,12 @@ export default typescriptEslint.config(
             '@stylistic': eslintPluginStylistic,
             '@sort-class-members': eslintPluginSortClassMembers,
             '@rulebook': rulebookEslint,
+            '@codecheck': codecheck,
         },
         extends: [
             eslint.configs.recommended,
             rulebookEslint.configs.crockford,
+            codecheck.configs.default,
         ],
         languageOptions: {
             ecmaVersion: 2022,
@@ -40,12 +43,14 @@ export default typescriptEslint.config(
             '@stylistic': eslintPluginStylistic,
             '@sort-class-members': eslintPluginSortClassMembers,
             '@rulebook': rulebookTypescriptEslint,
+            '@codecheck': codecheck,
         },
         extends: [
             eslint.configs.recommended,
             typescriptEslint.configs.eslintRecommended,
             ...typescriptEslint.configs.recommendedTypeChecked,
             rulebookTypescriptEslint.configs.crockford,
+            codecheck.configs.default,
         ],
         languageOptions: {
             ecmaVersion: 2020,

@@ -26,6 +26,7 @@ from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_pylint.checkers.exception_inheritance import ExceptionInheritanceChecker
 from rulebook_pylint.checkers.generic_name import GenericNameChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
+from rulebook_pylint.checkers.lowercase_hex import LowercaseHexChecker
 from rulebook_pylint.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_pylint.checkers.member_order import MemberOrderChecker
 from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
@@ -66,6 +67,7 @@ class TestAllCheckers:
         # FileSizeChecker,
         GenericNameChecker,
         InnerClassPositionChecker,
+        LowercaseHexChecker,
         MeaninglessWordChecker,
         MemberOrderChecker,
         MemberSeparatorChecker,

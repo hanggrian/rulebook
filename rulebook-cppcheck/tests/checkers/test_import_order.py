@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import MagicMock, patch
 
@@ -15,11 +16,13 @@ class TestImportOrderChecker(CheckerTestCase):
     def test_valid_order(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            #include <numeric>
-            #include <string>
-            #include "abc.h"
-            ''',
+            dedent(
+                '''
+                #include <numeric>
+                #include <string>
+                #include "abc.h"
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -27,10 +30,12 @@ class TestImportOrderChecker(CheckerTestCase):
     def test_invalid_sort(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            #include <string>
-            #include <numeric>
-            ''',
+            dedent(
+                '''
+                #include <string>
+                #include <numeric>
+                ''',
+            ),
         )
         report_error.assert_called_once()
         args, _ = report_error.call_args
@@ -40,10 +45,12 @@ class TestImportOrderChecker(CheckerTestCase):
     def test_invalid_group(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            #include "abc.h"
-            #include <numeric>
-            ''',
+            dedent(
+                '''
+                #include "abc.h"
+                #include <numeric>
+                ''',
+            ),
         )
         report_error.assert_called_once()
         args, _ = report_error.call_args
@@ -53,11 +60,13 @@ class TestImportOrderChecker(CheckerTestCase):
     def test_invalid_join(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            #include <numeric>
+            dedent(
+                '''
+                #include <numeric>
 
-            #include <string>
-            ''',
+                #include <string>
+                ''',
+            ),
         )
         report_error.assert_called_once()
         args, _ = report_error.call_args

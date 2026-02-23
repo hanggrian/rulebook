@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,11 +16,13 @@ class TestMeaninglessWordChecker(CheckerTestCase):
     def test_meaningful_class_names(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                class Spaceship {}
-                struct Rocket {}
-                union Navigator {}
-                ''',
+                dedent(
+                    '''
+                    class Spaceship {}
+                    struct Rocket {}
+                    union Navigator {}
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -28,11 +31,13 @@ class TestMeaninglessWordChecker(CheckerTestCase):
     def test_meaningless_class_names(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                class SpaceshipManager {}
-                struct RocketManager {}
-                union NavigationManager {}
-                ''',
+                dedent(
+                    '''
+                    class SpaceshipManager {}
+                    struct RocketManager {}
+                    union NavigationManager {}
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_has_calls(
@@ -56,11 +61,13 @@ class TestMeaninglessWordChecker(CheckerTestCase):
     def test_allow_meaningless_prefix(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                class WrapperSpaceship {}
-                struct WrapperRocket {}
-                union WrapperNavigation {}
-                ''',
+                dedent(
+                    '''
+                    class WrapperSpaceship {}
+                    struct WrapperRocket {}
+                    union WrapperNavigation {}
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()

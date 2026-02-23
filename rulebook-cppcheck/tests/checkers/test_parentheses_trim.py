@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,15 +16,17 @@ class TestParenthesesTrimChecker(CheckerTestCase):
     def test_parentheses_without_newline_padding(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(
-                    int bar
-                ) {
-                    printf(
-                        "%d", bar
-                    );
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(
+                        int bar
+                    ) {
+                        printf(
+                            "%d", bar
+                        );
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -32,19 +35,21 @@ class TestParenthesesTrimChecker(CheckerTestCase):
     def test_parentheses_with_newline_padding(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(
+                dedent(
+                    '''
+                    void foo(
 
-                    int bar
+                        int bar
 
-                ) {
-                    printf(
+                    ) {
+                        printf(
 
-                        "%d", bar
+                            "%d", bar
 
-                    );
-                }
-                ''',
+                        );
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_has_calls(
@@ -76,19 +81,21 @@ class TestParenthesesTrimChecker(CheckerTestCase):
     def test_comments_are_considered_content(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(
-                    // Lorem
-                    int bar
-                    // ipsum.
-                ) {
-                    printf(
+                dedent(
+                    '''
+                    void foo(
                         // Lorem
-                        "%d", bar
+                        int bar
                         // ipsum.
-                    );
-                }
-                ''',
+                    ) {
+                        printf(
+                            // Lorem
+                            "%d", bar
+                            // ipsum.
+                        );
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()

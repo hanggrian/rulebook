@@ -6,6 +6,7 @@ dependencyResolutionManagement.repositories.mavenCentral()
 
 rootProject.name = "rulebook"
 
+include("codecheck")
 include(
     "rulebook-checkstyle",
     "rulebook-ktlint",

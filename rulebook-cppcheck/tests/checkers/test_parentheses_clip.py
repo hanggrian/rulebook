@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,11 +16,13 @@ class TestParenthesesClipChecker(CheckerTestCase):
     def test_wrapped_parentheses(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    bar();
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        bar();
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -28,14 +31,16 @@ class TestParenthesesClipChecker(CheckerTestCase):
     def test_unwrapped_parentheses(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(
-                ) {
-                    bar(
+                dedent(
+                    '''
+                    void foo(
+                    ) {
+                        bar(
 
-                    );
-                }
-                ''',
+                        );
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_has_calls(
@@ -55,11 +60,13 @@ class TestParenthesesClipChecker(CheckerTestCase):
     def test_skip_parameter_without_identifier(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(void) {
-                    bar();
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(void) {
+                        bar();
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -68,21 +75,23 @@ class TestParenthesesClipChecker(CheckerTestCase):
     def test_skip_control_flows_with_multi_blocks(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    try {
-                    } catch (std::exception& e) {
-                    }
+                dedent(
+                    '''
+                    void foo() {
+                        try {
+                        } catch (std::exception& e) {
+                        }
 
-                    if (true) {
-                    } else if (false) {
-                    } else {
-                    }
+                        if (true) {
+                        } else if (false) {
+                        } else {
+                        }
 
-                    do {
-                    } while (true);
-                }
-                ''',
+                        do {
+                        } while (true);
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()

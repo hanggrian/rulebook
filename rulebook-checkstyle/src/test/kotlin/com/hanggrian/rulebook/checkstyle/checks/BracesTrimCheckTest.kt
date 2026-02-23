@@ -15,10 +15,10 @@ class BracesTrimCheckTest : CheckTest() {
     fun `Braces with newline padding`() =
         assertAll(
             "BracesTrim2",
-            "5: Remove blank line after {.",
-            "7: Remove blank line after {.",
-            "9: Remove blank line before }.",
-            "11: Remove blank line before }.",
+            "5: Remove blank line after '{'.",
+            "7: Remove blank line after '{'.",
+            "9: Remove blank line before '}'.",
+            "11: Remove blank line before '}'.",
         )
 
     @Test

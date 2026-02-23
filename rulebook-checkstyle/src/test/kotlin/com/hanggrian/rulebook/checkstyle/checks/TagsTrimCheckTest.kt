@@ -15,10 +15,10 @@ class TagsTrimCheckTest : CheckTest() {
     fun `Tags with newline padding`() =
         assertAll(
             "TagsTrim2",
-            "7: Remove blank line after <.",
-            "9: Remove blank line before >.",
-            "12: Remove blank line after <.",
-            "14: Remove blank line before >.",
+            "7: Remove blank line after '<'.",
+            "9: Remove blank line before '>'.",
+            "12: Remove blank line after '<'.",
+            "14: Remove blank line before '>'.",
         )
 
     @Test

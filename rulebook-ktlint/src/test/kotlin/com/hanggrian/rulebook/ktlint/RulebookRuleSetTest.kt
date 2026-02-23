@@ -38,8 +38,10 @@ import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
 import com.hanggrian.rulebook.ktlint.rules.RootProjectNameRule
+import com.hanggrian.rulebook.ktlint.rules.ScriptFileNameRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryAbstractRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryBracesRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryInitialBlankLineRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryScopeRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessarySwitchRule
@@ -91,8 +93,10 @@ class RulebookRuleSetTest {
             RedundantDefaultRule::class,
             RedundantElseRule::class,
             RootProjectNameRule::class,
+            ScriptFileNameRule::class,
             TodoCommentRule::class,
             UnnecessaryAbstractRule::class,
+            UnnecessaryBracesRule::class,
             UnnecessaryInitialBlankLineRule::class,
             UnnecessaryScopeRule::class,
             UnnecessarySwitchRule::class,

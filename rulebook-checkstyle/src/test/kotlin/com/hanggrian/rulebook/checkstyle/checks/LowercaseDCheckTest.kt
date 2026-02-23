@@ -15,7 +15,7 @@ class LowercaseDCheckTest : CheckTest() {
     fun `Uppercase literal doubles`() =
         assertAll(
             "LowercaseD2",
-            "4:17: Tag double literal by d.",
-            "7:28: Tag double literal by d.",
+            "4:17: Tag double literal by 'd'.",
+            "7:28: Tag double literal by 'd'.",
         )
 }

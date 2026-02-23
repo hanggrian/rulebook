@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,11 +16,13 @@ class TestIndentStyleChecker(CheckerTestCase):
     def test_valid_indentation(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    int bar = 0;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        int bar = 0;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -28,11 +31,13 @@ class TestIndentStyleChecker(CheckerTestCase):
     def test_invalid_indentation(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                 int bar = 0;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                     int bar = 0;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(

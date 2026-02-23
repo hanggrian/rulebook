@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,15 +16,17 @@ class TestBlockTagIndentationChecker(CheckerTestCase):
     def test_indented_block_tag_description(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**
-             * @constructor lorem
-             *     ipsum.
-             * @param bar lorem
-             *     ipsum.
-             */
-            class Foo(val bar: Int)
-            ''',
+            dedent(
+                '''
+                /**
+                 * @constructor lorem
+                 *     ipsum.
+                 * @param bar lorem
+                 *     ipsum.
+                 */
+                class Foo(val bar: Int)
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -31,15 +34,17 @@ class TestBlockTagIndentationChecker(CheckerTestCase):
     def test_unindented_block_tag_description(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**
-             * @constructor lorem
-             *   ipsum.
-             * @param bar lorem
-             *    ipsum.
-             */
-            class Foo(val bar: Int)
-            ''',
+            dedent(
+                '''
+                /**
+                 * @constructor lorem
+                 *   ipsum.
+                 * @param bar lorem
+                 *    ipsum.
+                 */
+                class Foo(val bar: Int)
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         calls = report_error.call_args_list

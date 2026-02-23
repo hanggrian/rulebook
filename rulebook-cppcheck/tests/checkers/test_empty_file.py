@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -13,18 +14,12 @@ class TestEmptyFileChecker(CheckerTestCase):
 
     @patch.object(EmptyFileChecker, 'report_error')
     def test_non_empty_file(self, report_error):
-        self.checker.check_file(
-            self.mock_file(),
-            '// comment',
-        )
+        self.checker.check_file(self.mock_file(), '// comment')
         report_error.assert_not_called()
 
     @patch.object(EmptyFileChecker, 'report_error')
     def test_empty_file(self, report_error):
-        self.checker.check_file(
-            self.mock_file(),
-            '\n',
-        )
+        self.checker.check_file(self.mock_file(), '\n')
         report_error.assert_called_once()
         args, _ = report_error.call_args
         self.assertEqual(args[1], 'Delete the empty file.')
@@ -33,9 +28,11 @@ class TestEmptyFileChecker(CheckerTestCase):
     def test_long_empty_file(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
+            dedent(
+                '''
 
-            ''',
+                ''',
+            ),
         )
         report_error.assert_called_once()
         args, _ = report_error.call_args

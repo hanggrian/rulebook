@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,14 +16,16 @@ class TestInnerClassPositionChecker(CheckerTestCase):
     def test_inner_classes_at_the_bottom(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                class Foo {
-                    int bar = 0;
-                    void baz() {}
-                    class Inner {}
-                    class AnotherInner {}
-                };
-                ''',
+                dedent(
+                    '''
+                    class Foo {
+                        int bar = 0;
+                        void baz() {}
+                        class Inner {}
+                        class AnotherInner {}
+                    };
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -31,14 +34,16 @@ class TestInnerClassPositionChecker(CheckerTestCase):
     def test_inner_classes_before_members(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                class Foo {
-                    class Inner {}
-                    int bar = 0;
-                    class AnotherInner {}
-                    void baz() {}
-                };
-                ''',
+                dedent(
+                    '''
+                    class Foo {
+                        class Inner {}
+                        int bar = 0;
+                        class AnotherInner {}
+                        void baz() {}
+                    };
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(
@@ -50,13 +55,15 @@ class TestInnerClassPositionChecker(CheckerTestCase):
     def test_skip_anonymous_inner_scope(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                class Foo {
-                    class {
-                        void bar() {}
-                    } anonymous
-                };
-                ''',
+                dedent(
+                    '''
+                    class Foo {
+                        class {
+                            void bar() {}
+                        } anonymous
+                    };
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -65,12 +72,14 @@ class TestInnerClassPositionChecker(CheckerTestCase):
     def test_target_all_class_like_declarations(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                struct OuterStruct {
-                    struct InnerStruct {}
-                    int member = 0;
-                };
-                ''',
+                dedent(
+                    '''
+                    struct OuterStruct {
+                        struct InnerStruct {}
+                        int member = 0;
+                    };
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(

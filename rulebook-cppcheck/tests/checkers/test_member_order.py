@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,16 +16,18 @@ class TestMemberOrderChecker(CheckerTestCase):
     def test_correct_member_layout(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                class MyClass {
-                public:
-                    int bar = 0;
-                    MyClass() {
-                        cout << "Hello World!";
-                    }
-                    void baz() {}
-                };
-                ''',
+                dedent(
+                    '''
+                    class MyClass {
+                    public:
+                        int bar = 0;
+                        MyClass() {
+                            cout << "Hello World!";
+                        }
+                        void baz() {}
+                    };
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -33,15 +36,17 @@ class TestMemberOrderChecker(CheckerTestCase):
     def test_property_after_constructor(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                class MyClass {
-                public:
-                    MyClass() {
-                        cout << "Hello World!";
-                    }
-                    int bar = 0;
-                };
-                ''',
+                dedent(
+                    '''
+                    class MyClass {
+                    public:
+                        MyClass() {
+                            cout << "Hello World!";
+                        }
+                        int bar = 0;
+                    };
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(
@@ -53,15 +58,17 @@ class TestMemberOrderChecker(CheckerTestCase):
     def test_constructor_after_function(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                class MyClass {
-                public:
-                    void baz() {}
-                    MyClass() {
-                        cout << "Hello World!";
-                    }
-                };
-                ''',
+                dedent(
+                    '''
+                    class MyClass {
+                    public:
+                        void baz() {}
+                        MyClass() {
+                            cout << "Hello World!";
+                        }
+                    };
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(

@@ -1,5 +1,6 @@
+from textwrap import dedent
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.comment_space import CommentSpaceChecker
 from ..tests import CheckerTestCase, assert_properties
@@ -14,59 +15,67 @@ class TestCommentSpaceChecker(CheckerTestCase):
     @patch.object(CommentSpaceChecker, 'report_error')
     def test_with_whitespace(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            // Valid comment
-            int x = 0; // Valid trailing
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                // Valid comment
+                int x = 0; // Valid trailing
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
     @patch.object(CommentSpaceChecker, 'report_error')
     def test_without_whitespace(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            int x = 0;
-            int y = 0;
-            //Invalid 1
-            //Invalid 2
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                int x = 0;
+                int y = 0;
+                //Invalid 1
+                //Invalid 2
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         calls = report_error.call_args_list
         self.assertEqual(calls[0][0][1], "Put one space after '//'.")
         self.assertEqual(calls[0][0][2], 4)
-        self.assertEqual(calls[0][0][3], 13)
+        self.assertEqual(calls[0][0][3], 1)
         self.assertEqual(calls[1][0][1], "Put one space after '//'.")
         self.assertEqual(calls[1][0][2], 5)
-        self.assertEqual(calls[1][0][3], 13)
+        self.assertEqual(calls[1][0][3], 1)
 
     @patch.object(CommentSpaceChecker, 'report_error')
     def test_ignore_block_comment(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            /* No space required */
-            /**
-             * No space required
-             */
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                /* No space required */
+                /**
+                 * No space required
+                 */
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
     @patch.object(CommentSpaceChecker, 'report_error')
     def test_capture_repeated_slashes_without_content(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            //
-            ///
-            ////
-            // content
-            //invalid
-            //
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                //
+                ///
+                ////
+                // content
+                //invalid
+                //
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 1)
         args, _ = report_error.call_args
@@ -76,36 +85,35 @@ class TestCommentSpaceChecker(CheckerTestCase):
     @patch.object(CommentSpaceChecker, 'report_error')
     def test_skip_special_comments(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            ////////////////////
-            //
-            ////////////////////
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                ////////////////////
+                //
+                ////////////////////
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
     @patch.object(CommentSpaceChecker, 'report_error')
     def test_skip_comment_in_comments(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            // https://www.website.com
-            /**
-             * https://www.website.com
-             */
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                // https://www.website.com
+                /**
+                 * https://www.website.com
+                 */
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
     @patch.object(CommentSpaceChecker, 'report_error')
     def test_skip_comment_in_strings(self, report_error):
-        self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            std::string str = "//";
-            ''',
-        )
+        self.checker.check_file(self.mock_file(), 'std::string str = "//";')
         report_error.assert_not_called()
 
 

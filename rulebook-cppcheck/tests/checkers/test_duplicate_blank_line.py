@@ -1,5 +1,6 @@
+from textwrap import dedent
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.duplicate_blank_line import DuplicateBlankLineChecker
 from ..tests import CheckerTestCase, assert_properties
@@ -14,28 +15,32 @@ class TestDuplicateBlankLineChecker(CheckerTestCase):
     @patch.object(DuplicateBlankLineChecker, 'report_error')
     def test_single_empty_line(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            void foo() {
+            self.mock_file(),
+            dedent(
+                '''
+                void foo() {
 
-            }
-            ''',
+                }
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
     @patch.object(DuplicateBlankLineChecker, 'report_error')
     def test_multiple_empty_lines(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
+            self.mock_file(),
+            dedent(
+                '''
 
-            class Bar {
-                void foo() {
+                class Bar {
+                    void foo() {
 
 
+                    }
                 }
-            }
-            ''',
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         calls = report_error.call_args_list

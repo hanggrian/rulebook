@@ -13,18 +13,12 @@ class TestFileSizeChecker(CheckerTestCase):
 
     @patch.object(FileSizeChecker, 'report_error')
     def test_small_file(self, report_error):
-        self.checker.check_file(
-            self.mock_file(),
-            'int x = 0;',
-        )
+        self.checker.check_file(self.mock_file(), 'int x = 0;')
         report_error.assert_not_called()
 
     @patch.object(FileSizeChecker, 'report_error')
     def test_large_file(self, report_error):
-        self.checker.check_file(
-            self.mock_file(),
-            '// a\n' * 1001,
-        )
+        self.checker.check_file(self.mock_file(), '// a\n' * 1001)
         report_error.assert_called_once()
         args, _ = report_error.call_args
         self.assertEqual(args[1], "Reduce file size to '1000'.")

@@ -13,5 +13,5 @@ class DuplicateBlankLineInCommentCheckTest : CheckTest() {
 
     @Test
     fun `Multiple empty lines in EOL comment`() =
-        assertAll("DuplicateBlankLineInComment2", "7:9: Remove consecutive blank line after //.")
+        assertAll("DuplicateBlankLineInComment2", "7:9: Remove consecutive blank line after '//'.")
 }

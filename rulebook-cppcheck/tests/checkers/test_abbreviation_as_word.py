@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,9 +16,11 @@ class TestAbbreviationAsWordChecker(CheckerTestCase):
     def test_class_names_with_lowercase_abbreviation(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                class MySqlClass {}
-                ''',
+                dedent(
+                    '''
+                    class MySqlClass {}
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -26,9 +29,11 @@ class TestAbbreviationAsWordChecker(CheckerTestCase):
     def test_class_names_with_uppercase_abbreviation(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                class MySQLClass {}
-                ''',
+                dedent(
+                    '''
+                    class MySQLClass {}
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_called_once_with(

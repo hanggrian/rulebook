@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,14 +16,16 @@ class TestIllegalThrowChecker(CheckerTestCase):
     def test_throw_narrow_exceptions(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    throw std::invalid_argument("foo");
-                }
-                void bar() {
-                    throw std::runtime_error("bar");
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        throw std::invalid_argument("foo");
+                    }
+                    void bar() {
+                        throw std::runtime_error("bar");
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -31,11 +34,13 @@ class TestIllegalThrowChecker(CheckerTestCase):
     def test_throw_broad_exceptions(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    throw std::exception();
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        throw std::exception();
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(
@@ -47,12 +52,14 @@ class TestIllegalThrowChecker(CheckerTestCase):
     def test_skip_throwing_by_reference(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    auto e = std::exception();
-                    throw e;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        auto e = std::exception();
+                        throw e;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()

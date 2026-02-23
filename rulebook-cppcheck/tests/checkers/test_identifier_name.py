@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,10 +16,12 @@ class TestIdentifierNameChecker(CheckerTestCase):
     def test_valid_names(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                int valid_variable = 0;
-                void valid_function() {}
-                ''',
+                dedent(
+                    '''
+                    int valid_variable = 0;
+                    void valid_function() {}
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -27,11 +30,13 @@ class TestIdentifierNameChecker(CheckerTestCase):
     def test_invalid_variable_name(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    int invalidVariable = 0;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        int invalidVariable = 0;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(
@@ -43,9 +48,11 @@ class TestIdentifierNameChecker(CheckerTestCase):
     def test_invalid_function_name(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void InvalidFunction() {}
-                ''',
+                dedent(
+                    '''
+                    void InvalidFunction() {}
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(

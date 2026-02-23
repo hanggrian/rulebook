@@ -15,10 +15,10 @@ class ParenthesesTrimCheckTest : CheckTest() {
     fun `Parentheses with newline padding`() =
         assertAll(
             "ParenthesesTrim2",
-            "5: Remove blank line after (.",
-            "7: Remove blank line before ).",
-            "10: Remove blank line after (.",
-            "12: Remove blank line before ).",
+            "5: Remove blank line after '('.",
+            "7: Remove blank line before ')'.",
+            "10: Remove blank line after '('.",
+            "12: Remove blank line before ')'.",
         )
 
     @Test

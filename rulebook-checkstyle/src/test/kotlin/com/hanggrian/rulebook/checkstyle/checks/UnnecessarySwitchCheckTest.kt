@@ -13,7 +13,7 @@ class UnnecessarySwitchCheckTest : CheckTest() {
 
     @Test
     fun `Single switch branch`() =
-        assertAll("UnnecessarySwitch2", "5:9: Replace switch with if condition.")
+        assertAll("UnnecessarySwitch2", "5:9: Replace 'switch' with 'if' condition.")
 
     @Test
     fun `Skip single branch if it has fall through condition`() = assertAll("UnnecessarySwitch3")

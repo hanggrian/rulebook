@@ -12,6 +12,8 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
+    ktlintRuleset(project(":codecheck"))
+
     api(libs.codenarc)
 
     implementation(libs.groovy)

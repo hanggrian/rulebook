@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,12 +16,14 @@ class TestParameterWrapChecker(CheckerTestCase):
     def test_single_line_parameters(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(int a, int b) {}
-                void bar() {
-                    foo(string("0").c_str(), 0);
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(int a, int b) {}
+                    void bar() {
+                        foo(string("0").c_str(), 0);
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -29,19 +32,21 @@ class TestParameterWrapChecker(CheckerTestCase):
     def test_multiline_parameters_each_with_newline(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(
-                    int a,
-                    int b
-                ) {}
-                void bar() {
-                    foo(
-                        string("0")
-                            .c_str(),
-                        0
-                    );
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(
+                        int a,
+                        int b
+                    ) {}
+                    void bar() {
+                        foo(
+                            string("0")
+                                .c_str(),
+                            0
+                        );
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -50,21 +55,23 @@ class TestParameterWrapChecker(CheckerTestCase):
     def test_multiline_parameters_each_without_newline(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(
-                    int a, int b
-                ) {}
-                void bar() {
-                    foo(
-                        string("0")
-                            .c_str(), 0
-                    );
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(
+                        int a, int b
+                    ) {}
+                    void bar() {
+                        foo(
+                            string("0")
+                                .c_str(), 0
+                        );
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(
-            next(t for t in tokens if t.str == 'int' and t.linenr == 3 and t.column == 28),
+            next(t for t in tokens if t.str == 'int' and t.linenr == 3 and t.column == 12),
             'Break each parameter into newline.',
         )
 
@@ -72,15 +79,17 @@ class TestParameterWrapChecker(CheckerTestCase):
     def test_multiline_parameters_each_hugging_parenthesis(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(int a,
-                        int b) {}
-                void bar() {
-                    foo(string("0")
-                            .c_str(),
-                        0);
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(int a,
+                            int b) {}
+                    void bar() {
+                        foo(string("0")
+                                .c_str(),
+                            0);
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -89,12 +98,14 @@ class TestParameterWrapChecker(CheckerTestCase):
     def test_aware_of_chained_single_line_calls(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    string("0")
-                        .append("Hello", 1, 2);
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        string("0")
+                            .append("Hello", 1, 2);
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -103,15 +114,17 @@ class TestParameterWrapChecker(CheckerTestCase):
     def test_allow_comments_between_parameters(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(
-                    int a,
-                    // Comment
-                    int b,
-                    /* Block comment */
-                    int c
-                ) {}
-                ''',
+                dedent(
+                    '''
+                    void foo(
+                        int a,
+                        // Comment
+                        int b,
+                        /* Block comment */
+                        int c
+                    ) {}
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -120,14 +133,16 @@ class TestParameterWrapChecker(CheckerTestCase):
     def test_allow_sam(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    execute([]() {
-                        bar();
-                        bar();
-                    });
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        execute([]() {
+                            bar();
+                            bar();
+                        });
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()

@@ -1,5 +1,6 @@
+from textwrap import dedent
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
@@ -15,31 +16,35 @@ class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):
     @patch.object(DuplicateBlankLineInBlockCommentChecker, 'report_error')
     def test_single_empty_line_in_block_comment(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            /**
-             * Lorem ipsum
-             *
-             * dolor sit amet.
-             */
-            void foo() {}
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                /**
+                 * Lorem ipsum
+                 *
+                 * dolor sit amet.
+                 */
+                void foo() {}
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
     @patch.object(DuplicateBlankLineInBlockCommentChecker, 'report_error')
     def test_multiple_empty_lines_in_block_comment(self, report_error):
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            /**
-             * Lorem ipsum
-             *
-             *
-             * dolor sit amet.
-             */
-            void foo() {}
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                /**
+                 * Lorem ipsum
+                 *
+                 *
+                 * dolor sit amet.
+                 */
+                void foo() {}
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 1)
         args, _ = report_error.call_args

@@ -9,6 +9,7 @@ cd "$SOURCE_ROOT/.." || exit
 
 pip install -r requirements-dev.txt
 pip install -r website/requirements.txt
+pip install -e codecheck/
 pip install -e rulebook-cppcheck/
 pip install -e rulebook-pylint/
 

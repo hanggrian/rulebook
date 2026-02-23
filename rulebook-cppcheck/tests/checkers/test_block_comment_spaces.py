@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,17 +16,19 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
     def test_untrimmed_block_comment(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /** Summary. */
-            fun foo() {}
+            dedent(
+                '''
+                /** Summary. */
+                fun foo() {}
 
-            /**
-             * Summary.
-             *
-             * @param num description.
-             */
-            fun bar(num: Int) {}
-            ''',
+                /**
+                 * Summary.
+                 *
+                 * @param num description.
+                 */
+                fun bar(num: Int) {}
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -33,17 +36,19 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
     def test_trimmed_block_comment(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**Summary.*/
-            fun foo() {}
+            dedent(
+                '''
+                /**Summary.*/
+                fun foo() {}
 
-            /**
-             *Summary.
-             *
-             *@param num description.
-             */
-            fun bar(num: Int) {}
-            ''',
+                /**
+                 *Summary.
+                 *
+                 *@param num description.
+                 */
+                fun bar(num: Int) {}
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 4)
         calls = report_error.call_args_list
@@ -60,16 +65,18 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
     def test_unconventional_block_tags(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**
-             *Summary.
-             *
-             *@param num description.
-             *@goodtag
-             *@awesometag with description.
-             */
-            fun foo(num: Int) {}
-            ''',
+            dedent(
+                '''
+                /**
+                 *Summary.
+                 *
+                 *@param num description.
+                 *@goodtag
+                 *@awesometag with description.
+                 */
+                fun foo(num: Int) {}
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 4)
         calls = report_error.call_args_list

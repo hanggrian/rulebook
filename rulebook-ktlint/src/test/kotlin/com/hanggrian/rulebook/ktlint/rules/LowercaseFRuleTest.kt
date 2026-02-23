@@ -15,7 +15,7 @@ class LowercaseFRuleTest : RuleTest() {
     fun `Lowercase literal floats`() =
         assertThatCode(
             """
-            val foo = 0f
+            val foo = 0.0f
 
             fun bar() {
                 println(123f)
@@ -27,14 +27,14 @@ class LowercaseFRuleTest : RuleTest() {
     fun `Uppercase literal floats`() =
         assertThatCode(
             """
-            val foo = 0F
+            val foo = 0.0F
 
             fun bar() {
                 println(123F)
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 13, "Tag float literal by 'f'."),
+            LintViolation(1, 15, "Tag float literal by 'f'."),
             LintViolation(4, 17, "Tag float literal by 'f'."),
         )
 }

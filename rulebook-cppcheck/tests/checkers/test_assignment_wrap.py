@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -21,12 +22,14 @@ class TestAssignmentWrapChecker(CheckerTestCase):
     def test_multiline_assignment_with_breaking_assignee(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    int bar =
-                        1 + 2;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        int bar =
+                            1 + 2;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -35,12 +38,14 @@ class TestAssignmentWrapChecker(CheckerTestCase):
     def test_multiline_assignment_with_non_breaking_assignee(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    int bar = 1 +
-                        2;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        int bar = 1 +
+                            2;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(
@@ -52,12 +57,14 @@ class TestAssignmentWrapChecker(CheckerTestCase):
     def test_multiline_variable_but_single_line_value(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(Bar bar) {
-                    bar
-                        .baz = 1;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(Bar bar) {
+                        bar
+                            .baz = 1;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -66,15 +73,17 @@ class TestAssignmentWrapChecker(CheckerTestCase):
     def test_allow_comments_after_assign_operator(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    int bar = // Comment
-                        1 + 2;
-                    int baz = /* Short comment */
-                        1 + 2;
-                    int qux = /** Long comment */ 1 + 2;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        int bar = // Comment
+                            1 + 2;
+                        int baz = /* Short comment */
+                            1 + 2;
+                        int qux = /** Long comment */ 1 + 2;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -83,14 +92,16 @@ class TestAssignmentWrapChecker(CheckerTestCase):
     def test_skip_lambda_initializers(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    auto bar = [](int a) {
-                        cout << a;
-                    };
-                    auto baz = [](int a) cout << a;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        auto bar = [](int a) {
+                            cout << a;
+                        };
+                        auto baz = [](int a) cout << a;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -99,18 +110,20 @@ class TestAssignmentWrapChecker(CheckerTestCase):
     def test_skip_collection_initializers(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo() {
-                    vector<int> bar = {
-                        1,
-                        2
-                    };
-                    map<string, int> baz = {
-                        {"a", 1},
-                        {"b", 2}
-                    };
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo() {
+                        vector<int> bar = {
+                            1,
+                            2
+                        };
+                        map<string, int> baz = {
+                            {"a", 1},
+                            {"b", 2}
+                        };
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()

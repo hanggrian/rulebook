@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,21 +16,23 @@ class TestRedundantDefaultChecker(CheckerTestCase):
     def test_no_throw_or_return_in_case(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(int bar) {
-                    switch (bar) {
-                        case 0:
-                            baz();
-                            break;
-                        case 1:
-                            baz();
-                            break;
-                        default:
-                            baz();
-                            break;
+                dedent(
+                    '''
+                    void foo(int bar) {
+                        switch (bar) {
+                            case 0:
+                                baz();
+                                break;
+                            case 1:
+                                baz();
+                                break;
+                            default:
+                                baz();
+                                break;
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -38,19 +41,21 @@ class TestRedundantDefaultChecker(CheckerTestCase):
     def test_lift_else_when_case_has_return(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(int bar) {
-                    switch (bar) {
-                        case 0:
-                            throw std::exception();
-                        case 1:
-                            return;
-                        default:
-                            baz();
-                            break;
+                dedent(
+                    '''
+                    void foo(int bar) {
+                        switch (bar) {
+                            case 0:
+                                throw std::exception();
+                            case 1:
+                                return;
+                            default:
+                                baz();
+                                break;
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_called_once_with(
@@ -62,20 +67,22 @@ class TestRedundantDefaultChecker(CheckerTestCase):
     def test_skip_if_not_all_case_blocks_have_jump_statement(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(int bar) {
-                    switch (bar) {
-                        case 0:
-                            return;
-                        case 1:
-                            baz();
-                            break;
-                        default:
-                            baz();
-                            break;
+                dedent(
+                    '''
+                    void foo(int bar) {
+                        switch (bar) {
+                            case 0:
+                                return;
+                            case 1:
+                                baz();
+                                break;
+                            default:
+                                baz();
+                                break;
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()

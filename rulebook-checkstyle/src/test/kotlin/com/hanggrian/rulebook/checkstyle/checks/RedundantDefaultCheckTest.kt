@@ -13,7 +13,7 @@ class RedundantDefaultCheckTest : CheckTest() {
 
     @Test
     fun `Lift else when case has return`() =
-        assertAll("RedundantDefault2", "10:13: Omit redundant default condition.")
+        assertAll("RedundantDefault2", "10:13: Omit redundant 'default' condition.")
 
     @Test
     fun `Skip if not all case blocks have jump statement`() = assertAll("RedundantDefault3")

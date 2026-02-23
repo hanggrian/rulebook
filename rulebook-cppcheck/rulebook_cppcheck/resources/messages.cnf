@@ -6,6 +6,7 @@ todo.comment.separator=Omit separator '{}'.
 parentheses.clip=Convert into '{}'.
 # Declaring
 lowercase.f=Tag float literal by 'f'.
+lowercase.hex=Use hexadecimal '{}'.
 uppercase.l=Tag long literal by 'L'.
 # Formatting
 empty.file=Delete the empty file.

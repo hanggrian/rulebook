@@ -11,6 +11,8 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
+    ktlintRuleset(project(":codecheck"))
+
     implementation(libs.ktlint.rule.engine.core)
     implementation(libs.ktlint.cli.ruleset.core)
 

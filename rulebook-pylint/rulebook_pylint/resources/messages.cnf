@@ -8,6 +8,7 @@ block.comment.clip=Convert into single-line.
 parentheses.clip=Convert into '%s'.
 # Declaring
 exception.inheritance=Extend from class 'Exception'.
+lowercase.hex=Use hexadecimal '%s'.
 unnecessary.abstract=Omit 'abstract' modifier.
 # Formatting
 file.size=Reduce file size to '%d'.

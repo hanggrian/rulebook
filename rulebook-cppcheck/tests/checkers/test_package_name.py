@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,11 +16,13 @@ class TestPackageNameChecker(CheckerTestCase):
     def test_valid_namespace(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                namespace my_namespace {
-                    int x = 0;
-                }
-                ''',
+                dedent(
+                    '''
+                    namespace my_namespace {
+                        int x = 0;
+                    }
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -28,17 +31,19 @@ class TestPackageNameChecker(CheckerTestCase):
     def test_invalid_namespaces(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                namespace MyNamespace {
-                    int x = 0;
-                }
-                namespace xmlParser {
-                    int x = 0;
-                }
-                namespace UIHandler {
-                    int x = 0;
-                }
-                ''',
+                dedent(
+                    '''
+                    namespace MyNamespace {
+                        int x = 0;
+                    }
+                    namespace xmlParser {
+                        int x = 0;
+                    }
+                    namespace UIHandler {
+                        int x = 0;
+                    }
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_has_calls(

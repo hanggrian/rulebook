@@ -11,6 +11,8 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
+    ktlintRuleset(project(":codecheck"))
+
     implementation(libs.checkstyle)
 
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))

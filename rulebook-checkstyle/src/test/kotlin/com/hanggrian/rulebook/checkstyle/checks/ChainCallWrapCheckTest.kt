@@ -15,21 +15,21 @@ class ChainCallWrapCheckTest : CheckTest() {
     fun `Misaligned chain method call continuation`() =
         assertAll(
             "ChainCallWrap2",
-            "8:13: Omit newline before ..",
-            "17:13: Omit newline before ..",
+            "8:13: Omit newline before '.'.",
+            "17:13: Omit newline before '.'.",
         )
 
     @Test
     fun `Inconsistent dot position`() =
         assertAll(
             "ChainCallWrap3",
-            "7:23: Put newline before ..",
-            "11:14: Put newline before ..",
+            "7:23: Put newline before '.'.",
+            "11:14: Put newline before '.'.",
         )
 
     @Test
     fun `Also capture non-method call`() =
-        assertAll("ChainCallWrap4", "6:19: Put newline before ..")
+        assertAll("ChainCallWrap4", "6:19: Put newline before '.'.")
 
     @Test
     fun `Allow dots on single-line`() = assertAll("ChainCallWrap5")

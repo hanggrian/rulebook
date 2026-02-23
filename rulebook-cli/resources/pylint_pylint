@@ -51,6 +51,7 @@ load-plugins=
   # Declaring
   pylint.extensions.docstyle,
   rulebook_pylint.checkers.exception_inheritance,
+  rulebook_pylint.checkers.lowercase_hex,
   pylint.checkers.strings,
   rulebook_pylint.checkers.unnecessary_abstract,
   # Formatting

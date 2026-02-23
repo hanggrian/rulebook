@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,16 +16,18 @@ class TestMemberSeparatorChecker(CheckerTestCase):
     def test_single_line_members_with_separator(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                class Foo {
-                public:
-                    int bar = 0;
+                dedent(
+                    '''
+                    class Foo {
+                    public:
+                        int bar = 0;
 
-                    Foo() {}
+                        Foo() {}
 
-                    void baz() {}
-                };
-                ''',
+                        void baz() {}
+                    };
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -33,20 +36,22 @@ class TestMemberSeparatorChecker(CheckerTestCase):
     def test_single_line_members_without_separator(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                class Foo {
-                public:
-                    int bar = 0;
-                    Foo() {}
-                    void baz() {}
-                };
-                ''',
+                dedent(
+                    '''
+                    class Foo {
+                    public:
+                        int bar = 0;
+                        Foo() {}
+                        void baz() {}
+                    };
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_has_calls(
             [
                 call(
-                    next(t for t in tokens if t.str == ';' and t.linenr == 4 and t.column == 32),
+                    next(t for t in tokens if t.str == ';' and t.linenr == 4 and t.column == 16),
                     "Add blank line after 'property'.",
                 ),
                 call(
@@ -60,22 +65,24 @@ class TestMemberSeparatorChecker(CheckerTestCase):
     def test_multiline_members_with_separator(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                class Foo {
-                public:
-                    int bar =
-                        1 +
-                        2;
+                dedent(
+                    '''
+                    class Foo {
+                    public:
+                        int bar =
+                            1 +
+                            2;
 
-                    Foo() {
-                        cout << "Hello world";
-                    }
+                        Foo() {
+                            cout << "Hello world";
+                        }
 
-                    void baz() {
-                        cout << "Hello world";
-                    }
-                };
-                ''',
+                        void baz() {
+                            cout << "Hello world";
+                        }
+                    };
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -84,20 +91,22 @@ class TestMemberSeparatorChecker(CheckerTestCase):
     def test_multiline_members_without_separator(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                class Foo {
-                public:
-                    int bar =
-                        1 +
-                        2;
-                    Foo() {
-                        cout << "Hello world";
-                    }
-                    void baz() {
-                        cout << "Hello world";
-                    }
-                };
-                ''',
+                dedent(
+                    '''
+                    class Foo {
+                    public:
+                        int bar =
+                            1 +
+                            2;
+                        Foo() {
+                            cout << "Hello world";
+                        }
+                        void baz() {
+                            cout << "Hello world";
+                        }
+                    };
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_has_calls(
@@ -117,16 +126,18 @@ class TestMemberSeparatorChecker(CheckerTestCase):
     def test_skip_fields_grouped_together(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                class Foo {
-                public:
-                    int bar = 1;
-                    int baz = 2;
-                    int qux =
-                        3 +
-                        4;
-                };
-                ''',
+                dedent(
+                    '''
+                    class Foo {
+                    public:
+                        int bar = 1;
+                        int baz = 2;
+                        int qux =
+                            3 +
+                            4;
+                    };
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()

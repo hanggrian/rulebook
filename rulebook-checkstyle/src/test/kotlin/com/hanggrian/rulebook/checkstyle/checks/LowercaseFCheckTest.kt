@@ -15,7 +15,7 @@ class LowercaseFCheckTest : CheckTest() {
     fun `Uppercase literal floats`() =
         assertAll(
             "LowercaseF2",
-            "4:17: Tag float literal by f.",
-            "7:28: Tag float literal by f.",
+            "4:17: Tag float literal by 'f'.",
+            "7:28: Tag float literal by 'f'.",
         )
 }

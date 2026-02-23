@@ -15,13 +15,13 @@ class BlockCommentTrimCheckTest : CheckTest() {
     fun `Block tag description with final newline`() =
         assertAll(
             "BlockCommentTrim2",
-            "4:8: Remove blank line after /**.",
-            "7:7: Remove blank line before */.",
+            "4:8: Remove blank line after '/**'.",
+            "7:7: Remove blank line before '*/'.",
         )
 
     @Test
     fun `Skip single-line block comment`() =
-        assertAll("BlockCommentTrim3", "6:7: Remove blank line before */.")
+        assertAll("BlockCommentTrim3", "6:7: Remove blank line before '*/'.")
 
     @Test
     fun `Skip blank block comment`() = assertAll("BlockCommentTrim4")

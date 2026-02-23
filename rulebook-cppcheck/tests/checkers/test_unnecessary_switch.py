@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,18 +16,20 @@ class TestUnnecessarySwitchChecker(CheckerTestCase):
     def test_multiple_switch_branches(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0:
-                            baz()
-                            break
-                        case 1:
-                            baz()
-                            break
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0:
+                                baz()
+                                break
+                            case 1:
+                                baz()
+                                break
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -35,15 +38,17 @@ class TestUnnecessarySwitchChecker(CheckerTestCase):
     def test_single_switch_branch(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0:
-                            baz()
-                            break
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0:
+                                baz()
+                                break
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_called_once_with(
@@ -55,16 +60,18 @@ class TestUnnecessarySwitchChecker(CheckerTestCase):
     def test_skip_single_branch_if_it_has_fall_through_condition(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0:
-                        case 1:
-                            baz()
-                            break
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0:
+                            case 1:
+                                baz()
+                                break
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()

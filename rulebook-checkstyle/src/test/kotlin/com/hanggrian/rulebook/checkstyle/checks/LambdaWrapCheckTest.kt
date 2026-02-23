@@ -18,7 +18,7 @@ class LambdaWrapCheckTest : CheckTest() {
     fun `Multiline lambda expression without newline`() =
         assertAll(
             "LambdaWrap3",
-            "7:50: Put newline after ->.",
-            "11:28: Put newline after ->.",
+            "7:50: Put newline after '->'.",
+            "11:28: Put newline after '->'.",
         )
 }

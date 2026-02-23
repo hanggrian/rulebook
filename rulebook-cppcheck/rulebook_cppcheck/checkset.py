@@ -30,6 +30,7 @@ from rulebook_cppcheck.checkers.indent_style import IndentStyleChecker
 from rulebook_cppcheck.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
 from rulebook_cppcheck.checkers.lowercase_f import LowercaseFChecker
+from rulebook_cppcheck.checkers.lowercase_hex import LowercaseHexChecker
 from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_cppcheck.checkers.member_order import MemberOrderChecker
 from rulebook_cppcheck.checkers.member_separator import MemberSeparatorChecker
@@ -58,6 +59,7 @@ if __name__ == '__main__':
         ParenthesesClipChecker(),
         # Declaring
         LowercaseFChecker(),
+        LowercaseHexChecker(),
         UppercaseLChecker(),
         # Formatting
         FileSizeChecker(),

@@ -51,6 +51,7 @@ load-plugins=
   # Declaring
   pylint.extensions.docstyle,
   rulebook_pylint.checkers.exception_inheritance,
+  rulebook_pylint.checkers.lowercase_hex,
   pylint.checkers.strings,
   rulebook_pylint.checkers.unnecessary_abstract,
   # Formatting
@@ -84,6 +85,8 @@ load-plugins=
   rulebook_pylint.checkers.parentheses_trim,
   # Wrapping
   rulebook_pylint.checkers.parameter_wrap,
+  # Internal
+  codecheck.url_in_documentation,
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
 # number of processors available to use.

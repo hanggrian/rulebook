@@ -37,8 +37,10 @@ import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
 import com.hanggrian.rulebook.ktlint.rules.RootProjectNameRule
+import com.hanggrian.rulebook.ktlint.rules.ScriptFileNameRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryAbstractRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryBracesRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryInitialBlankLineRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryScopeRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessarySwitchRule
@@ -80,6 +82,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { DecentralizedDependencyRule() },
             RuleProvider { EagerApiRule() },
             RuleProvider { RootProjectNameRule() },
+            RuleProvider { ScriptFileNameRule() },
             RuleProvider { UnnecessaryScopeRule() },
             // Spacing
             RuleProvider { BlockCommentSpacesRule() },
@@ -91,6 +94,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { NestedIfElseRule() },
             RuleProvider { RedundantDefaultRule() },
             RuleProvider { RedundantElseRule() },
+            RuleProvider { UnnecessaryBracesRule() },
             RuleProvider { UnnecessarySwitchRule() },
             // Trimming
             RuleProvider { BlockCommentTrimRule() },

@@ -52,14 +52,14 @@ class AllChecksTest : AbstractModuleTestSupport() {
         verify(
             checker,
             getPath("Checker.java"),
-            "64: Remove blank line after {.",
+            "64: Remove blank line after '{'.",
             "72:5: Arrange member 'property' before 'static member'.",
             "75:54: Break assignment into newline.",
-            "183:9: Invert if condition.",
+            "183:9: Invert 'if' condition.",
             "223:40: Break assignment into newline.",
-            "223:45: Put newline before ..",
-            "248:22: Put newline before ..",
-            "254:13: Omit newline before ..",
+            "223:45: Put newline before '.'.",
+            "248:22: Put newline before '.'.",
+            "254:13: Omit newline before '.'.",
             "312:85: Break each parameter into newline.",
             "346:48: Break each parameter into newline.",
             "347:50: Break each parameter into newline.",
@@ -68,14 +68,14 @@ class AllChecksTest : AbstractModuleTestSupport() {
             "363:48: Break each parameter into newline.",
             "365:31: Break each parameter into newline.",
             "365:35: Break each parameter into newline.",
-            "409:13: Invert if condition.",
+            "409:13: Invert 'if' condition.",
             "446:46: Break assignment into newline.",
             "484:89: Break each parameter into newline.",
-            "551:9: Invert if condition.",
+            "551:9: Invert 'if' condition.",
             "658:55: Break assignment into newline.",
             "659:52: Break each parameter into newline.",
             "660:25: Break each parameter into newline.",
-            "664: Remove blank line before }.",
+            "664: Remove blank line before '}'.",
         )
 
     @Test
@@ -107,7 +107,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
             "156:44: Break each parameter into newline.",
             "156:55: Break each parameter into newline.",
             "186:5: Arrange member 'function' before 'static member'.",
-            "200:11: Lift else and add return in if block.",
+            "200:11: Lift 'else' and add 'return' in 'if' block.",
         )
 
     @Test
@@ -115,11 +115,11 @@ class AllChecksTest : AbstractModuleTestSupport() {
         verify(
             checker,
             getPath("StringSubject.java"),
-            "217:9: Invert if condition.",
-            "270:15: Lift else and add return in if block.",
+            "217:9: Invert 'if' condition.",
+            "270:15: Lift 'else' and add 'return' in 'if' block.",
             "273:74: Break each parameter into newline.",
             "273:88: Break each parameter into newline.",
-            "291:15: Lift else and add return in if block.",
+            "291:15: Lift 'else' and add 'return' in 'if' block.",
             "294:71: Break each parameter into newline.",
             "294:85: Break each parameter into newline.",
             "310:66: Break each parameter into newline.",

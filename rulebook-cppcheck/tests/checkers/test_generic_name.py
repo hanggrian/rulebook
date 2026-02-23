@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,10 +16,12 @@ class TestGenericNameChecker(CheckerTestCase):
     def test_correct_generic_name_in_class(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                template <typename T> class MyClass {}
-                template <class V> interface MyInterface {}
-                ''',
+                dedent(
+                    '''
+                    template <typename T> class MyClass {}
+                    template <class V> interface MyInterface {}
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -27,13 +30,15 @@ class TestGenericNameChecker(CheckerTestCase):
     def test_incorrect_generic_name_in_class(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                template <typename XA> class MyClass {}
-                template <typename Xa> class MyClass2 {}
-                template <typename aX> class MyClass3 {}
-                template <typename a_x> class MyClass4 {}
-                template <typename A_X> class MyClass5 {}
-                ''',
+                dedent(
+                    '''
+                    template <typename XA> class MyClass {}
+                    template <typename Xa> class MyClass2 {}
+                    template <typename aX> class MyClass3 {}
+                    template <typename a_x> class MyClass4 {}
+                    template <typename A_X> class MyClass5 {}
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_has_calls(
@@ -71,10 +76,12 @@ class TestGenericNameChecker(CheckerTestCase):
     def test_incorrect_generic_name_in_function(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                template <typename Xa> void execute() {}
-                template <typename aX> void execute2() {}
-                ''',
+                dedent(
+                    '''
+                    template <typename Xa> void execute() {}
+                    template <typename aX> void execute2() {}
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_has_calls(
@@ -94,10 +101,12 @@ class TestGenericNameChecker(CheckerTestCase):
     def test_skip_multiple_generics(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                template <typename Xa, typename Ax> class Foo {}
-                template <typename Bar, typename Baz> void bar() {}
-                ''',
+                dedent(
+                    '''
+                    template <typename Xa, typename Ax> class Foo {}
+                    template <typename Bar, typename Baz> void bar() {}
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -106,12 +115,14 @@ class TestGenericNameChecker(CheckerTestCase):
     def test_skip_inner_generics(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                template <typename T> class Foo {
-                    template <typename X> class Bar {}
-                    template <typename Y> void bar() {}
-                };
-                ''',
+                dedent(
+                    '''
+                    template <typename T> class Foo {
+                        template <typename X> class Bar {}
+                        template <typename Y> void bar() {}
+                    };
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()

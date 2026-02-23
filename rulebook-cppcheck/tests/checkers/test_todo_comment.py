@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,10 +16,12 @@ class TestTodoCommentChecker(CheckerTestCase):
     def test_uppercase_todo_comments(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            // TODO add tests
-            // FIXME fix bug
-            ''',
+            dedent(
+                '''
+                // TODO add tests
+                // FIXME fix bug
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -26,10 +29,12 @@ class TestTodoCommentChecker(CheckerTestCase):
     def test_lowercase_todo_comments(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            // todo add tests
-            // fixme fix bug
-            ''',
+            dedent(
+                '''
+                // todo add tests
+                // fixme fix bug
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         self.assertEqual(
@@ -45,10 +50,12 @@ class TestTodoCommentChecker(CheckerTestCase):
     def test_unknown_todo_comments(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            // TODO: add tests
-            // FIXME1 fix bug
-            ''',
+            dedent(
+                '''
+                // TODO: add tests
+                // FIXME1 fix bug
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         self.assertEqual(
@@ -64,13 +71,15 @@ class TestTodoCommentChecker(CheckerTestCase):
     def test_todos_in_block_comments(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /** todo add tests */
+            dedent(
+                '''
+                /** todo add tests */
 
-            /**
-             * FIXME: memory leak
-             */
-            ''',
+                /**
+                 * FIXME: memory leak
+                 */
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         self.assertEqual(
@@ -84,12 +93,7 @@ class TestTodoCommentChecker(CheckerTestCase):
 
     @patch.object(TodoCommentChecker, 'report_error')
     def test_todo_keyword_mid_sentence(self, report_error):
-        self.checker.check_file(
-            self.mock_file(),
-            '''
-            // Untested. Todo: add tests.
-            ''',
-        )
+        self.checker.check_file(self.mock_file(), '// Untested. Todo: add tests.')
         self.assertEqual(report_error.call_count, 2)
         self.assertEqual(
             report_error.call_args_list[0][0][1],

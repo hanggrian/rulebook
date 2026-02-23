@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,11 +16,13 @@ class TestDuplicateSpaceChecker(CheckerTestCase):
     def test_single_space_between_token(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(int bar, int baz) {
-                    int qux = 1 + 2;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(int bar, int baz) {
+                        int qux = 1 + 2;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -28,11 +31,13 @@ class TestDuplicateSpaceChecker(CheckerTestCase):
     def test_multiple_spaces_between_token(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                void foo(int bar, int baz) {
-                    int qux =  1  +  2;
-                }
-                ''',
+                dedent(
+                    '''
+                    void foo(int bar, int baz) {
+                        int qux =  1  +  2;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_has_calls(
@@ -48,11 +53,13 @@ class TestDuplicateSpaceChecker(CheckerTestCase):
     def test_skip_pointers(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                ssize_t read(struct device *dev, struct device_attribute *attr, char *buf) {
-                    char *device_type;
-                }
-                ''',
+                dedent(
+                    '''
+                    ssize_t read(struct device *dev, struct device_attribute *attr, char *buf) {
+                        char *device_type;
+                    }
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()
@@ -61,9 +68,11 @@ class TestDuplicateSpaceChecker(CheckerTestCase):
     def test_skip_arrays(self, report_error):
         tokens, _ = \
             self.dump_code(
-                '''
-                static const struct hid_device_id razer_devices[] = {};
-                ''',
+                dedent(
+                    '''
+                    static const struct hid_device_id razer_devices[] = {};
+                    ''',
+                ),
             )
         self.checker.process_tokens(tokens)
         report_error.assert_not_called()

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 class DuplicateSpaceChecker(RulebookTokenChecker):
-    """See wiki: https://github.com/hanggrian/rulebook/wiki/Rules/#duplicate-space"""
+    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-space"""
     _MSG: str = 'duplicate.space'
 
     name: str = 'duplicate-space'

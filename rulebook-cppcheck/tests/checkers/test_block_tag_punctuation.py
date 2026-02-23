@@ -1,5 +1,6 @@
+from textwrap import dedent
 from unittest import main
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from rulebook_cppcheck.checkers.block_tag_punctuation import BlockTagPunctuationChecker
 from ..tests import CheckerTestCase, assert_properties
@@ -17,14 +18,16 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
             'punctuate-block-tags': '@constructor,@receiver,@property,@param,@return',
         })
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            /**
-             * @param num
-             * @return
-             */
-            int add(int num) {}
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                /**
+                 * @param num
+                 * @return
+                 */
+                int add(int num) {}
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -34,14 +37,16 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
             'punctuate-block-tags': '@constructor,@receiver,@property,@param,@return',
         })
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            /**
-             * @param num value.
-             * @return total value.
-             */
-            int add(int num) {}
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                /**
+                 * @param num value.
+                 * @return total value.
+                 */
+                int add(int num) {}
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -51,14 +56,16 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
             'punctuate-block-tags': '@constructor,@receiver,@property,@param,@return',
         })
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            /**
-             * @param num value
-             * @return total value
-             */
-            int add(int num) {}
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                /**
+                 * @param num value
+                 * @return total value
+                 */
+                int add(int num) {}
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         calls = report_error.call_args_list
@@ -73,16 +80,18 @@ class TestBlockTagPunctuationChecker(CheckerTestCase):
             'punctuate-block-tags': '@constructor,@receiver,@property,@param,@return',
         })
         self.checker.check_file(
-            MagicMock(file='test.c'),
-            '''
-            /**
-             * @param num
-             *     value
-             * @return total
-             *     value
-             */
-            int add(int num) {}
-            ''',
+            self.mock_file(),
+            dedent(
+                '''
+                /**
+                 * @param num
+                 *     value
+                 * @return total
+                 *     value
+                 */
+                int add(int num) {}
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         calls = report_error.call_args_list

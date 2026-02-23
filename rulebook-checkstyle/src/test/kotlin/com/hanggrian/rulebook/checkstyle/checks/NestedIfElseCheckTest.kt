@@ -15,13 +15,13 @@ class NestedIfElseCheckTest : CheckTest() {
     fun `Invert if with multiline statement or two statements`() =
         assertAll(
             "NestedIfElse2",
-            "5:9: Invert if condition.",
-            "12:9: Invert if condition.",
+            "5:9: Invert 'if' condition.",
+            "12:9: Invert 'if' condition.",
         )
 
     @Test
     fun `Lift else when there is no else if`() =
-        assertAll("NestedIfElse3", "7:11: Lift else and add return in if block.")
+        assertAll("NestedIfElse3", "7:11: Lift 'else' and add 'return' in 'if' block.")
 
     @Test
     fun `Skip else if`() = assertAll("NestedIfElse4")
@@ -30,7 +30,7 @@ class NestedIfElseCheckTest : CheckTest() {
     fun `Skip block with jump statement`() = assertAll("NestedIfElse5")
 
     @Test
-    fun `Capture trailing non-ifs`() = assertAll("NestedIfElse6", "5:9: Invert if condition.")
+    fun `Capture trailing non-ifs`() = assertAll("NestedIfElse6", "5:9: Invert 'if' condition.")
 
     @Test
     fun `Skip recursive if-else because it is not safe to return in inner blocks`() =

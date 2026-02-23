@@ -136,6 +136,23 @@ def getColors(
 }
 ```
 
+## Use else-if
+
+Single if statement in an else block should be converted to an else-if
+statement.
+
+```kotlin hl_lines="3"
+if (x > 0) {
+    println("Positive")
+} else {
+    if (x < 0) {
+        println("Negative")
+    } else {
+        println("Zero")
+    }
+}
+```
+
 ## Use named object directly
 
 Single calls in Gradle `NamedDomainObjectContainer` should not be wrapped in a

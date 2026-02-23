@@ -564,6 +564,7 @@
     <module name="NestedIfElse"/>
     <module name="RedundantDefault"/>
     <module name="RedundantElse"/>
+    <module name="UnnecessaryBraces"/>
     <module name="UnnecessarySwitch"/>
 
     <!-- Trimming -->

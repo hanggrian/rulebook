@@ -48,6 +48,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.DecentralizedDependencyRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.EagerApiRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ScriptFileNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule"/>
 
   <!-- Spacing -->
@@ -60,6 +61,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantDefaultRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantElseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryBracesRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessarySwitchRule"/>
 
   <!-- Trimming -->

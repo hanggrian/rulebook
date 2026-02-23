@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
@@ -15,12 +16,14 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     def test_block_comment_without_initial_and_final_newline(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**
-             * Lorem ipsum.
-             */
-            void foo() {}
-            ''',
+            dedent(
+                '''
+                /**
+                 * Lorem ipsum.
+                 */
+                void foo() {}
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -28,15 +31,17 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     def test_block_comment_with_initial_and_final_newline(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**
-             *
-             * Lorem ipsum.
-             *
-             *
-             */
-            void foo() {}
-            ''',
+            dedent(
+                '''
+                /**
+                 *
+                 * Lorem ipsum.
+                 *
+                 *
+                 */
+                void foo() {}
+                ''',
+            ),
         )
         self.assertEqual(report_error.call_count, 2)
         calls = report_error.call_args_list
@@ -49,13 +54,15 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     def test_block_tag_description_with_final_newline(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**
-             * @return a number.
-             *
-             */
-            int foo() {}
-            ''',
+            dedent(
+                '''
+                /**
+                 * @return a number.
+                 *
+                 */
+                int foo() {}
+                ''',
+            ),
         )
         report_error.assert_called_once()
         args, _ = report_error.call_args
@@ -66,10 +73,12 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     def test_skip_single_line_block_comment(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /** Lorem ipsum. */
-            int foo() {}
-            ''',
+            dedent(
+                '''
+                /** Lorem ipsum. */
+                int foo() {}
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -77,12 +86,14 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     def test_skip_blank_block_comment(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**
-             *
-             */
-            int foo() {}
-            ''',
+            dedent(
+                '''
+                /**
+                 *
+                 */
+                int foo() {}
+                ''',
+            ),
         )
         report_error.assert_not_called()
 
@@ -90,13 +101,15 @@ class TestBlockCommentTrimChecker(CheckerTestCase):
     def test_skip_multiline_block_tag_description(self, report_error):
         self.checker.check_file(
             self.mock_file(),
-            '''
-            /**
-             * @param bar Lorem ipsum
-             * dolor sit amet.
-             */
-            int foo(int bar) {}
-            ''',
+            dedent(
+                '''
+                /**
+                 * @param bar Lorem ipsum
+                 * dolor sit amet.
+                 */
+                int foo(int bar) {}
+                ''',
+            ),
         )
         report_error.assert_not_called()
 

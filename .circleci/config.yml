@@ -31,6 +31,7 @@ jobs:
           name: Check Python
           command: |
             pip install -r requirements-dev.txt
+            pip install -e codecheck/
             pip install -e rulebook-pylint/
             pip install -e rulebook-cppcheck/
             pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/

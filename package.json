@@ -2,6 +2,7 @@
   "private": true,
   "type": "module",
   "workspaces": [
+    "codecheck",
     "rulebook-eslint",
     "rulebook-typescript-eslint"
   ],

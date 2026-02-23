@@ -1,3 +1,4 @@
+from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
@@ -15,15 +16,17 @@ class TestCaseSeparatorChecker(CheckerTestCase):
     def test_single_line_branches_without_line_break(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0: baz();
-                        case 1: baz(); break;
-                        default: baz();
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0: baz();
+                            case 1: baz(); break;
+                            default: baz();
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -32,21 +35,23 @@ class TestCaseSeparatorChecker(CheckerTestCase):
     def test_multiline_branches_with_line_break(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0:
-                            baz();
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0:
+                                baz();
 
-                        case 1:
-                            baz();
-                            break;
+                            case 1:
+                                baz();
+                                break;
 
-                        default:
-                            baz();
+                            default:
+                                baz();
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
@@ -55,17 +60,19 @@ class TestCaseSeparatorChecker(CheckerTestCase):
     def test_single_line_branches_with_line_break(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0: baz();
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0: baz();
 
-                        case 1: baz(); break;
+                            case 1: baz(); break;
 
-                        default: baz();
+                            default: baz();
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_has_calls(
@@ -85,19 +92,21 @@ class TestCaseSeparatorChecker(CheckerTestCase):
     def test_multiline_branches_without_line_break(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0:
-                            baz();
-                        case 1:
-                            baz();
-                            break;
-                        default:
-                            baz();
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0:
+                                baz();
+                            case 1:
+                                baz();
+                                break;
+                            default:
+                                baz();
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_has_calls(
@@ -117,15 +126,17 @@ class TestCaseSeparatorChecker(CheckerTestCase):
     def test_multiple_branches_are_considered_multiline(self, report_error):
         tokens, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0:
-                        case 1: baz();
-                        case 2: baz();
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0:
+                            case 1: baz();
+                            case 2: baz();
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_called_once_with(
@@ -137,22 +148,24 @@ class TestCaseSeparatorChecker(CheckerTestCase):
     def test_multiple_branches_are_considered_multiline2(self, report_error):
         _, scopes = \
             self.dump_code(
-                '''
-                void foo() {
-                    switch (bar) {
-                        case 0:
-                        case 1:
-                        case 2:
-                            switch (baz) {
-                                case 0:
-                                case 1:
-                                case 2:
-                                    qux();
-                                    qux();
-                            }
+                dedent(
+                    '''
+                    void foo() {
+                        switch (bar) {
+                            case 0:
+                            case 1:
+                            case 2:
+                                switch (baz) {
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                        qux();
+                                        qux();
+                                }
+                        }
                     }
-                }
-                ''',
+                    ''',
+                ),
             )
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()

@@ -15,8 +15,8 @@ class CommentTrimCheckTest : CheckTest() {
     fun `Comment with initial and final newline`() =
         assertAll(
             "CommentTrim2",
-            "4:5: Remove blank line after //.",
-            "6:5: Remove blank line after //.",
+            "4:5: Remove blank line after '//'.",
+            "6:5: Remove blank line after '//'.",
         )
 
     @Test
