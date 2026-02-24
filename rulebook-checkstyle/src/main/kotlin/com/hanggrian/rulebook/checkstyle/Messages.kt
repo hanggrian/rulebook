@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.checkstyle
 import java.lang.ref.WeakReference
 import java.text.MessageFormat
 import java.util.ResourceBundle
+import java.util.ResourceBundle.getBundle
 
 internal object Messages {
     private const val FILENAME = "messages"
@@ -21,7 +22,7 @@ internal object Messages {
         get() {
             var bundle = bundleRef.get()
             bundle?.let { return it }
-            bundle = ResourceBundle.getBundle(FILENAME)
+            bundle = getBundle(FILENAME)
             bundleRef = WeakReference(bundle)
             return bundle
         }

@@ -9,7 +9,7 @@ import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codehaus.groovy.ast.expr.PropertyExpression
 import org.codehaus.groovy.ast.expr.VariableExpression
-import java.io.File
+import java.io.File.separator
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#root-project-name) */
 public class RootProjectNameRule : RulebookAstRule() {
@@ -55,7 +55,7 @@ public class RootProjectNameVisitor : RulebookVisitor() {
     private var hasRootProjectName = false
 
     override fun isScript(): Boolean =
-        sourceCode.name?.substringAfterLast(File.separator) == "settings.gradle"
+        sourceCode.name?.substringAfterLast(separator) == "settings.gradle"
 
     override fun visitClassComplete(node: ClassNode) {
         // only target settings.gradle

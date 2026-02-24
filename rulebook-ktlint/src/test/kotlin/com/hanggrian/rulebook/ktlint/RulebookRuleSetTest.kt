@@ -104,16 +104,21 @@ class RulebookRuleSetTest {
     }
 
     @Test
-    fun `No overlapping ID`() =
+    fun `No overlapping ID`() {
+        assertThat(AllRules.ids.distinct().size)
+            .isEqualTo(AllRules.ids.size)
+
         assertThat(AllRules.ids)
             .containsNoneIn(StandardRuleSetProvider().getRuleProviders().ids)
+    }
 
     private val Set<RuleProvider>.ids
         get() =
             map {
                 it
                     .createNewRuleInstance()
-                    .ruleId.value
+                    .ruleId
+                    .value
                     .substringAfterLast(':')
             }
 }

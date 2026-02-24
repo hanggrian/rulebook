@@ -39,9 +39,9 @@ allprojects {
 
     afterEvaluate {
         the<KtlintExtension>().version.set(libs.versions.ktlint.get())
-
-        dependencies.ktlintRuleset(project(":$releaseArtifact-ktlint"))
     }
+
+    dependencies.ktlintRuleset(project(":$releaseArtifact-ktlint"))
 }
 
 subprojects {

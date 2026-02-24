@@ -37,8 +37,8 @@ internal fun ASTNode.hasJumpStatement(): Boolean =
 
 internal fun ASTNode.isChildOfProperty(): Boolean =
     parent?.let {
-        it.elementType == PROPERTY ||
-            it.elementType == DESTRUCTURING_DECLARATION
+        it.elementType === PROPERTY ||
+            it.elementType === DESTRUCTURING_DECLARATION
     } ?: false
 
 /** Determine whether this node spans multiple lines of code. */

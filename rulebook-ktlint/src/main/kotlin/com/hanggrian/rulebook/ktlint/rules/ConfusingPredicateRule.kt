@@ -21,10 +21,11 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.REFERENCE_EXPRESSIO
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#confusing-predicate) */
 public class ConfusingPredicateRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(CALL_EXPRESSION)
+    override val tokens: TokenSet = create(CALL_EXPRESSION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip non-predicate call
@@ -94,15 +95,15 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
         private val PREDICATE_CALLS = mutableMapOf<String, String>()
 
         init {
-            putPredicateCall("filter", "filterNot")
-            putPredicateCall("filterTo", "filterNotTo")
-            putPredicateCall("memoryOptimizedFilter", "memoryOptimizedFilterNot")
-            putPredicateCall("takeIf", "takeUnless")
+            "filter" opposite "filterNot"
+            "filterTo" opposite "filterNotTo"
+            "memoryOptimizedFilter" opposite "memoryOptimizedFilterNot"
+            "takeIf" opposite "takeUnless"
         }
 
-        private fun putPredicateCall(positiveCall: String, negativeCall: String) {
-            PREDICATE_CALLS[positiveCall] = negativeCall
-            PREDICATE_CALLS[negativeCall] = positiveCall
+        private infix fun String.opposite(other: String) {
+            PREDICATE_CALLS[this] = other
+            PREDICATE_CALLS[other] = this
         }
     }
 }

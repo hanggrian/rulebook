@@ -9,13 +9,15 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.TYPE_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 import org.jetbrains.kotlin.psi.KtImportDirective
+import java.lang.Class.forName
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#deprecated-type) */
 public class DeprecatedTypeRule : RulebookRule(ID) {
     private var isTestClass = false
 
-    override val tokens: TokenSet = TokenSet.create(IMPORT_DIRECTIVE, TYPE_REFERENCE)
+    override val tokens: TokenSet = create(IMPORT_DIRECTIVE, TYPE_REFERENCE)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // obtain corresponding qualifier
@@ -49,12 +51,11 @@ public class DeprecatedTypeRule : RulebookRule(ID) {
             when {
                 startsWith("java.lang.") ->
                     try {
-                        Class
-                            .forName(this)
+                        forName(this)
                             .kotlin
                             .qualifiedName
                             ?.takeIf { it.startsWith("kotlin.") }
-                    } catch (e: ClassNotFoundException) {
+                    } catch (_: ClassNotFoundException) {
                         null
                     }
 

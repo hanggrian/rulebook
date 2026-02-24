@@ -15,10 +15,11 @@ import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#unnecessary-abstract) */
 public class UnnecessaryAbstractRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(CLASS)
+    override val tokens: TokenSet = create(CLASS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip non-abstract class

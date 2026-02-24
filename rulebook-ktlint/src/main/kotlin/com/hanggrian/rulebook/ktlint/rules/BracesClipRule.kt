@@ -20,11 +20,12 @@ import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
 import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 import org.jetbrains.kotlin.psi.psiUtil.siblings
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#braces-clip) */
 public class BracesClipRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(CLASS_BODY, BLOCK, FUNCTION_LITERAL)
+    override val tokens: TokenSet = create(CLASS_BODY, BLOCK, FUNCTION_LITERAL)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip control flows that can have multi-blocks

@@ -58,17 +58,16 @@ class TrailingCommaChecker(RulebookTokenChecker):
                 col_offset=prev_token2.end[1],
             )
 
-    @staticmethod
-    def _is_sole_generator(tokens: list[TokenInfo], close_index: int) -> bool:
+    def _is_sole_generator(self, tokens: list[TokenInfo], close_index: int) -> bool:
         nesting: int = 0
         has_for: bool = False
         has_comma_at_root: bool = False
         for i in range(close_index - 1, -1, -1):
             token = tokens[i]
             if token.type is OP:
-                if token.string in TrailingCommaChecker._CLOSING_PARENTHESES:
+                if token.string in self._CLOSING_PARENTHESES:
                     nesting += 1
-                elif token.string in TrailingCommaChecker._OPENING_PARENTHESES:
+                elif token.string in self._OPENING_PARENTHESES:
                     if nesting == 0:
                         return has_for and not has_comma_at_root
                     nesting -= 1

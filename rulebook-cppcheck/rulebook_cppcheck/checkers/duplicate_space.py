@@ -73,12 +73,11 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
                 continue
             self.report_error(token, _Messages.get(self._MSG))
 
-    @staticmethod
-    def _is_duplicate_space(token: Token, next_token: Token) -> bool:
+    def _is_duplicate_space(self, token: Token, next_token: Token) -> bool:
         gap: int = next_token.column - (token.column + len(token.str))
         if next_token.str.startswith('//') or next_token.str.startswith('/*'):
             return gap > 2
-        if any(s in (token.str, next_token.str) for s in DuplicateSpaceChecker._IGNORE_TOKENS):
+        if any(s in (token.str, next_token.str) for s in self._IGNORE_TOKENS):
             return False
         if next_token.isNumber:
             return False

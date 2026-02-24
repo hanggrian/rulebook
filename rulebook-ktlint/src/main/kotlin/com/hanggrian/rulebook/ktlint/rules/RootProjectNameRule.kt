@@ -16,11 +16,13 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 import java.io.File
+import java.io.File.separator
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#root-project-name) */
 public class RootProjectNameRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(SCRIPT)
+    override val tokens: TokenSet = create(SCRIPT)
 
     override fun isScript(): Boolean = true
 
@@ -29,7 +31,7 @@ public class RootProjectNameRule : RulebookRule(ID) {
         node
             .psi
             .containingFile
-            .takeIf { it.name.substringAfterLast(File.separator) == "settings.gradle.kts" }
+            .takeIf { it.name.substringAfterLast(separator) == "settings.gradle.kts" }
             ?: return
 
         // find root project name assignment
@@ -37,7 +39,7 @@ public class RootProjectNameRule : RulebookRule(ID) {
             node
                 .findChildByType(BLOCK)
                 ?.children20
-                ?.filter { it.elementType == SCRIPT_INITIALIZER }
+                ?.filter { it.elementType === SCRIPT_INITIALIZER }
                 ?.mapNotNull { it.findChildByType(BINARY_EXPRESSION) }
                 ?.firstOrNull { n ->
                     val referenceExpressions =

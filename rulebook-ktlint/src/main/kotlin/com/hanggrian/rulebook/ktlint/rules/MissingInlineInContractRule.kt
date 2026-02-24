@@ -15,10 +15,11 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#missing-inline-in-contract) */
 public class MissingInlineInContractRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(FUN)
+    override val tokens: TokenSet = create(FUN)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // find initial contract call

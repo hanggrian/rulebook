@@ -3,14 +3,14 @@ package com.hanggrian.rulebook.checkstyle.checks
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration
 import com.puppycrawl.tools.checkstyle.TreeWalker
-import java.nio.charset.StandardCharsets
+import java.nio.charset.StandardCharsets.UTF_8
 import kotlin.test.Test
 
 class AllChecksTest : AbstractModuleTestSupport() {
     private val checker =
         createChecker(
             DefaultConfiguration("root").apply {
-                addProperty("charset", StandardCharsets.UTF_8.name())
+                addProperty("charset", UTF_8.name())
                 addConfiguration<DuplicateBlankLineCheck>()
                 addConfiguration<UnnecessaryInitialBlankLineCheck>()
                 addChild(

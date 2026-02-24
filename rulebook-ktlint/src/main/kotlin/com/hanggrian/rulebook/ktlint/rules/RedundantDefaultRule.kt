@@ -12,10 +12,11 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#redundant-default) */
 public class RedundantDefaultRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(WHEN)
+    override val tokens: TokenSet = create(WHEN)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // skip property assignment

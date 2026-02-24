@@ -11,13 +11,14 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#illegal-variable-name) */
 public class IllegalVariableNameRule : RulebookRule(ID, ILLEGAL_VARIABLE_NAMES_PROPERTY) {
     private var illegalVariableNames = ILLEGAL_VARIABLE_NAMES_PROPERTY.defaultValue
 
     override val tokens: TokenSet =
-        TokenSet.create(
+        create(
             PROPERTY,
             VALUE_PARAMETER,
             DESTRUCTURING_DECLARATION_ENTRY,

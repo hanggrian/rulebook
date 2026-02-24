@@ -12,6 +12,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.IndentConfig
+import com.pinterest.ktlint.rule.engine.core.api.IndentConfig.Companion.DEFAULT_INDENT_CONFIG
 import com.pinterest.ktlint.rule.engine.core.api.Rule.VisitorModifier.RunAfterRule
 import com.pinterest.ktlint.rule.engine.core.api.Rule.VisitorModifier.RunAfterRule.Mode.REGARDLESS_WHETHER_RUN_AFTER_RULE_IS_LOADED_OR_DISABLED
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -24,6 +25,7 @@ import com.pinterest.ktlint.rule.engine.core.api.isRoot20
 import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#block-comment-clip) */
 public class BlockCommentClipRule :
@@ -37,10 +39,10 @@ public class BlockCommentClipRule :
             ),
         ),
     ) {
-    private var indentConfig = IndentConfig.DEFAULT_INDENT_CONFIG
+    private var indentConfig = DEFAULT_INDENT_CONFIG
     private var maxLineLength = MAX_LINE_LENGTH_PROPERTY.defaultValue
 
-    override val tokens: TokenSet = TokenSet.create(KDOC)
+    override val tokens: TokenSet = create(KDOC)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         indentConfig =

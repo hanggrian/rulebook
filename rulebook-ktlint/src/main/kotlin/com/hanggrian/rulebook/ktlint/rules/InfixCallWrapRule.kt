@@ -15,10 +15,11 @@ import com.pinterest.ktlint.rule.engine.core.api.parent
 import com.pinterest.ktlint.rule.engine.core.api.prevSibling20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#infix-call-wrap) */
 public class InfixCallWrapRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(OPERATION_REFERENCE)
+    override val tokens: TokenSet = create(OPERATION_REFERENCE)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // filter infix function call

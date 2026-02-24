@@ -14,10 +14,11 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.USER_TYPE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#exception-inheritance) */
 public class ExceptionInheritanceRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(CLASS)
+    override val tokens: TokenSet = create(CLASS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // get identifier from supertype declared with or without constructor callee

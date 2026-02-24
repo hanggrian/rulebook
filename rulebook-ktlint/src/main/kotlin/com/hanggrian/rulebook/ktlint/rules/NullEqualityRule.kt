@@ -10,10 +10,11 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#null-equality) */
 public class NullEqualityRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(BINARY_EXPRESSION)
+    override val tokens: TokenSet = create(BINARY_EXPRESSION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // find null operand

@@ -5,7 +5,7 @@ import com.hanggrian.rulebook.codenarc.rules.ScriptFileNameRule.Companion.MSG
 import com.hanggrian.rulebook.codenarc.rules.ScriptFileNameRule.Companion.REGEX
 import org.codehaus.groovy.ast.ClassNode
 import org.codenarc.rule.Violation
-import java.io.File
+import java.io.File.separator
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#script-file-name) */
 public class ScriptFileNameRule : RulebookAstRule() {
@@ -30,7 +30,7 @@ public class ScriptFileNameVisitor : RulebookVisitor() {
         val name =
             sourceCode
                 .name
-                .substringAfterLast(File.separator)
+                .substringAfterLast(separator)
                 .substringBefore(".gradle")
         val nameReplacement =
             name

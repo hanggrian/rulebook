@@ -11,11 +11,11 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class UrlInDocumentation(RulebookChecker):
+class UrlInDocumentationChecker(RulebookChecker):
     name: str = 'url-in-documentation'
     msgs = {
-        'W9901': ('Missing URL in docstring.', 'missing-url', 'Add URL.'),
-        'W9902': ('Invalid URL in docstring.', 'invalid-url', 'Fix URL.'),
+        'W9901': ('Missing URL.', 'missing-url', 'Add URL.'),
+        'W9902': ('Invalid URL.', 'invalid-url', 'Fix URL.'),
     }
 
     _REGEX: Pattern = re(r'([a-z])([A-Z])')
@@ -45,4 +45,4 @@ class UrlInDocumentation(RulebookChecker):
 
 
 def register(linter: PyLinter) -> None:
-    linter.register_checker(UrlInDocumentation(linter))
+    linter.register_checker(UrlInDocumentationChecker(linter))

@@ -25,7 +25,7 @@ export default {
                         .find(comment => comment.type === 'Block' && comment.value.startsWith('*'));
 
                 if (!jsdoc) {
-                    context.report({ node, message: 'Missing URL in docstring' });
+                    context.report({ node, message: 'Missing URL.' });
                     return;
                 }
                 const kebabName = baseName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
@@ -39,7 +39,7 @@ export default {
                 ) {
                     return;
                 }
-                context.report({ node, message: 'Invalid URL in docstring' });
+                context.report({ node, message: 'Invalid URL.' });
             },
         };
     },

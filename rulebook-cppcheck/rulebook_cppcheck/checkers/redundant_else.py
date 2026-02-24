@@ -45,8 +45,7 @@ class RedundantElseChecker(RulebookTokenChecker):
                 else:
                     if_token = None
 
-    @staticmethod
-    def _get_else_token(if_token: Token) -> Token | None:
+    def _get_else_token(self, if_token: Token) -> Token | None:
         curr_token: Token | None = if_token.next
         if curr_token and curr_token.str == '(':
             curr_token = curr_token.link.next
@@ -54,10 +53,7 @@ class RedundantElseChecker(RulebookTokenChecker):
             curr_token = curr_token.link.next
         else:
             curr_token = \
-                _next_sibling(
-                    curr_token,
-                    lambda t: t.str in RedundantElseChecker._ELSE_SIBLING_TOKENS,
-                )
+                _next_sibling(curr_token, lambda t: t.str in self._ELSE_SIBLING_TOKENS)
             if curr_token and curr_token.str == ';':
                 curr_token = curr_token.next
         return curr_token if curr_token and curr_token.str == 'else' else None

@@ -7,6 +7,8 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleSetId
 class CodecheckRuleSet : RuleSetProviderV3(ID) {
     override fun getRuleProviders(): Set<RuleProvider> =
         setOf(
+            RuleProvider { DirectStaticCallRule() },
+            RuleProvider { ElementTypeEqualityRule() },
             RuleProvider { UrlInDocumentationRule() },
         )
 

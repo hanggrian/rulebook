@@ -42,8 +42,8 @@ public abstract class RulebookRule(
 
     final override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         if (isScript() &&
-            node.elementType != SCRIPT &&
-            node.parent { it.elementType == SCRIPT } == null
+            node.elementType !== SCRIPT &&
+            node.parent { it.elementType === SCRIPT } == null
         ) {
             return
         }

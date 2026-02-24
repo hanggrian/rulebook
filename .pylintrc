@@ -86,6 +86,7 @@ load-plugins=
   # Wrapping
   rulebook_pylint.checkers.parameter_wrap,
   # Internal
+  codecheck.direct_static_call,
   codecheck.url_in_documentation,
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the

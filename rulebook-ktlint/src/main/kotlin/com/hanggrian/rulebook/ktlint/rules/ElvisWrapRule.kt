@@ -15,10 +15,11 @@ import com.pinterest.ktlint.rule.engine.core.api.prevCodeSibling20
 import com.pinterest.ktlint.rule.engine.core.api.prevSibling20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#elvis-wrap) */
 public class ElvisWrapRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(ELVIS)
+    override val tokens: TokenSet = create(ELVIS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
         // target multiline statement

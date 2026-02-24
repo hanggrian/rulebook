@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.codenarc
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codenarc.rule.AbstractAstVisitor
-import org.codenarc.util.AstUtil
+import org.codenarc.util.AstUtil.findFirstNonAnnotationLine
 
 /**
  * This function replace `lineNumber` because it cannot accurately produce the first index
@@ -52,7 +52,7 @@ internal fun AbstractAstVisitor.getLiteral(expression: ConstantExpression): Stri
 internal fun AbstractAstVisitor.sourceLineNullable(node: ASTNode): String? =
     when {
         node.lineNumber < 0 -> null
-        else -> sourceCode.lines[AstUtil.findFirstNonAnnotationLine(node, sourceCode) - 1]
+        else -> sourceCode.lines[findFirstNonAnnotationLine(node, sourceCode) - 1]
     }
 
 /**

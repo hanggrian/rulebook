@@ -5,7 +5,7 @@ import com.hanggrian.rulebook.codenarc.rules.MissingPrivateConstructorRule.Compa
 import com.hanggrian.rulebook.codenarc.rules.MissingPrivateConstructorRule.Companion.MSG_CONSTRUCTOR_MODIFIER
 import com.hanggrian.rulebook.codenarc.rules.MissingPrivateConstructorRule.Companion.MSG_MODIFIER
 import org.codehaus.groovy.ast.ClassNode
-import java.lang.reflect.Modifier
+import java.lang.reflect.Modifier.isFinal
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#missing-private-constructor) */
 public class MissingPrivateConstructorRule : RulebookAstRule() {
@@ -45,7 +45,7 @@ public class MissingPrivateConstructorVisitor : RulebookVisitor() {
 
         // checks for violation
         node
-            .takeUnless { Modifier.isFinal(it.modifiers) }
+            .takeUnless { isFinal(it.modifiers) }
             ?.let { addViolation(it, Messages[MSG_MODIFIER]) }
         node
             .takeIf { node.declaredConstructors.isEmpty() }

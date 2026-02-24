@@ -18,6 +18,7 @@ import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import com.pinterest.ktlint.rule.engine.core.api.hasModifier
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#member-order) */
 public class MemberOrderRule : RulebookRule(ID, MEMBER_ORDER_PROPERTY) {
@@ -28,7 +29,7 @@ public class MemberOrderRule : RulebookRule(ID, MEMBER_ORDER_PROPERTY) {
     private var functionPosition = 3
     private var companionPosition = 4
 
-    override val tokens: TokenSet = TokenSet.create(CLASS_BODY)
+    override val tokens: TokenSet = create(CLASS_BODY)
 
     private val ASTNode.memberPosition: Int?
         get() =

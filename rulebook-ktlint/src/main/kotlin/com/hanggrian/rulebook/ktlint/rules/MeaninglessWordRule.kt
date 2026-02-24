@@ -10,12 +10,13 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.editorconfig.EditorConfig
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#meaningless-word) */
 public class MeaninglessWordRule : RulebookRule(ID, MEANINGLESS_WORDS_PROPERTY) {
     private var words = MEANINGLESS_WORDS_PROPERTY.defaultValue
 
-    override val tokens: TokenSet = TokenSet.create(CLASS, OBJECT_DECLARATION)
+    override val tokens: TokenSet = create(CLASS, OBJECT_DECLARATION)
 
     override fun beforeFirstNode(editorConfig: EditorConfig) {
         words = editorConfig[MEANINGLESS_WORDS_PROPERTY]

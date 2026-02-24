@@ -7,6 +7,7 @@ import org.codenarc.rule.Violation
 import org.codenarc.source.AbstractSourceCode
 import org.codenarc.source.CustomCompilerPhaseSourceDecorator
 import org.codenarc.source.SourceCode
+import org.codenarc.source.SourceCode.DEFAULT_COMPILER_PHASE
 import org.codenarc.source.SourceString
 import org.codenarc.test.AbstractTestCase
 import kotlin.test.Test
@@ -423,7 +424,7 @@ class AllRulesTest : AbstractTestCase() {
     private fun prepareSourceCode(source: String): SourceCode {
         var sourceCode: AbstractSourceCode = SourceString(source, sourceCodePath, sourceCodeName)
         rules
-            .firstOrNull { it.compilerPhase != SourceCode.DEFAULT_COMPILER_PHASE }
+            .firstOrNull { it.compilerPhase != DEFAULT_COMPILER_PHASE }
             ?.compilerPhase
             ?.run { sourceCode = CustomCompilerPhaseSourceDecorator(sourceCode, this) }
         return sourceCode

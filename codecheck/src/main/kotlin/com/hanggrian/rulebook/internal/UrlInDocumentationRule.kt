@@ -31,7 +31,7 @@ class UrlInDocumentationRule : RulebookRule(ID) {
                 .findChildByType(KDOC)
                 ?.findChildByType(KDOC_SECTION)
         if (link == null) {
-            emit(node.startOffset, "Missing URL", false)
+            emit(node.startOffset, "Missing URL.", false)
             return
         }
         className
@@ -40,7 +40,7 @@ class UrlInDocumentationRule : RulebookRule(ID) {
             .takeUnless {
                 link.text == " [See detail](https://hanggrian.github.io/rulebook/rules/#$it) "
             } ?: return
-        emit(node.startOffset, "Invalid URL", false)
+        emit(node.startOffset, "Invalid URL.", false)
     }
 
     companion object {

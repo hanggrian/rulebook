@@ -8,11 +8,13 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 import java.io.File
+import java.io.File.separator
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#script-file-name) */
 public class ScriptFileNameRule : RulebookRule(ID) {
-    override val tokens: TokenSet = TokenSet.create(SCRIPT)
+    override val tokens: TokenSet = create(SCRIPT)
 
     override fun isScript(): Boolean = true
 
@@ -20,7 +22,7 @@ public class ScriptFileNameRule : RulebookRule(ID) {
         // get file token
         val file =
             node
-                .parent { it.elementType == FILE }
+                .parent { it.elementType === FILE }
                 ?: return
 
         // checks for violation
@@ -29,7 +31,7 @@ public class ScriptFileNameRule : RulebookRule(ID) {
                 .psi
                 .containingFile
                 .name
-                .substringAfterLast(File.separator)
+                .substringAfterLast(separator)
                 .substringBefore(".kts")
                 .substringBefore(".gradle")
         val nameReplacement =
