@@ -13,7 +13,9 @@ import nestedIfElseRule from './rules/nested-if-else.js';
 import parenthesesTrimRule from './rules/parentheses-trim.js';
 import redundantDefaultRule from './rules/redundant-default.js';
 import redundantElseRule from './rules/redundant-else.js';
+import redundantIfRule from './rules/redundant-if.js';
 import todoCommentRule from './rules/todo-comment.js';
+import unnecessaryContinueRule from './rules/unnecessary-continue.js';
 import unnecessaryInitialBlankLineRule from './rules/unnecessary-initial-blank-line.js';
 
 const crockfordConfig: Linter.RulesRecord = {
@@ -151,10 +153,6 @@ const crockfordConfig: Linter.RulesRecord = {
         },
     ],
     // Stating
-    'curly': ['error', 'multi-line'],
-    '@rulebook/nested-if-else': 'error',
-    '@rulebook/redundant-default': 'error',
-    '@rulebook/redundant-else': 'error',
     'no-lonely-if': 'error',
     'no-restricted-syntax': [
         'error',
@@ -163,6 +161,13 @@ const crockfordConfig: Linter.RulesRecord = {
             message: 'Switch statements must have at least 2 cases.',
         },
     ],
+    'curly': ['error', 'multi-line'],
+    '@rulebook/nested-if-else': 'error',
+    '@rulebook/redundant-default': 'error',
+    '@rulebook/redundant-else': 'error',
+    '@rulebook/redundant-if': 'error',
+    '@rulebook/unnecessary-continue': 'error',
+    'no-useless-return': 'error',
     // Trimming
     '@jsdoc/no-blank-block-descriptions': 'error',
     '@stylistic/padded-blocks': ['error', 'never'],
@@ -339,10 +344,6 @@ const googleConfig: Linter.RulesRecord = {
         },
     ],
     // Stating
-    'curly': ['error', 'multi-line'],
-    '@rulebook/nested-if-else': 'error',
-    '@rulebook/redundant-default': 'error',
-    '@rulebook/redundant-else': 'error',
     'no-lonely-if': 'error',
     'no-restricted-syntax': [
         'error',
@@ -351,6 +352,13 @@ const googleConfig: Linter.RulesRecord = {
             message: 'Switch statements must have at least 2 cases.',
         },
     ],
+    'curly': ['error', 'multi-line'],
+    '@rulebook/nested-if-else': 'error',
+    '@rulebook/redundant-default': 'error',
+    '@rulebook/redundant-else': 'error',
+    '@rulebook/redundant-if': 'error',
+    '@rulebook/unnecessary-continue': 'error',
+    'no-useless-return': 'error',
     // Trimming
     '@jsdoc/no-blank-block-descriptions': 'error',
     '@stylistic/padded-blocks': ['error', 'never'],
@@ -452,8 +460,10 @@ const plugin: ESLint.Plugin = {
         'nested-if-else': nestedIfElseRule,
         'redundant-default': redundantDefaultRule,
         'redundant-else': redundantElseRule,
+        'redundant-if': redundantIfRule,
         'parentheses-trim': parenthesesTrimRule,
         'todo-comment': todoCommentRule,
+        'unnecessary-continue': unnecessaryContinueRule,
         'unnecessary-initial-blank-line': unnecessaryInitialBlankLineRule,
     },
     configs: {

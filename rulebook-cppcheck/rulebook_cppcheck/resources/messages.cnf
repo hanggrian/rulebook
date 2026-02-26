@@ -40,9 +40,10 @@ member.separator=Add blank line after '{}'.
 # Stating
 illegal.catch=Catch a narrower type.
 illegal.throw=Throw a narrower type.
+lonely.case=Replace 'switch' with 'if' condition.
+lonely.if=Replace 'else' with 'else if' condition.
 redundant.default=Omit redundant 'default' condition.
 redundant.else=Omit redundant 'else' condition.
-unnecessary.switch=Replace 'switch' with 'if' condition.
 # Trimming
 block.comment.trim.first=Remove blank line after '/**'.
 block.comment.trim.last=Remove blank line before '*/'.

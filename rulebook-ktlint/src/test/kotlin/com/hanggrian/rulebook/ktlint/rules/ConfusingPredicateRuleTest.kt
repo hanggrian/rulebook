@@ -38,11 +38,11 @@ class ConfusingPredicateRuleTest : RuleTest() {
         assertThatCode(
             """
             fun foo() {
-                ''.takeIf { !it.isEmpty() }
+                ''.takeUnless { !it.isEmpty() }
             }
 
             fun bar() {
-                listOf(1, 2).filter { it != 0 }
+                listOf(1, 2).filterNot { it != 0 }
             }
 
             fun baz() {
@@ -54,8 +54,8 @@ class ConfusingPredicateRuleTest : RuleTest() {
             }
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 8, "Omit negation and replace call with 'takeUnless'."),
-            LintViolation(6, 18, "Use equals and replace call with 'filterNot'."),
+            LintViolation(2, 8, "Omit negation and replace call with 'takeIf'."),
+            LintViolation(6, 18, "Use equals and replace call with 'filter'."),
             LintViolation(10, 7, "Omit negation and replace call with 'takeIf'."),
             LintViolation(14, 17, "Use 'isEmpty' and replace call with 'takeIf'."),
         )
@@ -65,15 +65,15 @@ class ConfusingPredicateRuleTest : RuleTest() {
         assertThatCode(
             """
             fun foo() {
-                ''.takeIf { !it.isEmpty() && !it.isBlank() }
+                ''.takeUnless { !it.isEmpty() && !it.isBlank() }
             }
 
             fun bar() {
-                listOf(1, 2).filter { it != 0 && it > 0 }
+                listOf(1, 2).filterNot { it != 0 && it > 0 }
             }
 
             fun baz() {
-                1.takeIf { it !is Float && it !is Float }
+                1.takeUnless { it !is Float && it !is Float }
             }
 
             fun qux() {

@@ -11,11 +11,11 @@ public class BlockCommentClipRule : RulebookFileRule() {
 
     override fun getName(): String = "BlockCommentClip"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
-        for (javadoc in JAVADOC_REGEX.findAll(sourceCode.text)) {
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>) {
+        for (javadoc in JAVADOC_REGEX.findAll(code.text)) {
             // skip single-line or block tag
-            val lineNumber = sourceCode.getLineNumberForCharacterIndex(javadoc.range.first)
-            val lastLineNumber = sourceCode.getLineNumberForCharacterIndex(javadoc.range.last)
+            val lineNumber = code.getLineNumberForCharacterIndex(javadoc.range.first)
+            val lastLineNumber = code.getLineNumberForCharacterIndex(javadoc.range.last)
             val line =
                 javadoc
                     .value
@@ -27,13 +27,13 @@ public class BlockCommentClipRule : RulebookFileRule() {
 
             // checks for violation
             val textLength =
-                sourceCode.lines[lineNumber - 1].indexOf("/**") +
+                code.lines[lineNumber - 1].indexOf("/**") +
                     line.substringAfter('*').length
             textLength
                 .takeIf { it + SINGLELINE_TEMPLATE.length <= maxLineLength }
                 ?: continue
             violations +=
-                createViolation(lineNumber, sourceCode.line(lineNumber - 1), Messages[MSG])
+                createViolation(lineNumber, code.line(lineNumber - 1), Messages[MSG])
         }
     }
 

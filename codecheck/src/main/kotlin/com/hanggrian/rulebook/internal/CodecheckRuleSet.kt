@@ -9,6 +9,7 @@ class CodecheckRuleSet : RuleSetProviderV3(ID) {
         setOf(
             RuleProvider { DirectStaticCallRule() },
             RuleProvider { ElementTypeEqualityRule() },
+            RuleProvider { MethodParameterNameRule() },
             RuleProvider { UrlInDocumentationRule() },
         )
 

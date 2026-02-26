@@ -30,12 +30,11 @@ public class InnerClassPositionVisitor : RulebookVisitor() {
         for (`class` in node.innerClasses) {
             node
                 .takeIf {
-                    !`class`.isAnonymous &&
-                        (
-                            it.fields areAnyAfter `class` ||
-                                it.declaredConstructors areAnyAfter `class` ||
-                                it.methods areAnyAfter `class`
-                        )
+                    !`class`.isAnonymous && (
+                        it.fields areAnyAfter `class` ||
+                            it.declaredConstructors areAnyAfter `class` ||
+                            it.methods areAnyAfter `class`
+                    )
                 } ?: continue
             addViolation(`class`, Messages[MSG])
         }

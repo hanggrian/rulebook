@@ -5,11 +5,11 @@ export default {
     create(context: Rule.RuleContext) {
         return {
             ClassDeclaration(node: ClassDeclaration) {
-                if (!node.id || node.id.name.startsWith('Rulebook')) {
+                let baseName = node.id.name;
+                if (baseName.startsWith('Rulebook')) {
                     return;
                 }
 
-                let baseName = node.id.name;
                 if (baseName.endsWith('Rule')) {
                     baseName = baseName.slice(0, -4);
                 } else if (baseName.endsWith('Checker')) {
@@ -18,12 +18,11 @@ export default {
                     return;
                 }
 
-                const sourceCode = context.sourceCode;
                 const jsdoc =
-                    sourceCode
+                    context
+                        .sourceCode
                         .getCommentsBefore(node)
                         .find(comment => comment.type === 'Block' && comment.value.startsWith('*'));
-
                 if (!jsdoc) {
                     context.report({ node, message: 'Missing URL.' });
                     return;

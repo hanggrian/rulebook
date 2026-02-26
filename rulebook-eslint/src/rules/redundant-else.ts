@@ -17,13 +17,13 @@ class RedundantElseRule extends RulebookRule {
             IfStatement(node: IfStatement) {
                 // target root if
                 const parent: Node | null = (node as Rule.Node).parent;
-                if (!parent || parent.type === 'IfStatement' && parent.alternate === node) {
+                if (parent?.type === 'IfStatement' && parent.alternate === node) {
                     return;
                 }
 
                 // checks for violation
                 let ifStatement: Statement | null | undefined = node;
-                while (ifStatement && ifStatement.type === 'IfStatement') {
+                while (ifStatement.type === 'IfStatement') {
                     if (!hasJumpStatement(ifStatement.consequent)) {
                         return;
                     }

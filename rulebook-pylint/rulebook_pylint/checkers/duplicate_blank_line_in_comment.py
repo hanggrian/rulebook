@@ -23,7 +23,7 @@ class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
         last_empty_token: TokenInfo | None = None
         # checks for violation
         for token in [t for t in tokens if t.type is COMMENT and _is_comment_empty(t)]:
-            if not last_empty_token:
+            if last_empty_token is None:
                 last_empty_token = token
                 continue
             if last_empty_token.start[0] + 1 == token.start[0]:

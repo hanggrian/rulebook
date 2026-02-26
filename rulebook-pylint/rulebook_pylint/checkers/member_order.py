@@ -45,7 +45,7 @@ class MemberOrderChecker(RulebookChecker):
             if isinstance(n, (Assign, AssignName, FunctionDef))
         ]:
             # checks for violation
-            if last_child and \
+            if last_child is not None and \
                 self._get_member_position(last_child) > self._get_member_position(child):
                 self.add_message(
                     self._MSG,

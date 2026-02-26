@@ -37,7 +37,7 @@ public class RedundantElseVisitor : RulebookVisitor() {
         while (`if` != null) {
             `if`
                 .ifBlock
-                .takeIf { it.hasJumpStatement() }
+                ?.takeIf { it.hasJumpStatement() }
                 ?: return
             val `else` =
                 `if`

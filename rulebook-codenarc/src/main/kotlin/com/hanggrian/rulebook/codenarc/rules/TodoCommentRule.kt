@@ -9,26 +9,26 @@ import kotlin.text.RegexOption.IGNORE_CASE
 public class TodoCommentRule : RulebookFileRule() {
     override fun getName(): String = "TodoComment"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>) {
         // checks for violation
         violations +=
             KEYWORD_REGEX
-                .findAll(sourceCode.text)
+                .findAll(code.text)
                 .map {
-                    val lineNumber = sourceCode.getLineNumberForCharacterIndex(it.range.last)
+                    val lineNumber = code.getLineNumberForCharacterIndex(it.range.last)
                     createViolation(
                         lineNumber,
-                        sourceCode.line(lineNumber - 1),
+                        code.line(lineNumber - 1),
                         Messages[MSG_KEYWORD, it.value.substringAfterLast(' ')],
                     )
                 } +
             SEPARATOR_REGEX
-                .findAll(sourceCode.text)
+                .findAll(code.text)
                 .map {
-                    val lineNumber = sourceCode.getLineNumberForCharacterIndex(it.range.last)
+                    val lineNumber = code.getLineNumberForCharacterIndex(it.range.last)
                     createViolation(
                         lineNumber,
-                        sourceCode.line(lineNumber - 1),
+                        code.line(lineNumber - 1),
                         Messages[MSG_SEPARATOR, it.value.last()],
                     )
                 }

@@ -21,7 +21,7 @@ class ParameterWrapChecker(RulebookTokenChecker):
             params: list[Token] = []
             curr_token: Token | None = token.next
             depth: int = 1
-            while curr_token and depth > 0:
+            while curr_token is not None and depth > 0:
                 if curr_token.str == '(':
                     depth += 1
                 elif curr_token.str == ')':

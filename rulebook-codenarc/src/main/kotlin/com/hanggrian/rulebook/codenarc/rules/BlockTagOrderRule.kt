@@ -10,9 +10,9 @@ import org.codenarc.source.SourceCode
 public class BlockTagOrderRule : RulebookFileRule() {
     override fun getName(): String = "BlockTagOrder"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>): Unit =
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>): Unit =
         JAVADOC_REGEX
-            .findAll(sourceCode.text)
+            .findAll(code.text)
             .forEach { javadoc ->
                 // collect block tags
                 val blockTags =
@@ -34,14 +34,14 @@ public class BlockTagOrderRule : RulebookFileRule() {
                         .takeIf { it > MEMBER_POSITIONS[blockTagName]!! }
                         ?: continue
                     val lineNumber =
-                        sourceCode.getLineNumberForCharacterIndex(
+                        code.getLineNumberForCharacterIndex(
                             javadoc.range.first +
                                 blockTag.range.last,
                         )
                     violations +=
                         createViolation(
                             lineNumber,
-                            sourceCode.line(lineNumber - 1),
+                            code.line(lineNumber - 1),
                             Messages[MSG, blockTagName, lastBlockTagName],
                         )
                 }

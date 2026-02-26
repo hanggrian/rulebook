@@ -54,7 +54,9 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
 
                 # long descriptions have multiple lines, take only the last one
                 if found_tag:
-                    if current_tag and last_text and last_text[-1] not in self._PUNCTUATIONS:
+                    if current_tag is not None and \
+                        last_text and \
+                        last_text[-1] not in self._PUNCTUATIONS:
                         self.report_error(
                             token,
                             _Messages.get(self._MSG, current_tag),
@@ -74,7 +76,7 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
                     last_text_line_idx = i
 
             # checks for violation
-            if not current_tag or \
+            if current_tag is None or \
                 not last_text or \
                 last_text[-1] in self._PUNCTUATIONS:
                 continue

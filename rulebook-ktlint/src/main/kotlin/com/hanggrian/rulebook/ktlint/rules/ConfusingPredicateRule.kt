@@ -92,18 +92,12 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
         private const val MSG_EQUALS = "confusing.predicate.equals"
         private const val MSG_NEGATES = "confusing.predicate.negates"
 
-        private val PREDICATE_CALLS = mutableMapOf<String, String>()
-
-        init {
-            "filter" opposite "filterNot"
-            "filterTo" opposite "filterNotTo"
-            "memoryOptimizedFilter" opposite "memoryOptimizedFilterNot"
-            "takeIf" opposite "takeUnless"
-        }
-
-        private infix fun String.opposite(other: String) {
-            PREDICATE_CALLS[this] = other
-            PREDICATE_CALLS[other] = this
-        }
+        private val PREDICATE_CALLS =
+            hashMapOf(
+                "filterNot" to "filter",
+                "filterNotTo" to "filterTo",
+                "memoryOptimizedFilterNot" to "memoryOptimizedFilter",
+                "takeUnless" to "takeIf",
+            )
     }
 }

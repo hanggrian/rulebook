@@ -60,7 +60,7 @@ class ChainCallWrapRule extends RulebookRule {
 
                 // checks for violation
                 for (const dot of dots) {
-                    const prevToken = context.sourceCode.getTokenBefore(dot);
+                    const prevToken: AST.Token | null = context.sourceCode.getTokenBefore(dot);
                     if (!prevToken) {
                         continue;
                     }

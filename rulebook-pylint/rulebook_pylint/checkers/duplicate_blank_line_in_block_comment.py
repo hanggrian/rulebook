@@ -28,7 +28,7 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookChecker):
 
     def _process(self, docstring: Const | None) -> None:
         # checks for violation
-        if not docstring or '\n\n\n' not in docstring.value:
+        if docstring is None or '\n\n\n' not in docstring.value:
             return
         self.add_message(self._MSG, node=docstring)
 

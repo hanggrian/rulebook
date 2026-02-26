@@ -27,7 +27,7 @@ class ImportOrderChecker(RulebookFileChecker):
         for lineno, line in enumerate(content.splitlines(), 1):
             # distinguish between bracket and quote imports
             match: Match | None = self._INCLUDE_REGEX.search(line.strip())
-            if not match:
+            if match is None:
                 continue
             is_quoted: bool = match.group(1) == '"'
             path: str = match.group(2).strip()

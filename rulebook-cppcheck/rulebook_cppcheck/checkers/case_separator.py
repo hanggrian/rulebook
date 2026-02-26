@@ -31,13 +31,13 @@ class CaseSeparatorChecker(RulebookChecker):
         # collect cases
         body_start: Token | None = scope.bodyStart
         body_end: Token | None = scope.bodyEnd
-        if not body_start or not body_end:
+        if body_start is None or body_end is None:
             return
 
         groups: list[list[Token]] = []
         curr_token: Token | None = body_start.next
 
-        while curr_token and curr_token is not body_end:
+        while curr_token is not None and curr_token is not body_end:
             if curr_token.str in self._BRANCH_TOKENS:
                 case_keyword: Token = curr_token
                 case_label: Token = curr_token.next if curr_token.str == 'case' else curr_token
@@ -47,7 +47,7 @@ class CaseSeparatorChecker(RulebookChecker):
                 colon_found: bool = False
                 has_body: bool = False
 
-                while scan and scan is not body_end:
+                while scan is not None and scan is not body_end:
                     if scan.str in self._BRANCH_TOKENS and scan.scope == scope:
                         break
                     if scan.str == ':':
@@ -58,7 +58,7 @@ class CaseSeparatorChecker(RulebookChecker):
                     scan = scan.next
 
                 if not has_body and \
-                    scan and \
+                    scan is not None and \
                     scan is not body_end and \
                     scan.str in self._BRANCH_TOKENS:
                     end_token = scan

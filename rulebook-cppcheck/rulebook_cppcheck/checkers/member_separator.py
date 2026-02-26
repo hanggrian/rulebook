@@ -28,10 +28,10 @@ class MemberSeparatorChecker(RulebookChecker):
         members: list[tuple[Token, Token, bool]] = []
         body_start: Token | None = scope.bodyStart
         body_end: Token | None = scope.bodyEnd
-        if not body_start or not body_end:
+        if body_start is None or body_end is None:
             return
         curr_token: Token | None = body_start.next
-        while curr_token and curr_token is not body_end:
+        while curr_token is not None and curr_token is not body_end:
             if curr_token.scope is scope and (curr_token.variable or curr_token.function):
                 is_var: bool = curr_token.variable is not None
                 start_token: Token = curr_token

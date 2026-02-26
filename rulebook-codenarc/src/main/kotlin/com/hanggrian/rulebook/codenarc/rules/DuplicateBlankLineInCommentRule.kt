@@ -8,14 +8,14 @@ import org.codenarc.source.SourceCode
 public class DuplicateBlankLineInCommentRule : RulebookFileRule() {
     override fun getName(): String = "DuplicateBlankLineInComment"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>) {
         // checks for violation
         violations +=
             REGEX
-                .findAll(sourceCode.text)
+                .findAll(code.text)
                 .map {
                     createViolation(
-                        sourceCode.getLineNumberForCharacterIndex(it.range.last),
+                        code.getLineNumberForCharacterIndex(it.range.last),
                         "//",
                         Messages[MSG],
                     )

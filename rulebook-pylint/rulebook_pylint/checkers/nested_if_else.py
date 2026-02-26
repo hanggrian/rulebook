@@ -38,7 +38,7 @@ class NestedIfElseChecker(RulebookChecker):
                 if2 = child
                 break
             return
-        if not if2:
+        if if2 is None:
             return
 
         # checks for violation

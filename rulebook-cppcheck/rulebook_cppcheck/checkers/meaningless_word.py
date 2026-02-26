@@ -42,7 +42,7 @@ class MeaninglessWordChecker(RulebookChecker):
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
         class_name: str | None = scope.className
-        if not class_name:
+        if class_name is None:
             return
         words: list[str] = [match[0] for match in self._TITLE_CASE_REGEX.findall(class_name)]
         if not words or words[-1] not in self._words:
@@ -50,6 +50,6 @@ class MeaninglessWordChecker(RulebookChecker):
         name_token: Token | None = \
             _prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
         self.report_error(
-            name_token if name_token else scope.bodyStart,
+            name_token if name_token is not None else scope.bodyStart,
             _Messages.get(self._MSG, words[-1]),
         )

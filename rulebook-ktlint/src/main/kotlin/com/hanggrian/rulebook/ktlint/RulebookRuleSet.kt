@@ -18,13 +18,15 @@ import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
 import com.hanggrian.rulebook.ktlint.rules.EagerApiRule
 import com.hanggrian.rulebook.ktlint.rules.ElvisWrapRule
-import com.hanggrian.rulebook.ktlint.rules.ExceptionInheritanceRule
 import com.hanggrian.rulebook.ktlint.rules.FileSizeRule
 import com.hanggrian.rulebook.ktlint.rules.GenericNameRule
 import com.hanggrian.rulebook.ktlint.rules.IllegalThrowRule
 import com.hanggrian.rulebook.ktlint.rules.IllegalVariableNameRule
 import com.hanggrian.rulebook.ktlint.rules.InfixCallWrapRule
 import com.hanggrian.rulebook.ktlint.rules.InnerClassPositionRule
+import com.hanggrian.rulebook.ktlint.rules.InternalErrorRule
+import com.hanggrian.rulebook.ktlint.rules.LonelyCaseRule
+import com.hanggrian.rulebook.ktlint.rules.LonelyIfRule
 import com.hanggrian.rulebook.ktlint.rules.LowercaseFRule
 import com.hanggrian.rulebook.ktlint.rules.LowercaseHexRule
 import com.hanggrian.rulebook.ktlint.rules.MeaninglessWordRule
@@ -36,14 +38,15 @@ import com.hanggrian.rulebook.ktlint.rules.NullEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
+import com.hanggrian.rulebook.ktlint.rules.RedundantIfRule
 import com.hanggrian.rulebook.ktlint.rules.RootProjectNameRule
 import com.hanggrian.rulebook.ktlint.rules.ScriptFileNameRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryAbstractRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessaryBracesRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryContinueRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryInitialBlankLineRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryReturnRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryScopeRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessarySwitchRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 import com.pinterest.ktlint.rule.engine.core.api.RuleSetId
@@ -61,7 +64,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BlockCommentClipRule() },
             RuleProvider { BracesClipRule() },
             // Declaring
-            RuleProvider { ExceptionInheritanceRule() },
+            RuleProvider { InternalErrorRule() },
             RuleProvider { LowercaseFRule() },
             RuleProvider { LowercaseHexRule() },
             RuleProvider { MissingInlineInContractRule() },
@@ -91,11 +94,14 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { UnnecessaryInitialBlankLineRule() },
             // Stating
             RuleProvider { IllegalThrowRule() },
+            RuleProvider { LonelyCaseRule() },
+            RuleProvider { LonelyIfRule() },
             RuleProvider { NestedIfElseRule() },
             RuleProvider { RedundantDefaultRule() },
             RuleProvider { RedundantElseRule() },
-            RuleProvider { UnnecessaryBracesRule() },
-            RuleProvider { UnnecessarySwitchRule() },
+            RuleProvider { RedundantIfRule() },
+            RuleProvider { UnnecessaryContinueRule() },
+            RuleProvider { UnnecessaryReturnRule() },
             // Trimming
             RuleProvider { BlockCommentTrimRule() },
             RuleProvider { CommentTrimRule() },

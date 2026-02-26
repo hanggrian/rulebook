@@ -28,7 +28,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
             # find opening and closing parentheses
             if token.str in self._OPENING_PARENTHESES:
                 next_token: Token | None = token.next
-                if not next_token or next_token.linenr <= token.linenr + 1:
+                if next_token is None or next_token.linenr <= token.linenr + 1:
                     continue
                 if self._has_content_between(lines, token, next_token):
                     continue
@@ -38,7 +38,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
             if token.str not in self._CLOSING_PARENTHESES:
                 continue
             prev_token: Token | None = token.previous
-            if not prev_token or token.linenr <= prev_token.linenr + 1:
+            if prev_token is None or token.linenr <= prev_token.linenr + 1:
                 continue
             if self._has_content_between(lines, prev_token, token):
                 continue

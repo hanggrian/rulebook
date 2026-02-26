@@ -39,7 +39,7 @@ class BlockCommentClipChecker(RulebookChecker):
 
     def _process(self, docstring: Const | None) -> None:
         # checks for violation
-        if not docstring:
+        if docstring is None:
             return
         docstring_val: str = docstring.value
         if '\n' not in docstring_val:

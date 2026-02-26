@@ -42,7 +42,7 @@ class MemberOrderChecker(RulebookTokenChecker):
     def _get_member_info(self, token: Token, scope: Scope) -> tuple[int, str] | None:
         if token.scope is not scope:
             return None
-        if token.function:
+        if token.function is not None:
             func: Function = token.function
             if token is not func.tokenDef:
                 return None
@@ -51,7 +51,7 @@ class MemberOrderChecker(RulebookTokenChecker):
             if scope.className == func.name:
                 return self._constructor_position, 'constructor'
             return self._function_position, 'function'
-        if token.variable:
+        if token.variable is not None:
             var: Variable = token.variable
             if token is not var.nameToken:
                 return None
@@ -72,12 +72,15 @@ class MemberOrderChecker(RulebookTokenChecker):
             prev_weight: int | None = None
             prev_name: str | None = None
             curr_token: Token | None = token.next
-            while curr_token and curr_token is not token.scope.bodyEnd:
+            while curr_token is not None and curr_token is not token.scope.bodyEnd:
                 info: tuple[int, str] | None = self._get_member_info(curr_token, token.scope)
-                if info:
+                if info is not None:
                     curr_weight, curr_name = info
                     if prev_weight is not None and curr_weight < prev_weight:
-                        self.report_error(curr_token, _Messages.get(self._MSG, curr_name, prev_name))
+                        self.report_error(
+                            curr_token,
+                            _Messages.get(self._MSG, curr_name, prev_name),
+                        )
                     prev_weight = curr_weight
                     prev_name = curr_name
                 curr_token = curr_token.next

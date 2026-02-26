@@ -23,7 +23,7 @@ class NamedImportOrderChecker(RulebookChecker):
             import_name: str = name[0]
 
             # checks for violation
-            if last_name and \
+            if last_name is not None and \
                 last_name > import_name:
                 self.add_message(
                     self._MSG,

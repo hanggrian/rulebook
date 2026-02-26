@@ -18,8 +18,8 @@ class LowercaseHexRule extends RulebookRule {
                 if (typeof node.value !== 'number') {
                     return;
                 }
-                const value = node.raw || '';
-                if (!value.toLowerCase().startsWith('0x')) {
+                const value = node.raw;
+                if (value === undefined || !value.toLowerCase().startsWith('0x')) {
                     return;
                 }
                 const valueReplacement = value.toLowerCase();

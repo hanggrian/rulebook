@@ -13,17 +13,17 @@ public class BlockTagPunctuationRule :
 
     override fun getName(): String = "BlockTagPunctuation"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>) {
         // checks for violation
         violations +=
             buildRegex(tagSet)
-                .findAll(sourceCode.text)
+                .findAll(code.text)
                 .filter { ' ' in it.value && it.value.last() !in END_PUNCTUATIONS }
                 .map {
-                    val lineNumber = sourceCode.getLineNumberForCharacterIndex(it.range.last)
+                    val lineNumber = code.getLineNumberForCharacterIndex(it.range.last)
                     createViolation(
                         lineNumber,
-                        sourceCode.line(lineNumber - 1),
+                        code.line(lineNumber - 1),
                         Messages[MSG, it.value.substringBefore(' ')],
                     )
                 }

@@ -17,6 +17,9 @@
   "nested.if.else.lift": "Lift 'else' and add 'return' in 'if' block.",
   "redundant.default": "Omit redundant 'default' condition.",
   "redundant.else": "Omit redundant 'else' condition.",
+  "redundant.if": "Omit redundant 'if' condition.",
+  "unnecessary.continue": "Last 'continue' is not needed.",
+  "unnecessary.return": "Last 'return' is not needed.",
 
   "comment.trim": "Remove blank line after '//'.",
   "duplicate.blank.line.in.block.comment": "Remove consecutive blank line after '*'.",

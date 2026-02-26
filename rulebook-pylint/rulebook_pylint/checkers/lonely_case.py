@@ -1,0 +1,28 @@
+from __future__ import annotations
+
+from astroid.nodes import Match
+from pylint.typing import TYPE_CHECKING
+
+from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
+from rulebook_pylint.messages import _Messages
+
+if TYPE_CHECKING:
+    from pylint.lint import PyLinter
+
+
+class LonelyCaseChecker(RulebookChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#lonely-case"""
+    _MSG: str = 'lonely.case'
+
+    name: str = 'lonely-case'
+    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+
+    def visit_match(self, node: Match) -> None:
+        # checks for violation
+        if len(node.cases) > 1:
+            return
+        self.add_message(self._MSG, node=node)
+
+
+def register(linter: PyLinter) -> None:
+    linter.register_checker(LonelyCaseChecker(linter))

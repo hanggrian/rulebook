@@ -13,6 +13,8 @@ def _get_fromlineno_before(lines: list[bytes], current: NodeNG, previous: NodeNG
 
 def _has_comment_above(lines: list[bytes], current: NodeNG) -> bool:
     """Returns true if there is any comment above current node."""
+    if lines is None:
+        return False
     index = current.fromlineno - 1
     while index > 0:
         line = lines[index].strip()

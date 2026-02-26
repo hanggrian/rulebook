@@ -1,4 +1,4 @@
-import { AST, Rule } from 'eslint';
+import { Rule } from 'eslint';
 import { Expression, VariableDeclarator } from 'estree';
 import messages from '../messages.js';
 import { isMultiline } from '../nodes.js';
@@ -32,9 +32,13 @@ class AssignmentWrapRule extends RulebookRule {
                 }
 
                 // checks for violation
-                const operator: AST.Token | null =
-                    context.sourceCode.getTokenAfter(node.id, token => token.value === '=');
-                if (!operator || operator.loc.end.line !== init.loc!.start.line) {
+                if (context
+                    .sourceCode
+                    .getTokenAfter(node.id, token => token.value === '=')
+                    ?.loc
+                    .end
+                    .line !== init.loc!.start.line
+                ) {
                     return;
                 }
                 context.report({

@@ -18,7 +18,7 @@ class GenericNameRule extends RulebookRule {
                     TSESTree.TSMappedType |
                     TSESTree.TSTypeParameterDeclaration =
                         node.parent;
-                if (parent?.type !== AST_NODE_TYPES.TSTypeParameterDeclaration ||
+                if (parent.type !== AST_NODE_TYPES.TSTypeParameterDeclaration ||
                     parent.params.length > 1) {
                     return;
                 }

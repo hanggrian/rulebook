@@ -50,7 +50,7 @@ load-plugins=
   rulebook_pylint.checkers.parentheses_clip,
   # Declaring
   pylint.extensions.docstyle,
-  rulebook_pylint.checkers.exception_inheritance,
+  rulebook_pylint.checkers.internal_error,
   rulebook_pylint.checkers.lowercase_hex,
   pylint.checkers.strings,
   rulebook_pylint.checkers.unnecessary_abstract,
@@ -70,10 +70,11 @@ load-plugins=
   rulebook_pylint.checkers.comment_space,
   rulebook_pylint.checkers.member_separator,
   # Stating
+  rulebook_pylint.checkers.lonely_case,
   rulebook_pylint.checkers.nested_if_else,
   rulebook_pylint.checkers.redundant_default,
-  rulebook_pylint.checkers.unnecessary_switch,
   rulebook_pylint.checkers.unnecessary_blank_line_after_colon,
+  rulebook_pylint.checkers.unnecessary_continue,
   rulebook_pylint.checkers.unnecessary_initial_blank_line,
   # Trimming
   rulebook_pylint.checkers.block_comment_trim,
@@ -87,6 +88,7 @@ load-plugins=
   rulebook_pylint.checkers.parameter_wrap,
   # Internal
   codecheck.direct_static_call,
+  codecheck.method_parameter_name,
   codecheck.url_in_documentation,
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the

@@ -19,7 +19,7 @@ class CaseSeparatorRule extends RulebookRule {
             SwitchStatement(node: SwitchStatement) {
                 // collect cases
                 const cases: SwitchCase[] = node.cases;
-                if (cases.length === 0) {
+                if (!cases.length) {
                     return;
                 }
 

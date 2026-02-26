@@ -23,11 +23,11 @@ class ClassNameChecker(RulebookChecker):
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
         class_name: str | None = scope.className
-        if not class_name or class_name[0].isupper() and '_' not in class_name:
+        if class_name is None or class_name[0].isupper() and '_' not in class_name:
             return
         name_token: Token | None = _prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
         self.report_error(
-            name_token if name_token else scope.bodyStart,
+            name_token if name_token is not None else scope.bodyStart,
             _Messages.get(
                 self._MSG,
                 ''.join(p[0].upper() + p[1:] if p else '' for p in class_name.split('_')),

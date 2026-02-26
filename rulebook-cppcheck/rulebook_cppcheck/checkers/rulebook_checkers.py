@@ -29,9 +29,9 @@ class BaseChecker(ABC):
         line: int | None = None,
         column: int | None = None,
     ) -> None:
-        if line:
+        if line is not None:
             token.linenr = line
-        if column:
+        if column is not None:
             token.column = column
         reportError(
             addon=self.ADDON,

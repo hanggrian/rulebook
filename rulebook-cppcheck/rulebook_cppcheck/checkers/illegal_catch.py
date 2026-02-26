@@ -26,10 +26,10 @@ class IllegalCatchChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'catch']:
             next_token: Token | None = token.next
-            if not next_token or next_token.str != '(':
+            if next_token is None or next_token.str != '(':
                 continue
             ellipses_token: Token | None = next_token.next
-            if ellipses_token and ellipses_token.str == '...':
+            if ellipses_token is not None and ellipses_token.str == '...':
                 self.report_error(token, _Messages.get(self._MSG))
                 continue
             if not _next_sibling(next_token.next, lambda t: t.str in self._ILLEGAL_EXCEPTIONS):

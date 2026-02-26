@@ -65,7 +65,7 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
         for token in tokens:
             # get last token to compare
             next_token: Token | None = token.next
-            if not next_token or token.linenr != next_token.linenr:
+            if next_token is None or token.linenr != next_token.linenr:
                 continue
 
             # checks for violation

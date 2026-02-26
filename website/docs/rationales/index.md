@@ -103,6 +103,22 @@ import java.lang.String
 val names = arrayListOf<String>()
 ```
 
+## Simple comparison
+
+When comparing a boolean, null or empty string or collection, use simple
+comparison instead of equality check.
+
+```python hl_lines="2 5 8"
+if isActive:
+    print('Active')
+
+if name:
+    print('Name is not empty')
+
+if items:
+    print('Items is not empty')
+```
+
 ## Sort named imports
 
 When importing multiple members from the same package, they should be sorted

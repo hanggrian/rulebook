@@ -24,23 +24,24 @@ class OperatorWrapChecker(RulebookTokenChecker):
             t for t in tokens
             if t.isOp and
                not t.isAssignmentOp and
-               (t.astOperand1 and t.astOperand2) and
+               (t.astOperand1 is not None and t.astOperand2 is not None) and
                t.str not in self._IGNORE_TOKENS
         ]:
-            if token.previous and token.linenr > token.previous.linenr:
+            if token.previous is not None and \
+                token.linenr > token.previous.linenr:
                 self.report_error(token, _Messages.get(self._MSG_UNEXPECTED, token.str))
                 continue
 
             next_token: Token | None = token.next
-            if not next_token or next_token.str in {'{', '['}:
+            if next_token is None or next_token.str in {'{', '['}:
                 continue
 
             top_node: Token | None = _parent(token, lambda t: t.isOp and not t.isAssignmentOp)
             start_token: Token | None = top_node
-            while start_token.astOperand1:
+            while start_token.astOperand1 is not None:
                 start_token = start_token.astOperand1
             end_token: Token | None = top_node
-            while end_token.astOperand2:
+            while end_token.astOperand2 is not None:
                 end_token = end_token.astOperand2
 
             if end_token.linenr <= start_token.linenr or next_token.linenr != token.linenr:

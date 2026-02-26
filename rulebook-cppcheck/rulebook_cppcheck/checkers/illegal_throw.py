@@ -29,6 +29,6 @@ class IllegalThrowChecker(RulebookTokenChecker):
                     token.next,
                     lambda t: t.str in self._BROAD_EXCEPTIONS or t.str == ';',
                 )
-            if not target or target.str not in self._BROAD_EXCEPTIONS:
+            if target is None or target.str not in self._BROAD_EXCEPTIONS:
                 continue
             self.report_error(target, _Messages.get(self._MSG))

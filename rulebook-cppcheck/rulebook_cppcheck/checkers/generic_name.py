@@ -21,13 +21,13 @@ class GenericNameChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'template']:
             open_bracket: Token | None = _next_sibling(token, lambda t: t.str == '<')
-            if not open_bracket or not open_bracket.link:
+            if open_bracket is None or not open_bracket.link:
                 continue
             closing: Token | None = open_bracket.link
             params: list[Token] = []
             curr_token: Token | None = open_bracket.next
             continue_outer: bool = False
-            while curr_token and curr_token is not closing:
+            while curr_token is not None and curr_token is not closing:
                 if curr_token.str == ',':
                     continue_outer = True
                     break

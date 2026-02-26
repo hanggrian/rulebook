@@ -10,14 +10,14 @@ import org.codenarc.source.SourceCode
 public class MissingBlankLineBeforeBlockTagsRule : RulebookFileRule() {
     override fun getName(): String = "MissingBlankLineBeforeBlockTags"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>) {
         // checks for violation
         violations +=
             REGEX
-                .findAll(sourceCode.text)
+                .findAll(code.text)
                 .map {
-                    val lineNumber = sourceCode.getLineNumberForCharacterIndex(it.range.last)
-                    createViolation(lineNumber, sourceCode.line(lineNumber - 1), Messages[MSG])
+                    val lineNumber = code.getLineNumberForCharacterIndex(it.range.last)
+                    createViolation(lineNumber, code.line(lineNumber - 1), Messages[MSG])
                 }
     }
 

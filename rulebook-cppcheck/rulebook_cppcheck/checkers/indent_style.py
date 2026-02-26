@@ -32,6 +32,8 @@ class IndentStyleChecker(RulebookTokenChecker):
             token_file: str | None = token.file
             token_linenr: int = token.linenr
 
+            if token_file is None:
+                continue
             if token_file not in processed_lines:
                 processed_lines[token_file] = set()
             if token_linenr in processed_lines[token_file]:

@@ -9,9 +9,9 @@ import org.codenarc.source.SourceCode
 public class ImportOrderRule : RulebookImportRule() {
     override fun getName(): String = "ImportOrder"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>): Unit =
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>): Unit =
         eachImportLine(
-            sourceCode,
+            code,
             object : Closure<Unit>(null) {
                 var prevStatic: Boolean? = null
                 var prevIndex: Int? = null

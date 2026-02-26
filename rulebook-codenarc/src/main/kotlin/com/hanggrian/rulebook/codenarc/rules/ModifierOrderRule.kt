@@ -8,8 +8,8 @@ import org.codenarc.source.SourceCode
 public class ModifierOrderRule : RulebookFileRule() {
     override fun getName(): String = "ModifierOrder"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
-        for ((index, line) in sourceCode.lines.withIndex()) {
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>) {
+        for ((index, line) in code.lines.withIndex()) {
             // checks for violation
             val modifiers =
                 line

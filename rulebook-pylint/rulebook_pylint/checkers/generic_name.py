@@ -28,7 +28,7 @@ class GenericNameChecker(RulebookChecker):
 
         # checks for violation
         target: AssignName | None = _get_assignname(node)
-        if not target:
+        if target is None:
             return
         name: str = target.name
         if len(name) == 1 and name[0].isupper():

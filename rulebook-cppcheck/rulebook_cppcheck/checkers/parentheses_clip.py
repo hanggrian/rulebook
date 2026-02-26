@@ -35,21 +35,21 @@ class ParenthesesClipChecker(RulebookTokenChecker):
                 (token_str == '(' and token.isRemovedVoidParameter):
                 continue
             closing_token: Token | None = token.link
-            if not closing_token or \
+            if closing_token is None or \
                 token.next != closing_token:
                 continue
             if token.linenr == closing_token.linenr and \
                 token.column + len(token_str) == closing_token.column:
                 continue
             if token_str == '(':
-                if token.astParentId:
+                if token.astParentId is not None:
                     continue
             elif token_str == '{':
-                if token.astParentId and token.astParentId != '0':
+                if token.astParentId is not None and token.astParentId != '0':
                     continue
                 prev: Token | None = token.previous
                 is_control: bool = False
-                while prev:
+                while prev is not None:
                     if prev.str in self._MULTI_BLOCKS:
                         is_control = True
                         break

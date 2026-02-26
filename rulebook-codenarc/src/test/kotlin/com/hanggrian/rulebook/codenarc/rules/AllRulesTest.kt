@@ -18,7 +18,6 @@ import kotlin.test.assertTrue
 class AllRulesTest : AbstractTestCase() {
     private val rules =
         setOf<Rule>(
-            UnnecessaryScopeRule(),
             AssignmentWrapRule(),
             BlockCommentClipRule(),
             BlockTagIndentationRule(),
@@ -38,13 +37,18 @@ class AllRulesTest : AbstractTestCase() {
             ImportOrderRule(),
             InnerClassPositionRule(),
             LambdaWrapRule(),
+            LonelyCaseRule(),
+            LonelyIfRule(),
             LowercaseDRule(),
             LowercaseFRule(),
+            LowercaseHexRule(),
             LowercaseIRule(),
             MeaninglessWordRule(),
             MemberOrderRule(),
             MemberSeparatorRule(),
             MissingBlankLineBeforeBlockTagsRule(),
+            MissingPrivateConstructorRule(),
+            ModifierOrderRule(),
             NestedIfElseRule(),
             OperatorWrapRule(),
             OverloadFunctionPositionRule(),
@@ -59,9 +63,8 @@ class AllRulesTest : AbstractTestCase() {
             TagsTrimRule(),
             TodoCommentRule(),
             TrailingCommaInCallRule(),
+            UnnecessaryContinueRule(),
             UnnecessaryParenthesesInLambdaRule(),
-            UnnecessarySwitchRule(),
-            MissingPrivateConstructorRule(),
         )
     private val sourceCodeName = "AllRules.groovy"
     private val sourceCodePath = "com/hanggrian/rulebook/codenarc"

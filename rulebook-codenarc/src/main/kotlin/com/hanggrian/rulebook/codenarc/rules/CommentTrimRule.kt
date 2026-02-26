@@ -8,21 +8,21 @@ import org.codenarc.source.SourceCode
 public class CommentTrimRule : RulebookFileRule() {
     override fun getName(): String = "CommentTrim"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>): Unit =
-        sourceCode
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>): Unit =
+        code
             .lines
             .withIndex()
             .filter { it.index != 0 && "//" in it.value }
             .forEach { (start, line) ->
                 // continue if this comment is first line
-                sourceCode
+                code
                     .line(start - 1)
                     .takeUnless { "//" in it }
                     ?: return
 
                 // iterate to find last
                 var end = start
-                while ("//" in sourceCode.lines.getOrNull(end + 1).orEmpty()) {
+                while ("//" in code.lines.getOrNull(end + 1).orEmpty()) {
                     end++
                 }
 
@@ -36,7 +36,7 @@ public class CommentTrimRule : RulebookFileRule() {
                     .takeIf { it.isEolCommentEmpty() }
                     ?.let { violations += createViolation(start + 1, it, Messages[MSG]) }
                 val endLine =
-                    sourceCode
+                    code
                         .line(end)
                         .takeIf { it.isEolCommentEmpty() }
                         ?: return

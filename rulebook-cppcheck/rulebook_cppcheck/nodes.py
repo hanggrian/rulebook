@@ -21,7 +21,7 @@ def _is_multiline(start: Token, end: Token) -> bool:
 
 
 def _parent(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
-    while token:
+    while token is not None:
         if predicate(token):
             return token
         token = token.astParent
@@ -29,7 +29,7 @@ def _parent(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
 
 
 def _prev_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
-    while token:
+    while token is not None:
         if predicate(token):
             return token
         token = token.previous
@@ -37,7 +37,7 @@ def _prev_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | N
 
 
 def _next_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
-    while token:
+    while token is not None:
         if predicate(token):
             return token
         token = token.next

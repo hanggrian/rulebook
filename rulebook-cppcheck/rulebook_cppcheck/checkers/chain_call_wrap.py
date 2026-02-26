@@ -30,7 +30,7 @@ class ChainCallWrapChecker(RulebookTokenChecker):
             # check if this dot is inside function call parameters
             check_token: Token | None = token.previous
             paren_depth: int = 0
-            while check_token:
+            while check_token is not None:
                 if check_token.str == ')':
                     paren_depth += 1
                 elif check_token.str == '(':
@@ -41,14 +41,14 @@ class ChainCallWrapChecker(RulebookTokenChecker):
                     check_token = None
                     break
                 check_token = check_token.previous
-            if check_token and check_token.str == '(':
+            if check_token is not None and check_token.str == '(':
                 continue
 
             # look backwards to detect ternary
             check_token = token.previous
             paren_depth = 0
             found_ternary = False
-            while check_token:
+            while check_token is not None:
                 if check_token.str == ')':
                     paren_depth += 1
                 elif check_token.str == '(':
@@ -68,7 +68,7 @@ class ChainCallWrapChecker(RulebookTokenChecker):
             dots: list[Token] = []
             curr: Token | None = token
             depth: int = 0
-            while curr:
+            while curr is not None:
                 if curr.str == '(':
                     depth += 1
                 elif curr.str == ')':
@@ -92,7 +92,7 @@ class ChainCallWrapChecker(RulebookTokenChecker):
             # checks for violation
             for dot in dots:
                 prev_token: Token | None = dot.previous
-                if not prev_token:
+                if prev_token is None:
                     continue
                 if prev_token.str in self._CLOSING_PARENTHESES and \
                     prev_token.previous and \

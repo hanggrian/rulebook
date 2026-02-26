@@ -7,7 +7,7 @@ trailing.comma.multi=Put trailing comma.
 block.comment.clip=Convert into single-line.
 parentheses.clip=Convert into '%s'.
 # Declaring
-exception.inheritance=Extend from class 'Exception'.
+internal.error=Extend from class 'Exception'.
 lowercase.hex=Use hexadecimal '%s'.
 unnecessary.abstract=Omit 'abstract' modifier.
 # Formatting
@@ -28,10 +28,11 @@ case.separator.unexpected=Remove blank line after single-line branch.
 comment.space=Put one space after '#'.
 member.separator=Add blank line after '%s'.
 # Stating
+lonely.case=Replace 'match' with 'if' condition.
 nested.if.else.invert=Invert 'if' condition.
 nested.if.else.lift=Lift 'else' and add 'return' in 'if' block.
 redundant.default=Omit redundant 'case _' condition.
-unnecessary.switch=Replace 'match' with 'if' condition.
+unnecessary.continue=Last 'continue' is not needed.
 unnecessary.blank.line.after.colon=Remove blank line after ':'.
 unnecessary.initial.blank.line=Remove blank line at the beginning.
 # Trimming

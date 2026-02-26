@@ -31,7 +31,7 @@ class TodoCommentChecker(RulebookFileChecker):
                 line_no: int = start_line + i
 
                 keyword_match: Match | None = self._KEYWORD_REGEX.search(line)
-                if keyword_match:
+                if keyword_match is not None:
                     self.report_error(
                         token,
                         _Messages.get(self._MSG_KEYWORD, keyword_match.group(0)),
@@ -39,7 +39,7 @@ class TodoCommentChecker(RulebookFileChecker):
                     )
 
                 separator_match: Match | None = self._SEPARATOR_REGEX.search(line)
-                if not separator_match:
+                if separator_match is None:
                     continue
                 self.report_error(
                     token,

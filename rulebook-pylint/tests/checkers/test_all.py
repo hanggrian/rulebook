@@ -23,9 +23,10 @@ from rulebook_pylint.checkers.duplicate_blank_line_in_block_comment import \
 from rulebook_pylint.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
 from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
-from rulebook_pylint.checkers.exception_inheritance import ExceptionInheritanceChecker
 from rulebook_pylint.checkers.generic_name import GenericNameChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
+from rulebook_pylint.checkers.internal_error import InternalErrorChecker
+from rulebook_pylint.checkers.lonely_case import LonelyCaseChecker
 from rulebook_pylint.checkers.lowercase_hex import LowercaseHexChecker
 from rulebook_pylint.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_pylint.checkers.member_order import MemberOrderChecker
@@ -41,9 +42,9 @@ from rulebook_pylint.checkers.trailing_comma import TrailingCommaChecker
 from rulebook_pylint.checkers.unnecessary_abstract import UnnecessaryAbstractChecker
 from rulebook_pylint.checkers.unnecessary_blank_line_after_colon import \
     UnnecessaryBlankLineAfterColonChecker
+from rulebook_pylint.checkers.unnecessary_continue import UnnecessaryContinueChecker
 from rulebook_pylint.checkers.unnecessary_initial_blank_line import \
     UnnecessaryInitialBlankLineChecker
-from rulebook_pylint.checkers.unnecessary_switch import UnnecessarySwitchChecker
 from ..tests import msg
 
 
@@ -61,12 +62,13 @@ class TestAllCheckers:
         DuplicateBlankLineInBlockCommentChecker,
         DuplicateBlankLineInCommentChecker,
         DuplicateSpaceChecker,
-        ExceptionInheritanceChecker,
         # TODO find out why this test shares config (max 3 lines) with `test_file_size` when running
         #   command `pytest`.
         # FileSizeChecker,
         GenericNameChecker,
         InnerClassPositionChecker,
+        InternalErrorChecker,
+        LonelyCaseChecker,
         LowercaseHexChecker,
         MeaninglessWordChecker,
         MemberOrderChecker,
@@ -81,8 +83,8 @@ class TestAllCheckers:
         TrailingCommaChecker,
         UnnecessaryAbstractChecker,
         UnnecessaryBlankLineAfterColonChecker,
+        UnnecessaryContinueChecker,
         UnnecessaryInitialBlankLineChecker,
-        UnnecessarySwitchChecker,
     )
     CONFIG: dict[str, Any] = {}
 

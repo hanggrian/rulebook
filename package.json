@@ -11,7 +11,6 @@
     "build": "npm run build --workspaces",
     "lint": "eslint rulebook-eslint/src/ rulebook-typescript-eslint/src/ sample/javascript/ sample/typescript/",
     "lint2": "eslint --config sample-configured/eslint.config.js sample-configured/javascript/",
-    "preview": "vite preview",
     "test": "npm run test --workspaces",
     "coverage": "npm run coverage --workspaces",
     "docs": "npm run docs --workspaces"

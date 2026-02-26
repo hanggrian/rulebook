@@ -29,7 +29,7 @@ class InnerClassPositionChecker(RulebookTokenChecker):
             has_seen_inner_class: bool = False
             curr_token: Token | None = token.next
             continue_outer: int = False
-            while curr_token and curr_token is not current_class_scope.bodyEnd:
+            while curr_token is not None and curr_token is not current_class_scope.bodyEnd:
                 if curr_token.str in self._TARGET_TOKENS and curr_token.next:
                     if curr_token.next.typeScope and \
                         curr_token.next.typeScope.nestedIn is current_class_scope:

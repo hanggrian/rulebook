@@ -58,11 +58,12 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.MissingBlankLineBeforeBlockTagsRule"/>
 
   <!-- Stating -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyCaseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyIfRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantDefaultRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantElseRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryBracesRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessarySwitchRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryContinueRule"/>
 
   <!-- Trimming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule"/>

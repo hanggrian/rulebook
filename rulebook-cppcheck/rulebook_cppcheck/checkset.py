@@ -29,6 +29,7 @@ from rulebook_cppcheck.checkers.import_order import ImportOrderChecker
 from rulebook_cppcheck.checkers.indent_style import IndentStyleChecker
 from rulebook_cppcheck.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
+from rulebook_cppcheck.checkers.lonely_case import LonelyCaseChecker
 from rulebook_cppcheck.checkers.lowercase_f import LowercaseFChecker
 from rulebook_cppcheck.checkers.lowercase_hex import LowercaseHexChecker
 from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
@@ -43,7 +44,6 @@ from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
 from rulebook_cppcheck.checkers.rulebook_checkers import BaseChecker
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
-from rulebook_cppcheck.checkers.unnecessary_switch import UnnecessarySwitchChecker
 from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
 
 try:
@@ -88,9 +88,9 @@ if __name__ == '__main__':
         # Stating
         IllegalCatchChecker(),
         IllegalThrowChecker(),
+        LonelyCaseChecker(),
         RedundantDefaultChecker(),
         RedundantElseChecker(),
-        UnnecessarySwitchChecker(),
         # Trimming
         BlockCommentTrimChecker(),
         CommentTrimChecker(),
@@ -117,7 +117,6 @@ if __name__ == '__main__':
                 mapped_args[arg] = system_arg.split('=')[1]
                 system_args.remove(system_arg)
                 must_continue = True
-                continue
             if must_continue:
                 continue
         if mapped_args:

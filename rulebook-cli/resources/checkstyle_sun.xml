@@ -204,7 +204,7 @@
     <module name="ArrayTrailingComma"/>
 
     <!-- Declaring -->
-    <module name="ExceptionInheritance"/>
+    <module name="InternalError"/>
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
     <module name="LowercaseHex"/>
@@ -284,11 +284,14 @@
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
           java.lang.Throwable"/>
     </module>
+    <module name="LonelyCase"/>
+    <module name="LonelyIf"/>
     <module name="NestedIfElse"/>
     <module name="RedundantDefault"/>
     <module name="RedundantElse"/>
-    <module name="UnnecessaryBraces"/>
-    <module name="UnnecessarySwitch"/>
+    <module name="RedundantIf"/>
+    <module name="UnnecessaryContinue"/>
+    <module name="UnnecessaryReturn"/>
 
     <!-- Trimming -->
     <module name="BlockCommentTrim"/>

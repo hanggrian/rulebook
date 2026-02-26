@@ -18,7 +18,8 @@ class RedundantDefaultRule extends RulebookRule {
                 // find default
                 const cases: SwitchCase[] = node.cases;
                 const lastCase = cases[cases.length - 1];
-                if (!lastCase || lastCase.test) {
+                const test = lastCase.test;
+                if (test !== null && test !== undefined) {
                     return;
                 }
 

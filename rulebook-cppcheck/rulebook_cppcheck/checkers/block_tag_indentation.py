@@ -40,7 +40,7 @@ class BlockTagIndentationChecker(RulebookFileChecker):
                     continue
 
                 match_indent: Match | None = self._CONTINUATION_LINE_REGEX.match(line)
-                if not match_indent:
+                if match_indent is None:
                     continue
                 indent_size: int = len(match_indent.group(1))
                 if indent_size == 5:

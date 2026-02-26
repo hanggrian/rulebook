@@ -8,9 +8,9 @@ import org.codenarc.source.SourceCode
 public class EmptyFileRule : RulebookFileRule() {
     override fun getName(): String = "EmptyFile"
 
-    override fun applyTo(sourceCode: SourceCode, violations: MutableList<Violation>) {
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>) {
         // checks for violation
-        for (line in sourceCode.lines) {
+        for (line in code.lines) {
             if (line.trimStart().startsWith("package")) {
                 continue
             }
