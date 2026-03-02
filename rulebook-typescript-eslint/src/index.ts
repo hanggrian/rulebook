@@ -32,6 +32,8 @@ const typescriptConfig: TSESLint.SharedConfig.RulesRecord = {
     // Clipping
     // Declaring
     '@rulebook/unnecessary-abstract': 'error',
+    // Expressing
+    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
     // Formatting
     // Naming
     '@typescript-eslint/naming-convention': [

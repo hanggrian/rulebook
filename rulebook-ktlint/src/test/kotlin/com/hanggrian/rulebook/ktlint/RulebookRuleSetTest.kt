@@ -12,12 +12,11 @@ import com.hanggrian.rulebook.ktlint.rules.BooleanPropertyInteroperabilityRule
 import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
-import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanComparisonRule
-import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeComparisonRule
-import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeComparisonRuleTest
+import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanEqualityRule
+import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
 import com.hanggrian.rulebook.ktlint.rules.DecentralizedDependencyRule
-import com.hanggrian.rulebook.ktlint.rules.DeprecatedEqualityRule
+import com.hanggrian.rulebook.ktlint.rules.DeprecatedIdentityRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
@@ -73,11 +72,11 @@ class RulebookRuleSetTest {
             BracesClipRule::class,
             CommonFunctionPositionRule::class,
             CommentTrimRule::class,
-            ComplicatedBooleanComparisonRule::class,
-            ComplicatedSizeComparisonRule::class,
+            ComplicatedBooleanEqualityRule::class,
+            ComplicatedSizeEqualityRule::class,
             ConfusingPredicateRule::class,
             DecentralizedDependencyRule::class,
-            DeprecatedEqualityRule::class,
+            DeprecatedIdentityRule::class,
             DeprecatedTypeRule::class,
             DuplicateBlankLineInBlockCommentRule::class,
             DuplicateBlankLineInCommentRule::class,

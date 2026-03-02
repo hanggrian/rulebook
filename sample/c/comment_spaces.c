@@ -3,3 +3,5 @@ struct RestApi {
     int a;
     double b; // World
 };
+
+struct RestApi api;

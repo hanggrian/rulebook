@@ -33,7 +33,7 @@ class NestedIfElseRule extends RulebookRule {
                 }
 
                 // get last if
-                if (node.body.length == 0) {
+                if (!node.body.length) {
                     return;
                 }
                 const ifStatement: Node = node.body[node.body.length - 1];

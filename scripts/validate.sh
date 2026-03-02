@@ -16,14 +16,14 @@ local_addon='local.addon.json'
 local_custom_addon='sample-configured/local.custom_addon.json'
 if [[ -f "$local_addon" ]]; then
   cppcheck \
-    --enable=warning \
+    --enable=warning,style \
     "--addon=$local_addon" \
     sample/c/*.c \
     sample/cpp/*.cpp
 fi
 if [[ -f "$local_custom_addon" ]]; then
   cppcheck \
-    --enable=warning \
+    --enable=warning,style \
     "--addon=$local_custom_addon" \
     sample-configured/c/*.c \
     sample-configured/cpp/*.cpp

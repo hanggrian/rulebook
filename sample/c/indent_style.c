@@ -1,4 +1,4 @@
 int main() {
-    int foo = 1;
+    constexpr int foo = 1;
     return foo;
 }

@@ -7,3 +7,6 @@ struct MyThrea {
   int a;
   double b;
 };
+
+struct MyWorke a;
+struct MyThrea b;

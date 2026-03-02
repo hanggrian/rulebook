@@ -14,7 +14,7 @@ class UnnecessaryAbstractRule extends RulebookRule {
         return {
             ClassDeclaration(node: TSESTree.ClassDeclaration) {
                 // skip non-abstract class
-                if (!node.abstract || node.superClass || node.implements.length > 0) {
+                if (!node.abstract || node.superClass || node.implements.length) {
                     return;
                 }
 

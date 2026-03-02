@@ -8,6 +8,7 @@ parentheses.clip=Convert into '{}'.
 lowercase.f=Tag float literal by 'f'.
 lowercase.hexadecimal=Use hexadecimal '{}'.
 uppercase.l=Tag long literal by 'L'.
+# Expressing
 # Formatting
 empty.file=Delete the empty file.
 file.size=Reduce file size to '{}'.

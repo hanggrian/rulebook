@@ -1,25 +1,25 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
-import com.hanggrian.rulebook.codenarc.rules.ComplicatedSizeComparisonRule.Companion.MSG
+import com.hanggrian.rulebook.codenarc.rules.ComplicatedSizeEqualityRule.Companion.MSG
 import org.codehaus.groovy.ast.expr.ArgumentListExpression
 import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.ast.expr.ConstantExpression
 import org.codehaus.groovy.ast.expr.Expression
 import org.codehaus.groovy.ast.expr.MethodCallExpression
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#complicated-size-comparison) */
-public class ComplicatedSizeComparisonRule : RulebookAstRule() {
-    override fun getName(): String = "ComplicatedSizeComparison"
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#complicated-size-equality) */
+public class ComplicatedSizeEqualityRule : RulebookAstRule() {
+    override fun getName(): String = "ComplicatedSizeEquality"
 
-    override fun getAstVisitorClass(): Class<*> = ComplicatedSizeComparisonVisitor::class.java
+    override fun getAstVisitorClass(): Class<*> = ComplicatedSizeEqualityVisitor::class.java
 
     internal companion object {
-        const val MSG = "complicated.size.comparison"
+        const val MSG = "complicated.size.equality"
     }
 }
 
-public class ComplicatedSizeComparisonVisitor : RulebookVisitor() {
+public class ComplicatedSizeEqualityVisitor : RulebookVisitor() {
     override fun visitBinaryExpression(node: BinaryExpression) {
         if (!isFirstVisit(node)) {
             return
@@ -28,8 +28,7 @@ public class ComplicatedSizeComparisonVisitor : RulebookVisitor() {
         // checks for violation
         node
             .operation
-            .text
-            .takeIf { it == ">" || it == "<" || it == "==" }
+            .takeIf { it.text == ">" || it.text == "<" || it.text == "==" }
             ?: return
         node
             .takeIf {

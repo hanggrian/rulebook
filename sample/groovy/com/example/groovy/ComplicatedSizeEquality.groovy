@@ -1,6 +1,6 @@
 package com.example.groovy
 
-class ComplicatedSizeComparison {
+class ComplicatedSizeEquality {
     def foo(List<Integer> foo) {
         if (foo) {
             println()

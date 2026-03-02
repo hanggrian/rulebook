@@ -506,7 +506,6 @@
     </module>
 
     <module name="BlockTagPunctuation"/>
-    <module name="RedundantQualifier"/>
     <module name="TodoComment">
       <property name="format" value="todo|fixme"/>
     </module>
@@ -519,8 +518,12 @@
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
     <module name="LowercaseHexadecimal"/>
+    <module name="RedundantQualifier"/>
     <module name="UnnecessaryAbstract"/>
     <module name="UnnecessaryParenthesesInLambda"/>
+
+    <!-- Expressing -->
+    <module name="ComplicatedSizeComparison"/>
 
     <!-- Naming -->
     <module name="ConstantName"/>
@@ -548,7 +551,6 @@
     <module name="CommentSpaces"/>
 
     <!-- Stating -->
-    <module name="ComplicatedSizeComparison"/>
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"

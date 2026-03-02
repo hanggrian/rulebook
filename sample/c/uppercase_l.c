@@ -1,4 +1,9 @@
+#include <stdio.h>
+
 int main() {
-    long foo = 1L;
-    long long bar = 1LL;
+    constexpr long foo = 1L;
+    constexpr long long bar = 1LL;
+
+    printf("%ld", foo);
+    printf("%lld", bar);
 }

@@ -21,8 +21,6 @@ import unnecessaryInitialBlankLineRule from './rules/unnecessary-initial-blank-l
 const crockfordConfig: Linter.RulesRecord = {
     'consistent-return': 'error',
     'no-undef': 'error',
-    '@stylistic/semi': 'error',
-    '@stylistic/semi-spacing': 'error',
 
     '@stylistic/comma-dangle': ['error', 'always-multiline'],
     'no-unused-vars': 'error',
@@ -158,7 +156,39 @@ const crockfordConfig: Linter.RulesRecord = {
         'error',
         {
             selector: 'SwitchStatement[cases.length<2]',
-            message: 'Switch statements must have at least 2 cases.',
+            message: "Replace 'when' with 'if' condition.",
+        },
+        {
+            selector:
+                'BinaryExpression[operator=/^(==|<|>)$/]' +
+                '[left.property.name=/^(size|length)$/]' +
+                '[right.value=0]',
+            message: 'Replace comparison with truthy.',
+        },
+        {
+            selector:
+                'BinaryExpression[operator=/^(==|<|>)$/]' +
+                '[left.value=0]' +
+                '[right.property.name=/^(size|length)$/]',
+            message: 'Replace comparison with truthy.',
+        },
+        {
+            selector: "CallExpression[arguments.length=0][callee.property.name='isEmpty']",
+            message: 'Replace comparison with truthy.',
+        },
+        {
+            selector:
+                'BinaryExpression[operator=/^(==|!=)$/] > ' +
+                'Literal[value!=null]:not([value=/^.*$/])',
+            message: "Replace equality with '==='.",
+        },
+        {
+            selector: "BinaryExpression[operator=/^(==|!=)$/] > Identifier[name='undefined']",
+            message: "Replace equality with '==='.",
+        },
+        {
+            selector: 'BinaryExpression[operator=/^(==|!=)$/] > Literal[value=null]',
+            message: "Replace equality with '==='.",
         },
     ],
     'curly': ['error', 'multi-line'],
@@ -166,6 +196,7 @@ const crockfordConfig: Linter.RulesRecord = {
     '@rulebook/redundant-default': 'error',
     '@rulebook/redundant-else': 'error',
     '@rulebook/redundant-if': 'error',
+    '@stylistic/semi': 'error',
     '@rulebook/unnecessary-continue': 'error',
     'no-useless-return': 'error',
     // Trimming
@@ -197,8 +228,6 @@ const crockfordConfig: Linter.RulesRecord = {
 const googleConfig: Linter.RulesRecord = {
     'consistent-return': 'error',
     'no-undef': 'error',
-    '@stylistic/semi': 'error',
-    '@stylistic/semi-spacing': 'error',
 
     '@stylistic/comma-dangle': ['error', 'always-multiline'],
     'no-unused-vars': ['error', { args: 'none' }],
@@ -357,6 +386,7 @@ const googleConfig: Linter.RulesRecord = {
     '@rulebook/redundant-default': 'error',
     '@rulebook/redundant-else': 'error',
     '@rulebook/redundant-if': 'error',
+    '@stylistic/semi': 'error',
     '@rulebook/unnecessary-continue': 'error',
     'no-useless-return': 'error',
     // Trimming

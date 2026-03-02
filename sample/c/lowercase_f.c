@@ -1,3 +1,6 @@
+#include <stdio.h>
+
 int main() {
-    float foo = 1.0f;
+    constexpr float foo = 1.0f;
+    printf("%f", foo);
 }

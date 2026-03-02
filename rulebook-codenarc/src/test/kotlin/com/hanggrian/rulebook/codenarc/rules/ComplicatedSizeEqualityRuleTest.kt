@@ -4,13 +4,13 @@ import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 import kotlin.test.assertIs
 
-class ComplicatedSizeComparisonRuleTest : RuleTest<ComplicatedSizeComparisonRule>() {
-    override fun createRule() = ComplicatedSizeComparisonRule()
+class ComplicatedSizeEqualityRuleTest : RuleTest<ComplicatedSizeEqualityRule>() {
+    override fun createRule() = ComplicatedSizeEqualityRule()
 
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-        assertIs<ComplicatedSizeComparisonVisitor>(rule.astVisitor)
+        assertIs<ComplicatedSizeEqualityVisitor>(rule.astVisitor)
     }
 
     @Test

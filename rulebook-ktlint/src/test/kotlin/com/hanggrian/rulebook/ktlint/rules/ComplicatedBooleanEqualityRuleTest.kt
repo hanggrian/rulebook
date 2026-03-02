@@ -5,11 +5,11 @@ import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
-class ComplicatedBooleanComparisonRuleTest : RuleTest() {
-    private val assertThatCode = assertThatRule { ComplicatedBooleanComparisonRule() }
+class ComplicatedBooleanEqualityRuleTest : RuleTest() {
+    private val assertThatCode = assertThatRule { ComplicatedBooleanEqualityRule() }
 
     @Test
-    fun `Rule properties`() = ComplicatedBooleanComparisonRule().assertProperties()
+    fun `Rule properties`() = ComplicatedBooleanEqualityRule().assertProperties()
 
     @Test
     fun `Boolean constant condition`() =
@@ -17,6 +17,7 @@ class ComplicatedBooleanComparisonRuleTest : RuleTest() {
             """
             fun foo(val foo: Boolean) {
                 if (foo) {
+                } else if (!foo) {
                 }
             }
             """.trimIndent(),
@@ -28,10 +29,14 @@ class ComplicatedBooleanComparisonRuleTest : RuleTest() {
             """
             fun foo(val foo: Boolean) {
                 if (foo == true) {
+                } else if (foo != true) {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(2, 16, "Remove boolean constant.")
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(2, 16, "Remove boolean constant."),
+            LintViolation(3, 23, "Remove boolean constant."),
+        )
 
     @Test
     fun `Duplicate negation constant`() =

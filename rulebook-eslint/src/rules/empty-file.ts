@@ -14,7 +14,7 @@ class EmptyFileRule extends RulebookRule {
         return {
             Program(node: AST.Program) {
                 // checks for violation
-                if (context.sourceCode.getText().trim().length > 0) {
+                if (context.sourceCode.getText().trim().length) {
                     return;
                 }
                 context.report({

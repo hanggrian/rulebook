@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 void redundant_else() {
     for (int i = 0; i < 10; i++) {
         if (true) {
@@ -7,5 +9,6 @@ void redundant_else() {
             continue;
         }
         int j = i;
+        printf("%d", j);
     }
 }

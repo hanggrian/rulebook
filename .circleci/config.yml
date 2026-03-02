@@ -42,12 +42,12 @@ jobs:
           name: Check C/C++
           command: |
             cppcheck \
-              --enable=warning \
+              --enable=warning,style \
               --addon=addon.json \
               sample/c/*.c \
               sample/cpp/*.cpp
             cppcheck \
-              --enable=warning \
+              --enable=warning,style \
               --addon=sample-configured/custom_addon.json \
               sample-configured/c/*.c \
               sample-configured/cpp/*.cpp

@@ -1,9 +1,13 @@
+#include <stdio.h>
+
 int main() {
-    int foo =
+    constexpr int foo =
         0 +
         1;
-    bool bar =
+    constexpr bool bar =
         false +
         false +
         true;
+
+    printf("%d %d", foo, bar);
 }

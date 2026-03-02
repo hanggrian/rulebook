@@ -2,6 +2,6 @@
 
 int main() {
     const char *foo = "                                                                           ";
-    printf(foo);
+    printf("%s", foo);
     return 0;
 }

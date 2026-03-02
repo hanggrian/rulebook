@@ -1,3 +1,6 @@
+#include <stdio.h>
+
 int main() {
-    int foo = 0xaabbcc;
+    constexpr int foo = 0xaabbcc;
+    printf("%d", foo);
 }

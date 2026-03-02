@@ -200,7 +200,6 @@
     </module>
 
     <module name="BlockTagPunctuation"/>
-    <module name="RedundantQualifier"/>
     <module name="ArrayTrailingComma"/>
 
     <!-- Declaring -->
@@ -208,8 +207,12 @@
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
     <module name="LowercaseHexadecimal"/>
+    <module name="RedundantQualifier"/>
     <module name="UnnecessaryAbstract"/>
     <module name="UnnecessaryParenthesesInLambda"/>
+
+    <!-- Expressing -->
+    <module name="ComplicatedSizeEquality"/>
 
     <!-- Naming -->
     <module name="AbbreviationAsWordInName">
@@ -271,7 +274,6 @@
     </module>
 
     <!-- Stating -->
-    <module name="ComplicatedSizeComparison"/>
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"

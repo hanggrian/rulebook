@@ -29,7 +29,7 @@ class CaseSeparatorRule extends RulebookRule {
                         if (isMultiline(c)) {
                             return true;
                         }
-                        return sourceCode.getCommentsBefore(c).length > 0;
+                        return sourceCode.getCommentsBefore(c).length;
                     });
                 for (let i = 1; i < cases.length; i++) {
                     const prevCase: SwitchCase = cases[i - 1];
@@ -42,18 +42,18 @@ class CaseSeparatorRule extends RulebookRule {
                     }
                     const commentsBetween: Comment[] = sourceCode.getCommentsBefore(currentCase);
                     const actualStartLine: number =
-                        commentsBetween.length > 0
+                        commentsBetween.length
                             ? commentsBetween[0].loc!.start.line
                             : currentFirstToken.loc.start.line;
                     const lineDiff: number = actualStartLine - prevLastToken.loc.end.line;
                     if (hasMultiline) {
-                        if (lineDiff != 2) {
+                        if (lineDiff !== 2) {
                             context.report({
                                 node: prevLastToken,
                                 messageId: CaseSeparatorRule.MSG_MISSING,
                             });
                         }
-                    } else if (lineDiff != 1) {
+                    } else if (lineDiff !== 1) {
                         context.report({
                             node: prevLastToken,
                             messageId: CaseSeparatorRule.MSG_UNEXPECTED,

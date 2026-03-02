@@ -10,6 +10,7 @@ parentheses.clip=Convert into '%s'.
 internal.error=Extend from class 'Exception'.
 lowercase.hexadecimal=Use hexadecimal '%s'.
 unnecessary.abstract=Omit 'abstract' modifier.
+# Expressing
 # Formatting
 file.size=Reduce file size to '%d'.
 # Naming

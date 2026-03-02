@@ -18,8 +18,8 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#complicated-size-comparison) */
-public class ComplicatedSizeComparisonRule : RulebookRule(ID) {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#complicated-size-equality) */
+public class ComplicatedSizeEqualityRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(BINARY_EXPRESSION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -60,7 +60,7 @@ public class ComplicatedSizeComparisonRule : RulebookRule(ID) {
     }
 
     public companion object {
-        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:complicated-size-comparison")
-        private const val MSG = "complicated.size.comparison"
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:complicated-size-equality")
+        private const val MSG = "complicated.size.equality"
     }
 }

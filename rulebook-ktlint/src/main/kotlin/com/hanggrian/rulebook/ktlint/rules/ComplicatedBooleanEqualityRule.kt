@@ -21,8 +21,8 @@ import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#complicated-boolean-comparison) */
-public class ComplicatedBooleanComparisonRule : RulebookRule(ID) {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#complicated-boolean-equality) */
+public class ComplicatedBooleanEqualityRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(BINARY_EXPRESSION, PREFIX_EXPRESSION)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -63,9 +63,9 @@ public class ComplicatedBooleanComparisonRule : RulebookRule(ID) {
     }
 
     public companion object {
-        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:complicated-boolean-comparison")
-        private const val MSG_CONSTANT = "complicated.boolean.comparison.constant"
-        private const val MSG_NEGATE = "complicated.boolean.comparison.negate"
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:complicated-boolean-equality")
+        private const val MSG_CONSTANT = "complicated.boolean.equality.constant"
+        private const val MSG_NEGATE = "complicated.boolean.equality.negate"
 
         private fun ASTNode.isNegate(): Boolean {
             val operationReference = findChildByType(OPERATION_REFERENCE) ?: return false

@@ -1,4 +1,4 @@
-using namespace std;
+#include <system_error>
 
 int compare(int a, int b) {
     if (a < 0 || b < 0) {

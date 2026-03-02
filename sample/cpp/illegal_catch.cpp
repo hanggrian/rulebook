@@ -1,4 +1,4 @@
-using namespace std;
+#include <system_error>
 
 void foo() {
     if (true) {

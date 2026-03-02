@@ -1,37 +1,41 @@
 #include <stdio.h>
 
 typedef struct Node {
-    struct Node (*plus)();
+    struct Node (*plus)(int x);
 } Node;
 
 Node plus(int n) {
-    Node n;
-    n.plus = &plus;
-    return n;
+    Node node;
+    node.plus = &plus;
+    return node;
 }
 
 int main() {
     // Missing newline before second and fourth '.'
-    Node foo =
+    const Node foo =
         plus(0)
             .plus(1)
             .plus(2)
             .plus(3);
 
     // Valid wrapping
-    Node bar =
+    const Node bar =
         plus(
             0
         ).plus(1)
             .plus(2)
             .plus(3);
-    Node baz =
+    const Node baz =
         plus(0)
             .plus(1)
             .plus(2)
             .plus(
                 3
             );
+
+    foo.plus(4);
+    bar.plus(5);
+    baz.plus(6);
 
     return 0;
 }

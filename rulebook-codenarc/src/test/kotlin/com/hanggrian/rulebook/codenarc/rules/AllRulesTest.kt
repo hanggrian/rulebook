@@ -30,7 +30,7 @@ class AllRulesTest : AbstractTestCase() {
             ChainCallWrapRule(),
             CommentTrimRule(),
             CommonFunctionPositionRule(),
-            ComplicatedSizeComparisonRule(),
+            ComplicatedSizeEqualityRule(),
             DuplicateBlankLineInCommentRule(),
             EmptyFileRule(),
             GenericNameRule(),
@@ -58,6 +58,7 @@ class AllRulesTest : AbstractTestCase() {
             ParenthesesTrimRule(),
             RedundantDefaultRule(),
             RedundantElseRule(),
+            RedundantEqualityRule(),
             RedundantQualifierRule(),
             StatementWrapRule(),
             TagsClipRule(),
@@ -79,8 +80,15 @@ class AllRulesTest : AbstractTestCase() {
                 .readText(),
             violationOf(23, "class AsciiDocLinkVerifier {", "Put 'final' modifier."),
             violationOf(23, "class AsciiDocLinkVerifier {", "Add private constructor."),
+            violationOf(
+                27,
+                "if ((file.name == 'index.adoc') || (!file.name.endsWith('.adoc'))) {",
+                "Replace equality with 'is()'.",
+            ),
             violationOf(38, ".tap {", "Omit newline before '.'."),
             violationOf(58, "def relativeLinkTargets = subject", "Break assignment into newline."),
+            violationOf(60, ".findAll { it.name() == 'a' }", "Replace equality with 'is()'."),
+            violationOf(69, "it.port == -1", "Replace equality with 'is()'."),
             violationOf(73, "def result = relativeLinkTargets", "Break assignment into newline."),
             violationOf(97, ".findAll()", "Omit newline before '.'."),
             violationOf(97, ".findAll()", "Put trailing comma."),
@@ -117,9 +125,28 @@ class AllRulesTest : AbstractTestCase() {
                 "Arrange member 'function' before 'static member'.",
             ),
             violationOf(
+                111,
+                "if (project.extensions.findByName('grailsPublish') == null) {",
+                "Replace equality with 'is()'.",
+            ),
+            violationOf(
+                130,
+                "if (System.getenv(ENVIRONMENT_VARIABLE_BASED_RELEASE) != null) {",
+                "Replace equality with 'is()'.",
+            ),
+            violationOf(270, "if (gpe != null) {", "Replace equality with 'is()'."),
+            violationOf(283, "if (license != null) {", "Replace equality with 'is()'."),
+            violationOf(285, "if (concreteLicense != null) {", "Replace equality with 'is()'."),
+            violationOf(
                 369,
                 "dependencyNodes.findAll { dependencyNode ->",
                 "Put newline before '.'.",
+            ),
+            violationOf(
+                371,
+                "return versionNodes.size() == 0 || " +
+                    "(versionNodes.first() as Node).text().isEmpty()",
+                "Replace equality with 'is()'.",
             ),
             violationOf(
                 375,
@@ -159,6 +186,22 @@ class AllRulesTest : AbstractTestCase() {
                 "Put trailing comma.",
             ),
             violationOf(
+                418,
+                "if (publishToSonatypeTask != null && " +
+                    "taskContainer.findByName(" +
+                    "\"publish\${GrailsNameUtils.getClassName(defaultClassifier)}\"" +
+                    ") == null) {",
+                "Replace equality with 'is()'.",
+            ),
+            violationOf(
+                418,
+                "if (publishToSonatypeTask != null && " +
+                    "taskContainer.findByName(" +
+                    "\"publish\${GrailsNameUtils.getClassName(defaultClassifier)}\"" +
+                    ") == null) {",
+                "Replace equality with 'is()'.",
+            ),
+            violationOf(
                 419,
                 "taskContainer.register(\"publish\${GrailsNameUtils" +
                     ".getClassName(defaultClassifier)}\", { Task task ->",
@@ -168,6 +211,11 @@ class AllRulesTest : AbstractTestCase() {
                 424,
                 "if (installTask == null) {",
                 "Invert 'if' condition.",
+            ),
+            violationOf(
+                424,
+                "if (installTask == null) {",
+                "Replace equality with 'is()'.",
             ),
             violationOf(
                 425,
@@ -259,6 +307,16 @@ class AllRulesTest : AbstractTestCase() {
                 "final listener = new EventListener<ExecutionAttemptedEvent<HttpResponse<T>>>() {",
                 "Break assignment into newline.",
             ),
+            violationOf(
+                207,
+                "if (event.lastResult != null)",
+                "Replace equality with 'is()'.",
+            ),
+            violationOf(
+                209,
+                "if (event.lastFailure != null)",
+                "Replace equality with 'is()'.",
+            ),
             violationOf(228, "* @param req The HttpRequest to send", "End '@param' with a period."),
             violationOf(229, "* @return The HttpResponse received", "End '@return' with a period."),
             violationOf(
@@ -313,6 +371,16 @@ class AllRulesTest : AbstractTestCase() {
                     "BadResponseException, " +
                     "IllegalStateException {",
                 "Arrange member 'function' before 'static member'.",
+            ),
+            violationOf(
+                299,
+                "if( resp.statusCode() == 200 ) {",
+                "Replace equality with 'is()'.",
+            ),
+            violationOf(
+                304,
+                "if( resp.statusCode() == 401 ) {",
+                "Replace equality with 'is()'.",
             ),
         )
 

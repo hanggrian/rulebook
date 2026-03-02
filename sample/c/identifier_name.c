@@ -1,5 +1,5 @@
 int main() {
-    int foo_bar = 0;
+    constexpr int foo_bar = 0;
     return foo_bar;
 }
 

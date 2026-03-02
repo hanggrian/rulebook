@@ -24,7 +24,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
                         addConfiguration<CommentSpacesCheck>()
                         addConfiguration<CommentTrimCheck>()
                         addConfiguration<CommonFunctionPositionCheck>()
-                        addConfiguration<ComplicatedSizeComparisonCheck>()
+                        addConfiguration<ComplicatedSizeEqualityCheck>()
                         addConfiguration<DuplicateBlankLineInBlockCommentCheck>()
                         addConfiguration<DuplicateBlankLineInCommentCheck>()
                         addConfiguration<InternalErrorCheck>()

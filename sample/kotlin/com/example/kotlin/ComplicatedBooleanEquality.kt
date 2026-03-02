@@ -1,8 +1,6 @@
 package com.example.kotlin
 
-import kotlin.math.abs
-
-class ComplicatedBooleanComparison {
+class ComplicatedBooleanEquality {
     fun foo(foo: Boolean) {
         if (foo) {
             println()

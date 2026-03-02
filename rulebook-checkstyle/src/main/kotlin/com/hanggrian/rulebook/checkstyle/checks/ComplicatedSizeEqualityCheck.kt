@@ -12,8 +12,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_CALL
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.NUM_INT
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#complicated-size-comparison) */
-public class ComplicatedSizeComparisonCheck : RulebookAstCheck() {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#complicated-size-equality) */
+public class ComplicatedSizeEqualityCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(EXPR)
 
     override fun visitToken(node: DetailAST) {
@@ -52,6 +52,6 @@ public class ComplicatedSizeComparisonCheck : RulebookAstCheck() {
     }
 
     private companion object {
-        private const val MSG = "complicated.size.comparison"
+        const val MSG = "complicated.size.equality"
     }
 }

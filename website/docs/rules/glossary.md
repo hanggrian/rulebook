@@ -15,16 +15,6 @@ applicable by the linter tool or in the language.
 
 ## Components
 
-### Declaration
-
-Declaring that a class, function or property exists. The implementation details
-are considered to be [definition](#definition).
-
-### Definition
-
-Define how a class, function or property is implemented. Because of this, a
-definition is a more complete description than a [declaration](#declaration).
-
 ### Class
 
 In this library, a class means a class-like structure, which can be:
@@ -41,6 +31,21 @@ In this library, a class means a class-like structure, which can be:
     - Sealed class
     - Object
 
+### Declaration
+
+Declaring that a class, function or property exists. The implementation details
+are considered to be [definition](#definition).
+
+### Definition
+
+Define how a class, function or property is implemented. Because of this, a
+definition is a more complete description than a [declaration](#declaration).
+
+### Expression
+
+A combination of variables, constants, operators, and functions that are
+evaluated to produce a value.
+
 ### Function
 
 Also referred to as method.
@@ -52,6 +57,12 @@ A unique name given to a class, function, or variable.
 ### Property
 
 Also referred to as field.
+
+### Statement
+
+A complete unit of execution that performs an action. Examples include if
+statements and for loops. However, variable declarations are grouped under
+[declarations](#declaration) instead of statements.
 
 ### Variable
 
@@ -84,3 +95,13 @@ Change the position of a component.
 ### Remove
 
 Take out the whole component from the codebase.
+
+## Equals
+
+### Equality
+
+Structural, or value-based comparison.
+
+### Identity
+
+Reference-based comparison.

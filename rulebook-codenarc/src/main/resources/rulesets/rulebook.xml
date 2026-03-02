@@ -8,7 +8,6 @@
   <description>All Rulebook rules.</description>
 
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagPunctuationRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantQualifierRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.TodoCommentRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.TrailingCommaInCallRule"/>
 
@@ -25,13 +24,17 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseHexadecimalRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseIRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MissingPrivateConstructorRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantQualifierRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule"/>
+
+  <!-- Expressing -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ComplicatedSizeEqualityRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantEqualityRule"/>
 
   <!-- Formatting -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
 
   <!-- Naming -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ComplicatedSizeComparisonRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.GenericNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MeaninglessWordRule"/>

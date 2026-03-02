@@ -1,7 +1,10 @@
+#include <stdio.h>
+
 int main() {
-    int expression = 0;
+    constexpr int expression = 0;
     if (expression == 12) {
-        int foo = 0;
+        constexpr int foo = 0;
+        printf("%d", foo);
     }
     return 0;
 }
