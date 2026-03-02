@@ -14,7 +14,7 @@ from rulebook_pylint.checkers.abbreviation_as_word import AbbreviationAsWordChec
 from rulebook_pylint.checkers.block_comment_clip import BlockCommentClipChecker
 from rulebook_pylint.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
-from rulebook_pylint.checkers.comment_space import CommentSpaceChecker
+from rulebook_pylint.checkers.comment_spaces import CommentSpacesChecker
 from rulebook_pylint.checkers.comment_trim import CommentTrimChecker
 from rulebook_pylint.checkers.common_function_position import CommonFunctionPositionChecker
 from rulebook_pylint.checkers.duplicate_blank_line import DuplicateBlankLineChecker
@@ -27,7 +27,7 @@ from rulebook_pylint.checkers.generic_name import GenericNameChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_pylint.checkers.internal_error import InternalErrorChecker
 from rulebook_pylint.checkers.lonely_case import LonelyCaseChecker
-from rulebook_pylint.checkers.lowercase_hex import LowercaseHexChecker
+from rulebook_pylint.checkers.lowercase_hexadecimal import LowercaseHexadecimalChecker
 from rulebook_pylint.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_pylint.checkers.member_order import MemberOrderChecker
 from rulebook_pylint.checkers.member_separator import MemberSeparatorChecker
@@ -55,7 +55,7 @@ class TestAllCheckers:
         BlockCommentClipChecker,
         BlockCommentTrimChecker,
         CaseSeparatorChecker,
-        CommentSpaceChecker,
+        CommentSpacesChecker,
         CommentTrimChecker,
         CommonFunctionPositionChecker,
         DuplicateBlankLineChecker,
@@ -69,7 +69,7 @@ class TestAllCheckers:
         InnerClassPositionChecker,
         InternalErrorChecker,
         LonelyCaseChecker,
-        LowercaseHexChecker,
+        LowercaseHexadecimalChecker,
         MeaninglessWordChecker,
         MemberOrderChecker,
         MemberSeparatorChecker,
@@ -154,14 +154,14 @@ class TestAllCheckers:
             msg(BlockCommentTrimChecker._MSG_LAST, (1949, 4, 7), last_subplot_mosaic.doc_node),
             msg(BlockCommentTrimChecker._MSG_LAST, (2551, 4, 7), clim.doc_node),
             msg(BlockCommentTrimChecker._MSG_LAST, (2668, 4, 7), matshow.doc_node),
-            msg(CommentSpaceChecker._MSG, (268, 0)),
-            msg(CommentSpaceChecker._MSG, (872, 0)),
-            msg(CommentSpaceChecker._MSG, (1256, 0)),
-            msg(CommentSpaceChecker._MSG, (1268, 0)),
-            msg(CommentSpaceChecker._MSG, (1387, 0)),
-            msg(CommentSpaceChecker._MSG, (2089, 0)),
-            msg(CommentSpaceChecker._MSG, (2517, 0)),
-            msg(CommentSpaceChecker._MSG, (2738, 0)),
+            msg(CommentSpacesChecker._MSG, (268, 0)),
+            msg(CommentSpacesChecker._MSG, (872, 0)),
+            msg(CommentSpacesChecker._MSG, (1256, 0)),
+            msg(CommentSpacesChecker._MSG, (1268, 0)),
+            msg(CommentSpacesChecker._MSG, (1387, 0)),
+            msg(CommentSpacesChecker._MSG, (2089, 0)),
+            msg(CommentSpacesChecker._MSG, (2517, 0)),
+            msg(CommentSpacesChecker._MSG, (2738, 0)),
             msg(DuplicateBlankLineInBlockCommentChecker._MSG, (2173, 4, 2229, 7), xticks.doc_node),
             # msg(FileSizeChecker.MSG, args=1000),
             msg(

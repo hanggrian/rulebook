@@ -73,6 +73,18 @@ internal fun DetailAST.parent(predicate: (DetailAST) -> Boolean): DetailAST? {
     return null
 }
 
+/** Returns the previous sibling node matching predicate, or null if not found. */
+internal fun DetailAST.previousSibling(predicate: (DetailAST) -> Boolean): DetailAST? {
+    var node: DetailAST? = previousSibling
+    while (node != null) {
+        if (predicate(node)) {
+            return node
+        }
+        node = node.previousSibling
+    }
+    return null
+}
+
 /** Returns the next sibling node matching predicate, or null if not found. */
 internal fun DetailAST.nextSibling(predicate: (DetailAST) -> Boolean): DetailAST? {
     var node: DetailAST? = nextSibling

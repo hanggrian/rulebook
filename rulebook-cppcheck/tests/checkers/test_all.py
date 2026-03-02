@@ -16,7 +16,7 @@ from rulebook_cppcheck.checkers.block_tag_punctuation import BlockTagPunctuation
 from rulebook_cppcheck.checkers.case_separator import CaseSeparatorChecker
 from rulebook_cppcheck.checkers.chain_call_wrap import ChainCallWrapChecker
 from rulebook_cppcheck.checkers.class_name import ClassNameChecker
-from rulebook_cppcheck.checkers.comment_space import CommentSpaceChecker
+from rulebook_cppcheck.checkers.comment_spaces import CommentSpacesChecker
 from rulebook_cppcheck.checkers.comment_trim import CommentTrimChecker
 from rulebook_cppcheck.checkers.duplicate_blank_line import DuplicateBlankLineChecker
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
@@ -29,6 +29,7 @@ from rulebook_cppcheck.checkers.file_name import FileNameChecker
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
 from rulebook_cppcheck.checkers.generic_name import GenericNameChecker
+from rulebook_cppcheck.checkers.identifier_name import IdentifierNameChecker
 from rulebook_cppcheck.checkers.illegal_catch import IllegalCatchChecker
 from rulebook_cppcheck.checkers.illegal_throw import IllegalThrowChecker
 from rulebook_cppcheck.checkers.illegal_variable_name import IllegalVariableNameChecker
@@ -38,6 +39,7 @@ from rulebook_cppcheck.checkers.inner_class_position import InnerClassPositionCh
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
 from rulebook_cppcheck.checkers.lonely_case import LonelyCaseChecker
 from rulebook_cppcheck.checkers.lowercase_f import LowercaseFChecker
+from rulebook_cppcheck.checkers.lowercase_hexadecimal import LowercaseHexadecimalChecker
 from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_cppcheck.checkers.member_order import MemberOrderChecker
 from rulebook_cppcheck.checkers.member_separator import MemberSeparatorChecker
@@ -69,7 +71,7 @@ class TestAllCheckers(TestCase):
             CaseSeparatorChecker(),
             ChainCallWrapChecker(),
             ClassNameChecker(),
-            CommentSpaceChecker(),
+            CommentSpacesChecker(),
             CommentTrimChecker(),
             DuplicateBlankLineChecker(),
             DuplicateBlankLineInBlockCommentChecker(),
@@ -80,6 +82,7 @@ class TestAllCheckers(TestCase):
             FileSizeChecker(),
             FinalNewlineChecker(),
             GenericNameChecker(),
+            IdentifierNameChecker(),
             IllegalCatchChecker(),
             IllegalThrowChecker(),
             IllegalVariableNameChecker(),
@@ -89,6 +92,7 @@ class TestAllCheckers(TestCase):
             LineLengthChecker(),
             LonelyCaseChecker(),
             LowercaseFChecker(),
+            LowercaseHexadecimalChecker(),
             MeaninglessWordChecker(),
             MemberOrderChecker(),
             MemberSeparatorChecker(),
@@ -685,7 +689,7 @@ class TestAllCheckers(TestCase):
 
     @patch.object(AssignmentWrapChecker, 'report_error')
     @patch.object(CaseSeparatorChecker, 'report_error')
-    @patch.object(CommentSpaceChecker, 'report_error')
+    @patch.object(CommentSpacesChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(IndentStyleChecker, 'report_error')
     @patch.object(LineLengthChecker, 'report_error')

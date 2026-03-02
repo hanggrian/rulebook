@@ -7,7 +7,7 @@ import duplicateBlankLineInBlockCommentRule from './rules/duplicate-blank-line-i
 import duplicateBlankLineInCommentRule from './rules/duplicate-blank-line-in-comment.js';
 import emptyFileRule from './rules/empty-file.js';
 import fileNameRule from './rules/file-name.js';
-import lowercaseHexRule from './rules/lowercase-hex.js';
+import lowercaseHexadecimalRule from './rules/lowercase-hexadecimal.js';
 import meaninglessWordRule from './rules/meaningless-word.js';
 import nestedIfElseRule from './rules/nested-if-else.js';
 import parenthesesTrimRule from './rules/parentheses-trim.js';
@@ -40,7 +40,7 @@ const crockfordConfig: Linter.RulesRecord = {
         },
     ],
     // Declaring
-    '@rulebook/lowercase-hex': 'error',
+    '@rulebook/lowercase-hexadecimal': 'error',
     '@stylistic/quotes': [
         'error',
         'single',
@@ -216,7 +216,7 @@ const googleConfig: Linter.RulesRecord = {
         },
     ],
     // Declaring
-    '@rulebook/lowercase-hex': 'error',
+    '@rulebook/lowercase-hexadecimal': 'error',
     '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: true }],
     '@stylistic/arrow-parens': ['error', 'always'],
     // Formatting
@@ -455,7 +455,7 @@ const plugin: ESLint.Plugin = {
         'duplicate-blank-line-in-comment': duplicateBlankLineInCommentRule,
         'empty-file': emptyFileRule,
         'file-name': fileNameRule,
-        'lowercase-hex': lowercaseHexRule,
+        'lowercase-hexadecimal': lowercaseHexadecimalRule,
         'meaningless-word': meaninglessWordRule,
         'nested-if-else': nestedIfElseRule,
         'redundant-default': redundantDefaultRule,

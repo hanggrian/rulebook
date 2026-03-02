@@ -6,7 +6,7 @@ todo.comment.separator=Omit separator '{}'.
 parentheses.clip=Convert into '{}'.
 # Declaring
 lowercase.f=Tag float literal by 'f'.
-lowercase.hex=Use hexadecimal '{}'.
+lowercase.hexadecimal=Use hexadecimal '{}'.
 uppercase.l=Tag long literal by 'L'.
 # Formatting
 empty.file=Delete the empty file.
@@ -35,7 +35,7 @@ block.comment.spaces.multi=Add space after '*'.
 block.tag.indentation=Indent block tag description by '4 spaces'.
 case.separator.missing=Add blank line after multiline branch.
 case.separator.unexpected=Remove blank line after single-line branch.
-comment.space=Put one space after '//'.
+comment.spaces=Put one space after '//'.
 member.separator=Add blank line after '{}'.
 # Stating
 illegal.catch=Catch a narrower type.

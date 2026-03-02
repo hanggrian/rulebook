@@ -29,10 +29,7 @@ public class RedundantQualifierVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-
-        // keep import list
         node.imports.forEach { importPaths += it.type.name }
-
         super.visitImports(node)
     }
 
@@ -40,10 +37,7 @@ public class RedundantQualifierVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-
-        // checks for violation
         process(node, node.type.name)
-
         super.visitField(node)
     }
 
@@ -51,11 +45,8 @@ public class RedundantQualifierVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-
-        // checks for violation
         process(node, node.returnType.name)
         node.parameters.forEach { process(it, it.type.name) }
-
         super.visitConstructorOrMethod(node, isConstructor)
     }
 
@@ -63,16 +54,14 @@ public class RedundantQualifierVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-
-        // checks for violation
         val `class` = node.objectExpression
         process(`class`, `class`.text)
         process(`class`, "${`class`.text}.${node.methodAsString}")
-
         super.visitMethodCallExpression(node)
     }
 
     private fun process(node: ASTNode, text: String) {
+        // checks for violation
         node
             .takeIf { text in importPaths && targetNodes.add(it) }
             ?: return

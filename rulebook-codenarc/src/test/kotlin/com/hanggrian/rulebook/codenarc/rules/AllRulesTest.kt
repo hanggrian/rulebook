@@ -30,6 +30,7 @@ class AllRulesTest : AbstractTestCase() {
             ChainCallWrapRule(),
             CommentTrimRule(),
             CommonFunctionPositionRule(),
+            ComplicatedSizeComparisonRule(),
             DuplicateBlankLineInCommentRule(),
             EmptyFileRule(),
             GenericNameRule(),
@@ -41,7 +42,7 @@ class AllRulesTest : AbstractTestCase() {
             LonelyIfRule(),
             LowercaseDRule(),
             LowercaseFRule(),
-            LowercaseHexRule(),
+            LowercaseHexadecimalRule(),
             LowercaseIRule(),
             MeaninglessWordRule(),
             MemberOrderRule(),
@@ -65,6 +66,7 @@ class AllRulesTest : AbstractTestCase() {
             TrailingCommaInCallRule(),
             UnnecessaryContinueRule(),
             UnnecessaryParenthesesInLambdaRule(),
+            UnnecessaryReturnRule(),
         )
     private val sourceCodeName = "AllRules.groovy"
     private val sourceCodePath = "com/hanggrian/rulebook/codenarc"

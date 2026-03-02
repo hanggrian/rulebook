@@ -1,0 +1,40 @@
+package com.hanggrian.rulebook.ktlint.rules
+
+import com.hanggrian.rulebook.ktlint.RuleTest
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
+import kotlin.test.Test
+
+class DeprecatedEqualityRuleTest : RuleTest() {
+    private val assertThatCode = assertThatRule { DeprecatedEqualityRule() }
+
+    @Test
+    fun `Rule properties`() = DeprecatedEqualityRule().assertProperties()
+
+    @Test
+    fun `Null structural equalities`() =
+        assertThatCode(
+            """
+            fun baz() {
+                if (foo == null) {
+                } else if (foo != null) {
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Null referential equalities`() =
+        assertThatCode(
+            """
+            fun baz() {
+                if (foo === null) {
+                } else if (foo !== null) {
+                }
+            }
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(2, 13, "Use operator '=='."),
+            LintViolation(3, 20, "Use operator '!='."),
+        )
+}

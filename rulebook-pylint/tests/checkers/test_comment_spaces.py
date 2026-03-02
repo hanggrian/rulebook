@@ -2,13 +2,13 @@ from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
 
-from rulebook_pylint.checkers.comment_space import CommentSpaceChecker
+from rulebook_pylint.checkers.comment_spaces import CommentSpacesChecker
 from ..tests import assert_properties, msg
 
 
 # noinspection PyTypeChecker
-class TestCommentSpaceChecker(CheckerTestCase):
-    CHECKER_CLASS = CommentSpaceChecker
+class TestCommentSpacesChecker(CheckerTestCase):
+    CHECKER_CLASS = CommentSpacesChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -33,8 +33,8 @@ class TestCommentSpaceChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CommentSpaceChecker._MSG, (2, 16)),
-            msg(CommentSpaceChecker._MSG, (3, 16)),
+            msg(CommentSpacesChecker._MSG, (2, 16)),
+            msg(CommentSpacesChecker._MSG, (3, 16)),
         ):
             self.checker.process_tokens(tokens)
 
@@ -63,8 +63,8 @@ class TestCommentSpaceChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(CommentSpaceChecker._MSG, (6, 16)),
-            msg(CommentSpaceChecker._MSG, (8, 16)),
+            msg(CommentSpacesChecker._MSG, (6, 16)),
+            msg(CommentSpacesChecker._MSG, (8, 16)),
         ):
             self.checker.process_tokens(tokens)
 

@@ -50,16 +50,17 @@
     <property name="eachLine" value="true"/>
   </module>
 
+  <!-- Formatting -->
+  <module name="FileLength">
+    <property name="max" value="1000"/>
+  </module>
+  <module name="NewlineAtEndOfFile"/>
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
     <property name="max" value="100"/>
     <property
       name="ignorePattern"
       value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
-  </module>
-
-  <module name="FileLength">
-    <property name="max" value="1000"/>
   </module>
 
   <!-- Clipping -->
@@ -505,7 +506,6 @@
     </module>
 
     <module name="BlockTagPunctuation"/>
-    <module name="NewlineAtEndOfFile"/>
     <module name="RedundantQualifier"/>
     <module name="TodoComment">
       <property name="format" value="todo|fixme"/>
@@ -518,7 +518,7 @@
     <module name="HideUtilityClassConstructor"/>
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
-    <module name="LowercaseHex"/>
+    <module name="LowercaseHexadecimal"/>
     <module name="UnnecessaryAbstract"/>
     <module name="UnnecessaryParenthesesInLambda"/>
 
@@ -545,9 +545,10 @@
     <!-- Spacing -->
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="CaseSeparator"/>
-    <module name="CommentSpace"/>
+    <module name="CommentSpaces"/>
 
     <!-- Stating -->
+    <module name="ComplicatedSizeComparison"/>
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"

@@ -207,7 +207,7 @@
     <module name="InternalError"/>
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
-    <module name="LowercaseHex"/>
+    <module name="LowercaseHexadecimal"/>
     <module name="UnnecessaryAbstract"/>
     <module name="UnnecessaryParenthesesInLambda"/>
 
@@ -265,12 +265,13 @@
     <module name="JavadocTagContinuationIndentation"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
     <module name="CaseSeparator"/>
-    <module name="CommentSpace"/>
+    <module name="CommentSpaces"/>
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
 
     <!-- Stating -->
+    <module name="ComplicatedSizeComparison"/>
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"

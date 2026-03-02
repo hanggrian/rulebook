@@ -8,12 +8,16 @@ import com.hanggrian.rulebook.ktlint.rules.BlockCommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagIndentationRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagOrderRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagPunctuationRule
-import com.hanggrian.rulebook.ktlint.rules.BooleanPropertyInteropRule
+import com.hanggrian.rulebook.ktlint.rules.BooleanPropertyInteroperabilityRule
 import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
+import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanComparisonRule
+import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeComparisonRule
+import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeComparisonRuleTest
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
 import com.hanggrian.rulebook.ktlint.rules.DecentralizedDependencyRule
+import com.hanggrian.rulebook.ktlint.rules.DeprecatedEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
@@ -27,15 +31,15 @@ import com.hanggrian.rulebook.ktlint.rules.InfixCallWrapRule
 import com.hanggrian.rulebook.ktlint.rules.InnerClassPositionRule
 import com.hanggrian.rulebook.ktlint.rules.InternalErrorRule
 import com.hanggrian.rulebook.ktlint.rules.LonelyCaseRule
+import com.hanggrian.rulebook.ktlint.rules.LonelyConfigurationRule
 import com.hanggrian.rulebook.ktlint.rules.LonelyIfRule
 import com.hanggrian.rulebook.ktlint.rules.LowercaseFRule
-import com.hanggrian.rulebook.ktlint.rules.LowercaseHexRule
+import com.hanggrian.rulebook.ktlint.rules.LowercaseHexadecimalRule
 import com.hanggrian.rulebook.ktlint.rules.MeaninglessWordRule
 import com.hanggrian.rulebook.ktlint.rules.MemberOrderRule
 import com.hanggrian.rulebook.ktlint.rules.MissingBlankLineBeforeBlockTagsRule
 import com.hanggrian.rulebook.ktlint.rules.MissingInlineInContractRule
 import com.hanggrian.rulebook.ktlint.rules.NestedIfElseRule
-import com.hanggrian.rulebook.ktlint.rules.NullEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
 import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
@@ -47,7 +51,6 @@ import com.hanggrian.rulebook.ktlint.rules.UnnecessaryAbstractRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryContinueRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryInitialBlankLineRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryReturnRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessaryScopeRule
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 import com.pinterest.ktlint.ruleset.standard.StandardRuleSetProvider
 import kotlin.test.Test
@@ -60,7 +63,7 @@ class RulebookRuleSetTest {
                 .map { it.createNewRuleInstance().javaClass.kotlin },
         ).containsExactly(
             AbbreviationAsWordRule::class,
-            BooleanPropertyInteropRule::class,
+            BooleanPropertyInteroperabilityRule::class,
             BlockCommentClipRule::class,
             BlockCommentSpacesRule::class,
             BlockCommentTrimRule::class,
@@ -70,8 +73,11 @@ class RulebookRuleSetTest {
             BracesClipRule::class,
             CommonFunctionPositionRule::class,
             CommentTrimRule::class,
+            ComplicatedBooleanComparisonRule::class,
+            ComplicatedSizeComparisonRule::class,
             ConfusingPredicateRule::class,
             DecentralizedDependencyRule::class,
+            DeprecatedEqualityRule::class,
             DeprecatedTypeRule::class,
             DuplicateBlankLineInBlockCommentRule::class,
             DuplicateBlankLineInCommentRule::class,
@@ -87,13 +93,12 @@ class RulebookRuleSetTest {
             LonelyCaseRule::class,
             LonelyIfRule::class,
             LowercaseFRule::class,
-            LowercaseHexRule::class,
+            LowercaseHexadecimalRule::class,
             MeaninglessWordRule::class,
             MemberOrderRule::class,
             MissingBlankLineBeforeBlockTagsRule::class,
             MissingInlineInContractRule::class,
             NestedIfElseRule::class,
-            NullEqualityRule::class,
             OverloadFunctionPositionRule::class,
             RedundantDefaultRule::class,
             RedundantElseRule::class,
@@ -105,7 +110,7 @@ class RulebookRuleSetTest {
             UnnecessaryContinueRule::class,
             UnnecessaryInitialBlankLineRule::class,
             UnnecessaryReturnRule::class,
-            UnnecessaryScopeRule::class,
+            LonelyConfigurationRule::class,
         )
     }
 

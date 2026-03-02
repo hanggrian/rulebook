@@ -44,14 +44,12 @@ public class ChainCallWrapVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-
         for (statement in node.statements.filterIsInstance<ExpressionStatement>()) {
             process(
                 (statement.expression as? DeclarationExpression)?.rightExpression
                     ?: statement.expression,
             )
         }
-
         super.visitBlockStatement(node)
     }
 
@@ -59,11 +57,9 @@ public class ChainCallWrapVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-
         (node.arguments as? ArgumentListExpression)
             ?.filterIsInstance<MethodCallExpression>()
             ?.forEach(::process)
-
         super.visitMethodCallExpression(node)
     }
 

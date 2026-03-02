@@ -8,7 +8,7 @@ block.comment.clip=Convert into single-line.
 parentheses.clip=Convert into '%s'.
 # Declaring
 internal.error=Extend from class 'Exception'.
-lowercase.hex=Use hexadecimal '%s'.
+lowercase.hexadecimal=Use hexadecimal '%s'.
 unnecessary.abstract=Omit 'abstract' modifier.
 # Formatting
 file.size=Reduce file size to '%d'.
@@ -25,7 +25,7 @@ named.import.order=Import '%s' before '%s'.
 # Spacing
 case.separator.missing=Add blank line after multiline branch.
 case.separator.unexpected=Remove blank line after single-line branch.
-comment.space=Put one space after '#'.
+comment.spaces=Put one space after '#'.
 member.separator=Add blank line after '%s'.
 # Stating
 lonely.case=Replace 'match' with 'if' condition.

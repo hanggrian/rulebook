@@ -1,0 +1,121 @@
+from textwrap import dedent
+from unittest import main
+from unittest.mock import patch
+
+from rulebook_cppcheck.checkers.comment_spaces import CommentSpacesChecker
+from ..tests import CheckerTestCase, assert_properties
+
+
+class TestCommentSpacesChecker(CheckerTestCase):
+    CHECKER_CLASS = CommentSpacesChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
+
+    @patch.object(CommentSpacesChecker, 'report_error')
+    def test_with_whitespace(self, report_error):
+        self.checker.check_file(
+            self.mock_file(),
+            dedent(
+                '''
+                // Valid comment
+                int x = 0; // Valid trailing
+                ''',
+            ),
+        )
+        report_error.assert_not_called()
+
+    @patch.object(CommentSpacesChecker, 'report_error')
+    def test_without_whitespace(self, report_error):
+        self.checker.check_file(
+            self.mock_file(),
+            dedent(
+                '''
+                int x = 0;
+                int y = 0;
+                //Invalid 1
+                //Invalid 2
+                ''',
+            ),
+        )
+        self.assertEqual(report_error.call_count, 2)
+        calls = report_error.call_args_list
+        self.assertEqual(calls[0][0][1], "Put one space after '//'.")
+        self.assertEqual(calls[0][0][2], 4)
+        self.assertEqual(calls[0][0][3], 1)
+        self.assertEqual(calls[1][0][1], "Put one space after '//'.")
+        self.assertEqual(calls[1][0][2], 5)
+        self.assertEqual(calls[1][0][3], 1)
+
+    @patch.object(CommentSpacesChecker, 'report_error')
+    def test_ignore_block_comment(self, report_error):
+        self.checker.check_file(
+            self.mock_file(),
+            dedent(
+                '''
+                /* No space required */
+                /**
+                 * No space required
+                 */
+                ''',
+            ),
+        )
+        report_error.assert_not_called()
+
+    @patch.object(CommentSpacesChecker, 'report_error')
+    def test_capture_repeated_slashes_without_content(self, report_error):
+        self.checker.check_file(
+            self.mock_file(),
+            dedent(
+                '''
+                //
+                ///
+                ////
+                // content
+                //invalid
+                //
+                ''',
+            ),
+        )
+        self.assertEqual(report_error.call_count, 1)
+        args, _ = report_error.call_args
+        self.assertEqual(args[1], "Put one space after '//'.")
+        self.assertEqual(args[2], 6)
+
+    @patch.object(CommentSpacesChecker, 'report_error')
+    def test_skip_special_comments(self, report_error):
+        self.checker.check_file(
+            self.mock_file(),
+            dedent(
+                '''
+                ////////////////////
+                //
+                ////////////////////
+                ''',
+            ),
+        )
+        report_error.assert_not_called()
+
+    @patch.object(CommentSpacesChecker, 'report_error')
+    def test_skip_comment_in_comments(self, report_error):
+        self.checker.check_file(
+            self.mock_file(),
+            dedent(
+                '''
+                // https://www.website.com
+                /**
+                 * https://www.website.com
+                 */
+                ''',
+            ),
+        )
+        report_error.assert_not_called()
+
+    @patch.object(CommentSpacesChecker, 'report_error')
+    def test_skip_comment_in_strings(self, report_error):
+        self.checker.check_file(self.mock_file(), 'std::string str = "//";')
+        report_error.assert_not_called()
+
+
+if __name__ == '__main__':
+    main()

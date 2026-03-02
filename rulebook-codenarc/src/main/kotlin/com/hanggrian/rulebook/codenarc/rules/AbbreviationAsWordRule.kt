@@ -25,10 +25,7 @@ public class AbbreviationAsWordVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-
-        // checks for violation
         process(node, node.name)
-
         super.visitClassEx(node)
     }
 
@@ -36,15 +33,13 @@ public class AbbreviationAsWordVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-
-        // checks for violation
         node.parameters.forEach { process(it, it.name) }
         process(node, node.name)
-
         super.visitConstructorOrMethod(node, isConstructor)
     }
 
     private fun process(node: ASTNode, name: String) {
+        // checks for violation
         val transformation =
             name
                 .takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }

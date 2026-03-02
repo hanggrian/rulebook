@@ -1,8 +1,10 @@
 package com.example.groovy
 
-def unnecessaryContinue(int... items) {
-    for (int item : items) {
-        println('foo')
-        // continue
+class UnnecessaryContinue {
+    def foo(int... items) {
+        for (int item : items) {
+            println('foo')
+            // continue
+        }
     }
 }

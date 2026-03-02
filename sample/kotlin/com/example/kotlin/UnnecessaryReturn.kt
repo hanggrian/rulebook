@@ -1,6 +1,8 @@
 package com.example.kotlin
 
-fun unnecessaryReturn() {
-    println()
-    // return
+class UnnecessaryReturn {
+    fun foo() {
+        println()
+        // return
+    }
 }

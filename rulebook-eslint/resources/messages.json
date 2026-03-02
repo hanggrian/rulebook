@@ -2,7 +2,7 @@
   "todo.comment.keyword": "Capitalize keyword '{{ $0 }}'.",
   "todo.comment.separator": "Omit separator '{{ $0 }}'.",
 
-  "lowercase.hex": "Use hexadecimal '{{ $0 }}'.",
+  "lowercase.hexadecimal": "Use hexadecimal '{{ $0 }}'.",
 
   "empty.file": "Delete the empty file.",
 

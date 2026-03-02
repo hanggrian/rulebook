@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ruleset
   xmlns="http://codenarc.org/ruleset/1.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -21,7 +22,7 @@
   <!-- Declaring -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseDRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseFRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseHexRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseHexadecimalRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseIRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MissingPrivateConstructorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule"/>
@@ -30,10 +31,10 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
 
   <!-- Naming -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ComplicatedSizeComparisonRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.GenericNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MeaninglessWordRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule"/>
 
   <!-- Ordering -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagOrderRule"/>
@@ -47,9 +48,9 @@
   <!-- Scripting -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.DecentralizedDependencyRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.EagerApiRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyConfigurationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.ScriptFileNameRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryScopeRule"/>
 
   <!-- Spacing -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagIndentationRule"/>
@@ -64,6 +65,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantDefaultRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantElseRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryContinueRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryReturnRule"/>
 
   <!-- Trimming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule"/>

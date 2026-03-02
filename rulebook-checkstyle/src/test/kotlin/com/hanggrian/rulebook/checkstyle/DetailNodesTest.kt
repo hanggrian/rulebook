@@ -123,6 +123,18 @@ class DetailNodesTest {
     }
 
     @Test
+    fun previousSibling() {
+        val leaf4 = mock<DetailAST> { on { type } doReturn COMPILATION_UNIT }
+        val leaf3 = mock<DetailAST> { on { previousSibling } doReturn leaf4 }
+        val leaf2 = mock<DetailAST> { on { previousSibling } doReturn leaf3 }
+        val leaf1 = mock<DetailAST> { on { previousSibling } doReturn leaf2 }
+        assertThat(leaf1.previousSibling { it.type == COMPILATION_UNIT }).isEqualTo(leaf4)
+
+        sequenceOf(leaf1, leaf2, leaf3).forEach { verify(it).previousSibling }
+        verify(leaf4).type
+    }
+
+    @Test
     fun hasModifier() {
         val publicContainer =
             mock<DetailAST> {
