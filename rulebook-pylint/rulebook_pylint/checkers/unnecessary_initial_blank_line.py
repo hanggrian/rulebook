@@ -22,11 +22,11 @@ class UnnecessaryInitialBlankLineChecker(RulebookTokenChecker):
         for token in tokens:
             # skip metadata
             type2: int = token.type
-            if type2 is ENCODING:
+            if type2 == ENCODING:
                 continue
 
             # checks for violation
-            if type2 is NL:
+            if type2 == NL:
                 self.add_message(self._MSG, line=0)
             return
 

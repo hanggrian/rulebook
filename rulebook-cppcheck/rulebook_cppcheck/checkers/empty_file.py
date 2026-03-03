@@ -17,6 +17,6 @@ class EmptyFileChecker(RulebookFileChecker):
     @override
     def check_file(self, token: Token, content: str) -> None:
         # checks for violation
-        if len(content.strip()) > 0:
+        if content.strip():
             return
         self.report_error(token, _Messages.get(self._MSG))

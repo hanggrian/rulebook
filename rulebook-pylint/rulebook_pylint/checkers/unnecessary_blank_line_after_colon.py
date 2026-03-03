@@ -21,7 +21,7 @@ class UnnecessaryBlankLineAfterColonChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # target colon operator
-            if token.type is not OP or \
+            if token.type != OP or \
                 token.string != ':':
                 continue
 
@@ -30,8 +30,8 @@ class UnnecessaryBlankLineAfterColonChecker(RulebookTokenChecker):
                 continue
             next_token: TokenInfo = tokens[i + 1]
             next_token2: TokenInfo = tokens[i + 2]
-            if next_token.type is not NEWLINE or \
-                next_token2.type is not NL:
+            if next_token.type != NEWLINE or \
+                next_token2.type != NL:
                 continue
             self.add_message(self._MSG, line=next_token2.start[0], col_offset=next_token2.start[1])
 

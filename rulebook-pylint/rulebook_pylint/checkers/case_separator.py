@@ -23,7 +23,7 @@ class CaseSeparatorChecker(RulebookFileChecker):
     def visit_match(self, node: Match) -> None:
         # collect cases
         match_cases: list[MatchCase] = node.cases
-        if len(match_cases) == 0:
+        if not match_cases:
             return
 
         # checks for violation

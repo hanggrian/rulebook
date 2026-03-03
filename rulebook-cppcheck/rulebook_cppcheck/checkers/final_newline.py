@@ -17,7 +17,7 @@ class FinalNewlineChecker(RulebookFileChecker):
     @override
     def check_file(self, token: Token, content: str) -> None:
         # ignore empty file
-        if len(content.strip()) == 0:
+        if not content.strip():
             return
 
         # checks for violation

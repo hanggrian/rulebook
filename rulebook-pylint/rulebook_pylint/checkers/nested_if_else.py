@@ -44,7 +44,7 @@ class NestedIfElseChecker(RulebookChecker):
         # checks for violation
         else2: list[NodeNG] = if2.orelse
 
-        if len(else2) > 0:
+        if else2:
             else_first_child: NodeNG = else2[0]
             if self._else_has_if(else2):
                 return

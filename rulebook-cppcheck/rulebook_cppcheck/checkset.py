@@ -44,6 +44,7 @@ from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
 from rulebook_cppcheck.checkers.rulebook_checkers import BaseChecker
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
+from rulebook_cppcheck.checkers.unnecessary_return import UnnecessaryReturnChecker
 from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
 
 try:
@@ -91,6 +92,7 @@ if __name__ == '__main__':
         LonelyCaseChecker(),
         RedundantDefaultChecker(),
         RedundantElseChecker(),
+        UnnecessaryReturnChecker(),
         # Trimming
         BlockCommentTrimChecker(),
         CommentTrimChecker(),

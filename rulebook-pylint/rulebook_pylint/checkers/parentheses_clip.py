@@ -28,7 +28,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # find opening parenthesis
-            if token.type is not OP or token.string not in self._OPENING_PARENTHESES:
+            if token.type != OP or token.string not in self._OPENING_PARENTHESES:
                 continue
             self._process(tokens, i, token)
 
@@ -39,7 +39,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
         # compare position when there is only whitespace between parentheses
         if j < len(tokens):
             next_token: TokenInfo = tokens[j]
-            if next_token.type is OP and \
+            if next_token.type == OP and \
                 next_token.string == end_parenthesis:
                 # checks for violation
                 if token.end[1] != next_token.start[1]:
@@ -58,9 +58,9 @@ class ParenthesesClipChecker(RulebookTokenChecker):
         while j < len(tokens):
             curr_token: TokenInfo = tokens[j]
             # checks for violation
-            if curr_token.type is NL:
+            if curr_token.type == NL:
                 has_newline = True
-            elif curr_token.type is OP and \
+            elif curr_token.type == OP and \
                 curr_token.string == end_parenthesis:
                 if has_newline:
                     self.add_message(

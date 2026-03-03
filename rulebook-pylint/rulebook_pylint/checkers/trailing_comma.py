@@ -24,12 +24,12 @@ class TrailingCommaChecker(RulebookTokenChecker):
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         # filter out comments
-        tokens = [t for t in tokens if t.type is not COMMENT]
+        tokens = [t for t in tokens if t.type != COMMENT]
 
         token: TokenInfo
         for i, token in enumerate(tokens):
             # find closing parenthesis
-            if token.type is not OP or \
+            if token.type != OP or \
                 token.string not in self._CLOSING_PARENTHESES:
                 continue
 
@@ -40,16 +40,16 @@ class TrailingCommaChecker(RulebookTokenChecker):
             # checks for violation
             prev_token: TokenInfo = tokens[i - 1]
             prev_token2: TokenInfo = tokens[i - 2]
-            if prev_token.type is OP and prev_token.string == ',':
+            if prev_token.type == OP and prev_token.string == ',':
                 self.add_message(
                     self._MSG_SINGLE,
                     line=prev_token.start[0],
                     col_offset=prev_token.end[1],
                 )
                 continue
-            if prev_token.type is not NL:
+            if prev_token.type != NL:
                 continue
-            if prev_token2.type is OP and prev_token2.string == ',':
+            if prev_token2.type == OP and prev_token2.string == ',':
                 continue
 
             self.add_message(
@@ -63,8 +63,8 @@ class TrailingCommaChecker(RulebookTokenChecker):
         has_for: bool = False
         has_comma_at_root: bool = False
         for i in range(close_index - 1, -1, -1):
-            token = tokens[i]
-            if token.type is OP:
+            token: TokenInfo = tokens[i]
+            if token.type == OP:
                 if token.string in self._CLOSING_PARENTHESES:
                     nesting += 1
                 elif token.string in self._OPENING_PARENTHESES:

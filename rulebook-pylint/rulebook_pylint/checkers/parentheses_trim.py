@@ -25,7 +25,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # find opening and closing parentheses
-            if token.type is not OP:
+            if token.type != OP:
                 continue
             if token.string in self._OPENING_PARENTHESES:
                 # checks for violation
@@ -33,7 +33,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                     continue
                 next_token: TokenInfo = tokens[i + 1]
                 next_token2: TokenInfo = tokens[i + 2]
-                if next_token.type is not NL or next_token2.type is not NL:
+                if next_token.type != NL or next_token2.type != NL:
                     continue
                 self.add_message(
                     self._MSG_FIRST,
@@ -49,7 +49,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                 continue
             prev_token: TokenInfo = tokens[i - 1]
             prev_token2: TokenInfo = tokens[i - 2]
-            if prev_token.type is not NL or prev_token2.type is not NL:
+            if prev_token.type != NL or prev_token2.type != NL:
                 continue
             self.add_message(
                 self._MSG_LAST,

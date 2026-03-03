@@ -22,7 +22,7 @@ class DuplicateBlankLineInCommentChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         last_empty_token: TokenInfo | None = None
         # checks for violation
-        for token in [t for t in tokens if t.type is COMMENT and _is_comment_empty(t)]:
+        for token in [t for t in tokens if t.type == COMMENT and _is_comment_empty(t)]:
             if last_empty_token is None:
                 last_empty_token = token
                 continue

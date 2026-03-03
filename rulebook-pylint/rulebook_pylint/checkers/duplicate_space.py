@@ -25,14 +25,14 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
             # get last token to compare
             last_token: TokenInfo = tokens[i - 1]
 
-            if last_token.type is FSTRING_END:
+            if last_token.type == FSTRING_END:
                 fstring_flag = False
 
             # checks for violation
             if not fstring_flag and self._is_duplicate_space(token, last_token):
                 self.add_message(self._MSG, line=last_token.start[0], col_offset=last_token.start[1])
 
-            if token.type is FSTRING_START:
+            if token.type == FSTRING_START:
                 fstring_flag = True
 
     @staticmethod
@@ -44,7 +44,7 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
         ):
             return False
         return token.start[1] - last_token.end[1] > 2 \
-            if token_type is COMMENT \
+            if token_type == COMMENT \
             else token.start[1] - last_token.end[1] > 1
 
 

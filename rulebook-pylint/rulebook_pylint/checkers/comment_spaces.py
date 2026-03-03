@@ -20,7 +20,7 @@ class CommentSpacesChecker(RulebookTokenChecker):
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         # checks for violation
-        for token in [t for t in tokens if t.type is COMMENT]:
+        for token in [t for t in tokens if t.type == COMMENT]:
             token_str: str = token.string
             if token_str.startswith('# ') or \
                 token_str.startswith('#!') or \

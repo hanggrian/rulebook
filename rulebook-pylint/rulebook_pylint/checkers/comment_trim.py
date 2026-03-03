@@ -22,20 +22,20 @@ class CommentTrimChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # target comment
-            if token.type is not COMMENT:
+            if token.type != COMMENT:
                 continue
 
             # continue if this comment is first line
             if i - 2 >= 0 and \
-                tokens[i - 1].type is NL and \
-                tokens[i - 2].type is COMMENT:
+                tokens[i - 1].type == NL and \
+                tokens[i - 2].type == COMMENT:
                 return
 
             # iterate to find last
             j: int = i
             while j + 2 < len(tokens) and \
-                tokens[j + 1].type is NL and \
-                tokens[j + 2].type is COMMENT:
+                tokens[j + 1].type == NL and \
+                tokens[j + 2].type == COMMENT:
                 j += 2
             curr_token: TokenInfo = tokens[j]
 

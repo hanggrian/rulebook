@@ -48,7 +48,7 @@ class CaseSeparatorChecker(RulebookChecker):
                 has_body: bool = False
 
                 while scan is not None and scan is not body_end:
-                    if scan.str in self._BRANCH_TOKENS and scan.scope == scope:
+                    if scan.str in self._BRANCH_TOKENS and scan.scope is scope:
                         break
                     if scan.str == ':':
                         colon_found = True

@@ -51,6 +51,7 @@ from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
+from rulebook_cppcheck.checkers.unnecessary_return import UnnecessaryReturnChecker
 from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
 
 try:
@@ -104,6 +105,7 @@ class TestAllCheckers(TestCase):
             RedundantDefaultChecker(),
             RedundantElseChecker(),
             TodoCommentChecker(),
+            UnnecessaryReturnChecker(),
             UppercaseLChecker(),
         )
         self.temp_dir = None
