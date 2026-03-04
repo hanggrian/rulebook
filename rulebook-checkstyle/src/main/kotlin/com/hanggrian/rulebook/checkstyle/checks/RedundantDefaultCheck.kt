@@ -31,8 +31,10 @@ public class RedundantDefaultCheck : RulebookAstCheck() {
         caseGroups
             .toList()
             .dropLast(1)
-            .takeIf { cases2 -> cases2.all { it.hasJumpStatement(false) } }
-            ?: return
+            .takeIf { cases2 ->
+                cases2.isNotEmpty() &&
+                    cases2.all { it.hasJumpStatement(false) }
+            } ?: return
         log(default, Messages[MSG])
     }
 

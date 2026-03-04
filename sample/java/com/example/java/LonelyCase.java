@@ -5,9 +5,9 @@ public class LonelyCase {
         switch (foo) {
             case 0: bar.run();
 
-            case 2:
+            case 2: bar.run();
 
-            case 1:
+            default:
                 bar.run();
                 break;
         }

@@ -569,7 +569,6 @@
     <module name="NestedIfElse"/>
     <module name="RedundantDefault"/>
     <module name="RedundantElse"/>
-    <module name="RedundantIf"/>
     <module name="UnnecessaryContinue"/>
     <module name="UnnecessaryReturn"/>
 

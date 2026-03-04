@@ -62,6 +62,7 @@ const crockfordConfig: Linter.RulesRecord = {
             ignorePattern: '(module|require|import)',
         },
     ],
+    '@stylistic/no-trailing-spaces': 'error',
     // Naming
     'id-denylist': [
         'error',
@@ -284,6 +285,7 @@ const googleConfig: Linter.RulesRecord = {
             ignorePattern: 'goog.(module|require)',
         },
     ],
+    '@stylistic/no-trailing-spaces': 'error',
     // Naming
     'id-denylist': [
         'error',

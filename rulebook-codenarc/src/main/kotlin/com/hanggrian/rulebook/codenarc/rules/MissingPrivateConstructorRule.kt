@@ -51,7 +51,7 @@ public class MissingPrivateConstructorVisitor : RulebookVisitor() {
             .takeIf { node.declaredConstructors.isEmpty() }
             ?.let {
                 addViolation(node, Messages[MSG_CONSTRUCTOR])
-                return super.visitClassEx(it)
+                return super.visitClassEx(node)
             }
         node
             .declaredConstructors

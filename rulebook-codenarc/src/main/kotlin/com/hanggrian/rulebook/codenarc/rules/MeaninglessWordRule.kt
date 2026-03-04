@@ -45,7 +45,7 @@ public class MeaninglessWordVisitor : RulebookVisitor() {
                     it,
                     Messages[MSG_UTIL, it.name.substringBefore(finalName) + 's'],
                 )
-                return super.visitClassEx(it)
+                return super.visitClassEx(node)
             }
         addViolation(node, Messages[MSG_ALL, finalName])
 

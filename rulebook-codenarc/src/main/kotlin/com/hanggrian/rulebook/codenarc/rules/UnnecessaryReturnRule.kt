@@ -30,11 +30,11 @@ public class UnnecessaryReturnVisitor : RulebookVisitor() {
                 ?.lastOrNull()
                 ?.takeIf {
                     (it as? ReturnStatement)?.isReturningNullOrVoid == true &&
-                        !sourceCode
-                            .line(it.lineNumber - 1)
-                            .substringAfter("return")
-                            .startsWith(" null")
-                } ?: return
+                        sourceCode
+                            ?.line(it.lineNumber - 1)
+                            ?.substringAfter("return")
+                            ?.startsWith(" null") == false
+                } ?: return super.visitMethodEx(node)
         addViolation(`return`, Messages[MSG])
 
         super.visitMethodEx(node)

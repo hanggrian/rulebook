@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
-import com.hanggrian.rulebook.checkstyle.contains
 import com.hanggrian.rulebook.checkstyle.firstLeaf
 import com.hanggrian.rulebook.checkstyle.isMultiline
 import com.hanggrian.rulebook.checkstyle.minLineNo
@@ -16,26 +15,33 @@ public class AssignmentWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(ASSIGN)
 
     override fun visitToken(node: DetailAST) {
-        // skip lambda initializers
-        node
-            .takeUnless { LAMBDA in it }
-            ?: return
-
         // find multiline assignee
-        val expr =
-            (node.findFirstToken(EXPR) ?: node.findFirstToken(DOT)?.nextSibling)
-                ?.takeIf { it.isMultiline() }
+        val child =
+            (
+                node.findFirstToken(DOT)?.nextSibling
+                    ?: node.findFirstToken(EXPR)
+                    ?: node.findFirstToken(LAMBDA)
+            )?.takeIf { it.isMultiline() }
                 ?: return
 
         // checks for violation
-        expr
-            .minLineNo
-            .takeIf { it == node.lineNo }
+        child
+            .takeIf { it.type == LAMBDA }
+            ?.let {
+                child
+                    .takeUnless { it.minLineNo == node.lineNo }
+                    ?: return
+                log(child.firstLeaf(), Messages[MSG_UNEXPECTED])
+                return
+            }
+        child
+            .takeUnless { it.minLineNo == node.lineNo + 1 }
             ?: return
-        log(expr.firstLeaf(), Messages[MSG])
+        log(child.firstLeaf(), Messages[MSG_MISSING])
     }
 
     private companion object {
-        const val MSG = "assignment.wrap"
+        const val MSG_MISSING = "assignment.wrap.missing"
+        const val MSG_UNEXPECTED = "assignment.wrap.unexpected"
     }
 }

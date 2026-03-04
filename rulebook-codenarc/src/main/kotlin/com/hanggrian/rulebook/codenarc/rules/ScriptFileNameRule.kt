@@ -38,7 +38,7 @@ public class ScriptFileNameVisitor : RulebookVisitor() {
                 .replace('_', '-')
                 .lowercase()
                 .takeUnless { it == name }
-                ?: return
+                ?: return super.visitClassComplete(node)
         addViolation(
             Violation().also {
                 it.rule = rule

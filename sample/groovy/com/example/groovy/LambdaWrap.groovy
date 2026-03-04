@@ -8,7 +8,9 @@ class LambdaWrap {
     def bar() {
         new Thread(
             () ->
-                println(0)
+                System
+                    .out
+                    .println(0),
         )
     }
 
@@ -18,7 +20,7 @@ class LambdaWrap {
                 System
                     .out
                     .println(0)
-            }
+            },
         )
     }
 }

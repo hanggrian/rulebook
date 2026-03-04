@@ -9,9 +9,9 @@ import org.codenarc.source.SourceCode
 public class ImportOrderRule : RulebookImportRule() {
     override fun getName(): String = "ImportOrder"
 
-    override fun applyTo(code: SourceCode, violations: MutableList<Violation>): Unit =
+    override fun applyTo(code: SourceCode?, violations: MutableList<Violation>) {
         eachImportLine(
-            code,
+            code ?: return,
             object : Closure<Unit>(null) {
                 var prevStatic: Boolean? = null
                 var prevIndex: Int? = null
@@ -68,6 +68,7 @@ public class ImportOrderRule : RulebookImportRule() {
                 }
             },
         )
+    }
 
     internal companion object {
         const val MSG_SORT = "import.order.sort"

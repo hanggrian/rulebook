@@ -29,8 +29,10 @@ public class LonelyIfVisitor : RulebookVisitor() {
                 ?.statements
                 ?.singleOrNull()
                 ?.takeIf { it is IfStatement }
-                ?: return
+                ?: return super.visitIfElse(node)
         addViolation(`if`, Messages[MSG])
+
+        super.visitIfElse(node)
     }
 
     private val IfStatement.lastElseBlock: Statement?

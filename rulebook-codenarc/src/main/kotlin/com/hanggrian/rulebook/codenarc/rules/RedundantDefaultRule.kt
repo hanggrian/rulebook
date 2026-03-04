@@ -28,8 +28,10 @@ public class RedundantDefaultVisitor : RulebookVisitor() {
         // checks for violation
         node
             .caseStatements
-            .takeIf { cases2 -> cases2.all { it.code.hasJumpStatement(false) } }
-            ?: return super.visitSwitch(node)
+            .takeIf { cases2 ->
+                cases2.isNotEmpty() &&
+                    cases2.all { it.code.hasJumpStatement(false) }
+            } ?: return super.visitSwitch(node)
         addViolation(default, Messages[MSG])
 
         super.visitSwitch(node)

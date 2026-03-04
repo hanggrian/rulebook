@@ -1,6 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.RuleTest
+import com.hanggrian.rulebook.codenarc.violationOf
 import kotlin.test.Test
 import kotlin.test.assertIs
 
@@ -20,19 +21,73 @@ class AssignmentWrapRuleTest : RuleTest<AssignmentWrapRule>() {
             def foo() {
                 var bar = 1 + 2
             }
+
+            def bar() {
+                var bar = a -> println(a)
+                var bar2 = { a -> println(a) }
+            }
+
+            def baz() {
+                var bar = [1, 2]
+                var baz = [a: 1, b: 2]
+            }
             """.trimIndent(),
         )
 
     @Test
     fun `Multiline assignment with breaking assignee`() =
-        assertNoViolations(
+        assertViolations(
             """
             def foo() {
                 var bar =
                     1 +
                         2
             }
+
+            def bar() {
+                var bar =
+                    a -> {
+                        println(a)
+                    }
+                var bar2 =
+                    { a ->
+                        println(a)
+                    }
+            }
+
+            def baz() {
+                var bar =
+                    [
+                        1,
+                        2,
+                    ]
+                var baz =
+                    [
+                        a: 1,
+                        b: 2,
+                    ]
+            }
             """.trimIndent(),
+            violationOf(
+                9,
+                "a -> {",
+                "Omit newline before '='.",
+            ),
+            violationOf(
+                13,
+                "{ a ->",
+                "Omit newline before '='.",
+            ),
+            violationOf(
+                20,
+                "[",
+                "Omit newline before '='.",
+            ),
+            violationOf(
+                25,
+                "[",
+                "Omit newline before '='.",
+            ),
         )
 
     @Test
@@ -43,10 +98,30 @@ class AssignmentWrapRuleTest : RuleTest<AssignmentWrapRule>() {
                 var bar = 1 +
                     2
             }
+
+            def bar() {
+                var bar = a -> {
+                    println(a)
+                }
+                var bar2 = { a ->
+                    println(a)
+                }
+            }
+
+            def baz() {
+                var bar = [
+                    1,
+                    2,
+                ]
+                var baz = [
+                    a: 1,
+                    b: 2,
+                ]
+            }
             """.trimIndent(),
             2,
             "var bar = 1 +",
-            "Break assignment into newline.",
+            "Put newline before '='.",
         )
 
     @Test
@@ -69,51 +144,28 @@ class AssignmentWrapRuleTest : RuleTest<AssignmentWrapRule>() {
         assertNoViolations(
             """
             def foo() {
-                var bar =
-                    // Comment
+                var bar = // Comment
                     1 +
                         2;
                 var baz = /* Short comment */
                     1 +
                         2;
                 var qux =
-                    /** Long comment */1 +
+                    /** Long comment */ 1 +
                     2;
             }
             """.trimIndent(),
         )
 
     @Test
-    fun `Skip lambda initializers`() =
+    fun `Skip multiline assignment with single-line expression`() =
         assertNoViolations(
             """
             def foo() {
-                var bar = (a) -> {
-                    println(a)
-                }
-                var baz = { a ->
-                    println(a)
-                }
-
-                var bar2 = (a) -> println(a)
-                var baz2 = { a -> println(a) }
-            }
-            """.trimIndent(),
-        )
-
-    @Test
-    fun `Skip collection initializers`() =
-        assertNoViolations(
-            """
-            def foo() {
-                var bar = [
-                    1,
-                    2,
-                ]
-                var baz = [
-                    a: 1,
-                    b: 2,
-                ]
+                var bar =
+                    (a) -> println(a)
+                var baz =
+                    { a -> println(a) }
             }
             """.trimIndent(),
         )

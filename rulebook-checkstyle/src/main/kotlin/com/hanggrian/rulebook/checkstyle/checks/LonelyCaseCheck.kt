@@ -12,17 +12,12 @@ public class LonelyCaseCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 
     override fun visitToken(node: DetailAST) {
-        // skip multiple branches
-        val caseGroup =
-            node
-                .children()
-                .singleOrNull { it.type == CASE_GROUP }
-                ?: return
-
         // checks for violation
-        caseGroup
+        node
             .children()
-            .takeUnless { cases2 -> cases2.count { it.type == LITERAL_CASE } > 1 }
+            .singleOrNull { it.type == CASE_GROUP }
+            ?.children()
+            ?.takeUnless { cases2 -> cases2.count { it.type == LITERAL_CASE } > 1 }
             ?: return
         log(node, Messages[MSG])
     }

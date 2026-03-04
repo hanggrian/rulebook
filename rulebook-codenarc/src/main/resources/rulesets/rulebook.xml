@@ -15,7 +15,6 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockCommentClipRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.BracesClipRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsClipRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ParenthesesClipRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.TagsClipRule"/>
 
   <!-- Declaring -->
@@ -24,7 +23,6 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseHexadecimalRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseIRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MissingPrivateConstructorRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantQualifierRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule"/>
 
   <!-- Expressing -->
@@ -35,6 +33,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
 
   <!-- Naming -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.GenericNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MeaninglessWordRule"/>

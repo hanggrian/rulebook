@@ -2,7 +2,8 @@ package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.isMultiline
-import com.hanggrian.rulebook.codenarc.rules.AssignmentWrapRule.Companion.MSG
+import com.hanggrian.rulebook.codenarc.rules.AssignmentWrapRule.Companion.MSG_MISSING
+import com.hanggrian.rulebook.codenarc.rules.AssignmentWrapRule.Companion.MSG_UNEXPECTED
 import org.codehaus.groovy.ast.expr.BinaryExpression
 import org.codehaus.groovy.ast.expr.ClosureExpression
 import org.codehaus.groovy.ast.expr.ListExpression
@@ -16,7 +17,8 @@ public class AssignmentWrapRule : RulebookAstRule() {
     override fun getAstVisitorClass(): Class<*> = AssignmentWrapVisitor::class.java
 
     internal companion object {
-        const val MSG = "assignment.wrap"
+        const val MSG_MISSING = "assignment.wrap.missing"
+        const val MSG_UNEXPECTED = "assignment.wrap.unexpected"
     }
 }
 
@@ -26,17 +28,8 @@ public class AssignmentWrapVisitor : RulebookVisitor() {
             return
         }
 
-        // skip lambda and collection initializers
-        val expression =
-            node
-                .rightExpression
-                .takeUnless {
-                    it is ListExpression ||
-                        it is MapExpression ||
-                        it is ClosureExpression
-                } ?: return super.visitBinaryExpression(node)
-
         // find multiline assignee
+        val expression = node.rightExpression ?: return super.visitBinaryExpression(node)
         val operation =
             node
                 .operation
@@ -45,10 +38,20 @@ public class AssignmentWrapVisitor : RulebookVisitor() {
 
         // checks for violation
         expression
-            .lineNumber
-            .takeIf { it == operation.startLine }
+            .takeIf {
+                it is ListExpression ||
+                    it is MapExpression ||
+                    it is ClosureExpression
+            }?.let {
+                expression
+                    .takeUnless { it.lineNumber == operation.startLine }
+                    ?: return super.visitBinaryExpression(node)
+                addViolation(expression, Messages[MSG_UNEXPECTED])
+            }
+        expression
+            .takeUnless { it.lineNumber == operation.startLine + 1 }
             ?: return super.visitBinaryExpression(node)
-        addViolation(expression, Messages[MSG])
+        addViolation(expression, Messages[MSG_MISSING])
 
         super.visitBinaryExpression(node)
     }

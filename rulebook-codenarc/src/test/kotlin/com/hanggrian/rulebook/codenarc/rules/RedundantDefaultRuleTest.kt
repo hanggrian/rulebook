@@ -72,4 +72,18 @@ class RedundantDefaultRuleTest : RuleTest<RedundantDefaultRule>() {
             }
             """.trimIndent(),
         )
+
+    @Test
+    fun `Skip only default case`() =
+        assertNoViolations(
+            """
+            def foo(var bar) {
+                switch (bar) {
+                    default:
+                        baz()
+                        break
+                }
+            }
+            """.trimIndent(),
+        )
 }

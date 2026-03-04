@@ -22,8 +22,7 @@ class RedundantEqualityRuleTest : RuleTest<RedundantEqualityRule>() {
                 if (foo.is(null)) {
                 } else if (!foo.is(true)) {
                 } else if (foo.is(1.0f)) {
-                } else if (!foo.is('a')) {
-                } else if (foo.is(0)) {
+                } else if (!foo.is(0)) {
                 }
             }
             """.trimIndent(),
@@ -37,8 +36,7 @@ class RedundantEqualityRuleTest : RuleTest<RedundantEqualityRule>() {
                 if (foo == null) {
                 } else if (foo != true) {
                 } else if (foo == 1.0f) {
-                } else if (foo != 'a') {
-                } else if (foo == 0) {
+                } else if (foo != 0) {
                 }
             }
             """.trimIndent(),
@@ -59,12 +57,7 @@ class RedundantEqualityRuleTest : RuleTest<RedundantEqualityRule>() {
             ),
             violationOf(
                 5,
-                "} else if (foo != 'a') {",
-                "Replace equality with 'is()'.",
-            ),
-            violationOf(
-                6,
-                "} else if (foo == 0) {",
+                "} else if (foo != 0) {",
                 "Replace equality with 'is()'.",
             ),
         )

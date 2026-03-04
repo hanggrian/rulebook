@@ -41,7 +41,6 @@ class AllChecksTest : AbstractModuleTestSupport() {
                         addConfiguration<ParenthesesTrimCheck>()
                         addConfiguration<RedundantDefaultCheck>()
                         addConfiguration<RedundantElseCheck>()
-                        addConfiguration<RedundantIfCheck>()
                         addConfiguration<RedundantQualifierCheck>()
                         addConfiguration<TagsTrimCheck>()
                         addConfiguration<UnnecessaryAbstractCheck>()
@@ -62,11 +61,11 @@ class AllChecksTest : AbstractModuleTestSupport() {
             getPath("Checker.java"),
             "64: Remove blank line after '{'.",
             "72:5: Arrange member 'property' before 'static member'.",
-            "75:54: Break assignment into newline.",
+            "75:54: Put newline before '='.",
             "183:9: Invert 'if' condition.",
             "196:24: End '@param' with a period.",
             "205:23: End '@param' with a period.",
-            "223:40: Break assignment into newline.",
+            "223:40: Put newline before '='.",
             "223:45: Put newline before '.'.",
             "248:22: Put newline before '.'.",
             "254:13: Omit newline before '.'.",
@@ -84,7 +83,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
             "401:22: End '@param' with a period.",
             "409:13: Invert 'if' condition.",
             "425:7: End '@param' with a period.",
-            "446:46: Break assignment into newline.",
+            "446:46: Put newline before '='.",
             "484:89: Break each parameter into newline.",
             "513:28: End '@param' with a period.",
             "523:22: End '@param' with a period.",
@@ -97,7 +96,7 @@ class AllChecksTest : AbstractModuleTestSupport() {
             "611:23: End '@param' with a period.",
             "635:39: End '@param' with a period.",
             "655:16: End '@return' with a period.",
-            "658:55: Break assignment into newline.",
+            "658:55: Put newline before '='.",
             "659:52: Break each parameter into newline.",
             "660:25: Break each parameter into newline.",
             "664: Remove blank line before '}'.",
@@ -108,16 +107,16 @@ class AllChecksTest : AbstractModuleTestSupport() {
         verify(
             checker,
             getPath("JavaFile.java"),
-            "47:59: Break assignment into newline.",
+            "47:59: Put newline before '='.",
             "59:5: Arrange member 'property' before 'static member'.",
-            "89:43: Break assignment into newline.",
+            "89:43: Put newline before '='.",
             "132:55: Break each parameter into newline.",
-            "165:27: Break assignment into newline.",
-            "169:42: Break assignment into newline.",
+            "165:27: Put newline before '='.",
+            "169:42: Put newline before '='.",
             "222:5: Move 'equals' to last.",
             "229:5: Move 'hashCode' to last.",
             "233:5: Move 'toString' to last.",
-            "244:19: Break assignment into newline.",
+            "244:19: Put newline before '='.",
             "268:5: Arrange member 'function' before 'static member'.",
         )
 

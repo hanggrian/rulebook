@@ -12,11 +12,12 @@ class AssignmentWrapCheckTest : CheckTest() {
     fun `Single-line assignment`() = assertAll("AssignmentWrap1")
 
     @Test
-    fun `Multiline assignment with breaking assignee`() = assertAll("AssignmentWrap2")
+    fun `Multiline assignment with breaking assignee`() =
+        assertAll("AssignmentWrap2", "14:13: Omit newline before '='.")
 
     @Test
     fun `Multiline assignment with non-breaking assignee`() =
-        assertAll("AssignmentWrap3", "5:19: Break assignment into newline.")
+        assertAll("AssignmentWrap3", "7:19: Put newline before '='.")
 
     @Test
     fun `Multiline variable but single-line value`() = assertAll("AssignmentWrap4")
@@ -25,5 +26,5 @@ class AssignmentWrapCheckTest : CheckTest() {
     fun `Allow comments after assign operator`() = assertAll("AssignmentWrap5")
 
     @Test
-    fun `Skip Lambda initializers`() = assertAll("AssignmentWrap6")
+    fun `Skip multiline assignment with single-line expression`() = assertAll("AssignmentWrap6")
 }

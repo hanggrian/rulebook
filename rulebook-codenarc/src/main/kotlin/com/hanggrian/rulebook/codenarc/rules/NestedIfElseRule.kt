@@ -37,7 +37,7 @@ public class NestedIfElseVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-        process(node.loopBlock as? BlockStatement ?: return)
+        process(node.loopBlock as? BlockStatement ?: return super.visitForLoop(node))
         super.visitForLoop(node)
     }
 
@@ -45,7 +45,7 @@ public class NestedIfElseVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-        process(node.loopBlock as? BlockStatement ?: return)
+        process(node.loopBlock as? BlockStatement ?: return super.visitWhileLoop(node))
         super.visitWhileLoop(node)
     }
 
@@ -53,7 +53,7 @@ public class NestedIfElseVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-        process(node.loopBlock as? BlockStatement ?: return)
+        process(node.loopBlock as? BlockStatement ?: return super.visitDoWhileLoop(node))
         super.visitDoWhileLoop(node)
     }
 
@@ -61,7 +61,10 @@ public class NestedIfElseVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-        process(node.code as? BlockStatement ?: return)
+        process(
+            node.code as? BlockStatement
+                ?: return super.visitConstructorOrMethod(node, isConstructor),
+        )
         super.visitConstructorOrMethod(node, isConstructor)
     }
 

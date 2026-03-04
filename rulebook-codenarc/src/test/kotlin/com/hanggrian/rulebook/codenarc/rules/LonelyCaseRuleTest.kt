@@ -61,4 +61,21 @@ class LonelyCaseRuleTest : RuleTest<LonelyCaseRule>() {
             }
             """.trimIndent(),
         )
+
+    @Test
+    fun `Target only default case`() =
+        assertSingleViolation(
+            """
+            def foo(var bar) {
+                switch (bar) {
+                    default:
+                        baz()
+                        break
+                }
+            }
+            """.trimIndent(),
+            2,
+            "switch (bar) {",
+            "Replace 'switch' with 'if' condition.",
+        )
 }

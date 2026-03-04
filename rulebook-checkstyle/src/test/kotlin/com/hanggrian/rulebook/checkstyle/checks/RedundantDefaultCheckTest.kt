@@ -17,4 +17,7 @@ class RedundantDefaultCheckTest : CheckTest() {
 
     @Test
     fun `Skip if not all case blocks have jump statement`() = assertAll("RedundantDefault3")
+
+    @Test
+    fun `Skip only default case`() = assertAll("RedundantDefault4")
 }

@@ -1,9 +1,7 @@
 package com.example.kotlin
 
 class RedundantIf {
-    fun foo(condition: Boolean) {
-        val bar = condition
-        println()
-        println()
+    fun foo(foo: Any) {
+        val bar = foo is Int
     }
 }

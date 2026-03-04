@@ -5,7 +5,6 @@ import com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule.Companion.AB
 import com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule.Companion.MSG
 import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
-import org.codehaus.groovy.ast.MethodNode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#abbreviation-as-word) */
 public class AbbreviationAsWordRule : RulebookAstRule() {
@@ -27,15 +26,6 @@ public class AbbreviationAsWordVisitor : RulebookVisitor() {
         }
         process(node, node.name)
         super.visitClassEx(node)
-    }
-
-    override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
-        if (!isFirstVisit(node)) {
-            return
-        }
-        node.parameters.forEach { process(it, it.name) }
-        process(node, node.name)
-        super.visitConstructorOrMethod(node, isConstructor)
     }
 
     private fun process(node: ASTNode, name: String) {

@@ -5,6 +5,7 @@ import com.hanggrian.rulebook.codenarc.firstStatement
 import com.hanggrian.rulebook.codenarc.isMultiline
 import com.hanggrian.rulebook.codenarc.rules.LambdaWrapRule.Companion.MSG
 import org.codehaus.groovy.ast.expr.ClosureExpression
+import org.codehaus.groovy.ast.expr.LambdaExpression
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#lambda-wrap) */
 public class LambdaWrapRule : RulebookAstRule() {
@@ -18,29 +19,39 @@ public class LambdaWrapRule : RulebookAstRule() {
 }
 
 public class LambdaWrapVisitor : RulebookVisitor() {
+    override fun visitLambdaExpression(node: LambdaExpression) {
+        if (!isFirstVisit(node)) {
+            return
+        }
+        process(node)
+        super.visitLambdaExpression(node)
+    }
+
     override fun visitClosureExpression(node: ClosureExpression) {
         if (!isFirstVisit(node)) {
             return
         }
+        process(node)
+        super.visitClosureExpression(node)
+    }
 
+    private fun process(node: ClosureExpression) {
         // target multiline lambda
-        val expression =
+        val statement =
             node
                 .code
-                .firstStatement()
                 .takeIf { it.isMultiline() }
-                ?: return super.visitClosureExpression(node)
-        val parameters =
+                ?.firstStatement()
+                ?: return
+        val parameter =
             node.parameters?.firstOrNull()
                 ?: node
 
         // checks for violation
-        expression
+        statement
             .lineNumber
-            .takeIf { it == parameters.lastLineNumber }
-            ?: return super.visitClosureExpression(node)
-        addViolation(expression, Messages[MSG])
-
-        super.visitClosureExpression(node)
+            .takeIf { it == parameter.lineNumber }
+            ?: return
+        addViolation(statement, Messages[MSG])
     }
 }

@@ -68,4 +68,7 @@ class UnnecessaryReturnRuleTest : RuleTest<UnnecessaryReturnRule>() {
             }
             """.trimIndent(),
         )
+
+    @Test
+    fun `Skip no code returning null`() = assertNoViolations("")
 }

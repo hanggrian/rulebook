@@ -67,7 +67,7 @@ public class StatementWrapVisitor : RulebookVisitor() {
             ?.let { sourceLineNullable(it) }
             ?.trimComment()
             ?.takeIf {
-                val lcurlyIndex = it.lastIndexOf('{')
+                val lcurlyIndex = it.indexOf('{')
                 val rcurlyIndex = it.lastIndexOf('}')
                 lcurlyIndex < rcurlyIndex &&
                     it.substring(lcurlyIndex + 1, rcurlyIndex).isNotBlank()

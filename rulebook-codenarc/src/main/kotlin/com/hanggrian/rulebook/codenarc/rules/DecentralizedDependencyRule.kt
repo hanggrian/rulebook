@@ -59,7 +59,7 @@ public class DecentralizedDependencyVisitor : RulebookVisitor() {
                     ?: continue
             callee
                 .takeIf { it == "dependencies" }
-                ?: return
+                ?: return super.visitClassComplete(node)
 
             // checks for violation
             val argument =

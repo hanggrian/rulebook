@@ -25,7 +25,11 @@ public class TagsTrimVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-        process(node.genericsTypes ?: return, node.lineNumber, node.code.lineNumber)
+        process(
+            node.genericsTypes ?: return super.visitMethodEx(node),
+            node.lineNumber,
+            node.code.lineNumber,
+        )
         super.visitMethodEx(node)
     }
 
@@ -33,7 +37,11 @@ public class TagsTrimVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-        process(node.genericsTypes ?: return, node.lineNumber, node.lastLineNumber)
+        process(
+            node.genericsTypes ?: return super.visitMethodCallExpression(node),
+            node.lineNumber,
+            node.lastLineNumber,
+        )
         super.visitMethodCallExpression(node)
     }
 

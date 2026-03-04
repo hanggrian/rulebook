@@ -54,12 +54,10 @@ class AllRulesTest : AbstractTestCase() {
             OperatorWrapRule(),
             OverloadFunctionPositionRule(),
             ParameterWrapRule(),
-            ParenthesesClipRule(),
             ParenthesesTrimRule(),
             RedundantDefaultRule(),
             RedundantElseRule(),
             RedundantEqualityRule(),
-            RedundantQualifierRule(),
             StatementWrapRule(),
             TagsClipRule(),
             TagsTrimRule(),
@@ -80,16 +78,10 @@ class AllRulesTest : AbstractTestCase() {
                 .readText(),
             violationOf(23, "class AsciiDocLinkVerifier {", "Put 'final' modifier."),
             violationOf(23, "class AsciiDocLinkVerifier {", "Add private constructor."),
-            violationOf(
-                27,
-                "if ((file.name == 'index.adoc') || (!file.name.endsWith('.adoc'))) {",
-                "Replace equality with 'is()'.",
-            ),
             violationOf(38, ".tap {", "Omit newline before '.'."),
-            violationOf(58, "def relativeLinkTargets = subject", "Break assignment into newline."),
-            violationOf(60, ".findAll { it.name() == 'a' }", "Replace equality with 'is()'."),
+            violationOf(58, "def relativeLinkTargets = subject", "Put newline before '='."),
             violationOf(69, "it.port == -1", "Replace equality with 'is()'."),
-            violationOf(73, "def result = relativeLinkTargets", "Break assignment into newline."),
+            violationOf(73, "def result = relativeLinkTargets", "Put newline before '='."),
             violationOf(97, ".findAll()", "Omit newline before '.'."),
             violationOf(97, ".findAll()", "Put trailing comma."),
             violationOf(107, ".findAll()", "Put trailing comma."),
@@ -152,7 +144,7 @@ class AllRulesTest : AbstractTestCase() {
                 375,
                 "def resolvedArtifacts = project.configurations.compileClasspath" +
                     ".resolvedConfiguration.resolvedArtifacts +",
-                "Break assignment into newline.",
+                "Put newline before '='.",
             ),
             violationOf(
                 378,
@@ -163,7 +155,7 @@ class AllRulesTest : AbstractTestCase() {
             violationOf(
                 381,
                 "def managedVersion = resolvedArtifacts.find {",
-                "Break assignment into newline.",
+                "Put newline before '='.",
             ),
             violationOf(
                 381,
@@ -224,8 +216,9 @@ class AllRulesTest : AbstractTestCase() {
             ),
             violationOf(
                 530,
-                "Collection<SourceSet> publishedSources = sourceSets.findAll { SourceSet sourceSet ->",
-                "Break assignment into newline.",
+                "Collection<SourceSet> publishedSources = " +
+                    "sourceSets.findAll { SourceSet sourceSet ->",
+                "Put newline before '='.",
             ),
             violationOf(
                 534,
@@ -290,7 +283,7 @@ class AllRulesTest : AbstractTestCase() {
             violationOf(
                 178,
                 "final builder = HttpClient.newBuilder()",
-                "Break assignment into newline.",
+                "Put newline before '='.",
             ),
             violationOf(
                 178,
@@ -305,7 +298,7 @@ class AllRulesTest : AbstractTestCase() {
             violationOf(
                 203,
                 "final listener = new EventListener<ExecutionAttemptedEvent<HttpResponse<T>>>() {",
-                "Break assignment into newline.",
+                "Put newline before '='.",
             ),
             violationOf(
                 207,
