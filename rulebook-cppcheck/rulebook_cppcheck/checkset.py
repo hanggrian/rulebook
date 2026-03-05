@@ -16,7 +16,7 @@ from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
-from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
+from rulebook_cppcheck.checkers.duplicate_whitespace import DuplicateWhitespaceChecker
 from rulebook_cppcheck.checkers.file_name import FileNameChecker
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
@@ -45,6 +45,8 @@ from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
 from rulebook_cppcheck.checkers.rulebook_checkers import BaseChecker
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
 from rulebook_cppcheck.checkers.unnecessary_return import UnnecessaryReturnChecker
+from rulebook_cppcheck.checkers.unnecessary_trailing_whitespace import \
+    UnnecessaryTrailingWhitespaceChecker
 from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
 
 try:
@@ -67,6 +69,7 @@ if __name__ == '__main__':
         FinalNewlineChecker(),
         IndentStyleChecker(),
         LineLengthChecker(),
+        UnnecessaryTrailingWhitespaceChecker(),
         # Naming
         AbbreviationAsWordChecker(),
         ClassNameChecker(),
@@ -99,7 +102,7 @@ if __name__ == '__main__':
         DuplicateBlankLineChecker(),
         DuplicateBlankLineInBlockCommentChecker(),
         DuplicateBlankLineInCommentChecker(),
-        DuplicateSpaceChecker(),
+        DuplicateWhitespaceChecker(),
         ParenthesesTrimChecker(),
         # Wrapping
         AssignmentWrapChecker(),

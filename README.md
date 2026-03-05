@@ -10,10 +10,10 @@
 
 ![The Rulebook logo.](https://github.com/hanggrian/rulebook/raw/assets/logo.svg)
 
-Third-party rules for JVM and Python lint tools, meant to be used in conjunction
-with official ones. Most of the rules are opinionated personal code styles.
-However, some already exists in other linters, providing the same experience
-across multiple languages.
+Third-party linter rules for multiple programming languages. It aims to
+standardize existing rules from various linters, providing a consistent style
+across different languages and tools. It also serves as a reference for best
+practices in coding style.
 
 Language | Linter | Styles
 --- | --- | ---
@@ -46,32 +46,18 @@ dependencies {
 ### PyPI
 
 ```sh
-pip install pylint regex rulebook-pylint
+pip install regex pylint rulebook-pylint
+pip install regex cppcheck rulebook-cppcheck
 ```
 
 ### NPM
 
-Coming soon.
+```sh
+npm install rulebook-eslint --save-dev
+npm install rulebook-typescript-eslint --save-dev
+```
 
 ## Usage
-
-### Ktlint
-
-- Apply [Ktlint Integration](https://pinterest.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration)
-  to Gradle project.
-- Using configuration `ktlint`, add this project as dependency.
-
-  ```gradle
-  configurations {
-      ktlint
-  }
-
-  dependencies {
-      ktlint "com.hanggrian.rulebook:rulebook-ktlint:$libraryVersion"
-  }
-
-  // the rest of ktlint tasks' configuration
-  ```
 
 ### Checkstyle
 
@@ -115,40 +101,35 @@ Coming soon.
   }
   ```
 
+### Ktlint
+
+- Apply [Ktlint Integration](https://pinterest.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration)
+  to Gradle project.
+- Using configuration `ktlint`, add this project as dependency.
+
+  ```gradle
+  configurations {
+      ktlint
+  }
+
+  dependencies {
+      ktlint "com.hanggrian.rulebook:rulebook-ktlint:$libraryVersion"
+  }
+
+  // the rest of ktlint tasks' configuration
+  ```
+
+### Cppcheck
+
+Create `addon.json` file.
+
 ### Pylint
 
-- Point config file to local `pylintrc`.
+Create `.pylintrc` file in the root directory.
 
 ### ESLint
 
-- Create `.eslint.config.js`.
-
-  ```js
-  import rulebookEslint, { proxmoxJavaScriptStyleNamed } from 'rulebook-eslint';
-  import rulebookTypescriptEslint, { microsoftTypeScriptStyleNamed } from 'rulebook-typescript-eslint';
-
-  export default typescriptEslint.config(
-      {
-          files: ['**/*.{js,jsx}'],
-          extends: [js.configs.recommended],
-          plugins: {
-              'rulebook': rulebookEslint,
-          },
-          rules: proxmoxJavaScriptStyleNamed('rulebook'),
-      },
-      {
-          files: ['**/*.{ts,tsx}'],
-          extends: [
-              js.configs.recommended,
-              ...typescriptEslint.configs.recommendedTypeChecked,
-          ],
-          plugins: {
-              'rulebook': rulebookTypescriptEslint,
-          },
-          rules: microsoftTypeScriptStyleNamed('rulebook'),
-      },
-  );
-  ```
+Create `.eslint.config.js` file in the root directory.
 
 ## IDE settings
 

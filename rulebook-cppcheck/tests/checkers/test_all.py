@@ -23,7 +23,7 @@ from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
-from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
+from rulebook_cppcheck.checkers.duplicate_whitespace import DuplicateWhitespaceChecker
 from rulebook_cppcheck.checkers.empty_file import EmptyFileChecker
 from rulebook_cppcheck.checkers.file_name import FileNameChecker
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
@@ -52,6 +52,8 @@ from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
 from rulebook_cppcheck.checkers.unnecessary_return import UnnecessaryReturnChecker
+from rulebook_cppcheck.checkers.unnecessary_trailing_whitespace import \
+    UnnecessaryTrailingWhitespaceChecker
 from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
 
 try:
@@ -77,7 +79,7 @@ class TestAllCheckers(TestCase):
             DuplicateBlankLineChecker(),
             DuplicateBlankLineInBlockCommentChecker(),
             DuplicateBlankLineInCommentChecker(),
-            DuplicateSpaceChecker(),
+            DuplicateWhitespaceChecker(),
             EmptyFileChecker(),
             FileNameChecker(),
             FileSizeChecker(),
@@ -106,6 +108,7 @@ class TestAllCheckers(TestCase):
             RedundantElseChecker(),
             TodoCommentChecker(),
             UnnecessaryReturnChecker(),
+            UnnecessaryTrailingWhitespaceChecker(),
             UppercaseLChecker(),
         )
         self.temp_dir = None
@@ -114,7 +117,7 @@ class TestAllCheckers(TestCase):
     @patch.object(BlockCommentSpacesChecker, 'report_error')
     @patch.object(ChainCallWrapChecker, 'report_error')
     @patch.object(DuplicateBlankLineChecker, 'report_error')
-    @patch.object(DuplicateSpaceChecker, 'report_error')
+    @patch.object(DuplicateWhitespaceChecker, 'report_error')
     @patch.object(GenericNameChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(IndentStyleChecker, 'report_error')
@@ -137,7 +140,7 @@ class TestAllCheckers(TestCase):
         indent_style_report_error,
         import_order_report_error,
         generic_name_report_error,
-        duplicate_space_report_error,
+        duplicate_whitespace_report_error,
         duplicate_blank_line_report_error,
         chain_call_wrap_report_error,
         block_comment_spaces_report_error,
@@ -175,10 +178,16 @@ class TestAllCheckers(TestCase):
             ],
             any_order=True,
         )
-        duplicate_space_report_error.assert_has_calls(
+        duplicate_whitespace_report_error.assert_has_calls(
             [
-                self._duplicate_space_called(tokens, 'const_iterator', 484, 25),
-                self._duplicate_space_called(tokens, 'const_iterator', 589, 18),
+                self._duplicate_whitespace_called(tokens, '}', 700, 2, 35, 34),
+                self._duplicate_whitespace_called(tokens, '}', 700, 2, 45, 6),
+                self._duplicate_whitespace_called(tokens, '}', 700, 2, 484, 39),
+                self._duplicate_whitespace_called(tokens, '}', 700, 2, 489, 45),
+                self._duplicate_whitespace_called(tokens, '}', 700, 2, 501, 45),
+                self._duplicate_whitespace_called(tokens, '}', 700, 2, 589, 32),
+                self._duplicate_whitespace_called(tokens, '}', 700, 2, 592, 40),
+                self._duplicate_whitespace_called(tokens, '}', 700, 2, 609, 14),
             ],
             any_order=True,
         )
@@ -386,7 +395,8 @@ class TestAllCheckers(TestCase):
     @patch.object(AssignmentWrapChecker, 'report_error')
     @patch.object(CaseSeparatorChecker, 'report_error')
     @patch.object(DuplicateBlankLineChecker, 'report_error')
-    @patch.object(DuplicateSpaceChecker, 'report_error')
+    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(IdentifierNameChecker, 'report_error')
     @patch.object(IllegalCatchChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(IndentStyleChecker, 'report_error')
@@ -405,7 +415,8 @@ class TestAllCheckers(TestCase):
         indent_style_report_error,
         import_order_report_error,
         illegal_catch_report_error,
-        duplicate_space_report_error,
+        identifier_name_report_error,
+        duplicate_whitespace_report_error,
         duplicate_blank_line_report_error,
         case_separator_report_error,
         assignment_wrap_report_error,
@@ -446,8 +457,81 @@ class TestAllCheckers(TestCase):
             ],
             any_order=True,
         )
-        duplicate_space_report_error.assert_has_calls(
-            [self._duplicate_space_called(tokens, 'State', 832, 0)],
+        duplicate_whitespace_report_error.assert_has_calls(
+            [
+                self._duplicate_whitespace_called(tokens, '}', 900, 1, 12, 56),
+                self._duplicate_whitespace_called(tokens, '}', 900, 1, 16, 28),
+                self._duplicate_whitespace_called(tokens, '}', 900, 1, 32, 18),
+            ],
+        )
+        identifier_name_report_error.assert_has_calls(
+            [
+                self._identifier_name_called(
+                    tokens,
+                    'isAcceptedErrorIdChar',
+                    'is_accepted_error_id_char',
+                    60,
+                    13,
+                ),
+                self._identifier_name_called(
+                    tokens,
+                    'symbolNameString',
+                    'symbol_name_string',
+                    183,
+                    27,
+                ),
+                self._identifier_name_called(tokens, 'lineStream', 'line_stream', 210, 24),
+                self._identifier_name_called(
+                    tokens,
+                    'foundSuppression',
+                    'found_suppression',
+                    275,
+                    10,
+                ),
+                self._identifier_name_called(tokens, 'newSuppression', 'new_suppression', 306, 16),
+                self._identifier_name_called(
+                    tokens,
+                    'foundSuppression',
+                    'found_suppression',
+                    319,
+                    10,
+                ),
+                self._identifier_name_called(tokens, 'extraPos', 'extra_pos', 345, 28),
+                self._identifier_name_called(
+                    tokens,
+                    'extraDelimiterSize',
+                    'extra_delimiter_size',
+                    346,
+                    28,
+                ),
+                self._identifier_name_called(
+                    tokens,
+                    'symbolNameString',
+                    'symbol_name_string',
+                    378,
+                    23,
+                ),
+                self._identifier_name_called(tokens, 'matchedSymbol', 'matched_symbol', 419, 14),
+                self._identifier_name_called(
+                    tokens,
+                    'unmatchedSuppression',
+                    'unmatched_suppression',
+                    461,
+                    16,
+                ),
+                self._identifier_name_called(tokens, 'returnValue', 'return_value', 462, 10),
+                self._identifier_name_called(tokens, 'currLineNr', 'curr_line_nr', 619, 9),
+                self._identifier_name_called(tokens, 'currFileIdx', 'curr_file_idx', 620, 9),
+                self._identifier_name_called(tokens, 'haveMisraAddon', 'have_misra_addon', 663, 16),
+                self._identifier_name_called(tokens, 'matchArg', 'match_arg', 674, 16),
+                self._identifier_name_called(tokens, 'prevChar', 'prev_char', 681, 20),
+                self._identifier_name_called(tokens, 'nextChar', 'next_char', 682, 20),
+                self._identifier_name_called(tokens, 'polyspaceKind', 'polyspace_kind', 746, 20),
+                self._identifier_name_called(tokens, 'rangeValue', 'range_value', 751, 19),
+                self._identifier_name_called(tokens, 'extraComment', 'extra_comment', 767, 21),
+                self._identifier_name_called(tokens, 'errorId', 'error_id', 776, 33),
+            ],
+            any_order=True,
         )
         illegal_catch_report_error.assert_has_calls(
             [self._illegal_catch_called(tokens, 240)],
@@ -692,6 +776,7 @@ class TestAllCheckers(TestCase):
     @patch.object(AssignmentWrapChecker, 'report_error')
     @patch.object(CaseSeparatorChecker, 'report_error')
     @patch.object(CommentSpacesChecker, 'report_error')
+    @patch.object(DuplicateWhitespaceChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(IndentStyleChecker, 'report_error')
     @patch.object(LineLengthChecker, 'report_error')
@@ -706,6 +791,7 @@ class TestAllCheckers(TestCase):
         line_length_report_error,
         indent_style_report_error,
         import_order_report_error,
+        duplicate_whitespace_report_error,
         comment_space_report_error,
         case_separator_report_error,
         assignment_wrap_report_error,
@@ -734,6 +820,60 @@ class TestAllCheckers(TestCase):
             [
                 self._comment_space_called(tokens, 168, 9),
                 self._comment_space_called(tokens, 847, 5),
+            ],
+            any_order=True,
+        )
+        duplicate_whitespace_report_error.assert_has_calls(
+            [
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 63, 35),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 64, 55),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 65, 33),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 66, 33),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 67, 31),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 68, 32),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 69, 52),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 450, 54),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 476, 54),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 678, 25),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 679, 28),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 680, 32),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 681, 34),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 682, 32),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 685, 42),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 686, 39),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 687, 43),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 688, 41),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 689, 41),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 690, 41),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 749, 59),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 750, 56),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 751, 63),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 752, 65),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 753, 68),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 754, 63),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 759, 74),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 760, 76),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 761, 77),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 767, 74),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 768, 78),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 769, 76),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 770, 76),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 771, 76),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 772, 77),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 809, 59),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 810, 56),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 811, 63),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 812, 65),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 813, 68),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 814, 63),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 819, 74),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 820, 76),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 821, 77),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 828, 74),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 830, 76),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 831, 76),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 832, 76),
+                self._duplicate_whitespace_called(tokens, ';', 885, 39, 833, 77),
             ],
             any_order=True,
         )
@@ -947,10 +1087,12 @@ class TestAllCheckers(TestCase):
         )
 
     @staticmethod
-    def _duplicate_space_called(tokens, s, line, col):
+    def _duplicate_whitespace_called(tokens, s, line, col, i, j):
         return call(
             next(t for t in tokens if t.str == s and t.linenr == line and t.column == col),
-            'Remove consecutive space.',
+            'Remove consecutive whitespace.',
+            i,
+            j,
         )
 
     @staticmethod
@@ -958,6 +1100,13 @@ class TestAllCheckers(TestCase):
         return call(
             next(t for t in tokens if t.str == s and t.linenr == line),
             'Use single uppercase letter.',
+        )
+
+    @staticmethod
+    def _identifier_name_called(tokens, s, s2, line, col):
+        return call(
+            next(t for t in tokens if t.str == s and t.linenr == line and t.column == col),
+            f"Rename identifier to '{s2}'.",
         )
 
     @staticmethod

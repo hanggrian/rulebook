@@ -19,14 +19,14 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
             dedent(
                 '''
                 /** Summary. */
-                fun foo() {}
+                void foo() {}
 
                 /**
                  * Summary.
                  *
                  * @param num description.
                  */
-                fun bar(num: Int) {}
+                void bar(num: Int) {}
                 ''',
             ),
         )
@@ -39,14 +39,14 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
             dedent(
                 '''
                 /**Summary.*/
-                fun foo() {}
+                void foo() {}
 
                 /**
                  *Summary.
                  *
                  *@param num description.
                  */
-                fun bar(num: Int) {}
+                void bar(num: Int) {}
                 ''',
             ),
         )
@@ -74,7 +74,7 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
                  *@goodtag
                  *@awesometag with description.
                  */
-                fun foo(num: Int) {}
+                void foo(num: Int) {}
                 ''',
             ),
         )

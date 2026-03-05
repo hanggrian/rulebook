@@ -20,7 +20,7 @@ add_executable(
         c/duplicate_blank_line.c
         c/duplicate_blank_line_in_block_comment.c
         c/duplicate_blank_line_in_comment.c
-        c/duplicate_space.c
+        c/duplicate_whitespace.c
         c/file_size.c
         c/final_newline.c
         c/identifier_name.c
@@ -37,6 +37,8 @@ add_executable(
         c/redundant_default.c
         c/redundant_else.c
         c/todo_comment.c
+        c/unnecessary_return.c
+        c/unnecessary_trailing_whitespace.c
         c/uppercase_l.c
         cpp/generic_name.cpp
         cpp/illegal_catch.cpp

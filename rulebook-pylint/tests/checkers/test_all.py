@@ -22,7 +22,7 @@ from rulebook_pylint.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
 from rulebook_pylint.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
-from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
+from rulebook_pylint.checkers.duplicate_whitespace import DuplicateWhitespaceChecker
 from rulebook_pylint.checkers.generic_name import GenericNameChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_pylint.checkers.internal_error import InternalErrorChecker
@@ -61,7 +61,7 @@ class TestAllCheckers:
         DuplicateBlankLineChecker,
         DuplicateBlankLineInBlockCommentChecker,
         DuplicateBlankLineInCommentChecker,
-        DuplicateSpaceChecker,
+        DuplicateWhitespaceChecker,
         # TODO find out why this test shares config (max 3 lines) with `test_file_size` when running
         #   command `pytest`.
         # FileSizeChecker,

@@ -12,11 +12,11 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class DuplicateSpaceChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-space"""
-    _MSG: str = 'duplicate.space'
+class DuplicateWhitespaceChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-whitespace"""
+    _MSG: str = 'duplicate.whitespace'
 
-    name: str = 'duplicate-space'
+    name: str = 'duplicate-whitespace'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
@@ -30,7 +30,11 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
 
             # checks for violation
             if not fstring_flag and self._is_duplicate_space(token, last_token):
-                self.add_message(self._MSG, line=last_token.start[0], col_offset=last_token.start[1])
+                self.add_message(
+                    self._MSG,
+                    line=last_token.start[0],
+                    col_offset=last_token.start[1],
+                )
 
             if token.type == FSTRING_START:
                 fstring_flag = True
@@ -49,4 +53,4 @@ class DuplicateSpaceChecker(RulebookTokenChecker):
 
 
 def register(linter: PyLinter) -> None:
-    linter.register_checker(DuplicateSpaceChecker(linter))
+    linter.register_checker(DuplicateWhitespaceChecker(linter))

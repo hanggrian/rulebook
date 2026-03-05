@@ -82,7 +82,7 @@ load-plugins=
   rulebook_pylint.checkers.duplicate_blank_line,
   rulebook_pylint.checkers.duplicate_blank_line_in_block_comment,
   rulebook_pylint.checkers.duplicate_blank_line_in_comment,
-  rulebook_pylint.checkers.duplicate_space,
+  rulebook_pylint.checkers.duplicate_whitespace,
   rulebook_pylint.checkers.parentheses_trim,
   # Wrapping
   rulebook_pylint.checkers.parameter_wrap,

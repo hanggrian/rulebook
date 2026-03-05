@@ -32,6 +32,7 @@ class AllRulesTest : AbstractTestCase() {
             CommonFunctionPositionRule(),
             ComplicatedSizeEqualityRule(),
             DuplicateBlankLineInCommentRule(),
+            DuplicateWhitespaceRule(),
             EmptyFileRule(),
             GenericNameRule(),
             IllegalVariableNameRule(),
@@ -101,6 +102,11 @@ class AllRulesTest : AbstractTestCase() {
                 "Arrange member 'property' before 'static member'.",
             ),
             violationOf(116, "if (pluginClassNames) {", "Invert 'if' condition."),
+            violationOf(
+                143,
+                "List<Rule> rules = new ArrayList(ruleSet.getRules())    // need it mutable",
+                "Remove consecutive whitespace.",
+            ),
             violationOf(149, "if (plugins) {", "Invert 'if' condition."),
             violationOf(167, "* @return a single RuleSet", "End '@return' with a period."),
         )
@@ -115,6 +121,13 @@ class AllRulesTest : AbstractTestCase() {
                 59,
                 "String getErrorMessage(String missingSetting) {",
                 "Arrange member 'function' before 'static member'.",
+            ),
+            violationOf(
+                86,
+                "By default snapshotPublishType is set to MAVEN_PUBLISH and releasePublishType " +
+                    "is set to NEXUS_PUBLISH.  These can be overridden by setting the associated " +
+                    "property.",
+                "Remove consecutive whitespace.",
             ),
             violationOf(
                 111,
@@ -213,6 +226,11 @@ class AllRulesTest : AbstractTestCase() {
                 425,
                 "taskContainer.register('install', { Task task ->",
                 "Put trailing comma.",
+            ),
+            violationOf(
+                473,
+                "source    : pluginXml,",
+                "Remove consecutive whitespace.",
             ),
             violationOf(
                 530,

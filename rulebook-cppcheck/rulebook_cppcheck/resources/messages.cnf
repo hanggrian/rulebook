@@ -15,6 +15,7 @@ file.size=Reduce file size to '{}'.
 final.newline=Put a blank line at the end of the file.
 indent.style=Indent with '{}' spaces.
 line.length=Code exceeds max line length of '{}'.
+unnecessary.trailing.whitespace=Trim trailing whitespace.
 # Naming
 abbreviation.as.word=Rename abbreviation to '{}'.
 class.name=Rename class to '{}'.
@@ -52,7 +53,7 @@ comment.trim=Remove blank line after '//'.
 duplicate.blank.line=Remove consecutive blank line.
 duplicate.blank.line.in.block.comment=Remove consecutive blank line in '*'.
 duplicate.blank.line.in.comment=Remove consecutive blank line after '//'.
-duplicate.space=Remove consecutive space.
+duplicate.whitespace=Remove consecutive whitespace.
 parentheses.trim.first=Remove blank line after '{}'.
 parentheses.trim.last=Remove blank line before '{}'.
 # Wrapping

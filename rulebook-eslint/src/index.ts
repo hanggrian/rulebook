@@ -206,7 +206,6 @@ const crockfordConfig: Linter.RulesRecord = {
     '@rulebook/comment-trim': 'error',
     '@rulebook/duplicate-blank-line-in-comment': 'error',
     '@rulebook/duplicate-blank-line-in-block-comment': 'error',
-    '@rulebook/parentheses-trim': 'error',
     '@stylistic/no-multiple-empty-lines': [
         'error',
         {
@@ -214,6 +213,7 @@ const crockfordConfig: Linter.RulesRecord = {
         },
     ],
     '@stylistic/no-multi-spaces': 'error',
+    '@rulebook/parentheses-trim': 'error',
     '@rulebook/unnecessary-initial-blank-line': 'error',
     // Wrapping
     '@rulebook/assignment-wrap': 'error',
@@ -397,7 +397,6 @@ const googleConfig: Linter.RulesRecord = {
     '@rulebook/comment-trim': 'error',
     '@rulebook/duplicate-blank-line-in-block-comment': 'error',
     '@rulebook/duplicate-blank-line-in-comment': 'error',
-    '@rulebook/parentheses-trim': 'error',
     '@stylistic/no-multiple-empty-lines': [
         'error',
         {
@@ -405,6 +404,7 @@ const googleConfig: Linter.RulesRecord = {
         },
     ],
     '@stylistic/no-multi-spaces': 'error',
+    '@rulebook/parentheses-trim': 'error',
     '@rulebook/unnecessary-initial-blank-line': 'error',
     // Wrapping
     '@rulebook/assignment-wrap': 'error',
