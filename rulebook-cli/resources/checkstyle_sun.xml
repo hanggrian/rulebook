@@ -68,6 +68,12 @@
     <property name="fileExtensions" value="java"/>
   </module-->
 
+  <!-- Formatting -->
+  <!-- Only available since 13.3.0 -->
+  <!--module name="LineEnding">
+    <property name="lineEnding" value="LF"/>
+  </module-->
+
   <!-- Clipping -->
   <module name="RegexpMultiline">
     <property name="fileExtensions" value="java"/>

@@ -32,10 +32,7 @@ class DuplicateBlankLineInCommentRule extends RulebookRule {
                     if (next_loc.start.line !== current_loc.end.line + 1) {
                         continue;
                     }
-                    context.report({
-                        node: next,
-                        messageId: DuplicateBlankLineInCommentRule.MSG,
-                    });
+                    context.report({ node: next, messageId: DuplicateBlankLineInCommentRule.MSG });
                 }
             },
         };

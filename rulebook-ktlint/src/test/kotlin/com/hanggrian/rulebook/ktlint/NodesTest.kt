@@ -9,10 +9,13 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLA
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
+import jdk.javadoc.internal.doclets.formats.html.markup.RawHtml.comment
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.mockito.Mockito.atMost
 import org.mockito.Mockito.verify
@@ -123,20 +126,6 @@ class NodesTest {
     }
 
     @Test
-    fun isComment() {
-        val comment = mock<ASTNode> { on { elementType } doReturn EOL_COMMENT }
-        val blockComment = mock<ASTNode> { on { elementType } doReturn BLOCK_COMMENT }
-        val kdoc = mock<ASTNode> { on { elementType } doReturn KDOC }
-        assertThat(comment.isComment()).isTrue()
-        assertThat(blockComment.isComment()).isTrue()
-        assertThat(kdoc.isComment()).isTrue()
-
-        verify(comment).elementType
-        verify(blockComment, atMost(2)).elementType
-        verify(kdoc, atMost(3)).elementType
-    }
-
-    @Test
     fun isWhitespaceSingleLine() {
         val comment = mock<ASTNode> { on { elementType } doReturn EOL_COMMENT }
         assertThat(comment.isWhitespaceSingleLine()).isFalse()
@@ -184,5 +173,25 @@ class NodesTest {
 
         verify(comment).elementType
         verify(comment).text
+    }
+
+    @Test
+    fun isStatement() {
+        val `return` = mock<ASTNode> { on { elementType } doReturn RETURN }
+        assertThat(`return`.isStatement()).isTrue()
+
+        val comment = mock<ASTNode> { on { elementType } doReturn EOL_COMMENT }
+        assertThat(comment.isStatement()).isFalse()
+
+        val lbrace = mock<ASTNode> { on { elementType } doReturn LBRACE }
+        assertThat(lbrace.isStatement()).isFalse()
+
+        val rbrace = mock<ASTNode> { on { elementType } doReturn RBRACE }
+        assertThat(rbrace.isStatement()).isFalse()
+
+        verify(`return`, atMost(4)).elementType
+        verify(comment, atMost(3)).elementType
+        verify(lbrace, atMost(3)).elementType
+        verify(rbrace, atMost(4)).elementType
     }
 }

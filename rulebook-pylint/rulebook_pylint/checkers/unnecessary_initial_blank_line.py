@@ -19,15 +19,10 @@ class UnnecessaryInitialBlankLineChecker(RulebookTokenChecker):
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
-        for token in tokens:
-            # skip metadata
-            type2: int = token.type
-            if type2 == ENCODING:
-                continue
-
+        for token in [t for t in tokens if t.type != ENCODING]:
             # checks for violation
-            if type2 == NL:
-                self.add_message(self._MSG, line=0)
+            if token.type == NL:
+                self.add_message(self._MSG, line=1)
             return
 
 

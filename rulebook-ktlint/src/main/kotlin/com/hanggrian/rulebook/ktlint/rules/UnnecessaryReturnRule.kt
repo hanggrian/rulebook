@@ -2,13 +2,11 @@ package com.hanggrian.rulebook.ktlint.rules
 
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
-import com.hanggrian.rulebook.ktlint.isComment
+import com.hanggrian.rulebook.ktlint.isStatement
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUN
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN_KEYWORD
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
@@ -25,11 +23,8 @@ public class UnnecessaryReturnRule : RulebookRule(ID) {
             node
                 .findChildByType(BLOCK)
                 ?.children20
-                ?.lastOrNull {
-                    it.elementType !== WHITE_SPACE &&
-                        it.elementType !== RBRACE &&
-                        !it.isComment()
-                }?.takeIf {
+                ?.lastOrNull { it.isStatement() }
+                ?.takeIf {
                     it.elementType === RETURN &&
                         it.children20.singleOrNull()?.elementType === RETURN_KEYWORD
                 } ?: return

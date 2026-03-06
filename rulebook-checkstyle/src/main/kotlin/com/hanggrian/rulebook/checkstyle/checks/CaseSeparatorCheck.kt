@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
 import com.hanggrian.rulebook.checkstyle.children
-import com.hanggrian.rulebook.checkstyle.isComment
+import com.hanggrian.rulebook.checkstyle.isCode
 import com.hanggrian.rulebook.checkstyle.isMultiline
 import com.hanggrian.rulebook.checkstyle.maxLineNo
 import com.hanggrian.rulebook.checkstyle.minLineNo
@@ -33,7 +33,7 @@ public class CaseSeparatorCheck : RulebookAstCheck() {
             caseGroups.any { caseGroup ->
                 val children = caseGroup.children()
                 caseGroup.findFirstToken(SLIST)?.isMultiline() == true ||
-                    children.any { it.isComment() } ||
+                    children.any { !it.isCode() } ||
                     children.count { it.type == LITERAL_CASE } > 1
             }
         for ((i, caseGroup) in caseGroups.withIndex()) {

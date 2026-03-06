@@ -28,6 +28,8 @@ class IllegalCatchChecker(RulebookTokenChecker):
             next_token: Token | None = token.next
             if next_token is None or next_token.str != '(':
                 continue
+
+            # checks for violation
             ellipses_token: Token | None = next_token.next
             if ellipses_token is not None and ellipses_token.str == '...':
                 self.report_error(token, _Messages.get(self._MSG))

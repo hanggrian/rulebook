@@ -4,6 +4,8 @@ import com.google.common.truth.Truth.assertThat
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.DetailNode
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_END
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMPILATION_UNIT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
@@ -12,6 +14,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_PUBLIC
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 import org.mockito.Mockito.atLeast
@@ -233,14 +237,6 @@ class DetailNodesTest {
     }
 
     @Test
-    fun isComment() {
-        val comment = mock<DetailAST> { on { type } doReturn SINGLE_LINE_COMMENT }
-        assertThat(comment.isComment()).isTrue()
-
-        verify(comment).type
-    }
-
-    @Test
     fun isEolCommentEmpty() {
         val slist = mock<DetailAST> { on { type } doReturn SLIST }
         assertThat(slist.isEolCommentEmpty()).isFalse()
@@ -260,6 +256,52 @@ class DetailNodesTest {
         sequenceOf(comment, content).forEach { verify(it).type }
         verify(comment).firstChild
         verify(content).text
+    }
+
+    @Test
+    fun isCode() {
+        val comment = mock<DetailAST> { on { type } doReturn COMMENT_CONTENT }
+        assertThat(comment.isCode()).isFalse()
+
+        val blockComment = mock<DetailAST> { on { type } doReturn BLOCK_COMMENT_END }
+        assertThat(blockComment.isCode()).isFalse()
+
+        val comment2 = mock<DetailAST> { on { type } doReturn SINGLE_LINE_COMMENT }
+        assertThat(comment2.isCode()).isFalse()
+
+        val blockComment2 = mock<DetailAST> { on { type } doReturn BLOCK_COMMENT_BEGIN }
+        assertThat(blockComment2.isCode()).isFalse()
+
+        val `return` = mock<DetailAST> { on { type } doReturn LITERAL_RETURN }
+        assertThat(`return`.isCode()).isTrue()
+        `when`(`return`.parent).thenReturn(comment2)
+        assertThat(`return`.isCode()).isFalse()
+
+        verify(comment).type
+        verify(blockComment, atMost(2)).type
+        verify(comment2, atMost(4)).type
+        verify(blockComment2, atMost(4)).type
+        verify(`return`, atMost(7)).type
+    }
+
+    @Test
+    fun isStatement() {
+        val `return` = mock<DetailAST> { on { type } doReturn LITERAL_RETURN }
+        assertThat(`return`.isStatement()).isTrue()
+
+        val comment = mock<DetailAST> { on { type } doReturn COMMENT_CONTENT }
+        assertThat(comment.isStatement()).isFalse()
+
+        val semi = mock<DetailAST> { on { type } doReturn SEMI }
+        assertThat(semi.isStatement()).isFalse()
+
+        val rcurly = mock<DetailAST> { on { type } doReturn RCURLY }
+        assertThat(rcurly.isStatement()).isFalse()
+
+        verify(`return`, atMost(6)).type
+        verify(comment, atMost(3)).type
+        verify(semi, atMost(6)).type
+        verify(rcurly, atMost(5)).type
     }
 
     private class NodeTree(

@@ -22,10 +22,7 @@ class UnnecessaryInitialBlankLineRule extends RulebookRule {
                 if (line.trim().length !== 0) {
                     return;
                 }
-                context.report({
-                    node: node,
-                    messageId: UnnecessaryInitialBlankLineRule.MSG,
-                });
+                context.report({ node: node, messageId: UnnecessaryInitialBlankLineRule.MSG });
             },
         };
     }

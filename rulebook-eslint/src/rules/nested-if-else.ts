@@ -60,10 +60,7 @@ class NestedIfElseRule extends RulebookRule {
                     !NestedIfElseRule.hasMultipleLines(expression)) {
                     return;
                 }
-                context.report({
-                    node: ifStatement,
-                    messageId: NestedIfElseRule.MSG_INVERT,
-                });
+                context.report({ node: ifStatement, messageId: NestedIfElseRule.MSG_INVERT });
             },
         };
     }

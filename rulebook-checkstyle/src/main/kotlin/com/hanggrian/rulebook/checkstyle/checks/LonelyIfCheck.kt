@@ -2,10 +2,10 @@ package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
 import com.hanggrian.rulebook.checkstyle.children
+import com.hanggrian.rulebook.checkstyle.isStatement
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_ELSE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_IF
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#lonely-if) */
@@ -18,7 +18,7 @@ public class LonelyIfCheck : RulebookAstCheck() {
             node
                 .findFirstToken(SLIST)
                 ?.children()
-                ?.singleOrNull { it.type != RCURLY }
+                ?.singleOrNull { it.isStatement() }
                 ?.takeIf { it.type == LITERAL_IF }
                 ?: return
         log(`if`, Messages[MSG])

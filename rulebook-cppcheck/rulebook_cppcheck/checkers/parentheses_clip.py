@@ -28,6 +28,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
 
     @override
     def process_tokens(self, tokens: list[Token]) -> None:
+        # checks for violation
         for token in tokens:
             token_str: str = token.str
             if token_str not in self._PARENTHESES or \

@@ -4,23 +4,19 @@ import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.contains
 import com.hanggrian.rulebook.ktlint.hasJumpStatement
-import com.hanggrian.rulebook.ktlint.isComment
 import com.hanggrian.rulebook.ktlint.isMultiline
+import com.hanggrian.rulebook.ktlint.isStatement
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CATCH
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CLASS_INITIALIZER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.TRY
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.isPartOf
-import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
 import com.pinterest.ktlint.rule.engine.core.api.parent
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
@@ -52,9 +48,7 @@ public class NestedIfElseRule : RulebookRule(ID) {
                     break
                 }
 
-                child.elementType === WHITE_SPACE ||
-                    child.elementType === RBRACE ||
-                    child.isComment() -> continue
+                !child.isStatement() -> continue
             }
             return
         }
@@ -86,10 +80,7 @@ public class NestedIfElseRule : RulebookRule(ID) {
             findChildByType(BLOCK)
                 ?.children20
                 .orEmpty()
-                .filterNot {
-                    it.elementType === LBRACE ||
-                        it.elementType === RBRACE ||
-                        it.isWhiteSpace20
-                }.run { singleOrNull()?.isMultiline() ?: (count() > 1) }
+                .filter { it.isStatement() }
+                .run { singleOrNull()?.isMultiline() ?: (count() > 1) }
     }
 }

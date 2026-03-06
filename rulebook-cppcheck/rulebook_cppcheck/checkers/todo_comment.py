@@ -24,12 +24,13 @@ class TodoCommentChecker(RulebookFileChecker):
     @override
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'//.*|/\*(.*?)\*/', content, DOTALL):
+            # obtain comment content
             comment_text: str = match.group(0)
             start_line: int = content.count('\n', 0, match.start()) + 1
 
             for i, line in enumerate(comment_text.splitlines()):
+                # checks for violation
                 line_no: int = start_line + i
-
                 keyword_match: Match | None = self._KEYWORD_REGEX.search(line)
                 if keyword_match is not None:
                     self.report_error(
@@ -37,7 +38,6 @@ class TodoCommentChecker(RulebookFileChecker):
                         _Messages.get(self._MSG_KEYWORD, keyword_match.group(0)),
                         line_no,
                     )
-
                 separator_match: Match | None = self._SEPARATOR_REGEX.search(line)
                 if separator_match is None:
                     continue

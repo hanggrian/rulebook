@@ -5,6 +5,8 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.ANNOTATION
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_BEGIN
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.BLOCK_COMMENT_END
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.COMMENT_CONTENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_BREAK
@@ -12,6 +14,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CONTINUE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_THROW
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.MODIFIERS
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
+import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil.isCommentType
@@ -133,10 +137,20 @@ internal fun DetailAST.isLeaf(): Boolean = childCount == 0
 /** Determine whether this node spans multiple lines of code. */
 internal fun DetailAST.isMultiline(): Boolean = maxLineNo > minLineNo
 
-/** Returns true if this node is of any comment type. */
-internal fun DetailAST.isComment(): Boolean = isCommentType(type)
-
 /** Returns true if this node is an EOL comment without content. */
 internal fun DetailAST.isEolCommentEmpty(): Boolean =
     type == SINGLE_LINE_COMMENT &&
         firstChild.run { type == COMMENT_CONTENT && text == "\n" }
+
+/** Returns true if this node is not a part of comment. */
+internal fun DetailAST.isCode(): Boolean =
+    type != COMMENT_CONTENT &&
+        type != BLOCK_COMMENT_END &&
+        !isPartOf(SINGLE_LINE_COMMENT) &&
+        !isPartOf(BLOCK_COMMENT_BEGIN)
+
+/** Returns true if this node is a statement inside a code block. */
+internal fun DetailAST.isStatement(): Boolean = isCode() && type != RCURLY && type != SEMI
+
+private fun DetailAST.isPartOf(type: Int): Boolean =
+    this.type == type || parent { it.type == type } != null

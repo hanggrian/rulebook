@@ -66,10 +66,7 @@ class RedundantIfRule extends RulebookRule {
                 if (!isStatementConstant(nextNode)) {
                     return;
                 }
-                context.report({
-                    node: node,
-                    messageId: RedundantIfRule.MSG,
-                });
+                context.report({ node: node, messageId: RedundantIfRule.MSG });
             },
         };
     }

@@ -7,11 +7,14 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.children20
+import com.pinterest.ktlint.rule.engine.core.api.isCode
 import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpaceWithNewline20
 import com.pinterest.ktlint.rule.engine.core.api.nextSibling20
 import com.pinterest.ktlint.rule.engine.core.api.parent
@@ -48,10 +51,6 @@ internal fun ASTNode.isMultiline(): Boolean =
         else -> children20.any { it.isMultiline() }
     }
 
-/** Returns true if this node is of any comment type. */
-internal fun ASTNode.isComment(): Boolean =
-    elementType === EOL_COMMENT || elementType === BLOCK_COMMENT || elementType === KDOC
-
 /** Returns true if this node is whitespace with single blank line. */
 internal fun ASTNode.isWhitespaceSingleLine(): Boolean =
     elementType === WHITE_SPACE && text.count { it == '\n' } == 1
@@ -63,3 +62,7 @@ internal fun ASTNode.isWhitespaceMultiline(): Boolean =
 /** Returns true if this node is an EOL comment without content. */
 internal fun ASTNode.isEolCommentEmpty(): Boolean =
     elementType === EOL_COMMENT && text.substringAfter("//").isBlank()
+
+/** Returns true if this node is a statement inside a code block. */
+internal fun ASTNode.isStatement(): Boolean =
+    isCode && elementType !== LBRACE && elementType !== RBRACE

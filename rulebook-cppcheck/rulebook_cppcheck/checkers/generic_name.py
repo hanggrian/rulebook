@@ -20,6 +20,7 @@ class GenericNameChecker(RulebookTokenChecker):
     @override
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'template']:
+            # only target template declaration
             open_bracket: Token | None = _next_sibling(token, lambda t: t.str == '<')
             if open_bracket is None or not open_bracket.link:
                 continue

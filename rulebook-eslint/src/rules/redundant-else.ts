@@ -31,10 +31,7 @@ class RedundantElseRule extends RulebookRule {
                     if (!elseStatement) {
                         return;
                     }
-                    context.report({
-                        node: elseStatement,
-                        messageId: RedundantElseRule.MSG,
-                    });
+                    context.report({ node: elseStatement, messageId: RedundantElseRule.MSG });
                     ifStatement = elseStatement;
                 }
             },

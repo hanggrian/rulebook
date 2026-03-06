@@ -18,7 +18,7 @@ public class EmptyFileRule : RulebookFileRule() {
                 .takeUnless { it.isBlank() }
                 ?.let { return }
         }
-        violations += createViolation(0, "", Messages[MSG])
+        violations += createViolation(1, "", Messages[MSG])
     }
 
     internal companion object {

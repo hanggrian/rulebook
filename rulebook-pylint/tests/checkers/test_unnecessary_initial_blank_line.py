@@ -30,7 +30,7 @@ class TestUnnecessaryInitialBlankLineChecker(CheckerTestCase):
                 import unittest
                 ''',
             )
-        with self.assertAddsMessages(msg(UnnecessaryInitialBlankLineChecker._MSG, 0)):
+        with self.assertAddsMessages(msg(UnnecessaryInitialBlankLineChecker._MSG, 1)):
             self.checker.process_tokens(tokens)
 
     def test_skip_comment(self):

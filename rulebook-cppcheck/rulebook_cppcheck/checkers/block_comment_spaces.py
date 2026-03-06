@@ -27,6 +27,8 @@ class BlockCommentSpacesChecker(RulebookFileChecker):
             comment_text: str = match.group()
             start_line: int = content.count('\n', 0, match.start()) + 1
             lines: list[str] = comment_text.splitlines()
+
+            # checks for violation
             if self._BLOCK_COMMENT_START_REGEX.search(lines[0]):
                 self.report_error(
                     token,

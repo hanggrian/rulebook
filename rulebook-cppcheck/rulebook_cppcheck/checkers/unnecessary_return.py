@@ -20,6 +20,7 @@ class UnnecessaryReturnChecker(RulebookChecker):
 
     @override
     def visit_scope(self, scope: Scope) -> None:
+        # checks for violation
         function: Function | None = scope.function
         if function is None:
             return

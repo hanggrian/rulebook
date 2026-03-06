@@ -2,15 +2,13 @@ package com.hanggrian.rulebook.ktlint.rules
 
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
-import com.hanggrian.rulebook.ktlint.isComment
+import com.hanggrian.rulebook.ktlint.isStatement
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BODY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DO_WHILE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.FOR
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHILE
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children20
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
@@ -28,11 +26,8 @@ public class UnnecessaryContinueRule : RulebookRule(ID) {
             body
                 .findChildByType(BLOCK)
                 ?.children20
-                ?.lastOrNull {
-                    it.elementType !== WHITE_SPACE &&
-                        it.elementType !== RBRACE &&
-                        !it.isComment()
-                } ?: body.children20.singleOrNull()
+                ?.lastOrNull { it.isStatement() }
+                ?: body.children20.singleOrNull()
                 ?: return
         `continue`
             .takeIf { it.elementType === CONTINUE }

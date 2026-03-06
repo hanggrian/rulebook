@@ -32,7 +32,7 @@ class FileSizeChecker(RulebookFileChecker):
             size: int = len(stream.readlines())
             if size < self._max_file_size:
                 return
-            self.add_message(self._MSG, line=1, args=self._max_file_size)
+            self.add_message(self._MSG, line=size, args=self._max_file_size)
 
 
 def register(linter: PyLinter) -> None:

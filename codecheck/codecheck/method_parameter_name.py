@@ -32,7 +32,7 @@ class MethodParameterNameChecker(RulebookChecker):
             name = 'node'
         else:
             return
-        arg = args[1]
+        arg: AssignName = args[1]
         if arg.name == name:
             return
         self.add_message('method-parameter-name', node=arg, args=name)

@@ -27,10 +27,7 @@ class RedundantDefaultRule extends RulebookRule {
                 if (!cases.slice(0, -1).every(c => c.consequent.some(hasJumpStatement))) {
                     return;
                 }
-                context.report({
-                    node: lastCase,
-                    messageId: RedundantDefaultRule.MSG,
-                });
+                context.report({ node: lastCase, messageId: RedundantDefaultRule.MSG });
             },
         };
     }

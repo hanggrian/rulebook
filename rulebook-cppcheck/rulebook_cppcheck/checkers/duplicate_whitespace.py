@@ -24,6 +24,7 @@ class DuplicateWhitespaceChecker(RulebookFileChecker):
     @override
     def check_file(self, token: Token, content: str) -> None:
         for line_number, line in enumerate(content.splitlines(), start=1):
+            # checks for violation
             match: Match[str] | None = self._DUPLICATE_REGEX.search(self._mask_strings(line))
             if match is None:
                 continue

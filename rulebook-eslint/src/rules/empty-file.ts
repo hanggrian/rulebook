@@ -17,10 +17,7 @@ class EmptyFileRule extends RulebookRule {
                 if (context.sourceCode.getText().trim().length) {
                     return;
                 }
-                context.report({
-                    node: node,
-                    messageId: EmptyFileRule.MSG,
-                });
+                context.report({ node: node, messageId: EmptyFileRule.MSG });
             },
         };
     }

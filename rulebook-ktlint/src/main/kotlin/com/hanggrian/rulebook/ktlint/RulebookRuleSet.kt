@@ -74,6 +74,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { ComplicatedSizeEqualityRule() },
             RuleProvider { ConfusingPredicateRule() },
             RuleProvider { DeprecatedIdentityRule() },
+            // Formatting
             // Naming
             RuleProvider { AbbreviationAsWordRule() },
             RuleProvider { MeaninglessWordRule() },

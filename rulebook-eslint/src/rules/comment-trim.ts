@@ -69,10 +69,7 @@ class CommentTrimRule extends RulebookRule {
                         last.value.trim() === '' && !reported.has(last.loc.start.line))) {
                         continue;
                     }
-                    context.report({
-                        node: last,
-                        messageId: CommentTrimRule.MSG,
-                    });
+                    context.report({ node: last, messageId: CommentTrimRule.MSG });
                     reported.add(last.loc.start.line);
                 }
             },

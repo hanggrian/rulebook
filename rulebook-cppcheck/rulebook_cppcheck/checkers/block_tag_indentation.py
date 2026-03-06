@@ -26,6 +26,7 @@ class BlockTagIndentationChecker(RulebookFileChecker):
             lines: list[str] = comment_text.splitlines()
             in_block_tag: bool = False
             for i, line in enumerate(lines):
+                # target block tag
                 if self._BLOCK_TAG_REGEX.search(line):
                     in_block_tag = True
                     continue
@@ -39,6 +40,7 @@ class BlockTagIndentationChecker(RulebookFileChecker):
                     in_block_tag = True
                     continue
 
+                # checks for violation
                 match_indent: Match | None = self._CONTINUATION_LINE_REGEX.match(line)
                 if match_indent is None:
                     continue

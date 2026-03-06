@@ -10,7 +10,7 @@ import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 
-class UrlInDocumentationRule : RulebookRule(ID) {
+class RuleHasDocumentationRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 
     override fun visitToken(node: ASTNode, emit: Emit) {
@@ -44,7 +44,7 @@ class UrlInDocumentationRule : RulebookRule(ID) {
     }
 
     companion object {
-        val ID: RuleId = RuleId("${CodecheckRuleSet.ID.value}:url-in-kdoc")
+        val ID: RuleId = RuleId("${CodecheckRuleSet.ID.value}:rule-has-documentation")
 
         val REGEX = Regex("([a-z])([A-Z])")
     }

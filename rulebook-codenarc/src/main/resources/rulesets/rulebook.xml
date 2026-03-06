@@ -31,6 +31,7 @@
 
   <!-- Formatting -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LineFeedRule"/>
 
   <!-- Naming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule"/>

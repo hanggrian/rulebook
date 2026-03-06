@@ -12,7 +12,4 @@ def initialize(linter: PyLinter) -> None:
     register_plugins(linter, __path__[0])
 
 
-__all__ = [
-    'initialize',
-    'url_in_documentation',
-]
+__all__ = ['initialize']

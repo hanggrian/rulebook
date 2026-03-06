@@ -21,6 +21,7 @@ class LonelyCaseChecker(RulebookChecker):
 
     @override
     def visit_scope(self, scope: Scope) -> None:
+        # checks for violation
         case_count: int = 0
         curr_token: Token | None = scope.bodyStart
         while curr_token is not None and curr_token is not scope.bodyEnd:

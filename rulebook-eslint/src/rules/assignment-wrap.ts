@@ -41,10 +41,7 @@ class AssignmentWrapRule extends RulebookRule {
                 ) {
                     return;
                 }
-                context.report({
-                    node: init,
-                    messageId: AssignmentWrapRule.MSG,
-                });
+                context.report({ node: init, messageId: AssignmentWrapRule.MSG });
             },
         };
     }

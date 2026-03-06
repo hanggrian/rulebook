@@ -39,6 +39,7 @@ class AllRulesTest : AbstractTestCase() {
             ImportOrderRule(),
             InnerClassPositionRule(),
             LambdaWrapRule(),
+            LineFeedRule(),
             LonelyCaseRule(),
             LonelyIfRule(),
             LowercaseDRule(),

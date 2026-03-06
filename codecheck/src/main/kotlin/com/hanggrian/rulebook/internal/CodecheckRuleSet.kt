@@ -10,7 +10,8 @@ class CodecheckRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { DirectStaticCallRule() },
             RuleProvider { ElementTypeEqualityRule() },
             RuleProvider { MethodParameterNameRule() },
-            RuleProvider { UrlInDocumentationRule() },
+            RuleProvider { RuleHasDocumentationRule() },
+            RuleProvider { RuleHasSampleRule() },
         )
 
     internal companion object {

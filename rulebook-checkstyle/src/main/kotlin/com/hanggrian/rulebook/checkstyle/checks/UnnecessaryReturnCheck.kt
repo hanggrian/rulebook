@@ -2,11 +2,10 @@ package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
 import com.hanggrian.rulebook.checkstyle.children
-import com.hanggrian.rulebook.checkstyle.isComment
+import com.hanggrian.rulebook.checkstyle.isStatement
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_RETURN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_DEF
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
@@ -20,10 +19,8 @@ public class UnnecessaryReturnCheck : RulebookAstCheck() {
             node
                 .findFirstToken(SLIST)
                 ?.children()
-                ?.lastOrNull {
-                    it.type != RCURLY &&
-                        !it.isComment()
-                }?.takeIf {
+                ?.lastOrNull { it.isStatement() }
+                ?.takeIf {
                     it.type == LITERAL_RETURN &&
                         it.children().singleOrNull()?.type == SEMI
                 } ?: return

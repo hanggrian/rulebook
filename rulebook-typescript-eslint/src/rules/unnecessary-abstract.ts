@@ -35,10 +35,7 @@ class UnnecessaryAbstractRule extends RulebookRule {
                 if (hasAbstractMember) {
                     return;
                 }
-                context.report({
-                    node: node,
-                    messageId: UnnecessaryAbstractRule.MSG,
-                });
+                context.report({ node: node, messageId: UnnecessaryAbstractRule.MSG });
             },
         };
     }

@@ -18,6 +18,7 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookFileChecker):
     @override
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'/\*(.*?)\*/', content, DOTALL):
+            # checks for violation
             comment_body: str = match.group(1)
             start_line: int = content.count('\n', 0, match.start()) + 1
             lines: list[str] = comment_body.splitlines()

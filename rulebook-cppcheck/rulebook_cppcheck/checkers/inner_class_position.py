@@ -25,6 +25,7 @@ class InnerClassPositionChecker(RulebookTokenChecker):
                t.scope.type in self._TARGET_SCOPES and
                t is t.scope.bodyStart
         ]:
+            # consider only inner class
             current_class_scope: Scope = token.scope
             has_seen_inner_class: bool = False
             curr_token: Token | None = token.next

@@ -3,16 +3,13 @@ package com.hanggrian.rulebook.ktlint.rules
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.contains
-import com.hanggrian.rulebook.ktlint.isComment
+import com.hanggrian.rulebook.ktlint.isStatement
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BOOLEAN_CONSTANT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IF
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THEN
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
 import com.pinterest.ktlint.rule.engine.core.api.children20
 import com.pinterest.ktlint.rule.engine.core.api.nextSibling
@@ -38,11 +35,8 @@ public class RedundantIfRule : RulebookRule(ID) {
                 return
             }
         node
-            .nextSibling {
-                it.elementType !== WHITE_SPACE &&
-                    it.elementType !== RBRACE &&
-                    !it.isComment()
-            }?.takeIf { it.isStatementConstant() }
+            .nextSibling { it.isStatement() }
+            ?.takeIf { it.isStatementConstant() }
             ?: return
         emit(node.startOffset, Messages[MSG], false)
     }
@@ -54,12 +48,8 @@ public class RedundantIfRule : RulebookRule(ID) {
         private fun ASTNode.isThenConstant(): Boolean =
             (findChildByType(BLOCK) ?: this)
                 .children20
-                .singleOrNull {
-                    it.elementType !== WHITE_SPACE &&
-                        it.elementType !== LBRACE &&
-                        it.elementType !== RBRACE &&
-                        !it.isComment()
-                }?.isStatementConstant()
+                .singleOrNull { it.isStatement() }
+                ?.isStatementConstant()
                 ?: false
 
         private fun ASTNode.isStatementConstant() =

@@ -21,6 +21,7 @@ class DuplicateBlankLineInCommentChecker(RulebookFileChecker):
     def check_file(self, token: Token, content: str) -> None:
         lines: list[str] = content.splitlines()
         for i in range(len(lines) - 1):
+            # checks for violation
             if not self._EMPTY_COMMENT_REGEX.match(lines[i]) or \
                 not self._EMPTY_COMMENT_REGEX.match(lines[i + 1]):
                 continue

@@ -37,10 +37,7 @@ class GenericNameRule extends RulebookRule {
                 if (/^[A-Z]$/.test(node.name.name)) {
                     return;
                 }
-                context.report({
-                    node,
-                    messageId: GenericNameRule.MSG,
-                });
+                context.report({ node, messageId: GenericNameRule.MSG });
             },
         };
     }

@@ -2,14 +2,13 @@ package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
 import com.hanggrian.rulebook.checkstyle.children
-import com.hanggrian.rulebook.checkstyle.isComment
+import com.hanggrian.rulebook.checkstyle.isStatement
 import com.hanggrian.rulebook.checkstyle.nextSibling
 import com.puppycrawl.tools.checkstyle.api.DetailAST
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_CONTINUE
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_DO
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_FOR
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_WHILE
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 
@@ -32,12 +31,8 @@ public class UnnecessaryContinueCheck : RulebookAstCheck() {
         `continue` =
             `continue`
                 .takeIf { it.type == SLIST }
-                ?.let { n ->
-                    n.children().lastOrNull {
-                        it.type != RCURLY &&
-                            !it.isComment()
-                    }
-                } ?: `continue`
+                ?.let { n -> n.children().lastOrNull { it.isStatement() } }
+                ?: `continue`
         `continue`
             .takeIf { it.type == LITERAL_CONTINUE }
             ?: return

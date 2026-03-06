@@ -24,6 +24,7 @@ class PackageNameChecker(RulebookChecker):
 
     @override
     def visit_scope(self, scope: Scope) -> None:
+        # checks for violation
         class_name: str | None = scope.className
         if class_name is None or not any(c.isupper() for c in class_name):
             return

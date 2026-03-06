@@ -36,11 +36,11 @@ class TodoCommentChecker(RulebookFileChecker):
                 comment_content: str = decode(parts[1])
 
                 # checks for violation
-                match: Match = self._KEYWORD_REGEX.search(comment_content)
-                if match:
+                match: Match | None = self._KEYWORD_REGEX.search(comment_content)
+                if match is not None:
                     self.add_message(self._MSG_KEYWORD, line=line_no, args=match.group(0))
-                match: Match = self._SEPARATOR_REGEX.search(comment_content)
-                if match:
+                match: Match | None = self._SEPARATOR_REGEX.search(comment_content)
+                if match is not None:
                     self.add_message(self._MSG_SEPARATOR, line=line_no, args=match.group(0)[-1])
 
 

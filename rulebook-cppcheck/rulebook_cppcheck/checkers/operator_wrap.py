@@ -27,6 +27,7 @@ class OperatorWrapChecker(RulebookTokenChecker):
                (t.astOperand1 is not None and t.astOperand2 is not None) and
                t.str not in self._IGNORE_TOKENS
         ]:
+            # target multiline statement
             if token.previous is not None and \
                 token.linenr > token.previous.linenr:
                 self.report_error(token, _Messages.get(self._MSG_UNEXPECTED, token.str))
@@ -44,6 +45,7 @@ class OperatorWrapChecker(RulebookTokenChecker):
             while end_token.astOperand2 is not None:
                 end_token = end_token.astOperand2
 
+            # checks for violation
             if end_token.linenr <= start_token.linenr or next_token.linenr != token.linenr:
                 continue
             self.report_error(token, _Messages.get(self._MSG_MISSING, token.str))

@@ -41,6 +41,8 @@ class IndentStyleChecker(RulebookTokenChecker):
             if token_file not in all_lines:
                 with open(token_file, 'r', encoding='UTF-8') as f:
                     all_lines[token_file] = f.readlines()
+
+            # checks for violation
             processed_lines[token_file].add(token_linenr)
             line = all_lines[token_file][token_linenr - 1]
             line_stripped = line.lstrip(' ')

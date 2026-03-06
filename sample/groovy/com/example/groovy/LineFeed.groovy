@@ -1,3 +1,3 @@
 package com.example.groovy
 
-// Lorem ipsum
+class LineFeed {}

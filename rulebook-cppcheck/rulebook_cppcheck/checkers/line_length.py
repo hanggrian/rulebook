@@ -26,6 +26,7 @@ class LineLengthChecker(RulebookTokenChecker):
 
     @override
     def process_tokens(self, tokens: list[Token]) -> None:
+        # checks for violation
         processed_lines: dict[str, set[int]] = {}
         cache: dict[str, list[str]] = {}
         for token in [t for t in tokens if t.file and t.linenr]:

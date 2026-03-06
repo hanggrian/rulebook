@@ -18,7 +18,6 @@ class AssignmentWrapChecker(RulebookTokenChecker):
 
     @override
     def process_tokens(self, tokens: list[Token]) -> None:
-        # checks for violation
         for token in [t for t in tokens if t.str == '=' and t.isAssignmentOp]:
             rhs_start: Token | None = token.next
             if rhs_start is None or rhs_start.str in self._START_TOKENS:
@@ -32,6 +31,7 @@ class AssignmentWrapChecker(RulebookTokenChecker):
             if last_rhs_token.str == ';':
                 last_rhs_token = last_rhs_token.previous
 
+            # checks for violation
             if rhs_start.linenr != token.linenr or last_rhs_token.linenr <= token.linenr:
                 continue
             self.report_error(token, _Messages.get(self._MSG))

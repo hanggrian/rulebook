@@ -23,7 +23,7 @@ class EmptyFileRuleTest : RuleTest<EmptyFileRule>() {
     fun `File without code`() =
         assertSingleViolation(
             "\n\n",
-            0,
+            1,
             "",
             "Delete the empty file.",
         )
@@ -32,7 +32,7 @@ class EmptyFileRuleTest : RuleTest<EmptyFileRule>() {
     fun `Package is stripped`() =
         assertSingleViolation(
             "package com.example\n",
-            0,
+            1,
             "",
             "Delete the empty file.",
         )

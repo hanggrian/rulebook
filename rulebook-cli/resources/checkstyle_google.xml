@@ -55,6 +55,10 @@
     <property name="max" value="1000"/>
   </module>
   <module name="NewlineAtEndOfFile"/>
+  <!-- Only available since 13.3.0 -->
+  <!--module name="LineEnding">
+    <property name="lineEnding" value="LF"/>
+  </module-->
   <module name="LineLength">
     <property name="fileExtensions" value="java"/>
     <property name="max" value="100"/>
