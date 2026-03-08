@@ -1,5 +1,4 @@
 from re import Pattern, compile as re
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
@@ -18,11 +17,9 @@ class AbbreviationAsWordChecker(RulebookChecker):
 
     _ABBREVIATION_REGEX: Pattern = re(r'[A-Z]{3,}(?=[A-Z][a-z]|$)')
 
-    @override
     def get_scopeset(self) -> set[str]:
         return {'Class', 'Struct', 'Union', 'Enum'}
 
-    @override
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
         class_name: str | None = scope.className

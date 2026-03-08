@@ -13,7 +13,7 @@ class NestedIfElseRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             BlockStatement(node: BlockStatement) {
                 // skip blocks without exit path

@@ -1,0 +1,14 @@
+[tool.uv.workspace]
+members = [
+  "codecheck",
+  "rulebook-cppcheck",
+  "rulebook-pylint",
+]
+
+[dependency-groups]
+dev = [
+  "pdoc",
+  # test
+  "pytest",
+  "pytest-cov",
+]

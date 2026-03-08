@@ -1,5 +1,4 @@
 from re import Pattern, compile as re, sub
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
@@ -18,11 +17,9 @@ class PackageNameChecker(RulebookChecker):
 
     _SNAKE_CASE_REGEX: Pattern = re(r'(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])')
 
-    @override
     def get_scopeset(self) -> set[str]:
         return {'Namespace'}
 
-    @override
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
         class_name: str | None = scope.className

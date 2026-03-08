@@ -1,5 +1,4 @@
 from re import DOTALL, Match, Pattern, compile as re_compile, finditer
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -18,7 +17,6 @@ class BlockTagIndentationChecker(RulebookFileChecker):
     _BLOCK_TAG_REGEX: Pattern = re_compile(r'^\s*\*\s+@\w+')
     _CONTINUATION_LINE_REGEX: Pattern = re_compile(r'^\s*\*(\s+)')
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'/\*\*.*?\*/', content, DOTALL):
             comment_text: str = match.group()

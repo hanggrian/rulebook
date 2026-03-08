@@ -11,7 +11,7 @@ class RedundantIfRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         function isThenConstant(statement: Statement): boolean {
             if (statement.type === 'BlockStatement') {
                 const body: Statement[] = statement.body.filter(s => s.type !== 'EmptyStatement');

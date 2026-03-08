@@ -1,5 +1,4 @@
 from re import Pattern, compile as re_compile
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -17,7 +16,6 @@ class DuplicateBlankLineInCommentChecker(RulebookFileChecker):
 
     _EMPTY_COMMENT_REGEX: Pattern = re_compile(r'^\s*//\s*$')
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         lines: list[str] = content.splitlines()
         for i in range(len(lines) - 1):

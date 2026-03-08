@@ -12,7 +12,7 @@ class RedundantDefaultRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             SwitchStatement(node: SwitchStatement) {
                 // find default

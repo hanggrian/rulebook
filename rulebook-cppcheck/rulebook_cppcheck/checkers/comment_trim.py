@@ -1,5 +1,4 @@
 from re import Pattern, compile as re
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -18,7 +17,6 @@ class CommentTrimChecker(RulebookFileChecker):
     _EOL_COMMENT_REGEX: Pattern = re(r'^\s*//\s*$')
     _ANY_COMMENT_REGEX: Pattern = re(r'^\s*//')
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         lines: list[str] = content.splitlines()
         i: int = 0

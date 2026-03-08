@@ -1,0 +1,4 @@
+packages:
+  - 'codecheck'
+  - 'rulebook-eslint'
+  - 'rulebook-typescript-eslint'

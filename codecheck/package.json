@@ -3,18 +3,18 @@
   "private": true,
   "type": "module",
   "main": "dist/index.js",
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "exit 0",
-    "coverage": "exit 0"
+    "coverage": "exit 0",
+    "docs": "exit 0"
   },
   "peerDependencies": {
     "eslint": ">= 9"
   },
   "devDependencies": {
+    "@types/estree": "^1.0.6",
     "@types/node": "^25.0.10",
     "eslint": "^9.39.2",
     "globals": "^16.0.0",

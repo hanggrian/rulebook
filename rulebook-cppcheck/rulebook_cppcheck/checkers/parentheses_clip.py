@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -26,7 +24,6 @@ class ParenthesesClipChecker(RulebookTokenChecker):
         super().__init__()
         self._reported_errors: set[tuple[str, int, int, str]] = set()
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
         for token in tokens:

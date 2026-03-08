@@ -1,5 +1,4 @@
 from re import DOTALL, finditer
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -18,7 +17,6 @@ class BlockCommentTrimChecker(RulebookFileChecker):
 
     _EMPTY_LINES: set[str] = {'*', ''}
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'/\*(.*?)\*/', content, DOTALL):
             comment_body: str = match.group(1)

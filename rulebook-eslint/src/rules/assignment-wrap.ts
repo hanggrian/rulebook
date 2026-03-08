@@ -12,7 +12,7 @@ class AssignmentWrapRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             VariableDeclarator(node: VariableDeclarator) {
                 // skip lambda and collection initializers

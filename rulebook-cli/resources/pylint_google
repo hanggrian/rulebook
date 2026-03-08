@@ -30,9 +30,10 @@ load-plugins=
   pylint.extensions.docstyle,
   rulebook_pylint.checkers.internal_error,
   rulebook_pylint.checkers.lowercase_hexadecimal,
+  pylint.checkers.strings,
   rulebook_pylint.checkers.unnecessary_abstract,
   # Formatting
-  rulebook_pylint.checkers.file_size,
+  rulebook_pylint.checkers.line_feed,
   # Naming
   rulebook_pylint.checkers.abbreviation_as_word,
   rulebook_pylint.checkers.generic_name,
@@ -314,7 +315,7 @@ ignore-long-lines=(?x)(
 single-line-if-stmt=yes
 
 # Maximum number of lines in a module
-max-module-lines=99999
+max-module-lines=1000
 
 # String used as indentation unit.  The internal Google style guide mandates 2
 # spaces.  Google's externaly-published style guide says 4, consistent with

@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -22,11 +20,9 @@ class CaseSeparatorChecker(RulebookChecker):
         super().__init__()
         self._reported_errors: set[tuple[str, int, int, str]] = set()
 
-    @override
     def get_scopeset(self) -> set[str]:
         return {'Switch'}
 
-    @override
     def visit_scope(self, scope: Scope) -> None:
         # collect cases
         body_start: Token | None = scope.bodyStart

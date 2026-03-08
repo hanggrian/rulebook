@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.nodes import _next_sibling
@@ -18,11 +16,9 @@ class MemberSeparatorChecker(RulebookChecker):
 
     _OPENING_TOKENS: set[str] = {'{', ';'}
 
-    @override
     def get_scopeset(self) -> set[str]:
         return {'Class', 'Struct'}
 
-    @override
     def visit_scope(self, scope: Scope) -> None:
         # get member end token
         members: list[tuple[Token, Token, bool]] = []

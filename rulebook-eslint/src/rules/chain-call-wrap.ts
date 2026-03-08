@@ -14,7 +14,7 @@ class ChainCallWrapRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             'CallExpression, MemberExpression'(node: Rule.Node) {
                 // target root multiline chain call

@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from typing import override
 
 try:
     from cppcheckdata import Configuration, Scope, Token, reportError
@@ -51,7 +50,6 @@ class RulebookChecker(BaseChecker, ABC):
     def visit_scope(self, scope: Scope) -> None:
         pass
 
-    @override
     def run_check(self, configuration: Configuration) -> None:
         [
             self.visit_scope(scope) for scope in configuration.scopes
@@ -64,7 +62,6 @@ class RulebookTokenChecker(BaseChecker, ABC):
     def process_tokens(self, tokens: list[Token]) -> None:
         pass
 
-    @override
     def run_check(self, configuration: Configuration) -> None:
         self.process_tokens(configuration.tokenlist)
 
@@ -74,7 +71,6 @@ class RulebookFileChecker(BaseChecker, ABC):
     def check_file(self, token: Token, content: str) -> None:
         pass
 
-    @override
     def run_check(self, configuration: Configuration) -> None:
         for token in reversed(configuration.tokenlist):
             if not token.file:

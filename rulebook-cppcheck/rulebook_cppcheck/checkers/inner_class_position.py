@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -17,7 +15,6 @@ class InnerClassPositionChecker(RulebookTokenChecker):
     _TARGET_SCOPES: set[str] = {'Class', 'Struct'}
     _TARGET_TOKENS: set[str] = {'class', 'struct'}
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [
             t for t in tokens

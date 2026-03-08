@@ -1,5 +1,4 @@
 from re import Match, Pattern, compile as re
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -18,7 +17,6 @@ class ImportOrderChecker(RulebookFileChecker):
 
     _INCLUDE_REGEX: Pattern = re(r'#\s*include\s*([<"])(.+?)([>"])')
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         prev_is_quoted: bool | None = None
         prev_lineno: int | None = None

@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -18,9 +16,8 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
     _OPENING_PARENTHESES: set[str] = {'(', '[', '{', '<'}
     _CLOSING_PARENTHESES: set[str] = {')', ']', '}', '>'}
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
-        for token in [t for t in tokens if t.file]:
+        for token in [t for t in tokens if t.file is not None]:
             # prepare file to for _has_content_between
             with open(token.file, 'r', encoding='UTF-8') as f:
                 lines: list[str] = f.readlines()

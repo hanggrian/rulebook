@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -14,11 +12,9 @@ class UnnecessaryReturnChecker(RulebookChecker):
     ID: str = 'unnecessary-return'
     _MSG: str = 'unnecessary.return'
 
-    @override
     def get_scopeset(self) -> set[str]:
         return {'Function'}
 
-    @override
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
         function: Function | None = scope.function

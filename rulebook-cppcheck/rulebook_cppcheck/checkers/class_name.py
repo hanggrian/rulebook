@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.nodes import _prev_sibling
@@ -15,11 +13,9 @@ class ClassNameChecker(RulebookChecker):
     ID: str = 'class-name'
     _MSG: str = 'class.name'
 
-    @override
     def get_scopeset(self) -> set[str]:
         return {'Class', 'Struct', 'Union', 'Enum'}
 
-    @override
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
         class_name: str | None = scope.className

@@ -25,5 +25,7 @@ tasks {
         setSource(layout.projectDirectory.file("gradle/"))
         include("*.gradle")
     }
-    check { dependsOn(codenarcScript.get()) }
+    check {
+        dependsOn(codenarcScript.get())
+    }
 }

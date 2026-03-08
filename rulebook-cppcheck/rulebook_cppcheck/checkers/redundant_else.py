@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.nodes import _has_jump_statement, _next_sibling
@@ -17,7 +15,6 @@ class RedundantElseChecker(RulebookTokenChecker):
 
     _ELSE_SIBLING_TOKENS: set[str] = {'else', ';'}
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'if']:
             if_token: Token | None = token

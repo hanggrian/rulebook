@@ -1,5 +1,3 @@
-# pylint: disable=file-size
-
 from os.path import dirname, join
 from pathlib import Path
 from subprocess import run

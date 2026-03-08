@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.options import MAX_LINE_LENGTH_OPTION
@@ -20,11 +18,9 @@ class LineLengthChecker(RulebookTokenChecker):
         super().__init__()
         self._max_line_length: int = 100
 
-    @override
     def before_run(self, args: dict[str, str]) -> None:
         self._max_line_length = int(args[MAX_LINE_LENGTH_OPTION])
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
         processed_lines: dict[str, set[int]] = {}

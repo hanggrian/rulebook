@@ -11,7 +11,7 @@ class UnnecessaryInitialBlankLineRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             Program(node: AST.Program) {
                 const lines: string[] = context.sourceCode.lines;

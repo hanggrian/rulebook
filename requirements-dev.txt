@@ -1,5 +1,0 @@
--r requirements.txt
-
-# test
-pytest
-pytest-cov

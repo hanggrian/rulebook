@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from tokenize import COMMENT, DEDENT, ENDMARKER, FSTRING_END, FSTRING_START, INDENT, NEWLINE, NL, \
-    TokenInfo
+from tokenize import COMMENT, DEDENT, ENDMARKER, INDENT, NEWLINE, NL, TokenInfo
 
 from pylint.typing import TYPE_CHECKING
 
@@ -20,24 +19,27 @@ class DuplicateWhitespaceChecker(RulebookTokenChecker):
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
-        fstring_flag: bool = False
+        # fstring_flag: bool = False
         for i, token in enumerate(tokens):
             # get last token to compare
             last_token: TokenInfo = tokens[i - 1]
 
-            if last_token.type == FSTRING_END:
-                fstring_flag = False
+            # FSTRING_END unavailable on 3.11
+            # if last_token.type == FSTRING_END:
+            #     fstring_flag = False
 
             # checks for violation
-            if not fstring_flag and self._is_duplicate_space(token, last_token):
-                self.add_message(
-                    self._MSG,
-                    line=last_token.start[0],
-                    col_offset=last_token.start[1],
-                )
+            # if fstring_flag or not self._is_duplicate_space(token, last_token):
+            if not self._is_duplicate_space(token, last_token):
+                continue
+            self.add_message(
+                self._MSG,
+                line=last_token.start[0],
+                col_offset=last_token.start[1],
+            )
 
-            if token.type == FSTRING_START:
-                fstring_flag = True
+            # if token.type == FSTRING_START:
+            #     fstring_flag = True
 
     @staticmethod
     def _is_duplicate_space(token: TokenInfo, last_token: TokenInfo) -> bool:

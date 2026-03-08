@@ -55,7 +55,6 @@ load-plugins=
   pylint.checkers.strings,
   rulebook_pylint.checkers.unnecessary_abstract,
   # Formatting
-  rulebook_pylint.checkers.file_size,
   rulebook_pylint.checkers.line_feed,
   # Naming
   rulebook_pylint.checkers.abbreviation_as_word,
@@ -279,7 +278,7 @@ single-line-if-stmt=no
 single-line-class-stmt=no
 
 # Maximum number of lines in a module
-max-module-lines=2000
+max-module-lines=1000
 
 # String used as indentation unit. This is usually "    " (4 spaces) or "\t" (1
 # tab).

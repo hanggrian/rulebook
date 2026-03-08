@@ -11,7 +11,7 @@ class LowercaseHexadecimalRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             Literal(node: Literal) {
                 // checks for violation

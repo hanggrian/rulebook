@@ -63,9 +63,6 @@ class TestAllCheckers:
         DuplicateBlankLineInBlockCommentChecker,
         DuplicateBlankLineInCommentChecker,
         DuplicateWhitespaceChecker,
-        # TODO find out why this test shares config (max 3 lines) with `test_file_size` when running
-        #   command `pytest`.
-        # FileSizeChecker,
         GenericNameChecker,
         InnerClassPositionChecker,
         InternalErrorChecker,

@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.options import MAX_FILE_SIZE_OPTION
@@ -20,11 +18,9 @@ class FileSizeChecker(RulebookFileChecker):
         super().__init__()
         self._max_file_size: int = 1000
 
-    @override
     def before_run(self, args: dict[str, str]) -> None:
         self._max_file_size = int(args[MAX_FILE_SIZE_OPTION])
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         # checks for violation
         if len(content.splitlines()) <= self._max_file_size:

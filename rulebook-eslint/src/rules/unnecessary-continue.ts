@@ -11,7 +11,7 @@ class UnnecessaryContinueRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         function process(node: Statement) {
             let last: Statement | null = null;
             if (node.type !== 'BlockStatement') {

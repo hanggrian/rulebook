@@ -41,7 +41,6 @@ load-plugins=
   pylint.extensions.broad_try_clause,
   pylint.extensions.dict_init_mutate,
   pylint.extensions.consider_refactoring_into_while_condition,
-  rulebook_pylint.checkers.file_size,
   rulebook_pylint.checkers.meaningless_word,
   rulebook_pylint.checkers.member_order,
 
@@ -566,6 +565,5 @@ check-str-concat-over-line-jumps=no
 
 [OTHERS]
 
-rulebook-max-file-size=10
 rulebook-meaningless-words=Hello, World
 rulebook-member-order=static, function, constructor, property

@@ -1,5 +1,4 @@
 from re import Match, Pattern, compile as re
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -21,7 +20,6 @@ class DuplicateWhitespaceChecker(RulebookFileChecker):
         r'|"(?:[^"\\]|\\.)*"',
     )
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         for line_number, line in enumerate(content.splitlines(), start=1):
             # checks for violation

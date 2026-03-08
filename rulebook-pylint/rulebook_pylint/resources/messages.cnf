@@ -12,7 +12,6 @@ lowercase.hexadecimal=Use hexadecimal '%s'.
 unnecessary.abstract=Omit 'abstract' modifier.
 # Expressing
 # Formatting
-file.size=Reduce file size to '%d'.
 line.feed=Set line ending to 'LF'.
 # Naming
 abbreviation.as.word=Rename abbreviation to '%s'.

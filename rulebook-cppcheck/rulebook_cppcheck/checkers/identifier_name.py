@@ -1,5 +1,4 @@
 from re import Pattern, compile as re, sub
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
@@ -17,7 +16,6 @@ class IdentifierNameChecker(RulebookTokenChecker):
 
     _SNAKE_CASE_REGEX: Pattern = re(r'(?<!^)(?=[A-Z][a-z])|(?<=[a-z])(?=[A-Z])')
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in tokens:
             if token.variable and token is token.variable.nameToken:

@@ -1,5 +1,4 @@
 from re import Pattern, compile as re
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -17,7 +16,6 @@ class FileNameChecker(RulebookFileChecker):
 
     _SNAKE_CASE_REGEX: Pattern = re(r'^[a-z0-9_]+\.(c|cpp|h|hpp)$')
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         # checks for violation
         filename: str = token.file.split('/')[-1]

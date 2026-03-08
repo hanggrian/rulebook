@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -14,7 +12,6 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
     ID: str = 'duplicate-blank-line'
     _MSG: str = 'duplicate.blank.line'
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         lines: list[str] = content.splitlines()
         for i in range(1, len(lines)):

@@ -1,5 +1,4 @@
 from re import DOTALL, finditer
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -27,11 +26,9 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
             '@returns',
         }
 
-    @override
     def before_run(self, args: dict[str, str]) -> None:
         self._block_tags = set(args[PUNCTUATE_BLOCK_TAGS_OPTION].split(','))
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'/\*(.*?)\*/', content, DOTALL):
             comment_body: str = match.group(1)

@@ -1,5 +1,4 @@
 from re import DOTALL, finditer
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -15,7 +14,6 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookFileChecker):
     ID: str = 'duplicate-blank-line-in-block-comment'
     _MSG: str = 'duplicate.blank.line.in.block.comment'
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'/\*(.*?)\*/', content, DOTALL):
             # checks for violation

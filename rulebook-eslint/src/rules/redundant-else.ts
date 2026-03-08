@@ -12,7 +12,7 @@ class RedundantElseRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             IfStatement(node: IfStatement) {
                 // target root if

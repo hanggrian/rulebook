@@ -1,6 +1,4 @@
-from typing import override
-
-from regex import DOTALL, Match, compile as regex, finditer
+from regex import DOTALL, Match, Pattern, compile as regex, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -18,10 +16,9 @@ class TodoCommentChecker(RulebookFileChecker):
     _MSG_KEYWORD: str = 'todo.comment.keyword'
     _MSG_SEPARATOR: str = 'todo.comment.separator'
 
-    _KEYWORD_REGEX = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
-    _SEPARATOR_REGEX = regex(r'\b(?i:todo|fixme)([^ \t\n])')
+    _KEYWORD_REGEX: Pattern = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
+    _SEPARATOR_REGEX: Pattern = regex(r'\b(?i:todo|fixme)([^ \t\n])')
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'//.*|/\*(.*?)\*/', content, DOTALL):
             # obtain comment content

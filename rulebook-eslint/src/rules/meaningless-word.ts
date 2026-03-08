@@ -17,7 +17,7 @@ class MeaninglessWordRule extends RulebookRule {
         );
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         const options = context.options[0] as { words?: string[] } | undefined;
         const words = options?.words ?? ['Util', 'Utility', 'Helper', 'Manager', 'Wrapper'];
 

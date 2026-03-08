@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.options import ILLEGAL_VARIABLE_NAMES_OPTION
@@ -22,7 +20,6 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
             {'integer', 'string', 'integers', 'strings'}
         self._reported_variables: set[str] = set()
 
-    @override
     def before_run(self, args: dict[str, str]) -> None:
         self._illegal_variable_names = \
             set(args[ILLEGAL_VARIABLE_NAMES_OPTION].split(','))

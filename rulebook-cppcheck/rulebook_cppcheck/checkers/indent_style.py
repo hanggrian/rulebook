@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.options import INDENT_STYLE_OPTION
@@ -20,11 +18,9 @@ class IndentStyleChecker(RulebookTokenChecker):
         super().__init__()
         self._indent_size: int = 4
 
-    @override
     def before_run(self, args: dict[str, str]) -> None:
         self._indent_size = int(args[INDENT_STYLE_OPTION])
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         processed_lines: dict[str, set[int]] = {}
         all_lines: dict[str, list[str]] = {}

@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -14,7 +12,6 @@ class UnnecessaryTrailingWhitespaceChecker(RulebookFileChecker):
     ID: str = 'unnecessary-trailing-whitespace'
     _MSG: str = 'unnecessary.trailing.whitespace'
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         # checks for violation
         for line_number, line in enumerate(content.splitlines(), start=1):

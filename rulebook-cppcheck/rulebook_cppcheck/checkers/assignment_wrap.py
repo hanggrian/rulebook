@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -16,7 +14,6 @@ class AssignmentWrapChecker(RulebookTokenChecker):
 
     _START_TOKENS: set[str] = {'{', '[', '(', 'lambda'}
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == '=' and t.isAssignmentOp]:
             rhs_start: Token | None = token.next

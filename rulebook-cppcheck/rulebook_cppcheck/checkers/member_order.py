@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 from rulebook_cppcheck.options import MEMBER_ORDER_OPTION
@@ -31,7 +29,6 @@ class MemberOrderChecker(RulebookTokenChecker):
         self._function_position: int = 2
         self._static_position: int = 3
 
-    @override
     def before_run(self, args: dict[str, str]) -> None:
         self._member_order = args[MEMBER_ORDER_OPTION].split(',')
         self._property_position = self._member_order.index('property')
@@ -39,28 +36,6 @@ class MemberOrderChecker(RulebookTokenChecker):
         self._function_position = self._member_order.index('function')
         self._static_position = self._member_order.index('static')
 
-    def _get_member_info(self, token: Token, scope: Scope) -> tuple[int, str] | None:
-        if token.scope is not scope:
-            return None
-        if token.function is not None:
-            func: Function = token.function
-            if token is not func.tokenDef:
-                return None
-            if func.isStatic:
-                return self._static_position, 'static member'
-            if scope.className == func.name:
-                return self._constructor_position, 'constructor'
-            return self._function_position, 'function'
-        if token.variable is not None:
-            var: Variable = token.variable
-            if token is not var.nameToken:
-                return None
-            if var.isStatic:
-                return self._static_position, 'static member'
-            return self._property_position, 'property'
-        return None
-
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
         for token in [
@@ -84,3 +59,24 @@ class MemberOrderChecker(RulebookTokenChecker):
                     prev_weight = curr_weight
                     prev_name = curr_name
                 curr_token = curr_token.next
+
+    def _get_member_info(self, token: Token, scope: Scope) -> tuple[int, str] | None:
+        if token.scope is not scope:
+            return None
+        if token.function is not None:
+            func: Function = token.function
+            if token is not func.tokenDef:
+                return None
+            if func.isStatic:
+                return self._static_position, 'static member'
+            if scope.className == func.name:
+                return self._constructor_position, 'constructor'
+            return self._function_position, 'function'
+        if token.variable is not None:
+            var: Variable = token.variable
+            if token is not var.nameToken:
+                return None
+            if var.isStatic:
+                return self._static_position, 'static member'
+            return self._property_position, 'property'
+        return None

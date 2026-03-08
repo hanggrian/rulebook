@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -22,7 +20,6 @@ class ChainCallWrapChecker(RulebookTokenChecker):
         super().__init__()
         self._reported_errors: set[tuple[str, int, int, str]] = set()
 
-    @override
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [
             t for t in tokens if t.str == '.' and (not t.previous or t.previous.str != '.')

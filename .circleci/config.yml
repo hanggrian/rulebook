@@ -6,10 +6,10 @@ orbs:
 executors:
   base:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/base:current
   multiplatform:
     docker:
-      - image: hanggrian/cimg-multiplatform:openjdk21.0-python3.13-node
+      - image: hanggrian/cimg-multiplatform:openjdk21.0-python3.14-node
 
 jobs:
   setup-workspace:
@@ -30,23 +30,20 @@ jobs:
       - run:
           name: Check Python
           command: |
-            pip install -r requirements-dev.txt
-            pip install -e codecheck/
-            pip install -e rulebook-pylint/
-            pip install -e rulebook-cppcheck/
-            pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/
-            pylint rulebook-cppcheck/
-            pylint sample/python/
-            pylint --rcfile=sample-configured/custom_pylintrc sample-configured/python/
+            uv sync
+            uv run pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/
+            uv run pylint rulebook-cppcheck/
+            uv run pylint sample/python/
+            uv run pylint --rcfile=sample-configured/custom_pylintrc sample-configured/python/
       - run:
           name: Check C/C++
           command: |
-            cppcheck \
+            uv run cppcheck \
               --enable=performance,portability,style,warning \
               --addon=addon.json \
               sample/c/*.c \
               sample/cpp/*.cpp
-            cppcheck \
+            uv run cppcheck \
               --enable=performance,portability,style,warning \
               --addon=sample-configured/custom_addon.json \
               sample-configured/c/*.c \
@@ -54,10 +51,10 @@ jobs:
       - run:
           name: Check JS/TS
           command: |
-            npm i
-            npm run build
-            npm run lint
-            npm run lint2
+            pnpm i
+            pnpm -r build
+            pnpm lint
+            pnpm lint2
   upload-coverage:
     executor: multiplatform
     steps:
@@ -69,15 +66,16 @@ jobs:
       - run:
           name: Report Python
           command: |
-            pip install -r requirements-dev.txt
-            pytest rulebook-cppcheck/ --cov=rulebook-cppcheck
-            pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append
+            uv sync
+            uv run pytest rulebook-cppcheck/ --cov=rulebook-cppcheck
+            uv run pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append
+            uv run coverage xml
       - run:
           name: Report JS/TS
           command: |
-            npm i
-            npm run test
-            npm run coverage
+            pnpm i
+            pnpm -r test
+            pnpm -r coverage
       - codecov/upload
 
 workflows:

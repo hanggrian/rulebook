@@ -10,7 +10,7 @@ class FileNameRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             Program(node: AST.Program) {
                 // checks for violation

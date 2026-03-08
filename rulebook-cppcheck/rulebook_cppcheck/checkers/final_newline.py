@@ -1,5 +1,3 @@
-from typing import override
-
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
 
@@ -14,7 +12,6 @@ class FinalNewlineChecker(RulebookFileChecker):
     ID: str = 'final-newline'
     _MSG: str = 'final.newline'
 
-    @override
     def check_file(self, token: Token, content: str) -> None:
         # checks for violation
         if not content.strip() or content.endswith('\n'):

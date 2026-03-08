@@ -1,5 +1,4 @@
 from re import Pattern, compile as re
-from typing import override
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
 from rulebook_cppcheck.messages import _Messages
@@ -29,16 +28,13 @@ class MeaninglessWordChecker(RulebookChecker):
         self._words: set[str] = \
             {'Util', 'Utility', 'Helper', 'Manager', 'Wrapper'}
 
-    @override
     def before_run(self, args: dict[str, str]) -> None:
         self._words = \
             set(args[MEANINGLESS_WORDS_OPTION].split(','))
 
-    @override
     def get_scopeset(self) -> set[str]:
         return {'Class', 'Struct', 'Union', 'Enum'}
 
-    @override
     def visit_scope(self, scope: Scope) -> None:
         # checks for violation
         class_name: str | None = scope.className

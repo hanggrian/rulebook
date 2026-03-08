@@ -10,7 +10,7 @@ class GenericNameRule extends RulebookRule {
         });
     }
 
-    create(context: TSESLint.RuleContext<string, readonly unknown[]>) {
+    override create(context: TSESLint.RuleContext<string, readonly unknown[]>) {
         return {
             TSTypeParameter(node: TSESTree.TSTypeParameter) {
                 // filter out multiple generics

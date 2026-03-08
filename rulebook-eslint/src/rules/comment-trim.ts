@@ -11,7 +11,7 @@ class CommentTrimRule extends RulebookRule {
         });
     }
 
-    create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext) {
         return {
             'Program:exit'() {
                 const sourceCode: SourceCode = context.sourceCode;
