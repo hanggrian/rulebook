@@ -2,8 +2,7 @@ from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
 
-from rulebook_pylint.checkers.unnecessary_blank_line_after_colon import \
-    UnnecessaryBlankLineAfterColonChecker
+from rulebook_pylint.checkers import UnnecessaryBlankLineAfterColonChecker
 from ..tests import assert_properties, msg
 
 

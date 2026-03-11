@@ -3,7 +3,7 @@ from unittest import main
 from astroid import extract_node, parse
 from pylint.testutils import CheckerTestCase
 
-from rulebook_pylint.checkers.block_comment_clip import BlockCommentClipChecker
+from rulebook_pylint.checkers import BlockCommentClipChecker
 from ..tests import assert_properties, msg
 
 

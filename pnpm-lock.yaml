@@ -36,6 +36,9 @@ importers:
       '@types/css-modules':
         specifier: ^1.0.5
         version: 1.0.5
+      '@types/node':
+        specifier: ^25.0.10
+        version: 25.3.5
       '@types/sinon':
         specifier: ^17.0.4
         version: 17.0.4
@@ -66,6 +69,9 @@ importers:
       sinon:
         specifier: ^20.0.0
         version: 20.0.0
+      typedoc:
+        specifier: ^0.28.3
+        version: 0.28.17(typescript@5.7.3)
       typescript-eslint:
         specifier: ^8.31.1
         version: 8.56.1(eslint@9.39.4)(typescript@5.7.3)
@@ -108,9 +114,6 @@ importers:
       '@types/estree':
         specifier: ^1.0.6
         version: 1.0.8
-      '@types/node':
-        specifier: ^25.0.10
-        version: 25.3.5
       '@types/sinon':
         specifier: ^17.0.4
         version: 17.0.4
@@ -132,9 +135,6 @@ importers:
       sinon:
         specifier: ^21.0.1
         version: 21.0.2
-      typedoc:
-        specifier: ^0.28.3
-        version: 0.28.17(typescript@5.7.3)
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
@@ -150,9 +150,6 @@ importers:
       '@types/estree':
         specifier: ^1.0.6
         version: 1.0.8
-      '@types/node':
-        specifier: ^25.0.10
-        version: 25.3.5
       '@types/sinon':
         specifier: ^17.0.4
         version: 17.0.4
@@ -180,9 +177,6 @@ importers:
       sinon:
         specifier: ^21.0.1
         version: 21.0.2
-      typedoc:
-        specifier: ^0.28.3
-        version: 0.28.17(typescript@5.7.3)
       typescript:
         specifier: ~5.7.2
         version: 5.7.3

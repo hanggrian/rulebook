@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
-from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
+from rulebook_cppcheck.checkers import RedundantElseChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

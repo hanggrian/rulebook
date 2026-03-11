@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
+from rulebook_cppcheck.checkers import RedundantDefaultChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

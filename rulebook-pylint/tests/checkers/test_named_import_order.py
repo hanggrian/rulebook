@@ -3,7 +3,7 @@ from unittest import main
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 
-from rulebook_pylint.checkers.named_import_order import NamedImportOrderChecker
+from rulebook_pylint.checkers import NamedImportOrderChecker
 from ..tests import assert_properties, msg
 
 

@@ -2,7 +2,7 @@ from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
 
-from rulebook_pylint.checkers.duplicate_whitespace import DuplicateWhitespaceChecker
+from rulebook_pylint.checkers import DuplicateWhitespaceChecker
 from ..tests import assert_properties, msg
 
 

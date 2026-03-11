@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.abbreviation_as_word import AbbreviationAsWordChecker
+from rulebook_cppcheck.checkers import AbbreviationAsWordChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

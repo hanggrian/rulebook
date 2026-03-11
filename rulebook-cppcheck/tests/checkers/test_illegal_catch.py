@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.illegal_catch import IllegalCatchChecker
+from rulebook_cppcheck.checkers import IllegalCatchChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

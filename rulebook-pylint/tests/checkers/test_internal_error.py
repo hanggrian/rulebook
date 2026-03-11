@@ -3,7 +3,7 @@ from unittest import main
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 
-from rulebook_pylint.checkers.internal_error import InternalErrorChecker
+from rulebook_pylint.checkers import InternalErrorChecker
 from ..tests import assert_properties, msg
 
 

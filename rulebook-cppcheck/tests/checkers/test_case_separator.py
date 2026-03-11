@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
-from rulebook_cppcheck.checkers.case_separator import CaseSeparatorChecker
+from rulebook_cppcheck.checkers import CaseSeparatorChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

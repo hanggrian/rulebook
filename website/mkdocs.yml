@@ -92,8 +92,9 @@ nav:
     - External links:
       - Kotlin coding conventions: https://kotlinlang.org/docs/coding-conventions.html?ext
       - PEP 8: https://peps.python.org/pep-0008/?ext
-  - Javadoc: api/dokka/
-  - Pythondoc: api/pdoc/
+  - Javadoc: api/javadoc
+  - Pydoc: api/pydoc
+  - TSDoc: api/tsdoc
 
 plugins:
   - search

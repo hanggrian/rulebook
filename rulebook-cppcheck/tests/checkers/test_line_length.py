@@ -1,7 +1,7 @@
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.line_length import LineLengthChecker
+from rulebook_cppcheck.checkers import LineLengthChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

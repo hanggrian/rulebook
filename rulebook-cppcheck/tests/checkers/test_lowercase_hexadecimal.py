@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
-from rulebook_cppcheck.checkers.lowercase_hexadecimal import LowercaseHexadecimalChecker
+from rulebook_cppcheck.checkers import LowercaseHexadecimalChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

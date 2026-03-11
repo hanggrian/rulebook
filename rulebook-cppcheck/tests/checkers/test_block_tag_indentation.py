@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.block_tag_indentation import BlockTagIndentationChecker
+from rulebook_cppcheck.checkers import BlockTagIndentationChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

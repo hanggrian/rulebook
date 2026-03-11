@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
-from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
+from rulebook_cppcheck.checkers import UppercaseLChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
-from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
+from rulebook_cppcheck.checkers import MeaninglessWordChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

@@ -4,7 +4,7 @@ from codecs import decode
 
 from astroid.nodes import Module
 from pylint.typing import TYPE_CHECKING
-from regex import IGNORECASE, Match, Pattern, compile as regex
+from regex import IGNORECASE, compile as regex
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_pylint.messages import _Messages
@@ -19,8 +19,8 @@ class TodoCommentChecker(RulebookFileChecker):
     _MSG_KEYWORD: str = 'todo.comment.keyword'
     _MSG_SEPARATOR: str = 'todo.comment.separator'
 
-    _KEYWORD_REGEX: Pattern = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
-    _SEPARATOR_REGEX: Pattern = regex(r'\b(todo|fixme)\S', IGNORECASE)
+    _KEYWORD_REGEX = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
+    _SEPARATOR_REGEX = regex(r'\b(todo|fixme)\S', IGNORECASE)
 
     name: str = 'todo-comment'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_KEYWORD, _MSG_SEPARATOR)
@@ -36,10 +36,10 @@ class TodoCommentChecker(RulebookFileChecker):
                 comment_content: str = decode(parts[1])
 
                 # checks for violation
-                match: Match | None = self._KEYWORD_REGEX.search(comment_content)
+                match = self._KEYWORD_REGEX.search(comment_content)
                 if match is not None:
                     self.add_message(self._MSG_KEYWORD, line=line_no, args=match.group(0))
-                match: Match | None = self._SEPARATOR_REGEX.search(comment_content)
+                match = self._SEPARATOR_REGEX.search(comment_content)
                 if match is not None:
                     self.add_message(self._MSG_SEPARATOR, line=line_no, args=match.group(0)[-1])
 

@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
-from rulebook_cppcheck.checkers.illegal_variable_name import IllegalVariableNameChecker
+from rulebook_cppcheck.checkers import IllegalVariableNameChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

@@ -4,10 +4,16 @@ readonly API_DIR='website/site/api'
 
 ./gradlew clean dokkaGenerateHtml
 
-uv run pdoc --html rulebook-pylint/rulebook_pylint --output-dir build/pdoc
+uv run pdoc \
+  -o build/pdoc/ \
+  rulebook-pylint/rulebook_pylint/ \
+  rulebook-cppcheck/rulebook_cppcheck/
+
+pnpm doc
 
 cd website && uv run mkdocs build && cd ..
-rm -rf "$API_DIR"
-mkdir "$API_DIR"
-cp -r build/dokka/html "$API_DIR/dokka"
-cp -r build/pdoc/rulebook_pylint "$API_DIR/pdoc"
+mkdir -p "$API_DIR"
+rm -rf "${API_DIR:?}/"*
+mv build/dokka/html/ "$API_DIR/javadoc/"
+mv build/pdoc "$API_DIR/pydoc/"
+mv build/typedoc "$API_DIR/tsdoc/"

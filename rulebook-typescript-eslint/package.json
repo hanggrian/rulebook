@@ -21,17 +21,16 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest --run src/__tests__/**/*.ts",
-    "coverage": "vitest run --coverage src/__tests__/**/*.ts --reporter=junit --outputFile=test-report.junit.xml",
-    "docs": "typedoc --out docs"
+    "coverage": "vitest run --coverage src/__tests__/**/*.ts --reporter=junit --outputFile=test-report.junit.xml"
   },
   "peerDependencies": {
-    "@eslint/js": ">= 9",
-    "@stylistic/eslint-plugin": ">= 5",
-    "@typescript-eslint/parser": ">= 8",
-    "@typescript-eslint/utils": ">= 8",
-    "eslint": ">= 9",
-    "eslint-plugin-jsdoc": ">= 62",
-    "eslint-plugin-sort-class-members": ">= 1",
+    "@eslint/js": ">=9",
+    "@stylistic/eslint-plugin": ">=5",
+    "@typescript-eslint/parser": ">=8",
+    "@typescript-eslint/utils": ">=8",
+    "eslint": ">=9",
+    "eslint-plugin-jsdoc": ">=62",
+    "eslint-plugin-sort-class-members": ">=1",
     "rulebook-eslint": "workspace:*"
   },
   "devDependencies": {
@@ -48,7 +47,6 @@
     "globals": "^16.0.0",
     "sinon": "^21.0.1",
     "rulebook-eslint": "workspace:*",
-    "typedoc": "^0.28.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.31.1"
   }
