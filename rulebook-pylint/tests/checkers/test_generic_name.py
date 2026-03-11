@@ -3,7 +3,7 @@ from unittest import main
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 
-from rulebook_pylint.checkers.generic_name import GenericNameChecker
+from rulebook_pylint.checkers import GenericNameChecker
 from ..tests import assert_properties, msg
 
 

@@ -1,4 +1,4 @@
-from regex import DOTALL, Match, Pattern, compile as regex, finditer
+from regex import DOTALL, compile as regex, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import _Messages
@@ -16,8 +16,8 @@ class TodoCommentChecker(RulebookFileChecker):
     _MSG_KEYWORD: str = 'todo.comment.keyword'
     _MSG_SEPARATOR: str = 'todo.comment.separator'
 
-    _KEYWORD_REGEX: Pattern = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
-    _SEPARATOR_REGEX: Pattern = regex(r'\b(?i:todo|fixme)([^ \t\n])')
+    _KEYWORD_REGEX = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
+    _SEPARATOR_REGEX = regex(r'\b(?i:todo|fixme)([^ \t\n])')
 
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'//.*|/\*(.*?)\*/', content, DOTALL):
@@ -28,14 +28,14 @@ class TodoCommentChecker(RulebookFileChecker):
             for i, line in enumerate(comment_text.splitlines()):
                 # checks for violation
                 line_no: int = start_line + i
-                keyword_match: Match | None = self._KEYWORD_REGEX.search(line)
+                keyword_match = self._KEYWORD_REGEX.search(line)
                 if keyword_match is not None:
                     self.report_error(
                         token,
                         _Messages.get(self._MSG_KEYWORD, keyword_match.group(0)),
                         line_no,
                     )
-                separator_match: Match | None = self._SEPARATOR_REGEX.search(line)
+                separator_match = self._SEPARATOR_REGEX.search(line)
                 if separator_match is None:
                     continue
                 self.report_error(

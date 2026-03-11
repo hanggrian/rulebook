@@ -2,7 +2,7 @@ from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
 
-from rulebook_pylint.checkers.parentheses_clip import ParenthesesClipChecker
+from rulebook_pylint.checkers import ParenthesesClipChecker
 from ..tests import assert_properties, msg
 
 

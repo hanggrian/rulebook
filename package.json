@@ -1,9 +1,11 @@
 {
+  "name": "rulebook",
   "private": true,
   "type": "module",
   "scripts": {
     "lint": "eslint rulebook-eslint/src/ rulebook-typescript-eslint/src/ sample/javascript/ sample/typescript/",
-    "lint2": "eslint --config sample-configured/eslint.config.js sample-configured/javascript/"
+    "lint2": "eslint --config sample-configured/eslint.config.js sample-configured/javascript/",
+    "doc": "typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/"
   },
   "packageManager": "pnpm@10.30.3",
   "devDependencies": {
@@ -23,6 +25,7 @@
     "globals": "^16.0.0",
     "jsdom": "^26.0.0",
     "sinon": "^20.0.0",
+    "typedoc": "^0.28.3",
     "typescript-eslint": "^8.31.1",
     "vite": "^7.3.1",
     "vitest": "^4.0.17",

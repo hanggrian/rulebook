@@ -1,7 +1,7 @@
 from unittest import main
 from unittest.mock import MagicMock, patch
 
-from rulebook_cppcheck.checkers.file_name import FileNameChecker
+from rulebook_cppcheck.checkers import FileNameChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

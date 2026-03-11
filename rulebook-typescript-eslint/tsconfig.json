@@ -11,6 +11,6 @@
     "allowImportingTsExtensions": false
   },
   "include": [
-    "src/"
+    "src/**/*.ts"
   ]
 }

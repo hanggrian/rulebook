@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.inner_class_position import InnerClassPositionChecker
+from rulebook_cppcheck.checkers import InnerClassPositionChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

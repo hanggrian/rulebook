@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
-from rulebook_cppcheck.checkers.chain_call_wrap import ChainCallWrapChecker
+from rulebook_cppcheck.checkers import ChainCallWrapChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

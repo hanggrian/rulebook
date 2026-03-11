@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.lonely_case import LonelyCaseChecker
+from rulebook_cppcheck.checkers import LonelyCaseChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

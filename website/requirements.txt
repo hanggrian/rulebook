@@ -9,5 +9,3 @@ mkdocs-minify-plugin
 mkdocs-redirects
 mkdocs-rss-plugin
 mkdocs-plugin-inline-svg
-
-pdoc3

@@ -3,7 +3,7 @@ from unittest import main
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 
-from rulebook_pylint.checkers.abbreviation_as_word import AbbreviationAsWordChecker
+from rulebook_pylint.checkers import AbbreviationAsWordChecker
 from ..tests import assert_properties, msg
 
 

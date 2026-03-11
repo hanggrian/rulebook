@@ -3,7 +3,7 @@ from unittest import main
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 
-from rulebook_pylint.checkers.unnecessary_abstract import UnnecessaryAbstractChecker
+from rulebook_pylint.checkers import UnnecessaryAbstractChecker
 from ..tests import assert_properties, msg
 
 

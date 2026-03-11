@@ -1,7 +1,7 @@
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.file_size import FileSizeChecker
+from rulebook_cppcheck.checkers import FileSizeChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

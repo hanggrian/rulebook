@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.identifier_name import IdentifierNameChecker
+from rulebook_cppcheck.checkers import IdentifierNameChecker
 from ..tests import CheckerTestCase, assert_properties
 
 

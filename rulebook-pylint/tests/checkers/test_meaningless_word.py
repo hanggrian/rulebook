@@ -3,7 +3,7 @@ from unittest import main
 from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 
-from rulebook_pylint.checkers.meaningless_word import MeaninglessWordChecker
+from rulebook_pylint.checkers import MeaninglessWordChecker
 from ..tests import assert_properties, msg
 
 

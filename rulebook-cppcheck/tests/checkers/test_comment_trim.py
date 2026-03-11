@@ -2,7 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers.comment_trim import CommentTrimChecker
+from rulebook_cppcheck.checkers import CommentTrimChecker
 from ..tests import CheckerTestCase, assert_properties
 
 
