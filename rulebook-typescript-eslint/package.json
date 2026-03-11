@@ -47,7 +47,7 @@
     "globals": "^16.0.0",
     "sinon": "^21.0.1",
     "rulebook-eslint": "workspace:*",
-    "typescript": "~5.7.2",
+    "typescript": "~5.9.0",
     "typescript-eslint": "^8.31.1"
   }
 }
