@@ -7,7 +7,7 @@ name = "codecheck"
 version = "1"
 dependencies = [
   "pylint==4.0.4",
-  "astroid==4.0.2",
+  "astroid==4.1.1",
 ]
 
 [tool.hatch.build.targets.wheel]
