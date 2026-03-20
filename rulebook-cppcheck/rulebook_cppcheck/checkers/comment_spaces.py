@@ -34,7 +34,8 @@ class CommentSpacesChecker(RulebookFileChecker):
                 elif before_comment[i] == "'":
                     single_quote_count += 1
                 i += 1
-            if double_quote_count % 2 == 1 or single_quote_count % 2 == 1:
+            if double_quote_count % 2 == 1 or \
+                single_quote_count % 2 == 1:
                 continue
             line_stripped = line_stripped.split('//')[1]
             if line_stripped.startswith(' ') or \

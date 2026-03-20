@@ -1,7 +1,6 @@
 version: 2.1
 
 orbs:
-  gradle: circleci/gradle@4.1.0
   codecov: codecov/codecov@5.4.3
 
 executors:
@@ -17,29 +16,20 @@ jobs:
     executor: multiplatform
     steps:
       - checkout
-      - gradle/with_cache:
-          deps_checksum_file: build.gradle.kts
-          steps:
-            - run: ./gradlew dependencies
+      - run: ./gradlew dependencies
       - run: uv sync
       - run: pnpm i
       - persist_to_workspace:
           root: .
-          paths:
-            - .
-            - .venv
-            - "**/node_modules"
+          paths: [.]
   run-lint:
     executor: multiplatform
     steps:
       - attach_workspace:
           at: .
-      - gradle/with_cache:
-          deps_checksum_file: build.gradle.kts
-          steps:
-            - run:
-                name: Check JVM
-                command: ./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck
+      - run:
+          name: Check JVM
+          command: ./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck
       - run:
           name: Check Python
           command: |
@@ -71,12 +61,9 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - gradle/with_cache:
-          deps_checksum_file: build.gradle.kts
-          steps:
-            - run:
-                name: Report JVM
-                command: ./gradlew koverXmlReport
+      - run:
+          name: Report JVM
+          command: ./gradlew koverXmlReport
       - run:
           name: Report Python
           command: |

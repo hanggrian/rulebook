@@ -12,6 +12,7 @@ from rulebook_cppcheck.checkers import \
     ClassNameChecker, \
     CommentSpacesChecker, \
     CommentTrimChecker, \
+    ComplicatedAssignmentChecker, \
     DuplicateBlankLineChecker, \
     DuplicateBlankLineInBlockCommentChecker, \
     DuplicateBlankLineInCommentChecker, \
@@ -87,6 +88,7 @@ if __name__ == '__main__':
         CommentSpacesChecker(),
         MemberSeparatorChecker(),
         # Stating
+        ComplicatedAssignmentChecker(),
         IllegalCatchChecker(),
         IllegalThrowChecker(),
         LonelyCaseChecker(),

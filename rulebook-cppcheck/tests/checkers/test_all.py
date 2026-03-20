@@ -17,6 +17,7 @@ from rulebook_cppcheck.checkers import \
     ClassNameChecker, \
     CommentSpacesChecker, \
     CommentTrimChecker, \
+    ComplicatedAssignmentChecker, \
     DuplicateBlankLineChecker, \
     DuplicateBlankLineInBlockCommentChecker, \
     DuplicateBlankLineInCommentChecker, \
@@ -71,6 +72,7 @@ class TestAllCheckers(TestCase):
             ClassNameChecker(),
             CommentSpacesChecker(),
             CommentTrimChecker(),
+            ComplicatedAssignmentChecker(),
             DuplicateBlankLineChecker(),
             DuplicateBlankLineInBlockCommentChecker(),
             DuplicateBlankLineInCommentChecker(),

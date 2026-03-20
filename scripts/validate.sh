@@ -1,11 +1,12 @@
 #!/bin/bash
 
-./gradlew check
+./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck
 
 uv run pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/
 uv run pylint rulebook-cppcheck/
 uv run pylint sample/python/
-uv run pylint --rcfile=sample-configured/custom_pylintrc sample-configured/python/
+uv run pylint \
+  --rcfile=sample-configured/custom_pylintrc sample-configured/python/
 
 local_addon='local.addon.json'
 local_custom_addon='sample-configured/local.custom_addon.json'

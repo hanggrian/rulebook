@@ -555,6 +555,7 @@
     <module name="CommentSpaces"/>
 
     <!-- Stating -->
+    <module name="ComplicatedAssignment"/>
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"

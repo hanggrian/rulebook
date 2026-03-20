@@ -23,8 +23,10 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookFileChecker):
             for i in range(len(lines) - 1):
                 curr_token: str = lines[i].strip()
                 next_token: str = lines[i + 1].strip()
-                if curr_token != '*' or next_token != '*':
+                if curr_token != '*' or \
+                    next_token != '*':
                     continue
-                if i == 0 or i + 1 == len(lines) - 1:
+                if i == 0 or \
+                    i + 1 == len(lines) - 1:
                     continue
                 self.report_error(token, _Messages.get(self._MSG), start_line + i + 1)

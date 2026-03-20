@@ -43,7 +43,8 @@ class ParenthesesClipChecker(RulebookTokenChecker):
                 if token.astParentId is not None:
                     continue
             elif token_str == '{':
-                if token.astParentId is not None and token.astParentId != '0':
+                if token.astParentId is not None and \
+                    token.astParentId != '0':
                     continue
                 prev: Token | None = token.previous
                 is_control: bool = False

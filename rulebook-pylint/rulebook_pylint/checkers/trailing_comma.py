@@ -40,7 +40,8 @@ class TrailingCommaChecker(RulebookTokenChecker):
             # checks for violation
             prev_token: TokenInfo = tokens[i - 1]
             prev_token2: TokenInfo = tokens[i - 2]
-            if prev_token.type == OP and prev_token.string == ',':
+            if prev_token.type == OP and \
+                prev_token.string == ',':
                 self.add_message(
                     self._MSG_SINGLE,
                     line=prev_token.start[0],
@@ -49,7 +50,8 @@ class TrailingCommaChecker(RulebookTokenChecker):
                 continue
             if prev_token.type != NL:
                 continue
-            if prev_token2.type == OP and prev_token2.string == ',':
+            if prev_token2.type == OP and \
+                prev_token2.string == ',':
                 continue
 
             self.add_message(
@@ -71,10 +73,13 @@ class TrailingCommaChecker(RulebookTokenChecker):
                     if nesting == 0:
                         return has_for and not has_comma_at_root
                     nesting -= 1
-                elif token.string == ',' and nesting == 0:
+                elif token.string == ',' and \
+                    nesting == 0:
                     if i != close_index - 1:
                         has_comma_at_root = True
-            elif token.type == NAME and token.string == 'for' and nesting == 0:
+            elif token.type == NAME and \
+                token.string == 'for' and \
+                nesting == 0:
                 has_for = True
                 has_comma_at_root = False
         return False

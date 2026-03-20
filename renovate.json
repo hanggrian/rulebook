@@ -3,5 +3,11 @@
   "extends": ["config:recommended"],
   "mode": "full",
   "prCreation": "not-pending",
-  "internalChecksFilter": "strict"
+  "internalChecksFilter": "strict",
+  "ignoreDeps": [
+    "@eslint/js",
+    "astroid",
+    "eslint",
+    "checkstyle"
+  ]
 }

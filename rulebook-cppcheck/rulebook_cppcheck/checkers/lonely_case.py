@@ -20,7 +20,8 @@ class LonelyCaseChecker(RulebookChecker):
         # checks for violation
         case_count: int = 0
         curr_token: Token | None = scope.bodyStart
-        while curr_token is not None and curr_token is not scope.bodyEnd:
+        while curr_token is not None and \
+            curr_token is not scope.bodyEnd:
             if curr_token.str == 'case':
                 case_count += 1
             curr_token = curr_token.next

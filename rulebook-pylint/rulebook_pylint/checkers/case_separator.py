@@ -22,8 +22,7 @@ class CaseSeparatorChecker(RulebookFileChecker):
 
     def visit_match(self, node: Match) -> None:
         # collect cases
-        match_cases: list[MatchCase] = node.cases
-        if not match_cases:
+        if not node.cases:
             return
 
         # checks for violation
@@ -31,12 +30,12 @@ class CaseSeparatorChecker(RulebookFileChecker):
             any(
                 _is_multiline(match_case) or
                 _has_comment_above(self.lines, match_case) for
-                match_case in match_cases
+                match_case in node.cases
             )
-        for (i, match_case) in enumerate(match_cases):
+        for (i, match_case) in enumerate(node.cases):
             if i == 0:
                 continue
-            last_match_case: MatchCase = match_cases[i - 1]
+            last_match_case: MatchCase = node.cases[i - 1]
             match_case_fromlineno: int = \
                 _get_fromlineno_before(self.lines, match_case, last_match_case)
             last_body: NodeNG = last_match_case.body[-1]

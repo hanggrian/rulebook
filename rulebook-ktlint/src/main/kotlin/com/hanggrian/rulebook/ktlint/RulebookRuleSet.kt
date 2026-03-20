@@ -11,6 +11,7 @@ import com.hanggrian.rulebook.ktlint.rules.BooleanPropertyInteroperabilityRule
 import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
+import com.hanggrian.rulebook.ktlint.rules.ComplicatedAssignmentRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
@@ -99,6 +100,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { MissingBlankLineBeforeBlockTagsRule() },
             RuleProvider { UnnecessaryInitialBlankLineRule() },
             // Stating
+            RuleProvider { ComplicatedAssignmentRule() },
             RuleProvider { IllegalThrowRule() },
             RuleProvider { LonelyCaseRule() },
             RuleProvider { LonelyIfRule() },

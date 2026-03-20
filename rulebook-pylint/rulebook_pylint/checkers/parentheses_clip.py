@@ -28,7 +28,8 @@ class ParenthesesClipChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
             # find opening parenthesis
-            if token.type != OP or token.string not in self._OPENING_PARENTHESES:
+            if token.type != OP or \
+                token.string not in self._OPENING_PARENTHESES:
                 continue
             self._process(tokens, i, token)
 

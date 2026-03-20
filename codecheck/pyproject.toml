@@ -6,8 +6,8 @@ build-backend = "hatchling.build"
 name = "codecheck"
 version = "1"
 dependencies = [
-  "pylint==4.0.4",
-  "astroid==4.0.2",
+  "pylint==4.0.5",
+  "astroid==4.0.4",
 ]
 
 [tool.hatch.build.targets.wheel]

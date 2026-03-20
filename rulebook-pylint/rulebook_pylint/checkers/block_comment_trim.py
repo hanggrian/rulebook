@@ -35,10 +35,9 @@ class BlockCommentTrimChecker(RulebookChecker):
         # checks for violation
         if docstring is None:
             return
-        docstring_val: str = docstring.value
-        if docstring_val.startswith('\n\n'):
+        if docstring.value.startswith('\n\n'):
             self.add_message(self._MSG_FIRST, node=docstring, line=docstring.lineno)
-        if self._MULTIPLE_EMPTY_LINES.search(docstring_val):
+        if self._MULTIPLE_EMPTY_LINES.search(docstring.value):
             self.add_message(self._MSG_LAST, node=docstring, line=docstring.end_lineno)
 
 

@@ -3,7 +3,6 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.Messages
 import com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule.Companion.ABBREVIATION_REGEX
 import com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule.Companion.MSG
-import org.codehaus.groovy.ast.ASTNode
 import org.codehaus.groovy.ast.ClassNode
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#abbreviation-as-word) */
@@ -24,14 +23,11 @@ public class AbbreviationAsWordVisitor : RulebookVisitor() {
         if (!isFirstVisit(node)) {
             return
         }
-        process(node, node.name)
-        super.visitClassEx(node)
-    }
 
-    private fun process(node: ASTNode, name: String) {
         // checks for violation
         val transformation =
-            name
+            node
+                .name
                 .takeIf { ABBREVIATION_REGEX.containsMatchIn(it) }
                 ?.let { s ->
                     ABBREVIATION_REGEX.replace(s) {
@@ -46,5 +42,7 @@ public class AbbreviationAsWordVisitor : RulebookVisitor() {
                     }
                 } ?: return
         addViolation(node, Messages[MSG, transformation])
+
+        super.visitClassEx(node)
     }
 }

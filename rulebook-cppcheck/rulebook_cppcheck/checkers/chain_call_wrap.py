@@ -38,7 +38,8 @@ class ChainCallWrapChecker(RulebookTokenChecker):
                     check_token = None
                     break
                 check_token = check_token.previous
-            if check_token is not None and check_token.str == '(':
+            if check_token is not None and \
+                check_token.str == '(':
                 continue
 
             # look backwards to detect ternary

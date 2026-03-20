@@ -20,15 +20,15 @@ class RedundantDefaultChecker(RulebookChecker):
 
     def visit_match(self, node: Match) -> None:
         # skip no default
-        cases: list[MatchCase] = node.cases
-        if not cases:
+        if not node.cases:
             return
-        default: MatchCase = cases[-1]
-        if not isinstance(default.pattern, MatchAs) or default.pattern.name:
+        default: MatchCase = node.cases[-1]
+        if not isinstance(default.pattern, MatchAs) or \
+            default.pattern.name:
             return
 
         # checks for violation
-        if not all(_has_jump_statement(node) for node in cases[:-1]):
+        if not all(_has_jump_statement(node) for node in node.cases[:-1]):
             return
         self.add_message(self._MSG, node=default)
 

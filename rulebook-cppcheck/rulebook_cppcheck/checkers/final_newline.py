@@ -14,6 +14,7 @@ class FinalNewlineChecker(RulebookFileChecker):
 
     def check_file(self, token: Token, content: str) -> None:
         # checks for violation
-        if not content.strip() or content.endswith('\n'):
+        if not content.strip() or \
+            content.endswith('\n'):
             return
         self.report_error(token, _Messages.get(self._MSG))

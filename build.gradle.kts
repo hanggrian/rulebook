@@ -18,10 +18,8 @@ val releaseVersion: String by project
 val releaseDescription: String by project
 val releaseUrl: String by project
 
-val javaCompileVersion: JavaLanguageVersion =
-    JavaLanguageVersion.of(libs.versions.java.compile.get())
-val javaSupportVersion: JavaLanguageVersion =
-    JavaLanguageVersion.of(libs.versions.java.support.get())
+val javaCompileVersion = JavaLanguageVersion.of(libs.versions.java.compile.get())
+val javaSupportVersion = JavaVersion.toVersion(libs.versions.java.support.get())
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin apply false
@@ -52,7 +50,17 @@ subprojects {
         the<CodeNarcExtension>().toolVersion = libs.versions.codenarc.get()
     }
     plugins.withType<KotlinPluginWrapper>().configureEach {
-        the<KotlinJvmProjectExtension>().jvmToolchain(javaCompileVersion.asInt())
+        configure<JavaPluginExtension> {
+            toolchain.languageVersion.set(javaCompileVersion)
+            sourceCompatibility = javaSupportVersion
+            targetCompatibility = javaSupportVersion
+        }
+        configure<KotlinJvmProjectExtension> {
+            jvmToolchain {
+                languageVersion.set(javaCompileVersion)
+            }
+            compilerOptions.jvmTarget.set(JvmTarget.fromTarget(javaSupportVersion.toString()))
+        }
     }
     @Suppress("ktlint:rulebook:eager-api")
     plugins.withType<MavenPublishBasePlugin> {
@@ -88,6 +96,7 @@ subprojects {
             }
         }
     }
+
     if (project.name.startsWith("sample")) {
         plugins.withType<JavaPlugin>().configureEach {
             val main by the<JavaPluginExtension>().sourceSets.getting
@@ -104,16 +113,12 @@ subprojects {
     }
 
     tasks {
-        withType<JavaCompile>().configureEach {
-            options.release = javaSupportVersion.asInt()
-        }
-        withType<GroovyCompile>().configureEach {
-            options.release = javaSupportVersion.asInt()
-        }
-        withType<KotlinCompile>().configureEach {
-            compilerOptions
-                .jvmTarget
-                .set(JvmTarget.fromTarget(JavaVersion.toVersion(javaSupportVersion).toString()))
+        afterEvaluate {
+            val compileTestJava by getting(JavaCompile::class)
+            compileTestJava.options.release.set(11)
+
+            val compileTestKotlin by getting(KotlinCompile::class)
+            compileTestKotlin.compilerOptions.jvmTarget.set(JvmTarget.JVM_11)
         }
         withType<Test>().configureEach {
             useJUnitPlatform()

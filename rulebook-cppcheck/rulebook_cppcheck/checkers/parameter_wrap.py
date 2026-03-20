@@ -18,14 +18,18 @@ class ParameterWrapChecker(RulebookTokenChecker):
             params: list[Token] = []
             curr_token: Token | None = token.next
             depth: int = 1
-            while curr_token is not None and depth > 0:
+            while curr_token is not None and \
+                depth > 0:
                 if curr_token.str == '(':
                     depth += 1
                 elif curr_token.str == ')':
                     depth -= 1
-                if depth == 1 and curr_token.str == ',':
+                if depth == 1 and \
+                    curr_token.str == ',':
                     params.append(curr_token.next)
-                elif depth == 1 and not params and curr_token.str != ')':
+                elif depth == 1 and \
+                    not params and \
+                    curr_token.str != ')':
                     params.append(curr_token)
                 curr_token = curr_token.next
             if not params:

@@ -16,6 +16,7 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
         lines: list[str] = content.splitlines()
         for i in range(1, len(lines)):
             # checks for violation
-            if lines[i].strip() or lines[i - 1].strip():
+            if lines[i].strip() or \
+                lines[i - 1].strip():
                 continue
             self.report_error(token, _Messages.get(self._MSG), i + 1)

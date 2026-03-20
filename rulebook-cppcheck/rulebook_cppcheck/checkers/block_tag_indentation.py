@@ -31,7 +31,9 @@ class BlockTagIndentationChecker(RulebookFileChecker):
                 if not in_block_tag:
                     continue
                 stripped: str = line.strip()
-                if not stripped or stripped == '*' or stripped == '*/':
+                if not stripped or \
+                    stripped == '*' or \
+                    stripped == '*/':
                     in_block_tag = False
                     continue
                 if stripped.startswith('* @'):

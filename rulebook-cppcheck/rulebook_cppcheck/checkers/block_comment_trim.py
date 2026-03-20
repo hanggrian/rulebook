@@ -37,7 +37,8 @@ class BlockCommentTrimChecker(RulebookFileChecker):
             # check first line
             first_line: str = lines[0].strip()
             second_line: str = lines[1].strip()
-            if (first_line in self._EMPTY_LINES) and second_line == '*':
+            if (first_line in self._EMPTY_LINES) and \
+                second_line == '*':
                 if content_indices[0] > 1:
                     self.report_error(
                         token,
@@ -48,7 +49,8 @@ class BlockCommentTrimChecker(RulebookFileChecker):
             # check last line
             last_line: str = lines[-1].strip()
             penultimate_line: str = lines[-2].strip()
-            if last_line != '' or penultimate_line != '*':
+            if last_line != '' or \
+                penultimate_line != '*':
                 continue
             if content_indices[-1] >= len(lines) - 2:
                 continue

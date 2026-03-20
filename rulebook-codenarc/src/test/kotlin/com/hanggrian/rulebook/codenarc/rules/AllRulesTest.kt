@@ -30,6 +30,7 @@ class AllRulesTest : AbstractTestCase() {
             ChainCallWrapRule(),
             CommentTrimRule(),
             CommonFunctionPositionRule(),
+            ComplicatedAssignmentRule(),
             ComplicatedSizeEqualityRule(),
             DuplicateBlankLineInCommentRule(),
             DuplicateWhitespaceRule(),

@@ -31,23 +31,21 @@
     "eslint": ">=9",
     "eslint-plugin-jsdoc": ">=62",
     "eslint-plugin-sort-class-members": ">=1",
-    "rulebook-eslint": "workspace:*"
+    "rulebook-eslint": "workspace:*",
+    "typescript-eslint": ">=8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.25.1",
-    "@stylistic/eslint-plugin": "^5.7.1",
-    "@types/estree": "^1.0.6",
-    "@types/node": "^25.0.10",
-    "@types/sinon": "^17.0.4",
-    "@typescript-eslint/parser": "^8.53.1",
-    "@typescript-eslint/utils": "^8.53.1",
-    "eslint": "^9.39.2",
-    "eslint-plugin-jsdoc": "^62.4.1",
+    "@eslint/js": "^9.39.4",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/estree": "^1.0.8",
+    "@types/node": "^25.5.0",
+    "@typescript-eslint/parser": "^8.57.1",
+    "@typescript-eslint/utils": "^8.57.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsdoc": "^62.8.0",
     "eslint-plugin-sort-class-members": "^1.21.0",
-    "globals": "^16.0.0",
-    "sinon": "^21.0.1",
     "rulebook-eslint": "workspace:*",
-    "typescript": "~5.9.0",
-    "typescript-eslint": "^8.31.1"
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.57.1"
   }
 }

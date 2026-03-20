@@ -37,8 +37,7 @@ class CommonFunctionPositionChecker(RulebookChecker):
 
     def visit_functiondef(self, node: FunctionDef) -> None:
         # target special function
-        name: str = node.name
-        if name not in self._COMMON_FUNCTIONS:
+        if node.name not in self._COMMON_FUNCTIONS:
             return
 
         current: NodeNG = node
@@ -47,7 +46,7 @@ class CommonFunctionPositionChecker(RulebookChecker):
             if isinstance(current, FunctionDef) and \
                 not _has_decorator(current, 'staticmethod') and \
                 current.name not in self._COMMON_FUNCTIONS:
-                self.add_message(self._MSG, node=node, args=name)
+                self.add_message(self._MSG, node=node, args=node.name)
                 return
 
             current = current.next_sibling()

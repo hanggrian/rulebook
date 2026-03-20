@@ -19,19 +19,22 @@ class GenericNameChecker(RulebookTokenChecker):
         for token in [t for t in tokens if t.str == 'template']:
             # only target template declaration
             open_bracket: Token | None = _next_sibling(token, lambda t: t.str == '<')
-            if open_bracket is None or not open_bracket.link:
+            if open_bracket is None or \
+                not open_bracket.link:
                 continue
             closing: Token | None = open_bracket.link
             params: list[Token] = []
             curr_token: Token | None = open_bracket.next
             continue_outer: bool = False
-            while curr_token is not None and curr_token is not closing:
+            while curr_token is not None and \
+                curr_token is not closing:
                 if curr_token.str == ',':
                     continue_outer = True
                     break
                 params.append(curr_token)
                 curr_token = curr_token.next
-            if continue_outer or len(params) != 2:
+            if continue_outer or \
+                len(params) != 2:
                 continue
 
             # checks for violation
@@ -40,8 +43,10 @@ class GenericNameChecker(RulebookTokenChecker):
             if keyword_token.str not in self._TARGET_TOKENS:
                 continue
             name: str = name_token.str
-            if name_token.type != 'name' or name == '...':
+            if name_token.type != 'name' or \
+                name == '...':
                 continue
-            if len(name) == 1 and name[0].isupper():
+            if len(name) == 1 and \
+                name[0].isupper():
                 continue
             self.report_error(name_token, _Messages.get(self._MSG))

@@ -26,25 +26,21 @@ public class RedundantElseVisitor : RulebookVisitor() {
             visited += elseBlock
         }
         if (node !in visited) {
-            process(node)
+            // checks for violation
+            var `if`: IfStatement? = node
+            while (`if` != null) {
+                `if`
+                    .ifBlock
+                    ?.takeIf { it.hasJumpStatement() }
+                    ?: return
+                val `else` =
+                    `if`
+                        .elseBlock
+                        ?: return
+                addViolation(`else`, Messages[MSG])
+                `if` = `else` as? IfStatement
+            }
         }
         super.visitIfElse(node)
-    }
-
-    private fun process(node: IfStatement) {
-        // checks for violation
-        var `if`: IfStatement? = node
-        while (`if` != null) {
-            `if`
-                .ifBlock
-                ?.takeIf { it.hasJumpStatement() }
-                ?: return
-            val `else` =
-                `if`
-                    .elseBlock
-                    ?: return
-            addViolation(`else`, Messages[MSG])
-            `if` = `else` as? IfStatement
-        }
     }
 }

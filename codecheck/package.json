@@ -11,13 +11,12 @@
     "docs": "exit 0"
   },
   "peerDependencies": {
-    "eslint": ">= 9"
+    "eslint": ">=9"
   },
   "devDependencies": {
-    "@types/estree": "^1.0.6",
-    "@types/node": "^25.0.10",
-    "eslint": "^9.39.2",
-    "globals": "^16.0.0",
-    "typescript": "~5.9.0"
+    "@types/estree": "^1.0.8",
+    "@types/node": "^25.5.0",
+    "eslint": "^9.39.4",
+    "typescript": "~5.9.3"
   }
 }
