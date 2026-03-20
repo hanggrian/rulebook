@@ -9,7 +9,7 @@ ktlint = "1.8.0"
 # java
 checkstyle = "11.1.0"
 # groovy
-groovy = "4.0.30"
+groovy = "5.0.4"
 codenarc = "3.7.0-groovy-4.0"
 
 [plugins]
