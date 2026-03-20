@@ -7,7 +7,7 @@
     "lint2": "eslint --config sample-configured/eslint.config.js sample-configured/javascript/",
     "doc": "typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/"
   },
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@10.32.1",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
