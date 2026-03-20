@@ -18,9 +18,11 @@ class IdentifierNameChecker(RulebookTokenChecker):
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in tokens:
-            if token.variable and token is token.variable.nameToken:
+            if token.variable and \
+                token is token.variable.nameToken:
                 self._process(token)
-            if token.function and token is token.function.tokenDef:
+            if token.function and \
+                token is token.function.tokenDef:
                 self._process(token)
 
     def _process(self, token: Token) -> None:

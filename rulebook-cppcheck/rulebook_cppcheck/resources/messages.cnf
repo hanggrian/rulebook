@@ -39,6 +39,7 @@ case.separator.unexpected=Remove blank line after single-line branch.
 comment.spaces=Put one space after '//'.
 member.separator=Add blank line after '{}'.
 # Stating
+complicated.assignment=Use assignment operator '{}'.
 illegal.catch=Catch a narrower type.
 illegal.throw=Throw a narrower type.
 lonely.case=Replace 'switch' with 'if' condition.

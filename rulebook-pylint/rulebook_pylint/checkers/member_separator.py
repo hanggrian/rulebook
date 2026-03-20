@@ -28,7 +28,8 @@ class MemberSeparatorChecker(RulebookFileChecker):
             last_member: NodeNG = members[i - 1]
 
             # single-line fields can be joined
-            if isinstance(last_member, Assign) and isinstance(member, Assign):
+            if isinstance(last_member, Assign) and \
+                isinstance(member, Assign):
                 continue
             key: str
             last_body: NodeNG

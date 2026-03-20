@@ -23,8 +23,7 @@ class AbbreviationAsWordChecker(RulebookChecker):
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
-        class_name: str = node.name
-        if not self._ABBREVIATION_REGEX.findall(class_name):
+        if not self._ABBREVIATION_REGEX.findall(node.name):
             return
         self.add_message(
             self._MSG,
@@ -32,7 +31,7 @@ class AbbreviationAsWordChecker(RulebookChecker):
             args= \
                 self._ABBREVIATION_REGEX.sub(
                     lambda m: m.group(0)[0] + m.group(0)[1:].lower(),
-                    class_name,
+                    node.name,
                 ),
             col_offset=node.col_offset + 6,
         )

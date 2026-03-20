@@ -62,6 +62,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.MissingBlankLineBeforeBlockTagsRule"/>
 
   <!-- Stating -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ComplicatedAssignmentRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyCaseRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyIfRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule"/>

@@ -17,6 +17,7 @@ add_executable(
         c/class_name.c
         c/comment_spaces.c
         c/comment_trim.c
+        c/complicated_assignment.c
         c/duplicate_blank_line.c
         c/duplicate_blank_line_in_block_comment.c
         c/duplicate_blank_line_in_comment.c

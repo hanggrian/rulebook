@@ -39,7 +39,8 @@ class MeaninglessWordChecker(RulebookChecker):
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
         words: list[str] = [match[0] for match in self._TITLE_CASE_REGEX.findall(node.name)]
-        if not words or words[-1] not in self._words:
+        if not words or \
+            words[-1] not in self._words:
             return
         word: str = words[-1]
         if word in self._UTILITY_CLASS_NAMES:

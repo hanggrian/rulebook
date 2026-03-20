@@ -48,6 +48,7 @@ load-plugins=
   rulebook_pylint.checkers.comment_spaces,
   rulebook_pylint.checkers.member_separator,
   # Stating
+  rulebook_pylint.checkers.complicated_assignment,
   rulebook_pylint.checkers.lonely_case,
   rulebook_pylint.checkers.nested_if_else,
   rulebook_pylint.checkers.redundant_default,
@@ -188,6 +189,7 @@ disable=
   too-many-positional-arguments,
   too-many-branches,
   too-many-statements,
+  cell-var-from-loop,
 
 
 [REPORTS]

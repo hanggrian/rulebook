@@ -153,6 +153,7 @@ const crockfordConfig: Linter.RulesRecord = {
         },
     ],
     // Stating
+    'operator-assignment': 'error',
     'no-lonely-if': 'error',
     'no-restricted-syntax': [
         'error',
@@ -377,6 +378,7 @@ const googleConfig: Linter.RulesRecord = {
         },
     ],
     // Stating
+    'operator-assignment': 'error',
     'no-lonely-if': 'error',
     'no-restricted-syntax': [
         'error',

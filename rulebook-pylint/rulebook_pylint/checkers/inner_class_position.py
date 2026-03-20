@@ -19,7 +19,8 @@ class InnerClassPositionChecker(RulebookChecker):
 
     def visit_classdef(self, node: ClassDef) -> None:
         # consider only inner class
-        if node.parent and not isinstance(node.parent, ClassDef):
+        if node.parent and \
+            not isinstance(node.parent, ClassDef):
             return
 
         next2: NodeNG = node

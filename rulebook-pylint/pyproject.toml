@@ -17,9 +17,9 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 dependencies = [
-  "pylint==4.0.4",
-  "astroid==4.0.2",
-  "regex>=2025.11.3",
+  "pylint==4.0.5",
+  "astroid==4.0.4",
+  "regex>=2026.2.28",
 ]
 
 [project.urls]

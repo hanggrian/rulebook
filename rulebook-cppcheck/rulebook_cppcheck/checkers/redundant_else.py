@@ -27,7 +27,8 @@ class RedundantElseChecker(RulebookTokenChecker):
 
                 # checks for violation
                 then_token: Token | None = if_token.next
-                if then_token is not None and then_token.str == '(':
+                if then_token is not None and \
+                    then_token.str == '(':
                     then_token = then_token.link.next
                 if not _has_jump_statement(then_token, else_token):
                     continue_outer = True
@@ -37,20 +38,26 @@ class RedundantElseChecker(RulebookTokenChecker):
                 self.report_error(else_token, _Messages.get(self._MSG))
 
                 next_token: Token | None = else_token.next
-                if next_token is not None and next_token.str == 'if':
+                if next_token is not None and \
+                    next_token.str == 'if':
                     if_token = next_token
                 else:
                     if_token = None
 
     def _get_else_token(self, if_token: Token) -> Token | None:
         curr_token: Token | None = if_token.next
-        if curr_token is not None and curr_token.str == '(':
+        if curr_token is not None and \
+            curr_token.str == '(':
             curr_token = curr_token.link.next
-        if curr_token is not None and curr_token.str == '{':
+        if curr_token is not None and \
+            curr_token.str == '{':
             curr_token = curr_token.link.next
         else:
             curr_token = \
                 _next_sibling(curr_token, lambda t: t.str in self._ELSE_SIBLING_TOKENS)
-            if curr_token is not None and curr_token.str == ';':
+            if curr_token is not None and \
+                curr_token.str == ';':
                 curr_token = curr_token.next
-        return curr_token if curr_token is not None and curr_token.str == 'else' else None
+        return curr_token \
+            if curr_token is not None and curr_token.str == 'else' \
+            else None

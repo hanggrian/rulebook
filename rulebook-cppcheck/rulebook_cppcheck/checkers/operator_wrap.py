@@ -31,7 +31,8 @@ class OperatorWrapChecker(RulebookTokenChecker):
                 continue
 
             next_token: Token | None = token.next
-            if next_token is None or next_token.str in {'{', '['}:
+            if next_token is None or \
+                next_token.str in {'{', '['}:
                 continue
 
             top_node: Token | None = _parent(token, lambda t: t.isOp and not t.isAssignmentOp)
@@ -43,6 +44,7 @@ class OperatorWrapChecker(RulebookTokenChecker):
                 end_token = end_token.astOperand2
 
             # checks for violation
-            if end_token.linenr <= start_token.linenr or next_token.linenr != token.linenr:
+            if end_token.linenr <= start_token.linenr or \
+                next_token.linenr != token.linenr:
                 continue
             self.report_error(token, _Messages.get(self._MSG_MISSING, token.str))

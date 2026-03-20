@@ -32,7 +32,8 @@ class ImportOrderChecker(RulebookFileChecker):
 
             # checks for violation
             if prev_lineno is not None:
-                if not is_quoted and prev_is_quoted:
+                if not is_quoted and \
+                    prev_is_quoted:
                     self.report_error(
                         token,
                         _Messages.get(self._MSG_SORT, path, prev_path),

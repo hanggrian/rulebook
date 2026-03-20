@@ -17,7 +17,8 @@ class AssignmentWrapChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == '=' and t.isAssignmentOp]:
             rhs_start: Token | None = token.next
-            if rhs_start is None or rhs_start.str in self._START_TOKENS:
+            if rhs_start is None or \
+                rhs_start.str in self._START_TOKENS:
                 continue
             rhs_end: Token | None = token.astOperand2
             if rhs_end is None:
@@ -29,6 +30,7 @@ class AssignmentWrapChecker(RulebookTokenChecker):
                 last_rhs_token = last_rhs_token.previous
 
             # checks for violation
-            if rhs_start.linenr != token.linenr or last_rhs_token.linenr <= token.linenr:
+            if rhs_start.linenr != token.linenr or \
+                last_rhs_token.linenr <= token.linenr:
                 continue
             self.report_error(token, _Messages.get(self._MSG))

@@ -29,6 +29,7 @@ case.separator.unexpected=Remove blank line after single-line branch.
 comment.spaces=Put one space after '#'.
 member.separator=Add blank line after '%s'.
 # Stating
+complicated.assignment=Use assignment operator '%s'.
 lonely.case=Replace 'match' with 'if' condition.
 lonely.if=Replace 'else' with 'else if' condition.
 nested.if.else.invert=Invert 'if' condition.

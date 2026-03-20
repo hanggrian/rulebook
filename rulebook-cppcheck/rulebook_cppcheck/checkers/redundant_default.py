@@ -19,14 +19,17 @@ class RedundantDefaultChecker(RulebookTokenChecker):
         for token in [t for t in tokens if t.str == 'switch']:
             # find the opening brace of the switch
             l_brace: Token | None = token.next
-            if l_brace is not None and l_brace.str == '(':
+            if l_brace is not None and \
+                l_brace.str == '(':
                 l_brace = l_brace.link.next
-            if l_brace is None or l_brace.str != '{':
+            if l_brace is None or \
+                l_brace.str != '{':
                 continue
 
             # find default
             default_token, cases = self._get_default(l_brace.next, l_brace.link)
-            if default_token is None or not cases:
+            if default_token is None or \
+                not cases:
                 continue
 
             # checks for violation
@@ -35,7 +38,8 @@ class RedundantDefaultChecker(RulebookTokenChecker):
                 limit: Token = cases[i + 1] if i + 1 < len(cases) else default_token
                 has_jump: bool = False
                 search: Token | None = case_colon.next
-                while search and search is not limit:
+                while search and \
+                    search is not limit:
                     if search.str in self._BREAK_STATEMENTS:
                         has_jump = True
                         break
@@ -54,10 +58,12 @@ class RedundantDefaultChecker(RulebookTokenChecker):
     ) -> tuple[Token, list[Token]] | None:
         cases: list[Token] = []
         default_token: Token | None = None
-        while curr_token is not None and curr_token is not r_brace:
+        while curr_token is not None and \
+            curr_token is not r_brace:
             if curr_token.str == 'case':
                 curr_token = _next_sibling(curr_token, lambda t: t is r_brace or t.str == ':')
-                if curr_token and curr_token.str == ':':
+                if curr_token and \
+                    curr_token.str == ':':
                     cases.append(curr_token)
             elif curr_token.str == 'default':
                 default_token = \

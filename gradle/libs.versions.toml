@@ -1,22 +1,23 @@
 [versions]
 java-compile = "21"
 java-support = "8"
-junit = "5.14.1"
+junit = "5.14.3"
 # kotlin
-kotlin = "2.1.0"
+kotlin = "2.3.20"
+dokka = "2.1.0"
 ktlint = "1.8.0"
 # java
 checkstyle = "11.1.0"
 # groovy
-groovy = "4.0.24"
+groovy = "4.0.30"
 codenarc = "3.7.0-groovy-4.0"
 
 [plugins]
-dokka = { id = "org.jetbrains.dokka", version.ref = "kotlin" }
-dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "kotlin" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.4"
-ktlint = "org.jlleitschuh.gradle.ktlint:14.0.1"
-maven-publish = "com.vanniktech.maven.publish.base:0.35.0"
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "dokka" }
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.7"
+ktlint = "org.jlleitschuh.gradle.ktlint:14.2.0"
+maven-publish = "com.vanniktech.maven.publish.base:0.36.0"
 
 [libraries]
 # main
@@ -29,13 +30,13 @@ checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checks
 codenarc = { module = "org.codenarc:CodeNarc", version.ref = "codenarc" }
 # test
 ktlint-test = { module = "com.pinterest.ktlint:ktlint-test", version.ref = "ktlint" }
-mockito-junit-jupiter = "org.mockito:mockito-junit-jupiter:5.20.0"
-mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:4.1.0" # latest for java 8
+mockito-junit-jupiter = "org.mockito:mockito-junit-jupiter:5.23.0"
+mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:6.3.0"
 truth = "com.google.truth:truth:1.4.5"
-logback = "ch.qos.logback:logback-classic:1.5.18"
+logback = "ch.qos.logback:logback-classic:1.5.32"
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
-junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.12.2"
+junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.14.3"
 
 [bundles]
 junit5 = [

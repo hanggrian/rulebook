@@ -20,18 +20,17 @@ class GenericNameChecker(RulebookChecker):
 
     def visit_assign(self, node: Assign) -> None:
         # only target TypeVar declaration
-        if not isinstance(node.value, Call):
-            return
-        call: Call = node.value
-        if not isinstance(call.func, Name) or call.func.name != 'TypeVar':
+        if not isinstance(node.value, Call) or \
+            not isinstance(node.value.func, Name) or \
+            node.value.func.name != 'TypeVar':
             return
 
         # checks for violation
         target: AssignName | None = _get_assignname(node)
         if target is None:
             return
-        name: str = target.name
-        if len(name) == 1 and name[0].isupper():
+        if len(target.name) == 1 and \
+            target.name[0].isupper():
             return
         self.add_message(self._MSG, node=target)
 

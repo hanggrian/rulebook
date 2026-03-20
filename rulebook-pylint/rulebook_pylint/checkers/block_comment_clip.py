@@ -41,10 +41,9 @@ class BlockCommentClipChecker(RulebookChecker):
         # checks for violation
         if docstring is None:
             return
-        docstring_val: str = docstring.value
-        if '\n' not in docstring_val:
+        if '\n' not in docstring.value:
             return
-        line: str = docstring_val.strip()
+        line: str = docstring.value.strip()
         if '\n' in line:
             return
         text_length: int = docstring.col_offset + len(line)

@@ -1,5 +1,3 @@
-"""main"""
-
 from rulebook_cppcheck.checkers.abbreviation_as_word import AbbreviationAsWordChecker
 from rulebook_cppcheck.checkers.assignment_wrap import AssignmentWrapChecker
 from rulebook_cppcheck.checkers.block_comment_spaces import BlockCommentSpacesChecker
@@ -11,6 +9,7 @@ from rulebook_cppcheck.checkers.chain_call_wrap import ChainCallWrapChecker
 from rulebook_cppcheck.checkers.class_name import ClassNameChecker
 from rulebook_cppcheck.checkers.comment_spaces import CommentSpacesChecker
 from rulebook_cppcheck.checkers.comment_trim import CommentTrimChecker
+from rulebook_cppcheck.checkers.complicated_assignment import ComplicatedAssignmentChecker
 from rulebook_cppcheck.checkers.duplicate_blank_line import DuplicateBlankLineChecker
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
@@ -60,6 +59,7 @@ __all__ = [
     'ClassNameChecker',
     'CommentSpacesChecker',
     'CommentTrimChecker',
+    'ComplicatedAssignmentChecker',
     'DuplicateBlankLineChecker',
     'DuplicateBlankLineInBlockCommentChecker',
     'DuplicateBlankLineInCommentChecker',

@@ -41,7 +41,8 @@ class MeaninglessWordChecker(RulebookChecker):
         if class_name is None:
             return
         words: list[str] = [match[0] for match in self._TITLE_CASE_REGEX.findall(class_name)]
-        if not words or words[-1] not in self._words:
+        if not words or \
+            words[-1] not in self._words:
             return
         name_token: Token | None = \
             _prev_sibling(scope.bodyStart, lambda t: t.str == class_name)

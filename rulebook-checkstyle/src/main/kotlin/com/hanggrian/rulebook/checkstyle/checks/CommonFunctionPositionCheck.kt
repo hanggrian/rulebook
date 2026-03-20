@@ -25,7 +25,7 @@ public class CommonFunctionPositionCheck : RulebookAstCheck() {
 
         for ((i, method) in methods.withIndex()) {
             // target special function
-            val identifier =
+            val ident =
                 method
                     .takeIf { it.isBuiltInFunction() }
                     ?.findFirstToken(IDENT)
@@ -36,7 +36,7 @@ public class CommonFunctionPositionCheck : RulebookAstCheck() {
                 .subList(i, methods.size)
                 .takeIf { nodes -> nodes.any { !it.isBuiltInFunction() } }
                 ?: continue
-            log(method, Messages[MSG, identifier.text])
+            log(method, Messages[MSG, ident.text])
         }
     }
 

@@ -21,7 +21,8 @@ class LineFeedChecker(RulebookFileChecker):
         # checks for violation
         with node.stream() as stream:
             text: str = stream.read().decode('UTF-8')
-            if not text.endswith('\r\n') and not text.endswith('\r'):
+            if not text.endswith('\r\n') and \
+                not text.endswith('\r'):
                 return
             self.add_message(self._MSG, line=len(stream.readlines()))
 

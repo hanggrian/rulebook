@@ -31,6 +31,7 @@ class UnnecessaryReturnChecker(RulebookChecker):
         if return_token is None:
             return
         prev_token: Token | None = return_token.previous
-        if prev_token is None or prev_token.str not in {'{', ';'}:
+        if prev_token is None or \
+            prev_token.str not in {'{', ';'}:
             return
         self.report_error(return_token, _Messages.get(self._MSG))

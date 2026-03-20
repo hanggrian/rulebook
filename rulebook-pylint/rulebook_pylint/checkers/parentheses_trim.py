@@ -33,7 +33,8 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                     continue
                 next_token: TokenInfo = tokens[i + 1]
                 next_token2: TokenInfo = tokens[i + 2]
-                if next_token.type != NL or next_token2.type != NL:
+                if next_token.type != NL or \
+                    next_token2.type != NL:
                     continue
                 self.add_message(
                     self._MSG_FIRST,
@@ -49,7 +50,8 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                 continue
             prev_token: TokenInfo = tokens[i - 1]
             prev_token2: TokenInfo = tokens[i - 2]
-            if prev_token.type != NL or prev_token2.type != NL:
+            if prev_token.type != NL or \
+                prev_token2.type != NL:
                 continue
             self.add_message(
                 self._MSG_LAST,
