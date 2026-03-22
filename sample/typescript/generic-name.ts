@@ -6,7 +6,7 @@ class Foo<T> {
     }
 }
 
-function bar<T>(t: T) {
+function bar<T>(t: T): void {
     console.log(t);
 }
 

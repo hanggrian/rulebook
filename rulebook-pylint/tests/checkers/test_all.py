@@ -22,7 +22,7 @@ from rulebook_pylint.checkers import \
     DuplicateBlankLineChecker, \
     DuplicateBlankLineInBlockCommentChecker, \
     DuplicateBlankLineInCommentChecker, \
-    DuplicateWhitespaceChecker, \
+    DuplicateSpaceChecker, \
     GenericNameChecker, \
     InnerClassPositionChecker, \
     InternalErrorChecker, \
@@ -61,7 +61,7 @@ class TestAllCheckers:
         DuplicateBlankLineChecker,
         DuplicateBlankLineInBlockCommentChecker,
         DuplicateBlankLineInCommentChecker,
-        DuplicateWhitespaceChecker,
+        DuplicateSpaceChecker,
         GenericNameChecker,
         InnerClassPositionChecker,
         InternalErrorChecker,

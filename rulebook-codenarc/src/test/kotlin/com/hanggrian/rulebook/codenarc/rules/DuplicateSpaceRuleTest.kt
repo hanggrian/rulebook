@@ -3,8 +3,8 @@ package com.hanggrian.rulebook.codenarc.rules
 import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 
-class DuplicateWhitespaceRuleTest : RuleTest<DuplicateWhitespaceRule>() {
-    override fun createRule() = DuplicateWhitespaceRule()
+class DuplicateSpaceRuleTest : RuleTest<DuplicateSpaceRule>() {
+    override fun createRule() = DuplicateSpaceRule()
 
     @Test
     fun `Rule properties`() = rule.assertProperties()

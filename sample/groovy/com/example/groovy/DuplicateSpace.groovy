@@ -1,6 +1,6 @@
 package com.example.groovy
 
-class DuplicateWhitespace {
+class DuplicateSpace {
     def foo(var bar, var baz) {
         var qux = bar + baz
     }

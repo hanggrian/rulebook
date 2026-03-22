@@ -7,37 +7,46 @@ question mark or exclamation mark.
 
 === "Java"
 
-    ```java title="Before" hl_lines="3"
+    ```java hl_lines="3"
     /**
-    * @param num
-    * @return the new size of the group
-    */
+     * @param num
+     * @return the new size of the group
+     */
     abstract int add(int num);
     ```
 === "Groovy"
 
-    ```groovy title="Before" hl_lines="3"
+    ```groovy hl_lines="3"
     /**
-    * @param num
-    * @return the new size of the group
-    */
+     * @param num
+     * @return the new size of the group
+     */
     abstract def add(int num)
     ```
 === "Kotlin"
 
-    ```kotlin title="Before" hl_lines="3"
+    ```kotlin hl_lines="3"
     /**
-    * @param num
-    * @return the new size of the group
-    */
+     * @param num
+     * @return the new size of the group
+     */
     abstract fun add(int num): Int
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    /**
+     * @param num
+     * @return the new size of the group
+     */
+    virtual int add(int num) = 0;
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
 
-    ```java title="After" hl_lines="3"
+    ```java hl_lines="3"
     /**
     * @param num
     * @return the new size of the group.
@@ -46,7 +55,7 @@ question mark or exclamation mark.
     ```
 === "Groovy"
 
-    ```groovy title="After" hl_lines="3"
+    ```groovy hl_lines="3"
     /**
     * @param num
     * @return the new size of the group.
@@ -55,139 +64,31 @@ question mark or exclamation mark.
     ```
 === "Kotlin"
 
-    ```kotlin title="After" hl_lines="3"
+    ```kotlin hl_lines="3"
     /**
     * @param num
     * @return the new size of the group.
     */
     abstract fun add(int num): Int
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    /**
+    * @param num
+    * @return the new size of the group.
+    */
+    virtual int add(int num) = 0;
     ```
 
 ??? Configuration
 
-    :material-language-java:{ .lg .middle } Checkstyle | Default value
+    Setting | Default value
     --- | ---
-    BlockTagPunctuation#tags | `@param, @return`
-    **:material-language-kotlin:{ .lg .middle } Ktlint**
-    rulebook_punctuate_block_tags | `@constructor, @receiver, @property, @param, @return`
-
-### Built-in types
-
-Prefer to use built-in types provided by the language.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-
-    ```kotlin hl_lines="1 4"
-    import java.util.ArrayList
-
-    val names = arrayListOf<String>()
-    val people = java.util.ArrayList<Person>()
-    ```
-=== "Python"
-
-    ```python hl_lines="1 3"
-    from typing import Optional
-
-    def get_name(person) -> Optional[str]:
-        return person['name']
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-
-    ```kotlin hl_lines="2"
-    val names = arrayListOf<String>()
-    val people = ArrayList<Person>()
-    ```
-=== "Python"
-
-    ```python hl_lines="1"
-    def get_name(person) -> str | None:
-        return person['name']
-    ```
-
-### Confusing predicate
-
-Use the positive form in a predicate call when it is a single expression and the
-calling function can be inverted.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-
-    ```kotlin
-    person.takeIf { it.name != null }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-
-    ```kotlin
-    person.takeUnless { it.name == null }
-    ```
-
-### Null equality
-
-Use structural equality instead of referential equality when comparing objects
-with `null`.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-
-    ```kotlin
-    user.takeUnless { it.name === null }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-
-    ```kotlin
-    user.takeUnless { it.name == null }
-    ```
-
-### Redundant qualifier
-
-Strip fully qualified names when they are already imported.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="3"
-    import java.io.FileInputStream;
-
-    void read(java.io.FileInputStream stream) {}
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="3"
-    import java.io.FileInputStream
-
-    def read(java.io.FileInputStream stream) {}
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="3"
-    import java.io.FileInputStream;
-
-    void read(FileInputStream stream) {}
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="3"
-    import java.io.FileInputStream
-
-    def read(FileInputStream stream) {}
-    ```
+    :material-language-java:{ .lg .middle } `BlockTagPunctuation#tags` | @param, @return
+    :simple-apachegroovy:{ .lg .middle } `BlockTagPunctuation#tags` | @param, @return
+    :material-language-kotlin:{ .lg .middle } `rulebook_punctuate_block_tags` | @constructor, @receiver, @property, @param, @return
+    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--punctuate-block-tags` | @param, @return
 
 ### TODO comment
 
@@ -216,12 +117,33 @@ TODO comment keywords should be uppercase and followed by exactly one space.
     //
     // FIXME: memory leak
     ```
+=== "C/C++"
+
+    ```cpp
+    // todo add tests
+    //
+    // FIXME: memory leak
+    ```
 === "Python"
 
     ```python
     # todo add tests
     #
     # FIXME: memory leak
+    ```
+=== "JavaScript"
+
+    ```js
+    // todo add tests
+    //
+    // FIXME: memory leak
+    ```
+=== "TypeScript"
+
+    ```ts
+    // todo add tests
+    //
+    // FIXME: memory leak
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -247,12 +169,33 @@ TODO comment keywords should be uppercase and followed by exactly one space.
     //
     // FIXME memory leak
     ```
+=== "C/C++"
+
+    ```cpp
+    // TODO add tests
+    //
+    // FIXME memory leak
+    ```
 === "Python"
 
     ```python
     # TODO add tests
     #
     # FIXME memory leak
+    ```
+=== "JavaScript"
+
+    ```js
+    // TODO add tests
+    //
+    // FIXME memory leak
+    ```
+=== "TypeScript"
+
+    ```ts
+    // TODO add tests
+    //
+    // FIXME memory leak
     ```
 
 ### Trailing comma in call
@@ -265,10 +208,10 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 
     ```groovy hl_lines="4 7"
     var items =
-        Arrays.asList(
+        [
             'milks',
             'eggs'
-        )
+        ] as Set
 
     println(items,)
     ```
@@ -276,7 +219,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 
     ```kotlin hl_lines="4 7"
     val items =
-        listOf(
+        setOf(
             "milks",
             "eggs"
         )
@@ -294,6 +237,28 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 
     print(items,)
     ```
+=== "JavaScript"
+
+    ```js hl_lines="4 7"
+    const items =
+        new Set([
+            'milks',
+            'eggs'
+        ]);
+
+    console.log(items,);
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="4 7"
+    const items: Set<string> =
+        new Set([
+            'milks',
+            'eggs'
+        ]);
+
+    console.log(items,);
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -301,10 +266,10 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 
     ```groovy hl_lines="4 7"
     var items =
-        Arrays.asList(
+        [
             'milks',
             'eggs',
-        )
+        ] as Set
 
     println(items)
     ```
@@ -312,7 +277,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
 
     ```kotlin hl_lines="4 7"
     val items =
-        listOf(
+        setOf(
             "milks",
             "eggs",
         )
@@ -329,6 +294,28 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
         )
 
     print(items)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="4 7"
+    const items =
+        new Set([
+            'milks',
+            'eggs',
+        ]);
+
+    console.log(items);
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="4 7"
+    const items: Set<string> =
+        new Set([
+            'milks',
+            'eggs',
+        ]);
+
+    console.log(items);
     ```
 
 ### Trailing comma in collection
@@ -366,6 +353,24 @@ this rule applies to tuples.
         (0, 0, 0,)
     )
     ```
+=== "JavaScript"
+
+    ```js hl_lines="2-4"
+    const ticTacToe = [
+        [0, 0, 0,],
+        [0, 0, 0,],
+        [0, 0, 0,]
+    ];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-4"
+    const ticTacToe: number[][] = [
+        [0, 0, 0,],
+        [0, 0, 0,],
+        [0, 0, 0,]
+    ];
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -396,6 +401,24 @@ this rule applies to tuples.
         (0, 0, 0),
     )
     ```
+=== "JavaScript"
+
+    ```js hl_lines="2-4"
+    const ticTacToe = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+    ];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-4"
+    const ticTacToe: number[][] = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0],
+    ];
+    ```
 
 ### Trailing comma in declaration
 
@@ -417,15 +440,35 @@ line.
 === "Python"
 
     ```python hl_lines="1 7"
-    def update_inventory(item: str,):
+    def update_inventory(item,):
         pass
 
 
     def create_inventory(
-        item: str,
-        quantity: int
+        item,
+        quantity
     ):
         pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1 5"
+    function updateInventory(item,) {}
+
+    function createInventory(
+        item,
+        quantity
+    ) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1 5"
+    function updateInventory(item: string,): void {}
+
+    function createInventory(
+        item: string,
+        quantity: number
+    ): void {}
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -443,14 +486,35 @@ line.
 === "Python"
 
     ```python hl_lines="1 7"
-    def update_inventory(item: str):
+    def update_inventory(item):
         pass
 
 
     def create_inventory(
-        item: str,
-        quantity: int,
-    )
+        item,
+        quantity,
+    ):
+        pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1 5"
+    function updateInventory(item) {}
+
+    function createInventory(
+        item,
+        quantity,
+    ) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1 5"
+    function updateInventory(item: string): void {}
+
+    function createInventory(
+        item: string,
+        quantity: number,
+    ): void {}
     ```
 
 ### Unused import
@@ -490,6 +554,20 @@ Remove unused import statements.
 
     apple = Apple()
     ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    import { Apple, Banana } from 'fruit';
+
+    const apple = new Apple();
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    import { Apple, Banana } from 'fruit';
+
+    const apple: Apple = new Apple();
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -520,6 +598,20 @@ Remove unused import statements.
     from fruit import Apple
 
     apple = Apple()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    import { Apple } from 'fruit';
+
+    const apple = new Apple();
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    import { Apple } from 'fruit';
+
+    const apple: Apple = new Apple();
     ```
 
 ### Wildcard import
@@ -556,6 +648,20 @@ Import directives must be single-type instead of wildcard imports.
 
     fruits = [Apple(), Banana()]
     ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    import * as fruit from 'fruit';
+
+    const fruits = [new fruit.Apple(), new fruit.Banana()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    import * as fruit from 'fruit';
+
+    const fruits: Fruit[] = [new fruit.Apple(), new fruit.Banana()];
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -590,201 +696,24 @@ Import directives must be single-type instead of wildcard imports.
 
     fruits = [Apple(), Banana()]
     ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    import { Apple, Banana } from 'fruit';
+
+    const fruits = [new Apple(), new Banana()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    import { Apple, Banana, Fruit } from 'fruit';
+
+    const fruits: Fruit[] = [new Apple(), new Banana()];
+    ```
 
 ## Clipping
 
-### Empty braces clip
-
-Empty code blocks should be joined with the preceding code.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="2"
-    void main() {
-    }
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2"
-    def main() {
-    }
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="2"
-    fun main() {
-    }
-    ```
-=== "Python"
-
-    ```python hl_lines="2"
-    foo = {
-    }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="1"
-    void main() {}
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    def main() {}
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1"
-    fun main() {}
-    ```
-=== "Python"
-
-    ```python hl_lines="1"
-    foo = {}
-    ```
-
-### Empty brackets clip
-
-Empty collection initializers should be joined with the preceding code.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Groovy"
-
-    ```groovy hl_lines="2"
-    var items = [
-    ]
-    ```
-=== "Python"
-
-    ```python hl_lines="2"
-    items = [
-    ]
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    var items = []
-    ```
-=== "Python"
-
-    ```python hl_lines="1"
-
-### Empty parentheses clip
-
-Empty method declarations and calls should be joined with the preceding code.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="2 4"
-    void recurse(
-    ) {
-        recurse(
-        );
-    }
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2 4"
-    def recurse(
-    ) {
-        recurse(
-        )
-    }
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="2 4"
-    fun recurse(
-    ) {
-        recurse(
-        )
-    }
-    ```
-=== "Python"
-
-    ```python hl_lines="2 4"
-    def recurse(
-    ):
-        recurse(
-        )
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="1-2"
-    void recurse() {
-        recurse();
-    }
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1-2"
-    def recurse() {
-        recurse()
-    }
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1-2"
-    fun recurse() {
-        recurse()
-    }
-    ```
-=== "Python"
-
-    ```python hl_lines="1-2"
-    def recurse():
-        recurse()
-    ```
-
-### Empty tags clip
-
-Empty generic types should be joined with the preceding code.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="2-3"
-    List<Float> points =
-        new ArrayList<
-          >();
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2"
-    var points =
-        new ArrayList< >()
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="2"
-    List<Float> points =
-        new ArrayList<>();
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2"
-    var points =
-        new ArrayList<>()
-    ```
-
-### Short block comment clip
+### Block comment clip
 
 Short block comments should be written in a single line.
 
@@ -818,6 +747,20 @@ Short block comments should be written in a single line.
     The quick brown fox jumps over the lazy dog.
     """
     ```
+=== "JavaScript"
+
+    ```js
+    /**
+     * The quick brown fox jumps over the lazy dog.
+     */
+    ```
+=== "TypeScript"
+
+    ```ts
+    /**
+     * The quick brown fox jumps over the lazy dog.
+     */
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -841,44 +784,64 @@ Short block comments should be written in a single line.
     ```python
     """The quick brown fox jumps over the lazy dog."""
     ```
+=== "JavaScript"
 
-## Declaring
+    ```js
+    /** The quick brown fox jumps over the lazy dog. */
+    ```
+=== "TypeScript"
 
-### Abstract class definition
+    ```ts
+    /** The quick brown fox jumps over the lazy dog. */
+    ```
 
-Abstract classes need at least one abstract function.
+### Braces clip
+
+Empty code blocks should be joined with the preceding code.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
 
-    ```java hl_lines="1"
-    abstract class Vehicle {
-        void start() {}
+    ```java hl_lines="2"
+    void main() {
     }
     ```
 === "Groovy"
 
-    ```groovy hl_lines="1"
-    abstract class Vehicle {
-        def start() {}
+    ```groovy hl_lines="2"
+    def main() {
     }
     ```
 === "Kotlin"
 
-    ```kotlin hl_lines="1"
-    abstract class Vehicle {
-        fun start() {}
+    ```kotlin hl_lines="2"
+    fun main() {
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    void main() {
     }
     ```
 === "Python"
 
-    ```python hl_lines="3"
-    from abc import ABC
+    ```python hl_lines="2"
+    foo = {
+    }
+    ```
+=== "JavaScript"
 
-    class Vehicle(ABC):
-        def start(self):
-            pass
+    ```js hl_lines="2"
+    function main() {
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    function main(): void {
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -886,46 +849,306 @@ Abstract classes need at least one abstract function.
 === "Java"
 
     ```java hl_lines="1"
-    class Vehicle {
-        void start() {}
-    }
+    void main() {}
     ```
 === "Groovy"
 
     ```groovy hl_lines="1"
-    class Vehicle {
-        def start() {}
-    }
+    def main() {}
     ```
 === "Kotlin"
 
     ```kotlin hl_lines="1"
-    class Vehicle {
-        fun start() {}
-    }
+    fun main() {}
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="1"
+    void main() {}
     ```
 === "Python"
 
     ```python hl_lines="1"
-    class Vehicle:
-        def start(self):
-            pass
+    foo = {}
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    function main() {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    function main(): void {}
     ```
 
-### Contract function definition
+### Brackets clip
 
-Kotlin contract functions that carry a runnable parameter should have `inline`
-modifier. Without the modifier, user cannot assign a global variable within the
-code block.
+Empty collection initializers should be joined with the preceding code.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    var numbers = [
+    ]
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    std::vector<int> numbers = {
+    };
+    ```
+=== "Python"
+
+    ```python hl_lines="2"
+    numbers = [
+    ]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    const numbers = [
+    ];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    const numbers: number[] = [
+    ];
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    var numbers = []
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="1"
+    std::vector<int> numbers = {};
+    ```
+=== "Python"
+
+    ```python hl_lines="1"
+    numbers = []
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    const numbers = [];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    const numbers: number[] = [];
+    ```
+
+### Parentheses clip
+
+Empty method declarations and calls should be joined with the preceding code.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="2 4"
+    void recurse(
+    ) {
+        recurse(
+        );
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2 4"
+    def recurse(
+    ) {
+        recurse(
+        )
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2 4"
+    fun recurse(
+    ) {
+        recurse(
+        )
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2 4"
+    void recurse(
+    ) {
+        recurse(
+        );
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="2 4"
+    def recurse(
+    ):
+        recurse(
+        )
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2 4"
+    function recurse(
+    ) {
+        recurse(
+        );
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 4"
+    function recurse(
+    ): void {
+        recurse(
+        );
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="1-2"
+    void recurse() {
+        recurse();
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1-2"
+    def recurse() {
+        recurse()
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1-2"
+    fun recurse() {
+        recurse()
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="1-2"
+    void recurse() {
+        recurse();
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="1-2"
+    def recurse():
+        recurse()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1-2"
+    function recurse() {
+        recurse();
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1-2"
+    function recurse(): void {
+        recurse();
+    }
+    ```
+
+### Tags clip
+
+Empty generic types should be joined with the preceding code.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="2-3"
+    List<Float> points =
+        new ArrayList<
+            >();
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2-3"
+    var points =
+        new ArrayList<
+            >()
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="1-2"
+    template<
+    > int points() {
+        return 0;
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="2"
+    List<Float> points =
+        new ArrayList<>();
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    var points =
+        new ArrayList<>()
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="1"
+    template<> int points() {
+        return 0;
+    }
+    ```
+
+## Declaring
+
+### Deprecated type
+
+Prefer to use built-in types provided by the language.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
 
-    ```kotlin hl_lines="1"
-    fun action(block: () -> Unit) {
-        contract { callsInPlace(block, EXACTLY_ONCE) }
-        block()
+    ```kotlin hl_lines="1 4"
+    import java.util.ArrayList
+
+    val names = arrayListOf<String>()
+    val people = java.util.ArrayList<Person>()
+    ```
+=== "Python"
+
+    ```python hl_lines="1 3"
+    from typing import Optional
+
+    def get_name(person) -> Optional[str]:
+        return person['name']
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1 3"
+    type Nullable<T> = T | null;
+
+    function getName(person: any): Nullable<string> {
+        return person.name;
     }
     ```
 
@@ -933,14 +1156,49 @@ code block.
 
 === "Kotlin"
 
-    ```kotlin hl_lines="1"
-    inline fun action(block: () -> Unit) {
-        contract { callsInPlace(block, EXACTLY_ONCE) }
-        block()
+    ```kotlin hl_lines="2"
+    val names = arrayListOf<String>()
+    val people = ArrayList<Person>()
+    ```
+=== "Python"
+
+    ```python hl_lines="1"
+    def get_name(person) -> str | None:
+        return person['name']
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    function getName(person: any): string | null {
+        return person.name;
     }
     ```
 
-### Exception inheritance
+### Double quotes in block comment
+
+Use double quotes in Python docstrings.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Python"
+
+    ```python hl_lines="1"
+    '''
+    The quick brown fox jumps over the lazy dog.
+    '''
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Python"
+
+    ```python hl_lines="1"
+    """
+    The quick brown fox jumps over the lazy dog.
+    """
+    ```
+
+### Internal error
 
 Use `Exception` as superclass of custom exceptions. Most applications should not
 extend `Error` or `Throwable`.
@@ -993,7 +1251,7 @@ extend `Error` or `Throwable`.
         pass
     ```
 
-### Number suffix for double
+### Lowercase d
 
 Double floating point literals should be suffixed with lowercase `d`, which is
 more readable than `D`.
@@ -1024,10 +1282,9 @@ more readable than `D`.
     var quarter = 0.25d
     ```
 
-### Number suffix for float
+### Lowercase f
 
-Floating point literals should be suffixed with lowercase `f`, which is more
-readable than `F`.
+Floating point literals should be suffixed with lowercase `f`.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -1045,6 +1302,11 @@ readable than `F`.
 
     ```kotlin
     val half = 0.5F
+    ```
+=== "C/C++"
+
+    ```cpp
+    float half = 0.5F;
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -1064,11 +1326,95 @@ readable than `F`.
     ```kotlin
     val half = 0.5f
     ```
+=== "C/C++"
 
-### Number suffix for integer
+    ```cpp
+    float half = 0.5f;
+    ```
 
-Integer literals should be suffixed with lowercase `i`, which is more readable
-than `I`.
+### Lowercase Hexadecimal
+
+All letters in hexadecimal literals should be lowercase.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    int color = 0xFF00FF;
+    ```
+=== "Groovy"
+
+    ```groovy
+    var color = 0xFF00FF
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    val color = 0xFF00FF
+    ```
+=== "C/C++"
+
+    ```cpp
+    int color = 0xFF00FF;
+    ```
+=== "Python"
+
+    ```python
+    color = 0xFF00FF
+    ```
+=== "JavaScript"
+
+    ```js
+    const color = 0xFF00FF;
+    ```
+=== "TypeScript"
+
+    ```ts
+    const color: number = 0xFF00FF;
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    int color = 0xff00ff;
+    ```
+=== "Groovy"
+
+    ```groovy
+    var color = 0xff00ff
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    val color = 0xff00ff
+    ```
+=== "C/C++"
+
+    ```cpp
+    int color = 0xff00ff;
+    ```
+=== "Python"
+
+    ```python
+    color = 0xff00ff
+    ```
+=== "JavaScript"
+
+    ```js
+    const color = 0xff00ff;
+    ```
+=== "TypeScript"
+
+    ```ts
+    const color: number = 0xff00ff;
+    ```
+
+### Lowercase i
+
+Integer literals should be suffixed with lowercase `i`.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -1086,113 +1432,35 @@ than `I`.
     var ten = 10i
     ```
 
-### Number suffix for long
+### Missing inline in contract
 
-Long integer literals should be suffixed with uppercase `L`.
+Kotlin contract functions that carry a runnable parameter should have `inline`
+modifier. Without the modifier, user cannot assign a global variable within the
+code block.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
-=== "Java"
+=== "Kotlin"
 
-    ```java
-    long tenMillion = 10_000_000l;
-    ```
-=== "Groovy"
-
-    ```groovy
-    var tenMillion = 10_000_000l
+    ```kotlin hl_lines="1"
+    fun action(block: () -> Unit) {
+        contract { callsInPlace(block, EXACTLY_ONCE) }
+        block()
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
 
-=== "Java"
+=== "Kotlin"
 
-    ```java
-    long tenMillion = 10_000_000L;
-    ```
-=== "Groovy"
-
-    ```groovy
-    var tenMillion = 10_000_000L
+    ```kotlin hl_lines="1"
+    inline fun action(block: () -> Unit) {
+        contract { callsInPlace(block, EXACTLY_ONCE) }
+        block()
+    }
     ```
 
-### String quotes
-
-Wrap string in single quotes, unless there is a template or a single quote.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Groovy"
-
-    ```groovy
-    var name = "John Doe"
-
-    println('G\'day, ' + name)
-    ```
-=== "Python"
-
-    ```python
-    name = "John Doe"
-
-    print('G\'day, ' + name)
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Groovy"
-
-    ```groovy
-    var name = 'John Doe'
-
-    println("G'day, " + name)
-    ```
-=== "Python"
-
-    ```python
-    name = 'John Doe'
-
-    print("G'day, " + name)
-    ```
-
-### Unnecessary parentheses in lambda
-
-Single parameter lambdas should not have parentheses.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java
-    files.forEach((file) -> System.out.println(file));
-    ```
-=== "Groovy"
-
-    ```groovy
-    files.forEach((file) -> System.out.println(file))
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    files.forEach(file -> System.out.println(file));
-    ```
-=== "Groovy"
-
-    ```groovy
-    files.forEach(file -> System.out.println(file))
-    ```
-
-!!! tip
-    Parentheses on lambda parameters is a syntax error in:
-
-    - Kotlin if parameter is single
-    - Groovy closures, not lambdas
-
-Use single quotes for string literals, unless the string contains single quotes.
-
-### Utility class definition
+### Missing private constructor
 
 Utility classes should have a final modifier and a private constructor to
 prevent instantiation.
@@ -1243,7 +1511,616 @@ prevent instantiation.
     }
     ```
 
+### Redundant qualifier
+
+Strip fully qualified names when they are already imported.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="3"
+    import java.io.FileInputStream;
+
+    void read(java.io.FileInputStream stream) {}
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="3"
+    import java.io.FileInputStream
+
+    def read(java.io.FileInputStream stream) {}
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="3"
+    import java.io.FileInputStream;
+
+    void read(FileInputStream stream) {}
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="3"
+    import java.io.FileInputStream
+
+    def read(FileInputStream stream) {}
+    ```
+
+### Single quotes in literal
+
+Wrap string in single quotes, unless there is a template or a single quote.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy
+    var name = "John Doe"
+
+    println('G\'day, ' + name)
+    ```
+=== "Python"
+
+    ```python
+    name = "John Doe"
+
+    print('G\'day, ' + name)
+    ```
+=== "JavaScript"
+
+    ```js
+    const name = "John Doe";
+
+    console.log('G\'day, ' + name);
+    ```
+=== "TypeScript"
+
+    ```ts
+    const name: string = "John Doe";
+
+    console.log('G\'day, ' + name);
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy
+    var name = 'John Doe'
+
+    println("G'day, " + name)
+    ```
+=== "Python"
+
+    ```python
+    name = 'John Doe'
+
+    print("G'day, " + name)
+    ```
+=== "JavaScript"
+
+    ```js
+    const name = 'John Doe';
+
+    console.log(`G'day, ${name}`);
+    ```
+=== "TypeScript"
+
+    ```ts
+    const name: string = 'John Doe';
+
+    console.log(`G'day, ${name}`);
+    ```
+
+### Unnecessary abstract
+
+Abstract classes need at least one abstract function.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="1"
+    abstract class Vehicle {
+        void start() {}
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    abstract class Vehicle {
+        def start() {}
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    abstract class Vehicle {
+        fun start() {}
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="3"
+    from abc import ABC
+
+    class Vehicle(ABC):
+        def start(self):
+            pass
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    abstract class Vehicle {
+        start() {}
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="1"
+    class Vehicle {
+        void start() {}
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    class Vehicle {
+        def start() {}
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    class Vehicle {
+        fun start() {}
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="1"
+    class Vehicle:
+        def start(self):
+            pass
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    class Vehicle {
+        start() {}
+    }
+    ```
+
+### Unnecessary parentheses in lambda
+
+Single parameter lambdas should not have parentheses.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    files.forEach((file) -> System.out.println(file));
+    ```
+=== "Groovy"
+
+    ```groovy
+    files.forEach((file) -> System.out.println(file))
+    ```
+=== "JavaScript"
+
+    ```js
+    files.forEach((file) => console.log(file));
+    ```
+=== "TypeScript"
+
+    ```ts
+    files.forEach((file: string) => console.log(file));
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    files.forEach(file -> System.out.println(file));
+    ```
+=== "Groovy"
+
+    ```groovy
+    files.forEach(file -> System.out.println(file))
+    ```
+=== "JavaScript"
+
+    ```js
+    files.forEach(file => console.log(file));
+    ```
+=== "TypeScript"
+
+    ```ts
+    files.forEach((file: string) => console.log(file));
+    ```
+
+!!! tip
+
+    Parentheses on lambda parameters is a syntax error in:
+
+    - Kotlin if parameter is single
+    - Groovy closures, not lambdas
+
+Use single quotes for string literals, unless the string contains single quotes.
+
+### Uppercase L
+
+Long integer literals should be suffixed with uppercase `L`.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    long tenMillion = 10_000_000l;
+    ```
+=== "Groovy"
+
+    ```groovy
+    var tenMillion = 10_000_000l
+    ```
+=== "C/C++"
+
+    ```cpp
+    long ten_million = 10'000'000l;
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    long tenMillion = 10_000_000L;
+    ```
+=== "Groovy"
+
+    ```groovy
+    var tenMillion = 10_000_000L
+    ```
+=== "C/C++"
+
+    ```cpp
+    long ten_million = 10'000'000L;
+    ```
+
+## Expressing
+
+### Complicated boolean equality
+
+Simplify boolean expressions when applicable.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    boolean valid = isReady() == true && isRunning() == false;
+    ```
+=== "Groovy"
+
+    ```groovy
+    var valid = isReady() == true && isRunning() == false
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    val valid = isReady() == true && isRunning() == false
+    ```
+=== "Python"
+
+    ```python
+    valid = is_ready() == True and is_running() == False
+    ```
+=== "TypeScript"
+
+    ```ts
+    const valid: boolean = isReady() === true && isRunning() === false;
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    boolean valid = isReady() && !isRunning();
+    ```
+=== "Groovy"
+
+    ```groovy
+    var valid = isReady() && !isRunning()
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    val valid = isReady() && !isRunning()
+    ```
+=== "Python"
+
+    ```python
+    valid = is_ready() and not is_running()
+    ```
+=== "TypeScript"
+
+    ```ts
+    const valid: boolean = isReady() && !isRunning();
+    ```
+
+### Complicated size equality
+
+Use `isEmpty()` or `isNotEmpty()` instead of comparing collection size with
+zero. In languages with truthy values, use the collection itself in a boolean
+context.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="1"
+    if (files.size() > 0) {
+        collect(files);
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    if (files.size() > 0) {
+        collect(files)
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    if (files.size > 0) {
+        collect(files)
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="1"
+    if len(files) > 0:
+        collect(files)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    if (files.length > 0) {
+        collect(files);
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    if (files.length > 0) {
+        collect(files);
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="1"
+    if (!files.isEmpty()) {
+        collect(files);
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    if (!files.isEmpty()) {
+        collect(files)
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    if (files.isNotEmpty()) {
+        collect(files)
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="1"
+    if files:
+        collect(files)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    if (files.length) {
+        collect(files);
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    if (files.length) {
+        collect(files);
+    }
+    ```
+
+### Confusing predicate
+
+Use the positive form in a predicate call when it is a single expression and the
+calling function can be inverted.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+
+    ```kotlin
+    person.takeUnless { it.name != null }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+
+    ```kotlin
+    person.takeIf { it.name == null }
+    ```
+
+### Deprecated identity
+
+Use structural equality instead of referential equality when comparing with
+primitive values. In Kotlin, `null` is included in the set of primitive values.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+
+    ```kotlin
+    user.takeUnless { it.name === null }
+    ```
+=== "Python"
+
+    ```python
+    if len(user.addresses) is 1:
+        continue
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+
+    ```kotlin
+    user.takeUnless { it.name == null }
+    ```
+=== "Python"
+
+    ```python
+    if len(user.addresses) == 1:
+        continue
+    ```
+
+### Redundant equality
+
+Compare primitives with identity operator `===`.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    if (total == 0) {
+        return
+    }
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    if (total == 0) {
+        return;
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    if (total == 0) {
+        return;
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    if (total === 0) {
+        return
+    }
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    if (total === 0) {
+        return;
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    if (total === 0) {
+        return;
+    }
+    ```
+
+### Redundant equals
+
+Use explicit operator instead of named function in Groovy.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    if (total.equals(0)) {
+        return
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    if (total == 0) {
+        return
+    }
+    ```
+
 ## Formatting
+
+### Empty file
+
+Empty files should be removed. JVM source files with only package declaration
+is considered empty.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    package awesome.company;
+    ```
+=== "Groovy"
+
+    ```groovy
+    package awesome.company
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    package awesome.company
+    ```
+=== "Python"
+
+    ```python
+
+    ```
+=== "JavaScript"
+
+    ```js
+
+    ```
+=== "TypeScript"
+
+    ```ts
+
+    ```
 
 ### File size
 
@@ -1291,20 +2168,77 @@ limit, it should be split into multiple files.
         fun delete(articleId: Int) { /*...*/ }
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    int create_article(Article article) {
+        // ...
+    }
+
+    Article read_article(int article_id) {
+        // ...
+    }
+
+    void update_article(int article_id, Article article) {
+        // ...
+    }
+
+    void delete_article(int article_id) {
+        // ...
+    }
+    ```
 === "Python"
 
     ```python
-    def create_article(article: Article) -> int:
+    def create_article(article):
         // ...
 
-    def read_article(article_id: int) -> Article:
+    def read_article(article_id):
         // ...
 
-    def update_article(article_id: int, article: Article):
+    def update_article(article_id, article):
         // ...
 
-    def delete_article(article_id: int):
+    def delete_article(article_id):
         // ...
+    ```
+=== "JavaScript"
+
+    ```js
+    function createArticle(article) {
+        // ...
+    }
+
+    function readArticle(articleId) {
+        // ...
+    }
+
+    function updateArticle(articleId, article) {
+        // ...
+    }
+
+    function deleteArticle(articleId) {
+        // ...
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    function createArticle(article: Article): number {
+        // ...
+    }
+
+    function readArticle(articleId: number): Article {
+        // ...
+    }
+
+    function updateArticle(articleId: number, article: Article): void {
+        // ...
+    }
+
+    function deleteArticle(articleId: number): void {
+        // ...
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -1367,36 +2301,102 @@ limit, it should be split into multiple files.
     ```kotlin
     fun Articles.delete(articleId: Int) { /*...*/ }
     ```
+=== "C/C++"
+
+    ```cpp
+    int create_article(Article article) {
+        // ...
+    }
+    ```
+    ```cpp
+    Article read_article(int article_id) {
+        // ...
+    }
+    ```
+    ```cpp
+    void update_article(int article_id, Article article) {
+        // ...
+    }
+    ```
+    ```cpp
+    void delete_article(int article_id) {
+        // ...
+    }
+    ```
 === "Python"
 
     ```python
-    def create_article(article: Article) -> int:
+    def create_article(article):
         // ...
     ```
     ```python
-    def read_article(article_id: int) -> Article:
+    def read_article(article_id):
         // ...
     ```
     ```python
-    def update_article(article_id: int, article: Article):
+    def update_article(article_id, article):
         // ...
     ```
     ```python
-    def delete_article(article_id: int):
+    def delete_article(article_id):
         // ...
+    ```
+=== "JavaScript"
+
+    ```js
+    function createArticle(article) {
+        // ...
+    }
+    ```
+    ```js
+    function readArticle(articleId) {
+        // ...
+    }
+    ```
+    ```js
+    function updateArticle(articleId, article) {
+        // ...
+    }
+    ```
+    ```js
+    function deleteArticle(articleId) {
+        // ...
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    function createArticle(article: Article): number {
+        // ...
+    }
+    ```
+    ```ts
+    function readArticle(articleId: number): Article {
+        // ...
+    }
+    ```
+    ```ts
+    function updateArticle(articleId: number, article: Article): void {
+        // ...
+    }
+    ```
+    ```ts
+    function deleteArticle(articleId: number): void {
+        // ...
+    }
     ```
 
 ??? Configuration
 
-    :material-language-java:{ .lg .middle } Checkstyle | Default value
+    Setting | Default value
     --- | ---
-    FileLength#max | `1.000`
-    **:simple-apachegroovy:{ .lg .middle } CodeNarc**
-    ClassSize#maxLines | `1.000`
-    **:material-language-kotlin:{ .lg .middle } Ktlint**
-    rulebook_max_file_size | `1.000`
-    **:material-language-python: Pylint**
-    rulebook-max-file-size | `1.000`
+    :material-language-java:{ .lg .middle } `FileLength#max` | 1.000
+    :simple-apachegroovy:{ .lg .middle } `ClassSize#maxLines` | 1.000
+    :material-language-kotlin:{ .lg .middle } `rulebook_max_file_size` | 1.000
+    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--max-file-size` | 1.000
+    :material-language-python:{ .lg .middle } `rulebook-max-file-size` | 1.000
+    :material-language-javascript:{ .lg .middle } `max-lines` | 1.000
+    :material-language-typescript:{ .lg .middle } `max-lines` | 1.000
 
 ### Final newline
 
@@ -1419,11 +2419,26 @@ End files with a newline character.
     ```kotlin
     class AwesomeImplementation { /*...*/ }
     ```
+=== "C/C++"
+
+    ```cpp
+    class AwesomeImplementation { /*...*/ }
+    ```
 === "Python"
 
     ```python
     class AwesomeImplementation:
         pass
+    ```
+=== "JavaScript"
+
+    ```js
+    class AwesomeImplementation { /*...*/ }
+    ```
+=== "TypeScript"
+
+    ```ts
+    class AwesomeImplementation { /*...*/ }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -1446,11 +2461,29 @@ End files with a newline character.
     class AwesomeImplementation { /*...*/ }
     \n
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
+    \n
+    ```
 === "Python"
 
     ```python hl_lines="3"
     class AwesomeImplementation:
         pass
+    \n
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
+    \n
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
     \n
     ```
 
@@ -1463,36 +2496,63 @@ Use spaces instead of tabs for indentation.
 === "Java"
 
     ```java hl_lines="2-4"
-    class AwesomeImplementation {
-    \t  void doSomething() {
-    \t\t    expectCoolness();
-    \t  }
+    class Subscriber {
+    \t void subscribe() {
+    \t\t publisher.subscribe(this);
+    \t }
     }
     ```
 === "Groovy"
 
     ```groovy hl_lines="2-4"
-    class AwesomeImplementation {
-    \t  def doSomething() {
-    \t\t    expectCoolness()
-    \t  }
+    class Subscriber {
+    \t def subscribe() {
+    \t\t publisher.subscribe(this)
+    \t }
     }
     ```
 === "Kotlin"
 
     ```kotlin hl_lines="2-4"
-    class AwesomeImplementation {
-    \t  fun doSomething() {
-    \t\t    expectCoolness()
-    \t  }
+    class Subscriber {
+    \t fun subscribe() {
+    \t\t publisher.subscribe(this)
+    \t }
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2-4"
+    class Subscriber {
+    \t void subscribe() {
+    \t\t publisher.subscribe(this);
+    \t }
     }
     ```
 === "Python"
 
     ```python hl_lines="2-3"
-    class AwesomeImplementation:
-    \t  def do_something(self):
-    \t\t    expect_coolness()
+    class Subscriber:
+    \t def subscribe(self):
+    \t\t publisher.subscribe(self)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2-4"
+    class Subscriber {
+    \t subscribe() {
+    \t\t publisher.subscribe(this);
+    \t }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-4"
+    class Subscriber {
+    \t subscribe(): void {
+    \t\t publisher.subscribe(this);
+    \t }
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -1500,41 +2560,131 @@ Use spaces instead of tabs for indentation.
 === "Java"
 
     ```java hl_lines="2-4"
-    class AwesomeImplementation {
-        void doSomething() {
-            expectCoolness();
+    class Subscriber {
+        void subscribe() {
+            publisher.subscribe(this);
         }
     }
     ```
 === "Groovy"
 
     ```groovy hl_lines="2-4"
-    class AwesomeImplementation {
-        def doSomething() {
-            expectCoolness()
+    class Subscriber {
+        def subscribe() {
+            publisher.subscribe(this)
         }
     }
     ```
 === "Kotlin"
 
     ```kotlin hl_lines="2-4"
-    class AwesomeImplementation {
-        fun doSomething() {
-            expectCoolness()
+    class Subscriber {
+        fun subscribe() {
+            publisher.subscribe(this)
+        }
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2-4"
+    class Subscriber {
+        void subscribe() {
+            publisher.subscribe(this);
         }
     }
     ```
 === "Python"
 
     ```python hl_lines="2-3"
+    class Subscriber:
+        def subscribe(self):
+            publisher.subscribe(self)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2-4"
+    class Subscriber {
+        subscribe() {
+            publisher.subscribe(this);
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-4"
+    class Subscriber {
+        subscribe(): void {
+            publisher.subscribe(this);
+        }
+    }
+    ```
+
+### Line feed
+
+Apply Unix-style line feed (LF) as a line separator.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    class AwesomeImplementation { /*...*/ }\r\n
+    ```
+=== "Groovy"
+
+    ```groovy
+    class AwesomeImplementation { /*...*/ }\r\n
+    ```
+=== "Python"
+
+    ```python hl_lines="2"
     class AwesomeImplementation:
-        def do_something(self):
-            expect_coolness()
+        pass\r\n
+    ```
+=== "JavaScript"
+
+    ```js
+    class AwesomeImplementation { /*...*/ }\r\n
+    ```
+=== "TypeScript"
+
+    ```ts
+    class AwesomeImplementation { /*...*/ }\r\n
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "Groovy"
+
+    ```groovy
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "Python"
+
+    ```python hl_lines="2"
+    class AwesomeImplementation:
+        pass\n
+    ```
+=== "JavaScript"
+
+    ```js
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+
+=== "TypeScript"
+
+    ```ts
+    class AwesomeImplementation { /*...*/ }\n
     ```
 
 ### Line length
 
-Length of a line should not exceed 100 characters.
+Length of a line should not exceed certain number of characters.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -1553,10 +2703,25 @@ Length of a line should not exceed 100 characters.
     ```kotlin
     val builder = StringBuilder("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
     ```
+=== "C/C++"
+
+    ```cpp
+    std::string builder = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    ```
 === "Python"
 
     ```python
-    builder = ('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+    builder = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    ```
+=== "JavaScript"
+
+    ```js
+    const builder = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+    ```
+=== "TypeScript"
+
+    ```ts
+    const builder: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -1585,67 +2750,128 @@ Length of a line should not exceed 100 characters.
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         )
     ```
+=== "C/C++"
+
+    ```cpp
+    std::string builder =
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    ```
 === "Python"
 
     ```python
-    builder = (
+    builder = \
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    )
+    ```
+=== "JavaScript"
+
+    ```js
+    const builder =
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+    ```
+=== "TypeScript"
+
+    ```ts
+    const builder: string =
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
     ```
 
 ??? Configuration
 
-    :material-language-java:{ .lg .middle } Checkstyle | Default value
+    Setting | Default value
     --- | ---
-    LineLength#max | `100`
-    **:simple-apachegroovy:{ .lg .middle } CodeNarc**
-    LineLength#length | `100`
-    **:material-language-kotlin:{ .lg .middle } Ktlint**
-    rulebook_max_line_length | `100`
-    **:material-language-python: Pylint**
-    rulebook-max-line-length | `100`
+    :material-language-java:{ .lg .middle } `LineLength#max` | 100
+    :simple-apachegroovy:{ .lg .middle } `LineLength#length` | 100
+    :material-language-kotlin:{ .lg .middle } `rulebook_max_line_length` | 100
+    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--max-line-length` | 100
+    :material-language-python:{ .lg .middle } `rulebook-max-line-length` | 100
+    :material-language-javascript:{ .lg .middle } `max-len` | 100
+    :material-language-typescript:{ .lg .middle } `max-len` | 100
 
-### Unnecessary blank file
+### Unnecessary trailing space
 
-Empty files should be removed. JVM source files with only package declaration
-is considered empty.
+A line should not end with a whitespace character.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
 
     ```java
-    package awesome.company;
+    class AwesomeImplementation { /*...*/ } \n
     ```
 === "Groovy"
 
     ```groovy
-    package awesome.company
+    class AwesomeImplementation { /*...*/ } \n
     ```
 === "Kotlin"
 
     ```kotlin
-    package awesome.company
+    class AwesomeImplementation { /*...*/ } \n
+    ```
+=== "C/C++"
+
+    ```cpp
+    class AwesomeImplementation { /*...*/ } \n
     ```
 === "Python"
 
-    ```python
-
+    ```python hl_lines="2"
+    class AwesomeImplementation:
+        pass \n
     ```
 === "JavaScript"
 
     ```js
-
+    class AwesomeImplementation { /*...*/ } \n
     ```
 === "TypeScript"
 
     ```ts
+    class AwesomeImplementation { /*...*/ } \n
+    ```
 
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "Groovy"
+
+    ```groovy
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "C/C++"
+
+    ```cpp
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "Python"
+
+    ```python hl_lines="2"
+    class AwesomeImplementation:
+        pass\n
+    ```
+=== "JavaScript"
+
+    ```js
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "TypeScript"
+
+    ```ts
+    class AwesomeImplementation { /*...*/ }\n
     ```
 
 ## Naming
 
-### Class name abbreviation
+### Abbreviation as word
 
 Ensures that the first letter of acronyms longer than three characters are
 always capitalized.
@@ -1673,11 +2899,25 @@ always capitalized.
         val httpURL = "https://example.com"
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    class RestAPI {
+        std::string httpURL = "https://example.com";
+    }
+    ```
 === "Python"
 
     ```python
     class RestAPI:
         http_url = 'https://example.com'
+    ```
+=== "TypeScript"
+
+    ```ts
+    class RestAPI {
+        httpURL: string = 'https://example.com';
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -1703,11 +2943,52 @@ always capitalized.
         val httpUrl = "https://example.com"
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    class RestApi {
+        std::string http_url = "https://example.com";
+    }
+    ```
 === "Python"
 
     ```python
     class RestApi:
         http_url = 'https://example.com'
+    ```
+=== "TypeScript"
+
+    ```ts
+    class RestApi {
+        httpUrl: string = 'https://example.com';
+    }
+    ```
+
+### Boolean property interoperability
+
+Kotlin field definitions that are Boolean types should be prefixed with `is`.
+Otherwise, the compiler will generate a getter method with `get` prefix.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+
+    ```kotlin
+    val active: Boolean
+    ```
+    ```java
+    boolean getActive() {}
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+
+    ```kotlin
+    val isActive: Boolean
+    ```
+    ```java
+    boolean isActive() {}
     ```
 
 ### Class name
@@ -1730,6 +3011,11 @@ Class, interface and object names are written in `PascalCase`.
 
     ```kotlin
     class train_station
+    ```
+=== "C/C++"
+
+    ```cpp
+    class train_station {};
     ```
 === "Python"
 
@@ -1755,6 +3041,11 @@ Class, interface and object names are written in `PascalCase`.
     ```kotlin
     class TrainStation
     ```
+=== "C/C++"
+
+    ```cpp
+    class TrainStation {};
+    ```
 === "Python"
 
     ```python
@@ -1762,7 +3053,7 @@ Class, interface and object names are written in `PascalCase`.
         pass
     ```
 
-### Constant property name
+### Constant name
 
 Constant fields should be written in `SCREAMING_SNAKE_CASE`.
 
@@ -1783,6 +3074,11 @@ Constant fields should be written in `SCREAMING_SNAKE_CASE`.
     ```kotlin
     const val maxValue = 99
     ```
+=== "TypeScript"
+
+    ```ts
+    const maxValue: number = 99;
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -1801,6 +3097,11 @@ Constant fields should be written in `SCREAMING_SNAKE_CASE`.
     ```kotlin
     const val MAX_VALUE = 99
     ```
+=== "TypeScript"
+
+    ```ts
+    const MAX_VALUE: number = 99;
+    ```
 
 ### File name
 
@@ -1810,49 +3111,231 @@ root class name.
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
+
     ```
     └─ com.example
-       ├─ UserObject.java
-       └─ class User {}
+       └─ UserObject.java
+          └─ class User {}
     ```
 === "Groovy"
+
     ```
     └─ com.example
-       ├─ UserObject.groovy
-       └─ class User {}
+       └─ UserObject.groovy
+          └─ class User {}
     ```
 === "Kotlin"
+
     ```
     └─ com.example
-       ├─ UserObject.kt
-       └─ class User
+       └─ UserObject.kt
+          └─ class User
+    ```
+=== "C/C++"
+
+    ```
+    └─ com.example
+       └─ UserObject.cpp
+          └─ class User {};
+    ```
+=== "Python"
+
+    ```
+    └─ com.example
+       └─ user_object.py
+          └─ class User:
+              pass
+    ```
+=== "JavaScript"
+
+    ```
+    └─ com.example
+       └─ UserObject.js
+          └─ class User {}
+    ```
+=== "TypeScript"
+
+    ```
+    └─ com.example
+       └─ UserObject.ts
+          └─ class User {}
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
+
     ```
     └─ com.example
-       ├─ User.java
-       └─ class User {}
+       └─ User.java
+          └─ class User {}
     ```
 === "Groovy"
+
     ```
     └─ com.example
-       ├─ User.groovy
-       └─ class User {}
+       └─ User.groovy
+          └─ class User {}
     ```
 === "Kotlin"
+
     ```
     └─ com.example
-       ├─ User.kt
-       └─ class User
+       └─ User.kt
+          └─ class User
+    ```
+=== "C/C++"
+
+    ```
+    └─ com.example
+       └─ User.cpp
+          └─ class User {};
+    ```
+=== "Python"
+
+    ```
+    └─ com.example
+       └─ user.py
+          └─ class User:
+              pass
+    ```
+=== "JavaScript"
+
+    ```
+    └─ com.example
+       └─ User.js
+          └─ class User {}
+    ```
+=== "TypeScript"
+
+    ```
+    └─ com.example
+       └─ User.ts
+          └─ class User {}
+    ```
+
+### Generic name
+
+Generic type parameters should be named with a single uppercase letter. This
+rule is ignored when there are multiple generic type parameters in the same
+declaration.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    class Box<Element> {}
+
+    void <Type> rotate(Box<Type> box) {}
+    ```
+=== "Groovy"
+
+    ```groovy
+    class Box<Element> {}
+
+    void <Type> rotate(Box<Type> box) {}
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    class Box<Element>() {}
+
+    fun <Type> rotate(box: Box<Type>) {}
+    ```
+=== "C/C++"
+
+    ```cpp
+    template <typename Element>
+    class Box {};
+
+    template <typename Type>
+    void rotate(Box<Type> box) {}
+    ```
+=== "Python"
+
+    ```python
+    from typing import TypeVar
+
+    Element = TypeVar('Element')
+    Type = TypeVar('Type')
+
+
+    class Box(Element):
+        pass
+
+
+    def rotate(box: Box[Type]):
+        pass
+    ```
+=== "TypeScript"
+
+    ```ts
+    class Box<Element> {}
+
+    function rotate<Type>(box: Box<Type>): void {}
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    class Box<E> {}
+
+    void <T> rotate(Box<T> box) {}
+    ```
+=== "Groovy"
+
+    ```groovy
+    class Box<E> {}
+
+    void <T> rotate(Box<T> box) {}
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    class Box<E>() {}
+
+    fun <T> rotate(box: Box<T>) {}
+    ```
+=== "C/C++"
+
+    ```cpp
+    template <typename E>
+    class Box {};
+
+    template <typename T>
+    void rotate(Box<T> box) {}
+    ```
+=== "Python"
+
+    ```python
+    from typing import TypeVar
+
+    E = TypeVar('E')
+    T = TypeVar('T')
+
+
+    class Box(E):
+        pass
+
+
+    def rotate(box: Box[T]):
+        pass
+    ```
+=== "TypeScript"
+
+    ```ts
+    class Box<E> {}
+
+    function rotate<T>(box: Box<T>): void {}
     ```
 
 ### Identifier name
 
 Non-constant fields, functions and parameters should be written in
-**camelCase.**
+**camelCase.** In Python and C/C++, the **snake_case** style is used instead.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -1877,11 +3360,25 @@ Non-constant fields, functions and parameters should be written in
         val AnotherUser = User
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    void DebugUser(User User) {
+        User AnotherUser = User;
+    }
+    ```
 === "Python"
 
     ```python
     def DebugUser(User):
         AnotherUser = User
+    ```
+=== "TypeScript"
+
+    ```ts
+    function DebugUser(User: User): void {
+        const AnotherUser: User = User;
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -1907,78 +3404,26 @@ Non-constant fields, functions and parameters should be written in
         val anotherUser = user
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    void debug_user(User user) {
+        User another_user = user;
+    }
+    ```
 === "Python"
 
     ```python
     def debug_user(user):
         another_user = user
     ```
+=== "TypeScript"
 
-### Illegal class name suffix
-
-Prohibits meaningless source names in class, interface, object and files. The
-name of utility classes (or files) should be the plural form of the extended
-class.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java
-    class SpaceshipWrapper {}
+    ```ts
+    function debugUser(user: User): void {
+        const anotherUser: User = user;
+    }
     ```
-=== "Groovy"
-
-    ```groovy
-    class SpaceshipWrapper {}
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    class SpaceshipWrapper
-    ```
-=== "Python"
-
-    ```python
-    class SpaceshipWrapper():
-        pass
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    class Spaceship {}
-    ```
-=== "Groovy"
-
-    ```groovy
-    class Spaceship {}
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    class Spaceship
-    ```
-=== "Python"
-
-    ```python
-    class Spaceship():
-        pass
-    ```
-
-??? Configuration
-
-    :material-language-java:{ .lg .middle } Checkstyle | Default value
-    --- | ---
-    IllegalClassNameSuffix#names | `Util, Utility, Helper, Manager, Wrapper`
-    **:simple-apachegroovy:{ .lg .middle } CodeNarc**
-    IllegalClassNameSuffix#names | `Util, Utility, Helper, Manager, Wrapper`
-    **:material-language-kotlin:{ .lg .middle } Ktlint**
-    rulebook_illegal_class_name_suffixes | `Util, Utility, Helper, Manager, Wrapper`
-    **:material-language-python: Pylint**
-    rulebook-illegal-class-name-suffixes | `Util, Utility, Helper, Manager, Wrapper`
 
 ### Illegal variable name
 
@@ -2009,12 +3454,33 @@ identifier should be descriptive and meaningful.
 
     val list: List<Person>
     ```
+=== "C/C++"
+
+    ```cpp
+    std::string string;
+
+    std::vector<Person> list;
+    ```
 === "Python"
 
     ```python
     string: str
 
     list: list[Person]
+    ```
+=== "JavaScript"
+
+    ```js
+    let string;
+
+    let list;
+    ```
+=== "TypeScript"
+
+    ```ts
+    let string: string;
+
+    let list: Person[];
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -2040,6 +3506,13 @@ identifier should be descriptive and meaningful.
 
     val people: List<Person>
     ```
+=== "C/C++"
+
+    ```cpp
+    std::string name;
+
+    std::vector<Person> people;
+    ```
 === "Python"
 
     ```python
@@ -2047,22 +3520,131 @@ identifier should be descriptive and meaningful.
 
     people: list[Person]
     ```
+=== "JavaScript"
+
+    ```js
+    let name;
+
+    let people;
+    ```
+=== "TypeScript"
+
+    ```ts
+    let name: string;
+
+    let people: Person[];
+    ```
 
 ??? Configuration
 
-    :material-language-java:{ .lg .middle } Checkstyle | Default value
+    Setting | Default value
     --- | ---
-    IllegalIdentifierName#format | `object, integer, string, objects, integers, strings`
-    **:simple-apachegroovy:{ .lg .middle } CodeNarc**
-    IllegalVariableName#names | `object, integer, string, object, integers, strings`
-    **:material-language-kotlin:{ .lg .middle } Ktlint**
-    rulebook_illegal_variable_names | `any, boolean, byte, char, double, float, int, long, short, string, many, booleans, bytes, chars, doubles, floats, ints, longs, shorts`
-    **:material-language-python: Pylint**
-    bad-names | `objs, ints, strs`
+    :material-language-java:{ .lg .middle } `IllegalIdentifierName#format` | object, integer, string, objects, integers, strings
+    :simple-apachegroovy:{ .lg .middle } `IllegalVariableName#names` | object, integer, string, object, integers, strings
+    :material-language-kotlin:{ .lg .middle } `rulebook_illegal_variable_names` | any, boolean, byte, char, double, float, int, long, short, string, many, booleans, bytes, chars, doubles, floats, ints, longs, shorts
+    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--illegal-variable-names` | integer, string, integers, strings
+    :material-language-python:{ .lg .middle } `bad-names` | objs, ints, strs
+    :material-language-javascript:{ .lg .middle } `id-denylist` | error, object, number, string, objects, numbers, strings
+    :material-language-typescript:{ .lg .middle } `id-denylist` | error, object, number, string, objects, numbers, strings
+
+### Meaningless word
+
+Prohibits meaningless source names in class, interface, object and files. The
+name of utility classes (or files) should be the plural form of the extended
+class.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    class SpaceshipWrapper {}
+    ```
+=== "Groovy"
+
+    ```groovy
+    class SpaceshipWrapper {}
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    class SpaceshipWrapper
+    ```
+=== "C/C++"
+
+    ```cpp
+    class SpaceshipWrapper {};
+    ```
+=== "Python"
+
+    ```python
+    class SpaceshipWrapper():
+        pass
+    ```
+=== "JavaScript"
+
+    ```js
+    class SpaceshipWrapper {}
+    ```
+=== "TypeScript"
+
+    ```ts
+    class SpaceshipWrapper {}
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    class Spaceship {}
+    ```
+=== "Groovy"
+
+    ```groovy
+    class Spaceship {}
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    class Spaceship
+    ```
+=== "C/C++"
+
+    ```cpp
+    class Spaceship {};
+    ```
+=== "Python"
+
+    ```python
+    class Spaceship():
+        pass
+    ```
+=== "JavaScript"
+
+    ```js
+    class Spaceship {}
+    ```
+=== "TypeScript"
+
+    ```ts
+    class Spaceship {}
+    ```
+
+??? Configuration
+
+    Setting | Default value
+    --- | ---
+    :material-language-java:{ .lg .middle } `MeaninglessWord#words` | Util, Utility, Helper, Manager, Wrapper
+    :simple-apachegroovy:{ .lg .middle } `MeaninglessWord#words` | Util, Utility, Helper, Manager, Wrapper
+    :material-language-kotlin:{ .lg .middle } `rulebook_meaningless_words` | Util, Utility, Helper, Manager, Wrapper
+    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--meaningless-words` | Util, Utility, Helper, Manager, Wrapper
+    :material-language-python:{ .lg .middle } `rulebook-meaningless-words` | Util, Utility, Helper, Manager, Wrapper
 
 ### Package name
 
-Package names should be written in lowercase with no separators.
+Package names should be written in lowercase with no separators. In C++,
+namespaces are considered as packages.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -2081,10 +3663,22 @@ Package names should be written in lowercase with no separators.
     ```kotlin
     package com.example.user_management
     ```
-=== "Python"
+=== "C/C++"
+
+    ```cpp
+    namespace com {
+        namespace example {
+            namespace user_management {
+                // ...
+            }
+        }
+    }
     ```
-    └─ user_management
-       └─ UserConfig.py
+=== "Python"
+
+    ```
+    └─ UserManagement
+       └─ user_config.py
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -2104,140 +3698,23 @@ Package names should be written in lowercase with no separators.
     ```kotlin
     package com.example.usermanagement
     ```
+=== "C/C++"
+
+    ```cpp
+    namespace com {
+        namespace example {
+            namespace usermanagement {
+                // ...
+            }
+        }
+    }
+    ```
 === "Python"
 
     ```python
     └─ user_management
        └─ user_config.py
     ```
-
-### Property name interop
-
-Kotlin field definitions that are Boolean types should be prefixed with `is`.
-Otherwise, the compiler will generate a getter method with `get` prefix.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-
-    ```kotlin
-    val active: Boolean
-    ```
-    ```java
-    boolean getActive() {}
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-
-    ```kotlin
-    val isActive: Boolean
-    ```
-    ```java
-    boolean isActive() {}
-    ```
-
-### Required generics name
-
-Only use common generic type names according to Oracle. Multiple generic types
-declaration is ignored.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java
-    class Box<A> {}
-
-    void <X> rotate(Box<X> box) {}
-    ```
-=== "Groovy"
-
-    ```groovy
-    class Box<A> {}
-
-    void <X> rotate(Box<X> box) {}
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    class Box<A>() {}
-
-    fun <X> rotate(box: Box<X>) {}
-    ```
-=== "Python"
-
-    ```python
-    from typing import TypeVar
-
-    A = TypeVar('A')
-    X = TypeVar('X')
-
-
-    class Box(A):
-        pass
-
-
-    def rotate(box: Box[X]):
-        pass
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    class Box<E> {}
-
-    void <T> rotate(Box<T> box) {}
-    ```
-=== "Groovy"
-
-    ```groovy
-    class Box<E> {}
-
-    void <T> rotate(Box<T> box) {}
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    class Box<E>() {}
-
-    fun <T> rotate(box: Box<T>) {}
-    ```
-=== "Python"
-
-    ```python
-    from typing import TypeVar
-
-    E = TypeVar('E')
-    T = TypeVar('T')
-
-
-    class Box(E):
-        pass
-
-
-    def rotate(box: Box[T]):
-        pass
-    ```
-
-??? Configuration
-
-    :material-language-java:{ .lg .middle } Checkstyle | Default value
-    --- | ---
-    ClassTypeParameterName#format | `E, K, N, T, V`
-    InterfaceTypeParameterName#format | `E, K, N, T, V`
-    MethodTypeParameterName#format | `E, K, N, T, V`
-    RecordTypeParameterName#format | `E, K, N, T, V`
-    TypeParameterName#format | `E, K, N, T, V`
-    **:simple-apachegroovy:{ .lg .middle } CodeNarc**
-    RequiredGenericName#names | `E, K, N, T, V`
-    **:material-language-kotlin:{ .lg .middle } Ktlint**
-    rulebook_required_generic_names | `E, K, N, T, V`
-    **:material-language-python: Pylint**
-    rulebook-required-generic-names | `E, K, N, T, V`
 
 ## Ordering
 
@@ -2278,6 +3755,26 @@ Block tags should be ordered in the following sequence: `@constructor`,
      */
     abstract fun createUser(name: String): User
     ```
+=== "JavaScript"
+
+    ```js hl_lines="2-4"
+    /**
+     * @see User
+     * @return The user object.
+     * @param name The name of the user.
+     */
+    function createUser(name) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-4"
+    /**
+     * @see User
+     * @return The user object.
+     * @param name The name of the user.
+     */
+    function createUser(name: string): User {}
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -2311,8 +3808,28 @@ Block tags should be ordered in the following sequence: `@constructor`,
      */
     abstract fun createUser(name: String): User
     ```
+=== "JavaScript"
 
-### Built-in function position
+    ```js hl_lines="2-4"
+    /**
+     * @param name The name of the user.
+     * @return The user object.
+     * @see User
+     */
+    function createUser(name) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-4"
+    /**
+     * @param name The name of the user.
+     * @return The user object.
+     * @see User
+     */
+    function createUser(name: string): User {}
+    ```
+
+### Common function position
 
 Place Object built-in methods such as `toString()`, `hashCode()` and `equals()`
 at the end of the class.
@@ -2384,6 +3901,40 @@ at the end of the class.
         def notify(self):
             print(self.message)
     ```
+=== "JavaScript"
+
+    ```js hl_lines="6-8"
+    class Notification {
+        constructor(message) {
+            this.message = message;
+        }
+
+        toString() {
+            return this.message;
+        }
+
+        notify() {
+            console.log(this.message);
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="6-8"
+    class Notification {
+        constructor(message: string) {
+            this.message = message;
+        }
+
+        toString(): string {
+            return this.message;
+        }
+
+        notify(): void {
+            console.log(this.message);
+        }
+    }
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -2452,6 +4003,40 @@ at the end of the class.
         def __str__(self):
             return self.message
     ```
+=== "JavaScript"
+
+    ```js hl_lines="10-12"
+    class Notification {
+        constructor(message) {
+            this.message = message;
+        }
+
+        notify() {
+            console.log(this.message);
+        }
+
+        toString() {
+            return this.message;
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="10-12"
+    class Notification {
+        constructor(message: string) {
+            this.message = message;
+        }
+
+        notify(): void {
+            console.log(this.message);
+        }
+
+        toString(): string {
+            return this.message;
+        }
+    }
+    ```
 
 ### Import order
 
@@ -2480,12 +4065,33 @@ Import directives should be ordered alphabetically without any blank lines.
 
     import com.example.User
     ```
+=== "C/C++"
+
+    ```cpp
+    #include "user.h"
+
+    #include <vector>
+    ```
 === "Python"
 
     ```python
     import utils
 
     import user
+    ```
+=== "JavaScript"
+
+    ```js
+    import { Utils } from './utils';
+
+    import { User } from './user';
+    ```
+=== "TypeScript"
+
+    ```ts
+    import { Utils } from './utils';
+
+    import { User } from './user';
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -2508,11 +4114,29 @@ Import directives should be ordered alphabetically without any blank lines.
     import com.example.User
     import java.util.List
     ```
+=== "C/C++"
+
+    ```cpp
+    #include <vector>
+    #include "user.h"
+    ```
 === "Python"
 
     ```python
     import user
     import utils
+    ```
+=== "JavaScript"
+
+    ```js
+    import { User } from './user';
+    import { Utils } from './utils';
+    ```
+=== "TypeScript"
+
+    ```ts
+    import { User } from './user';
+    import { Utils } from './utils';
     ```
 
 ### Inner class position
@@ -2552,6 +4176,17 @@ Place inner classes at the end of the class.
         constructor(content: String) : this(content, null)
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    class Article {
+        class Author {};
+
+        Article(std::string content, Author author) {}
+
+        Article(std::string content) {}
+    }
+    ```
 === "Python"
 
     ```python hl_lines="2"
@@ -2561,6 +4196,28 @@ Place inner classes at the end of the class.
 
         def __init__(self, content, author = None):
             pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    class Article {
+        class Author {}
+
+        constructor(content, author) {}
+
+        constructor(content) {}
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    class Article {
+        class Author {}
+
+        constructor(content: string, author: Author) {}
+
+        constructor(content: string) {}
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -2596,6 +4253,17 @@ Place inner classes at the end of the class.
         class Author(name: String)
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="6"
+    class Article {
+        Article(std::string content, Author author) {}
+
+        Article(std::string content) {}
+
+        class Author {};
+    }
+    ```
 === "Python"
 
     ```python hl_lines="5"
@@ -2605,6 +4273,28 @@ Place inner classes at the end of the class.
 
         class Author:
             pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="6"
+    class Article {
+        constructor(content, author) {}
+
+        constructor(content) {}
+
+        class Author {}
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="6"
+    class Article {
+        constructor(content: string, author: Author) {}
+
+        constructor(content: string) {}
+
+        class Author {}
+    }
     ```
 
 ### Member order
@@ -2680,6 +4370,25 @@ to the last member that uses them.
         }
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    class Car {
+        static void log(std::string message) {
+            std::cout << message << std::endl;
+        }
+
+        Car(std::string brand, std::string model) {}
+
+        Car(std::string brand) : Car(brand, "Unknown") {}
+
+        int wheels = 4;
+
+        void start() {
+            log("Car created");
+        }
+    }
+    ```
 === "Python"
 
     ```python
@@ -2695,6 +4404,48 @@ to the last member that uses them.
 
         def start(self):
             log('Car started')
+    ```
+=== "JavaScript"
+
+    ```js
+    class Car {
+        static log(message) {
+            console.log(message);
+        }
+
+        constructor(brand, model) {}
+
+        constructor(brand) {
+            this(brand, 'Unknown');
+        }
+
+        wheels = 4;
+
+        start() {
+            Car.log('Car created');
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    class Car {
+        static log(message: string): void {
+            console.log(message);
+        }
+
+        constructor(brand: string, model: string) {}
+
+        constructor(brand: string) {
+            this(brand, 'Unknown');
+        }
+
+        wheels: number = 4;
+
+        start(): void {
+            Car.log('Car created');
+        }
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -2764,6 +4515,25 @@ to the last member that uses them.
         }
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    class Car {
+        int wheels = 4;
+
+        Car(std::string brand, std::string model) {}
+
+        Car(std::string brand) : Car(brand, "Unknown") {}
+
+        void start() {
+            log("Car created");
+        }
+
+        static void log(std::string message) {
+            std::cout << message << std::endl;
+        }
+    }
+    ```
 === "Python"
 
     ```python
@@ -2780,18 +4550,158 @@ to the last member that uses them.
         def log(message: str):
             print(message)
     ```
+=== "JavaScript"
+
+    ```js
+    class Car {
+        wheels = 4;
+
+        constructor(brand, model) {}
+
+        constructor(brand) {
+            this(brand, 'Unknown');
+        }
+
+        start() {
+            Car.log('Car created');
+        }
+
+        static log(message) {
+            console.log(message);
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    class Car {
+        wheels: number = 4;
+
+        constructor(brand: string, model: string) {}
+
+        constructor(brand: string) {
+            this(brand, 'Unknown');
+        }
+
+        start(): void {
+            Car.log('Car created');
+        }
+
+        static log(message: string): void {
+            console.log(message);
+        }
+    }
+    ```
 
 ??? Configuration
 
-    :material-language-java:{ .lg .middle } Checkstyle | Default value
+    Setting | Default value
     --- | ---
-    MemberOrder#order | `property, constructor, method, static`
-    **:simple-apachegroovy:{ .lg .middle } CodeNarc**
-    MemberOrder#order | `property, constructor, method, static`
-    **:material-language-kotlin:{ .lg .middle } Ktlint**
-    rulebook_member_order | `property, initializer, constructor, method, companion`
-    **:material-language-python: Pylint**
-    rulebook-member-order | `property, constructor, method, static`
+    :material-language-java:{ .lg .middle } `MemberOrder#order` | property, constructor, function, static
+    :simple-apachegroovy:{ .lg .middle } `MemberOrder#order` | property, constructor, function, static
+    :material-language-kotlin:{ .lg .middle } `rulebook_member_order` | property, initializer, constructor, function, companion
+    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--member-order` | property, constructor, function, static
+    :material-language-python:{ .lg .middle } `rulebook-member-order` | property, constructor, function, static
+    :material-language-javascript:{ .lg .middle } `sort-class-members` | property, constructor, function, static
+    :material-language-typescript:{ .lg .middle } `sort-class-members` | property, constructor, function, static
+
+### Modifier order
+
+Visibility modifiers first, followed by abstraction modifiers, then other
+modifiers.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    abstract public class Beacon {
+        final static int MAX_RANGE = 100;
+    }
+    ```
+=== "Groovy"
+
+    ```groovy
+    abstract public class Beacon {
+        final static var MAX_RANGE = 100
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    abstract public class Beacon {
+        companion object {
+            const val MAX_RANGE = 100
+        }
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    public abstract class Beacon {
+        static final int MAX_RANGE = 100;
+    }
+    ```
+=== "Groovy"
+
+    ```groovy
+    public abstract class Beacon {
+        static final var MAX_RANGE = 100
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    public abstract class Beacon {
+        companion object {
+            const val MAX_RANGE = 100
+        }
+    }
+    ```
+
+### Named import order
+
+Multiple import directives from the same package should be ordered
+alphabetically.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Python"
+
+    ```python
+    from utils import validate, parse, format
+    ```
+=== "JavaScript"
+
+    ```js
+    import { validate, parse, format } from './utils';
+    ```
+=== "TypeScript"
+
+    ```ts
+    import { validate, parse, format } from './utils';
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Python"
+
+    ```python
+    from utils import format, parse, validate
+    ```
+=== "JavaScript"
+
+    ```js
+    import { format, parse, validate } from './utils';
+    ```
+=== "TypeScript"
+
+    ```ts
+    import { format, parse, validate } from './utils';
+    ```
 
 ### Overload function position
 
@@ -2838,6 +4748,36 @@ Place overloaded functions next to each other.
 
     fun sum(a: Int, b: Int, c: Int): Int = a + b + c
     ```
+=== "JavaScript"
+
+    ```js hl_lines="9-11"
+    function sum(a, b) {
+        return a + b;
+    }
+
+    function times(a, b) {
+        return a * b;
+    }
+
+    function sum(a, b, c) {
+        return a + b + c;
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="9-11"
+    function sum(a: number, b: number): number {
+        return a + b;
+    }
+
+    function times(a: number, b: number): number {
+        return a * b;
+    }
+
+    function sum(a: number, b: number, c: number): number {
+        return a + b + c;
+    }
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -2880,6 +4820,36 @@ Place overloaded functions next to each other.
 
     fun times(a: Int, b: Int): Int = a * b
     ```
+=== "JavaScript"
+
+    ```js hl_lines="5-7"
+    function sum(a, b) {
+        return a + b;
+    }
+
+    function sum(a, b, c) {
+        return a + b + c;
+    }
+
+    function times(a, b) {
+        return a * b;
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="5-7"
+    function sum(a: number, b: number): number {
+        return a + b;
+    }
+
+    function sum(a: number, b: number, c: number): number {
+        return a + b + c;
+    }
+
+    function times(a: number, b: number): number {
+        return a * b;
+    }
+    ```
 
 ### Static import position
 
@@ -2920,6 +4890,158 @@ by a blank line.
     import java.util.List
     ```
 
+## Scripting
+
+### Decentralized dependency
+
+Declare dependencies in a centralizeed version catalog file and refer to them by
+their alias in the build script.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy
+    dependencies.implementation 'org.apache.commons:commons-lang3:3.12.0'
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    dependencies.implementation("org.apache.commons:commons-lang3:3.12.0")
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy
+    dependencies.implementation libs.commons.lang3
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    dependencies.implementation(libs.commons.lang3)
+    ```
+
+### Eager API
+
+Prefer eager calls over lazy ones.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    tasks.findByName('compileJava') {
+        println 'Compilation completed'
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    tasks.findByName("compileJava") {
+        println("Compilation completed")
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    tasks.named('compileJava') {
+        println 'Compilation completed'
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    tasks.named("compileJava") {
+        println("Compilation completed")
+    }
+    ```
+
+### Lonely configuration
+
+Avoid opening a scope for a single configuration.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy
+    repositories {
+        mavenCentral()
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    repositories {
+        mavenCentral()
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy
+    repositories.mavenCentral()
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    repositories.mavenCentral()
+    ```
+
+### Root project name
+
+Specify the root project name in `settings.gradle` or `settings.gradle.kts`.
+
+**:material-star-four-points-outline:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy
+    rootProject.name = 'my-app'
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    rootProject.name = "my-app"
+    ```
+
+### Script file name
+
+Script file names are in lowercase with words separated by hyphens.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```
+    └─ publish_site.gradle
+    ```
+=== "Kotlin"
+
+    ```
+    └─ publish_site.gradle.kts
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```
+    └─ publish-site.gradle
+    ```
+=== "Kotlin"
+
+    ```
+    └─ publish-site.gradle.kts
+    ```
+
 ## Spacing
 
 ### Block comment spaces
@@ -2947,6 +5069,24 @@ comments, each line after the asterisk should be indented by a whitespace.
     /**Pass on user behavior.*/
     fun report()
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="1"
+    /**Pass on user behavior.*/
+    void report() {}
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    /**Pass on user behavior.*/
+    function report() {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    /**Pass on user behavior.*/
+    function report(): void {}
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -2967,6 +5107,24 @@ comments, each line after the asterisk should be indented by a whitespace.
     ```kotlin hl_lines="1"
     /** Pass on user behavior. */
     fun report()
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="1"
+    /** Pass on user behavior. */
+    void report() {}
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    /** Pass on user behavior. */
+    function report() {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    /** Pass on user behavior. */
+    function report(): void {}
     ```
 
 ### Block tag indentation
@@ -3003,6 +5161,33 @@ spaces from the leading asterisk.
      */
     fun abs(num: Int): Int
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    /**
+     * @param num the number to return
+     * the absolute value for.
+     */
+    void abs(int num) {}
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    /**
+     * @param num the number to return
+     * the absolute value for.
+     */
+    function abs(num) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    /**
+     * @param num the number to return
+     * the absolute value for.
+     */
+    function abs(num: number): number {}
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -3032,6 +5217,33 @@ spaces from the leading asterisk.
      *     the absolute value for.
      */
     fun abs(num: Int): Int
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    /**
+     * @param num the number to return
+     *     the absolute value for.
+     */
+    void abs(int num) {}
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    /**
+     * @param num the number to return
+     *     the absolute value for.
+     */
+    function abs(num) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    /**
+     * @param num the number to return
+     *     the absolute value for.
+     */
+    function abs(num: number): number {}
     ```
 
 ### Case separator
@@ -3082,6 +5294,21 @@ joined.
         else -> createEvent(event)
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="9"
+    switch (event) {
+        case CANCELLED:
+            return;
+
+        case PAST: {
+            std::string message = "Event is in the past";
+            throw std::logic_error(message);
+        }
+        default:
+            create_event(event);
+    }
+    ```
 === "Python"
 
     ```python hl_lines="8"
@@ -3094,6 +5321,36 @@ joined.
             raise ValueError(message)
         case _:
             create_event(event)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="9"
+    switch (event) {
+        case CANCELLED:
+            return;
+
+        case PAST: {
+            const message = 'Event is in the past';
+            throw new Error(message);
+        }
+        default:
+            createEvent(event);
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="9"
+    switch (event) {
+        case CANCELLED:
+            return;
+
+        case PAST: {
+            const message = 'Event is in the past';
+            throw new Error(message);
+        }
+        default:
+            createEvent(event);
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -3142,6 +5399,22 @@ joined.
         else -> createEvent(event)
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    switch (event) {
+        case CANCELLED:
+            return;
+
+        case PAST: {
+            std::string message = "Event is in the past";
+            throw std::logic_error(message);
+        }
+
+        default:
+            create_event(event);
+    }
+    ```
 === "Python"
 
     ```python
@@ -3156,8 +5429,40 @@ joined.
         case _:
             create_event(event)
     ```
+=== "JavaScript"
 
-### Comment space
+    ```js
+    switch (event) {
+        case CANCELLED:
+            return;
+
+        case PAST: {
+            const message = 'Event is in the past';
+            throw new Error(message);
+        }
+
+        default:
+            createEvent(event);
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    switch (event) {
+        case CANCELLED:
+            return;
+
+        case PAST: {
+            const message = 'Event is in the past';
+            throw new Error(message);
+        }
+
+        default:
+            createEvent(event);
+    }
+    ```
+
+### Comment spaces
 
 End-of-file comments should be separated by a single whitespace from the
 preceding code, and start with a single whitespace.
@@ -3179,10 +5484,25 @@ preceding code, and start with a single whitespace.
     ```kotlin
     println("This is a code")//This is a comment
     ```
+=== "C/C++"
+
+    ```cpp
+    std::cout << "This is a code" << std::endl;//This is a comment
+    ```
 === "Python"
 
     ```python
     print('This is a code')#This is a comment
+    ```
+=== "JavaScript"
+
+    ```js
+    console.log('This is a code');//This is a comment
+    ```
+=== "TypeScript"
+
+    ```ts
+    console.log('This is a code');//This is a comment
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -3202,19 +5522,35 @@ preceding code, and start with a single whitespace.
     ```kotlin
     println("This is a code") // This is a comment
     ```
+=== "C/C++"
+
+    ```cpp
+    std::cout << "This is a code" << std::endl; // This is a comment
+    ```
 === "Python"
 
     ```python
     print('This is a code')  # This is a comment
     ```
+=== "JavaScript"
+
+    ```js
+    console.log('This is a code'); // This is a comment
+    ```
+=== "TypeScript"
+
+    ```ts
+    console.log('This is a code'); // This is a comment
+    ```
 
 !!! warning
+
     PEP8 requires leading two spaces for comments.
 
 ### Member separator
 
 Class, function and property declarations should be separated by a blank line.
-There is an exception for single-line properties.
+There is an exception for a group of properties.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -3242,6 +5578,14 @@ There is an exception for single-line properties.
         fun start()
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    class Vehicle {
+        int get_wheels();
+        void start();
+    }
+    ```
 === "Python"
 
     ```python
@@ -3249,6 +5593,22 @@ There is an exception for single-line properties.
         wheels: int
         def start(self):
             pass
+    ```
+=== "JavaScript"
+
+    ```js
+    class Vehicle {
+        getWheels() {}
+        start() {}
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    class Vehicle {
+        getWheels(): number {}
+        start(): void {}
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -3280,6 +5640,15 @@ There is an exception for single-line properties.
         fun start()
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    class Vehicle {
+        int get_wheels();
+
+        void start();
+    }
+    ```
 === "Python"
 
     ```python hl_lines="3"
@@ -3288,6 +5657,24 @@ There is an exception for single-line properties.
 
         def start(self):
             pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    class Vehicle {
+        getWheels() {}
+
+        start() {}
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    class Vehicle {
+        getWheels(): number {}
+
+        start(): void {}
+    }
     ```
 
 ### Missing blank line before block tags
@@ -3326,6 +5713,26 @@ Separate block tag group from the summary with a blank line.
      */
     fun abs(number: Int): Int
     ```
+=== "JavaScript"
+
+    ```js
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    function abs(number) {}
+    ```
+=== "TypeScript"
+
+    ```ts
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    function abs(number: number): number {}
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -3362,8 +5769,125 @@ Separate block tag group from the summary with a blank line.
      */
     fun abs(number: Int): Int
     ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    function abs(number) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    function abs(number: number): number {}
+    ```
 
 ## Stating
+
+### Complicated assignment
+
+Use shorthand assignment operators when the variable being assigned is also used
+in the expression.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="2"
+    int count = 0;
+    count = count + 1;
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    var count = 0
+    count = count + 1
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2"
+    var count = 0
+    count = count + 1
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    int count = 0;
+    count = count + 1;
+    ```
+=== "Python"
+
+    ```python hl_lines="2"
+    count = 0
+    count = count + 1
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    let count = 0;
+    count = count + 1;
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    let count: number = 0;
+    count = count + 1;
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="2"
+    int count = 0;
+    count += 1;
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    var count = 0
+    count += 1
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2"
+    var count = 0
+    count += 1
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    int count = 0;
+    count += 1;
+    ```
+=== "Python"
+
+    ```python hl_lines="2"
+    count = 0
+    count += 1
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    let count = 0;
+    count += 1;
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    let count: number = 0;
+    count += 1;
+    ```
 
 ### Illegal catch
 
@@ -3388,6 +5912,15 @@ Catch specific exception subclass instead of the generic `Throwable`,
         unsafeOperation()
     } catch (Throwable e) {
         e.printStackTrace()
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    try {
+        unsafe_operation();
+    } catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
     }
     ```
 === "Python"
@@ -3417,6 +5950,15 @@ Catch specific exception subclass instead of the generic `Throwable`,
         unsafeOperation()
     } catch (IOException | SQLException e) {
         e.printStackTrace()
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    try {
+        unsafe_operation();
+    } catch (std::ios_base::failure& e) {
+        std::cerr << e.what() << std::endl;
     }
     ```
 === "Python"
@@ -3449,6 +5991,11 @@ Throw a narrower exception type instead of `Exception`, `Error` or `Throwable`.
     ```kotlin
     throw Exception()
     ```
+=== "C/C++"
+
+    ```cpp
+    throw std::exception();
+    ```
 === "Python"
 
     ```python
@@ -3472,10 +6019,304 @@ Throw a narrower exception type instead of `Exception`, `Error` or `Throwable`.
     ```kotlin
     throw IllegalStateException()
     ```
+=== "C/C++"
+
+    ```cpp
+    throw std::logic_error("Illegal state");
+    ```
 === "Python"
 
     ```python
     raise ValueError()
+    ```
+
+### Lonely case
+
+If a switch statement has single branch, it should be replaced with an if
+statement.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    switch (token) {
+        case VALUE_TOKEN:
+            callback(token);
+    }
+    ```
+=== "Groovy"
+
+    ```groovy
+    switch (token) {
+        case VALUE_TOKEN:
+            callback(token)
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    when (token) {
+        is Token.ValueToken -> callback(token)
+    }
+    ```
+=== "C/C++"
+
+    ```cpp
+    switch (token) {
+        case VALUE_TOKEN:
+            callback(token);
+    }
+    ```
+=== "Python"
+
+    ```python
+    match token:
+        case Token.VALUE_TOKEN:
+            callback(token)
+    ```
+=== "JavaScript"
+
+    ```js
+    switch (token) {
+        case VALUE_TOKEN:
+            callback(token);
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    switch (token) {
+        case VALUE_TOKEN:
+            callback(token);
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    if (token == Token.VALUE_TOKEN) {
+        callback(token);
+    }
+    ```
+=== "Groovy"
+
+    ```groovy
+    if (token == Token.VALUE_TOKEN) {
+        callback(token)
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    if (token is Token.ValueToken) {
+        callback(token)
+    }
+    ```
+=== "C/C++"
+
+    ```cpp
+    if (token == VALUE_TOKEN) {
+        callback(token);
+    }
+    ```
+=== "Python"
+
+    ```python
+    if token == Token.VALUE_TOKEN:
+        callback(token)
+    ```
+=== "JavaScript"
+
+    ```js
+    if (token == VALUE_TOKEN) {
+        callback(token);
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    if (token == VALUE_TOKEN) {
+        callback(token);
+    }
+    ```
+
+### Lonely if
+
+A single if statement in an else block should be merged with the parent if
+statement.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="3-4"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else {
+        if (cart.isEmpty()) {
+            showEmptyCartError();
+        } else {
+            showError();
+        }
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="3-4"
+    if (validateCart(cart)) {
+        processPayment(credentials)
+    } else {
+        if (cart.isEmpty()) {
+            showEmptyCartError()
+        } else {
+            showError()
+        }
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="3-4"
+    if (validateCart(cart)) {
+        processPayment(credentials)
+    } else {
+        if (cart.isEmpty()) {
+            showEmptyCartError()
+        } else {
+            showError()
+        }
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3-4"
+    if (validate_cart(cart)) {
+        process_payment(credentials);
+    } else {
+        if (cart.is_empty()) {
+            show_empty_cart_error();
+        } else {
+            show_error();
+        }
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="3-4"
+    if validate_cart(cart):
+        process_payment(credentials)
+    else:
+        if not cart:
+            show_empty_cart_error()
+        else:
+            show_error()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3-4"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else {
+        if (cart.isEmpty()) {
+            showEmptyCartError();
+        } else {
+            showError();
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3-4"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else {
+        if (cart.isEmpty()) {
+            showEmptyCartError();
+        } else {
+            showError();
+        }
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="3"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else if (cart.isEmpty()) {
+        showEmptyCartError();
+    } else {
+        showError();
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="3"
+    if (validateCart(cart)) {
+        processPayment(credentials)
+    } else if (cart.isEmpty()) {
+        showEmptyCartError()
+    } else {
+        showError()
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="3"
+    if (validateCart(cart)) {
+        processPayment(credentials)
+    } else if (cart.isEmpty()) {
+        showEmptyCartError()
+    } else {
+        showError()
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    if (validate_cart(cart)) {
+        process_payment(credentials);
+    } else if (cart.is_empty()) {
+        show_empty_cart_error();
+    } else {
+        show_error();
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="3"
+    if validate_cart(cart):
+        process_payment(credentials)
+    elif not cart:
+        show_empty_cart_error()
+    else:
+        show_error()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else if (cart.isEmpty()) {
+        showEmptyCartError();
+    } else {
+        showError();
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else if (cart.isEmpty()) {
+        showEmptyCartError();
+    } else {
+        showError();
+    }
     ```
 
 ### Missing braces
@@ -3509,6 +6350,22 @@ statements.
     else
         showError()
     ```
+=== "JavaScript"
+
+    ```js hl_lines="1 3"
+    if (validateCart(cart))
+        processPayment(credentials);
+    else
+        showError();
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1 3"
+    if (validateCart(cart))
+        processPayment(credentials);
+    else
+        showError();
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -3537,6 +6394,24 @@ statements.
         processPayment(credentials)
     } else {
         showError()
+    }
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1 3 5"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else {
+        showError();
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1 3 5"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else {
+        showError();
     }
     ```
 
@@ -3583,14 +6458,50 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
         }
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2 3"
+    void login(User user) {
+        if (user.is_valid()) {
+            if (!is_logged_in(user)) {
+                update_profile(user);
+                display_dashboard();
+            }
+        }
+    }
+    ```
 === "Python"
 
     ```python hl_lines="2 3"
-    def login(user: User):
+    def login(user):
         if user.is_valid():
             if not is_logged_in(user):
                 update_profile(user)
                 display_dashboard()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2 3"
+    function login(user) {
+        if (user.isValid()) {
+            if (!isLoggedIn(user)) {
+                updateProfile(user);
+                displayDashboard();
+            }
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 3"
+    function login(user: User): void {
+        if (user.isValid()) {
+            if (!isLoggedIn(user)) {
+                updateProfile(user);
+                displayDashboard();
+            }
+        }
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -3637,10 +6548,24 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
         displayDashboard()
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2 5"
+    void login(User user) {
+        if (!user.is_valid()) {
+            return;
+        }
+        if (is_logged_in(user)) {
+            return;
+        }
+        update_profile(user);
+        display_dashboard();
+    }
+    ```
 === "Python"
 
-    ```python hl_lines="2 5"
-    def login(user: User):
+    ```python hl_lines="2 4"
+    def login(user):
         if not user.is_valid():
             return
         if is_logged_in(user):
@@ -3648,39 +6573,61 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
         update_profile(user)
         display_dashboard()
     ```
+=== "JavaScript"
+
+    ```js hl_lines="2 5"
+    function login(user) {
+        if (!user.isValid()) {
+            return;
+        }
+        if (isLoggedIn(user)) {
+            return;
+        }
+        updateProfile(user);
+        displayDashboard();
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 5"
+    function login(user: User): void {
+        if (!user.isValid()) {
+            return;
+        }
+        if (isLoggedIn(user)) {
+            return;
+        }
+        updateProfile(user);
+        displayDashboard();
+    }
+    ```
 
 ### Redundant default
 
-If every branch of a switch statement has a return or throw statement, the
-default branch can be lifted.
+If every branch of a switch statement has a continue, return or throw statement,
+the default branch can be lifted.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
 
-    ```java hl_lines="7-8"
+    ```java hl_lines="5"
     void park(Car car) {
         switch (car) {
-            case MOVING:
-                throw new IllegalStateException();
-            case PARKED:
-                return;
-            default:
-                findParking(car);
+            case MOVING: throw new IllegalStateException();
+            case PARKED: return;
+            default: findParking(car);
         }
     }
     ```
 === "Groovy"
 
-    ```groovy hl_lines="7-8"
+    ```groovy hl_lines="5"
     def park(Car car) {
         switch (car) {
-            case MOVING:
-                throw new IllegalStateException()
-            case PARKED:
-                return
-            default:
-                findParking(car)
+            case MOVING: throw new IllegalStateException()
+            case PARKED: return
+            default: findParking(car)
         }
     }
     ```
@@ -3695,43 +6642,69 @@ default branch can be lifted.
         }
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="5"
+    void park(Car car) {
+        switch (car) {
+            case MOVING: throw IllegalStateException();
+            case PARKED: return;
+            default: findParking(car);
+        }
+    }
+    ```
 === "Python"
 
-    ```python hl_lines="7-8"
-    def park(car: Car):
+    ```python hl_lines="5"
+    def park(car):
         match car:
-            case Car.MOVING:
-                raise ValueError()
-            case Car.PARKED:
-                return
-            case _:
-                find_parking(car)
+            case Car.MOVING: raise ValueError()
+            case Car.PARKED: return
+            case _: find_parking(car)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="5"
+    function park(car) {
+        switch (car) {
+            case MOVING: throw new Error();
+            case PARKED: return;
+            default: findParking(car);
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="5"
+    function park(car: Car): void {
+        switch (car) {
+            case MOVING: throw new Error();
+            case PARKED: return;
+            default: findParking(car);
+        }
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
 
-    ```java hl_lines="8"
+    ```java hl_lines="6"
     void park(Car car) {
         switch (car) {
-            case MOVING:
-                throw new IllegalStateException();
-            case PARKED:
-                return;
+            case MOVING: throw new IllegalStateException();
+            case PARKED: return;
         }
         findParking(car);
     }
     ```
 === "Groovy"
 
-    ```groovy hl_lines="8"
+    ```groovy hl_lines="6"
     def park(Car car) {
         switch (car) {
-            case MOVING:
-                throw new IllegalStateException()
-            case PARKED:
-                return
+            case MOVING: throw new IllegalStateException()
+            case PARKED: return
         }
         findParking(car)
     }
@@ -3747,22 +6720,53 @@ default branch can be lifted.
         findParking(car)
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="6"
+    void park(Car car) {
+        switch (car) {
+            case MOVING: throw IllegalStateException();
+            case PARKED: return;
+        }
+        findParking(car);
+    }
+    ```
 === "Python"
 
-    ```python hl_lines="7"
-    def park(car: Car):
+    ```python hl_lines="5"
+    def park(car):
         match car:
-            case Car.MOVING:
-                raise ValueError()
-            case Car.PARKED:
-                return
+            case Car.MOVING: raise ValueError()
+            case Car.PARKED: return
         find_parking(car)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="6"
+    function park(car) {
+        switch (car) {
+            case MOVING: throw new Error();
+            case PARKED: return;
+        }
+        findParking(car);
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="6"
+    function park(car: Car): void {
+        switch (car) {
+            case MOVING: throw new Error();
+            case PARKED: return;
+        }
+        findParking(car);
+    }
     ```
 
 ### Redundant else
 
-When every if and else-if block has a return or throw statement, the else block
-can be lifted.
+When every if and else-if block has a continue, return or throw statement, the
+else block can be lifted.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -3805,16 +6809,55 @@ can be lifted.
         }
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="4 6"
+    void park(Car car) {
+        if (car.is_moving()) {
+            throw IllegalStateException();
+        } else if (car.is_parked()) {
+            return;
+        } else {
+            findParking(car);
+        }
+    }
+    ```
 === "Python"
 
     ```python hl_lines="4 6"
-    def park(car: Car):
+    def park(car):
         if car.is_moving():
             raise ValueError()
         elif car.is_parked():
             return
         else:
             find_parking(car)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="4 6"
+    function park(car) {
+        if (car.isMoving()) {
+            throw new Error();
+        } else if (car.isParked()) {
+            return;
+        } else {
+            findParking(car);
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="4 6"
+    function park(car: Car): void {
+        if (car.isMoving()) {
+            throw new Error();
+        } else if (car.isParked()) {
+            return;
+        } else {
+            findParking(car);
+        }
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -3858,53 +6901,329 @@ can be lifted.
         findParking(car)
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="5 8"
+    void park(Car car) {
+        if (car.is_moving()) {
+            throw IllegalStateException();
+        }
+        if (car.is_parked()) {
+            return;
+        }
+        findParking(car);
+    }
+    ```
 === "Python"
 
     ```python hl_lines="4 6"
-    def park(car: Car):
+    def park(car):
         if car.is_moving():
             raise ValueError()
         if car.is_parked():
             return
         find_parking(car)
     ```
+=== "JavaScript"
 
-### Unnecessary switch
+    ```js hl_lines="5 8"
+    function park(car) {
+        if (car.isMoving()) {
+            throw new Error();
+        }
+        if (car.isParked()) {
+            return;
+        }
+        findParking(car);
+    }
+    ```
+=== "TypeScript"
 
-If a switch statement has single branch, it should be replaced with an if
-statement.
+    ```ts hl_lines="5 8"
+    function park(car: Car): void {
+        if (car.isMoving()) {
+            throw new Error();
+        }
+        if (car.isParked()) {
+            return;
+        }
+        findParking(car);
+    }
+    ```
+
+### Redundant if
+
+If-else statement that returns boolean can be simplified by returning the
+condition.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
 
-    ```java
-    switch (token) {
-        case VALUE_TOKEN:
-            callback(token);
+    ```java hl_lines="2 4"
+    boolean isValid(User user) {
+        if (user.isActive()) {
+            return true;
+        } else {
+            return false;
+        }
     }
     ```
 === "Groovy"
 
-    ```groovy
-    switch (token) {
-        case VALUE_TOKEN:
-            callback(token)
+    ```groovy hl_lines="2 4"
+    boolean isValid(User user) {
+        if (user.isActive()) {
+            return true
+        } else {
+            return false
+        }
     }
     ```
 === "Kotlin"
 
-    ```kotlin
-    when (token) {
-        is Token.ValueToken -> callback(token)
+    ```kotlin hl_lines="2 4"
+    fun isValid(user: User): Boolean {
+        if (user.isActive()) {
+            return true
+        } else {
+            return false
+        }
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2 4"
+    bool is_valid(User user) {
+        if (user.is_active()) {
+            return true;
+        } else {
+            return false;
+        }
     }
     ```
 === "Python"
 
+    ```python hl_lines="2 4"
+    def is_valid(user):
+        if user.is_active():
+            return True
+        else:
+            return False
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2 4"
+    function isValid(user) {
+        if (user.isActive()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 4"
+    function isValid(user: User): boolean {
+        if (user.isActive()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="2"
+    boolean isValid(User user) {
+        return user.isActive();
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    boolean isValid(User user) {
+        return user.isActive()
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2"
+    fun isValid(user: User): Boolean {
+        return user.isActive()
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    bool is_valid(User user) {
+        return user.is_active();
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="2"
+    def is_valid(user):
+        return user.is_active()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    function isValid(user) {
+        return user.isActive();
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    function isValid(user: User): boolean {
+        return user.isActive();
+    }
+    ```
+
+### Semicolon
+
+Do not use semicolons at the end of statements in languages that do not require
+them.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy
+    sendEmail(user);
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    sendEmail(user);
+    ```
+=== "Python"
+
     ```python
-    match token:
-        case Token.VALUE_TOKEN:
-            callback(token)
+    send_email(user);
+    ```
+=== "JavaScript"
+
+    ```js
+    sendEmail(user)
+    ```
+=== "TypeScript"
+
+    ```ts
+    sendEmail(user)
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy
+    sendEmail(user)
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    sendEmail(user)
+    ```
+=== "Python"
+
+    ```python
+    send_email(user)
+    ```
+=== "JavaScript"
+
+    ```js
+    sendEmail(user);
+    ```
+=== "TypeScript"
+
+    ```ts
+    sendEmail(user);
+    ```
+
+!!! warning
+
+    Semicolons are enforced in JavaScript and TypeScript to prevent issues with
+    automatic semicolon insertion.
+
+### Unnecessary continue
+
+The last continue statement in a loop is useless.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="5"
+    for (User user : users) {
+        if (user.isActive()) {
+            sendEmail(user);
+        }
+        continue;
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="5"
+    for (User user : users) {
+        if (user.isActive()) {
+            sendEmail(user)
+        }
+        continue
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="5"
+    for (user in users) {
+        if (user.isActive()) {
+            sendEmail(user)
+        }
+        continue
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="5"
+    for (User user : users) {
+        if (user.is_active()) {
+            send_email(user);
+        }
+        continue;
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="4"
+    for user in users:
+        if user.is_active():
+            send_email(user)
+        continue
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="5"
+    for (const user of users) {
+        if (user.isActive()) {
+            sendEmail(user);
+        }
+        continue;
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="5"
+    for (const user of users) {
+        if (user.isActive()) {
+            sendEmail(user);
+        }
+        continue;
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -3912,29 +7231,228 @@ statement.
 === "Java"
 
     ```java
-    if (token == Token.VALUE_TOKEN) {
-        callback(token);
+    for (User user : users) {
+        if (user.isActive()) {
+            sendEmail(user);
+        }
     }
     ```
 === "Groovy"
 
     ```groovy
-    if (token == Token.VALUE_TOKEN) {
-        callback(token)
+    for (User user : users) {
+        if (user.isActive()) {
+            sendEmail(user)
+        }
     }
     ```
 === "Kotlin"
 
     ```kotlin
-    if (token is Token.ValueToken) {
-        callback(token)
+    for (user in users) {
+        if (user.isActive()) {
+            sendEmail(user)
+        }
+    }
+    ```
+=== "C/C++"
+
+    ```cpp
+    for (User user : users) {
+        if (user.is_active()) {
+            send_email(user);
+        }
     }
     ```
 === "Python"
 
     ```python
-    if token == Token.VALUE_TOKEN:
-        callback(token)
+    for user in users:
+        if user.is_active():
+            send_email(user)
+    ```
+=== "JavaScript"
+
+    ```js
+    for (const user of users) {
+        if (user.isActive()) {
+            sendEmail(user);
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    for (const user of users) {
+        if (user.isActive()) {
+            sendEmail(user);
+        }
+    }
+    ```
+
+### Unnecessary return
+
+The last return statement in a function is useless.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="7"
+    void sendEmails(List<User> users) {
+        for (User user : users) {
+            if (user.isActive()) {
+                sendEmail(user);
+            }
+        }
+        return;
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="7"
+    void sendEmails(List<User> users) {
+        for (User user : users) {
+            if (user.isActive()) {
+                sendEmail(user)
+            }
+        }
+        return
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="7"
+    fun sendEmails(users: List<User>) {
+        for (user in users) {
+            if (user.isActive()) {
+                sendEmail(user)
+            }
+        }
+        return
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="7"
+    void send_emails(std::vector<User> users) {
+        for (User user : users) {
+            if (user.is_active()) {
+                send_email(user);
+            }
+        }
+        return;
+    }
+    ```
+=== "Python"
+
+    ```python hl_lines="5"
+    def send_emails(users):
+        for user in users:
+            if user.is_active():
+                send_email(user)
+        return
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="7"
+    function sendEmails(users) {
+        for (const user of users) {
+            if (user.isActive()) {
+                sendEmail(user);
+            }
+        }
+        return;
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="7"
+    function sendEmails(users: User[]): void {
+        for (const user of users) {
+            if (user.isActive()) {
+                sendEmail(user);
+            }
+        }
+        return;
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    void sendEmails(List<User> users) {
+        for (User user : users) {
+            if (user.isActive()) {
+                sendEmail(user);
+            }
+        }
+    }
+    ```
+=== "Groovy"
+
+    ```groovy
+    void sendEmails(List<User> users) {
+        for (User user : users) {
+            if (user.isActive()) {
+                sendEmail(user)
+            }
+        }
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    fun sendEmails(users: List<User>) {
+        for (user in users) {
+            if (user.isActive()) {
+                sendEmail(user)
+            }
+        }
+    }
+    ```
+=== "C/C++"
+
+    ```cpp
+    void send_emails(std::vector<User> users) {
+        for (User user : users) {
+            if (user.is_active()) {
+                send_email(user);
+            }
+        }
+    }
+    ```
+=== "Python"
+
+    ```python
+    def send_emails(users):
+        for user in users:
+            if user.is_active():
+                send_email(user)
+    ```
+=== "JavaScript"
+
+    ```js
+    function sendEmails(users) {
+        for (const user of users) {
+            if (user.isActive()) {
+                sendEmail(user);
+            }
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    function sendEmails(users: User[]): void {
+        for (const user of users) {
+            if (user.isActive()) {
+                sendEmail(user);
+            }
+        }
+    }
     ```
 
 ## Trimming
@@ -3975,6 +7493,16 @@ Do not start or end block comments with whitespaces.
      *
      */
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2 5"
+    /**
+     *
+     * AUTHOR: John Doe
+     * LICENSE: Apache 2.0
+     *
+     */
+    ```
 === "Python"
 
     ```python hl_lines="2 5"
@@ -3984,6 +7512,26 @@ Do not start or end block comments with whitespaces.
     LICENSE: Apache 2.0
 
     """
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2 5"
+    /**
+     *
+     * AUTHOR: John Doe
+     * LICENSE: Apache 2.0
+     *
+     */
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 5"
+    /**
+     *
+     * AUTHOR: John Doe
+     * LICENSE: Apache 2.0
+     *
+     */
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -4012,6 +7560,14 @@ Do not start or end block comments with whitespaces.
      * LICENSE: Apache 2.0
      */
     ```
+=== "C/C++"
+
+    ```cpp
+    /**
+     * AUTHOR: John Doe
+     * LICENSE: Apache 2.0
+     */
+    ```
 === "Python"
 
     ```python
@@ -4019,6 +7575,22 @@ Do not start or end block comments with whitespaces.
     AUTHOR: John Doe
     LICENSE: Apache 2.0
     """
+    ```
+=== "JavaScript"
+
+    ```js
+    /**
+     * AUTHOR: John Doe
+     * LICENSE: Apache 2.0
+     */
+    ```
+=== "TypeScript"
+
+    ```ts
+    /**
+     * AUTHOR: John Doe
+     * LICENSE: Apache 2.0
+     */
     ```
 
 ### Braces trim
@@ -4060,6 +7632,17 @@ Prohibits empty first and last lines in code blocks.
         }
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2 5"
+    void onReceive(int value) {
+
+        if (value != 0) {
+            total += value;
+
+        }
+    }
+    ```
 === "Python"
 
     ```python hl_lines="2 6"
@@ -4069,6 +7652,28 @@ Prohibits empty first and last lines in code blocks.
         'baz',
         'qux',
 
+    }
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2 5"
+    function onReceive(value) {
+
+        if (value != null) {
+            total += value;
+
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 5"
+    function onReceive(value: number | null): void {
+
+        if (value != null) {
+            total += value;
+
+        }
     }
     ```
 
@@ -4101,6 +7706,15 @@ Prohibits empty first and last lines in code blocks.
         }
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    void onReceive(int value) {
+        if (value != 0) {
+            total += value;
+        }
+    }
+    ```
 === "Python"
 
     ```python
@@ -4108,6 +7722,24 @@ Prohibits empty first and last lines in code blocks.
         'bar',
         'baz',
         'qux',
+    }
+    ```
+=== "JavaScript"
+
+    ```js
+    function onReceive(value) {
+        if (value != null) {
+            total += value;
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    function onReceive(value: number | null): void {
+        if (value != null) {
+            total += value;
+        }
     }
     ```
 
@@ -4122,11 +7754,21 @@ Prohibits empty first and last lines in collection initializers.
     ```groovy hl_lines="2 6"
     var pond = [
 
-        Fish('Nemo'),
-        Fish('Dory'),
-        Fish('Marlin'),
+        new Fish('Nemo'),
+        new Fish('Dory'),
+        new Fish('Marlin'),
 
     ]
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3 5"
+    Fish dory =
+        pond[
+
+            0
+
+        ];
     ```
 === "Python"
 
@@ -4139,6 +7781,28 @@ Prohibits empty first and last lines in collection initializers.
 
     ]
     ```
+=== "JavaScript"
+
+    ```js hl_lines="2 6"
+    const pond = [
+
+        new Fish('Nemo'),
+        new Fish('Dory'),
+        new Fish('Marlin'),
+
+    ]
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 6"
+    const pond: Fish[] = [
+
+        new Fish('Nemo'),
+        new Fish('Dory'),
+        new Fish('Marlin'),
+
+    ]
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -4146,10 +7810,18 @@ Prohibits empty first and last lines in collection initializers.
 
     ```groovy
     var pond = [
-        Fish('Nemo'),
-        Fish('Dory'),
-        Fish('Marlin'),
+        new Fish('Nemo'),
+        new Fish('Dory'),
+        new Fish('Marlin'),
     ]
+    ```
+=== "C/C++"
+
+    ```cpp
+    Fish dory =
+        pond[
+            0
+        ];
     ```
 === "Python"
 
@@ -4158,6 +7830,24 @@ Prohibits empty first and last lines in collection initializers.
         Fish('Nemo'),
         Fish('Dory'),
         Fish('Marlin'),
+    ]
+    ```
+=== "JavaScript"
+
+    ```js
+    const pond = [
+        new Fish('Nemo'),
+        new Fish('Dory'),
+        new Fish('Marlin'),
+    ]
+    ```
+=== "TypeScript"
+
+    ```ts
+    const pond: Fish[] = [
+        new Fish('Nemo'),
+        new Fish('Dory'),
+        new Fish('Marlin'),
     ]
     ```
 
@@ -4191,6 +7881,14 @@ Prohibits empty first and last lines in EOL comments.
     // multiline comment
     //
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="1 4"
+    //
+    // This is a
+    // multiline comment
+    //
+    ```
 === "Python"
 
     ```python hl_lines="1 4"
@@ -4198,6 +7896,22 @@ Prohibits empty first and last lines in EOL comments.
     # This is a
     # multiline comment
     #
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1 4"
+    //
+    // This is a
+    // multiline comment
+    //
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1 4"
+    //
+    // This is a
+    // multiline comment
+    //
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -4220,11 +7934,29 @@ Prohibits empty first and last lines in EOL comments.
     // This is a
     // multiline comment
     ```
+=== "C/C++"
+
+    ```cpp
+    // This is a
+    // multiline comment
+    ```
 === "Python"
 
     ```python
     # This is a
     # multiline comment
+    ```
+=== "JavaScript"
+
+    ```js
+    // This is a
+    // multiline comment
+    ```
+=== "TypeScript"
+
+    ```ts
+    // This is a
+    // multiline comment
     ```
 
 ### Duplicate blank line
@@ -4257,6 +7989,14 @@ Prohibits consecutive blank lines in the code.
 
     println(message)
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    std::string message = "Hello";
+
+
+    std::cout << message << std::endl;
+    ```
 === "Python"
 
     ```python hl_lines="3"
@@ -4265,8 +8005,25 @@ Prohibits consecutive blank lines in the code.
 
     print(message)
     ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    const message = 'Hello';
+
+
+    console.log(message);
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    const message: string = 'Hello';
+
+
+    console.log(message);
+    ```
 
 !!! warning
+
     PEP8 allows two blank lines between top-level functions and class
     definitions.
 
@@ -4293,12 +8050,33 @@ Prohibits consecutive blank lines in the code.
 
     println(message)
     ```
+=== "C/C++"
+
+    ```cpp
+    std::string message = "Hello";
+
+    std::cout << message << std::endl;
+    ```
 === "Python"
 
     ```python
     message = 'Hello'
 
     print(message)
+    ```
+=== "JavaScript"
+
+    ```js
+    const message = 'Hello';
+
+    console.log(message);
+    ```
+=== "TypeScript"
+
+    ```ts
+    const message: string = 'Hello';
+
+    console.log(message);
     ```
 
 ### Duplicate blank line in block comment
@@ -4337,6 +8115,16 @@ Prohibits consecutive blank lines in block comments.
      * very long comment
      */
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="4"
+    /**
+     * This is a
+     *
+     *
+     * very long comment
+     */
+    ```
 === "Python"
 
     ```python hl_lines="4"
@@ -4346,6 +8134,26 @@ Prohibits consecutive blank lines in block comments.
 
     very long comment
     """
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="4"
+    /**
+     * This is a
+     *
+     *
+     * very long comment
+     */
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="4"
+    /**
+     * This is a
+     *
+     *
+     * very long comment
+     */
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -4377,6 +8185,15 @@ Prohibits consecutive blank lines in block comments.
      * very long comment
      */
     ```
+=== "C/C++"
+
+    ```cpp
+    /**
+     * This is a
+     *
+     * very long comment
+     */
+    ```
 === "Python"
 
     ```python
@@ -4385,6 +8202,24 @@ Prohibits consecutive blank lines in block comments.
 
     very long comment
     """
+    ```
+=== "JavaScript"
+
+    ```js
+    /**
+     * This is a
+     *
+     * very long comment
+     */
+    ```
+=== "TypeScript"
+
+    ```ts
+    /**
+     * This is a
+     *
+     * very long comment
+     */
     ```
 
 ### Duplicate blank line in comment
@@ -4417,6 +8252,14 @@ Prohibits consecutive blank lines in comments.
     //
     // very long comment
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    // This is a
+    //
+    //
+    // very long comment
+    ```
 === "Python"
 
     ```python hl_lines="3"
@@ -4424,6 +8267,22 @@ Prohibits consecutive blank lines in comments.
     #
     #
     # very long comment
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    // This is a
+    //
+    //
+    // very long comment
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    // This is a
+    //
+    //
+    // very long comment
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -4449,12 +8308,33 @@ Prohibits consecutive blank lines in comments.
     //
     // very long comment
     ```
+=== "C/C++"
+
+    ```cpp
+    // This is a
+    //
+    // very long comment
+    ```
 === "Python"
 
     ```python
     # This is a
     #
     # very long comment
+    ```
+=== "JavaScript"
+
+    ```js
+    // This is a
+    //
+    // very long comment
+    ```
+=== "TypeScript"
+
+    ```ts
+    // This is a
+    //
+    // very long comment
     ```
 
 ### Duplicate space
@@ -4484,12 +8364,33 @@ Prohibits consecutive spaces in the code.
     val subtotal = bill     * tax
     val total    = subtotal + bill
     ```
+=== "C/C++"
+
+    ```cpp
+    double tax      = 0.2;
+    double subtotal = bill     * tax;
+    double total    = subtotal + bill;
+    ```
 === "Python"
 
     ```python
     tax      = 0.2
     subtotal = bill     * tax
     total    = subtotal + bill
+    ```
+=== "JavaScript"
+
+    ```js
+    const tax      = 0.2;
+    const subtotal = bill     * tax;
+    const total    = subtotal + bill;
+    ```
+=== "TypeScript"
+
+    ```ts
+    const tax: number      = 0.2;
+    const subtotal: number = bill     * tax;
+    const total: number    = subtotal + bill;
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -4515,12 +8416,33 @@ Prohibits consecutive spaces in the code.
     val subtotal = bill * tax
     val total = subtotal + bill
     ```
+=== "C/C++"
+
+    ```cpp
+    double tax = 0.2;
+    double subtotal = bill * tax;
+    double total = subtotal + bill;
+    ```
 === "Python"
 
     ```python
     tax = 0.2
     subtotal = bill * tax
     total = subtotal + bill
+    ```
+=== "JavaScript"
+
+    ```js
+    const tax = 0.2;
+    const subtotal = bill * tax;
+    const total = subtotal + bill;
+    ```
+=== "TypeScript"
+
+    ```ts
+    const tax: number = 0.2;
+    const subtotal: number = bill * tax;
+    const total: number = subtotal + bill;
     ```
 
 ### Parentheses trim
@@ -4571,18 +8493,60 @@ Prohibits empty first and last lines in method declarations and calls.
         )
     }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2 8"
+    void swim(
+
+        Fish fish,
+        Pond pond
+    ) {
+        pond.release(
+            fish
+
+        );
+    }
+    ```
 === "Python"
 
     ```python hl_lines="3 12 15 17"
     def swim(
 
-        fish: Fish,
-        pond: Pond,
+        fish,
+        pond,
     ):
         pond.release(
             fish,
 
         )
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2 8"
+    function swim(
+
+        fish,
+        pond,
+    ) {
+        pond.release(
+            fish,
+
+        );
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 8"
+    function swim(
+
+        fish: Fish,
+        pond: Pond,
+    ): void {
+        pond.release(
+            fish,
+
+        );
+    }
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -4623,16 +8587,52 @@ Prohibits empty first and last lines in method declarations and calls.
         )
     }
     ```
+=== "C/C++"
+
+    ```cpp
+    void swim(
+        Fish fish,
+        Pond pond
+    ) {
+        pond.release(
+            fish
+        );
+    }
+    ```
 === "Python"
 
     ```python
     def swim(
-        fish: Fish,
-        pond: Pond,
+        fish,
+        pond,
     ):
         pond.release(
             fish,
         )
+    ```
+=== "JavaScript"
+
+    ```js
+    function swim(
+        fish,
+        pond,
+    ) {
+        pond.release(
+            fish,
+        );
+    }
+    ```
+=== "TypeScript"
+
+    ```ts
+    function swim(
+        fish: Fish,
+        pond: Pond,
+    ): void {
+        pond.release(
+            fish,
+        );
+    }
     ```
 
 ### Tags trim
@@ -4675,6 +8675,37 @@ Prohibits empty first and last lines in generic type parameters.
 
         >('Hank Hill', 41, true)
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2 6"
+    template<
+
+        typename T1,
+        typename T2,
+        typename T3
+
+    >
+    struct Triple {
+        T1 first;
+        T2 second;
+        T3 third;
+    };
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2 6"
+    type Triple<
+
+      T1,
+      T2,
+      T3,
+
+    > = {
+        first: T1;
+        second: T2;
+        third: T3;
+    };
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -4708,6 +8739,33 @@ Prohibits empty first and last lines in generic type parameters.
 
         >('Hank Hill', 41, true)
     ```
+=== "C/C++"
+
+    ```cpp
+    template<
+        typename T1,
+        typename T2,
+        typename T3
+    >
+    struct Triple {
+        T1 first;
+        T2 second;
+        T3 third;
+    };
+    ```
+=== "TypeScript"
+
+    ```ts
+    type Triple<
+      T1,
+      T2,
+      T3,
+    > = {
+        first: T1;
+        second: T2;
+        third: T3;
+    };
+    ```
 
 ### Unnecessary blank line after colon
 
@@ -4734,7 +8792,7 @@ Prohibits first empty line in Python function and class definitions.
             total += value
     ```
 
-### Unnecessary blank line before package
+### Unnecessary initial blank line
 
 The first line of a file cannot be a blank line.
 
@@ -4744,7 +8802,6 @@ The first line of a file cannot be a blank line.
 
     ```java hl_lines="1"
     \n
-
     package com.example;
 
     void execute() {}
@@ -4753,7 +8810,6 @@ The first line of a file cannot be a blank line.
 
     ```groovy hl_lines="1"
     \n
-
     package com.example
 
     def execute() {}
@@ -4762,7 +8818,6 @@ The first line of a file cannot be a blank line.
 
     ```kotlin hl_lines="1"
     \n
-
     package com.example
 
     fun execute() {}
@@ -4771,9 +8826,20 @@ The first line of a file cannot be a blank line.
 
     ```python hl_lines="1"
     \n
-
     def execute():
         pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    \n
+    function execute() {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    \n
+    function execute(): void {}
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -4805,6 +8871,16 @@ The first line of a file cannot be a blank line.
     def execute():
         pass
     ```
+=== "JavaScript"
+
+    ```js
+    function execute() {}
+    ```
+=== "TypeScript"
+
+    ```ts
+    function execute(): void {}
+    ```
 
 ## Wrapping
 
@@ -4820,6 +8896,7 @@ by a newline.
     ```java hl_lines="1"
     String message = new StringBuilder()
         .append("Hello")
+        .append(" World")
         .toString();
     ```
 === "Groovy"
@@ -4827,6 +8904,7 @@ by a newline.
     ```groovy hl_lines="1"
     var message = new StringBuilder()
         .append('Hello')
+        .append(' World')
         .toString()
     ```
 === "Kotlin"
@@ -4834,34 +8912,81 @@ by a newline.
     ```kotlin hl_lines="1"
     val message = buildString {
         append("Hello")
+        append(" World")
     }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="1"
+    std::string message = std::string()
+        .append("Hello")
+        .append(" World")
+        .toString();
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    const message = 'Hello'
+        .concat(' World')
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    const message: string = 'Hello'
+        .concat(' World')
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
 
-    ```java hl_lines="1-2"
+    ```java hl_lines="2"
     String message =
         new StringBuilder()
             .append("Hello")
+            .append(" World")
             .toString();
     ```
 === "Groovy"
 
-    ```groovy hl_lines="1-2"
+    ```groovy hl_lines="2"
     var message =
         new StringBuilder()
             .append('Hello')
+            .append(' World')
             .toString()
     ```
 === "Kotlin"
 
-    ```kotlin hl_lines="1-2"
+    ```kotlin hl_lines="2"
     val message =
         buildString {
             append("Hello")
+            append(" World")
         }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    std::string message =
+        std::string()
+            .append("Hello")
+            .append(" World")
+            .toString();
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    const message: string =
+        'Hello'
+            .concat(' World')
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    const message: string =
+        'Hello'
+            .concat(' World')
     ```
 
 ### Chain call wrap
@@ -4891,12 +9016,33 @@ Each method call in a chain should be aligned with the dot operator.
         notification.getSender()
             .id.takeIf { it.isNotBlank() }
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    int senderId =
+        notification.getSender()
+            ->getId();
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    const senderId =
+        notification.getSender()
+            .getId();
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    const senderId: number =
+        notification.getSender()
+            .getId();
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
 
-    ```java hl_lines="2-3"
+    ```java hl_lines="3"
     int senderId =
         notification
             .getSender()
@@ -4904,7 +9050,7 @@ Each method call in a chain should be aligned with the dot operator.
     ```
 === "Groovy"
 
-    ```groovy hl_lines="2-3"
+    ```groovy hl_lines="3"
     var senderId =
         notification
             .getSender()
@@ -4912,11 +9058,35 @@ Each method call in a chain should be aligned with the dot operator.
     ```
 === "Kotlin"
 
-    ```kotlin hl_lines="2-3"
+    ```kotlin hl_lines="3"
     val senderId =
         notification
             .getSender()
             .id
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="3"
+    int senderId =
+        notification
+            ->getSender()
+            ->getId();
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    const senderId =
+        notification
+            .getSender()
+            .getId();
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    const senderId: number =
+        notification
+            .getSender()
+            .getId();
     ```
 
 ### Elvis wrap
@@ -5003,6 +9173,26 @@ line.
                 * 2
             }.sum()
     ```
+=== "JavaScript"
+
+    ```js hl_lines="4"
+    const sum =
+        Array
+            .from({ length: 10 }, (_, i) => i)
+            .map(i => i
+                * 2
+            ).reduce((a, b) => a + b, 0);
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="4"
+    const sum: number =
+        Array
+            .from({ length: 10 }, (_, i) => i)
+            .map(i => i
+                * 2
+            ).reduce((a, b) => a + b, 0);
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -5025,6 +9215,26 @@ line.
             .map { i ->
                 i * 2
             }.sum()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="5"
+    const sum =
+        Array
+            .from({ length: 10 }, (_, i) => i)
+            .map(i =>
+                i * 2
+            ).reduce((a, b) => a + b, 0);
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="5"
+    const sum: number =
+        Array
+            .from({ length: 10 }, (_, i) => i)
+            .map(i =>
+                i * 2
+            ).reduce((a, b) => a + b, 0);
     ```
 
 ### Operator wrap
@@ -5057,6 +9267,30 @@ A line break should be placed after the operator in a binary expression.
         + tax
         - discount
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="3-4"
+    int total =
+        subtotal
+        + tax
+        - discount;
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3-4"
+    const total =
+        subtotal
+        + tax
+        - discount;
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3-4"
+    const total: number =
+        subtotal
+        + tax
+        - discount;
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -5084,6 +9318,30 @@ A line break should be placed after the operator in a binary expression.
         tax -
         discount
     ```
+=== "C/C++"
+
+    ```cpp hl_lines="2-3"
+    int total =
+        subtotal +
+        tax -
+        discount;
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2-3"
+    const total =
+        subtotal +
+        tax -
+        discount;
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-3"
+    const total: number =
+        subtotal +
+        tax -
+        discount;
+    ```
 
 ### Parameter wrap
 
@@ -5097,28 +9355,50 @@ new line.
     ```java hl_lines="2"
     void createUser(
         String name, String email, int age
-    )
+    ) {}
     ```
 === "Groovy"
 
     ```groovy hl_lines="2"
     def createUser(
         String name, String email, int age
-    )
+    ) {}
     ```
 === "Kotlin"
 
     ```kotlin hl_lines="2"
     fun createUser(
         name: String, email: String, age: Int
-    )
+    ) {}
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    void createUser(
+        String name, String email, int age
+    ) {}
     ```
 === "Python"
 
     ```python hl_lines="2"
     def create_user(
-        name: str, email: str, age: int
-    )
+        name, email, age
+    ):
+        pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    function createUser(
+        name, email, age
+    ) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    function createUser(
+        name: string, email: string, age: number
+    ): void {}
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -5130,7 +9410,7 @@ new line.
         String name,
         String email,
         int age
-    )
+    ) {}
     ```
 === "Groovy"
 
@@ -5139,7 +9419,7 @@ new line.
         String name,
         String email,
         int age,
-    )
+    ) {}
     ```
 === "Kotlin"
 
@@ -5148,16 +9428,44 @@ new line.
         name: String,
         email: String,
         age: Int,
-    )
+    ) {}
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2-4"
+    void createUser(
+        String name,
+        String email,
+        int age
+    ) {}
     ```
 === "Python"
 
     ```python
     def create_user(
-        name: str,
-        email: str,
-        age: int,
-    )
+        name,
+        email,
+        age,
+    ):
+        pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2-4"
+    function createUser(
+        name,
+        email,
+        age,
+    ) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-4"
+    function createUser(
+        name: string,
+        email: string,
+        age: number,
+    ): void {}
     ```
 
 ### Statement wrap
@@ -5186,6 +9494,16 @@ Compound statements are not allowed.
     ```python
     x = 0; y = 0
     ```
+=== "JavaScript"
+
+    ```js
+    const x = 0; const y = 0;
+    ```
+=== "TypeScript"
+
+    ```ts
+    const x: number = 0; const y: number = 0;
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -5212,4 +9530,16 @@ Compound statements are not allowed.
     ```python
     x = 0
     y = 0
+    ```
+=== "JavaScript"
+
+    ```js
+    const x = 0;
+    const y = 0;
+    ```
+=== "TypeScript"
+
+    ```ts
+    const x: number = 0;
+    const y: number = 0;
     ```

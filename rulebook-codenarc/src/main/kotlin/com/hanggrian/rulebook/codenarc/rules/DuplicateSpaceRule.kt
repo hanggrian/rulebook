@@ -4,9 +4,9 @@ import com.hanggrian.rulebook.codenarc.Messages
 import org.codenarc.rule.Violation
 import org.codenarc.source.SourceCode
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#duplicate-whitespace) */
-public class DuplicateWhitespaceRule : RulebookFileRule() {
-    override fun getName(): String = "DuplicateWhitespace"
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#duplicate-space) */
+public class DuplicateSpaceRule : RulebookFileRule() {
+    override fun getName(): String = "DuplicateSpace"
 
     override fun applyTo(code: SourceCode, violations: MutableList<Violation>) {
         // checks for violation
@@ -20,7 +20,7 @@ public class DuplicateWhitespaceRule : RulebookFileRule() {
     }
 
     internal companion object {
-        const val MSG = "duplicate.whitespace"
+        const val MSG = "duplicate.space"
 
         val REGEX = Regex("""(?<=\S)(?<!\*)[ \t]{2,}""")
     }

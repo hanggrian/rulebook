@@ -16,7 +16,7 @@ jobs:
     executor: multiplatform
     steps:
       - checkout
-      - run: ./gradlew dependencies
+      - run: ./gradlew dependencies --no-daemon
       - run: uv sync
       - run: pnpm i
       - persist_to_workspace:
@@ -29,7 +29,7 @@ jobs:
           at: .
       - run:
           name: Check JVM
-          command: ./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck
+          command: ./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck --no-daemon
       - run:
           name: Check Python
           command: |
@@ -63,7 +63,7 @@ jobs:
           at: .
       - run:
           name: Report JVM
-          command: ./gradlew koverXmlReport
+          command: ./gradlew koverXmlReport --no-daemon
       - run:
           name: Report Python
           command: |

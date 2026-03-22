@@ -21,7 +21,7 @@ add_executable(
         c/duplicate_blank_line.c
         c/duplicate_blank_line_in_block_comment.c
         c/duplicate_blank_line_in_comment.c
-        c/duplicate_whitespace.c
+        c/duplicate_space.c
         c/file_size.c
         c/final_newline.c
         c/identifier_name.c

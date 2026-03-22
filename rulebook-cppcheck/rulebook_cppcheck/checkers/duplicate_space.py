@@ -9,10 +9,10 @@ except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Token
 
 
-class DuplicateWhitespaceChecker(RulebookFileChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-whitespace"""
-    ID: str = 'duplicate-whitespace'
-    _MSG: str = 'duplicate.whitespace'
+class DuplicateSpaceChecker(RulebookFileChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#duplicate-space"""
+    ID: str = 'duplicate-space'
+    _MSG: str = 'duplicate.space'
 
     _DUPLICATE_REGEX: Pattern = re(r'(?<=\S)(?<!\*)[ \t]{2,}')
     _STRING_REGEX: Pattern = re(

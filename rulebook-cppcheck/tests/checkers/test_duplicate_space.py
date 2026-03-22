@@ -2,17 +2,17 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers import DuplicateWhitespaceChecker
+from rulebook_cppcheck.checkers import DuplicateSpaceChecker
 from ..tests import CheckerTestCase, assert_properties
 
 
-class TestDuplicateWhitespaceChecker(CheckerTestCase):
-    CHECKER_CLASS = DuplicateWhitespaceChecker
+class TestDuplicateSpaceChecker(CheckerTestCase):
+    CHECKER_CLASS = DuplicateSpaceChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
 
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     def test_single_space_between_token(self, report_error):
         self.checker.check_file(
             self.mock_file(),
@@ -26,7 +26,7 @@ class TestDuplicateWhitespaceChecker(CheckerTestCase):
         )
         report_error.assert_not_called()
 
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     def test_multiple_spaces_between_token(self, report_error):
         self.checker.check_file(
             self.mock_file(),
@@ -45,7 +45,7 @@ class TestDuplicateWhitespaceChecker(CheckerTestCase):
         self.assertEqual(calls[1][0][1], 'Remove consecutive whitespace.')
         self.assertEqual(calls[1][0][2], 3)
 
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     def test_skip_string_content(self, report_error):
         self.checker.check_file(
             self.mock_file(),
@@ -60,7 +60,7 @@ class TestDuplicateWhitespaceChecker(CheckerTestCase):
         )
         report_error.assert_not_called()
 
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     def test_skip_block_comment_asterisk(self, report_error):
         self.checker.check_file(
             self.mock_file(),
@@ -76,7 +76,7 @@ class TestDuplicateWhitespaceChecker(CheckerTestCase):
         )
         report_error.assert_not_called()
 
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     def test_skip_pointers(self, report_error):
         self.checker.check_file(
             self.mock_file(),
@@ -90,7 +90,7 @@ class TestDuplicateWhitespaceChecker(CheckerTestCase):
         )
         report_error.assert_not_called()
 
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     def test_skip_arrays(self, report_error):
         self.checker.check_file(
             self.mock_file(),

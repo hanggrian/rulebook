@@ -45,7 +45,7 @@ comment.trim=Remove blank line after '#'.
 duplicate.blank.line=Remove consecutive blank line.
 duplicate.blank.line.in.block.comment=Remove consecutive blank line in '"""'.
 duplicate.blank.line.in.comment=Remove consecutive blank line after '#'.
-duplicate.whitespace=Remove consecutive whitespace.
+duplicate.space=Remove consecutive whitespace.
 parentheses.trim.first=Remove blank line after '%s'.
 parentheses.trim.last=Remove blank line before '%s'.
 # Wrapping

@@ -17,7 +17,7 @@ from rulebook_pylint.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
 from rulebook_pylint.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
-from rulebook_pylint.checkers.duplicate_whitespace import DuplicateWhitespaceChecker
+from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_pylint.checkers.generic_name import GenericNameChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_pylint.checkers.internal_error import InternalErrorChecker
@@ -62,7 +62,7 @@ __all__ = [
     'DuplicateBlankLineChecker',
     'DuplicateBlankLineInBlockCommentChecker',
     'DuplicateBlankLineInCommentChecker',
-    'DuplicateWhitespaceChecker',
+    'DuplicateSpaceChecker',
     'GenericNameChecker',
     'InnerClassPositionChecker',
     'InternalErrorChecker',

@@ -7,7 +7,7 @@
   "ignoreDeps": [
     "@eslint/js",
     "astroid",
-    "eslint",
-    "checkstyle"
+    "com.puppycrawl.tools:checkstyle",
+    "eslint"
   ]
 }

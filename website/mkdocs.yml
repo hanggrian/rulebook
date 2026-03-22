@@ -17,6 +17,11 @@ copyright: >
       src="https://img.shields.io/codecov/c/gh/hanggrian/rulebook"
       alt="Codecov"/>
   </a>
+  <a href="https://developer.mend.io/github/hanggrian/rulebook/">
+    <img
+      src="https://img.shields.io/badge/dependency-mend-blue"
+      alt="Renovate"/>
+  </a>
   &emsp;
   <a href="https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/">
     <img

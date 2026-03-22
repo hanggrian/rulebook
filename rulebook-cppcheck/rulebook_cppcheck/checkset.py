@@ -16,7 +16,7 @@ from rulebook_cppcheck.checkers import \
     DuplicateBlankLineChecker, \
     DuplicateBlankLineInBlockCommentChecker, \
     DuplicateBlankLineInCommentChecker, \
-    DuplicateWhitespaceChecker, \
+    DuplicateSpaceChecker, \
     FileNameChecker, \
     FileSizeChecker, \
     FinalNewlineChecker, \
@@ -101,7 +101,7 @@ if __name__ == '__main__':
         DuplicateBlankLineChecker(),
         DuplicateBlankLineInBlockCommentChecker(),
         DuplicateBlankLineInCommentChecker(),
-        DuplicateWhitespaceChecker(),
+        DuplicateSpaceChecker(),
         ParenthesesTrimChecker(),
         # Wrapping
         AssignmentWrapChecker(),

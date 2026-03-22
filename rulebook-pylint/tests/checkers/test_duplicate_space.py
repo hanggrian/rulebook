@@ -2,13 +2,13 @@ from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
 
-from rulebook_pylint.checkers import DuplicateWhitespaceChecker
+from rulebook_pylint.checkers import DuplicateSpaceChecker
 from ..tests import assert_properties, msg
 
 
 # noinspection PyTypeChecker
-class TestDuplicateWhitespaceChecker(CheckerTestCase):
-    CHECKER_CLASS = DuplicateWhitespaceChecker
+class TestDuplicateSpaceChecker(CheckerTestCase):
+    CHECKER_CLASS = DuplicateSpaceChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -33,8 +33,8 @@ class TestDuplicateWhitespaceChecker(CheckerTestCase):
                 ''',
             )
         with self.assertAddsMessages(
-            msg(DuplicateWhitespaceChecker._MSG, (2, 27)),
-            msg(DuplicateWhitespaceChecker._MSG, (3, 28)),
+            msg(DuplicateSpaceChecker._MSG, (2, 27)),
+            msg(DuplicateSpaceChecker._MSG, (3, 28)),
         ):
             self.checker.process_tokens(tokens)
 

@@ -33,7 +33,7 @@ class AllRulesTest : AbstractTestCase() {
             ComplicatedAssignmentRule(),
             ComplicatedSizeEqualityRule(),
             DuplicateBlankLineInCommentRule(),
-            DuplicateWhitespaceRule(),
+            DuplicateSpaceRule(),
             EmptyFileRule(),
             GenericNameRule(),
             IllegalVariableNameRule(),

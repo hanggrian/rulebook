@@ -21,7 +21,7 @@ from rulebook_cppcheck.checkers import \
     DuplicateBlankLineChecker, \
     DuplicateBlankLineInBlockCommentChecker, \
     DuplicateBlankLineInCommentChecker, \
-    DuplicateWhitespaceChecker, \
+    DuplicateSpaceChecker, \
     FileNameChecker, \
     FileSizeChecker, \
     FinalNewlineChecker, \
@@ -76,7 +76,7 @@ class TestAllCheckers(TestCase):
             DuplicateBlankLineChecker(),
             DuplicateBlankLineInBlockCommentChecker(),
             DuplicateBlankLineInCommentChecker(),
-            DuplicateWhitespaceChecker(),
+            DuplicateSpaceChecker(),
             FileNameChecker(),
             FileSizeChecker(),
             FinalNewlineChecker(),
@@ -113,7 +113,7 @@ class TestAllCheckers(TestCase):
     @patch.object(BlockCommentSpacesChecker, 'report_error')
     @patch.object(ChainCallWrapChecker, 'report_error')
     @patch.object(DuplicateBlankLineChecker, 'report_error')
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     @patch.object(GenericNameChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(IndentStyleChecker, 'report_error')
@@ -391,7 +391,7 @@ class TestAllCheckers(TestCase):
     @patch.object(AssignmentWrapChecker, 'report_error')
     @patch.object(CaseSeparatorChecker, 'report_error')
     @patch.object(DuplicateBlankLineChecker, 'report_error')
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     @patch.object(IdentifierNameChecker, 'report_error')
     @patch.object(IllegalCatchChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
@@ -772,7 +772,7 @@ class TestAllCheckers(TestCase):
     @patch.object(AssignmentWrapChecker, 'report_error')
     @patch.object(CaseSeparatorChecker, 'report_error')
     @patch.object(CommentSpacesChecker, 'report_error')
-    @patch.object(DuplicateWhitespaceChecker, 'report_error')
+    @patch.object(DuplicateSpaceChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(IndentStyleChecker, 'report_error')
     @patch.object(LineLengthChecker, 'report_error')

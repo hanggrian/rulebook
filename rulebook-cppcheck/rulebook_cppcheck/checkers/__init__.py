@@ -15,7 +15,7 @@ from rulebook_cppcheck.checkers.duplicate_blank_line_in_block_comment import \
     DuplicateBlankLineInBlockCommentChecker
 from rulebook_cppcheck.checkers.duplicate_blank_line_in_comment import \
     DuplicateBlankLineInCommentChecker
-from rulebook_cppcheck.checkers.duplicate_whitespace import DuplicateWhitespaceChecker
+from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_cppcheck.checkers.file_name import FileNameChecker
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
 from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
@@ -63,7 +63,7 @@ __all__ = [
     'DuplicateBlankLineChecker',
     'DuplicateBlankLineInBlockCommentChecker',
     'DuplicateBlankLineInCommentChecker',
-    'DuplicateWhitespaceChecker',
+    'DuplicateSpaceChecker',
     'FileNameChecker',
     'FileSizeChecker',
     'FinalNewlineChecker',

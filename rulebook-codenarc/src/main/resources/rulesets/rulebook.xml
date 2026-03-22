@@ -75,7 +75,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.CommentTrimRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.DuplicateBlankLineInCommentRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.DuplicateWhitespaceRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.DuplicateSpaceRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.ParenthesesTrimRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.TagsTrimRule"/>
 
