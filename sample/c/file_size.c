@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int file_size() {
     printf("");
 
     printf("");

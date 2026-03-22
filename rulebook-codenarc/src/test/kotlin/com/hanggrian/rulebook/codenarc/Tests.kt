@@ -13,8 +13,12 @@ fun violationOf(line: Int, source: String, message: String) =
     )
 
 abstract class RuleTest<T : AbstractRule> : AbstractRuleTestCase<T>() {
-    fun asScript(name: String = "test.gradle") {
-        sourceCodeName = name
+    fun asScript() {
+        sourceCodeName = "test.gradle"
+    }
+
+    fun asTest() {
+        sourceCodeName = "SomeTest.groovy"
     }
 
     inline fun <reified T : AbstractRule> T.assertProperties() {

@@ -1,12 +1,10 @@
-void parentheses_trim(
-    int bar
-) {}
-
-auto vglambda = [
-    0
-](auto printer) {
-    return 9;
-};
+char parentheses_trim(
+    const char s[]
+) {
+    return s[
+        0
+    ];
+}
 
 template <
     typename T

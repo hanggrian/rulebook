@@ -14,6 +14,8 @@ dependencies {
     codenarc(project(":$releaseArtifact-codenarc"))
 
     implementation(libs.groovy.all)
+
+    compileOnly(kotlin("test-junit", libs.versions.kotlin.get()))
 }
 
 ktlint.kotlinScriptAdditionalPaths {

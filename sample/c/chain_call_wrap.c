@@ -10,7 +10,7 @@ Node plus(int n) {
     return node;
 }
 
-int main() {
+int chain_call_wrap() {
     // Missing newline before second and fourth '.'
     const Node foo =
         plus(0)

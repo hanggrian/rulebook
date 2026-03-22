@@ -1,6 +1,6 @@
 #include <system_error>
 
-void foo() {
+void illegal_catch() {
     if (true) {
     } else if (false) {
     } else {
@@ -11,7 +11,7 @@ void foo() {
     do {} while (true);
 
     try {
-        foo();
+        illegal_catch();
     } catch (const std::overflow_error &e) {
     } catch (const std::runtime_error &e) {
     }

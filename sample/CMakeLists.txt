@@ -6,6 +6,7 @@ set(CMAKE_BUILD_TYPE Release)
 
 add_executable(
         sample
+        c/main.c
         c/abbreviation_as_word.c
         c/assignment_wrap.c
         c/block_comment_spaces.c
@@ -22,6 +23,7 @@ add_executable(
         c/duplicate_blank_line_in_block_comment.c
         c/duplicate_blank_line_in_comment.c
         c/duplicate_space.c
+        c/file_name.c
         c/file_size.c
         c/final_newline.c
         c/identifier_name.c

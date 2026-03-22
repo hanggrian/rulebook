@@ -1,6 +1,4 @@
 {
   "extends": ["./typedoc.base.jsonc"],
-  "entryPoints": [
-    "src/"
-  ]
+  "entryPoints": ["src"]
 }

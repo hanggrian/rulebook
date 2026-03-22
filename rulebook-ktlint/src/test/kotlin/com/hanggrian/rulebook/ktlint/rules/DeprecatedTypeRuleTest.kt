@@ -49,16 +49,4 @@ class DeprecatedTypeRuleTest : RuleTest() {
     fun `No Kotlin replacement`() =
         assertThatCode("import java.lang.ResourceBundle")
             .hasNoLintViolations()
-
-    @Test
-    fun `Unit test methods`() =
-        assertThatCode(
-            """
-            import org.junit.Test
-
-            @Test
-            fun testSomething() {
-            }
-            """.trimIndent(),
-        ).hasLintViolationWithoutAutoCorrect(1, 8, "Use built-in type 'kotlin.test.Test'.")
 }

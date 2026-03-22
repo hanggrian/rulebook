@@ -1,4 +1,4 @@
-int main() {
+int duplicate_blank_line_in_comment() {
     // Lorem
     //
     // ipsum

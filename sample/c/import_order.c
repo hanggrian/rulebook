@@ -3,6 +3,6 @@
 #include "asoundlib.h"
 #include "x264_config.h"
 
-int main() {
+int import_order() {
     return 0;
 }

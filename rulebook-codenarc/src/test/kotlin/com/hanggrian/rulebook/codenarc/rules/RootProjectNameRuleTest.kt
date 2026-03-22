@@ -15,7 +15,7 @@ class RootProjectNameRuleTest : RuleTest<RootProjectNameRule>() {
 
     @Test
     fun `Correct project name`() {
-        asScript("settings.gradle")
+        sourceCodeName = "settings.gradle"
         assertNoViolations(
             """
             rootProject.name = 'my-project'
@@ -25,7 +25,7 @@ class RootProjectNameRuleTest : RuleTest<RootProjectNameRule>() {
 
     @Test
     fun `Incorrect project name`() {
-        asScript("settings.gradle")
+        sourceCodeName = "settings.gradle"
         assertSingleViolation(
             """
             rootProject.name = 'my project'
@@ -38,7 +38,7 @@ class RootProjectNameRuleTest : RuleTest<RootProjectNameRule>() {
 
     @Test
     fun `Missing project name`() {
-        asScript("settings.gradle")
+        sourceCodeName = "settings.gradle"
         assertSingleViolation(
             """
             pluginManagement.repositories.mavenCentral()

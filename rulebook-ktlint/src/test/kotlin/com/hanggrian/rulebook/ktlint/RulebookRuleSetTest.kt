@@ -17,6 +17,7 @@ import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
 import com.hanggrian.rulebook.ktlint.rules.DecentralizedDependencyRule
+import com.hanggrian.rulebook.ktlint.rules.DeprecatedAnnotationRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedIdentityRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
@@ -78,6 +79,7 @@ class RulebookRuleSetTest {
             ComplicatedSizeEqualityRule::class,
             ConfusingPredicateRule::class,
             DecentralizedDependencyRule::class,
+            DeprecatedAnnotationRule::class,
             DeprecatedIdentityRule::class,
             DeprecatedTypeRule::class,
             DuplicateBlankLineInBlockCommentRule::class,

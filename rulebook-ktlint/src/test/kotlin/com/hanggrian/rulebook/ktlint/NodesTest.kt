@@ -8,14 +8,12 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IMPORT_KEYWORD
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RETURN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.THROW
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHITE_SPACE
-import jdk.javadoc.internal.doclets.formats.html.markup.RawHtml.comment
 import org.jetbrains.kotlin.com.intellij.lang.ASTNode
 import org.mockito.Mockito.atMost
 import org.mockito.Mockito.verify

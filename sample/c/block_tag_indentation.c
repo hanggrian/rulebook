@@ -6,7 +6,7 @@
  * @return Return
  *     description.
  */
-void foo(int p) {}
+void block_tag_indentation(int p) {}
 
 /**
  * Function description
@@ -16,4 +16,4 @@ void foo(int p) {}
  * @return Return
  *     description.
  */
-void var(int p) {}
+void block_tag_indentation2(int p) {}

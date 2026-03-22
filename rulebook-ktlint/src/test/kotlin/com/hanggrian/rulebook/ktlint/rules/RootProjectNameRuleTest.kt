@@ -16,7 +16,7 @@ class RootProjectNameRuleTest : RuleTest() {
             """
             rootProject.name = "my-project"
             """.trimIndent(),
-        ).asScript("settings.gradle.kts")
+        ).asFileWithPath("settings.gradle.kts")
             .hasNoLintViolations()
 
     @Test
@@ -25,7 +25,7 @@ class RootProjectNameRuleTest : RuleTest() {
             """
             rootProject.name = "my project"
             """.trimIndent(),
-        ).asScript("settings.gradle.kts")
+        ).asFileWithPath("settings.gradle.kts")
             .hasLintViolationWithoutAutoCorrect(
                 1,
                 21,
@@ -39,6 +39,6 @@ class RootProjectNameRuleTest : RuleTest() {
             pluginManagement.repositories.mavenCentral()
             dependencyResolutionManagement.repositories.mavenCentral()
             """.trimIndent(),
-        ).asScript("settings.gradle.kts")
+        ).asFileWithPath("settings.gradle.kts")
             .hasLintViolationWithoutAutoCorrect(1, 1, "Set the root project name.")
 }

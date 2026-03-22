@@ -13,24 +13,24 @@ class ScriptFileNameRuleTest : RuleTest() {
     @Test
     fun `kebab-case file name`() =
         assertThatCode("")
-            .asScript("my-file.gradle.kts")
+            .asFileWithPath("my-file.gradle.kts")
             .hasNoLintViolations()
 
     @Test
     fun `PascalCase file name`() =
         assertThatCode("")
-            .asScript("MyFile.gradle.kts")
+            .asFileWithPath("MyFile.gradle.kts")
             .hasLintViolationWithoutAutoCorrect(1, 1, "Rename file to 'my-file'.")
 
     @Test
     fun `camelCase file name`() =
         assertThatCode("")
-            .asScript("myFile.gradle.kts")
+            .asFileWithPath("myFile.gradle.kts")
             .hasLintViolationWithoutAutoCorrect(1, 1, "Rename file to 'my-file'.")
 
     @Test
     fun `snake_case file name`() =
         assertThatCode("")
-            .asScript("my_file.gradle.kts")
+            .asFileWithPath("my_file.gradle.kts")
             .hasLintViolationWithoutAutoCorrect(1, 1, "Rename file to 'my-file'.")
 }

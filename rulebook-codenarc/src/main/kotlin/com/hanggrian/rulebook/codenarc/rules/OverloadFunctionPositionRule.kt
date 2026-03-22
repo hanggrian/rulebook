@@ -28,7 +28,7 @@ public class OverloadFunctionPositionVisitor : RulebookVisitor() {
                 .filterNot { it.isStatic }
 
         // checks for violation
-        val declaredIdentifiers = mutableSetOf<String>()
+        val declaredIdentifiers = hashSetOf<String>()
         for ((i, function) in functions.withIndex()) {
             val name =
                 function

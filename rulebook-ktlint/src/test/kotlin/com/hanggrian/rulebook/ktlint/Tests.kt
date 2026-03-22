@@ -10,7 +10,9 @@ import kotlin.test.assertFalse
 object AllRules : Set<RuleProvider> by RulebookRuleSet().getRuleProviders()
 
 open class RuleTest {
-    fun KtLintAssertThat.asScript(name: String = "test.kts") = asFileWithPath(name)
+    fun KtLintAssertThat.asScript() = asFileWithPath("test.kts")
+
+    fun KtLintAssertThat.asTest() = asFileWithPath("SomeTest.kt")
 
     inline fun <reified T : RulebookRule> T.assertProperties() {
         assertEquals(

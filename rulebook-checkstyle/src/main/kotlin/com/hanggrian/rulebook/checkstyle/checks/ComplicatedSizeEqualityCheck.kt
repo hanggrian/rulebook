@@ -32,10 +32,7 @@ public class ComplicatedSizeEqualityCheck : RulebookAstCheck() {
                 .findFirstToken(METHOD_CALL)
                 ?.findFirstToken(DOT)
                 ?.children()
-                ?.filter { it.type == IDENT }
-                ?.toList()
-                ?.takeIf { it.size == 2 }
-                ?.get(1)
+                ?.lastOrNull { it.type == IDENT }
                 ?.takeIf { it.text == "size" }
                 ?: return
         log(

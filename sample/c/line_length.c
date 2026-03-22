@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int line_length() {
     const char *foo = "                                                                           ";
     printf("%s", foo);
     return 0;

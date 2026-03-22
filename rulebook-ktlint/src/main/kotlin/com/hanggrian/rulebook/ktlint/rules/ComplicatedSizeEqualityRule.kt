@@ -39,11 +39,8 @@ public class ComplicatedSizeEqualityRule : RulebookRule(ID) {
             node
                 .findChildByType(DOT_QUALIFIED_EXPRESSION)
                 ?.children20
-                ?.filter { it.elementType === REFERENCE_EXPRESSION }
-                ?.mapNotNull { it.findChildByType(IDENTIFIER) }
-                ?.toList()
-                ?.takeIf { it.size == 2 }
-                ?.get(1)
+                ?.lastOrNull { it.elementType === REFERENCE_EXPRESSION }
+                ?.findChildByType(IDENTIFIER)
                 ?.takeIf { it.text == "size" }
                 ?: return
         emit(

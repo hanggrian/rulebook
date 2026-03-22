@@ -44,6 +44,20 @@ class ComplicatedSizeEqualityRuleTest : RuleTest<ComplicatedSizeEqualityRule>() 
         )
 
     @Test
+    fun `Target last dot`() =
+        assertSingleViolation(
+            """
+            def foo(Foo foo) {
+                if (foo.bar.isEmpty()) {
+                }
+            }
+            """.trimIndent(),
+            2,
+            "if (foo.bar.isEmpty()) {",
+            "Replace comparison with truthy.",
+        )
+
+    @Test
     fun `Also target isEmpty`() =
         assertSingleViolation(
             """

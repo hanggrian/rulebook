@@ -1,4 +1,4 @@
-int main2(
+int parameter_wrap(
     int foo,
     int bar,
     int baz

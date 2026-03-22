@@ -18,4 +18,11 @@ class ComplicatedSizeEqualityCheckTest : CheckTest() {
             "5:17: Replace comparison with 'isEmpty'.",
             "6:24: Replace comparison with '!isEmpty'.",
         )
+
+    @Test
+    fun `Target last dot`() =
+        assertAll(
+            "ComplicatedSizeEquality3",
+            "7:21: Replace comparison with 'isEmpty'.",
+        )
 }

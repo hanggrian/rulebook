@@ -15,13 +15,13 @@ class ScriptFileNameRuleTest : RuleTest<ScriptFileNameRule>() {
 
     @Test
     fun `kebab-case file name`() {
-        asScript("my-file.gradle")
+        sourceCodeName = "my-file.gradle"
         assertNoViolations("")
     }
 
     @Test
     fun `PascalCase file name`() {
-        asScript("MyFile.gradle")
+        sourceCodeName = "MyFile.gradle"
         assertSingleViolation("", 1, "", "Rename file to 'my-file'.")
     }
 }

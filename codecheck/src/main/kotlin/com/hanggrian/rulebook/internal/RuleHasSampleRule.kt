@@ -91,7 +91,7 @@ class RuleHasSampleRule : RulebookRule(ID) {
         val String.kebabCase: String
             get() =
                 split(Regex("(?=[A-Z])"))
-                    .filter { it.isNotEmpty() }
+                    .filterNot { it.isEmpty() }
                     .joinToString("-") { it.lowercase() }
     }
 }

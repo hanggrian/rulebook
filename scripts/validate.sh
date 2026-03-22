@@ -8,22 +8,16 @@ uv run pylint sample/python/
 uv run pylint \
   --rcfile=sample-configured/custom_pylintrc sample-configured/python/
 
-local_addon='local.addon.json'
-local_custom_addon='sample-configured/local.custom_addon.json'
-if [[ -f "$local_addon" ]]; then
-  uv run cppcheck \
-    --enable=performance,portability,style,warning \
-    "--addon=$local_addon" \
-    sample/c/*.c \
-    sample/cpp/*.cpp
-fi
-if [[ -f "$local_custom_addon" ]]; then
-  uv run cppcheck \
-    --enable=performance,portability,style,warning \
-    "--addon=$local_custom_addon" \
-    sample-configured/c/*.c \
-    sample-configured/cpp/*.cpp
-fi
+uv run cppcheck \
+  --enable=performance,portability,style,warning \
+  --addon=addon.json \
+  sample/c/*.c \
+  sample/cpp/*.cpp
+uv run cppcheck \
+  --enable=performance,portability,style,warning \
+  --addon=sample-configured/custom_addon.json \
+  sample-configured/c/*.c \
+  sample-configured/cpp/*.cpp
 
 pnpm lint
 pnpm lint2

@@ -4,12 +4,12 @@
  * @param p2 Parameter description.
  * @return Return description.
  */
-void foo(int p1, int p2) {}
+void block_comment_spaces(int p1, int p2) {}
 
 /** Function description */
-void bar(int p1, int p2) {}
+void block_comment_spaces2(int p1, int p2) {}
 
 /**
  * Function description
  */
-void baz(int p1, int p2) {}
+void block_comment_spaces3(int p1, int p2) {}

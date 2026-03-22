@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+void assignment_wrap() {
     constexpr int foo =
         0 +
         1;

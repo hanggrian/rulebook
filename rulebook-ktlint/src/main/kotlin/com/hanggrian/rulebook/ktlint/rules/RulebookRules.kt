@@ -38,12 +38,19 @@ public abstract class RulebookRule(
 
     public open fun isScript(): Boolean = false
 
+    public open fun isTest(): Boolean = false
+
     public abstract fun visitToken(node: ASTNode, emit: Emit)
 
     final override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         if (isScript() &&
             node.elementType !== SCRIPT &&
             node.parent { it.elementType === SCRIPT } == null
+        ) {
+            return
+        }
+        if (isTest() &&
+            !node.psi.containingFile.name.endsWith("Test.kt")
         ) {
             return
         }

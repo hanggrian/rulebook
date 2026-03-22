@@ -37,4 +37,15 @@ class ComplicatedSizeEqualityRuleTest : RuleTest() {
             LintViolation(2, 13, "Replace comparison with 'isEmpty'."),
             LintViolation(3, 20, "Replace comparison with 'isNotEmpty'."),
         )
+
+    @Test
+    fun `Target last dot`() =
+        assertThatCode(
+            """
+            fun foo(val foo: Foo) {
+                if (foo.bar.qux().size == 0) {
+                }
+            }
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(2, 23, "Replace comparison with 'isEmpty'.")
 }

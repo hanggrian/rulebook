@@ -9,4 +9,14 @@ class ComplicatedSizeEquality {
             println()
         }
     }
+
+    fun bar(foo: Foo) {
+        if (foo.qux().bar.isEmpty()) {
+            println()
+        }
+    }
+
+    class Foo(val bar: List<Int>) {
+        fun qux(): Foo = this
+    }
 }

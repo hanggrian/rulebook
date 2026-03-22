@@ -47,8 +47,25 @@ class ComplicatedBooleanEqualityRuleTest : RuleTest() {
                 }
             }
             """.trimIndent(),
-        ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(2, 9, "Remove duplicate negation."),
+        ).hasLintViolationWithoutAutoCorrect(
+            2,
+            9,
+            "Remove duplicate negation.",
+        )
+
+    @Test
+    fun `Target last dot`() =
+        assertThatCode(
+            """
+            fun foo(val foo: Foo) {
+                if (foo.foo == true) {
+                }
+            }
+            """.trimIndent(),
+        ).hasLintViolationWithoutAutoCorrect(
+            2,
+            20,
+            "Remove boolean constant.",
         )
 
     @Test

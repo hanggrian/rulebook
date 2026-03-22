@@ -16,6 +16,7 @@ import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
 import com.hanggrian.rulebook.ktlint.rules.DecentralizedDependencyRule
+import com.hanggrian.rulebook.ktlint.rules.DeprecatedAnnotationRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedIdentityRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedTypeRule
 import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
@@ -110,6 +111,8 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { RedundantIfRule() },
             RuleProvider { UnnecessaryContinueRule() },
             RuleProvider { UnnecessaryReturnRule() },
+            // Testing
+            RuleProvider { DeprecatedAnnotationRule() },
             // Trimming
             RuleProvider { BlockCommentTrimRule() },
             RuleProvider { CommentTrimRule() },

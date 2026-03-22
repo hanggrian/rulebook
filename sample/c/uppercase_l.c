@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+void uppercase_l() {
     constexpr long foo = 1L;
     constexpr long long bar = 1LL;
 

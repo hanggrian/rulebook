@@ -3,11 +3,11 @@
  *
  * @see Parameter description.
  */
-void foo2(int p) {}
+void block_tag_punctuation(int p) {}
 
 /**
  * Function description
  *
  * @see Parameter description!
  */
-void var(int p) {}
+void block_tag_punctuation2(int p) {}

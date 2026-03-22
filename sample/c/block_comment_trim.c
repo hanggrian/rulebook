@@ -1,4 +1,4 @@
-int main() {
+int block_comment_trim() {
     /**
      * Lorem ipsum
      */

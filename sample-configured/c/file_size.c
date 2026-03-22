@@ -1,19 +1,19 @@
 #include <stdio.h>
 
-int main() {
-    printf("");
+int file_size() {
+  printf("");
 
-    printf("");
+  printf("");
 
-    printf("");
+  printf("");
 
-    printf("");
+  printf("");
 
-    printf("");
+  printf("");
 
-    printf("");
+  printf("");
 
-    printf("");
+  printf("");
 
-    return 0;
+  return 0;
 }

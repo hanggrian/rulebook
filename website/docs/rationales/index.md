@@ -11,6 +11,20 @@ abstract class Message {
 }
 ```
 
+## Annotate test case
+
+Test classes should contain at least one test method annotated with the test
+annotation.
+
+```kotlin hl_lines="2"
+class UserServiceTest {
+    fun testCreateUser() {
+        val user = User("Alice", 30)
+        assertEquals("Alice", user.name)
+    }
+}
+```
+
 ## Avoid primitive names
 
 When declaring string and primitive variables, it is tempting to use simple
@@ -36,14 +50,23 @@ var emptyMap = [
 ]
 ```
 
+## Delete empty file
+
+Content of a file should not be empty or consist of only whitespace characters,
+which may be spaces, tabs or newlines.
+
+```kotlin
+package com.example
+```
+
 ## Hide utility class instance
 
 To prevent instantiating a utility class, put a final modifier on the class
 and add a private constructor.
 
 ```java hl_lines="1-2"
-final class Strings {
-    private Strings() {}
+class Strings {
+    public Strings() {}
 
     static String capitalize(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
@@ -84,13 +107,13 @@ fun main() {
 }
 ```
 
-## Remove empty file
+## Remove negation
 
-Content of a file should not be empty or consist of only whitespace characters,
-which may be spaces, tabs or newlines.
+In functions that support both positive and negative conditions, the positive
+condition should be preferred.
 
-```kotlin hl_lines="1"
-
+```kotlin
+assertTrue(!user.isAuthorized)
 ```
 
 ## Sort named imports

@@ -9,8 +9,7 @@ import kotlin.test.Test
 
 @ExtendWith(MockitoExtension::class)
 class RulesTest {
-    @Mock
-    private lateinit var rule: Rule
+    @Mock private lateinit var rule: Rule
 
     @Test
     fun createViolation() {

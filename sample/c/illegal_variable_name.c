@@ -1,6 +1,9 @@
+#include <stdio.h>
+
 struct Api {
     int intege;
-    char strin[];
 };
 
-struct Api a;
+void illegal_variable_name(const struct Api api) {
+    printf("%d", api.intege);
+}

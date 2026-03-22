@@ -1,4 +1,4 @@
-int main() {
+int identifier_name() {
     constexpr int foo_bar = 0;
     return foo_bar;
 }

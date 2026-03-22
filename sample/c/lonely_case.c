@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int lonely_case() {
     constexpr int expression = 0;
     if (expression == 12) {
         constexpr int foo = 0;

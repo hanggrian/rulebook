@@ -1,7 +1,7 @@
 /**
  * TODO foo
  */
-int main() {
+int todo_comment() {
     // FIXME bar
     return 0;
 }

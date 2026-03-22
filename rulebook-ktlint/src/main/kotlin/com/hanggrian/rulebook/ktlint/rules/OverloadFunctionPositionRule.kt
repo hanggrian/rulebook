@@ -25,7 +25,7 @@ public class OverloadFunctionPositionRule : RulebookRule(ID) {
                 .toList()
 
         // checks for violation
-        val declaredIdentifiers = mutableSetOf<String>()
+        val declaredIdentifiers = hashSetOf<String>()
         for ((i, `fun`) in funs.withIndex()) {
             val identifier =
                 `fun`

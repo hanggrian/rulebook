@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+void lowercase_f() {
     constexpr float foo = 1.0f;
     printf("%f", foo);
 }
