@@ -3,6 +3,7 @@ package com.hanggrian.rulebook.ktlint.rules
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.contains
+import com.hanggrian.rulebook.ktlint.twoWayMapOf
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BINARY_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CALL_EXPRESSION
@@ -14,6 +15,7 @@ import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.IS_EXPRESSION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LAMBDA_ARGUMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LAMBDA_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.NOT_IN
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.NOT_IS
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PREFIX_EXPRESSION
@@ -27,7 +29,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class ConfusingPredicateRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(CALL_EXPRESSION)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // skip non-predicate call
         val block =
             node
@@ -46,44 +48,40 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
                 ?: return
 
         // checks for violation
-        val (expression, msg) =
-            block
-                .findChildByType(DOT_QUALIFIED_EXPRESSION)
-                ?.to(MSG_EMPTY)
-                ?: block
-                    .findChildByType(BINARY_EXPRESSION)
-                    ?.to(MSG_EQUALS)
-                ?: block
-                    .findChildByType(PREFIX_EXPRESSION)
-                    ?.to(MSG_NEGATES)
-                ?: block
-                    .findChildByType(IS_EXPRESSION)
-                    ?.to(MSG_NEGATES)
+        val expression =
+            block.findChildByType(DOT_QUALIFIED_EXPRESSION)
+                ?: block.findChildByType(BINARY_EXPRESSION)
+                ?: block.findChildByType(PREFIX_EXPRESSION)
+                ?: block.findChildByType(IS_EXPRESSION)
                 ?: return
-        when {
-            BINARY_EXPRESSION in expression ||
-                PREFIX_EXPRESSION in expression -> return
+        val msg =
+            when {
+                BINARY_EXPRESSION in expression ||
+                    PREFIX_EXPRESSION in expression -> return
 
-            expression.elementType === DOT_QUALIFIED_EXPRESSION -> {
-                expression
-                    .findChildByType(CALL_EXPRESSION)
-                    ?.findChildByType(REFERENCE_EXPRESSION)
-                    ?.findChildByType(IDENTIFIER)
-                    ?.takeIf { it.text == "isNotEmpty" }
-                    ?: return
-                emit(node.startOffset, Messages[msg, functionReplacement], false)
-            }
+                expression.elementType === DOT_QUALIFIED_EXPRESSION -> {
+                    expression
+                        .findChildByType(CALL_EXPRESSION)
+                        ?.findChildByType(REFERENCE_EXPRESSION)
+                        ?.findChildByType(IDENTIFIER)
+                        ?.takeIf { it.text == "isNotEmpty" }
+                        ?: return
+                    MSG_EMPTY
+                }
 
-            else -> {
-                expression
-                    .findChildByType(OPERATION_REFERENCE)
-                    ?.firstChildNode
-                    ?.elementType
-                    ?.takeIf { it === EXCLEQ || it === EXCL || it === NOT_IS }
-                    ?: return
-                emit(node.startOffset, Messages[msg, functionReplacement], false)
+                else -> {
+                    val operation = expression.findChildByType(OPERATION_REFERENCE) ?: return
+                    when {
+                        EXCLEQ in operation -> MSG_EQUALS
+
+                        EXCL in operation || NOT_IS in operation || NOT_IN in operation ->
+                            MSG_NEGATES
+
+                        else -> return
+                    }
+                }
             }
-        }
+        emit(node.startOffset, Messages[msg, functionReplacement], false)
     }
 
     public companion object {
@@ -92,18 +90,12 @@ public class ConfusingPredicateRule : RulebookRule(ID) {
         private const val MSG_EQUALS = "confusing.predicate.equals"
         private const val MSG_NEGATES = "confusing.predicate.negates"
 
-        private val PREDICATE_CALLS = hashMapOf<String, String>()
-
-        init {
-            putPredicateCall("filter", "filterNot")
-            putPredicateCall("filterTo", "filterNotTo")
-            putPredicateCall("memoryOptimizedFilter", "memoryOptimizedFilterNot")
-            putPredicateCall("takeIf", "takeUnless")
-        }
-
-        private fun putPredicateCall(positiveCall: String, negativeCall: String) {
-            PREDICATE_CALLS[positiveCall] = negativeCall
-            PREDICATE_CALLS[negativeCall] = positiveCall
-        }
+        private val PREDICATE_CALLS =
+            twoWayMapOf(
+                "filter" to "filterNot",
+                "filterTo" to "filterNotTo",
+                "memoryOptimizedFilter" to "memoryOptimizedFilterNot",
+                "takeIf" to "takeUnless",
+            )
     }
 }

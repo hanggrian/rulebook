@@ -21,7 +21,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class DeprecatedIdentityRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(BINARY_EXPRESSION)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // find constants
         node
             .takeIf {

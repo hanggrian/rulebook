@@ -1,21 +1,16 @@
 #include <algorithm>
 #include <cmrc/cmrc.hpp>
-#include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <string>
-#include <vector>
-#include "cli.h"
-#include "colors.h"
-#include "config_writer.h"
+#include "cli.hpp"
+#include "colors.hpp"
+#include "config_initializer.hpp"
 
 CMRC_DECLARE(resources);
 
-using namespace filesystem;
-using namespace std;
 using namespace cmrc;
 
-int write(const string &linter, const path &dir, bool google) {
+int init_config(const string &linter, const path &dir, bool google, bool verbose) {
     const vector<string> linters_with_flavors = {
         "checkstyle",
         "cppcheck",
@@ -59,7 +54,7 @@ int write(const string &linter, const path &dir, bool google) {
         target_path /= "eslint.config.js";
     } else if (linter == "ktlint") {
         source_file = fs.open("resources/ktlint.editorconfig");
-        target_path /= "config/codenarc/codenarc.xml";
+        target_path /= ".editorconfig";
     } else if (linter == "pylint") {
         source_file =
                 fs.open(
@@ -68,7 +63,7 @@ int write(const string &linter, const path &dir, bool google) {
                         : "resources/pylint_google"
                 );
         target_path /= ".pylintrc";
-    } else if (linter == "typescript-eslint") {
+    } else {
         source_file =
                 fs.open(
                     !google
@@ -78,9 +73,12 @@ int write(const string &linter, const path &dir, bool google) {
         target_path /= "eslint.config.js";
     }
 
-    cout << "Linter: " << BOLD << linter << RESET << endl;
-    cout << "Flavor: " << BOLD << (google ? "google" : "default") << RESET << endl;
-    cout << "Config: " << BOLD << target_path << RESET << endl << endl;
+    if (verbose) {
+        cout << "Linter:    " << BOLD << linter << RESET << endl;
+        cout << "Directory: " << BOLD << dir.string() << RESET << endl;
+        cout << "Flavor:    " << BOLD << (google ? "google" : "default") << RESET << endl;
+        cout << "Config:    " << BOLD << target_path.string() << RESET << endl << endl;
+    }
 
     if (is_regular_file(target_path)) {
         cout << "File already exists." << endl;
@@ -97,9 +95,7 @@ int write(const string &linter, const path &dir, bool google) {
             }
         }
     }
-    if (!target_path.has_parent_path()) {
-        create_directories(target_path.parent_path());
-    }
+    create_directories(target_path.parent_path());
     ofstream stream(target_path, ios::binary);
     stream.write(source_file.begin(), static_cast<streamsize>(source_file.size()));
     stream.close();

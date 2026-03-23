@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.TYPE
 public class UnnecessaryParenthesesInLambdaCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LAMBDA)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // skip multiple parameters
         val parameter =
             node

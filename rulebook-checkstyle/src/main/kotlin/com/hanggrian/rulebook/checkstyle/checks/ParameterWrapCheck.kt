@@ -16,7 +16,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN
 public class ParameterWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(PARAMETERS, ELIST)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // collect parentheses
         val (lparen, rparen) =
             when (node.type) {

@@ -27,6 +27,8 @@ class RuleHasSampleChecker(RulebookFileChecker):
         if self._PYLINT_PATH in file:
             if exists(file.replace(self._PYLINT_PATH, '/sample/python/')):
                 return
+            if exists(file.replace(self._PYLINT_PATH, '/sample/tests/python/test_')):
+                return
             self.add_message('missing-sample', line=1)
         elif self._CPPCHECK_PATH in file:
             file = file.replace('.py', '')

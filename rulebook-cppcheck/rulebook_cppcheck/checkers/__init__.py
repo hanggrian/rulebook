@@ -29,6 +29,7 @@ from rulebook_cppcheck.checkers.indent_style import IndentStyleChecker
 from rulebook_cppcheck.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_cppcheck.checkers.line_length import LineLengthChecker
 from rulebook_cppcheck.checkers.lonely_case import LonelyCaseChecker
+from rulebook_cppcheck.checkers.lonely_if import LonelyIfChecker
 from rulebook_cppcheck.checkers.lowercase_f import LowercaseFChecker
 from rulebook_cppcheck.checkers.lowercase_hexadecimal import LowercaseHexadecimalChecker
 from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
@@ -41,6 +42,7 @@ from rulebook_cppcheck.checkers.parentheses_clip import ParenthesesClipChecker
 from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
+from rulebook_cppcheck.checkers.redundant_if import RedundantIfChecker
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
 from rulebook_cppcheck.checkers.unnecessary_return import UnnecessaryReturnChecker
 from rulebook_cppcheck.checkers.unnecessary_trailing_whitespace import \
@@ -77,6 +79,7 @@ __all__ = [
     'InnerClassPositionChecker',
     'LineLengthChecker',
     'LonelyCaseChecker',
+    'LonelyIfChecker',
     'LowercaseFChecker',
     'LowercaseHexadecimalChecker',
     'MeaninglessWordChecker',
@@ -89,6 +92,7 @@ __all__ = [
     'ParenthesesTrimChecker',
     'RedundantDefaultChecker',
     'RedundantElseChecker',
+    'RedundantIfChecker',
     'TodoCommentChecker',
     'UnnecessaryReturnChecker',
     'UnnecessaryTrailingWhitespaceChecker',

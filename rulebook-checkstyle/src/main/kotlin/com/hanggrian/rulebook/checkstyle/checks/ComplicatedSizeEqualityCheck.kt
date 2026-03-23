@@ -16,7 +16,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.NUM_INT
 public class ComplicatedSizeEqualityCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(EXPR)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // checks for violation
         val operation =
             node.findFirstToken(GT)

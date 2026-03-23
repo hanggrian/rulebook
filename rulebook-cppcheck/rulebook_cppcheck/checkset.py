@@ -40,7 +40,9 @@ from rulebook_cppcheck.checkers import \
     ParameterWrapChecker, \
     ParenthesesClipChecker, \
     ParenthesesTrimChecker, \
-    RedundantDefaultChecker, RedundantElseChecker, \
+    RedundantDefaultChecker, \
+    RedundantElseChecker, \
+    RedundantIfChecker, \
     TodoCommentChecker, \
     UnnecessaryReturnChecker, \
     UnnecessaryTrailingWhitespaceChecker, \
@@ -94,6 +96,7 @@ if __name__ == '__main__':
         LonelyCaseChecker(),
         RedundantDefaultChecker(),
         RedundantElseChecker(),
+        RedundantIfChecker(),
         UnnecessaryReturnChecker(),
         # Trimming
         BlockCommentTrimChecker(),

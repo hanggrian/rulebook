@@ -59,7 +59,7 @@ public class MemberOrderCheck :
 
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // in Java, static members have specific keyword
         var lastChild: DetailAST? = null
         node

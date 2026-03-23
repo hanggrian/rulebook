@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class BlockTagIndentationRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(KDOC_LEADING_ASTERISK)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // find leading whitespace
         val text =
             node

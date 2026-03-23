@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LAMBDA
 public class AssignmentWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(ASSIGN)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // find multiline assignee
         val child =
             (

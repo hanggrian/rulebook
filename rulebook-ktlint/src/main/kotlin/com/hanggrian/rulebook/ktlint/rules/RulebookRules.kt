@@ -40,7 +40,7 @@ public abstract class RulebookRule(
 
     public open fun isTest(): Boolean = false
 
-    public abstract fun visitToken(node: ASTNode, emit: Emit)
+    public abstract fun visit(node: ASTNode, emit: Emit)
 
     final override fun beforeVisitChildNodes(node: ASTNode, emit: Emit) {
         if (isScript() &&
@@ -50,13 +50,16 @@ public abstract class RulebookRule(
             return
         }
         if (isTest() &&
-            !node.psi.containingFile.name.endsWith("Test.kt")
+            node.psi.containingFile.virtualFile.path.let {
+                "test/" !in it &&
+                    "tests/" !in it
+            }
         ) {
             return
         }
         if (node.elementType !in tokens) {
             return
         }
-        visitToken(node, emit)
+        visit(node, emit)
     }
 }

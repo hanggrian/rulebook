@@ -24,7 +24,7 @@ public class TodoCommentRule : RulebookRule(ID) {
             KDOC_LEADING_ASTERISK,
         )
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // obtain comment content
         val text =
             when (node.elementType) {

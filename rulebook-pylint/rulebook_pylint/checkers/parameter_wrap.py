@@ -18,13 +18,9 @@ class ParameterWrapChecker(RulebookChecker):
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
-        if not isinstance(node, NodeNG):
-            return
         self._process(node.args.args)
 
     def visit_call(self, node: Call) -> None:
-        if not isinstance(node, NodeNG):
-            return
         self._process(node.args)
 
     def _process(self, parameters: list[NodeNG]) -> None:

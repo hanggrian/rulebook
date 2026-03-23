@@ -20,7 +20,7 @@ public class FileSizeRule : RulebookRule(ID, MAX_FILE_SIZE_PROPERTY) {
         maxFileSize = editorConfig[MAX_FILE_SIZE_PROPERTY]
     }
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // checks for violation
         node
             .text

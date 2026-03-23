@@ -11,7 +11,7 @@ public class CommentSpacesCheck : RulebookAstCheck() {
 
     override fun isCommentNodesRequired(): Boolean = true
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // skip empty comment
         val commentContent =
             node

@@ -53,7 +53,7 @@ public class BlockCommentClipRule :
         maxLineLength = editorConfig[MAX_LINE_LENGTH_PROPERTY]
     }
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // skip single-line or block tag
         val children =
             node

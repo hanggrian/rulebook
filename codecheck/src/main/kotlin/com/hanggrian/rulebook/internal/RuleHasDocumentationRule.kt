@@ -13,7 +13,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 class RuleHasDocumentationRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(CLASS)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         var className =
             node
                 .findChildByType(IDENTIFIER)

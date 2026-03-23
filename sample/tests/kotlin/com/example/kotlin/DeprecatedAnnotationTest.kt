@@ -4,5 +4,5 @@ import kotlin.test.Test
 
 class DeprecatedAnnotationTest {
     @Test
-    fun testDeprecated() {}
+    fun test() {}
 }

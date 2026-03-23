@@ -23,7 +23,7 @@ public class BlockTagPunctuationRule : RulebookRule(ID, PUNCTUATE_BLOCK_TAGS_PRO
         punctuateBlockTags = editorConfig[PUNCTUATE_BLOCK_TAGS_PROPERTY]
     }
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // only enforce certain tags
         val kdocTagName =
             node

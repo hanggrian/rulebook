@@ -302,6 +302,9 @@
     <module name="UnnecessaryContinue"/>
     <module name="UnnecessaryReturn"/>
 
+    <!-- Testing -->
+    <module name="ConfusingAssertion"/>
+
     <!-- Trimming -->
     <module name="BlockCommentTrim"/>
     <module name="BracesTrim"/>

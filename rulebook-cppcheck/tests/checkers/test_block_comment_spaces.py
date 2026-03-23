@@ -26,7 +26,7 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
                  *
                  * @param num description.
                  */
-                void bar(num: Int) {}
+                void bar(int num) {}
                 ''',
             ),
         )
@@ -46,7 +46,7 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
                  *
                  *@param num description.
                  */
-                void bar(num: Int) {}
+                void bar(int num) {}
                 ''',
             ),
         )
@@ -74,7 +74,7 @@ class TestBlockCommentSpacesChecker(CheckerTestCase):
                  *@goodtag
                  *@awesometag with description.
                  */
-                void foo(num: Int) {}
+                void foo(int num) {}
                 ''',
             ),
         )

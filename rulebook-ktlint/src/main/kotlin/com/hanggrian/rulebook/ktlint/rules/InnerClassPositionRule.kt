@@ -22,7 +22,7 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
 public class InnerClassPositionRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(CLASS, OBJECT_DECLARATION)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // consider only inner class
         node
             .parent

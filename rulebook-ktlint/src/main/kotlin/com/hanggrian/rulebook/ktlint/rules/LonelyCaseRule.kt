@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class LonelyCaseRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(WHEN)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // skip multiple branches
         val whenEntry =
             node

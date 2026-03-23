@@ -15,7 +15,7 @@ public class TagsTrimCheck : RulebookAstCheck() {
 
     override fun isCommentNodesRequired(): Boolean = true
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // right and left tags are persistent
         val genericStart = node.findFirstToken(GENERIC_START) ?: return
         val genericEnd = node.findFirstToken(GENERIC_END) ?: return

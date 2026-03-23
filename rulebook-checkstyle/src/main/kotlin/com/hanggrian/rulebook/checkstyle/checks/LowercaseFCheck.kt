@@ -8,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.NUM_FLOAT
 public class LowercaseFCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(NUM_FLOAT)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // checks for violation
         node
             .text

@@ -17,7 +17,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class MissingBlankLineBeforeBlockTagsRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(KDOC_SECTION)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // only allow first tag
         val kdocTag =
             node

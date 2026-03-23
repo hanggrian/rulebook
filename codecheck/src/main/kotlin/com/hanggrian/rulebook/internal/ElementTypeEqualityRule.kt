@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 class ElementTypeEqualityRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(BINARY_EXPRESSION)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         node
             .psi
             .containingFile

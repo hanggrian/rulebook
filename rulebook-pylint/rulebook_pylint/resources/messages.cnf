@@ -38,6 +38,8 @@ redundant.default=Omit redundant 'case _' condition.
 unnecessary.continue=Last 'continue' is not needed.
 unnecessary.blank.line.after.colon=Remove blank line after ':'.
 unnecessary.initial.blank.line=Remove blank line at the beginning.
+# Testing
+confusing.assertion=Omit negation and replace call with '%s'.
 # Trimming
 block.comment.trim.first=Remove blank line after '"""'.
 block.comment.trim.last=Remove blank line before '"""'.

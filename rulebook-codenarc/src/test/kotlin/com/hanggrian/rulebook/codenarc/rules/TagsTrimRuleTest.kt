@@ -30,7 +30,7 @@ class TagsTrimRuleTest : RuleTest<TagsTrimRule>() {
 
     @Test
     fun `Tags with newline padding`() =
-        assertViolations(
+        assertTwoViolations(
             """
             <
 
@@ -44,8 +44,12 @@ class TagsTrimRuleTest : RuleTest<TagsTrimRule>() {
                 > list = new ArrayList<>()
             }
             """.trimIndent(),
-            violationOf(2, "", "Remove blank line after '<'."),
-            violationOf(4, "", "Remove blank line before '>'."),
+            2,
+            "",
+            "Remove blank line after '<'.",
+            4,
+            "",
+            "Remove blank line before '>'.",
         )
 
     @Test

@@ -33,7 +33,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class BooleanPropertyInteroperabilityRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(CLASS, OBJECT_DECLARATION)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // collect fields declared in constructor
         val properties = hashSetOf<ASTNode>()
         node

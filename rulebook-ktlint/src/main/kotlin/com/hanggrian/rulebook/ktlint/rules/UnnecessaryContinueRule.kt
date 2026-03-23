@@ -19,7 +19,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class UnnecessaryContinueRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(FOR, WHILE, DO_WHILE)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // checks for violation
         val body = node.findChildByType(BODY) ?: return
         val `continue` =

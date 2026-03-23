@@ -11,7 +11,7 @@ import java.io.File
 class RuleHasSampleRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FILE)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         var file = node.psi.containingFile.name
         when {
             file.endsWith("RulebookRules.kt") || file.endsWith("RulebookChecks.kt") -> return
@@ -21,6 +21,12 @@ class RuleHasSampleRule : RulebookRule(ID) {
                     file
                         .replace(CHECKSTYLE_PATH, "/sample/java/com/example/java/")
                         .replace("Check.kt", ".java"),
+                ).takeUnless(File::exists)
+                    ?: return
+                File(
+                    file
+                        .replace(CHECKSTYLE_PATH, "/sample/tests/java/com/example/java/")
+                        .replace("Check.kt", "Test.java"),
                 ).takeUnless(File::exists)
                     ?: return
                 emit(node.startOffset, "Missing sample '$file'.", false)
@@ -56,6 +62,12 @@ class RuleHasSampleRule : RulebookRule(ID) {
                     file
                         .replace(KTLINT_PATH, "/sample/kotlin/com/example/kotlin/")
                         .replace("Rule.kt", ".kt"),
+                ).takeUnless(File::exists)
+                    ?: return
+                File(
+                    file
+                        .replace(KTLINT_PATH, "/sample/tests/kotlin/com/example/kotlin/")
+                        .replace("Rule.kt", "Test.kt"),
                 ).takeUnless(File::exists)
                     ?: return
                 file =

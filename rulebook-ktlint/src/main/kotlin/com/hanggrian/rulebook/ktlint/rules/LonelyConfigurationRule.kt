@@ -24,7 +24,7 @@ public class LonelyConfigurationRule : RulebookRule(ID) {
 
     override fun isScript(): Boolean = true
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // target named domain or handler with scope
         node
             .findChildByType(REFERENCE_EXPRESSION)

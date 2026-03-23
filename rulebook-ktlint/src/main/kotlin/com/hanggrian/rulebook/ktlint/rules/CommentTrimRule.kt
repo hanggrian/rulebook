@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class CommentTrimRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(EOL_COMMENT)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // continue if this comment is first line
         node
             .prevSibling20

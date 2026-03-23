@@ -79,7 +79,7 @@ class TestParenthesesClipChecker(CheckerTestCase):
                     '''
                     void foo() {
                         try {
-                        } catch (std::exception& e) {
+                        } catch (std::exception &e) {
                         }
 
                         if (true) {

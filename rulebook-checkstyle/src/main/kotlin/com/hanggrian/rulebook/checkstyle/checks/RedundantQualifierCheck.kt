@@ -16,7 +16,7 @@ public class RedundantQualifierCheck : RulebookAstCheck() {
 
     override fun getRequiredTokens(): IntArray = intArrayOf(IMPORT, TYPE, METHOD_CALL)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // keep import list
         node
             .takeIf { it.type == IMPORT }

@@ -12,7 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 public class LonelyIfCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_ELSE)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // checks for violation
         val `if` =
             node

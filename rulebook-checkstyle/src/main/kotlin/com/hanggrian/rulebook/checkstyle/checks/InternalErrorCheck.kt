@@ -10,7 +10,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 public class InternalErrorCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CLASS_DEF)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // checks for violation
         val ident =
             node

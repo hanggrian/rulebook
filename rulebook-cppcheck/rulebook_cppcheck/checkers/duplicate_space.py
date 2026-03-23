@@ -33,5 +33,6 @@ class DuplicateSpaceChecker(RulebookFileChecker):
                 match.start() + 1,
             )
 
-    def _mask_strings(self, line: str) -> str:
-        return self._STRING_REGEX.sub(lambda m: '_' * len(m.group()), line)
+    @staticmethod
+    def _mask_strings(line: str) -> str:
+        return DuplicateSpaceChecker._STRING_REGEX.sub(lambda m: '_' * len(m.group()), line)

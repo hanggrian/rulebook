@@ -55,6 +55,8 @@ load-plugins=
   rulebook_pylint.checkers.unnecessary_blank_line_after_colon,
   rulebook_pylint.checkers.unnecessary_continue,
   rulebook_pylint.checkers.unnecessary_initial_blank_line,
+  # Testing
+  rulebook_pylint.checkers.confusing_assertion,
   # Trimming
   rulebook_pylint.checkers.block_comment_trim,
   rulebook_pylint.checkers.comment_trim,

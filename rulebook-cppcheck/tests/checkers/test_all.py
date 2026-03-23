@@ -35,6 +35,7 @@ from rulebook_cppcheck.checkers import \
     InnerClassPositionChecker, \
     LineLengthChecker, \
     LonelyCaseChecker, \
+    LonelyIfChecker, \
     LowercaseFChecker, \
     LowercaseHexadecimalChecker, \
     MeaninglessWordChecker, \
@@ -47,6 +48,7 @@ from rulebook_cppcheck.checkers import \
     ParenthesesTrimChecker, \
     RedundantDefaultChecker, \
     RedundantElseChecker, \
+    RedundantIfChecker, \
     TodoCommentChecker, \
     UnnecessaryReturnChecker, \
     UnnecessaryTrailingWhitespaceChecker, \
@@ -90,6 +92,7 @@ class TestAllCheckers(TestCase):
             InnerClassPositionChecker(),
             LineLengthChecker(),
             LonelyCaseChecker(),
+            LonelyIfChecker(),
             LowercaseFChecker(),
             LowercaseHexadecimalChecker(),
             MeaninglessWordChecker(),
@@ -102,6 +105,7 @@ class TestAllCheckers(TestCase):
             ParenthesesTrimChecker(),
             RedundantDefaultChecker(),
             RedundantElseChecker(),
+            RedundantIfChecker(),
             TodoCommentChecker(),
             UnnecessaryReturnChecker(),
             UnnecessaryTrailingWhitespaceChecker(),
@@ -351,7 +355,6 @@ class TestAllCheckers(TestCase):
         redundant_else_report_error.assert_has_calls(
             [
                 self._redundant_else_called(tokens, 104),
-                self._redundant_else_called(tokens, 145),
                 self._redundant_else_called(tokens, 142),
                 self._redundant_else_called(tokens, 170),
                 self._redundant_else_called(tokens, 252),
@@ -399,12 +402,10 @@ class TestAllCheckers(TestCase):
     @patch.object(LineLengthChecker, 'report_error')
     @patch.object(OperatorWrapChecker, 'report_error')
     @patch.object(ParameterWrapChecker, 'report_error')
-    @patch.object(RedundantElseChecker, 'report_error')
     @patch.object(TodoCommentChecker, 'report_error')
     def test_cppcheck_suppression(
         self,
         todo_comment_report_error,
-        redundant_else_report_error,
         parameter_wrap_report_error,
         operator_wrap_report_error,
         line_length_report_error,
@@ -644,9 +645,6 @@ class TestAllCheckers(TestCase):
             ],
             any_order=True,
         )
-        redundant_else_report_error.assert_has_calls(
-            [self._redundant_else_called(tokens, 403)],
-        )
         todo_comment_report_error.assert_has_calls(
             [
                 self._todo_comment_called(tokens, '}', 900, 1, "Omit separator ':'.", 120),
@@ -660,10 +658,8 @@ class TestAllCheckers(TestCase):
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(LineLengthChecker, 'report_error')
     @patch.object(OperatorWrapChecker, 'report_error')
-    @patch.object(RedundantElseChecker, 'report_error')
     def test_libtransmission_handshake(
         self,
-        redundant_else_report_error,
         operator_wrap_report_error,
         line_length_report_error,
         import_order_report_error,
@@ -759,12 +755,6 @@ class TestAllCheckers(TestCase):
                 self._operator_wrap_called(tokens, '+', 88, 46, True),
                 self._operator_wrap_called(tokens, '+', 436, 23, True),
                 self._operator_wrap_called(tokens, '+', 436, 49, True),
-            ],
-            any_order=True,
-        )
-        redundant_else_report_error.assert_has_calls(
-            [
-                self._redundant_else_called(tokens, 263),
             ],
             any_order=True,
         )

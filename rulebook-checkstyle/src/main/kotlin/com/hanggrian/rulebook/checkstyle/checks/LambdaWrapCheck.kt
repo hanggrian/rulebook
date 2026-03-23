@@ -16,7 +16,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
 public class LambdaWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LAMBDA)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // target multiline lambda
         val expr =
             (node.findFirstToken(EXPR) ?: node.findFirstToken(SLIST)?.findFirstToken(EXPR))

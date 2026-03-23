@@ -19,7 +19,7 @@ public class NestedIfElseCheck : RulebookAstCheck() {
 
     override fun isCommentNodesRequired(): Boolean = true
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // skip blocks without exit path
         node
             .parent

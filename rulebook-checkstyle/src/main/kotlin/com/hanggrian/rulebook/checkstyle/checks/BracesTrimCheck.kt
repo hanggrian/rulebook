@@ -15,7 +15,7 @@ public class BracesTrimCheck : RulebookAstCheck() {
 
     override fun isCommentNodesRequired(): Boolean = true
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // right brace is persistent
         val rcurly =
             node

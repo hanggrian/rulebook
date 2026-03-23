@@ -21,7 +21,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class UnnecessaryAbstractRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(CLASS)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // skip non-abstract class
         val abstractKeyword =
             node

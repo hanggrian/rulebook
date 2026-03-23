@@ -24,7 +24,7 @@ class TestBlockTagIndentationChecker(CheckerTestCase):
                  * @param bar lorem
                  *     ipsum.
                  */
-                class Foo(val bar: Int)
+                void foo(int bar) {}
                 ''',
             ),
         )
@@ -42,7 +42,7 @@ class TestBlockTagIndentationChecker(CheckerTestCase):
                  * @param bar lorem
                  *    ipsum.
                  */
-                class Foo(val bar: Int)
+                void foo(int bar) {}
                 ''',
             ),
         )

@@ -32,6 +32,7 @@ add_executable(
         c/indent_style.c
         c/line_length.c
         c/lonely_case.c
+        c/lonely_if.c
         c/lowercase_f.c
         c/lowercase_hexadecimal.c
         c/meaningless_word.c
@@ -39,6 +40,7 @@ add_executable(
         c/parameter_wrap.c
         c/redundant_default.c
         c/redundant_else.c
+        c/redundant_if.c
         c/todo_comment.c
         c/unnecessary_return.c
         c/unnecessary_trailing_whitespace.c

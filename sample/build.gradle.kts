@@ -8,6 +8,18 @@ plugins {
     codenarc
 }
 
+java.sourceSets.main {
+    java.srcDir("tests/java")
+}
+
+kotlin.sourceSets.main {
+    kotlin.srcDir("tests/kotlin")
+}
+
+ktlint.kotlinScriptAdditionalPaths {
+    include(fileTree("kts/"))
+}
+
 dependencies {
     checkstyle(project(":$releaseArtifact-checkstyle"))
 
@@ -16,10 +28,6 @@ dependencies {
     implementation(libs.groovy.all)
 
     compileOnly(kotlin("test-junit", libs.versions.kotlin.get()))
-}
-
-ktlint.kotlinScriptAdditionalPaths {
-    include(fileTree("kts/"))
 }
 
 tasks {

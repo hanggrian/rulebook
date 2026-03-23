@@ -17,7 +17,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class CommonFunctionPositionRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(CLASS_BODY)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // collect functions
         // in Kotlin, static members belong in companion object
         val funs =

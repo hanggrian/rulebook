@@ -20,7 +20,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class InternalErrorRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(CLASS)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // get identifier from supertype declared with or without constructor callee
         val superTypeList =
             node

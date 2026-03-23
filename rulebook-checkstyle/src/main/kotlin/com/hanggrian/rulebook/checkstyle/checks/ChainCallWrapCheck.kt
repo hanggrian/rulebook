@@ -12,7 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.RPAREN
 public class ChainCallWrapCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(METHOD_CALL)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // target root chain call
         node
             .takeUnless { it.parent.type == DOT }

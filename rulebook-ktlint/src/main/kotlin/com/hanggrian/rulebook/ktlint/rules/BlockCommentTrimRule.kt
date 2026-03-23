@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class BlockCommentTrimRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(KDOC_SECTION)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // initial node is always asterisk
         node
             .firstChildNode

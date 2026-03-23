@@ -26,7 +26,7 @@ public class RootProjectNameRule : RulebookRule(ID) {
 
     override fun isScript(): Boolean = true
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // only target settings.gradle.kts
         node
             .psi

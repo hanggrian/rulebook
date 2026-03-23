@@ -40,7 +40,7 @@ class TestIllegalCatchChecker(CheckerTestCase):
                     '''
                     void foo() {
                         try {
-                        } catch (const std::exception& e) {
+                        } catch (const std::exception &e) {
                         }
                     }
                     ''',
@@ -60,7 +60,10 @@ class TestIllegalCatchChecker(CheckerTestCase):
                     '''
                     void foo() {
                         try {
-                        } catch (const std::runtime_error& e) {
+                            store(parsed, variables);
+                            notify(variables);
+                        } catch (error &e) {
+                            return die(e.what());
                         }
                     }
                     ''',

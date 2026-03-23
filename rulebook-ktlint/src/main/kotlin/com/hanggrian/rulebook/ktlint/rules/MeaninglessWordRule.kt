@@ -22,7 +22,7 @@ public class MeaninglessWordRule : RulebookRule(ID, MEANINGLESS_WORDS_PROPERTY) 
         words = editorConfig[MEANINGLESS_WORDS_PROPERTY]
     }
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // obtain corresponding full and final name
         val identifier =
             node

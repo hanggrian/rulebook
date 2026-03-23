@@ -59,7 +59,7 @@ class ParameterWrapRuleTest : RuleTest<ParameterWrapRule>() {
 
     @Test
     fun `Multiline parameters each without newline`() =
-        assertViolations(
+        assertTwoViolations(
             """
             def foo(
                 var a, var b
@@ -79,8 +79,12 @@ class ParameterWrapRuleTest : RuleTest<ParameterWrapRule>() {
                 )
             }
             """.trimIndent(),
-            violationOf(8, ".toString(), 0", "Break each parameter into newline."),
-            violationOf(15, ".toString(), 0", "Break each parameter into newline."),
+            8,
+            ".toString(), 0",
+            "Break each parameter into newline.",
+            15,
+            ".toString(), 0",
+            "Break each parameter into newline.",
         )
 
     @Test

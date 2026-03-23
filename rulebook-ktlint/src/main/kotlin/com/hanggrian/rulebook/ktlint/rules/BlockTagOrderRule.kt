@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class BlockTagOrderRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(KDOC)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // collect block tags
         val kdocTags =
             node

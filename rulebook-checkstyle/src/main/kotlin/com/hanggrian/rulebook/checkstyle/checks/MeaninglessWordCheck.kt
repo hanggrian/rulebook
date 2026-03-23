@@ -26,7 +26,7 @@ public class MeaninglessWordCheck :
             RECORD_DEF,
         )
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // checks for violation
         val ident = node.findFirstToken(IDENT) ?: return
         val finalName =

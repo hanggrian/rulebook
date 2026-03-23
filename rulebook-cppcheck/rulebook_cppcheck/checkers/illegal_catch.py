@@ -15,9 +15,7 @@ class IllegalCatchChecker(RulebookTokenChecker):
 
     _ILLEGAL_EXCEPTIONS: set[str] = {
         'exception',
-        'exception&',
         'std::exception',
-        'std::exception&',
     }
 
     def process_tokens(self, tokens: list[Token]) -> None:

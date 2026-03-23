@@ -19,7 +19,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class GenericNameRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(CLASS, FUN)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // filter out multiple generics
         val typeParameter =
             node

@@ -8,7 +8,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.NUM_INT
 public class LowercaseHexadecimalCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(NUM_INT)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // checks for violation
         val value =
             node

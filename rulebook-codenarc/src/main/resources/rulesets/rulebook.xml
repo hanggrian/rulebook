@@ -71,6 +71,8 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryContinueRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryReturnRule"/>
 
+  <!-- Testing -->
+
   <!-- Trimming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.CommentTrimRule"/>

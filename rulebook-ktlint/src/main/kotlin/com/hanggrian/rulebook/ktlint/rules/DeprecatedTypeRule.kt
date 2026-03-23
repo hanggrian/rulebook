@@ -17,7 +17,7 @@ import java.lang.Class.forName
 public class DeprecatedTypeRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(IMPORT_DIRECTIVE, TYPE_REFERENCE)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // obtain corresponding qualifier
         val (node2, qualifier) =
             when (node.elementType) {

@@ -14,7 +14,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
 class MethodParameterNameRule : RulebookRule(ID) {
     override val tokens: TokenSet = TokenSet.create(FUN)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         val funName =
             node
                 .findChildByType(IDENTIFIER)

@@ -17,7 +17,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 public class UnnecessaryAbstractCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(CLASS_DEF)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // skip non-abstract class
         val abstract =
             node

@@ -21,7 +21,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class ElvisWrapRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(ELVIS)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // target multiline statement
         val operationReference =
             node

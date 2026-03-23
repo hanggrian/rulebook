@@ -14,7 +14,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.OBJBLOCK
 public class CommonFunctionPositionCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(OBJBLOCK)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // collect functions
         // in Java, static members have specific keyword
         val methods =

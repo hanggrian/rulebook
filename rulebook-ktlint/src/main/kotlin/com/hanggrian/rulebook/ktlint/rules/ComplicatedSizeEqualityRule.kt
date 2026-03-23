@@ -22,7 +22,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class ComplicatedSizeEqualityRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(BINARY_EXPRESSION)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // checks for violation
         val operationReference = node.findChildByType(OPERATION_REFERENCE) ?: return
         val operation =

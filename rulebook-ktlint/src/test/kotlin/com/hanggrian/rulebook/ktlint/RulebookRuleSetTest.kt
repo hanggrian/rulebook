@@ -15,6 +15,7 @@ import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedAssignmentRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeEqualityRule
+import com.hanggrian.rulebook.ktlint.rules.ConfusingAssertionRule
 import com.hanggrian.rulebook.ktlint.rules.ConfusingPredicateRule
 import com.hanggrian.rulebook.ktlint.rules.DecentralizedDependencyRule
 import com.hanggrian.rulebook.ktlint.rules.DeprecatedAnnotationRule
@@ -77,6 +78,7 @@ class RulebookRuleSetTest {
             ComplicatedAssignmentRule::class,
             ComplicatedBooleanEqualityRule::class,
             ComplicatedSizeEqualityRule::class,
+            ConfusingAssertionRule::class,
             ConfusingPredicateRule::class,
             DecentralizedDependencyRule::class,
             DeprecatedAnnotationRule::class,

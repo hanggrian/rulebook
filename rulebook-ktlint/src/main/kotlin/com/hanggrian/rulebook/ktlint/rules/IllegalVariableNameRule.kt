@@ -28,7 +28,7 @@ public class IllegalVariableNameRule : RulebookRule(ID, ILLEGAL_VARIABLE_NAMES_P
         illegalVariableNames = editorConfig[ILLEGAL_VARIABLE_NAMES_PROPERTY]
     }
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // checks for violation
         val identifier =
             node

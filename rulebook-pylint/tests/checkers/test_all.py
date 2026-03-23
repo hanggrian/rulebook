@@ -19,6 +19,7 @@ from rulebook_pylint.checkers import \
     CommentTrimChecker, \
     CommonFunctionPositionChecker, \
     ComplicatedAssignmentChecker, \
+    ConfusingAssertionChecker, \
     DuplicateBlankLineChecker, \
     DuplicateBlankLineInBlockCommentChecker, \
     DuplicateBlankLineInCommentChecker, \
@@ -58,6 +59,7 @@ class TestAllCheckers:
         CommentTrimChecker,
         CommonFunctionPositionChecker,
         ComplicatedAssignmentChecker,
+        ConfusingAssertionChecker,
         DuplicateBlankLineChecker,
         DuplicateBlankLineInBlockCommentChecker,
         DuplicateBlankLineInCommentChecker,

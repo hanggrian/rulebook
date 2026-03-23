@@ -16,7 +16,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.STAR
 public class ComplicatedAssignmentCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(EXPR)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // skip shorthand operator
         val assign = node.findFirstToken(ASSIGN) ?: return
 

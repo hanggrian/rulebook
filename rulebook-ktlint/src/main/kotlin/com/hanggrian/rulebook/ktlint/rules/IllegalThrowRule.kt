@@ -15,7 +15,7 @@ import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
 public class IllegalThrowRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(THROW)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // checks for violation
         val identifier =
             node

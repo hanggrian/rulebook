@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.LITERAL_SWITCH
 public class LonelyCaseCheck : RulebookAstCheck() {
     override fun getRequiredTokens(): IntArray = intArrayOf(LITERAL_SWITCH)
 
-    override fun visitToken(node: DetailAST) {
+    override fun visit(node: DetailAST) {
         // checks for violation
         node
             .children()

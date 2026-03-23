@@ -18,6 +18,7 @@ abstract class RuleTest<T : AbstractRule> : AbstractRuleTestCase<T>() {
     }
 
     fun asTest() {
+        sourceCodePath = "test/"
         sourceCodeName = "SomeTest.groovy"
     }
 

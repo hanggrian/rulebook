@@ -40,6 +40,12 @@ public abstract class RulebookFileRule : AbstractRule() {
 /** An alias to unconfigured visitor. */
 public open class RulebookVisitor : AbstractAstVisitor() {
     public open fun isScript(): Boolean = sourceCode.name?.endsWith(".gradle") ?: false
+
+    public open fun isTest(): Boolean =
+        sourceCode.path?.let {
+            "test/" in it ||
+                "tests/" in it
+        } ?: false
 }
 
 /** Visitor that captures any method call with a single function. */

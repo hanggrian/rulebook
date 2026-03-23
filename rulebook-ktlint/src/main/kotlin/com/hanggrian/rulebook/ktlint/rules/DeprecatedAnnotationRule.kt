@@ -1,5 +1,3 @@
-@file:Suppress("ktlint:codecheck:rule-has-sample") // sample name must be suffixed with 'Test.kt'
-
 package com.hanggrian.rulebook.ktlint.rules
 
 import com.hanggrian.rulebook.ktlint.Messages
@@ -20,7 +18,7 @@ public class DeprecatedAnnotationRule : RulebookRule(ID) {
 
     override fun isTest(): Boolean = true
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // obtain corresponding qualifier
         val (node2, qualifier) =
             when (node.elementType) {

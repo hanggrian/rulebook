@@ -121,7 +121,7 @@ class CaseSeparatorRuleTest : RuleTest<CaseSeparatorRule>() {
 
     @Test
     fun `Multiple branches are considered multiline`() =
-        assertViolations(
+        assertSingleViolation(
             """
             def foo(int bar) {
                 switch (bar) {
@@ -131,7 +131,9 @@ class CaseSeparatorRuleTest : RuleTest<CaseSeparatorRule>() {
                 }
             }
             """.trimIndent(),
-            violationOf(4, "baz()", "Add blank line after multiline branch."),
+            4,
+            "baz()",
+            "Add blank line after multiline branch.",
         )
 
     @Test

@@ -27,7 +27,7 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
 public class BracesClipRule : RulebookRule(ID) {
     override val tokens: TokenSet = create(CLASS_BODY, BLOCK, FUNCTION_LITERAL)
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // skip control flows that can have multi-blocks
         node
             .parent

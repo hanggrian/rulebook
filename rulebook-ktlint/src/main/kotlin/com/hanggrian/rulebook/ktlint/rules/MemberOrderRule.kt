@@ -62,7 +62,7 @@ public class MemberOrderRule : RulebookRule(ID, MEMBER_ORDER_PROPERTY) {
         companionPosition = memberOrder.indexOf("companion")
     }
 
-    override fun visitToken(node: ASTNode, emit: Emit) {
+    override fun visit(node: ASTNode, emit: Emit) {
         // in Kotlin, static members belong in companion object
         var lastChild: ASTNode? = null
         for (child in node
