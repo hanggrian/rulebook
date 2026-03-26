@@ -14,16 +14,22 @@ executors:
 jobs:
   setup-workspace:
     executor: multiplatform
+    environment:
+      GRADLE_USER_HOME: .gradle/
     steps:
       - checkout
-      - run: ./gradlew dependencies --no-daemon
+      - run: ./gradlew compileKotlin --no-daemon
       - run: uv sync
-      - run: pnpm i
+      - run: |
+          pnpm config set store-dir .pnpm-store/
+          pnpm i
       - persist_to_workspace:
           root: .
           paths: [.]
   run-lint:
     executor: multiplatform
+    environment:
+      GRADLE_USER_HOME: .gradle/
     steps:
       - attach_workspace:
           at: .
@@ -40,6 +46,12 @@ jobs:
       - run:
           name: Check C/C++
           command: |
+            uv run cppcheck \
+              --check-level=exhaustive \
+              --enable=performance,portability,style,warning \
+              --addon=addon.json \
+              rulebook-cli/src/*.cpp \
+              rulebook-cli/src/*.hpp
             uv run cppcheck \
               --enable=performance,portability,style,warning \
               --addon=addon.json \
@@ -58,6 +70,8 @@ jobs:
             pnpm lint2
   upload-coverage:
     executor: multiplatform
+    environment:
+      GRADLE_USER_HOME: .gradle/
     steps:
       - attach_workspace:
           at: .

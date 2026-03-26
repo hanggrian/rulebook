@@ -5,6 +5,6 @@
 
 using namespace std::filesystem;
 
-int print_file(const path &file, bool verbose);
+int print_file(const path &target_file, bool verbose);
 
 #endif

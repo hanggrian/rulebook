@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "rulebook-cppcheck"
-version = "0.2"
+version = "0.3"
 license = { text = "Apache-2.0" }
 description = "Extended lint rules for JVM and Python"
 readme = "../README.md"

@@ -594,7 +594,7 @@ wheels = [
 
 [[package]]
 name = "rulebook-cppcheck"
-version = "0.2"
+version = "0.3"
 source = { editable = "rulebook-cppcheck" }
 dependencies = [
     { name = "cppcheck" },
@@ -609,7 +609,7 @@ requires-dist = [
 
 [[package]]
 name = "rulebook-pylint"
-version = "0.2"
+version = "0.3"
 source = { editable = "rulebook-pylint" }
 dependencies = [
     { name = "astroid" },

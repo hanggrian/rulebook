@@ -5,10 +5,9 @@
 #include <string>
 #include <vector>
 #include "cli.hpp"
-#include "colors.hpp"
 #include "config_initializer.hpp"
 #include "file_printer.hpp"
-#include "source_checker.hpp"
+#include "source_linter.hpp"
 
 using namespace boost::program_options;
 using namespace filesystem;
@@ -21,11 +20,12 @@ namespace {
         ".java",
         ".kt",
         ".kts",
+        ".py",
     };
     const vector<string> AVAILABLE_LINTERS = {
         "checkstyle",
-        "cppcheck",
         "codenarc",
+        "cppcheck",
         "eslint",
         "ktlint",
         "pylint",
@@ -102,9 +102,9 @@ int main(const int argc, char **argv) {
                 RESET <<
                 ":" <<
                 endl <<
-                "  check <path>         Run lint and report violations" <<
-                endl <<
                 "  init <linter> <dir>  Write linter configuration" <<
+                endl <<
+                "  lint <path>          Run lint and report violations" <<
                 endl <<
                 "  print <file>         Print AST of a source file" <<
                 endl <<
@@ -138,9 +138,9 @@ int main(const int argc, char **argv) {
     vector<string> subargs = collect_unrecognized(parsed.options, include_positional);
     erase(subargs, command);
 
-    if (command == "check") {
-        options_description check_options;
-        check_options.add_options()
+    if (command == "lint") {
+        options_description lint_options;
+        lint_options.add_options()
                 ("path", value<string>()->required());
 
         positional_options_description check_positional;
@@ -150,7 +150,7 @@ int main(const int argc, char **argv) {
         try {
             store(
                 command_line_parser(subargs)
-                .options(check_options)
+                .options(lint_options)
                 .positional(check_positional)
                 .run(),
                 check_variables
@@ -160,8 +160,9 @@ int main(const int argc, char **argv) {
             return die(e.what());
         }
 
-        return check_source(
+        return run_lint(
             path(check_variables["path"].as<string>()),
+            variables["google"].as<bool>(),
             variables["verbose"].as<bool>()
         );
     }

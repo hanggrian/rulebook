@@ -5,6 +5,6 @@
 
 using namespace std::filesystem;
 
-int check_source(const path &path, bool verbose);
+int run_lint(const path &target_path, bool google_variant, bool verbose);
 
 #endif

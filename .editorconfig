@@ -11,7 +11,7 @@ insert_final_newline = true
 [*.{md,sh}]
 max_line_length = 80
 
-[*.{java,groovy,gradle,kt,kts,c,cpp,py,js,ts}]
+[*.{java,groovy,gradle,kt,kts,c,cpp,h,hpp,py,js,ts}]
 indent_size = 4
 max_line_length = 100
 

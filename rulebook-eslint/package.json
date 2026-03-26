@@ -1,6 +1,6 @@
 {
   "name": "rulebook-eslint",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Extended lint rules for JVM, JS and Python projects.",
   "homepage": "https://github.com/hanggrian/rulebook#readme",
   "bugs": {

@@ -7,6 +7,11 @@
 using namespace std;
 using namespace std::filesystem;
 
-int init_config(const string &linter, const path &dir, bool google, bool verbose);
+int init_config(
+    const string &linter_name,
+    const path &target_dir,
+    bool google_variant,
+    bool verbose
+);
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef BINARY_H
-#define BINARY_H
+#ifndef EXTRACTION_H
+#define EXTRACTION_H
 
 #include <filesystem>
 #include <string>

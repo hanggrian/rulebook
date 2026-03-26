@@ -9,6 +9,12 @@ uv run pylint \
   --rcfile=sample-configured/custom_pylintrc sample-configured/python/
 
 uv run cppcheck \
+  --check-level=exhaustive \
+  --enable=performance,portability,style,warning \
+  --addon=addon.json \
+  rulebook-cli/src/*.cpp \
+  rulebook-cli/src/*.hpp
+uv run cppcheck \
   --enable=performance,portability,style,warning \
   --addon=addon.json \
   sample/c/*.c \

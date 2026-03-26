@@ -5,7 +5,7 @@
 #include "extraction.hpp"
 #include "kotlin_stdlib_bin.h"
 #include "ktlint_bin.h"
-#include "ktlint_bin2.h"
+#include "ktlint_print_bin.h"
 #include "rulebook_checkstyle_bin.h"
 #include "rulebook_ktlint_bin.h"
 
@@ -23,10 +23,10 @@ path extract_binary(const string &filename) {
                 ktlint_len
             );
             permissions(temp_file, perms::owner_exec | perms::owner_read | perms::owner_write);
-        } else if (filename == "ktlint2") {
+        } else if (filename == "ktlint_print") {
             out.write(
-                reinterpret_cast<const char *>(ktlint2),
-                ktlint2_len
+                reinterpret_cast<const char *>(ktlint_print),
+                ktlint_print_len
             );
             permissions(temp_file, perms::owner_exec | perms::owner_read | perms::owner_write);
         } else if (filename == "checkstyle.jar") {
@@ -50,7 +50,6 @@ path extract_binary(const string &filename) {
                 rulebook_ktlint_jar_len
             );
         }
-        permissions(temp_file, perms::owner_exec | perms::owner_read | perms::owner_write);
         warn("Extracted '" + filename + "' to temporary folder.");
     }
     return temp_file;
@@ -59,7 +58,7 @@ path extract_binary(const string &filename) {
 path extract_resource(const string &filename) {
     const path temp_file = temp_directory_path() / filename;
     if (!exists(temp_file)) {
-        auto file = resources::get_filesystem().open("resources/" + filename);
+        const auto file = resources::get_filesystem().open("resources/" + filename);
         ofstream out(temp_file, ios::binary);
         out.write(file.begin(), static_cast<streamsize>(file.size()));
         warn("Extracted '" + filename + "' to temporary folder.");

@@ -4,9 +4,9 @@ project(rulebook-cli)
 set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_BUILD_TYPE Release)
 
-set(VERSION "0.2")
+set(VERSION "0.3")
 set(KTLINT_VERSION "1.8.0")
-set(KTLINT_VERSION2 "0.47.0") # the last version with printAST command
+set(KTLINT_PRINT_VERSION "0.47.0") # the last version with printAST command
 set(KOTLIN_VERSION "2.3.20")
 set(CHECKSTYLE_VERSION "11.1.0")
 
@@ -36,8 +36,8 @@ file(
 )
 file(
         DOWNLOAD
-        "https://github.com/pinterest/ktlint/releases/download/${KTLINT_VERSION2}/ktlint"
-        "${CMAKE_BINARY_DIR}/ktlint2"
+        "https://github.com/pinterest/ktlint/releases/download/${KTLINT_PRINT_VERSION}/ktlint"
+        "${CMAKE_BINARY_DIR}/ktlint_print"
 )
 file(
         DOWNLOAD
@@ -66,10 +66,10 @@ add_custom_command(
         DEPENDS "${CMAKE_BINARY_DIR}/ktlint"
 )
 add_custom_command(
-        OUTPUT "${CMAKE_BINARY_DIR}/ktlint_bin2.h"
-        COMMAND xxd -i ktlint2 > "${CMAKE_BINARY_DIR}/ktlint_bin2.h"
+        OUTPUT "${CMAKE_BINARY_DIR}/ktlint_print_bin.h"
+        COMMAND xxd -i ktlint_print > "${CMAKE_BINARY_DIR}/ktlint_print_bin.h"
         WORKING_DIRECTORY "${CMAKE_BINARY_DIR}"
-        DEPENDS "${CMAKE_BINARY_DIR}/ktlint2"
+        DEPENDS "${CMAKE_BINARY_DIR}/ktlint_print"
 )
 add_custom_command(
         OUTPUT "${CMAKE_BINARY_DIR}/kotlin_stdlib_bin.h"
@@ -96,7 +96,7 @@ add_custom_command(
         DEPENDS "${CMAKE_BINARY_DIR}/rulebook-ktlint.jar"
 )
 add_custom_target(ktlint_embed DEPENDS "${CMAKE_BINARY_DIR}/ktlint_bin.h")
-add_custom_target(ktlint_embed2 DEPENDS "${CMAKE_BINARY_DIR}/ktlint_bin2.h")
+add_custom_target(ktlint_print_embed DEPENDS "${CMAKE_BINARY_DIR}/ktlint_print_bin.h")
 add_custom_target(checkstyle_embed DEPENDS "${CMAKE_BINARY_DIR}/checkstyle_bin.h")
 add_custom_target(kotlin_stdlib_embed DEPENDS "${CMAKE_BINARY_DIR}/kotlin_stdlib_bin.h")
 add_custom_target(rulebook_checkstyle_embed DEPENDS "${CMAKE_BINARY_DIR}/rulebook_checkstyle_bin.h")
@@ -106,22 +106,23 @@ find_package(Boost REQUIRED COMPONENTS program_options)
 add_executable(
         rulebook
         src/main.cpp
-        src/cli.cpp
         src/cli.hpp
-        src/colors.hpp
         src/config_initializer.cpp
         src/config_initializer.hpp
         src/extraction.cpp
         src/extraction.hpp
         src/file_printer.cpp
         src/file_printer.hpp
-        src/source_checker.cpp
-        src/source_checker.hpp
+        src/linters.cpp
+        src/linters.hpp
+        src/source_linter.cpp
+        src/source_linter.hpp
+        src/linters.cpp
 )
 add_dependencies(
         rulebook
         ktlint_embed
-        ktlint_embed2
+        ktlint_print_embed
         checkstyle_embed
         kotlin_stdlib_embed
         rulebook_checkstyle_embed
