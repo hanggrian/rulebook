@@ -4,7 +4,7 @@ java-support = "8"
 junit = "5.14.3"
 # kotlin
 kotlin = "2.3.20"
-dokka = "2.1.0"
+dokka = "2.2.0"
 ktlint = "1.8.0"
 # java
 checkstyle = "11.1.0"
