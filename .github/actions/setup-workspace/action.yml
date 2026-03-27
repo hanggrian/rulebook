@@ -1,0 +1,48 @@
+name: Setup
+description: Checkout and install all dependencies
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-java@v5
+      with:
+        distribution: temurin
+        java-version: 21
+
+    - uses: actions/setup-python@v6
+      with:
+        python-version: '3.14'
+
+    - uses: astral-sh/setup-uv@v7
+
+    - uses: actions/setup-node@v6
+      with:
+        node-version: lts/*
+
+    - run: npm i -g pnpm
+      shell: bash
+
+    - uses: actions/cache@v5
+      with:
+        path: .gradle/
+        key: gradle-${{ hashFiles('gradle/libs.versions.toml') }}
+
+    - uses: actions/cache@v5
+      with:
+        path: .venv/
+        key: uv-${{ hashFiles('uv.lock') }}
+
+    - uses: actions/cache@v5
+      with:
+        path: |
+          .pnpm-store/
+          node_modules/
+        key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        ./gradlew compileKotlin --no-daemon
+        uv sync
+        pnpm config set store-dir .pnpm-store/
+        pnpm i
