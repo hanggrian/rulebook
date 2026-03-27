@@ -15,7 +15,7 @@ codenarc = "3.7.0-groovy-4.0"
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 dokka-javadoc = { id = "org.jetbrains.dokka-javadoc", version.ref = "dokka" }
-kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.7"
+kotlinx-kover = "org.jetbrains.kotlinx.kover:0.9.8"
 ktlint = "org.jlleitschuh.gradle.ktlint:14.2.0"
 maven-publish = "com.vanniktech.maven.publish.base:0.36.0"
 
