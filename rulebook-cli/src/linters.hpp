@@ -17,12 +17,12 @@ using namespace std::filesystem;
 
 class Linter {
 public:
-    virtual ~Linter() = default;
-
     string name;
     string default_config;
     optional<string> google_config;
     string relative_path;
+
+    virtual ~Linter() = default;
 
     [[nodiscard]] virtual int print(const path &target) const {
         throw runtime_error(name + " cannot print AST.");

@@ -76,7 +76,8 @@ class MemberOrderChecker(RulebookTokenChecker):
             return self._function_position, 'function'
         if token.variable is not None:
             var: Variable = token.variable
-            if token is not var.nameToken:
+            if token is not var.nameToken or \
+                var.isArgument:
                 return None
             if var.isStatic:
                 return self._static_position, 'static member'

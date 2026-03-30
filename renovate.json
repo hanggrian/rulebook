@@ -6,8 +6,9 @@
   "internalChecksFilter": "strict",
   "ignoreDeps": [
     "@eslint/js",
-    "astroid",
-    "com.puppycrawl.tools:checkstyle",
-    "eslint"
+    "eslint",
+    "org.apache.groovy:groovy",
+    "org.apache.groovy:groovy-all",
+    "com.puppycrawl.tools:checkstyle"
   ]
 }

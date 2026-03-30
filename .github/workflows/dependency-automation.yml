@@ -2,6 +2,8 @@ name: dependency-automation
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   activate-renovatebot:

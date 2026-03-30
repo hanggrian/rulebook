@@ -69,3 +69,4 @@ jobs:
           pnpm -r coverage
 
       - uses: codecov/codecov-action@v6
+        if: github.ref == 'refs/heads/main'

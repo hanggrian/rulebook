@@ -22,7 +22,8 @@ class IdentifierNameChecker(RulebookTokenChecker):
                 token is token.variable.nameToken:
                 self._process(token)
             if token.function and \
-                token is token.function.tokenDef:
+                token is token.function.tokenDef and \
+                token.str != token.scope.className:
                 self._process(token)
 
     def _process(self, token: Token) -> None:

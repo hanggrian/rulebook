@@ -21,6 +21,7 @@ from rulebook_cppcheck.checkers import \
     FileSizeChecker, \
     FinalNewlineChecker, \
     GenericNameChecker, \
+    IdentifierNameChecker, \
     IllegalCatchChecker, \
     IllegalThrowChecker, \
     IllegalVariableNameChecker, \
@@ -32,6 +33,7 @@ from rulebook_cppcheck.checkers import \
     LowercaseFChecker, \
     LowercaseHexadecimalChecker, \
     MeaninglessWordChecker, \
+    MemberOrderChecker, \
     MemberSeparatorChecker, \
     OperatorWrapChecker, \
     PackageNameChecker, \
@@ -72,8 +74,7 @@ if __name__ == '__main__':
         AbbreviationAsWordChecker(),
         ClassNameChecker(),
         FileNameChecker(),
-        # TODO incorrectly targets classes and virtual keyword
-        # IdentifierNameChecker(),
+        IdentifierNameChecker(),
         IllegalVariableNameChecker(),
         GenericNameChecker(),
         MeaninglessWordChecker(),
@@ -81,8 +82,7 @@ if __name__ == '__main__':
         # Ordering
         ImportOrderChecker(),
         InnerClassPositionChecker(),
-        # TODO incorrectly targets function parameter
-        # MemberOrderChecker(),
+        MemberOrderChecker(),
         # Spacing
         BlockCommentSpacesChecker(),
         BlockTagIndentationChecker(),
