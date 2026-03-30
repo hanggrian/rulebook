@@ -18,7 +18,7 @@ classifiers = [
 ]
 dependencies = [
   "pylint==4.0.5",
-  "astroid==4.0.4",
+  "astroid==4.1.2",
   "regex>=2026.2.28",
 ]
 
