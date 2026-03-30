@@ -12,6 +12,7 @@ import com.hanggrian.rulebook.ktlint.rules.BooleanPropertyInteroperabilityRule
 import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
+import com.hanggrian.rulebook.ktlint.rules.ComplicatedAssertionRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedAssignmentRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeEqualityRule
@@ -75,6 +76,7 @@ class RulebookRuleSetTest {
             BracesClipRule::class,
             CommonFunctionPositionRule::class,
             CommentTrimRule::class,
+            ComplicatedAssertionRule::class,
             ComplicatedAssignmentRule::class,
             ComplicatedBooleanEqualityRule::class,
             ComplicatedSizeEqualityRule::class,

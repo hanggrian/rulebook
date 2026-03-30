@@ -32,7 +32,7 @@ public class IllegalThrowRule : RulebookRule(ID) {
         private const val MSG = "illegal.throw"
 
         private val BROAD_EXCEPTIONS =
-            hashSetOf(
+            setOf(
                 "Exception",
                 "Error",
                 "Throwable",

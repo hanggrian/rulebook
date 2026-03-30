@@ -25,7 +25,7 @@ public class InternalErrorCheck : RulebookAstCheck() {
         const val MSG = "internal.error"
 
         val NON_APPLICATION_EXCEPTIONS =
-            hashSetOf(
+            setOf(
                 "Error",
                 "Throwable",
                 "java.lang.Error",

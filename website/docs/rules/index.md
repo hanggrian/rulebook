@@ -7455,6 +7455,139 @@ The last return statement in a function is useless.
     }
     ```
 
+## Testing
+
+### Complicated assertion
+
+Use targeted assertion methods instead of general ones with complicated
+conditions.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    assertTrue(username == null);
+    ```
+=== "Groovy"
+
+    ```groovy
+    assertTrue(username == null)
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    assertTrue(username == null)
+    ```
+=== "Python"
+
+    ```python
+    self.assertTrue(username is None)
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    assertNull(username);
+    ```
+=== "Groovy"
+
+    ```groovy
+    assertNull(username)
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    assertNull(username)
+    ```
+=== "Python"
+
+    ```python
+    self.assertIsNone(username)
+    ```
+
+### Confusing assertion
+
+Flip assertions instead of negating conditions.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    assertFalse(!user.isActive());
+    ```
+=== "Groovy"
+
+    ```groovy
+    assertFalse(!user.isActive())
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    assertFalse(!user.isActive())
+    ```
+=== "Python"
+
+    ```python
+    self.assertFalse(!user.is_active())
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    assertTrue(user.isActive());
+    ```
+=== "Groovy"
+
+    ```groovy
+    assertTrue(user.isActive())
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    assertTrue(user.isActive())
+    ```
+=== "Python"
+
+    ```python
+    self.assertTrue(user.is_active())
+    ```
+
+### Deprecated annotation
+
+Prefer Kotlin test annotations over JUnit ones.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    import org.junit.Test
+
+    class UserTest {
+        @Test
+        fun testUser() {}
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    import kotlin.test.Test
+
+    class UserTest {
+        @Test
+        fun testUser() {}
+    }
+    ```
+
 ## Trimming
 
 ### Block comment trim

@@ -9,7 +9,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.EXPR
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.IDENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.LNOT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.METHOD_CALL
-import com.puppycrawl.tools.checkstyle.api.TokenTypes.NOT_EQUAL
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#confusing-assertion) */
 public class ConfusingAssertionCheck : RulebookAstCheck() {
@@ -19,7 +18,7 @@ public class ConfusingAssertionCheck : RulebookAstCheck() {
 
     override fun visit(node: DetailAST) {
         // find inverted assert function
-        val functionReplacement =
+        val callReplacement =
             node
                 .findFirstToken(IDENT)
                 ?.run { ASSERT_CALLS[text] }
@@ -31,7 +30,7 @@ public class ConfusingAssertionCheck : RulebookAstCheck() {
             ?.findFirstToken(EXPR)
             ?.takeIf { LNOT in it }
             ?: return
-        log(node, Messages[MSG, functionReplacement])
+        log(node, Messages[MSG, callReplacement])
     }
 
     private companion object {

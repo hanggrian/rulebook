@@ -20,7 +20,7 @@ public class LonelyConfigurationRule : RulebookAstRule() {
         const val MSG = "lonely.configuration"
 
         val NAMED_DOMAIN_FUNCTIONS =
-            hashSetOf("repositories", "dependencies", "configurations", "tasks", "sourceSets")
+            setOf("repositories", "dependencies", "configurations", "tasks", "sourceSets")
     }
 }
 

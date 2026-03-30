@@ -35,7 +35,7 @@ public class ModifierOrderRule : RulebookFileRule() {
     internal companion object {
         const val MSG = "modifier.order"
 
-        private val ORDER_SET =
+        private val ORDER_SET: Set<String> =
             linkedSetOf(
                 "public",
                 "protected",

@@ -12,6 +12,7 @@ class CodecheckRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { MethodParameterNameRule() },
             RuleProvider { RuleHasDocumentationRule() },
             RuleProvider { RuleHasSampleRule() },
+            RuleProvider { StaticImmutableCollection() },
         )
 
     internal companion object {

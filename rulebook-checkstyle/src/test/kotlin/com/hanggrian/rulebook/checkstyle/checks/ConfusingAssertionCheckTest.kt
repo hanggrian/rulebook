@@ -15,7 +15,7 @@ class ConfusingAssertionCheckTest : CheckTest() {
     fun `Negative assertion calls`() =
         assertAll(
             "ConfusingAssertion2",
-            "7:19: Omit negation and replace call with 'assertFalse'.",
+            "7:19: Omit negation and replace assertion with 'assertFalse'.",
         )
 
     @Test

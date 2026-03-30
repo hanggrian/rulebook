@@ -6,6 +6,7 @@
   "internalChecksFilter": "strict",
   "ignoreDeps": [
     "@eslint/js",
+    "astroid",
     "eslint",
     "org.apache.groovy:groovy",
     "org.apache.groovy:groovy-all",

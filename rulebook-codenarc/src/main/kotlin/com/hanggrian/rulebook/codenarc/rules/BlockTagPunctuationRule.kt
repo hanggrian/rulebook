@@ -32,7 +32,7 @@ public class BlockTagPunctuationRule :
     internal companion object {
         const val MSG = "block.tag.punctuation"
 
-        val END_PUNCTUATIONS = hashSetOf('.', '!', '?', ')')
+        val END_PUNCTUATIONS = setOf('.', '!', '?', ')')
 
         fun buildRegex(tags: Collection<String>): Regex {
             val tagGroup =

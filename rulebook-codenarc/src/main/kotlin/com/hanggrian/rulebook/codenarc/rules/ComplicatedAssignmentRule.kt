@@ -14,7 +14,7 @@ public class ComplicatedAssignmentRule : RulebookAstRule() {
     internal companion object {
         const val MSG = "complicated.assignment"
 
-        val SHORTHAND_OPERATIONS = hashSetOf("+", "-", "*", "/", "%")
+        val SHORTHAND_OPERATIONS = setOf("+", "-", "*", "/", "%")
     }
 }
 

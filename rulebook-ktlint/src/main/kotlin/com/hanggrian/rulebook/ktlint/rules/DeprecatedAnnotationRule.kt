@@ -48,7 +48,7 @@ public class DeprecatedAnnotationRule : RulebookRule(ID) {
         private const val MSG = "deprecated.annotation"
 
         private val TEST_ANNOTATIONS_REPLACEMENT =
-            hashMapOf(
+            mapOf(
                 "org.junit.Test" to "kotlin.test.Test",
                 "org.junit.Ignore" to "kotlin.test.Ignore",
                 "org.junit.Before" to "kotlin.test.BeforeTest",

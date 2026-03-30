@@ -1,4 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/build/gh/hanggrian/rulebook)](https://app.circleci.com/pipelines/github/hanggrian/rulebook/)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yml)](https://github.com/hanggrian/rulebook/actions/)
 [![Codecov](https://img.shields.io/codecov/c/gh/hanggrian/rulebook)](https://app.codecov.io/gh/hanggrian/rulebook/)
 [![Renovate](https://img.shields.io/badge/dependency-mend-blue)](https://developer.mend.io/github/hanggrian/rulebook/) \
 [![Maven Central](https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/)

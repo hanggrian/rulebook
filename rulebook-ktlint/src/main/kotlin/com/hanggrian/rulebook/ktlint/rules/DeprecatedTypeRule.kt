@@ -58,7 +58,7 @@ public class DeprecatedTypeRule : RulebookRule(ID) {
         private const val MSG = "deprecated.type"
 
         private val COLLECTIONS_REPLACEMENT =
-            hashMapOf(
+            mapOf(
                 "java.util.Iterator" to "kotlin.collections.Iterator",
                 "java.util.Iterable" to "kotlin.collections.Iterable",
                 "java.util.Collection" to "kotlin.collections.Collection",

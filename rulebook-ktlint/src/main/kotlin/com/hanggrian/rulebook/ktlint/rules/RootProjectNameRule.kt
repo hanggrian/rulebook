@@ -83,7 +83,7 @@ public class RootProjectNameRule : RulebookRule(ID) {
         private const val MSG_SPECIAL = "root.project.name.special"
 
         private val BANNED_CHARACTERS =
-            hashSetOf(
+            setOf(
                 ' ',
                 ':',
                 '/',

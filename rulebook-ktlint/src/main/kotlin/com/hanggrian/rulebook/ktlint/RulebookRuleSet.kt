@@ -11,6 +11,7 @@ import com.hanggrian.rulebook.ktlint.rules.BooleanPropertyInteroperabilityRule
 import com.hanggrian.rulebook.ktlint.rules.BracesClipRule
 import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
+import com.hanggrian.rulebook.ktlint.rules.ComplicatedAssertionRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedAssignmentRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedBooleanEqualityRule
 import com.hanggrian.rulebook.ktlint.rules.ComplicatedSizeEqualityRule
@@ -113,6 +114,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { UnnecessaryContinueRule() },
             RuleProvider { UnnecessaryReturnRule() },
             // Testing
+            RuleProvider { ComplicatedAssertionRule() },
             RuleProvider { ConfusingAssertionRule() },
             RuleProvider { DeprecatedAnnotationRule() },
             // Trimming

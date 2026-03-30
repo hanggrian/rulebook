@@ -44,7 +44,7 @@ public class CommonFunctionPositionCheck : RulebookAstCheck() {
         const val MSG = "common.function.position"
 
         private val COMMON_FUNCTIONS =
-            hashSetOf(
+            setOf(
                 "toString",
                 "hashCode",
                 "equals",

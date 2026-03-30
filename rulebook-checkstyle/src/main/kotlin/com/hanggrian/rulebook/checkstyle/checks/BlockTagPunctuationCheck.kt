@@ -45,6 +45,6 @@ public class BlockTagPunctuationCheck :
     private companion object {
         const val MSG = "block.tag.punctuation"
 
-        val END_PUNCTUATIONS = hashSetOf('.', '!', '?', ')')
+        val END_PUNCTUATIONS = setOf('.', '!', '?', ')')
     }
 }

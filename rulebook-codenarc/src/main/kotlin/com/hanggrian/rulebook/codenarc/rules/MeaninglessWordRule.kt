@@ -22,7 +22,7 @@ public class MeaninglessWordRule :
         const val MSG_ALL = "meaningless.word.all"
         const val MSG_UTIL = "meaningless.word.util"
 
-        val UTILITY_FINAL_NAMES = hashSetOf("Util", "Utility")
+        val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
     }
 }
 

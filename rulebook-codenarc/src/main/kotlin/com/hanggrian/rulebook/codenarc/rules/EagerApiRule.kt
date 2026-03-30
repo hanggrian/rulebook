@@ -25,13 +25,13 @@ public class EagerApiRule : RulebookAstRule() {
         const val BUILDSCRIPT_CALL_REPLACEMENT = "plugins"
 
         val DOMAIN_OBJECT_CALLEES =
-            hashSetOf(
+            setOf(
                 BUILDSCRIPT_CALL_REPLACEMENT,
                 "configurations",
                 "sourceSets",
             ) + TASK_CALLEE
         val DOMAIN_OBJECTS_CALL_REPLACEMENT =
-            hashMapOf(
+            mapOf(
                 "all" to "configureEach",
                 "withType" to "configureEach",
                 "whenObjectAdded" to "configureEach",
@@ -39,7 +39,7 @@ public class EagerApiRule : RulebookAstRule() {
 
         const val TASK_CALLEE = "tasks"
         val TASK_CALL_REPLACEMENT =
-            hashMapOf(
+            mapOf(
                 "create" to "register",
                 "findByName" to "named",
                 "getByName" to "named",

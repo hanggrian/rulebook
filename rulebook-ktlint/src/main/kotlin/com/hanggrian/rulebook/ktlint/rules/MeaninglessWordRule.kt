@@ -53,6 +53,6 @@ public class MeaninglessWordRule : RulebookRule(ID, MEANINGLESS_WORDS_PROPERTY) 
         private const val MSG_ALL = "meaningless.word.all"
         private const val MSG_UTIL = "meaningless.word.util"
 
-        private val UTILITY_FINAL_NAMES = hashSetOf("Util", "Utility")
+        private val UTILITY_FINAL_NAMES = setOf("Util", "Utility")
     }
 }

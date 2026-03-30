@@ -25,7 +25,7 @@ public class ConfusingAssertionRule : RulebookRule(ID) {
 
     override fun visit(node: ASTNode, emit: Emit) {
         // find inverted assert function
-        val functionReplacement =
+        val callReplacement =
             node
                 .findChildByType(REFERENCE_EXPRESSION)
                 ?.findChildByType(IDENTIFIER)
@@ -40,7 +40,7 @@ public class ConfusingAssertionRule : RulebookRule(ID) {
             ?.findChildByType(OPERATION_REFERENCE)
             ?.takeIf { EXCL in it }
             ?: return
-        emit(node.startOffset, Messages[MSG, functionReplacement], false)
+        emit(node.startOffset, Messages[MSG, callReplacement], false)
     }
 
     public companion object {

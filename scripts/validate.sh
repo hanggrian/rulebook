@@ -6,7 +6,8 @@ uv run pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/
 uv run pylint rulebook-cppcheck/
 uv run pylint sample/python/
 uv run pylint \
-  --rcfile=sample-configured/custom_pylintrc sample-configured/python/
+  --rcfile=sample-configured/custom_pylintrc \
+  sample-configured/python/
 
 uv run cppcheck \
   --check-level=exhaustive \

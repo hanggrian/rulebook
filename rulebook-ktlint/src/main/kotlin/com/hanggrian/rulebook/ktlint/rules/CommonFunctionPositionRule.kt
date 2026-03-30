@@ -48,7 +48,7 @@ public class CommonFunctionPositionRule : RulebookRule(ID) {
         private const val MSG = "common.function.position"
 
         private val COMMON_FUNCTIONS =
-            hashSetOf(
+            setOf(
                 "toString",
                 "hashCode",
                 "equals",

@@ -33,8 +33,8 @@ class ConfusingAssertionChecker(RulebookChecker):
                 if not isinstance(call, Call) or \
                     not isinstance(call.func, Attribute):
                     continue
-                function_replacement: str = self._ASSERT_CALLS.get(call.func.attrname, None)
-                if function_replacement is None:
+                call_replacement: str = self._ASSERT_CALLS.get(call.func.attrname, None)
+                if call_replacement is None:
                     continue
 
                 # checks for violation
@@ -44,7 +44,7 @@ class ConfusingAssertionChecker(RulebookChecker):
                 if not isinstance(arg, UnaryOp) or \
                     arg.op != 'not':
                     continue
-                self.add_message(self._MSG, node=call.func, args=function_replacement)
+                self.add_message(self._MSG, node=call.func, args=call_replacement)
 
 
 def register(linter: PyLinter) -> None:

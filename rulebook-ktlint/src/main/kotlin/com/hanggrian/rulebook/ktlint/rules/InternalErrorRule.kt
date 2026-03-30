@@ -55,7 +55,7 @@ public class InternalErrorRule : RulebookRule(ID) {
         private const val MSG = "internal.error"
 
         private val NON_APPLICATION_EXCEPTIONS =
-            hashSetOf(
+            setOf(
                 "Error",
                 "Throwable",
                 "java.lang.Error",

@@ -578,6 +578,7 @@
     <module name="UnnecessaryReturn"/>
 
     <!-- Testing -->
+    <module name="ComplicatedAssertion"/>
     <module name="ConfusingAssertion"/>
 
     <!-- Trimming -->

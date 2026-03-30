@@ -33,7 +33,7 @@ class ConfusingAssertionRuleTest : RuleTest() {
             .hasLintViolationWithoutAutoCorrect(
                 2,
                 5,
-                "Omit negation and replace call with 'assertFalse'.",
+                "Omit negation and replace assertion with 'assertFalse'.",
             )
 
     @Test

@@ -11,6 +11,7 @@ from rulebook_pylint.checkers.case_separator import CaseSeparatorChecker
 from rulebook_pylint.checkers.comment_spaces import CommentSpacesChecker
 from rulebook_pylint.checkers.comment_trim import CommentTrimChecker
 from rulebook_pylint.checkers.common_function_position import CommonFunctionPositionChecker
+from rulebook_pylint.checkers.complicated_assertion import ComplicatedAssertionChecker
 from rulebook_pylint.checkers.complicated_assignment import ComplicatedAssignmentChecker
 from rulebook_pylint.checkers.confusing_assertion import ConfusingAssertionChecker
 from rulebook_pylint.checkers.duplicate_blank_line import DuplicateBlankLineChecker
@@ -59,6 +60,7 @@ __all__ = [
     'CommentSpacesChecker',
     'CommentTrimChecker',
     'CommonFunctionPositionChecker',
+    'ComplicatedAssertionChecker',
     'ComplicatedAssignmentChecker',
     'ConfusingAssertionChecker',
     'DuplicateBlankLineChecker',
