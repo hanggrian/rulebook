@@ -12,8 +12,8 @@ class InnerClassPositionChecker(RulebookTokenChecker):
     ID: str = 'inner-class-position'
     _MSG: str = 'inner.class.position'
 
-    _TARGET_SCOPES: set[str] = {'Class', 'Struct'}
-    _TARGET_TOKENS: set[str] = {'class', 'struct'}
+    _TARGET_SCOPES: frozenset[str] = frozenset(['Class', 'Struct'])
+    _TARGET_TOKENS: frozenset[str] = frozenset(['class', 'struct'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [

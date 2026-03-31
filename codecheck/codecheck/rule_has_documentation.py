@@ -14,8 +14,8 @@ if TYPE_CHECKING:
 class RuleHasDocumentationChecker(RulebookChecker):
     name: str = 'rule-has-documentation'
     msgs = {
-        'W9901': ('Missing URL.', 'missing-url', 'Add URL.'),
-        'W9902': ('Invalid URL.', 'invalid-url', 'Fix URL.'),
+        'W9902': ('Missing URL.', 'rule-has-documentation-missing', 'Add URL.'),
+        'W9903': ('Invalid URL.', 'rule-has-documentation-invalid', 'Fix URL.'),
     }
 
     _REGEX: Pattern = re(r'([a-z])([A-Z])')

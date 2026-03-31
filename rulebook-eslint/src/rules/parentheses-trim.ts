@@ -20,8 +20,8 @@ class ParenthesesTrimRule extends RulebookRule {
                 for (let i = 0; i < tokens.length; i++) {
                     // find opening and closing parentheses
                     const openToken: AST.Token = tokens[i];
-                    const pair: [string, string] | undefined =
-                        ParenthesesTrimRule.PAIRS.find(p => p[0] === openToken.value);
+                    const pair: string[] | undefined =
+                        Array.from(ParenthesesTrimRule.PAIRS).find(p => p[0] === openToken.value);
                     if (!pair) {
                         continue;
                     }
@@ -86,11 +86,12 @@ class ParenthesesTrimRule extends RulebookRule {
         };
     }
 
-    static PAIRS: [string, string][] = [
-        ['(', ')'],
-        ['[', ']'],
-        ['<', '>'],
-    ];
+    static PAIRS: Set<string[]> =
+        new Set([
+            ['(', ')'],
+            ['[', ']'],
+            ['<', '>'],
+        ]);
 
     static MSG_FIRST: string = 'parentheses.trim.first';
     static MSG_LAST: string = 'parentheses.trim.last';

@@ -16,7 +16,7 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
     _MSG: str = 'block.tag.punctuation'
     ARGS: list[str] = [PUNCTUATE_BLOCK_TAGS_OPTION]
 
-    _PUNCTUATIONS: set[str] = {'.', '!', '?', ')'}
+    _PUNCTUATIONS: frozenset[str] = frozenset(['.', '!', '?', ')'])
 
     def __init__(self) -> None:
         super().__init__()

@@ -18,7 +18,7 @@ class MeaninglessWordChecker(RulebookChecker):
     _MSG_ALL: str = 'meaningless.word.all'
     _MSG_UTIL: str = 'meaningless.word.util'
 
-    _UTILITY_CLASS_NAMES: set[str] = {'Util', 'Utility'}
+    _UTILITY_CLASS_NAMES: frozenset[str] = frozenset(['Util', 'Utility'])
     _TITLE_CASE_REGEX: Pattern = \
         re(
             r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|' +

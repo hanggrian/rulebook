@@ -17,8 +17,8 @@ class ComplicatedAssertionChecker(RulebookChecker):
     name: str = 'complicated-assertion'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
 
-    _BOOLEAN_ASSERTIONS = frozenset(['assertTrue', 'assertFalse'])
-    _EQUALITY_ASSERTIONS = frozenset(['assertEqual', 'assertNotEqual'])
+    _BOOLEAN_ASSERTIONS: frozenset[str] = frozenset(['assertTrue', 'assertFalse'])
+    _EQUALITY_ASSERTIONS: frozenset[str] = frozenset(['assertEqual', 'assertNotEqual'])
 
     def visit_classdef(self, node: ClassDef) -> None:
         # find built-in tests

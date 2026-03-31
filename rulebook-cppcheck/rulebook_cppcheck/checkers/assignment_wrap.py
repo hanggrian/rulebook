@@ -12,7 +12,7 @@ class AssignmentWrapChecker(RulebookTokenChecker):
     ID: str = 'assignment-wrap'
     _MSG: str = 'assignment.wrap'
 
-    _START_TOKENS: set[str] = {'{', '[', '(', 'lambda'}
+    _START_TOKENS: frozenset[str] = frozenset(['{', '[', '(', 'lambda'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == '=' and t.isAssignmentOp]:

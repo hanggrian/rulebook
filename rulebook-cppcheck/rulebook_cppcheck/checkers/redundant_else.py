@@ -13,8 +13,8 @@ class RedundantElseChecker(RulebookTokenChecker):
     ID: str = 'redundant-else'
     _MSG: str = 'redundant.else'
 
-    _JUMP_TOKENS: set[str] = {'return', 'break', 'continue', 'throw', 'goto'}
-    _ELSE_SIBLING_TOKENS: set[str] = {'else', ';'}
+    _JUMP_TOKENS: frozenset[str] = frozenset(['return', 'break', 'continue', 'throw', 'goto'])
+    _ELSE_SIBLING_TOKENS: frozenset[str] = frozenset(['else', ';'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'if']:

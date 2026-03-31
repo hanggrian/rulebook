@@ -15,22 +15,23 @@ class CommonFunctionPositionChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#common-function-position"""
     _MSG: str = 'common.function.position'
 
-    _COMMON_FUNCTIONS = (
-        '__str__',
-        '__hash__',
-        '__eq__',
-        '__new__',
-        '__del__',
-        '__repr__',
-        '__bytes__',
-        '__format__',
-        '__lt__',
-        '__le__',
-        '__ne__',
-        '__gt__',
-        '__ge__',
-        '__bool__',
-    )
+    _COMMON_FUNCTIONS: frozenset[str] = \
+        frozenset([
+            '__str__',
+            '__hash__',
+            '__eq__',
+            '__new__',
+            '__del__',
+            '__repr__',
+            '__bytes__',
+            '__format__',
+            '__lt__',
+            '__le__',
+            '__ne__',
+            '__gt__',
+            '__ge__',
+            '__bool__',
+        ])
 
     name: str = 'common-function-position'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)

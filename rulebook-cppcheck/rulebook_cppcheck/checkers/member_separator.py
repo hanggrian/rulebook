@@ -14,7 +14,7 @@ class MemberSeparatorChecker(RulebookChecker):
     ID: str = 'member-separator'
     _MSG: str = 'member.separator'
 
-    _OPENING_TOKENS: set[str] = {'{', ';'}
+    _OPENING_TOKENS: frozenset[str] = frozenset(['{', ';'])
 
     def get_scopeset(self) -> set[str]:
         return {'Class', 'Struct'}

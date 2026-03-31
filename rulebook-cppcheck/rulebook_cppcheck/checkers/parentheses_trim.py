@@ -13,8 +13,8 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
     _MSG_FIRST: str = 'parentheses.trim.first'
     _MSG_LAST: str = 'parentheses.trim.last'
 
-    _OPENING_PARENTHESES: set[str] = {'(', '[', '{', '<'}
-    _CLOSING_PARENTHESES: set[str] = {')', ']', '}', '>'}
+    _OPENING_PARENTHESES: frozenset[str] = frozenset(['(', '[', '{', '<'])
+    _CLOSING_PARENTHESES: frozenset[str] = frozenset([')', ']', '}', '>'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.file is not None]:
@@ -30,7 +30,11 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                     continue
                 if self._has_content_between(lines, token, next_token):
                     continue
-                self.report_error(token, _Messages.get(self._MSG_FIRST, token.str), token.linenr + 1)
+                self.report_error(
+                    token,
+                    _Messages.get(self._MSG_FIRST, token.str),
+                    token.linenr + 1,
+                )
 
             # checks for violation
             if token.str not in self._CLOSING_PARENTHESES:
@@ -41,7 +45,11 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                 continue
             if self._has_content_between(lines, prev_token, token):
                 continue
-            self.report_error(token, _Messages.get(self._MSG_LAST, token.str), token.linenr - 1)
+            self.report_error(
+                token,
+                _Messages.get(self._MSG_LAST, token.str),
+                token.linenr - 1,
+            )
 
     @staticmethod
     def _has_content_between(lines2: list[str], start: Token, end: Token) -> bool:

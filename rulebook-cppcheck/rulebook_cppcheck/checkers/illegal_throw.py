@@ -13,10 +13,11 @@ class IllegalThrowChecker(RulebookTokenChecker):
     ID: str = 'illegal-throw'
     _MSG: str = 'illegal.throw'
 
-    _BROAD_EXCEPTIONS: set[str] = {
-        'exception',
-        'std::exception',
-    }
+    _BROAD_EXCEPTIONS: frozenset[str] = \
+        frozenset([
+            'exception',
+            'std::exception',
+        ])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation

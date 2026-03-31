@@ -15,7 +15,7 @@ class BlockCommentTrimChecker(RulebookFileChecker):
     _MSG_FIRST: str = 'block.comment.trim.first'
     _MSG_LAST: str = 'block.comment.trim.last'
 
-    _EMPTY_LINES: set[str] = {'*', ''}
+    _EMPTY_LINES: frozenset[str] = frozenset(['*', ''])
 
     def check_file(self, token: Token, content: str) -> None:
         for match in finditer(r'/\*(.*?)\*/', content, DOTALL):

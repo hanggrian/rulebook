@@ -14,7 +14,7 @@ class CaseSeparatorChecker(RulebookChecker):
     _MSG_MISSING: str = 'case.separator.missing'
     _MSG_UNEXPECTED: str = 'case.separator.unexpected'
 
-    _BRANCH_TOKENS: set[str] = {'case', 'default'}
+    _BRANCH_TOKENS: frozenset[str] = frozenset(['case', 'default'])
 
     def __init__(self) -> None:
         super().__init__()

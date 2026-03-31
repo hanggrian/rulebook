@@ -16,8 +16,8 @@ class TrailingCommaChecker(RulebookTokenChecker):
     _MSG_SINGLE: str = 'trailing.comma.single'
     _MSG_MULTI: str = 'trailing.comma.multi'
 
-    _OPENING_PARENTHESES: set[str] = {'(', '[', '{'}
-    _CLOSING_PARENTHESES: set[str] = {')', ']', '}'}
+    _OPENING_PARENTHESES: frozenset[str] = frozenset(['(', '[', '{'])
+    _CLOSING_PARENTHESES: frozenset[str] = frozenset([')', ']', '}'])
 
     name: str = 'trailing-comma'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_SINGLE, _MSG_MULTI)

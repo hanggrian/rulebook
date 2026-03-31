@@ -12,7 +12,7 @@ class RedundantIfChecker(RulebookTokenChecker):
     ID: str = 'redundant-if'
     _MSG: str = 'redundant.if'
 
-    _BOOLS = {'true', 'false'}
+    _BOOLS: frozenset[str] = frozenset(['true', 'false'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'if']:
@@ -45,7 +45,7 @@ class RedundantIfChecker(RulebookTokenChecker):
         if token is None or token.str != 'return':
             return None, None
         value: Token | None = token.next
-        if value is None or value.str not in RedundantIfChecker._BOOLS:
+        if value is None or value.str not in ('true', 'false'):
             return None, None
         semi: Token | None = value.next
         if semi is None or semi.str != ';':

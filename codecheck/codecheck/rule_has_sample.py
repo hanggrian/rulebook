@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 class RuleHasSampleChecker(RulebookFileChecker):
     name: str = 'rule-has-sample'
     msgs = {
-        'W9905': ('Missing sample.', 'missing-sample', 'Add a sample.'),
+        'W9904': ('Missing sample.', 'rule-has-sample', 'Add a sample.'),
     }
 
     _PYLINT_PATH: str = '/rulebook-pylint/rulebook_pylint/checkers/'
@@ -27,7 +27,7 @@ class RuleHasSampleChecker(RulebookFileChecker):
         if self._PYLINT_PATH in file:
             if exists(file.replace(self._PYLINT_PATH, '/sample/python/')):
                 return
-            if exists(file.replace(self._PYLINT_PATH, '/sample/tests/python/test_')):
+            if exists(file.replace(self._PYLINT_PATH, '/sample/python-test/test_')):
                 return
             self.add_message('missing-sample', line=1)
         elif self._CPPCHECK_PATH in file:

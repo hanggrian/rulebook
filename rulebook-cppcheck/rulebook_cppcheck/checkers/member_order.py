@@ -14,7 +14,7 @@ class MemberOrderChecker(RulebookTokenChecker):
     _MSG: str = 'member.order'
     ARGS: list[str] = [MEMBER_ORDER_OPTION]
 
-    _TARGET_TOKENS: tuple[str, ...] = ('Class', 'Struct')
+    _TARGET_TOKENS: frozenset[str] = frozenset(['Class', 'Struct'])
 
     def __init__(self) -> None:
         super().__init__()

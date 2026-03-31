@@ -13,7 +13,7 @@ class RedundantDefaultChecker(RulebookTokenChecker):
     ID: str = 'redundant-default'
     _MSG: str = 'redundant.default'
 
-    _BREAK_STATEMENTS: set[str] = {'return', 'continue', 'throw', 'goto'}
+    _BREAK_STATEMENTS: frozenset[str] = frozenset(['return', 'continue', 'throw', 'goto'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'switch']:

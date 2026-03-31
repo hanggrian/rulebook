@@ -16,8 +16,8 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
     _MSG_FIRST: str = 'parentheses.trim.first'
     _MSG_LAST: str = 'parentheses.trim.last'
 
-    _OPENING_PARENTHESES: set[str] = {'(', '[', '{'}
-    _CLOSING_PARENTHESES: set[str] = {')', ']', '}'}
+    _OPENING_PARENTHESES: frozenset[str] = frozenset(['(', '[', '{'])
+    _CLOSING_PARENTHESES: frozenset[str] = frozenset([')', ']', '}'])
 
     name: str = 'parentheses-trim'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_FIRST, _MSG_LAST)

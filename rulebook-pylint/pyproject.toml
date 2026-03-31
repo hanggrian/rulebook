@@ -19,7 +19,7 @@ classifiers = [
 dependencies = [
   "pylint==4.0.5",
   "astroid==4.0.4",
-  "regex>=2026.2.28",
+  "regex>=2026.3.32",
 ]
 
 [project.urls]

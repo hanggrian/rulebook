@@ -14,7 +14,8 @@ class OperatorWrapChecker(RulebookTokenChecker):
     _MSG_MISSING: str = 'operator.wrap.missing'
     _MSG_UNEXPECTED: str = 'operator.wrap.unexpected'
 
-    _IGNORE_TOKENS: set[str] = {'(', ')', '[', ']', '{', '}', ',', '.', '::', '?', ':'}
+    _IGNORE_TOKENS: frozenset[str] = \
+        frozenset(['(', ')', '[', ']', '{', '}', ',', '.', '::', '?', ':'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [

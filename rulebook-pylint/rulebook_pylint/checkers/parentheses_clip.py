@@ -20,7 +20,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
         '(': ')',
         '[': ']',
     }
-    _OPENING_PARENTHESES: set[str] = {'{', '(', '['}
+    _OPENING_PARENTHESES: frozenset[str] = frozenset(['{', '(', '['])
 
     name: str = 'parentheses-clip'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)

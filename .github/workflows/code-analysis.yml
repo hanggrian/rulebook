@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+env:
+  GRADLE_USER_HOME: ${{ github.workspace }}/.gradle/
+  GRADLE_OPTS: -Dorg.gradle.daemon=false
+
 jobs:
   run-lint:
     runs-on: ubuntu-latest
@@ -13,7 +17,7 @@ jobs:
       - uses: ./.github/actions/setup-workspace
 
       - name: Check JVM
-        run: ./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck --no-daemon
+        run: ./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck
 
       - name: Check Python
         run: |
@@ -55,7 +59,7 @@ jobs:
       - uses: ./.github/actions/setup-workspace
 
       - name: Report JVM
-        run: ./gradlew koverXmlReport --no-daemon
+        run: ./gradlew koverXmlReport
 
       - name: Report Python
         run: |

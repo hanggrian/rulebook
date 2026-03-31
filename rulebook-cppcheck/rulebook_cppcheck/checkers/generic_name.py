@@ -13,7 +13,7 @@ class GenericNameChecker(RulebookTokenChecker):
     ID: str = 'generic-name'
     _MSG: str = 'generic.name'
 
-    _TARGET_TOKENS: set[str] = {'typename', 'class'}
+    _TARGET_TOKENS: frozenset[str] = frozenset(['typename', 'class'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'template']:

@@ -13,10 +13,11 @@ class IllegalCatchChecker(RulebookTokenChecker):
     ID: str = 'illegal-catch'
     _MSG: str = 'illegal.catch'
 
-    _ILLEGAL_EXCEPTIONS: set[str] = {
-        'exception',
-        'std::exception',
-    }
+    _ILLEGAL_EXCEPTIONS: frozenset[str] = \
+        frozenset([
+            'exception',
+            'std::exception',
+        ])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'catch']:

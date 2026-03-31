@@ -9,15 +9,15 @@ plugins {
 }
 
 java.sourceSets.main {
-    java.srcDir("tests/java")
+    java.srcDir("java-test")
 }
 
 kotlin.sourceSets.main {
-    kotlin.srcDir("tests/kotlin")
+    kotlin.srcDir("kotlin-test")
 }
 
 ktlint.kotlinScriptAdditionalPaths {
-    include(fileTree("kts/"))
+    include(fileTree("kotlin-script/"))
 }
 
 dependencies {
@@ -32,7 +32,7 @@ dependencies {
 
 tasks {
     val codenarcScript by registering(CodeNarc::class) {
-        setSource(layout.projectDirectory.file("gradle/"))
+        setSource(layout.projectDirectory.file("groovy-script/"))
         include("*.gradle")
     }
     check {

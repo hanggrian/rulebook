@@ -13,7 +13,7 @@ class ComplicatedAssignmentChecker(RulebookTokenChecker):
     ID: str = 'complicated-assignment'
     _MSG: str = 'complicated.assignment'
 
-    _SHORTHAND_OPERATIONS = ('+', '-', '*', '/', '%')
+    _SHORTHAND_OPERATIONS: frozenset[str] = frozenset(['+', '-', '*', '/', '%'])
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in tokens:

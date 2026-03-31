@@ -12,10 +12,10 @@ if TYPE_CHECKING:
 class MethodParameterNameChecker(RulebookChecker):
     name: str = 'method-parameter-name'
     msgs = {
-        'W9904': ("Rename parameter to '%s'.", 'method-parameter-name', 'Rename identifier.'),
+        'W9901': ("Rename parameter to '%s'.", 'method-parameter-name', 'Rename identifier.'),
     }
 
-    def visit_functiondef(self, node: FunctionDef):
+    def visit_functiondef(self, node: FunctionDef) -> None:
         args: list[AssignName] = node.args.args
         if not args or len(args) < 2:
             return

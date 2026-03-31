@@ -14,7 +14,7 @@ class ComplicatedAssignmentChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#complicated-assignment"""
     _MSG: str = 'complicated.assignment'
 
-    _SHORTHAND_OPERATIONS = ('+', '-', '*', '/', '%')
+    _SHORTHAND_OPERATIONS: frozenset[str] = frozenset(['+', '-', '*', '/', '%'])
 
     name: str = 'complicated-assignment'
     msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)

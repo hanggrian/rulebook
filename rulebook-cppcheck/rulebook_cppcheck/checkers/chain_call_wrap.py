@@ -13,8 +13,8 @@ class ChainCallWrapChecker(RulebookTokenChecker):
     _MSG_MISSING: str = 'chain.call.wrap.missing'
     _MSG_UNEXPECTED: str = 'chain.call.wrap.unexpected'
 
-    _SHOULD_BREAK: set[str] = {'+', ';', '{', '}', '=', '?', ':'}
-    _CLOSING_PARENTHESES: set[str] = {')', '}'}
+    _SHOULD_BREAK: frozenset[str] = frozenset(['+', ';', '{', '}', '=', '?', ':'])
+    _CLOSING_PARENTHESES: frozenset[str] = frozenset([')', '}'])
 
     def __init__(self) -> None:
         super().__init__()

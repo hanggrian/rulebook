@@ -25,7 +25,7 @@ class RuleHasSampleRule : RulebookRule(ID) {
                     ?: return
                 File(
                     file
-                        .replace(CHECKSTYLE_PATH, "/sample/tests/java/com/example/java/")
+                        .replace(CHECKSTYLE_PATH, "/sample/java-test/com/example/java/")
                         .replace("Check.kt", "Test.java"),
                 ).takeUnless(File::exists)
                     ?: return
@@ -41,18 +41,19 @@ class RuleHasSampleRule : RulebookRule(ID) {
                     ?: return
                 file =
                     file
-                        .replace(CODENARC_PATH, "/sample/gradle/")
+                        .replace(CODENARC_PATH, "/sample/groovy-script/")
                         .replace("Rule.kt", ".gradle")
                 val path = file.substringBeforeLast('/')
-                var name = file.substringAfterLast('/')
-                name =
-                    if (name == "RootProjectName.gradle") {
-                        "settings.gradle"
-                    } else {
-                        name.kebabCase
-                    }
-                File("$path/$name")
-                    .takeUnless(File::exists)
+                val name = file.substringAfterLast('/')
+                File(
+                    "$path/${
+                        if (name == "RootProjectName.gradle") {
+                            "settings.gradle"
+                        } else {
+                            name.kebabCase
+                        }
+                    }",
+                ).takeUnless(File::exists)
                     ?: return
                 emit(node.startOffset, "Missing sample '$name'.", false)
             }
@@ -66,24 +67,25 @@ class RuleHasSampleRule : RulebookRule(ID) {
                     ?: return
                 File(
                     file
-                        .replace(KTLINT_PATH, "/sample/tests/kotlin/com/example/kotlin/")
+                        .replace(KTLINT_PATH, "/sample/kotlin-test/com/example/kotlin/")
                         .replace("Rule.kt", "Test.kt"),
                 ).takeUnless(File::exists)
                     ?: return
                 file =
                     file
-                        .replace(KTLINT_PATH, "/sample/kts/")
+                        .replace(KTLINT_PATH, "/sample/kotlin-script/")
                         .replace("Rule.kt", ".kts")
                 val path = file.substringBeforeLast('/')
-                var name = file.substringAfterLast('/')
-                name =
-                    if (name == "RootProjectName.kts") {
-                        "settings.gradle.kts"
-                    } else {
-                        name.kebabCase
-                    }
-                File("$path/$name")
-                    .takeUnless(File::exists)
+                val name = file.substringAfterLast('/')
+                File(
+                    "$path/${
+                        if (name == "RootProjectName.kts") {
+                            "settings.gradle.kts"
+                        } else {
+                            name.kebabCase
+                        }
+                    }",
+                ).takeUnless(File::exists)
                     ?: return
                 emit(node.startOffset, "Missing sample '$name'.", false)
             }
