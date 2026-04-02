@@ -40,6 +40,6 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsdoc": "^62.8.1",
     "eslint-plugin-sort-class-members": "^1.21.0",
-    "typescript": "~5.9.3"
+    "typescript": "~6.0.0"
   }
 }
