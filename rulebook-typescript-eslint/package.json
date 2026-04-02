@@ -45,7 +45,7 @@
     "eslint-plugin-jsdoc": "^62.8.1",
     "eslint-plugin-sort-class-members": "^1.21.0",
     "rulebook-eslint": "workspace:*",
-    "typescript": "~5.9.3",
+    "typescript": "~6.0.0",
     "typescript-eslint": "^8.57.2"
   }
 }
