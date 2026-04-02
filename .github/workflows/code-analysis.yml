@@ -72,5 +72,7 @@ jobs:
           pnpm -r test
           pnpm -r coverage
 
-      - uses: codecov/codecov-action@v6
-        if: github.ref == 'refs/heads/main'
+      - if: github.ref == 'refs/heads/main'
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

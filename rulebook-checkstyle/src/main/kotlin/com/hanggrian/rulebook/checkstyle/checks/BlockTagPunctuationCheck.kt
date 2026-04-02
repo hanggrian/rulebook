@@ -1,11 +1,13 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
+import com.hanggrian.rulebook.checkstyle.children
 import com.hanggrian.rulebook.checkstyle.properties.ConfigurableTags
 import com.puppycrawl.tools.checkstyle.api.DetailNode
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.DESCRIPTION
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.TAG_NAME
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.TEXT
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#block-tag-punctuation) */
 public class BlockTagPunctuationCheck :
@@ -13,33 +15,42 @@ public class BlockTagPunctuationCheck :
     ConfigurableTags {
     override val tagSet: HashSet<String> = hashSetOf("@param", "@return")
 
-    override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_TAG)
+    override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_BLOCK_TAG)
 
     override fun visitJavadocToken(node: DetailNode) {
         // only enforce certain tags
-        val tagLiteral =
+        val tagNode =
             node
-                .children
-                .first()
-                .takeIf { it.text in tagSet }
+                .children()
+                .firstOrNull { child ->
+                    child.children().any { it.type == TAG_NAME && "@${it.text}" in tagSet }
+                } ?: return
+        val tagLiteral =
+            tagNode
+                .children()
+                .firstOrNull { it.type == TAG_NAME }
                 ?: return
 
         // long descriptions have multiple lines, take only the last one
-        val text =
-            node
-                .children
-                ?.firstOrNull { it.type == DESCRIPTION }
-                ?.children
+        val tagText =
+            tagNode
+                .children()
+                .firstOrNull { it.type == DESCRIPTION }
+                ?.children()
                 ?.lastOrNull { it.type == TEXT && it.text.isNotBlank() }
                 ?: return
 
         // checks for violation
+        val text = tagText.text
         text
-            .text
             .lastOrNull()
             ?.takeUnless { it in END_PUNCTUATIONS }
             ?: return
-        log(text.lineNumber, text.columnNumber, Messages[MSG, tagLiteral.text])
+        log(
+            tagText.lineNumber,
+            tagText.columnNumber + text.length,
+            Messages[MSG, "@${tagLiteral.text}"],
+        )
     }
 
     private companion object {

@@ -1,12 +1,10 @@
 package com.hanggrian.rulebook.ktlint
 
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK_COMMENT
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.BREAK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.CONTINUE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.DESTRUCTURING_DECLARATION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
-import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.LBRACE
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.PROPERTY
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.RBRACE
@@ -26,7 +24,7 @@ internal val ASTNode.endOffset: Int
     get() = startOffset + textLength
 
 /** Collect sibling nodes until child node is found. */
-internal fun ASTNode.siblingsUntil(type: IElementType): Sequence<ASTNode> =
+internal fun ASTNode.nextSiblingsUntil(type: IElementType): Sequence<ASTNode> =
     generateSequence(nextSibling20) { it.nextSibling20 }
         .takeWhile { it.elementType !== type }
 

@@ -1,10 +1,9 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
-import com.hanggrian.rulebook.checkstyle.nextSibling
 import com.puppycrawl.tools.checkstyle.api.DetailNode
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.LEADING_ASTERISK
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.NEWLINE
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.LEADING_ASTERISK
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.NEWLINE
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment) */
 public class DuplicateBlankLineInBlockCommentCheck : RulebookJavadocCheck() {
@@ -14,15 +13,15 @@ public class DuplicateBlankLineInBlockCommentCheck : RulebookJavadocCheck() {
         // find matching sibling
         val nextLeadingAsterisk =
             node
-                .nextSibling()
+                .nextSibling
                 ?.takeIf { it.type == NEWLINE }
-                ?.nextSibling()
+                ?.nextSibling
                 ?.takeIf { it.type == LEADING_ASTERISK }
                 ?: return
 
         // checks for violation
         nextLeadingAsterisk
-            .nextSibling()
+            .nextSibling
             ?.type
             ?.takeIf { it == NEWLINE }
             ?: return

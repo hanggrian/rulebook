@@ -3,7 +3,7 @@ package com.hanggrian.rulebook.ktlint.rules
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
 import com.hanggrian.rulebook.ktlint.endOffset
-import com.hanggrian.rulebook.ktlint.siblingsUntil
+import com.hanggrian.rulebook.ktlint.nextSiblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
 import com.pinterest.ktlint.rule.engine.core.api.RuleId
@@ -21,7 +21,7 @@ public class BlockTagIndentationRule : RulebookRule(ID) {
         val text =
             node
                 .takeIf { it.parent?.elementType === KDOC_TAG }
-                ?.siblingsUntil(KDOC_LEADING_ASTERISK)
+                ?.nextSiblingsUntil(KDOC_LEADING_ASTERISK)
                 ?.joinToString("") { it.text }
                 ?.takeIf { it.firstOrNull()?.isWhitespace() ?: false }
                 ?.drop(1)
