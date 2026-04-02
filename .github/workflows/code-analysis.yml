@@ -1,8 +1,6 @@
 name: code-analysis
 
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 env:
   GRADLE_USER_HOME: ${{ github.workspace }}/.gradle/
@@ -72,5 +70,9 @@ jobs:
           pnpm -r test
           pnpm -r coverage
 
-      - uses: codecov/codecov-action@v6
-        if: github.ref == 'refs/heads/main'
+      - if: github.ref == 'refs/heads/main'
+        uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+

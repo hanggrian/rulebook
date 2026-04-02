@@ -35,27 +35,27 @@ class NodesTest {
     }
 
     @Test
-    fun firstStatement() {
+    fun firstOrSelf() {
         val block = mock<BlockStatement> { on { statements } doReturn null }
-        assertThat(block.firstStatement()).isInstanceOf(BlockStatement::class.java)
+        assertThat(block.firstOrSelf()).isInstanceOf(BlockStatement::class.java)
 
         verify(block).statements
 
         `when`(block.statements).thenReturn(listOf(mock<BreakStatement>()))
-        assertThat(block.firstStatement()).isInstanceOf(BreakStatement::class.java)
+        assertThat(block.firstOrSelf()).isInstanceOf(BreakStatement::class.java)
 
         verify(block, atMost(2)).statements
     }
 
     @Test
-    fun lastExpression() {
+    fun lastOrSelf() {
         val tuple = mock<TupleExpression> { on { expressions } doReturn null }
-        assertThat(tuple.lastExpression()).isInstanceOf(TupleExpression::class.java)
+        assertThat(tuple.lastOrSelf()).isInstanceOf(TupleExpression::class.java)
 
         verify(tuple).expressions
 
         `when`(tuple.expressions).thenReturn(listOf(mock<ArgumentListExpression>()))
-        assertThat(tuple.lastExpression()).isInstanceOf(ArgumentListExpression::class.java)
+        assertThat(tuple.lastOrSelf()).isInstanceOf(ArgumentListExpression::class.java)
 
         verify(tuple, atMost(2)).expressions
     }

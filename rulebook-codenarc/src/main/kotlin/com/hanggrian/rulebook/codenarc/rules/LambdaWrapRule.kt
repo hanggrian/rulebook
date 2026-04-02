@@ -1,7 +1,7 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.hanggrian.rulebook.codenarc.Messages
-import com.hanggrian.rulebook.codenarc.firstStatement
+import com.hanggrian.rulebook.codenarc.firstOrSelf
 import com.hanggrian.rulebook.codenarc.isMultiline
 import com.hanggrian.rulebook.codenarc.rules.LambdaWrapRule.Companion.MSG
 import org.codehaus.groovy.ast.expr.ClosureExpression
@@ -41,7 +41,7 @@ public class LambdaWrapVisitor : RulebookVisitor() {
             node
                 .code
                 .takeIf { it.isMultiline() }
-                ?.firstStatement()
+                ?.firstOrSelf()
                 ?: return
         val parameter =
             node.parameters?.firstOrNull()

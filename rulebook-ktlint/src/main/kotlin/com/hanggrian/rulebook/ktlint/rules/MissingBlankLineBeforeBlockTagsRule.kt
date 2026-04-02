@@ -2,7 +2,7 @@ package com.hanggrian.rulebook.ktlint.rules
 
 import com.hanggrian.rulebook.ktlint.Messages
 import com.hanggrian.rulebook.ktlint.RulebookRuleSet
-import com.hanggrian.rulebook.ktlint.siblingsUntil
+import com.hanggrian.rulebook.ktlint.nextSiblingsUntil
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
 import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TAG
@@ -28,7 +28,7 @@ public class MissingBlankLineBeforeBlockTagsRule : RulebookRule(ID) {
         kdocTag
             .prevKdocLeadingAsterisk
             ?.prevKdocLeadingAsterisk
-            ?.siblingsUntil(KDOC_LEADING_ASTERISK)
+            ?.nextSiblingsUntil(KDOC_LEADING_ASTERISK)
             ?.takeUnless { it.singleOrNull().isWhiteSpaceWithNewline20 }
             ?: return
         emit(kdocTag.startOffset, Messages[MSG], false)
