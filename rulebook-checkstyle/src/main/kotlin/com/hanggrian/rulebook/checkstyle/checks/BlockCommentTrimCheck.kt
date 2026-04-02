@@ -1,25 +1,24 @@
 package com.hanggrian.rulebook.checkstyle.checks
 
 import com.hanggrian.rulebook.checkstyle.Messages
+import com.hanggrian.rulebook.checkstyle.children
 import com.puppycrawl.tools.checkstyle.api.DetailNode
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.DESCRIPTION
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.EOF
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.JAVADOC_TAG
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.LEADING_ASTERISK
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.NEWLINE
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.TEXT
-import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes.WS
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.DESCRIPTION
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.JAVADOC_BLOCK_TAG
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.JAVADOC_CONTENT
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.LEADING_ASTERISK
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.NEWLINE
+import com.puppycrawl.tools.checkstyle.api.JavadocCommentsTokenTypes.TEXT
 
 /** [See detail](https://hanggrian.github.io/rulebook/rules/#block-comment-trim) */
 public class BlockCommentTrimCheck : RulebookJavadocCheck() {
-    override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC)
+    override fun getDefaultJavadocTokens(): IntArray = intArrayOf(JAVADOC_CONTENT)
 
     override fun visitJavadocToken(node: DetailNode) {
         // allow blank comment
         node
-            .children
-            .filterNot { it.type == LEADING_ASTERISK || it.type == EOF }
+            .children()
+            .filterNot { it.type == LEADING_ASTERISK }
             .joinToString("") { it.text }
             .takeUnless { it.isBlank() }
             ?: return
@@ -39,14 +38,14 @@ public class BlockCommentTrimCheck : RulebookJavadocCheck() {
         // final node may be newline or tag
         val lastChild =
             children
-                .last { it.type != EOF }
+                .last()
                 .let { child ->
                     when (child.type) {
                         NEWLINE -> child
 
-                        JAVADOC_TAG -> {
+                        JAVADOC_BLOCK_TAG -> {
                             val description =
-                                child.children.firstOrNull { it.type == DESCRIPTION }
+                                child.children().firstOrNull { it.type == DESCRIPTION }
                                     ?: return@let null
                             children = description.filterEmpty()
                             return@let children.lastOrNull { it.type == NEWLINE }
@@ -69,11 +68,11 @@ public class BlockCommentTrimCheck : RulebookJavadocCheck() {
 
         /** Disregard whitespace between asterisk and newline. */
         fun DetailNode.filterEmpty() =
-            children.filter {
-                when (it.type) {
-                    TEXT -> it.text.isNotBlank()
-                    WS -> false
-                    else -> true
+            children().toList().filter {
+                if (it.type == TEXT) {
+                    it.text.isNotBlank()
+                } else {
+                    true
                 }
             }
     }

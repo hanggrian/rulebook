@@ -37,11 +37,11 @@ class NodesTest {
     }
 
     @Test
-    fun siblingsUntil() {
+    fun nextSiblingsUntil() {
         val third = mock<ASTNode> { on { elementType } doReturn IMPORT_KEYWORD }
         val second = mock<ASTNode> { on { treeNext } doReturn third }
         val first = mock<ASTNode> { on { treeNext } doReturn second }
-        assertThat(first.siblingsUntil(IMPORT_KEYWORD).toList()).containsExactly(second)
+        assertThat(first.nextSiblingsUntil(IMPORT_KEYWORD).toList()).containsExactly(second)
 
         sequenceOf(first, second).forEach { verify(it).treeNext }
         verify(third).elementType

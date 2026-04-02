@@ -67,13 +67,21 @@ class DetailNodesTest {
 
     @Test
     fun children() {
-        val child1 = mock<DetailAST>()
-        val child2 = mock<DetailAST> { on { nextSibling } doReturn child1 }
-        val root = mock<DetailAST> { on { firstChild } doReturn child2 }
-        assertThat(root.children().toList()).containsExactly(child1, child2)
+        val astChild1 = mock<DetailAST>()
+        val astChild2 = mock<DetailAST> { on { nextSibling } doReturn astChild1 }
+        val astRoot = mock<DetailAST> { on { firstChild } doReturn astChild2 }
+        assertThat(astRoot.children().toList()).containsExactly(astChild1, astChild2)
 
-        verify(root, atMost(2)).firstChild
-        verify(child1, atMost(2)).nextSibling
+        verify(astRoot, atMost(2)).firstChild
+        verify(astChild1, atMost(2)).nextSibling
+
+        val nodeChild1 = mock<DetailNode>()
+        val nodeChild2 = mock<DetailNode> { on { nextSibling } doReturn nodeChild1 }
+        val nodeRoot = mock<DetailNode> { on { firstChild } doReturn nodeChild2 }
+        assertThat(nodeRoot.children().toList()).containsExactly(nodeChild1, nodeChild2)
+
+        verify(nodeRoot, atMost(2)).firstChild
+        verify(nodeChild1, atMost(2)).nextSibling
     }
 
     @Test
@@ -98,32 +106,6 @@ class DetailNodesTest {
         assertThat(root.parent { it.type == COMPILATION_UNIT }).isNull()
 
         verify(root).parent
-    }
-
-    @Test
-    fun nextSibling() {
-        val leaf4 = mock<DetailAST> { on { type } doReturn COMPILATION_UNIT }
-        val leaf3 = mock<DetailAST> { on { nextSibling } doReturn leaf4 }
-        val leaf2 = mock<DetailAST> { on { nextSibling } doReturn leaf3 }
-        val leaf1 = mock<DetailAST> { on { nextSibling } doReturn leaf2 }
-        assertThat(leaf1.nextSibling { it.type == COMPILATION_UNIT }).isEqualTo(leaf4)
-
-        sequenceOf(leaf1, leaf2, leaf3).forEach { verify(it).nextSibling }
-        verify(leaf4).type
-
-        val leafNode1 = mock<DetailNode>()
-        val leafNode2 = mock<DetailNode>()
-        val rootNode = mock<DetailNode> { on { children } doReturn arrayOf(leafNode1, leafNode2) }
-        `when`(leafNode1.parent).thenReturn(rootNode)
-        assertThat(leafNode1.nextSibling()).isEqualTo(leafNode2)
-
-        verify(leafNode1).parent
-        verify(rootNode).children
-
-        val root = mock<DetailAST> { on { nextSibling } doReturn null }
-        assertThat(root.nextSibling { it.type == COMPILATION_UNIT }).isNull()
-
-        verify(root).nextSibling
     }
 
     @Test

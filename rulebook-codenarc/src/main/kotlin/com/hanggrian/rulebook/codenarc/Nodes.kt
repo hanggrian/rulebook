@@ -18,14 +18,14 @@ internal fun AnnotatedNode.hasAnnotation(name: String): Boolean =
     annotations.any { it.classNode.name == name }
 
 /** Returns this node or first statement of this code block. */
-internal fun Statement.firstStatement(): Statement =
+internal fun Statement.firstOrSelf(): Statement =
     (this as? BlockStatement)
         ?.statements
         ?.firstOrNull()
         ?: this
 
 /** Returns this node or last expression of this code block. */
-internal fun Expression.lastExpression(): Expression =
+internal fun Expression.lastOrSelf(): Expression =
     (this as? TupleExpression)
         ?.expressions
         ?.lastOrNull()

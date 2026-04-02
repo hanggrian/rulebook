@@ -18,7 +18,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes.RCURLY
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SEMI
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SINGLE_LINE_COMMENT
 import com.puppycrawl.tools.checkstyle.api.TokenTypes.SLIST
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil.isCommentType
 import kotlin.math.max
 import kotlin.math.min
 

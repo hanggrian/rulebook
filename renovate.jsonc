@@ -5,14 +5,12 @@
   "prCreation": "not-pending",
   "internalChecksFilter": "strict",
   "ignoreDeps": [
-    // Java: Some Javadoc tokens are no longer available in Checkstyle 13
-    "com.puppycrawl.tools:checkstyle",
-    // Groovy: Language version 5 requires java-support 11+
+    // Groovy 5 requires java-support 11+
     "org.apache.groovy:groovy",
     "org.apache.groovy:groovy-all",
-    // Python: Pylint locks Astroid version
+    // Pylint locks Astroid version
     "astroid",
-    // JavaScript: `sourceCode` is not available in ESLint 10
+    // `sourceCode` is not available in ESLint 10
     "@eslint/js",
     "eslint"
   ]
