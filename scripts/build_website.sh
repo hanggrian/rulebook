@@ -2,13 +2,6 @@
 
 readonly API_DIR='website/site/api/'
 
-./gradlew clean dokkaGenerateHtml
-
-uv run pdoc \
-  -o build/pdoc/ \
-  rulebook-pylint/rulebook_pylint/ \
-  rulebook-cppcheck/rulebook_cppcheck/
-
 pnpm doc
 
 cd website && uv run mkdocs build && cd ..

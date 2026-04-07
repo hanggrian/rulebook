@@ -1,4 +1,12 @@
 packages:
   - 'codecheck'
+  - 'rulebook-checkstyle'
+  - 'rulebook-codenarc'
+  - 'rulebook-ktlint'
+  - 'rulebook-cppcheck'
+  - 'rulebook-pylint'
   - 'rulebook-eslint'
   - 'rulebook-typescript-eslint'
+  - 'rulebook-cli'
+  - 'sample'
+  - 'sample-configured'

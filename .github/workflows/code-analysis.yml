@@ -14,40 +14,7 @@ jobs:
 
       - uses: ./.github/actions/setup-workspace
 
-      - name: Check JVM
-        run: ./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck
-
-      - name: Check Python
-        run: |
-          uv run pylint rulebook-pylint/ --ignore-paths=rulebook-pylint/tests/resources/
-          uv run pylint rulebook-cppcheck/
-          uv run pylint sample/python/
-          uv run pylint --rcfile=sample-configured/custom_pylintrc sample-configured/python/
-
-      - name: Check C/C++
-        run: |
-          uv run cppcheck \
-            --check-level=exhaustive \
-            --enable=performance,portability,style,warning \
-            --addon=addon.json \
-            rulebook-cli/src/*.cpp \
-            rulebook-cli/src/*.hpp
-          uv run cppcheck \
-            --enable=performance,portability,style,warning \
-            --addon=addon.json \
-            sample/c/*.c \
-            sample/cpp/*.cpp
-          uv run cppcheck \
-            --enable=performance,portability,style,warning \
-            --addon=sample-configured/custom_addon.json \
-            sample-configured/c/*.c \
-            sample-configured/cpp/*.cpp
-
-      - name: Check JS/TS
-        run: |
-          pnpm -r build
-          pnpm lint
-          pnpm lint2
+      - run: pnpm --aggregate-output --reporter=append-only -r lint
 
   upload-coverage:
     runs-on: ubuntu-latest
@@ -56,19 +23,7 @@ jobs:
 
       - uses: ./.github/actions/setup-workspace
 
-      - name: Report JVM
-        run: ./gradlew koverXmlReport
-
-      - name: Report Python
-        run: |
-          uv run pytest rulebook-cppcheck/ --cov=rulebook-cppcheck
-          uv run pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append
-          uv run coverage xml
-
-      - name: Report JS/TS
-        run: |
-          pnpm -r test
-          pnpm -r coverage
+      - run: pnpm --aggregate-output --reporter=append-only coverage
 
       - if: github.ref == 'refs/heads/main'
         uses: codecov/codecov-action@v5

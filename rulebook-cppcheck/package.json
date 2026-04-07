@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "exit 0",
+    "lint": "uv run pylint rulebook_cppcheck/ --rcfile=../.pylintrc",
+    "test": "uv run pytest",
+    "coverage": "uv run pytest --cov=."
+  }
+}

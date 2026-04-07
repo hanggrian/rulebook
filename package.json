@@ -3,9 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "eslint rulebook-eslint/src/ rulebook-typescript-eslint/src/ sample/javascript/ sample/typescript/",
-    "lint2": "eslint --config sample-configured/eslint.config.js sample-configured/javascript/",
-    "doc": "typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/"
+    "coverage": "pnpm -r coverage && uv run coverage combine rulebook-cppcheck/.coverage rulebook-pylint/.coverage && uv run coverage xml",
+    "doc": "./gradlew clean dokkaGenerateHtml && uv run pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/ && typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/"
   },
   "packageManager": "pnpm@10.32.1",
   "devDependencies": {

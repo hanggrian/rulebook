@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "exit 0",
+    "lint": "../gradlew checkstyleMain codenarcMain ktlintCheck && uv run pylint --rcfile=custom_pylintrc python/ && eslint --config eslint.config.js javascript/&& uv run cppcheck --enable=performance,portability,style,warning --addon=custom_addon.json c/*.c cpp/*.cpp",
+    "test": "exit 0",
+    "coverage": "exit 0"
+  }
+}

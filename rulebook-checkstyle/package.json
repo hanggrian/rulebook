@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "../gradlew compileKotlin",
+    "lint": "../gradlew ktlintCheck",
+    "test": "../gradlew test",
+    "coverage": "../gradlew koverXmlReport"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "exit 0",
+    "lint": "uv run cppcheck --check-level=exhaustive --enable=performance,portability,style,warning --addon=../addon.json src/*.cpp src/*.hpp",
+    "test": "exit 0",
+    "coverage": "exit 0"
+  }
+}
