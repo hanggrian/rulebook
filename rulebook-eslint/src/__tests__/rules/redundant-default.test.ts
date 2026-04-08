@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import redundantDefaultRule from '../../rules/redundant-default';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('RedundantDefaultRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(redundantDefaultRule, 'redundant-default');

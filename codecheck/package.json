@@ -5,10 +5,8 @@
   "main": "dist/index.js",
   "files": ["dist"],
   "scripts": {
-    "build": "../gradlew build && tsc -p tsconfig.json",
-    "test": "exit 0",
-    "coverage": "exit 0",
-    "docs": "exit 0"
+    "build": "../gradlew compileKotlin && tsc -p tsconfig.json",
+    "lint": "../gradlew ktlintCheck"
   },
   "peerDependencies": {
     "eslint": ">=9"

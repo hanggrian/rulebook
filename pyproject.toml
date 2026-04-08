@@ -1,9 +1,16 @@
 [tool.uv.workspace]
 members = [
-  "codecheck",
   "rulebook-cppcheck",
   "rulebook-pylint",
+  "codecheck",
+  "testing",
+  "stress-test",
 ]
+
+[tool.uv.sources]
+rulebook-cppcheck = { workspace = true }
+rulebook-pylint = { workspace = true }
+testing = { workspace = true }
 
 [dependency-groups]
 dev = [

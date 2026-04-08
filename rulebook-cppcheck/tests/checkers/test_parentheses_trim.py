@@ -3,7 +3,8 @@ from unittest import main
 from unittest.mock import call, patch
 
 from rulebook_cppcheck.checkers import ParenthesesTrimChecker
-from ..tests import CheckerTestCase, assert_properties
+from .checker_case import CheckerTestCase
+from ..asserts import assert_properties
 
 
 class TestParenthesesTrimChecker(CheckerTestCase):

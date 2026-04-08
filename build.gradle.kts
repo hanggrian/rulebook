@@ -111,7 +111,9 @@ subprojects {
             main.kotlin.srcDir("kotlin")
         }
     }
-
+    if (project.name.startsWith("testing")) {
+        return@subprojects
+    }
     tasks {
         afterEvaluate {
             val compileTestJava by getting(JavaCompile::class)

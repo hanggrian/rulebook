@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import todoCommentRule from '../../rules/todo-comment';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('TodoCommentRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(todoCommentRule, 'todo-comment');

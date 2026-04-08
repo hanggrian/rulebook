@@ -4,7 +4,8 @@ from astroid import extract_node
 from pylint.testutils import CheckerTestCase
 
 from rulebook_pylint.checkers import ComplicatedAssertionChecker
-from ..tests import assert_properties, msg
+from testing.messages import msg
+from ..asserts import assert_properties
 
 
 # noinspection PyTypeChecker

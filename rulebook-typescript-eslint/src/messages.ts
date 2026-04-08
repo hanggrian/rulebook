@@ -6,7 +6,10 @@ class Messages {
     private readonly record: Record<string, string> =
         JSON.parse(
             readFileSync(
-                join(dirname(fileURLToPath(import.meta.url)), '../resources/messages.json'),
+                join(
+                    dirname(fileURLToPath(import.meta.url)),
+                    '../resources/typescript_eslint_messages.json',
+                ),
                 'utf-8',
             ),
         ) as Record<string, string>;

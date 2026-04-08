@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "stress-test"
+version = "1"
+dependencies = [
+  "pylint==4.0.5",
+  "astroid==4.0.4",
+  "cppcheck==1.5.1",
+  "regex>=2026.3.32",
+  "testing",
+  "rulebook-pylint",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["stress-test"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import meaninglessWordRule from '../../rules/meaningless-word';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('MeaninglessWordRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(meaninglessWordRule, 'meaningless-word');

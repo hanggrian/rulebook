@@ -59,74 +59,73 @@ import com.pinterest.ktlint.ruleset.standard.StandardRuleSetProvider
 import kotlin.test.Test
 
 class RulebookRuleSetTest {
+    private val rules by lazy { RulebookRuleSet().getRuleProviders() }
+
     @Test
     fun `All rules`() {
-        assertThat(
-            AllRules
-                .map { it.createNewRuleInstance().javaClass.kotlin },
-        ).containsExactly(
-            AbbreviationAsWordRule::class,
-            BooleanPropertyInteroperabilityRule::class,
-            BlockCommentClipRule::class,
-            BlockCommentSpacesRule::class,
-            BlockCommentTrimRule::class,
-            BlockTagIndentationRule::class,
-            BlockTagOrderRule::class,
-            BlockTagPunctuationRule::class,
-            BracesClipRule::class,
-            CommonFunctionPositionRule::class,
-            CommentTrimRule::class,
-            ComplicatedAssertionRule::class,
-            ComplicatedAssignmentRule::class,
-            ComplicatedBooleanEqualityRule::class,
-            ComplicatedSizeEqualityRule::class,
-            ConfusingAssertionRule::class,
-            ConfusingPredicateRule::class,
-            DecentralizedDependencyRule::class,
-            DeprecatedAnnotationRule::class,
-            DeprecatedIdentityRule::class,
-            DeprecatedTypeRule::class,
-            DuplicateBlankLineInBlockCommentRule::class,
-            DuplicateBlankLineInCommentRule::class,
-            EagerApiRule::class,
-            ElvisWrapRule::class,
-            FileSizeRule::class,
-            GenericNameRule::class,
-            IllegalThrowRule::class,
-            IllegalVariableNameRule::class,
-            InfixCallWrapRule::class,
-            InnerClassPositionRule::class,
-            InternalErrorRule::class,
-            LonelyCaseRule::class,
-            LonelyIfRule::class,
-            LowercaseFRule::class,
-            LowercaseHexadecimalRule::class,
-            MeaninglessWordRule::class,
-            MemberOrderRule::class,
-            MissingBlankLineBeforeBlockTagsRule::class,
-            MissingInlineInContractRule::class,
-            NestedIfElseRule::class,
-            OverloadFunctionPositionRule::class,
-            RedundantDefaultRule::class,
-            RedundantElseRule::class,
-            RedundantIfRule::class,
-            RootProjectNameRule::class,
-            ScriptFileNameRule::class,
-            TodoCommentRule::class,
-            UnnecessaryAbstractRule::class,
-            UnnecessaryContinueRule::class,
-            UnnecessaryInitialBlankLineRule::class,
-            UnnecessaryReturnRule::class,
-            LonelyConfigurationRule::class,
-        )
+        assertThat(rules.map { it.createNewRuleInstance().javaClass.kotlin })
+            .containsExactly(
+                AbbreviationAsWordRule::class,
+                BooleanPropertyInteroperabilityRule::class,
+                BlockCommentClipRule::class,
+                BlockCommentSpacesRule::class,
+                BlockCommentTrimRule::class,
+                BlockTagIndentationRule::class,
+                BlockTagOrderRule::class,
+                BlockTagPunctuationRule::class,
+                BracesClipRule::class,
+                CommonFunctionPositionRule::class,
+                CommentTrimRule::class,
+                ComplicatedAssertionRule::class,
+                ComplicatedAssignmentRule::class,
+                ComplicatedBooleanEqualityRule::class,
+                ComplicatedSizeEqualityRule::class,
+                ConfusingAssertionRule::class,
+                ConfusingPredicateRule::class,
+                DecentralizedDependencyRule::class,
+                DeprecatedAnnotationRule::class,
+                DeprecatedIdentityRule::class,
+                DeprecatedTypeRule::class,
+                DuplicateBlankLineInBlockCommentRule::class,
+                DuplicateBlankLineInCommentRule::class,
+                EagerApiRule::class,
+                ElvisWrapRule::class,
+                FileSizeRule::class,
+                GenericNameRule::class,
+                IllegalThrowRule::class,
+                IllegalVariableNameRule::class,
+                InfixCallWrapRule::class,
+                InnerClassPositionRule::class,
+                InternalErrorRule::class,
+                LonelyCaseRule::class,
+                LonelyIfRule::class,
+                LowercaseFRule::class,
+                LowercaseHexadecimalRule::class,
+                MeaninglessWordRule::class,
+                MemberOrderRule::class,
+                MissingBlankLineBeforeBlockTagsRule::class,
+                MissingInlineInContractRule::class,
+                NestedIfElseRule::class,
+                OverloadFunctionPositionRule::class,
+                RedundantDefaultRule::class,
+                RedundantElseRule::class,
+                RedundantIfRule::class,
+                RootProjectNameRule::class,
+                ScriptFileNameRule::class,
+                TodoCommentRule::class,
+                UnnecessaryAbstractRule::class,
+                UnnecessaryContinueRule::class,
+                UnnecessaryInitialBlankLineRule::class,
+                UnnecessaryReturnRule::class,
+                LonelyConfigurationRule::class,
+            )
     }
 
     @Test
     fun `No overlapping ID`() {
-        assertThat(AllRules.ids.distinct().size)
-            .isEqualTo(AllRules.ids.size)
-
-        assertThat(AllRules.ids)
+        assertThat(rules.ids.distinct().size)
+            .isEqualTo(rules.ids.size)
+        assertThat(rules.ids)
             .containsNoneIn(StandardRuleSetProvider().getRuleProviders().ids)
     }
 

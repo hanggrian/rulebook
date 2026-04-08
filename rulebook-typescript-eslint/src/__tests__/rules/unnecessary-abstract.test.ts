@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
 import { describe, it } from 'vitest';
 import unnecessaryAbstractClassRule from '../../rules/unnecessary-abstract';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('UnnecessaryAbstractRuleTest', () => {
     const assertThat: AssertThat =

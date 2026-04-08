@@ -1,7 +1,5 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.RuleTest
-import com.hanggrian.rulebook.codenarc.violationOf
 import kotlin.test.Test
 
 class MissingBlankLineBeforeBlockTagsRuleTest : RuleTest<MissingBlankLineBeforeBlockTagsRule>() {

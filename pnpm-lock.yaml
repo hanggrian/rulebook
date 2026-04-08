@@ -17,6 +17,9 @@ importers:
       rulebook-typescript-eslint:
         specifier: workspace:*
         version: link:rulebook-typescript-eslint
+      testing:
+        specifier: workspace:*
+        version: link:testing
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.4
@@ -116,6 +119,9 @@ importers:
       eslint-plugin-sort-class-members:
         specifier: ^1.21.0
         version: 1.21.0(eslint@9.39.4)
+      testing:
+        specifier: workspace:*
+        version: link:../testing
       typescript:
         specifier: ~5.9.3
         version: 5.9.3
@@ -156,6 +162,9 @@ importers:
       rulebook-eslint:
         specifier: workspace:*
         version: link:../rulebook-eslint
+      testing:
+        specifier: workspace:*
+        version: link:../testing
       typescript:
         specifier: ~5.9.3
         version: 5.9.3
@@ -166,6 +175,47 @@ importers:
   sample: {}
 
   sample-configured: {}
+
+  stress-test:
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.39.4
+        version: 9.39.4
+      '@stylistic/eslint-plugin':
+        specifier: ^5.10.0
+        version: 5.10.0(eslint@9.39.4)
+      '@types/estree':
+        specifier: ^1.0.8
+        version: 1.0.8
+      '@types/node':
+        specifier: ^25.5.0
+        version: 25.5.0
+      eslint:
+        specifier: ^9.39.4
+        version: 9.39.4
+      eslint-plugin-import:
+        specifier: ^2.32.0
+        version: 2.32.0(@typescript-eslint/parser@8.57.2(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)
+      eslint-plugin-jsdoc:
+        specifier: ^62.8.1
+        version: 62.8.1(eslint@9.39.4)
+      eslint-plugin-sort-class-members:
+        specifier: ^1.21.0
+        version: 1.21.0(eslint@9.39.4)
+      rulebook-eslint:
+        specifier: workspace:*
+        version: link:../rulebook-eslint
+      rulebook-typescript-eslint:
+        specifier: workspace:*
+        version: link:../rulebook-typescript-eslint
+      testing:
+        specifier: workspace:*
+        version: link:../testing
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
+
+  testing: {}
 
 packages:
 

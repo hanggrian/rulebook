@@ -4,7 +4,8 @@ from unittest.mock import patch
 
 from rulebook_cppcheck.checkers import \
     DuplicateBlankLineInBlockCommentChecker
-from ..tests import CheckerTestCase, assert_properties
+from .checker_case import CheckerTestCase
+from ..asserts import assert_properties
 
 
 class TestDuplicateBlankLineInBlockCommentChecker(CheckerTestCase):

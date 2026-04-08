@@ -15,6 +15,7 @@ dependencies {
 
     implementation(libs.checkstyle)
 
+    testImplementation(project(":testing"))
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.bundles.junit5)

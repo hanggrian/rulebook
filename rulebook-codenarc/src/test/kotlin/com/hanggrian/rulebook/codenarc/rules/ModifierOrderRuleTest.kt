@@ -1,6 +1,5 @@
 package com.hanggrian.rulebook.codenarc.rules
 
-import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 
 class ModifierOrderRuleTest : RuleTest<ModifierOrderRule>() {

@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import parenthesesTrimRule from '../../rules/parentheses-trim';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('ParenthesesTrimRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(parenthesesTrimRule, 'parentheses-trim');

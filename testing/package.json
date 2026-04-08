@@ -1,0 +1,10 @@
+{
+  "name": "testing",
+  "private": true,
+  "type": "module",
+  "files": ["dist"],
+  "scripts": {
+    "build": "../gradlew compileJava && tsc -p tsconfig.json",
+    "lint": "../gradlew ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/"
+  }
+}

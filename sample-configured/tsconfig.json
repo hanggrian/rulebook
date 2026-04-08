@@ -10,6 +10,5 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": false
   },
-  "include": ["typescript/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["typescript/"]
 }

@@ -9,25 +9,27 @@ import kotlin.test.BeforeTest
 abstract class CheckTest : AbstractModuleTestSupport() {
     abstract val check: Any
 
-    private lateinit var config: DefaultConfiguration
+    lateinit var config: DefaultConfiguration
 
     @BeforeTest
-    fun config() {
+    fun setUp() {
         config = createModuleConfig(check.javaClass)
     }
 
-    override fun getPackageLocation(): String = check.javaClass.simpleName
+    final override fun getPackageLocation(): String = check.javaClass.simpleName
 
-    fun assertAll(fileNameWithoutExtension: String, vararg expected: String) =
+    protected fun assertAll(fileNameWithoutExtension: String, vararg expected: String) =
         verify(config, getPath("$fileNameWithoutExtension.java"), *expected)
 
-    fun RulebookAstCheck.assertProperties() {
+    protected fun RulebookAstCheck.assertProperties() {
         val requiredTokens = requiredTokens.asList()
         assertThat(defaultTokens).asList().containsExactlyElementsIn(requiredTokens)
         assertThat(acceptableTokens).asList().containsExactlyElementsIn(requiredTokens)
     }
 
-    fun RulebookFileCheck.assertProperties() = assertThat(fileExtensions).asList().contains(".java")
+    protected fun RulebookFileCheck.assertProperties() =
+        assertThat(fileExtensions).asList().contains(".java")
 
-    fun AbstractJavadocCheck.assertProperties() = assertThat(defaultJavadocTokens).isNotEmpty()
+    protected fun AbstractJavadocCheck.assertProperties() =
+        assertThat(defaultJavadocTokens).isNotEmpty()
 }

@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import emptyFileRule from '../../rules/empty-file';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('EmptyFileRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(emptyFileRule, 'empty-file');

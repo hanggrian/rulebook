@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import lowercaseHexadecimalRule from '../../rules/lowercase-hexadecimal';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('LowercaseHexadecimalRuleTest', () => {
     const assertThat: AssertThat =

@@ -6,7 +6,6 @@ import java.util.ResourceBundle
 import java.util.ResourceBundle.getBundle
 
 internal object Messages {
-    private const val FILENAME = "messages"
     private var bundleRef = WeakReference<ResourceBundle>(null)
 
     operator fun get(key: String): String = bundle.getString(key)
@@ -19,7 +18,7 @@ internal object Messages {
         get() {
             var bundle = bundleRef.get()
             bundle?.let { return it }
-            bundle = getBundle(FILENAME)
+            bundle = getBundle("codenarc_messages")
             bundleRef = WeakReference(bundle)
             return bundle
         }

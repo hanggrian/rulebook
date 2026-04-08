@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import chainCallWrapRule from '../../rules/chain-call-wrap';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('ChainCallWrapRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(chainCallWrapRule, 'chain-call-wrap');

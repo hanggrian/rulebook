@@ -12,6 +12,8 @@ members = [
     "codecheck",
     "rulebook-cppcheck",
     "rulebook-pylint",
+    "stress-test",
+    "testing",
 ]
 
 [manifest.dependency-groups]
@@ -622,6 +624,44 @@ requires-dist = [
     { name = "astroid", specifier = "==4.0.4" },
     { name = "pylint", specifier = "==4.0.5" },
     { name = "regex", specifier = ">=2026.3.32" },
+]
+
+[[package]]
+name = "stress-test"
+version = "1"
+source = { editable = "stress-test" }
+dependencies = [
+    { name = "astroid" },
+    { name = "cppcheck" },
+    { name = "pylint" },
+    { name = "regex" },
+    { name = "rulebook-pylint" },
+    { name = "testing" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "astroid", specifier = "==4.0.4" },
+    { name = "cppcheck", specifier = "==1.5.1" },
+    { name = "pylint", specifier = "==4.0.5" },
+    { name = "regex", specifier = ">=2026.3.32" },
+    { name = "rulebook-pylint", editable = "rulebook-pylint" },
+    { name = "testing", editable = "testing" },
+]
+
+[[package]]
+name = "testing"
+version = "1"
+source = { editable = "testing" }
+dependencies = [
+    { name = "astroid" },
+    { name = "pylint" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "astroid", specifier = "==4.0.4" },
+    { name = "pylint", specifier = "==4.0.5" },
 ]
 
 [[package]]

@@ -3,10 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "postinstall": "uv sync",
+
     "coverage": "pnpm -r coverage && uv run coverage combine rulebook-cppcheck/.coverage rulebook-pylint/.coverage && uv run coverage xml",
-    "doc": "./gradlew clean dokkaGenerateHtml && uv run pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/ && typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/"
+    "documentation": "./gradlew clean dokkaGenerateHtml && uv run pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/ && typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/",
+
+    "build-cli": "scripts/build_cli.sh",
+    "build-website": "scripts/prepare_mkdocs.sh && pnpm documentation && cd website && uv run mkdocs build && mkdir -p site/api/ && rm -rf site/api/* && mv ../build/dokka/html/ site/api/javadoc/ && mv ../build/pdoc site/api/pydoc/ && mv ../build/typedoc site/api/tsdoc/",
+    "preview-website": "scripts/prepare_mkdocs.sh && cd website && uv run mkdocs serve --livereload"
   },
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@10.33.0",
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@stylistic/eslint-plugin": "^5.10.0",
@@ -26,8 +32,9 @@
     "vitest-dom": "^0.1.1"
   },
   "dependencies": {
-    "codecheck": "workspace:*",
     "rulebook-eslint": "workspace:*",
-    "rulebook-typescript-eslint": "workspace:*"
+    "rulebook-typescript-eslint": "workspace:*",
+    "codecheck": "workspace:*",
+    "testing": "workspace:*"
   }
 }

@@ -1,7 +1,6 @@
 package com.hanggrian.rulebook.codenarc.rules
 
 import com.google.common.truth.Truth.assertThat
-import com.hanggrian.rulebook.codenarc.RuleTest
 import kotlin.test.Test
 
 class BlockTagPunctuationRuleTest : RuleTest<BlockTagPunctuationRule>() {

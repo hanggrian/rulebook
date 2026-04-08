@@ -1,0 +1,35 @@
+{
+  "name": "stress-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "../gradlew compileKotlin",
+    "lint": "../gradlew ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/",
+    "test": "../gradlew test && uv run pytest && vitest --run src/__tests__/**/*.ts"
+  },
+  "peerDependencies": {
+    "@eslint/js": ">=9",
+    "@stylistic/eslint-plugin": ">=5",
+    "eslint": ">=9",
+    "eslint-plugin-import": ">=2",
+    "eslint-plugin-jsdoc": ">=62",
+    "eslint-plugin-sort-class-members": ">=1",
+    "rulebook-eslint": "workspace:*",
+    "rulebook-typescript-eslint": "workspace:*",
+    "testing": "workspace:*"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/estree": "^1.0.8",
+    "@types/node": "^25.5.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^62.8.1",
+    "eslint-plugin-sort-class-members": "^1.21.0",
+    "rulebook-eslint": "workspace:*",
+    "rulebook-typescript-eslint": "workspace:*",
+    "testing": "workspace:*",
+    "typescript": "~5.9.3"
+  }
+}

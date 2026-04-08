@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import commentTrimRule from '../../rules/comment-trim';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('CommentTrimRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(commentTrimRule, 'comment-trim');

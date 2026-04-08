@@ -6,6 +6,7 @@ on:
 
 jobs:
   activate-renovatebot:
+    if: github.event.forced == false
     runs-on: ubuntu-latest
     environment: github-actions
     steps:

@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import redundantIfRule from '../../rules/redundant-if';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('RedundantIfRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(redundantIfRule, 'redundant-if');

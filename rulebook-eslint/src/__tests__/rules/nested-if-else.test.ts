@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import nestedIfElseRule from '../../rules/nested-if-else';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('NestedIfElseRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(nestedIfElseRule, 'nested-if-else');

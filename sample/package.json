@@ -1,9 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "build": "exit 0",
-    "lint": "../gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck && uv run pylint python/ python-test/ --rcfile=../.pylintrc && eslint javascript/ typescript/ && uv run cppcheck --enable=performance,portability,style,warning --addon=../addon.json c/*.c cpp/*.cpp",
-    "test": "exit 0",
-    "coverage": "exit 0"
+    "lint": "../gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint javascript/ typescript/ && uv run cppcheck --enable=performance,portability,style,warning --addon=../addon.json c/*.c cpp/*.cpp"
   }
 }

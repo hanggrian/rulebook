@@ -3,7 +3,8 @@ from unittest import main
 from pylint.testutils import CheckerTestCase, _tokenize_str
 
 from rulebook_pylint.checkers import UnnecessaryInitialBlankLineChecker
-from ..tests import assert_properties, msg
+from testing.messages import msg
+from ..asserts import assert_properties
 
 
 # noinspection PyTypeChecker

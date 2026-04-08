@@ -14,9 +14,9 @@ kotlin.explicitApi()
 dependencies {
     ktlintRuleset(project(":codecheck"))
 
-    api(libs.codenarc)
+    api(libs.groovy)
 
-    implementation(libs.groovy)
+    implementation(libs.codenarc)
 
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
     testImplementation(platform(libs.junit.bom))

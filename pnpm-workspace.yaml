@@ -1,5 +1,4 @@
 packages:
-  - 'codecheck'
   - 'rulebook-checkstyle'
   - 'rulebook-codenarc'
   - 'rulebook-ktlint'
@@ -8,5 +7,8 @@ packages:
   - 'rulebook-eslint'
   - 'rulebook-typescript-eslint'
   - 'rulebook-cli'
+  - 'codecheck'
+  - 'testing'
+  - 'stress-test'
   - 'sample'
   - 'sample-configured'

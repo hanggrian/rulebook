@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import unnecessaryInitialBlankLineRule from '../../rules/unnecessary-initial-blank-line';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('UnnecessaryInitialBlankLineTest', () => {
     const assertThat: AssertThat =

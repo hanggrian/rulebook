@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
 import { describe, it } from 'vitest';
 import genericNameRule from '../../rules/generic-name';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('GenericNameRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(genericNameRule, 'generic-name');

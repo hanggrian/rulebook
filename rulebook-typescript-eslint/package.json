@@ -33,6 +33,7 @@
     "eslint-plugin-jsdoc": ">=62",
     "eslint-plugin-sort-class-members": ">=1",
     "rulebook-eslint": "workspace:*",
+    "testing": "workspace:*",
     "typescript-eslint": ">=8"
   },
   "devDependencies": {
@@ -46,6 +47,7 @@
     "eslint-plugin-jsdoc": "^62.8.1",
     "eslint-plugin-sort-class-members": "^1.21.0",
     "rulebook-eslint": "workspace:*",
+    "testing": "workspace:*",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.57.2"
   }

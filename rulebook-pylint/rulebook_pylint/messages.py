@@ -1,12 +1,13 @@
 from configparser import ConfigParser
-from os.path import dirname, join
+from importlib.resources import files
 
 
 class _Messages:
-    FILENAME: str = 'resources/messages.cnf'
     counter: int = 6142  # arbitrary number to distinguish from PEP
 
-    with open(join(dirname(__file__), FILENAME), 'r', encoding='UTF-8') as file:
+    with files('rulebook_pylint.resources') \
+        .joinpath('pylint_messages.cnf') \
+        .open('r', encoding='UTF-8') as file:
         parser: ConfigParser = ConfigParser(interpolation=None)
         parser.read_string(file.read())
 

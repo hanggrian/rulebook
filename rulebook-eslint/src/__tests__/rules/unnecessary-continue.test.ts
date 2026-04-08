@@ -1,6 +1,7 @@
+import { AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import unnecessaryContinueRule from '../../rules/unnecessary-continue';
-import { AssertThat, assertProperties, assertThatRule } from '../tests';
+import assertProperties from '../asserts';
 
 describe('UnnecessaryContinueRuleTest', () => {
     const assertThat: AssertThat = assertThatRule(unnecessaryContinueRule, 'unnecessary-continue');
