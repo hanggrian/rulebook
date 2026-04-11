@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Scope, Token
@@ -29,6 +29,8 @@ class InnerClassPositionChecker(RulebookTokenChecker):
             continue_outer: int = False
             while curr_token is not None and \
                 curr_token is not current_class_scope.bodyEnd:
+                if not isinstance(curr_token, Token):
+                    continue
                 if curr_token.str in self._TARGET_TOKENS and \
                     curr_token.next:
                     if curr_token.next.typeScope and \
@@ -37,7 +39,7 @@ class InnerClassPositionChecker(RulebookTokenChecker):
                 if has_seen_inner_class:
                     # checks for violation
                     if self._is_member(curr_token, current_class_scope):
-                        self.report_error(curr_token, _Messages.get(self._MSG))
+                        self.report_error(curr_token, Messages.get(self._MSG))
                         continue_outer = True
                         break
                 curr_token = curr_token.next

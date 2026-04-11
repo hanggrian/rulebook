@@ -4,8 +4,8 @@ from astroid.nodes import Assign, ClassDef, FunctionDef, NodeNG
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_pylint.files import _get_fromlineno_before
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.files import get_fromlineno_before
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -16,7 +16,7 @@ class MemberSeparatorChecker(RulebookFileChecker):
     _MSG: str = 'member.separator'
 
     name: str = 'member-separator'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # collect members
@@ -41,7 +41,7 @@ class MemberSeparatorChecker(RulebookFileChecker):
                 last_body = last_member
 
             # checks for violation
-            if last_body.end_lineno != _get_fromlineno_before(self.lines, member, last_body):
+            if last_body.end_lineno != get_fromlineno_before(self.lines, member, last_body):
                 continue
             self.add_message(
                 self._MSG,

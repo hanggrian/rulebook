@@ -4,9 +4,9 @@ from astroid.nodes import Match, MatchCase, NodeNG
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_pylint.files import _get_fromlineno_before, _has_comment_above
-from rulebook_pylint.messages import _Messages
-from rulebook_pylint.nodes import _is_multiline
+from rulebook_pylint.files import get_fromlineno_before, has_comment_above
+from rulebook_pylint.messages import Messages
+from rulebook_pylint.nodes import is_multiline
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -18,7 +18,7 @@ class CaseSeparatorChecker(RulebookFileChecker):
     _MSG_UNEXPECTED: str = 'case.separator.unexpected'
 
     name: str = 'case-separator'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_MISSING, _MSG_UNEXPECTED)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG_MISSING, _MSG_UNEXPECTED)
 
     def visit_match(self, node: Match) -> None:
         # collect cases
@@ -28,8 +28,8 @@ class CaseSeparatorChecker(RulebookFileChecker):
         # checks for violation
         has_multiline = \
             any(
-                _is_multiline(match_case) or
-                _has_comment_above(self.lines, match_case) for
+                is_multiline(match_case) or
+                has_comment_above(self.lines, match_case) for
                 match_case in node.cases
             )
         for (i, match_case) in enumerate(node.cases):
@@ -37,7 +37,7 @@ class CaseSeparatorChecker(RulebookFileChecker):
                 continue
             last_match_case: MatchCase = node.cases[i - 1]
             match_case_fromlineno: int = \
-                _get_fromlineno_before(self.lines, match_case, last_match_case)
+                get_fromlineno_before(self.lines, match_case, last_match_case)
             last_body: NodeNG = last_match_case.body[-1]
             if has_multiline:
                 if last_body.tolineno - 1 != match_case_fromlineno - 2:

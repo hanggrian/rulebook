@@ -5,7 +5,7 @@ from tokenize import COMMENT, TokenInfo
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -16,7 +16,7 @@ class CommentSpacesChecker(RulebookTokenChecker):
     _MSG: str = 'comment.spaces'
 
     name: str = 'comment-spaces'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         # checks for violation

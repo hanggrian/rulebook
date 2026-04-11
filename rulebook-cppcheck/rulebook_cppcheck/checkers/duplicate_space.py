@@ -1,7 +1,7 @@
 from re import Match, Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -28,7 +28,7 @@ class DuplicateSpaceChecker(RulebookFileChecker):
                 continue
             self.report_error(
                 token,
-                _Messages.get(self._MSG),
+                Messages.get(self._MSG),
                 line_number,
                 match.start() + 1,
             )

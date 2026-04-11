@@ -4,8 +4,8 @@ from astroid.nodes import FunctionDef, NodeNG
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
-from rulebook_pylint.nodes import _has_decorator
+from rulebook_pylint.messages import Messages
+from rulebook_pylint.nodes import has_decorator
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -34,18 +34,18 @@ class CommonFunctionPositionChecker(RulebookChecker):
         ])
 
     name: str = 'common-function-position'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
         # target special function
         if node.name not in self._COMMON_FUNCTIONS:
             return
 
-        current: NodeNG = node
-        while current:
+        current: NodeNG | None = node
+        while current is not None:
             # checks for violation
             if isinstance(current, FunctionDef) and \
-                not _has_decorator(current, 'staticmethod') and \
+                not has_decorator(current, 'staticmethod') and \
                 current.name not in self._COMMON_FUNCTIONS:
                 self.add_message(self._MSG, node=node, args=node.name)
                 return

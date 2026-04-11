@@ -5,8 +5,8 @@ from tokenize import COMMENT, NL, TokenInfo
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_pylint.messages import _Messages
-from rulebook_pylint.nodes import _is_comment_empty
+from rulebook_pylint.messages import Messages
+from rulebook_pylint.nodes import is_comment_empty
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -17,7 +17,7 @@ class CommentTrimChecker(RulebookTokenChecker):
     _MSG: str = 'comment.trim'
 
     name: str = 'comment-trim'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):
@@ -44,13 +44,13 @@ class CommentTrimChecker(RulebookTokenChecker):
                 return
 
             # checks for violation
-            if _is_comment_empty(token):
+            if is_comment_empty(token):
                 self.add_message(
                     self._MSG,
                     line=token.start[0],
                     col_offset=token.start[1],
                 )
-            if _is_comment_empty(curr_token):
+            if is_comment_empty(curr_token):
                 self.add_message(
                     self._MSG,
                     line=curr_token.start[0],

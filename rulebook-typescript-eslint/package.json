@@ -25,27 +25,16 @@
     "coverage": "vitest run --coverage src/__tests__/**/*.ts --reporter=junit --outputFile=test-report.junit.xml"
   },
   "peerDependencies": {
-    "@eslint/js": ">=9",
-    "@stylistic/eslint-plugin": ">=5",
-    "@typescript-eslint/parser": ">=8",
-    "@typescript-eslint/utils": ">=8",
-    "eslint": ">=9",
-    "eslint-plugin-jsdoc": ">=62",
-    "eslint-plugin-sort-class-members": ">=1",
+    "@typescript-eslint/parser": "<=8",
+    "@typescript-eslint/utils": "<=8",
     "rulebook-eslint": "workspace:*",
-    "testing": "workspace:*",
-    "typescript-eslint": ">=8"
+    "typescript-eslint": "<=8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/estree": "^1.0.8",
     "@types/node": "^25.6.0",
     "@typescript-eslint/parser": "^8.58.1",
     "@typescript-eslint/utils": "^8.58.1",
-    "eslint": "^9.39.4",
-    "eslint-plugin-jsdoc": "^62.9.0",
-    "eslint-plugin-sort-class-members": "^1.21.0",
     "rulebook-eslint": "workspace:*",
     "testing": "workspace:*",
     "typescript-eslint": "^8.58.1"

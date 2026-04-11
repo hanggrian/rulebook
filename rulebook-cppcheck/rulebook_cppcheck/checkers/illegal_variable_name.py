@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 from rulebook_cppcheck.options import ILLEGAL_VARIABLE_NAMES_OPTION
 
 try:
@@ -33,4 +33,4 @@ class IllegalVariableNameChecker(RulebookTokenChecker):
             if token_id in self._reported_variables:
                 continue
             self._reported_variables.add(token_id)
-            self.report_error(token, _Messages.get(self._MSG))
+            self.report_error(token, Messages.get(self._MSG))

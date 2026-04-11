@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -61,7 +61,7 @@ class ParenthesesClipChecker(RulebookTokenChecker):
                     continue
             self._report_error_once(
                 token,
-                _Messages.get(self._MSG, token_str + self._PARENTHESES[token_str]),
+                Messages.get(self._MSG, token_str + self._PARENTHESES[token_str]),
             )
 
     def _report_error_once(self, token: Token, message: str) -> None:

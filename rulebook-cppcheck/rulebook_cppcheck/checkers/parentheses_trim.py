@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -32,7 +32,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                     continue
                 self.report_error(
                     token,
-                    _Messages.get(self._MSG_FIRST, token.str),
+                    Messages.get(self._MSG_FIRST, token.str),
                     token.linenr + 1,
                 )
 
@@ -47,7 +47,7 @@ class ParenthesesTrimChecker(RulebookTokenChecker):
                 continue
             self.report_error(
                 token,
-                _Messages.get(self._MSG_LAST, token.str),
+                Messages.get(self._MSG_LAST, token.str),
                 token.linenr - 1,
             )
 

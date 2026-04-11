@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _next_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import next_sibling
 
 try:
     from cppcheckdata import Token
@@ -18,7 +18,7 @@ class GenericNameChecker(RulebookTokenChecker):
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'template']:
             # only target template declaration
-            open_bracket: Token | None = _next_sibling(token, lambda t: t.str == '<')
+            open_bracket: Token | None = next_sibling(token, lambda t: t.str == '<')
             if open_bracket is None or \
                 not open_bracket.link:
                 continue
@@ -28,6 +28,8 @@ class GenericNameChecker(RulebookTokenChecker):
             continue_outer: bool = False
             while curr_token is not None and \
                 curr_token is not closing:
+                if not isinstance(curr_token, Token):
+                    continue
                 if curr_token.str == ',':
                     continue_outer = True
                     break
@@ -49,4 +51,4 @@ class GenericNameChecker(RulebookTokenChecker):
             if len(name) == 1 and \
                 name[0].isupper():
                 continue
-            self.report_error(name_token, _Messages.get(self._MSG))
+            self.report_error(name_token, Messages.get(self._MSG))

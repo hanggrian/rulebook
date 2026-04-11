@@ -1,7 +1,7 @@
 from re import DOTALL, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 from rulebook_cppcheck.options import PUNCTUATE_BLOCK_TAGS_OPTION
 
 try:
@@ -46,7 +46,7 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
                     continue
 
                 # only enforce certain tags
-                found_tag: str = \
+                found_tag: str | None = \
                     next((t for t in self._block_tags if stripped.startswith(t)), None)
 
                 # long descriptions have multiple lines, take only the last one
@@ -56,7 +56,7 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
                         last_text[-1] not in self._PUNCTUATIONS:
                         self.report_error(
                             token,
-                            _Messages.get(self._MSG, current_tag),
+                            Messages.get(self._MSG, current_tag),
                             start_line + last_text_line_idx,
                         )
 
@@ -79,6 +79,6 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
                 continue
             self.report_error(
                 token,
-                _Messages.get(self._MSG, current_tag),
+                Messages.get(self._MSG, current_tag),
                 start_line + last_text_line_idx,
             )

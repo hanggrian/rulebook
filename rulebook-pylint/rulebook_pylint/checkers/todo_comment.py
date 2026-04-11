@@ -7,7 +7,7 @@ from pylint.typing import TYPE_CHECKING
 from regex import IGNORECASE, compile as regex
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -23,7 +23,7 @@ class TodoCommentChecker(RulebookFileChecker):
     _SEPARATOR_REGEX = regex(r'\b(todo|fixme)\S', IGNORECASE)
 
     name: str = 'todo-comment'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_KEYWORD, _MSG_SEPARATOR)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG_KEYWORD, _MSG_SEPARATOR)
 
     def process_module(self, node: Module) -> None:
         with node.stream() as stream:

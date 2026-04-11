@@ -1,7 +1,7 @@
 from regex import DOTALL, compile as regex, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -32,7 +32,7 @@ class TodoCommentChecker(RulebookFileChecker):
                 if keyword_match is not None:
                     self.report_error(
                         token,
-                        _Messages.get(self._MSG_KEYWORD, keyword_match.group(0)),
+                        Messages.get(self._MSG_KEYWORD, keyword_match.group(0)),
                         line_no,
                     )
                 separator_match = self._SEPARATOR_REGEX.search(line)
@@ -40,6 +40,6 @@ class TodoCommentChecker(RulebookFileChecker):
                     continue
                 self.report_error(
                     token,
-                    _Messages.get(self._MSG_SEPARATOR, separator_match.group(1)),
+                    Messages.get(self._MSG_SEPARATOR, separator_match.group(1)),
                     line_no,
                 )

@@ -1,7 +1,7 @@
 from re import DOTALL, Match, Pattern, compile as re_compile, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -47,4 +47,4 @@ class BlockTagIndentationChecker(RulebookFileChecker):
                 indent_size: int = len(match_indent.group(1))
                 if indent_size == 5:
                     continue
-                self.report_error(token, _Messages.get(self._MSG), start_line + i)
+                self.report_error(token, Messages.get(self._MSG), start_line + i)

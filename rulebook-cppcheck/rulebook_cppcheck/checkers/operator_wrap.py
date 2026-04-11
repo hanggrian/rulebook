@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _parent
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import parent
 
 try:
     from cppcheckdata import Token
@@ -28,7 +28,7 @@ class OperatorWrapChecker(RulebookTokenChecker):
             # target multiline statement
             if token.previous is not None and \
                 token.linenr > token.previous.linenr:
-                self.report_error(token, _Messages.get(self._MSG_UNEXPECTED, token.str))
+                self.report_error(token, Messages.get(self._MSG_UNEXPECTED, token.str))
                 continue
 
             next_token: Token | None = token.next
@@ -36,16 +36,18 @@ class OperatorWrapChecker(RulebookTokenChecker):
                 next_token.str in {'{', '['}:
                 continue
 
-            top_node: Token | None = _parent(token, lambda t: t.isOp and not t.isAssignmentOp)
+            top_node: Token | None = parent(token, lambda t: t.isOp and not t.isAssignmentOp)
             start_token: Token | None = top_node
-            while start_token.astOperand1 is not None:
+            while start_token is not None and start_token.astOperand1 is not None:
                 start_token = start_token.astOperand1
             end_token: Token | None = top_node
-            while end_token.astOperand2 is not None:
+            while end_token is not None and end_token.astOperand2 is not None:
                 end_token = end_token.astOperand2
 
             # checks for violation
-            if end_token.linenr <= start_token.linenr or \
+            if not isinstance(start_token, Token) or \
+                not isinstance(end_token, Token) or \
+                end_token.linenr <= start_token.linenr or \
                 next_token.linenr != token.linenr:
                 continue
-            self.report_error(token, _Messages.get(self._MSG_MISSING, token.str))
+            self.report_error(token, Messages.get(self._MSG_MISSING, token.str))

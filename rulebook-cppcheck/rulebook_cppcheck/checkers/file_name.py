@@ -1,7 +1,7 @@
 from re import Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -25,5 +25,5 @@ class FileNameChecker(RulebookFileChecker):
             return
         self.report_error(
             token,
-            _Messages.get(self._MSG, filename.lower().replace('-', '_')),
+            Messages.get(self._MSG, filename.lower().replace('-', '_')),
         )

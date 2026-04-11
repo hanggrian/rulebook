@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -22,7 +22,7 @@ class LonelyIfChecker(RulebookTokenChecker):
             inner_if: Token | None = self._sole_if_in_block(token.next)
             if inner_if is None:
                 return
-            self.report_error(inner_if, _Messages.get(self._MSG))
+            self.report_error(inner_if, Messages.get(self._MSG))
 
     @staticmethod
     def _skip_statement(token: Token | None) -> Token | None:
@@ -38,7 +38,7 @@ class LonelyIfChecker(RulebookTokenChecker):
             if token and token.str == 'else':
                 token = LonelyIfChecker._skip_statement(token.next)
             return token
-        while token and token.str != ';':
+        while token is not None and token.str != ';':
             token = token.next
         return token.next if token else None
 

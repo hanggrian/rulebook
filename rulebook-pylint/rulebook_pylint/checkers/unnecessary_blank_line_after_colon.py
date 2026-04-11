@@ -5,7 +5,7 @@ from tokenize import NEWLINE, NL, OP, TokenInfo
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -16,7 +16,7 @@ class UnnecessaryBlankLineAfterColonChecker(RulebookTokenChecker):
     _MSG: str = 'unnecessary.blank.line.after.colon'
 
     name: str = 'unnecessary-blank-line-after-colon'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for i, token in enumerate(tokens):

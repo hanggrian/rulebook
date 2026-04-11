@@ -1,8 +1,8 @@
 from re import Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _prev_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import prev_sibling
 
 try:
     from cppcheckdata import Scope, Token
@@ -26,10 +26,10 @@ class AbbreviationAsWordChecker(RulebookChecker):
             not self._ABBREVIATION_REGEX.findall(scope.className):
             return
         name_token: Token | None = \
-            _prev_sibling(scope.bodyStart, lambda t: t.str == scope.className)
+            prev_sibling(scope.bodyStart, lambda t: t.str == scope.className)
         self.report_error(
             name_token if name_token is not None else scope.bodyStart,
-            _Messages.get(
+            Messages.get(
                 self._MSG,
                 self._ABBREVIATION_REGEX.sub(
                     lambda m: m.group(0)[0] + m.group(0)[1:].lower(),

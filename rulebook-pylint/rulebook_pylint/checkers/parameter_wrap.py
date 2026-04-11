@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from astroid.nodes import Call, FunctionDef, NodeNG
+from astroid.nodes import AssignName, Call, FunctionDef, NodeNG
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -15,10 +15,13 @@ class ParameterWrapChecker(RulebookChecker):
     _MSG: str = 'parameter.wrap'
 
     name: str = 'parameter-wrap'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_functiondef(self, node: FunctionDef) -> None:
-        self._process(node.args.args)
+        args: list[AssignName] | None = node.args.args
+        if args is None:
+            return
+        self._process(args)
 
     def visit_call(self, node: Call) -> None:
         self._process(node.args)

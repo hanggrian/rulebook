@@ -6,7 +6,7 @@ from astroid.nodes import ClassDef
 from pylint.typing import Options, TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 from rulebook_pylint.options import MEANINGLESS_WORDS_OPTION
 
 if TYPE_CHECKING:
@@ -26,7 +26,7 @@ class MeaninglessWordChecker(RulebookChecker):
         )
 
     name: str = 'meaningless-word'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_ALL, _MSG_UTIL)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG_ALL, _MSG_UTIL)
     options: Options = (
         MEANINGLESS_WORDS_OPTION,
     )
@@ -48,10 +48,21 @@ class MeaninglessWordChecker(RulebookChecker):
                 self._MSG_UTIL,
                 node=node,
                 args=node.name[:node.name.index(word)] + 's',
-                col_offset=node.col_offset + 6,
+                col_offset= \
+                    node.col_offset + 6 \
+                        if node.col_offset is not None \
+                        else None,
             )
             return
-        self.add_message(self._MSG_ALL, node=node, args=word, col_offset=node.col_offset + 6)
+        self.add_message(
+            self._MSG_ALL,
+            node=node,
+            args=word,
+                col_offset= \
+                    node.col_offset + 6 \
+                        if node.col_offset is not None \
+                        else None,
+        )
 
 
 def register(linter: PyLinter) -> None:

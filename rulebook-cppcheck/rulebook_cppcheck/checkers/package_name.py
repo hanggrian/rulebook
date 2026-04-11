@@ -1,8 +1,8 @@
 from re import Pattern, compile as re, sub
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _prev_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import prev_sibling
 
 try:
     from cppcheckdata import Scope, Token
@@ -26,10 +26,10 @@ class PackageNameChecker(RulebookChecker):
         if class_name is None or \
             not any(c.isupper() for c in class_name):
             return
-        name_token: Token | None = _prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
+        name_token: Token | None = prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
         self.report_error(
             name_token if name_token is not None else scope.bodyStart,
-            _Messages.get(
+            Messages.get(
                 self._MSG,
                 sub(r'_+', '_', self._SNAKE_CASE_REGEX.sub('_', class_name).lower()),
             ),

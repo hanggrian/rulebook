@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Scope, Token
@@ -36,6 +36,8 @@ class CaseSeparatorChecker(RulebookChecker):
 
         while curr_token is not None and \
             curr_token is not body_end:
+            if not isinstance(curr_token, Token):
+                continue
             if curr_token.str in self._BRANCH_TOKENS:
                 case_keyword: Token = curr_token
                 case_label: Token = curr_token.next if curr_token.str == 'case' else curr_token
@@ -47,6 +49,8 @@ class CaseSeparatorChecker(RulebookChecker):
 
                 while scan is not None and \
                     scan is not body_end:
+                    if not isinstance(scan, Token):
+                        continue
                     if scan.str in self._BRANCH_TOKENS and \
                         scan.scope is scope:
                         break
@@ -60,6 +64,7 @@ class CaseSeparatorChecker(RulebookChecker):
                 if not has_body and \
                     scan is not None and \
                     scan is not body_end and \
+                    isinstance(scan, Token) and \
                     scan.str in self._BRANCH_TOKENS:
                     end_token = scan
 
@@ -90,9 +95,9 @@ class CaseSeparatorChecker(RulebookChecker):
 
             if prev_is_multiline:
                 if line_diff != 2:
-                    self._report_error_once(prev_group[0], _Messages.get(self._MSG_MISSING))
+                    self._report_error_once(prev_group[0], Messages.get(self._MSG_MISSING))
             elif line_diff != 1:
-                self._report_error_once(prev_group[0], _Messages.get(self._MSG_UNEXPECTED))
+                self._report_error_once(prev_group[0], Messages.get(self._MSG_UNEXPECTED))
 
     def _report_error_once(self, token: Token, message: str) -> None:
         error_key: tuple[str, int, int, str] = (token.file, token.linenr, token.column, message)

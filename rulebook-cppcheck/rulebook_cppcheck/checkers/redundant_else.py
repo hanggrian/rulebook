@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _next_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import next_sibling
 
 try:
     from cppcheckdata import Token
@@ -32,7 +32,7 @@ class RedundantElseChecker(RulebookTokenChecker):
                     then_token = then_token.link.next
                 if not self._has_toplevel_jump(then_token):
                     break
-                self.report_error(else_token, _Messages.get(self._MSG))
+                self.report_error(else_token, Messages.get(self._MSG))
 
                 next_token: Token | None = else_token.next
                 if next_token is not None and \
@@ -71,9 +71,9 @@ class RedundantElseChecker(RulebookTokenChecker):
         if curr_token is not None and \
             curr_token.str == '{':
             curr_token = curr_token.link.next
-        else:
+        elif curr_token is not None:
             curr_token = \
-                _next_sibling(
+                next_sibling(
                     curr_token,
                     lambda t: t.str in RedundantElseChecker._ELSE_SIBLING_TOKENS,
                 )

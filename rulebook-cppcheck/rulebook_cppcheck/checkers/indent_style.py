@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 from rulebook_cppcheck.options import INDENT_STYLE_OPTION
 
 try:
@@ -46,4 +46,4 @@ class IndentStyleChecker(RulebookTokenChecker):
                 line_stripped.startswith('*') or \
                 (len(line) - len(line_stripped)) % self._indent_size == 0:
                 continue
-            self.report_error(token, _Messages.get(self._MSG, self._indent_size))
+            self.report_error(token, Messages.get(self._MSG, self._indent_size))

@@ -1,7 +1,7 @@
 from astroid.nodes import NodeNG
 
 
-def _get_fromlineno_before(lines: list[bytes], current: NodeNG, previous: NodeNG) -> int:
+def get_fromlineno_before(lines: list[bytes], current: NodeNG, previous: NodeNG) -> int:
     """Returns a line number below previous node, above current node."""
     index = current.fromlineno - 1
     while index > 0:
@@ -11,7 +11,7 @@ def _get_fromlineno_before(lines: list[bytes], current: NodeNG, previous: NodeNG
     return current.fromlineno - 1
 
 
-def _has_comment_above(lines: list[bytes], current: NodeNG) -> bool:
+def has_comment_above(lines: list[bytes], current: NodeNG) -> bool:
     """Returns true if there is any comment above current node."""
     if lines is None:
         return False

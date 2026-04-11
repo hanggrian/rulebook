@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 from rulebook_cppcheck.options import MAX_LINE_LENGTH_OPTION
 
 try:
@@ -39,4 +39,4 @@ class LineLengthChecker(RulebookTokenChecker):
             processed_lines[token_file].add(token_linenr)
             if len(cache[token_file][token_linenr - 1].rstrip('\r\n')) <= self._max_line_length:
                 continue
-            self.report_error(token, _Messages.get(self._MSG, self._max_line_length))
+            self.report_error(token, Messages.get(self._MSG, self._max_line_length))

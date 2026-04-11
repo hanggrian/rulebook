@@ -4,8 +4,8 @@ from astroid.nodes import For, FunctionDef, If, NodeNG, While
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
-from rulebook_pylint.nodes import _has_jump_statement, _is_multiline
+from rulebook_pylint.messages import Messages
+from rulebook_pylint.nodes import has_jump_statement, is_multiline
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -17,7 +17,7 @@ class NestedIfElseChecker(RulebookChecker):
     _MSG_LIFT: str = 'nested.if.else.lift'
 
     name: str = 'nested-if-else'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_INVERT, _MSG_LIFT)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG_INVERT, _MSG_LIFT)
 
     def visit_for(self, node: For) -> None:
         self._process(node.body)
@@ -51,7 +51,7 @@ class NestedIfElseChecker(RulebookChecker):
             if self._has_multiple_lines(else2):
                 self.add_message(self._MSG_LIFT, node=else_first_child)
             return
-        if _has_jump_statement(if2):
+        if has_jump_statement(if2):
             return
         if self._has_multiple_lines(if2.body):
             self.add_message(self._MSG_INVERT, node=if2)
@@ -64,7 +64,7 @@ class NestedIfElseChecker(RulebookChecker):
     def _has_multiple_lines(nodes: list[NodeNG]) -> bool:
         length: int = len(nodes)
         if length == 1:
-            return _is_multiline(nodes[0])
+            return is_multiline(nodes[0])
         return length > 1
 
 

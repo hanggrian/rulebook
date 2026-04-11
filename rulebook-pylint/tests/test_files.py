@@ -2,7 +2,7 @@ from unittest import TestCase, main
 
 from astroid import extract_node, parse
 
-from rulebook_pylint.files import _get_fromlineno_before, _has_comment_above
+from rulebook_pylint.files import get_fromlineno_before, has_comment_above
 
 
 class TestFiles(TestCase):
@@ -15,7 +15,7 @@ class TestFiles(TestCase):
             '''
         (node1, node2) = extract_node(code)
         lines = self._parse(code)
-        self.assertEqual(_get_fromlineno_before(lines, node2, node1), 3)
+        self.assertEqual(get_fromlineno_before(lines, node2, node1), 3)
 
     def test_has_comment_above(self):
         code = \
@@ -30,8 +30,8 @@ class TestFiles(TestCase):
             '''
         (node1, node2) = extract_node(code)
         lines = self._parse(code)
-        self.assertFalse(_has_comment_above(lines, node1))
-        self.assertTrue(_has_comment_above(lines, node2))
+        self.assertFalse(has_comment_above(lines, node1))
+        self.assertTrue(has_comment_above(lines, node2))
 
     @staticmethod
     def _parse(s):

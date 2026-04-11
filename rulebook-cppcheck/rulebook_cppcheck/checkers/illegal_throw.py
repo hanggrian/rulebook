@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _next_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import next_sibling
 
 try:
     from cppcheckdata import Token
@@ -23,11 +23,11 @@ class IllegalThrowChecker(RulebookTokenChecker):
         # checks for violation
         for token in [t for t in tokens if t.str == 'throw']:
             target: Token | None = \
-                _next_sibling(
+                next_sibling(
                     token.next,
                     lambda t: t.str in self._BROAD_EXCEPTIONS or t.str == ';',
                 )
             if target is None or \
                 target.str not in self._BROAD_EXCEPTIONS:
                 continue
-            self.report_error(target, _Messages.get(self._MSG))
+            self.report_error(target, Messages.get(self._MSG))

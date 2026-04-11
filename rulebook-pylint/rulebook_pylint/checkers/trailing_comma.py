@@ -5,7 +5,7 @@ from tokenize import COMMENT, NAME, NL, OP, TokenInfo
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -20,7 +20,7 @@ class TrailingCommaChecker(RulebookTokenChecker):
     _CLOSING_PARENTHESES: frozenset[str] = frozenset([')', ']', '}'])
 
     name: str = 'trailing-comma'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG_SINGLE, _MSG_MULTI)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG_SINGLE, _MSG_MULTI)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         # filter out comments

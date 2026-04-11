@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -17,4 +17,4 @@ class FinalNewlineChecker(RulebookFileChecker):
         if not content.strip() or \
             content.endswith('\n'):
             return
-        self.report_error(token, _Messages.get(self._MSG))
+        self.report_error(token, Messages.get(self._MSG))

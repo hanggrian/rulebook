@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _prev_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import prev_sibling
 
 try:
     from cppcheckdata import Scope, Token
@@ -23,10 +23,10 @@ class ClassNameChecker(RulebookChecker):
             class_name[0].isupper() and \
             '_' not in class_name:
             return
-        name_token: Token | None = _prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
+        name_token: Token | None = prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
         self.report_error(
             name_token if name_token is not None else scope.bodyStart,
-            _Messages.get(
+            Messages.get(
                 self._MSG,
                 ''.join(p[0].upper() + p[1:] if p else '' for p in class_name.split('_')),
             ),

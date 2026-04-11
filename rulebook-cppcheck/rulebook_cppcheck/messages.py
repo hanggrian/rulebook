@@ -2,7 +2,7 @@ from configparser import ConfigParser
 from importlib.resources import files
 
 
-class _Messages:
+class Messages:
     with files('rulebook_cppcheck.resources') \
         .joinpath('cppcheck_messages.cnf') \
         .open('r', encoding='UTF-8') as file:
@@ -11,7 +11,7 @@ class _Messages:
 
     @staticmethod
     def get(key: str, *args) -> str:
-        template: str = _Messages.parser.get('default', key)
+        template: str = Messages.parser.get('default', key)
         if not args:
             return template
         return template.format(*args)

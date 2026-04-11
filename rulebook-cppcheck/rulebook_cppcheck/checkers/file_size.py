@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 from rulebook_cppcheck.options import MAX_FILE_SIZE_OPTION
 
 try:
@@ -25,4 +25,4 @@ class FileSizeChecker(RulebookFileChecker):
         # checks for violation
         if len(content.splitlines()) <= self._max_file_size:
             return
-        self.report_error(token, _Messages.get(self._MSG, self._max_file_size))
+        self.report_error(token, Messages.get(self._MSG, self._max_file_size))

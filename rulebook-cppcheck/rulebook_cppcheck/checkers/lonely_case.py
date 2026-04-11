@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _prev_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import prev_sibling
 
 try:
     from cppcheckdata import Scope, Token
@@ -22,12 +22,14 @@ class LonelyCaseChecker(RulebookChecker):
         curr_token: Token | None = scope.bodyStart
         while curr_token is not None and \
             curr_token is not scope.bodyEnd:
+            if not isinstance(curr_token, Token):
+                continue
             if curr_token.str == 'case':
                 case_count += 1
             curr_token = curr_token.next
         if case_count > 1:
             return
-        switch_token: Token | None = _prev_sibling(scope.bodyStart, lambda t: t.str == 'switch')
+        switch_token: Token | None = prev_sibling(scope.bodyStart, lambda t: t.str == 'switch')
         if switch_token is None:
             return
-        self.report_error(switch_token, _Messages.get(self._MSG))
+        self.report_error(switch_token, Messages.get(self._MSG))

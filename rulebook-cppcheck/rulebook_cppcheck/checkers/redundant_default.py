@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _next_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import next_sibling
 
 try:
     from cppcheckdata import Token
@@ -38,8 +38,10 @@ class RedundantDefaultChecker(RulebookTokenChecker):
                 limit: Token = cases[i + 1] if i + 1 < len(cases) else default_token
                 has_jump: bool = False
                 search: Token | None = case_colon.next
-                while search and \
+                while search is not None and \
                     search is not limit:
+                    if not isinstance(search, Token):
+                        continue
                     if search.str in self._BREAK_STATEMENTS:
                         has_jump = True
                         break
@@ -49,24 +51,26 @@ class RedundantDefaultChecker(RulebookTokenChecker):
                     break
             if continue_outer:
                 continue
-            self.report_error(default_token, _Messages.get(self._MSG))
+            self.report_error(default_token, Messages.get(self._MSG))
 
     @staticmethod
     def _get_default(
         curr_token: Token | None,
         r_brace: Token | None,
-    ) -> tuple[Token, list[Token]] | None:
+    ) -> tuple[Token | None, list[Token]]:
         cases: list[Token] = []
         default_token: Token | None = None
         while curr_token is not None and \
             curr_token is not r_brace:
+            if not isinstance(curr_token, Token):
+                continue
             if curr_token.str == 'case':
-                curr_token = _next_sibling(curr_token, lambda t: t is r_brace or t.str == ':')
+                curr_token = next_sibling(curr_token, lambda t: t is r_brace or t.str == ':')
                 if curr_token and \
                     curr_token.str == ':':
                     cases.append(curr_token)
             elif curr_token.str == 'default':
                 default_token = \
-                    _next_sibling(curr_token, lambda t: t is r_brace or t.str == ':')
+                    next_sibling(curr_token, lambda t: t is r_brace or t.str == ':')
             curr_token = curr_token.next
         return default_token, cases

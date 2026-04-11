@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Function, Scope, Token
@@ -34,4 +34,4 @@ class UnnecessaryReturnChecker(RulebookChecker):
         if prev_token is None or \
             prev_token.str not in {'{', ';'}:
             return
-        self.report_error(return_token, _Messages.get(self._MSG))
+        self.report_error(return_token, Messages.get(self._MSG))

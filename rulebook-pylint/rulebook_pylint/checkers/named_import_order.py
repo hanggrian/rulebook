@@ -4,7 +4,7 @@ from astroid.nodes import ImportFrom
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -15,7 +15,7 @@ class NamedImportOrderChecker(RulebookChecker):
     _MSG: str = 'named.import.order'
 
     name: str = 'named-import-order'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_importfrom(self, node: ImportFrom) -> None:
         last_name: str | None = None

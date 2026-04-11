@@ -1,7 +1,7 @@
 from re import Pattern, compile as re_compile
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -23,4 +23,4 @@ class DuplicateBlankLineInCommentChecker(RulebookFileChecker):
             if not self._EMPTY_COMMENT_REGEX.match(lines[i]) or \
                 not self._EMPTY_COMMENT_REGEX.match(lines[i + 1]):
                 continue
-            self.report_error(token, _Messages.get(self._MSG), i + 2)
+            self.report_error(token, Messages.get(self._MSG), i + 2)

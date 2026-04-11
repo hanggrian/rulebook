@@ -3,7 +3,7 @@ from typing import TypeVar
 T: TypeVar = TypeVar('T')
 
 
-def _two_way_dict(*pairs: tuple[T, T]) -> dict[T, T]:
+def two_way_dict(*pairs: tuple[T, T]) -> dict[T, T]:
     result = {}
     for pair in pairs:
         result[pair[0]] = pair[1]

@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -33,7 +33,7 @@ class RedundantIfChecker(RulebookTokenChecker):
                     else self._read_bool_return(after_then)
             if else_value is None:
                 continue
-            self.report_error(token, _Messages.get(self._MSG, then_value, else_value))
+            self.report_error(token, Messages.get(self._MSG, then_value, else_value))
 
     @staticmethod
     def _read_bool_return(token: Token | None) -> tuple[str | None, Token | None]:

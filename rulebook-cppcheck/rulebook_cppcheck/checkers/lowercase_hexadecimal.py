@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -21,4 +21,4 @@ class LowercaseHexadecimalChecker(RulebookTokenChecker):
             value_replacement: str = value.lower()
             if value == value_replacement:
                 return
-            self.report_error(token, _Messages.get(self._MSG, value_replacement))
+            self.report_error(token, Messages.get(self._MSG, value_replacement))

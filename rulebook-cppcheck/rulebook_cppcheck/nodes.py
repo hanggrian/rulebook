@@ -6,21 +6,25 @@ except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Token
 
 
-def _has_jump_statement(start: Token, end: Token) -> bool:
-    return _next_sibling(
-        start,
-        lambda t: t is end or t.str in {'return', 'break', 'continue', 'throw', 'goto'},
-    ).str != end.str
+def has_jump_statement(start: Token, end: Token) -> bool:
+    sibling: Token | None = \
+        next_sibling(
+            start,
+            lambda t: t is end or t.str in {'return', 'break', 'continue', 'throw', 'goto'},
+        )
+    if sibling is None:
+        return False
+    return sibling.str != end.str
 
 
-def _is_multiline(start: Token, end: Token) -> bool:
-    return _next_sibling(
-        start,
-        lambda t: t is end or t.linenr > start.linenr,
-    ).linenr > start.linenr
+def is_multiline(start: Token, end: Token) -> bool:
+    sibling: Token | None = next_sibling(start, lambda t: t is end or t.linenr > start.linenr)
+    if sibling is None:
+        return False
+    return sibling.linenr > start.linenr
 
 
-def _parent(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
+def parent(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
     while token is not None:
         if predicate(token):
             return token
@@ -28,7 +32,7 @@ def _parent(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
     return None
 
 
-def _prev_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
+def prev_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
     while token is not None:
         if predicate(token):
             return token
@@ -36,7 +40,7 @@ def _prev_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | N
     return None
 
 
-def _next_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
+def next_sibling(token: Token, predicate: Callable[[Token], bool]) -> Token | None:
     while token is not None:
         if predicate(token):
             return token

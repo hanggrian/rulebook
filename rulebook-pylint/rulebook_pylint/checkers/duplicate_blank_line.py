@@ -4,7 +4,7 @@ from astroid.nodes import Module
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -15,7 +15,7 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
     _MSG: str = 'duplicate.blank.line'
 
     name: str = 'duplicate-blank-line'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def process_module(self, node: Module) -> None:
         # checks for violation

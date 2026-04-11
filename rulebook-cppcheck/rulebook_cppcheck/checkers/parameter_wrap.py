@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -44,4 +44,4 @@ class ParameterWrapChecker(RulebookTokenChecker):
                 curr_param: Token = params[i]
                 if curr_param.linenr != prev.linenr:
                     continue
-                self.report_error(curr_param, _Messages.get(self._MSG))
+                self.report_error(curr_param, Messages.get(self._MSG))

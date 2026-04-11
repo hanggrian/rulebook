@@ -6,7 +6,7 @@ from astroid.nodes import ClassDef
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -19,7 +19,7 @@ class AbbreviationAsWordChecker(RulebookChecker):
     _ABBREVIATION_REGEX: Pattern = re(r'[A-Z]{3,}(?=[A-Z][a-z]|$)')
 
     name: str = 'abbreviation-as-word'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # checks for violation
@@ -33,7 +33,10 @@ class AbbreviationAsWordChecker(RulebookChecker):
                     lambda m: m.group(0)[0] + m.group(0)[1:].lower(),
                     node.name,
                 ),
-            col_offset=node.col_offset + 6,
+            col_offset= \
+                node.col_offset + 6 \
+                    if node.col_offset is not None \
+                    else None,
         )
 
 

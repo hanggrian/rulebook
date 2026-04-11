@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -19,4 +19,4 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
             if lines[i].strip() or \
                 lines[i - 1].strip():
                 continue
-            self.report_error(token, _Messages.get(self._MSG), i + 1)
+            self.report_error(token, Messages.get(self._MSG), i + 1)

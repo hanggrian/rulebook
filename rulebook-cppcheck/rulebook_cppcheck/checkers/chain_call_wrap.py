@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -96,10 +96,10 @@ class ChainCallWrapChecker(RulebookTokenChecker):
                     prev_token.previous and \
                     prev_token.linenr > prev_token.previous.linenr:
                     if dot.linenr > prev_token.linenr:
-                        self._report_error_once(dot, _Messages.get(self._MSG_UNEXPECTED))
+                        self._report_error_once(dot, Messages.get(self._MSG_UNEXPECTED))
                     continue
                 if dot.linenr == prev_token.linenr:
-                    self._report_error_once(dot, _Messages.get(self._MSG_MISSING))
+                    self._report_error_once(dot, Messages.get(self._MSG_MISSING))
 
     def _report_error_once(self, token: Token, message: str) -> None:
         error_key: tuple[str, int, int, str] = (token.file, token.linenr, token.column, message)

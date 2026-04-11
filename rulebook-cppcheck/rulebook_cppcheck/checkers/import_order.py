@@ -1,7 +1,7 @@
 from re import Match, Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -36,20 +36,20 @@ class ImportOrderChecker(RulebookFileChecker):
                     prev_is_quoted:
                     self.report_error(
                         token,
-                        _Messages.get(self._MSG_SORT, path, prev_path),
+                        Messages.get(self._MSG_SORT, path, prev_path),
                         lineno,
                     )
                 elif is_quoted == prev_is_quoted:
                     if path < prev_path:
                         self.report_error(
                             token,
-                            _Messages.get(self._MSG_SORT, path, prev_path),
+                            Messages.get(self._MSG_SORT, path, prev_path),
                             lineno,
                         )
                 if lineno != prev_lineno + 1:
                     self.report_error(
                         token,
-                        _Messages.get(self._MSG_JOIN, path),
+                        Messages.get(self._MSG_JOIN, path),
                         lineno,
                     )
 

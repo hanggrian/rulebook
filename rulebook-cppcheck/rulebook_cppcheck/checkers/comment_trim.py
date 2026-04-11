@@ -1,7 +1,7 @@
 from re import Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -33,12 +33,12 @@ class CommentTrimChecker(RulebookFileChecker):
                 # check first line of block
                 if start_block != j and \
                     self._EOL_COMMENT_REGEX.match(lines[start_block]):
-                    self.report_error(token, _Messages.get(self._MSG), start_block + 1)
+                    self.report_error(token, Messages.get(self._MSG), start_block + 1)
 
                 # check last line of block
                 if start_block != j and \
                     self._EOL_COMMENT_REGEX.match(lines[j]):
-                    self.report_error(token, _Messages.get(self._MSG), j + 1)
+                    self.report_error(token, Messages.get(self._MSG), j + 1)
 
                 # skip to end of block
                 i = j

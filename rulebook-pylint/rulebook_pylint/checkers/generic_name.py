@@ -4,8 +4,8 @@ from astroid.nodes import Assign, AssignName, Call, Name
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
-from rulebook_pylint.nodes import _get_assignname
+from rulebook_pylint.messages import Messages
+from rulebook_pylint.nodes import get_assignname
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -16,7 +16,7 @@ class GenericNameChecker(RulebookChecker):
     _MSG: str = 'generic.name'
 
     name: str = 'generic-name'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_assign(self, node: Assign) -> None:
         # only target TypeVar declaration
@@ -26,7 +26,7 @@ class GenericNameChecker(RulebookChecker):
             return
 
         # checks for violation
-        target: AssignName | None = _get_assignname(node)
+        target: AssignName | None = get_assignname(node)
         if target is None:
             return
         if len(target.name) == 1 and \

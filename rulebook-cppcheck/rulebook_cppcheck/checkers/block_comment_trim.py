@@ -1,7 +1,7 @@
 from re import DOTALL, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -42,7 +42,7 @@ class BlockCommentTrimChecker(RulebookFileChecker):
                 if content_indices[0] > 1:
                     self.report_error(
                         token,
-                        _Messages.get(self._MSG_FIRST),
+                        Messages.get(self._MSG_FIRST),
                         start_line + 1,
                     )
 
@@ -56,6 +56,6 @@ class BlockCommentTrimChecker(RulebookFileChecker):
                 continue
             self.report_error(
                 token,
-                _Messages.get(self._MSG_LAST),
+                Messages.get(self._MSG_LAST),
                 start_line + len(lines) - 1,
             )

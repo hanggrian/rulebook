@@ -4,7 +4,7 @@ from astroid.nodes import ClassDef, Const, FunctionDef, Module
 from pylint.typing import Options, TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 from rulebook_pylint.options import MAX_LINE_LENGTH_OPTION
 
 if TYPE_CHECKING:
@@ -18,7 +18,7 @@ class BlockCommentClipChecker(RulebookChecker):
     _SINGLELINE_TEMPLATE = 6  # """"""
 
     name: str = 'block-comment-clip'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
     options: Options = (
         MAX_LINE_LENGTH_OPTION,
     )
@@ -45,6 +45,8 @@ class BlockCommentClipChecker(RulebookChecker):
             return
         line: str = docstring.value.strip()
         if '\n' in line:
+            return
+        if docstring.col_offset is None:
             return
         text_length: int = docstring.col_offset + len(line)
         if text_length + self._SINGLELINE_TEMPLATE <= self._max_line_length:

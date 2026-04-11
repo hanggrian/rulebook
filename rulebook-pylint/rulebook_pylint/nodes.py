@@ -4,7 +4,7 @@ from astroid.nodes import AnnAssign, Assign, AssignName, Attribute, Break, Class
     FunctionDef, If, MatchCase, Name, NodeNG, Raise, Return
 
 
-def _get_assignname(node: Assign) -> AssignName | None:
+def get_assignname(node: Assign) -> AssignName | None:
     target: NodeNG
     if isinstance(node, AnnAssign):
         target = node.target
@@ -15,7 +15,7 @@ def _get_assignname(node: Assign) -> AssignName | None:
     return target if isinstance(target, AssignName) else None
 
 
-def _has_decorator(node: FunctionDef | ClassDef, name: str) -> bool:
+def has_decorator(node: FunctionDef | ClassDef, name: str) -> bool:
     return any(
         ((isinstance(n, Name) and n.name == name) or \
          (isinstance(n, Attribute) and n.attrname == name) \
@@ -24,21 +24,21 @@ def _has_decorator(node: FunctionDef | ClassDef, name: str) -> bool:
         else False
 
 
-def _has_jump_statement(node: NodeNG) -> bool:
+def has_jump_statement(node: NodeNG) -> bool:
     return any(isinstance(n, (Return, Raise, Break, Continue)) for n in node.body) \
         if isinstance(node, (If, MatchCase)) \
         else False
 
 
-def _is_multiline(node: NodeNG) -> bool:
+def is_multiline(node: NodeNG) -> bool:
     if isinstance(node, If):
         return node.body[-1].end_lineno > node.body[0].lineno or \
-            _is_multiline(node.test)
+            is_multiline(node.test)
     if isinstance(node, MatchCase):
         return node.body[-1].end_lineno > node.body[0].lineno or \
-            _is_multiline(node.pattern)
+            is_multiline(node.pattern)
     return node.end_lineno > node.lineno
 
 
-def _is_comment_empty(token: TokenInfo) -> bool:
+def is_comment_empty(token: TokenInfo) -> bool:
     return token.type is COMMENT and token.string == '#'

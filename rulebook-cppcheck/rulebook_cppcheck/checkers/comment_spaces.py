@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -41,4 +41,4 @@ class CommentSpacesChecker(RulebookFileChecker):
             if line_stripped.startswith(' ') or \
                 line_stripped.replace('/', '').strip() == '':
                 continue
-            self.report_error(token, _Messages.get(self._MSG), lineno, line.find('//') + 1)
+            self.report_error(token, Messages.get(self._MSG), lineno, line.find('//') + 1)

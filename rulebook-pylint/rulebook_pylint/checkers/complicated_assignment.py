@@ -4,7 +4,7 @@ from astroid.nodes import Assign, AssignName, BinOp, Name, NodeNG
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -17,7 +17,7 @@ class ComplicatedAssignmentChecker(RulebookChecker):
     _SHORTHAND_OPERATIONS: frozenset[str] = frozenset(['+', '-', '*', '/', '%'])
 
     name: str = 'complicated-assignment'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_assign(self, node: Assign) -> None:
         # skip destructuring

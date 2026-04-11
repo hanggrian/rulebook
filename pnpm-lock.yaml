@@ -129,12 +129,6 @@ importers:
 
   rulebook-typescript-eslint:
     devDependencies:
-      '@eslint/js':
-        specifier: ^9.39.4
-        version: 9.39.4
-      '@stylistic/eslint-plugin':
-        specifier: ^5.10.0
-        version: 5.10.0(eslint@9.39.4)
       '@types/estree':
         specifier: ^1.0.8
         version: 1.0.8
@@ -147,15 +141,6 @@ importers:
       '@typescript-eslint/utils':
         specifier: ^8.58.1
         version: 8.58.1(eslint@9.39.4)(typescript@5.9.3)
-      eslint:
-        specifier: ^9.39.4
-        version: 9.39.4
-      eslint-plugin-jsdoc:
-        specifier: ^62.9.0
-        version: 62.9.0(eslint@9.39.4)
-      eslint-plugin-sort-class-members:
-        specifier: ^1.21.0
-        version: 1.21.0(eslint@9.39.4)
       rulebook-eslint:
         specifier: workspace:*
         version: link:../rulebook-eslint
@@ -172,30 +157,6 @@ importers:
 
   stress-test:
     devDependencies:
-      '@eslint/js':
-        specifier: ^9.39.4
-        version: 9.39.4
-      '@stylistic/eslint-plugin':
-        specifier: ^5.10.0
-        version: 5.10.0(eslint@9.39.4)
-      '@types/estree':
-        specifier: ^1.0.8
-        version: 1.0.8
-      '@types/node':
-        specifier: ^25.6.0
-        version: 25.6.0
-      eslint:
-        specifier: ^9.39.4
-        version: 9.39.4
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(@typescript-eslint/parser@8.58.1(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)
-      eslint-plugin-jsdoc:
-        specifier: ^62.9.0
-        version: 62.9.0(eslint@9.39.4)
-      eslint-plugin-sort-class-members:
-        specifier: ^1.21.0
-        version: 1.21.0(eslint@9.39.4)
       rulebook-eslint:
         specifier: workspace:*
         version: link:../rulebook-eslint

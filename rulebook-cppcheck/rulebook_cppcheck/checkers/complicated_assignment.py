@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _next_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import next_sibling
 
 try:
     from cppcheckdata import Token
@@ -26,15 +26,16 @@ class ComplicatedAssignmentChecker(RulebookTokenChecker):
             if lhs is None or not lhs.isName:
                 continue
             match = \
-                _next_sibling(
+                next_sibling(
                     token.next,
                     lambda t: \
                         t.str == ';' or \
                         t.isName and \
+                        isinstance(lhs, Token) and \
                         t.str == lhs.str and \
                         t.next is not None and \
                         t.next.str in self._SHORTHAND_OPERATIONS,
                 )
             if match is None or match.str == ';':
                 continue
-            self.report_error(token, _Messages.get(self._MSG, f'{match.next.str}='))
+            self.report_error(token, Messages.get(self._MSG, f'{match.next.str}='))

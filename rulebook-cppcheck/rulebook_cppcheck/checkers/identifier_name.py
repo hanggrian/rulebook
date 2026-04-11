@@ -1,7 +1,7 @@
 from re import Pattern, compile as re, sub
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -34,7 +34,7 @@ class IdentifierNameChecker(RulebookTokenChecker):
             return
         self.report_error(
             token,
-            _Messages.get(
+            Messages.get(
                 self.MSG,
                 sub(r'_+', '_', self._SNAKE_CASE_REGEX.sub('_', name).lower()),
             ),

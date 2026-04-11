@@ -5,7 +5,7 @@ from tokenize import ENCODING, NL, TokenInfo
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -16,7 +16,7 @@ class UnnecessaryInitialBlankLineChecker(RulebookTokenChecker):
     _MSG: str = 'unnecessary.initial.blank.line'
 
     name: str = 'unnecessary-initial-blank-line'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
         for token in [t for t in tokens if t.type != ENCODING]:

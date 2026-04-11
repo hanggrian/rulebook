@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 from rulebook_cppcheck.options import MEMBER_ORDER_OPTION
 
 try:
@@ -49,6 +49,8 @@ class MemberOrderChecker(RulebookTokenChecker):
             curr_token: Token | None = token.next
             while curr_token is not None and \
                 curr_token is not token.scope.bodyEnd:
+                if not isinstance(curr_token, Token):
+                    continue
                 info: tuple[int, str] | None = self._get_member_info(curr_token, token.scope)
                 if info is not None:
                     curr_weight, curr_name = info
@@ -56,7 +58,7 @@ class MemberOrderChecker(RulebookTokenChecker):
                         curr_weight < prev_weight:
                         self.report_error(
                             curr_token,
-                            _Messages.get(self._MSG, curr_name, prev_name),
+                            Messages.get(self._MSG, curr_name, prev_name),
                         )
                     prev_weight = curr_weight
                     prev_name = curr_name

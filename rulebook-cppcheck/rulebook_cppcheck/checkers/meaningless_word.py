@@ -1,8 +1,8 @@
 from re import Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _prev_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import prev_sibling
 from rulebook_cppcheck.options import MEANINGLESS_WORDS_OPTION
 
 try:
@@ -44,9 +44,8 @@ class MeaninglessWordChecker(RulebookChecker):
         if not words or \
             words[-1] not in self._words:
             return
-        name_token: Token | None = \
-            _prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
+        name_token: Token | None = prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
         self.report_error(
             name_token if name_token is not None else scope.bodyStart,
-            _Messages.get(self._MSG, words[-1]),
+            Messages.get(self._MSG, words[-1]),
         )

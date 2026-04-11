@@ -4,7 +4,7 @@ from astroid.nodes import Continue, For, NodeNG, While
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -15,7 +15,7 @@ class UnnecessaryContinueChecker(RulebookChecker):
     _MSG: str = 'unnecessary.continue'
 
     name: str = 'unnecessary-continue'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_for(self, node: For) -> None:
         self._process(node.body)

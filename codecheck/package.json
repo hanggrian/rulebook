@@ -8,9 +8,6 @@
     "build": "../gradlew compileKotlin && tsc -p tsconfig.json",
     "lint": "../gradlew ktlintCheck"
   },
-  "peerDependencies": {
-    "eslint": ">=9"
-  },
   "devDependencies": {
     "@types/estree": "^1.0.8",
     "@types/node": "^25.6.0",

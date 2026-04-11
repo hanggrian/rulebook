@@ -1,6 +1,6 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
-from rulebook_cppcheck.messages import _Messages
-from rulebook_cppcheck.nodes import _next_sibling
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import next_sibling
 
 try:
     from cppcheckdata import Scope, Token
@@ -30,6 +30,8 @@ class MemberSeparatorChecker(RulebookChecker):
         curr_token: Token | None = body_start.next
         while curr_token is not None and \
             curr_token is not body_end:
+            if not isinstance(curr_token, Token):
+                continue
             if curr_token.scope is scope and \
                 (curr_token.variable or curr_token.function):
                 is_var: bool = curr_token.variable is not None
@@ -39,7 +41,7 @@ class MemberSeparatorChecker(RulebookChecker):
                     curr_token.function and \
                     curr_token.function.tokenDef:
                     search = \
-                        _next_sibling(
+                        next_sibling(
                             curr_token.function.tokenDef,
                             lambda t: t.str in self._OPENING_TOKENS or t is body_end,
                         )
@@ -52,7 +54,7 @@ class MemberSeparatorChecker(RulebookChecker):
                         end_token = search
                 else:
                     search = \
-                        _next_sibling(
+                        next_sibling(
                             curr_token,
                             lambda t: \
                                 t.str == ';' or \
@@ -79,4 +81,4 @@ class MemberSeparatorChecker(RulebookChecker):
             if not prev_is_var and \
                 prev_start.str == scope.className:
                 msg_arg = 'constructor'
-            self.report_error(prev_end, _Messages.get(self._MSG, msg_arg))
+            self.report_error(prev_end, Messages.get(self._MSG, msg_arg))

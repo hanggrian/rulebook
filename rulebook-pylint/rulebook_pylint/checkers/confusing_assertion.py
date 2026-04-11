@@ -4,8 +4,8 @@ from astroid.nodes import Attribute, Call, ClassDef, Expr, FunctionDef, Name, No
 from pylint.typing import TYPE_CHECKING
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
-from rulebook_pylint.collections import _two_way_dict
-from rulebook_pylint.messages import _Messages
+from rulebook_pylint.collections import two_way_dict
+from rulebook_pylint.messages import Messages
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -16,10 +16,10 @@ class ConfusingAssertionChecker(RulebookChecker):
     _MSG: str = 'confusing.assertion'
 
     _ASSERT_CALLS: dict[str, str] = \
-        _two_way_dict(('assertTrue', 'assertFalse'))
+        two_way_dict(('assertTrue', 'assertFalse'))
 
     name: str = 'confusing-assertion'
-    msgs: dict[str, tuple[str, str, str]] = _Messages.of(_MSG)
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def visit_classdef(self, node: ClassDef) -> None:
         # find built-in tests
@@ -33,7 +33,7 @@ class ConfusingAssertionChecker(RulebookChecker):
                 if not isinstance(call, Call) or \
                     not isinstance(call.func, Attribute):
                     continue
-                call_replacement: str = self._ASSERT_CALLS.get(call.func.attrname, None)
+                call_replacement: str | None = self._ASSERT_CALLS.get(call.func.attrname, None)
                 if call_replacement is None:
                     continue
 

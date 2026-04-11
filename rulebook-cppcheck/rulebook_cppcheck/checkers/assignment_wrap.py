@@ -1,5 +1,5 @@
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -33,4 +33,4 @@ class AssignmentWrapChecker(RulebookTokenChecker):
             if rhs_start.linenr != token.linenr or \
                 last_rhs_token.linenr <= token.linenr:
                 continue
-            self.report_error(token, _Messages.get(self._MSG))
+            self.report_error(token, Messages.get(self._MSG))

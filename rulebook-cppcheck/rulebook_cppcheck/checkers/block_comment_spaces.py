@@ -1,7 +1,7 @@
 from re import DOTALL, Pattern, compile as re, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -30,13 +30,13 @@ class BlockCommentSpacesChecker(RulebookFileChecker):
             if self._BLOCK_COMMENT_START_REGEX.search(lines[0]):
                 self.report_error(
                     token,
-                    _Messages.get(self._MSG_SINGLE_START),
+                    Messages.get(self._MSG_SINGLE_START),
                     start_line,
                 )
             if self._BLOCK_COMMENT_END_REGEX.search(lines[-1]):
                 self.report_error(
                     token,
-                    _Messages.get(self._MSG_SINGLE_END),
+                    Messages.get(self._MSG_SINGLE_END),
                     start_line + len(lines) - 1,
                 )
             for i in range(1, len(lines)):
@@ -44,6 +44,6 @@ class BlockCommentSpacesChecker(RulebookFileChecker):
                     continue
                 self.report_error(
                     token,
-                    _Messages.get(self._MSG_MULTI),
+                    Messages.get(self._MSG_MULTI),
                     start_line + i,
                 )

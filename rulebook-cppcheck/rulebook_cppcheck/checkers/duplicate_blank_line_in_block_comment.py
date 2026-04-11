@@ -1,7 +1,7 @@
 from re import DOTALL, finditer
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
-from rulebook_cppcheck.messages import _Messages
+from rulebook_cppcheck.messages import Messages
 
 try:
     from cppcheckdata import Token
@@ -29,4 +29,4 @@ class DuplicateBlankLineInBlockCommentChecker(RulebookFileChecker):
                 if i == 0 or \
                     i + 1 == len(lines) - 1:
                     continue
-                self.report_error(token, _Messages.get(self._MSG), start_line + i + 1)
+                self.report_error(token, Messages.get(self._MSG), start_line + i + 1)
