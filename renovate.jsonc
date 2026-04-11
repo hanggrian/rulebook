@@ -12,6 +12,8 @@
     "astroid",
     // `sourceCode` is not available in ESLint 10
     "@eslint/js",
-    "eslint"
+    "eslint",
+    // typescript-eslint locks TypeScript version
+    "typescript"
   ]
 }

@@ -9,7 +9,7 @@ dependencies = [
   "pylint==4.0.5",
   "astroid==4.0.4",
   "cppcheck==1.5.1",
-  "regex>=2026.3.32",
+  "regex",
   "testing",
   "rulebook-pylint",
 ]

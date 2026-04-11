@@ -606,7 +606,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "cppcheck", specifier = "==1.5.1" },
-    { name = "regex", specifier = ">=2026.3.32" },
+    { name = "regex" },
 ]
 
 [[package]]
@@ -623,7 +623,7 @@ dependencies = [
 requires-dist = [
     { name = "astroid", specifier = "==4.0.4" },
     { name = "pylint", specifier = "==4.0.5" },
-    { name = "regex", specifier = ">=2026.3.32" },
+    { name = "regex" },
 ]
 
 [[package]]
@@ -644,7 +644,7 @@ requires-dist = [
     { name = "astroid", specifier = "==4.0.4" },
     { name = "cppcheck", specifier = "==1.5.1" },
     { name = "pylint", specifier = "==4.0.5" },
-    { name = "regex", specifier = ">=2026.3.32" },
+    { name = "regex" },
     { name = "rulebook-pylint", editable = "rulebook-pylint" },
     { name = "testing", editable = "testing" },
 ]

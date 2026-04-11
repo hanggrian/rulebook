@@ -16,34 +16,55 @@ indent_size = 4
 max_line_length = 100
 
 [*.java]
-ij_java_use_single_class_imports = true
 ij_java_class_count_to_use_import_on_demand = 99
 ij_java_names_count_to_use_import_on_demand = 99
+ij_java_use_single_class_imports = true
 
 [*.{groovy,gradle}]
-ij_groovy_use_single_class_imports = true
 ij_groovy_class_count_to_use_import_on_demand = 99
 ij_groovy_names_count_to_use_import_on_demand = 99
+ij_groovy_use_single_class_imports = true
 
 [*.{kt,kts}]
-ij_kotlin_packages_to_use_import_on_demand = unset
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_collection_literal_expression = true
+ij_kotlin_allow_trailing_comma_context_receiver_list = true
+ij_kotlin_allow_trailing_comma_destructuring_declaration = true
+ij_kotlin_allow_trailing_comma_function_literal = true
+ij_kotlin_allow_trailing_comma_indices = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
+ij_kotlin_allow_trailing_comma_type_argument_list = true
+ij_kotlin_allow_trailing_comma_type_parameter_list = true
+ij_kotlin_allow_trailing_comma_value_argument_list = true
+ij_kotlin_allow_trailing_comma_value_parameter_list = true
+ij_kotlin_allow_trailing_comma_when_entry = true
 ij_kotlin_name_count_to_use_star_import = 99
 ij_kotlin_name_count_to_use_star_import_for_members = 99
+ij_kotlin_packages_to_use_import_on_demand = unset
 ktlint_code_style = ktlint_official
 ktlint_standard = enabled
 ktlint_standard_when-entry-bracing = disabled
+ktlint_chain_method_rule_force_multiline_when_chain_operator_count_greater_or_equal_than = unset
 ktlint_class_signature_rule_force_multiline_when_parameter_count_greater_or_equal_than = unset
 ktlint_function_signature_rule_force_multiline_when_parameter_count_greater_or_equal_than = unset
-ktlint_chain_method_rule_force_multiline_when_chain_operator_count_greater_or_equal_than = unset
+
+[*.py]
+ij_python_from_import_trailing_comma_if_multiline = true
+ij_python_from_import_wrapping = on_every_item
+ij_python_use_trailing_comma_in_arguments_list = unset # allow for generator function, such as any(...)
+ij_python_use_trailing_comma_in_collections = true
+ij_python_use_trailing_comma_in_parameter_list = true
 
 [*.js]
-ij_javascript_imports_wrap = off
+ij_javascript_enforce_trailing_comma = whenmultiline
+ij_javascript_imports_wrap = on_every_item
 ij_javascript_spaces_within_object_literal_braces = true
 ij_javascript_spaces_within_object_type_braces = true
 ij_javascript_spaces_within_imports = true
 
 [*.ts]
-ij_typescript_imports_wrap = off
+ij_typescript_enforce_trailing_comma = whenmultiline
+ij_typescript_imports_wrap = on_every_item
 ij_typescript_spaces_within_object_literal_braces = true
 ij_typescript_spaces_within_object_type_braces = true
 ij_typescript_spaces_within_imports = true
