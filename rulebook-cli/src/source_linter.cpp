@@ -3,11 +3,12 @@
 #include <ranges>
 #include <set>
 #include <string>
-#include "cli.hpp"
-#include "linters.hpp"
-#include "source_linter.hpp"
+#include "cli.h"
+#include "linters.h"
+#include "source_linter.h"
 
 using namespace std;
+using namespace std::filesystem;
 
 namespace {
     const Linter &get_linter(const path &path) {

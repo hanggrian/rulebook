@@ -1,5 +1,5 @@
 #include <string>
-#include "linters.hpp"
+#include "linters.h"
 
 using namespace cmrc;
 using namespace std;

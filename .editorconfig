@@ -57,14 +57,18 @@ ij_python_use_trailing_comma_in_parameter_list = true
 
 [*.js]
 ij_javascript_enforce_trailing_comma = whenmultiline
+ij_javascript_force_semicolon_style = true
 ij_javascript_imports_wrap = on_every_item
 ij_javascript_spaces_within_object_literal_braces = true
 ij_javascript_spaces_within_object_type_braces = true
 ij_javascript_spaces_within_imports = true
+ij_javascript_use_semicolon_after_statement = true
 
 [*.ts]
 ij_typescript_enforce_trailing_comma = whenmultiline
+ij_typescript_force_semicolon_style = true
 ij_typescript_imports_wrap = on_every_item
 ij_typescript_spaces_within_object_literal_braces = true
 ij_typescript_spaces_within_object_type_braces = true
 ij_typescript_spaces_within_imports = true
+ij_typescript_use_semicolon_after_statement = true

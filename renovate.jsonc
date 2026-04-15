@@ -5,9 +5,10 @@
   "prCreation": "not-pending",
   "internalChecksFilter": "strict",
   "ignoreDeps": [
-    // Groovy 5 requires java-support 11+
+    // requires java-support 11+
     "org.apache.groovy:groovy",
     "org.apache.groovy:groovy-all",
+    "org.junit.platform:junit-platform-launcher",
     // Pylint locks Astroid version
     "astroid",
     // `sourceCode` is not available in ESLint 10

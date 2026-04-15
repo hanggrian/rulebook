@@ -106,17 +106,17 @@ find_package(Boost REQUIRED COMPONENTS program_options)
 add_executable(
         rulebook
         src/main.cpp
-        src/cli.hpp
+        src/cli.h
         src/config_initializer.cpp
-        src/config_initializer.hpp
+        src/config_initializer.h
         src/extraction.cpp
-        src/extraction.hpp
+        src/extraction.h
         src/file_printer.cpp
-        src/file_printer.hpp
+        src/file_printer.h
         src/linters.cpp
-        src/linters.hpp
+        src/linters.h
         src/source_linter.cpp
-        src/source_linter.hpp
+        src/source_linter.h
         src/linters.cpp
 )
 add_dependencies(

@@ -1,8 +1,8 @@
 #include <cmrc/cmrc.hpp>
 #include <fstream>
 #include "checkstyle_bin.h"
-#include "cli.hpp"
-#include "extraction.hpp"
+#include "cli.h"
+#include "extraction.h"
 #include "kotlin_stdlib_bin.h"
 #include "ktlint_bin.h"
 #include "ktlint_print_bin.h"

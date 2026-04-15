@@ -2,13 +2,15 @@
 #include <cmrc/cmrc.hpp>
 #include <fstream>
 #include <iostream>
-#include "cli.hpp"
-#include "config_initializer.hpp"
-#include "linters.hpp"
+#include "cli.h"
+#include "config_initializer.h"
+#include "linters.h"
 
 CMRC_DECLARE(resources);
 
 using namespace cmrc;
+using namespace std;
+using namespace std::filesystem;
 
 int init_config(
     const string &linter_name,

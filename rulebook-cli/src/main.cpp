@@ -4,14 +4,14 @@
 #include <numeric>
 #include <string>
 #include <vector>
-#include "cli.hpp"
-#include "config_initializer.hpp"
-#include "file_printer.hpp"
-#include "source_linter.hpp"
+#include "cli.h"
+#include "config_initializer.h"
+#include "file_printer.h"
+#include "source_linter.h"
 
 using namespace boost::program_options;
-using namespace filesystem;
 using namespace std;
+using namespace std::filesystem;
 
 namespace {
     const vector<string> SUPPORTED_EXTENSIONS = {

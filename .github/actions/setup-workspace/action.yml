@@ -41,8 +41,6 @@ runs:
 
     - shell: bash
       run: |
-        uv sync
-
         echo 'workspace-concurrency=1' >> .npmrc
         pnpm i
         pnpm -r build
