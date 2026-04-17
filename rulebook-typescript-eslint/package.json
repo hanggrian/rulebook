@@ -25,18 +25,18 @@
     "coverage": "vitest run --coverage src/__tests__/**/*.ts --reporter=junit --outputFile=test-report.junit.xml"
   },
   "peerDependencies": {
-    "@typescript-eslint/parser": "<=8",
-    "@typescript-eslint/utils": "<=8",
-    "rulebook-eslint": "workspace:*",
-    "typescript-eslint": "<=8"
-  },
-  "devDependencies": {
-    "@types/estree": "^1.0.8",
-    "@types/node": "^25.6.0",
     "@typescript-eslint/parser": "^8.58.1",
     "@typescript-eslint/utils": "^8.58.1",
     "rulebook-eslint": "workspace:*",
-    "testing": "workspace:*",
     "typescript-eslint": "^8.58.1"
+  },
+  "devDependencies": {
+    "@types/estree": "1.0.8",
+    "@types/node": "25.6.0",
+    "@typescript-eslint/parser": "8.58.1",
+    "@typescript-eslint/utils": "8.58.1",
+    "rulebook-eslint": "workspace:*",
+    "testing": "workspace:*",
+    "typescript-eslint": "8.58.1"
   }
 }

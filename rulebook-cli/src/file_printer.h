@@ -3,6 +3,6 @@
 
 #include <filesystem>
 
-int print_file(const std::filesystem::path &target_file, bool verbose);
+int print_file(const std::string &file, bool verbose);
 
 #endif

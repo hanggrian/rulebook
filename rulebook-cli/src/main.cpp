@@ -1,37 +1,17 @@
 #include <boost/program_options.hpp>
 #include <filesystem>
 #include <iostream>
-#include <numeric>
 #include <string>
 #include <vector>
 #include "cli.h"
 #include "config_initializer.h"
 #include "file_printer.h"
+#include "linter/all.h"
 #include "source_linter.h"
 
 using namespace boost::program_options;
 using namespace std;
 using namespace std::filesystem;
-
-namespace {
-    const vector<string> SUPPORTED_EXTENSIONS = {
-        ".c",
-        ".cpp",
-        ".java",
-        ".kt",
-        ".kts",
-        ".py",
-    };
-    const vector<string> AVAILABLE_LINTERS = {
-        "checkstyle",
-        "codenarc",
-        "cppcheck",
-        "eslint",
-        "ktlint",
-        "pylint",
-        "typescript-eslint",
-    };
-}
 
 int main(const int argc, char **argv) {
     if (argc < 2) {
@@ -191,21 +171,14 @@ int main(const int argc, char **argv) {
             return die(e.what());
         }
 
-        const string linter = init_variables["linter"].as<string>();
-        string linter_lower = linter;
-        if (ranges::transform(linter_lower, linter_lower.begin(), ::tolower);
-            ranges::find(AVAILABLE_LINTERS, linter_lower) == AVAILABLE_LINTERS.end()) {
-            return die("Unknown linter '" + linter + "'.");
-        }
-        const path dir =
-                init_variables.contains("dir")
-                    ? path(init_variables["dir"].as<string>())
-                    : current_path();
-        if (!is_directory(dir)) {
-            return die("Not a directory.");
+        optional<string> dir;
+        if (init_variables.contains("dir")) {
+            dir = init_variables["dir"].as<string>();
+        } else {
+            dir = nullopt;
         }
         return init_config(
-            linter,
+            init_variables["linter"].as<string>(),
             dir,
             variables["google"].as<bool>(),
             variables["verbose"].as<bool>()
@@ -234,16 +207,8 @@ int main(const int argc, char **argv) {
             return die(e.what());
         }
 
-        const auto file = path(print_variables["file"].as<string>());
-        if (!is_regular_file(file)) {
-            return die("Not a file.");
-        }
-        if (const auto extension = file.extension().string();
-            ranges::find(SUPPORTED_EXTENSIONS, extension) == SUPPORTED_EXTENSIONS.end()) {
-            return die("Unsupported extension '" + extension + "'.");
-        }
         return print_file(
-            file,
+            print_variables["file"].as<string>(),
             variables["verbose"].as<bool>()
         );
     }

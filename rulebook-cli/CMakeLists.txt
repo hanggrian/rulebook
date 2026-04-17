@@ -105,6 +105,16 @@ add_custom_target(rulebook_ktlint_embed DEPENDS "${CMAKE_BINARY_DIR}/rulebook_kt
 find_package(Boost REQUIRED COMPONENTS program_options)
 add_executable(
         rulebook
+        src/linter/all.cpp
+        src/linter/all.h
+        src/linter/base.h
+        src/linter/checkstyle.h
+        src/linter/codenarc.h
+        src/linter/cppcheck.h
+        src/linter/eslint.h
+        src/linter/ktlint.h
+        src/linter/pylint.h
+        src/linter/typescript_eslint.h
         src/main.cpp
         src/cli.h
         src/config_initializer.cpp
@@ -113,11 +123,8 @@ add_executable(
         src/extraction.h
         src/file_printer.cpp
         src/file_printer.h
-        src/linters.cpp
-        src/linters.h
         src/source_linter.cpp
         src/source_linter.h
-        src/linters.cpp
 )
 add_dependencies(
         rulebook

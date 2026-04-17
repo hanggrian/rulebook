@@ -12,6 +12,8 @@
 CMRC_DECLARE(resources);
 
 using namespace cmrc;
+using namespace std;
+using namespace std::filesystem;
 
 path extract_binary(const string &filename) {
     const path temp_file = temp_directory_path() / filename;
