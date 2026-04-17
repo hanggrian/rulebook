@@ -1,7 +1,7 @@
 import { AST, Rule, SourceCode } from 'eslint';
 import { Expression, IfStatement, Statement } from 'estree';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#redundant-if|See detail} */
 class RedundantIfRule extends RulebookRule {
@@ -11,7 +11,7 @@ class RedundantIfRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         function isThenConstant(statement: Statement): boolean {
             if (statement.type === 'BlockStatement') {
                 const body: Statement[] = statement.body.filter(s => s.type !== 'EmptyStatement');

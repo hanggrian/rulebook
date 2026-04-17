@@ -1,6 +1,6 @@
 import { AST_NODE_TYPES, TSESLint, TSESTree } from '@typescript-eslint/utils';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#generic-name|See detail} */
 class GenericNameRule extends RulebookRule {
@@ -10,7 +10,9 @@ class GenericNameRule extends RulebookRule {
         });
     }
 
-    override create(context: TSESLint.RuleContext<string, readonly unknown[]>) {
+    override create(
+        context: TSESLint.RuleContext<string, readonly unknown[]>,
+    ): TSESLint.RuleListener {
         return {
             TSTypeParameter(node: TSESTree.TSTypeParameter) {
                 // filter out multiple generics

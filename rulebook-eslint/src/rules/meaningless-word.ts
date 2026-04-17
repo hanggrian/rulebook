@@ -2,7 +2,7 @@ import { AST, Rule } from 'eslint';
 import { BaseNode, ClassDeclaration } from 'estree';
 import messages from '../messages.js';
 import meaninglessWordsOptions from '../schema/meaningless-words.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#meaningless-word|See detail} */
 class MeaninglessWordRule extends RulebookRule {
@@ -17,7 +17,7 @@ class MeaninglessWordRule extends RulebookRule {
         );
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         const options = context.options[0] as { words?: string[] } | undefined;
         const words = options?.words ?? ['Util', 'Utility', 'Helper', 'Manager', 'Wrapper'];
 

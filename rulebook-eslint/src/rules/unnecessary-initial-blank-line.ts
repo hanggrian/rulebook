@@ -1,6 +1,6 @@
 import { AST, Rule } from 'eslint';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#unnecessary-initial-blank-line|See detail} */
 class UnnecessaryInitialBlankLineRule extends RulebookRule {
@@ -11,7 +11,7 @@ class UnnecessaryInitialBlankLineRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             Program(node: AST.Program) {
                 const lines: string[] = context.sourceCode.lines;

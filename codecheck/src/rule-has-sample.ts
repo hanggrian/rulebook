@@ -9,7 +9,7 @@ export default {
         return {
             Program(node: AST.Program) {
                 const file: string = context.filename;
-                if (file.endsWith('rulebook-rules.ts')) {
+                if (file.endsWith('rulebook-rule.ts')) {
                     return;
                 }
                 if (file.includes(ESLINT_PATH)) {

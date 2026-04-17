@@ -1,7 +1,7 @@
 import { Rule } from 'eslint';
 import { DoWhileStatement, ForInStatement, ForOfStatement, ForStatement, Statement, WhileStatement } from 'estree';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#unnecessary-continue|See detail} */
 class UnnecessaryContinueRule extends RulebookRule {
@@ -11,7 +11,7 @@ class UnnecessaryContinueRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         function process(node: Statement) {
             let last: Statement | null = null;
             if (node.type !== 'BlockStatement') {

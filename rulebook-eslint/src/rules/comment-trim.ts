@@ -1,7 +1,7 @@
 import { Rule, SourceCode } from 'eslint';
 import { Comment, Node, SourceLocation } from 'estree';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#comment-trim|See detail} */
 class CommentTrimRule extends RulebookRule {
@@ -11,7 +11,7 @@ class CommentTrimRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             'Program:exit'() {
                 const sourceCode: SourceCode = context.sourceCode;

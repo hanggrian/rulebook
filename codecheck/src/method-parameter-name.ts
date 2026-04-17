@@ -2,7 +2,7 @@ import { Rule } from 'eslint';
 import { Identifier, MethodDefinition, Property } from 'estree';
 
 export default {
-    create(context: Rule.RuleContext) {
+    create(context: Rule.RuleContext): Rule.RuleListener {
         function process(node: Identifier, key: Identifier, param: Identifier): void {
             let name;
             const functionName = key.name;

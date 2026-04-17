@@ -2,7 +2,7 @@ import { Rule } from 'eslint';
 import { Expression, VariableDeclarator } from 'estree';
 import messages from '../messages.js';
 import { isMultiline } from '../nodes.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#assignment-wrap|See detail} */
 class AssignmentWrapRule extends RulebookRule {
@@ -12,7 +12,7 @@ class AssignmentWrapRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             VariableDeclarator(node: VariableDeclarator) {
                 // skip lambda and collection initializers

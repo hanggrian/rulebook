@@ -2,7 +2,7 @@ import { AST, Rule } from 'eslint';
 import { Expression, Super } from 'estree';
 import messages from '../messages.js';
 import { isMultiline } from '../nodes.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 import Token = AST.Token;
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#chain-call-wrap|See detail} */
@@ -14,7 +14,7 @@ class ChainCallWrapRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             'CallExpression, MemberExpression'(node: Rule.Node) {
                 // target root multiline chain call

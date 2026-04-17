@@ -2,7 +2,7 @@ import { Rule } from 'eslint';
 import { IfStatement, Node, Statement } from 'estree';
 import messages from '../messages.js';
 import { hasJumpStatement } from '../nodes.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#redundant-else|See detail} */
 class RedundantElseRule extends RulebookRule {
@@ -12,7 +12,7 @@ class RedundantElseRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             IfStatement(node: IfStatement) {
                 // target root if

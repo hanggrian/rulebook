@@ -1,7 +1,7 @@
 import { Rule } from 'eslint';
 import { Comment, SourceLocation } from 'estree';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-comment|See detail} */
 class DuplicateBlankLineInCommentRule extends RulebookRule {
@@ -12,7 +12,7 @@ class DuplicateBlankLineInCommentRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             'Program:exit'() {
                 // checks for violation

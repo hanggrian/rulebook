@@ -2,7 +2,7 @@ import { Rule } from 'eslint';
 import { SwitchCase, SwitchStatement } from 'estree';
 import messages from '../messages.js';
 import { hasJumpStatement } from '../nodes.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#redundant-default|See detail} */
 class RedundantDefaultRule extends RulebookRule {
@@ -12,7 +12,7 @@ class RedundantDefaultRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             SwitchStatement(node: SwitchStatement) {
                 // find default

@@ -1,7 +1,7 @@
 import { Rule } from 'eslint';
 import { SourceLocation } from 'estree';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /* eslint-disable @rulebook/todo-comment */
 /** {@link https://hanggrian.github.io/rulebook/rules/#todo-comment|See detail} */
@@ -13,7 +13,7 @@ class TodoCommentRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             Program() {
                 context.sourceCode.getAllComments().forEach(comment => {

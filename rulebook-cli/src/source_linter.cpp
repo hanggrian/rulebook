@@ -4,26 +4,37 @@
 #include <set>
 #include <string>
 #include "cli.h"
-#include "linters.h"
+#include "linter/all.h"
 #include "source_linter.h"
 
 using namespace std;
 using namespace std::filesystem;
 
 namespace {
-    const Linter &get_linter(const path &path) {
-        return get_linter_by_extension(path.extension().string());
+    void insert_not_null(set<reference_wrapper<const Linter> > &collection, const path &path) {
+        const optional<reference_wrapper<const Linter> > &element =
+            get_linter_by_extension(path.extension().string());
+        if (element.has_value()) {
+            collection.insert(*element);
+        }
     }
 }
 
-int run_lint(const path &target_path, const bool google_variant, const bool verbose) {
+int run_lint(
+    const path &target_path,
+    const bool google_variant,
+    const bool verbose
+) {
     set<reference_wrapper<const Linter> > linters = {};
     if (is_regular_file(target_path)) {
-        linters.insert(get_linter(target_path));
+        insert_not_null(linters, target_path);
     } else {
         for (const auto &entry: recursive_directory_iterator(target_path)) {
-            linters.insert(get_linter(entry.path()));
+            insert_not_null(linters, entry.path());
         }
+    }
+    if (linters.empty()) {
+        return die("No supported source code found in directory.");
     }
 
     if (verbose) {

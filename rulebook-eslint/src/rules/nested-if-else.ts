@@ -2,7 +2,7 @@ import { Rule } from 'eslint';
 import { BlockStatement, Node, Statement } from 'estree';
 import messages from '../messages.js';
 import { hasJumpStatement, isMultiline } from '../nodes.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#nested-if-else|See detail} */
 class NestedIfElseRule extends RulebookRule {
@@ -13,7 +13,7 @@ class NestedIfElseRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             BlockStatement(node: BlockStatement) {
                 // skip blocks without exit path

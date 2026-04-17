@@ -1,7 +1,7 @@
 import { Rule } from 'eslint';
 import { Literal } from 'estree';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#lowercase-hexadecimal|See detail} */
 class LowercaseHexadecimalRule extends RulebookRule {
@@ -11,7 +11,7 @@ class LowercaseHexadecimalRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             Literal(node: Literal) {
                 // checks for violation

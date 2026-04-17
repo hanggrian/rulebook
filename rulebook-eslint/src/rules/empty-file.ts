@@ -1,6 +1,6 @@
 import { AST, Rule } from 'eslint';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#empty-file|See detail} */
 class EmptyFileRule extends RulebookRule {
@@ -10,7 +10,7 @@ class EmptyFileRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             Program(node: AST.Program) {
                 // checks for violation

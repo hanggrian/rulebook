@@ -1,6 +1,6 @@
 import { TSESLint, TSESTree } from '@typescript-eslint/utils';
 import messages from '../messages.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#unnecessary-abstract|See detail} */
 class UnnecessaryAbstractRule extends RulebookRule {
@@ -10,7 +10,9 @@ class UnnecessaryAbstractRule extends RulebookRule {
         });
     }
 
-    override create(context: TSESLint.RuleContext<string, readonly unknown[]>) {
+    override create(
+        context: TSESLint.RuleContext<string, readonly unknown[]>,
+    ): TSESLint.RuleListener {
         return {
             ClassDeclaration(node: TSESTree.ClassDeclaration) {
                 // skip non-abstract class

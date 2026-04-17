@@ -2,7 +2,7 @@ import { Rule } from 'eslint';
 import { ClassDeclaration } from 'estree';
 
 export default {
-    create(context: Rule.RuleContext) {
+    create(context: Rule.RuleContext): Rule.RuleListener {
         return {
             ClassDeclaration(node: ClassDeclaration) {
                 let baseName = node.id.name;

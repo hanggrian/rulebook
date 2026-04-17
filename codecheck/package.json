@@ -9,8 +9,8 @@
     "lint": "../gradlew ktlintCheck"
   },
   "devDependencies": {
-    "@types/estree": "^1.0.8",
-    "@types/node": "^25.6.0",
-    "eslint": "^9.39.4"
+    "@types/estree": "1.0.8",
+    "@types/node": "25.6.0",
+    "eslint": "9.39.4"
   }
 }

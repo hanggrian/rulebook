@@ -2,7 +2,7 @@ import { AST, Rule } from 'eslint';
 import { Comment, SwitchCase, SwitchStatement } from 'estree';
 import messages from '../messages.js';
 import { isMultiline } from '../nodes.js';
-import RulebookRule from './rulebook-rules.js';
+import RulebookRule from './rulebook-rule.js';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#case-separator|See detail} */
 class CaseSeparatorRule extends RulebookRule {
@@ -13,7 +13,7 @@ class CaseSeparatorRule extends RulebookRule {
         });
     }
 
-    override create(context: Rule.RuleContext) {
+    override create(context: Rule.RuleContext): Rule.RuleListener {
         const sourceCode = context.sourceCode;
         return {
             SwitchStatement(node: SwitchStatement) {
