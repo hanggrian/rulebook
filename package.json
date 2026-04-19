@@ -33,7 +33,7 @@
     "eslint-plugin-sort-class-members": "1.22.1",
     "eslint-vitest-rule-tester": "3.1.0",
     "globals": "17.5.0",
-    "sinon": "21.1.1",
+    "sinon": "21.1.2",
     "typedoc": "0.28.19",
     "typescript": "~5.9.2",
     "typescript-eslint": "8.58.1",
