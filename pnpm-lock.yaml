@@ -117,8 +117,8 @@ importers:
         specifier: 62.9.0
         version: 62.9.0(eslint@9.39.4)
       eslint-plugin-sort-class-members:
-        specifier: 1.21.0
-        version: 1.21.0(eslint@9.39.4)
+        specifier: 1.22.1
+        version: 1.22.1(eslint@9.39.4)
       testing:
         specifier: workspace:*
         version: link:../testing
@@ -1059,12 +1059,6 @@ packages:
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
-
-  eslint-plugin-sort-class-members@1.21.0:
-    resolution: {integrity: sha512-QKV4jvGMu/ge1l4s1TUBC6rqqV/fbABWY7q2EeNpV3FRikoX6KuLhiNvS8UuMi+EERe0hKGrNU9e6ukFDxNnZQ==}
-    engines: {node: '>=4.0.0'}
-    peerDependencies:
-      eslint: '>=0.8.0'
 
   eslint-plugin-sort-class-members@1.22.1:
     resolution: {integrity: sha512-TC76+m06fjpiAYPrEcyyvvWzp1aMHNBVGROLu9ijQuPDZPWJjhNTheha4f6f7eUTWabloczLZagoZ+mb6Cv0ZQ==}
@@ -3180,10 +3174,6 @@ snapshots:
       to-valid-identifier: 1.0.0
     transitivePeerDependencies:
       - supports-color
-
-  eslint-plugin-sort-class-members@1.21.0(eslint@9.39.4):
-    dependencies:
-      eslint: 9.39.4
 
   eslint-plugin-sort-class-members@1.22.1(eslint@9.39.4):
     dependencies:
