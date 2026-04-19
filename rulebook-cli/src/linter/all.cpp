@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <functional>
-#include <numeric>
 #include <list>
+#include <numeric>
 #include <string>
 #include "all.h"
 

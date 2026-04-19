@@ -1,7 +1,7 @@
-import { Rule, SourceCode } from 'eslint';
-import { Comment, Node, SourceLocation } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
+import type { Rule, SourceCode } from 'eslint';
+import type { Comment, Node, SourceLocation } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#comment-trim|See detail} */
 class CommentTrimRule extends RulebookRule {

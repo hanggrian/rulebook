@@ -1,8 +1,8 @@
-import { AST, Rule } from 'eslint';
-import { Comment, SwitchCase, SwitchStatement } from 'estree';
 import messages from '../messages.js';
 import { isMultiline } from '../nodes.js';
 import RulebookRule from './rulebook-rule.js';
+import type { AST, Rule } from 'eslint';
+import type { Comment, SwitchCase, SwitchStatement } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#case-separator|See detail} */
 class CaseSeparatorRule extends RulebookRule {

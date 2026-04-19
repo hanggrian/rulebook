@@ -1,7 +1,7 @@
 site_name: Rulebook
 site_url: https://hanggrian.github.io/rulebook/
 site_author: Hendra Anggrian
-site_description: Extended lint rules for JVM and Python
+site_description: Aggressive source code linter extensions
 
 repo_name: hanggrian/rulebook
 repo_url: https://github.com/hanggrian/rulebook

@@ -1,7 +1,7 @@
 {
   "name": "rulebook-typescript-eslint",
   "version": "0.3.0",
-  "description": "Extended lint rules for JVM, JS and Python projects.",
+  "description": "Aggressive source code linter extensions",
   "homepage": "https://github.com/hanggrian/rulebook#readme",
   "bugs": {
     "url": "https://github.com/hanggrian/rulebook/issues"

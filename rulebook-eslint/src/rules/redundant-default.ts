@@ -1,8 +1,8 @@
-import { Rule } from 'eslint';
-import { SwitchCase, SwitchStatement } from 'estree';
 import messages from '../messages.js';
 import { hasJumpStatement } from '../nodes.js';
 import RulebookRule from './rulebook-rule.js';
+import type { Rule } from 'eslint';
+import type { SwitchCase, SwitchStatement } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#redundant-default|See detail} */
 class RedundantDefaultRule extends RulebookRule {

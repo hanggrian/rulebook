@@ -1,6 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "lint": "uv run cppcheck --check-level=exhaustive --enable=performance,portability,style,warning --addon=../addon.json src/*.cpp src/*.hpp"
+    "lint": "uv run cppcheck --language=c++ --check-level=exhaustive --enable=style,performance,portability --addon=../addon.json --suppressions-list=.cppcheck_suppressions src/**/*.cpp src/**/*.h src/*.cpp src/*.h"
   }
 }

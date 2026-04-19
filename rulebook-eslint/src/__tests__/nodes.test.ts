@@ -1,7 +1,7 @@
-import { SourceLocation, Statement } from 'estree';
-import { SinonSandbox, assert, createSandbox } from 'sinon';
+import { type SinonSandbox, assert, createSandbox } from 'sinon';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { hasJumpStatement, isMultiline } from '../nodes';
+import type { SourceLocation, Statement } from 'estree';
 
 describe('NodesTest', () => {
     let sandbox: SinonSandbox;

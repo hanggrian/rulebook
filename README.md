@@ -47,15 +47,23 @@ dependencies {
 ### PyPI
 
 ```sh
-pip install regex pylint rulebook-pylint
-pip install regex cppcheck rulebook-cppcheck
+pip install rulebook-pylint pylint regex
+pip install rulebook-cppcheck cppcheck regex
 ```
 
 ### NPM
 
 ```sh
-npm install rulebook-eslint --save-dev
-npm install rulebook-typescript-eslint --save-dev
+npm install rulebook-eslint eslint globals \
+  eslint-plugin-import \
+  eslint-plugin-jsdoc \
+  eslint-plugin-sort-class-members \
+  eslint-vitest-rule-tester --save-dev
+npm install rulebook-typescript-eslint typescript-eslint globals \
+  eslint-plugin-import \
+  eslint-plugin-jsdoc \
+  eslint-plugin-sort-class-members \
+  eslint-vitest-rule-tester --save-dev
 ```
 
 ## Usage

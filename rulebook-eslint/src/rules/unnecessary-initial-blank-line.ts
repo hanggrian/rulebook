@@ -1,6 +1,6 @@
-import { AST, Rule } from 'eslint';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
+import type { AST, Rule } from 'eslint';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#unnecessary-initial-blank-line|See detail} */
 class UnnecessaryInitialBlankLineRule extends RulebookRule {

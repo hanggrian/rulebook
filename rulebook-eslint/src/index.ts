@@ -1,4 +1,3 @@
-import { ESLint, Linter } from 'eslint';
 import assignmentWrapRule from './rules/assignment-wrap.js';
 import caseSeparatorRule from './rules/case-separator.js';
 import chainCallWrapRule from './rules/chain-call-wrap.js';
@@ -17,6 +16,7 @@ import redundantIfRule from './rules/redundant-if.js';
 import todoCommentRule from './rules/todo-comment.js';
 import unnecessaryContinueRule from './rules/unnecessary-continue.js';
 import unnecessaryInitialBlankLineRule from './rules/unnecessary-initial-blank-line.js';
+import type { ESLint, Linter } from 'eslint';
 
 const crockfordConfig: Linter.RulesRecord = {
     'consistent-return': 'error',

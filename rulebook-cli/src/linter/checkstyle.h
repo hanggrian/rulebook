@@ -1,9 +1,9 @@
 #ifndef CHECKSTYLE_H
 #define CHECKSTYLE_H
 
-#include "base.h"
 #include "../cli.h"
 #include "../extraction.h"
+#include "base.h"
 
 class CheckstyleLinter : public Linter {
 public:

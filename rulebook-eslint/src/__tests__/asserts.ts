@@ -1,5 +1,5 @@
-import { Rule } from 'eslint';
 import { expect } from 'vitest';
+import type { Rule } from 'eslint';
 
 function assertProperties(module: Rule.RuleModule): void {
     const meta = module.meta!;

@@ -1,10 +1,16 @@
-import { RuleOptions } from '@stylistic/eslint-plugin';
-import { NormalizedTestCase, RuleModule, RuleTester, TestExecutionResult, createRuleTester } from 'eslint-vitest-rule-tester';
+import {
+    type NormalizedTestCase,
+    type RuleModule,
+    type RuleTester,
+    type TestExecutionResult,
+    createRuleTester,
+} from 'eslint-vitest-rule-tester';
 import typescriptEslint from 'typescript-eslint';
+import type { RuleOptions } from '@stylistic/eslint-plugin';
 
 class Asserter {
-    nativeTester: RuleTester;
-    code: string;
+    private readonly nativeTester: RuleTester;
+    private readonly code: string;
 
     constructor(ruleTester: RuleTester, code: string) {
         this.nativeTester = ruleTester;

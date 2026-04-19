@@ -1,7 +1,7 @@
-import { Rule } from 'eslint';
-import { Comment, SourceLocation } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
+import type { Rule } from 'eslint';
+import type { Comment, SourceLocation } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#duplicate-blank-line-in-block-comment|See detail} */
 class DuplicateBlankLineInBlockCommentRule extends RulebookRule {

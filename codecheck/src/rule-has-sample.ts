@@ -1,5 +1,5 @@
-import { existsSync } from 'fs';
-import { AST, Rule } from 'eslint';
+import { existsSync } from 'node:fs';
+import type { AST, Rule } from 'eslint';
 
 const ESLINT_PATH: string = '/rulebook-eslint/src/rules/';
 const TYPESCRIPT_ESLINT_PATH: string = '/rulebook-typescript-eslint/src/rules/';

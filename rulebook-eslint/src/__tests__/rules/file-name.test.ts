@@ -1,4 +1,4 @@
-import { AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import fileNameRule from '../../rules/file-name';
 import assertProperties from '../asserts';

@@ -1,6 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "lint": "../gradlew checkstyleMain codenarcMain ktlintCheck && uv run pylint **/*.py --rcfile=custom_pylintrc && eslint --config eslint.config.js javascript/&& uv run cppcheck --enable=performance,portability,style,warning --addon=custom_addon.json c/*.c cpp/*.cpp"
+    "lint": "../gradlew checkstyleMain codenarcMain ktlintCheck && uv run pylint **/*.py --rcfile=custom_pylintrc && eslint javascript/&& uv run cppcheck --enable=style,performance,portability --addon=custom_addon.json c/*.c cpp/*.cpp"
   }
 }

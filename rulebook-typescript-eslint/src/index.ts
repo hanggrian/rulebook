@@ -1,7 +1,7 @@
-import { TSESLint } from '@typescript-eslint/utils';
 import rulebookEslint, { crockfordConfig, googleConfig } from 'rulebook-eslint';
 import genericNameRule from './rules/generic-name.js';
 import unnecessaryAbstractRule from './rules/unnecessary-abstract.js';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 const typescriptConfig: TSESLint.SharedConfig.RulesRecord = {
     '@typescript-eslint/consistent-return': 'error',

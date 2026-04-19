@@ -1,6 +1,6 @@
-import { TSESLint } from '@typescript-eslint/utils';
-import { RuleMetaData } from '@typescript-eslint/utils/ts-eslint';
 import { expect } from 'vitest';
+import type { TSESLint } from '@typescript-eslint/utils';
+import type { RuleMetaData } from '@typescript-eslint/utils/ts-eslint';
 
 function assertProperties(module: TSESLint.RuleModule<string, readonly unknown[]>): void {
     const meta: RuleMetaData<string, unknown, readonly unknown[]> = module.meta;

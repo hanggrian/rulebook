@@ -1,9 +1,8 @@
-import { AST, Rule } from 'eslint';
-import { Expression, Super } from 'estree';
 import messages from '../messages.js';
 import { isMultiline } from '../nodes.js';
 import RulebookRule from './rulebook-rule.js';
-import Token = AST.Token;
+import type { AST, Rule } from 'eslint';
+import type { Expression, Super } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#chain-call-wrap|See detail} */
 class ChainCallWrapRule extends RulebookRule {
@@ -28,11 +27,11 @@ class ChainCallWrapRule extends RulebookRule {
                 }
 
                 // collect dots
-                const dots: Token[] = [];
+                const dots: AST.Token[] = [];
                 let current: Rule.Node | Expression | Super | null = node;
                 while (current) {
                     let obj: Expression | Super | null = null;
-                    let dot: Token | null = null;
+                    let dot: AST.Token | null = null;
                     if (current.type === 'CallExpression' &&
                         current.callee.type === 'MemberExpression') {
                         obj = current.callee.object;
@@ -53,7 +52,7 @@ class ChainCallWrapRule extends RulebookRule {
                 if (dots.length < 2) {
                     return;
                 }
-                const firstDot: Token = dots[0];
+                const firstDot: AST.Token = dots[0];
                 if (dots.every(node => node.loc.start.line === firstDot.loc.start.line)) {
                     return;
                 }

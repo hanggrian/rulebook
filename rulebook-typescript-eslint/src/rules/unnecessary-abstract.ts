@@ -1,6 +1,6 @@
-import { TSESLint, TSESTree } from '@typescript-eslint/utils';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
+import type { TSESLint, TSESTree } from '@typescript-eslint/utils';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#unnecessary-abstract|See detail} */
 class UnnecessaryAbstractRule extends RulebookRule {

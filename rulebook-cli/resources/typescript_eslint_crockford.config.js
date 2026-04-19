@@ -1,5 +1,5 @@
 import eslint from '@eslint/js';
-import eslintPluginStylistic from '@stylistic/eslint-plugin';
+import stylisticEslintPlugin from '@stylistic/eslint-plugin';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginSortClassMembers from 'eslint-plugin-sort-class-members';
 import globals from 'globals';
@@ -12,7 +12,7 @@ export default typescriptEslint.config(
         files: ['**/*.{ts,tsx}'],
         plugins: {
             '@jsdoc': eslintPluginJsdoc,
-            '@stylistic': eslintPluginStylistic,
+            '@stylistic': stylisticEslintPlugin,
             '@sort-class-members': eslintPluginSortClassMembers,
             '@rulebook': rulebookTypescriptEslint,
         },

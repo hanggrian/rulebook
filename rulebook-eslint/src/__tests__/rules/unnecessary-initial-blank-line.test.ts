@@ -1,4 +1,4 @@
-import { AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
 import unnecessaryInitialBlankLineRule from '../../rules/unnecessary-initial-blank-line';
 import assertProperties from '../asserts';

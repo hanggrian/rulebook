@@ -1,5 +1,5 @@
 import eslint from '@eslint/js';
-import eslintPluginStylistic from '@stylistic/eslint-plugin';
+import stylisticEslintPlugin from '@stylistic/eslint-plugin';
 import codecheck from 'codecheck';
 import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
@@ -16,7 +16,7 @@ export default typescriptEslint.config(
         plugins: {
             '@import': eslintPluginImport,
             '@jsdoc': eslintPluginJsdoc,
-            '@stylistic': eslintPluginStylistic,
+            '@stylistic': stylisticEslintPlugin,
             '@sort-class-members': eslintPluginSortClassMembers,
             '@rulebook': rulebookEslint,
             '@codecheck': codecheck,
@@ -40,7 +40,7 @@ export default typescriptEslint.config(
         plugins: {
             '@import': eslintPluginImport,
             '@jsdoc': eslintPluginJsdoc,
-            '@stylistic': eslintPluginStylistic,
+            '@stylistic': stylisticEslintPlugin,
             '@sort-class-members': eslintPluginSortClassMembers,
             '@rulebook': rulebookTypescriptEslint,
             '@codecheck': codecheck,

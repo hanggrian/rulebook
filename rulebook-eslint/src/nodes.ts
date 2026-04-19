@@ -1,4 +1,4 @@
-import { Expression, Node, SourceLocation, Statement, SwitchCase } from 'estree';
+import type { Expression, Node, SourceLocation, Statement, SwitchCase } from 'estree';
 
 function hasJumpStatement(node: Statement): boolean {
     const type = node.type;

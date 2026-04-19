@@ -1,4 +1,4 @@
-import { AST_NODE_TYPES, TSESLint, TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES, type TSESLint, type TSESTree } from '@typescript-eslint/utils';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
 

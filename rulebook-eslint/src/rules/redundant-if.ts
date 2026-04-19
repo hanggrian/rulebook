@@ -1,7 +1,7 @@
-import { AST, Rule, SourceCode } from 'eslint';
-import { Expression, IfStatement, Statement } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
+import type { AST, Rule, SourceCode } from 'eslint';
+import type { Expression, IfStatement, Statement } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#redundant-if|See detail} */
 class RedundantIfRule extends RulebookRule {

@@ -1,5 +1,5 @@
-import { Rule } from 'eslint';
-import { Identifier, MethodDefinition, Property } from 'estree';
+import type { Rule } from 'eslint';
+import type { Identifier, MethodDefinition, Property } from 'estree';
 
 export default {
     create(context: Rule.RuleContext): Rule.RuleListener {

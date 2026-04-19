@@ -1,5 +1,5 @@
 import genericNameRule from 'rulebook-typescript-eslint/dist/rules/generic-name';
-import { AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
+import { type AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
 import { describe, it } from 'vitest';
 
 describe('StubTest', () => {

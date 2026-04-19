@@ -1,8 +1,8 @@
-import { Rule } from 'eslint';
-import { BlockStatement, Node, Statement } from 'estree';
 import messages from '../messages.js';
 import { hasJumpStatement, isMultiline } from '../nodes.js';
 import RulebookRule from './rulebook-rule.js';
+import type { Rule } from 'eslint';
+import type { BlockStatement, Node, Statement } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#nested-if-else|See detail} */
 class NestedIfElseRule extends RulebookRule {

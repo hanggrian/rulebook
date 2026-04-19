@@ -1,7 +1,7 @@
-import { Rule } from 'eslint';
-import { SourceLocation } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
+import type { Rule } from 'eslint';
+import type { SourceLocation } from 'estree';
 
 /* eslint-disable @rulebook/todo-comment */
 /** {@link https://hanggrian.github.io/rulebook/rules/#todo-comment|See detail} */

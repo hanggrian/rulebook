@@ -1,7 +1,7 @@
-import { Rule } from 'eslint';
-import { Literal } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
+import type { Rule } from 'eslint';
+import type { Literal } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#lowercase-hexadecimal|See detail} */
 class LowercaseHexadecimalRule extends RulebookRule {

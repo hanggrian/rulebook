@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import Messages from '../messages';
+import messages from '../messages';
 
 describe('MessagesTest', () => {
     it(
         'get',
-        () => expect(Messages.get('generic.name')).toBe('Use single uppercase letter.'),
+        () => expect(messages.get('generic.name')).toBe('Use single uppercase letter.'),
     );
 });

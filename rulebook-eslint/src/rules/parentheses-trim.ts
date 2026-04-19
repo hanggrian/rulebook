@@ -1,7 +1,7 @@
-import { AST, Rule, SourceCode } from 'eslint';
-import { Comment, SourceLocation } from 'estree';
 import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
+import type { AST, Rule, SourceCode } from 'eslint';
+import type { Comment, SourceLocation } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#parentheses-trim|See detail} */
 class ParenthesesTrimRule extends RulebookRule {

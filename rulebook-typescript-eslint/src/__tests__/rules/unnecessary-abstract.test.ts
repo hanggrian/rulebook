@@ -1,4 +1,4 @@
-import { AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
+import { type AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
 import { describe, it } from 'vitest';
 import unnecessaryAbstractClassRule from '../../rules/unnecessary-abstract';
 import assertProperties from '../asserts';

@@ -1,8 +1,8 @@
-import { Rule } from 'eslint';
-import { Expression, VariableDeclarator } from 'estree';
 import messages from '../messages.js';
 import { isMultiline } from '../nodes.js';
 import RulebookRule from './rulebook-rule.js';
+import type { Rule } from 'eslint';
+import type { Expression, VariableDeclarator } from 'estree';
 
 /** {@link https://hanggrian.github.io/rulebook/rules/#assignment-wrap|See detail} */
 class AssignmentWrapRule extends RulebookRule {

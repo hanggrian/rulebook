@@ -1,9 +1,9 @@
 #ifndef CPPCHECK_H
 #define CPPCHECK_H
 
-#include "base.h"
 #include "../cli.h"
 #include "../extraction.h"
+#include "base.h"
 
 class CppcheckLinter : public Linter {
 public:
@@ -31,7 +31,7 @@ public:
     ) const override {
         check_installed();
         std::string command = "cppheck ";
-        command += "--enable=performance,portability,style,warning ";
+        command += "--enable=all ";
         command += "--check-level=exhaustive ";
         command += " --addon=";
         return system(

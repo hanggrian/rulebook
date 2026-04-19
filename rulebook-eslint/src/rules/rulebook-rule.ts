@@ -1,4 +1,4 @@
-import { Rule } from 'eslint';
+import type { Rule } from 'eslint';
 
 abstract class RulebookRule implements Rule.RuleModule {
     readonly meta: Rule.RuleMetaData;
