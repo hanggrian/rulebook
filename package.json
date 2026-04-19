@@ -32,7 +32,7 @@
     "eslint-plugin-jsdoc": "62.9.0",
     "eslint-plugin-sort-class-members": "1.22.1",
     "eslint-vitest-rule-tester": "3.1.0",
-    "globals": "17.4.0",
+    "globals": "17.5.0",
     "sinon": "21.1.1",
     "typedoc": "0.28.19",
     "typescript": "~5.9.2",
