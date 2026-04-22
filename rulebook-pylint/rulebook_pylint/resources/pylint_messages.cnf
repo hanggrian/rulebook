@@ -12,7 +12,6 @@ lowercase.hexadecimal=Use hexadecimal '%s'.
 unnecessary.abstract=Omit 'abstract' modifier.
 # Expressing
 # Formatting
-line.feed=Set line ending to 'LF'.
 # Naming
 abbreviation.as.word=Rename abbreviation to '%s'.
 generic.name=Use single uppercase letter.

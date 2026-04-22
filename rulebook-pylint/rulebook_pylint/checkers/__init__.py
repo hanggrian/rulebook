@@ -23,7 +23,6 @@ from rulebook_pylint.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_pylint.checkers.generic_name import GenericNameChecker
 from rulebook_pylint.checkers.inner_class_position import InnerClassPositionChecker
 from rulebook_pylint.checkers.internal_error import InternalErrorChecker
-from rulebook_pylint.checkers.line_feed import LineFeedChecker
 from rulebook_pylint.checkers.lonely_case import LonelyCaseChecker
 from rulebook_pylint.checkers.lowercase_hexadecimal import LowercaseHexadecimalChecker
 from rulebook_pylint.checkers.meaningless_word import MeaninglessWordChecker

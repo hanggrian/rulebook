@@ -43,4 +43,3 @@ runs:
       run: |
         echo 'workspace-concurrency=1' >> .npmrc
         pnpm i
-        pnpm -r build

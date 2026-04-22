@@ -73,7 +73,7 @@ class NestedIfElseRule extends RulebookRule {
             return isMultiline(node);
         }
         const statements: Statement[] = node.body;
-        if (statements.length === 0) {
+        if (!statements.length) {
             return false;
         }
         return statements.length === 1

@@ -15,11 +15,11 @@ class UnnecessaryInitialBlankLineRule extends RulebookRule {
         return {
             Program(node: AST.Program) {
                 const lines: string[] = context.sourceCode.lines;
-                if (lines.length === 0) {
+                if (!lines.length) {
                     return;
                 }
                 const line: string = lines[0];
-                if (line.trim().length !== 0) {
+                if (line.trim().length) {
                     return;
                 }
                 context.report({ node: node, messageId: UnnecessaryInitialBlankLineRule.MSG });

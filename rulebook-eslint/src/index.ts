@@ -53,7 +53,6 @@ const crockfordConfig: Linter.RulesRecord = {
     'max-lines': ['error', 1000],
     '@stylistic/eol-last': 'error',
     '@stylistic/indent': ['error', 4],
-    '@stylistic/linebreak-style': ['error', 'unix'],
     '@stylistic/max-len': [
         'error',
         {
@@ -278,7 +277,6 @@ const googleConfig: Linter.RulesRecord = {
             ],
         },
     ],
-    '@stylistic/linebreak-style': ['error', 'unix'],
     '@stylistic/max-len': [
         'error',
         {
@@ -443,7 +441,6 @@ const googleConfig: Linter.RulesRecord = {
     'func-call-spacing': 'error',
     'key-spacing': 'error',
     'keyword-spacing': 'error',
-    'linebreak-style': 'error',
     'new-cap': 'error',
     'no-array-constructor': 'error',
     'no-mixed-spaces-and-tabs': 'error',

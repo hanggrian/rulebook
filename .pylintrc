@@ -55,7 +55,6 @@ load-plugins=
   pylint.checkers.strings,
   rulebook_pylint.checkers.unnecessary_abstract,
   # Formatting
-  rulebook_pylint.checkers.line_feed,
   # Naming
   rulebook_pylint.checkers.abbreviation_as_word,
   rulebook_pylint.checkers.generic_name,

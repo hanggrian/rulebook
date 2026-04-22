@@ -4,16 +4,17 @@
   "type": "module",
   "scripts": {
     "postinstall": "uv sync",
-
     "precoverage": "pnpm -r coverage",
     "coverage": "uv run coverage combine rulebook-cppcheck/.coverage rulebook-pylint/.coverage && uv run coverage xml",
     "predocumentation": "rm -rf build/dokka/ build/pdoc/ build/typedoc/",
     "documentation": "./gradlew dokkaGenerateHtml && uv run pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/ && typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/",
-
     "build-cli": "scripts/build_cli.sh",
     "prebuild-website": "rm -rf website/site/api/",
     "build-website": "scripts/prepare_mkdocs.sh && pnpm documentation && cd website && uv run mkdocs build && mkdir -p site/api/ && mv ../build/dokka/html/ site/api/javadoc/ && mv ../build/pdoc site/api/pydoc/ && mv ../build/typedoc site/api/tsdoc/",
     "preview-website": "scripts/prepare_mkdocs.sh && cd website && uv run mkdocs serve --livereload"
+  },
+  "engines": {
+    "node": ">=12.0.0"
   },
   "packageManager": "pnpm@10.33.0",
   "dependencies": {

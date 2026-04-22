@@ -23,7 +23,6 @@ import com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule
 import com.hanggrian.rulebook.codenarc.rules.ImportOrderRule
 import com.hanggrian.rulebook.codenarc.rules.InnerClassPositionRule
 import com.hanggrian.rulebook.codenarc.rules.LambdaWrapRule
-import com.hanggrian.rulebook.codenarc.rules.LineFeedRule
 import com.hanggrian.rulebook.codenarc.rules.LonelyCaseRule
 import com.hanggrian.rulebook.codenarc.rules.LonelyIfRule
 import com.hanggrian.rulebook.codenarc.rules.LowercaseDRule
@@ -92,7 +91,6 @@ abstract class AllRulesTest :
             ImportOrderRule(),
             InnerClassPositionRule(),
             LambdaWrapRule(),
-            LineFeedRule(),
             LonelyCaseRule(),
             LonelyIfRule(),
             LowercaseDRule(),

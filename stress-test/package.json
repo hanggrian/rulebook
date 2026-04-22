@@ -3,9 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "pnpm build",
     "build": "../gradlew compileKotlin",
     "lint": "../gradlew ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/",
     "test": "../gradlew test && uv run pytest && vitest --run src/__tests__/**/*.ts"
+  },
+  "engines": {
+    "node": ">=12.0.0"
   },
   "devDependencies": {
     "rulebook-eslint": "workspace:*",

@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "prepare": "pnpm build",
     "build": "../gradlew compileKotlin",
     "lint": "../gradlew ktlintCheck",
     "test": "../gradlew test",

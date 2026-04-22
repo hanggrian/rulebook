@@ -23,7 +23,6 @@ from rulebook_pylint.checkers import \
     GenericNameChecker, \
     InnerClassPositionChecker, \
     InternalErrorChecker, \
-    LineFeedChecker, \
     LonelyCaseChecker, \
     LowercaseHexadecimalChecker, \
     MeaninglessWordChecker, \
@@ -62,7 +61,6 @@ class AllCheckersTestCase:
         GenericNameChecker,
         InnerClassPositionChecker,
         InternalErrorChecker,
-        LineFeedChecker,
         LonelyCaseChecker,
         LowercaseHexadecimalChecker,
         MeaninglessWordChecker,
