@@ -7,7 +7,7 @@ abstract class RulebookRule implements TSESLint.RuleModule<string, readonly unkn
     protected constructor(
         description: string,
         messages: Record<string, string>,
-        schema: JSONSchema4[] = [],
+        schema: readonly JSONSchema4[] = [],
     ) {
         this.meta = {
             type: 'problem',

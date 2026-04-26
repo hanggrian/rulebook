@@ -42,7 +42,7 @@ class UnnecessaryAbstractRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'unnecessary.abstract';
+    private static MSG: string = 'unnecessary.abstract';
 }
 
 export default new UnnecessaryAbstractRule();

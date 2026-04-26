@@ -71,7 +71,7 @@ class RedundantIfRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'redundant.if';
+    private static MSG: string = 'redundant.if';
 }
 
 export default new RedundantIfRule();

@@ -48,12 +48,12 @@ class TodoCommentRule extends RulebookRule {
         };
     }
 
-    static MSG_KEYWORD: string = 'todo.comment.keyword';
-    static MSG_SEPARATOR: string = 'todo.comment.separator';
+    private static MSG_KEYWORD: string = 'todo.comment.keyword';
+    private static MSG_SEPARATOR: string = 'todo.comment.separator';
 
-    static KEYWORD_REGEX: RegExp =
+    private static KEYWORD_REGEX: RegExp =
         new RegExp('\\b(?:[Ff][Ii][Xx][Mm][Ee]|[Tt][Oo][Dd][Oo])\\b(?<!FIXME|TODO)\\b', 'g');
-    static SEPARATOR_REGEX: RegExp = new RegExp('\\b(todo|fixme)\\S', 'gi');
+    private static SEPARATOR_REGEX: RegExp = new RegExp('\\b(todo|fixme)\\S', 'gi');
 }
 
 export default new TodoCommentRule();

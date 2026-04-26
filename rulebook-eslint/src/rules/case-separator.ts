@@ -64,8 +64,8 @@ class CaseSeparatorRule extends RulebookRule {
         };
     }
 
-    static MSG_MISSING: string = 'case.separator.missing';
-    static MSG_UNEXPECTED: string = 'case.separator.unexpected';
+    private static MSG_MISSING: string = 'case.separator.missing';
+    private static MSG_UNEXPECTED: string = 'case.separator.unexpected';
 }
 
 export default new CaseSeparatorRule();

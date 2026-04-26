@@ -30,7 +30,7 @@ dependencies = [
 packages = ["rulebook_pylint"]
 
 [tool.hatch.build.targets.sdist]
-include = ["rulebook_pylint/resources"]
+include = ["rulebook_pylint/"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -23,13 +23,13 @@ In this library, a class means a class-like structure, which can be:
 - Interface
 - Enum
 - Java-specific constructs
-    - Annotation
-    - Record (14+)
-    - Pattern (17+)
+  - Annotation
+  - Record (14+)
+  - Pattern (17+)
 - Kotlin-specific constructs
-    - Data class
-    - Sealed class
-    - Object
+  - Data class
+  - Sealed class
+  - Object
 
 ### Declaration
 

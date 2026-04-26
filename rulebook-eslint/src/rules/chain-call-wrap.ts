@@ -86,8 +86,8 @@ class ChainCallWrapRule extends RulebookRule {
         };
     }
 
-    static MSG_MISSING: string = 'chain.call.wrap.missing';
-    static MSG_UNEXPECTED: string = 'chain.call.wrap.unexpected';
+    private static MSG_MISSING: string = 'chain.call.wrap.missing';
+    private static MSG_UNEXPECTED: string = 'chain.call.wrap.unexpected';
 }
 
 export default new ChainCallWrapRule();

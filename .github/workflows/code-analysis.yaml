@@ -18,7 +18,7 @@ jobs:
 
       - uses: ./.github/actions/setup-workspace
 
-      - run: pnpm -r lint
+      - run: pnpm lint
 
   upload-coverage:
     runs-on: ubuntu-latest

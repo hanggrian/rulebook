@@ -3,7 +3,7 @@
   "scripts": {
     "prepare": "pnpm build",
     "build": "../gradlew compileKotlin",
-    "lint": "../gradlew ktlintCheck",
+    "lint": "../gradlew ktlintCheck && pnpm exec stylebook *.json",
     "test": "../gradlew test",
     "coverage": "../gradlew koverXmlReport"
   }

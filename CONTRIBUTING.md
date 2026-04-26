@@ -1,6 +1,8 @@
 # Developing
 
-Custom rules for each linter are implemented differently based on the tool capabilities and the limitations of the underlying language parser. Below are the details on which classes to extend for each linter.
+Custom rules for each linter are implemented differently based on the tool
+capabilities and the limitations of the underlying language parser. Below are
+the details on which classes to extend for each linter.
 
 ```mermaid
 graph LR
@@ -53,11 +55,11 @@ graph LR
 Rule message templates are stored in configuration files, distinct for each
 source language.
 
-Source language | Target language | File extension
---- | --- | ---
-Kotlin | Java, Groovy, Kotlin | `.properties`
-Python | C/C++, Python | `.cnf`
-TypeScript | JavaScript, TypeScript | `.json`
+| Source language | Target language | File extension |
+| --- | --- | --- |
+| Kotlin | Java, Groovy, Kotlin | `.properties` |
+| Python | C/C++, Python | `.cnf` |
+| TypeScript | JavaScript, TypeScript | `.json` |
 
 ## Debugging
 

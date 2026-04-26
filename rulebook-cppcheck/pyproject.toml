@@ -29,7 +29,7 @@ dependencies = [
 packages = ["rulebook_cppcheck"]
 
 [tool.hatch.build.targets.sdist]
-include = ["rulebook_cppcheck/resources"]
+include = ["rulebook_cppcheck/"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

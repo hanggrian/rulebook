@@ -49,7 +49,7 @@ from rulebook_cppcheck.checkers.unnecessary_trailing_whitespace import \
     UnnecessaryTrailingWhitespaceChecker
 from rulebook_cppcheck.checkers.uppercase_l import UppercaseLChecker
 
-__all__ = [
+__all__: list[str] = [
     'AbbreviationAsWordChecker',
     'AssignmentWrapChecker',
     'BlockCommentSpacesChecker',

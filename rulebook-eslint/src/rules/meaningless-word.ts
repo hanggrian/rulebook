@@ -63,8 +63,8 @@ class MeaninglessWordRule extends RulebookRule {
         };
     }
 
-    static MSG_ALL: string = 'meaningless.word.all';
-    static MSG_UTIL: string = 'meaningless.word.util';
+    private static MSG_ALL: string = 'meaningless.word.all';
+    private static MSG_UTIL: string = 'meaningless.word.util';
 }
 
 export default new MeaninglessWordRule();

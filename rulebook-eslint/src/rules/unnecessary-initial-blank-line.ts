@@ -27,7 +27,7 @@ class UnnecessaryInitialBlankLineRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'unnecessary.initial.blank.line';
+    private static MSG: string = 'unnecessary.initial.blank.line';
 }
 
 export default new UnnecessaryInitialBlankLineRule();

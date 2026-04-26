@@ -2,11 +2,13 @@
   "name": "testing",
   "private": true,
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prepare": "pnpm build",
     "build": "../gradlew compileJava && tsc -p tsconfig.json",
-    "lint": "../gradlew ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/"
+    "lint": "../gradlew ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/ && uv run stylebook *.toml && pnpm exec stylebook *.json"
   },
   "engines": {
     "node": ">=12.0.0"

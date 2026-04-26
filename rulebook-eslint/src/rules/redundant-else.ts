@@ -38,7 +38,7 @@ class RedundantElseRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'redundant.else';
+    private static MSG: string = 'redundant.else';
 }
 
 export default new RedundantElseRule();

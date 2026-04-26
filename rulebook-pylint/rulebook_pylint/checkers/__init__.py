@@ -51,7 +51,7 @@ def initialize(linter: PyLinter) -> None:
     register_plugins(linter, __path__[0])
 
 
-__all__ = [
+__all__: list[str] = [
     'AbbreviationAsWordChecker',
     'BlockCommentClipChecker',
     'BlockCommentTrimChecker',
@@ -69,7 +69,6 @@ __all__ = [
     'GenericNameChecker',
     'InnerClassPositionChecker',
     'InternalErrorChecker',
-    'LineFeedChecker',
     'LonelyCaseChecker',
     'LowercaseHexadecimalChecker',
     'MeaninglessWordChecker',

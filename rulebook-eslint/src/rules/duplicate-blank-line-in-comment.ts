@@ -38,7 +38,7 @@ class DuplicateBlankLineInCommentRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'duplicate.blank.line.in.comment';
+    private static MSG: string = 'duplicate.blank.line.in.comment';
 }
 
 export default new DuplicateBlankLineInCommentRule();

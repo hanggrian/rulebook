@@ -32,7 +32,7 @@ class RedundantDefaultRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'redundant.default';
+    private static MSG: string = 'redundant.default';
 }
 
 export default new RedundantDefaultRule();

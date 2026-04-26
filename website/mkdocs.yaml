@@ -7,10 +7,10 @@ repo_name: hanggrian/rulebook
 repo_url: https://github.com/hanggrian/rulebook
 
 copyright: >
-  <a href="https://app.circleci.com/pipelines/github/hanggrian/rulebook/">
+  <a href="https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yml">
     <img
-      src="https://img.shields.io/circleci/build/gh/hanggrian/rulebook"
-      alt="CircleCI"/>
+      src="https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yml"
+      alt="GitHub Actions"/>
   </a>
   <a href="https://app.codecov.io/gh/hanggrian/rulebook/">
     <img
@@ -48,6 +48,17 @@ copyright: >
     <img
       src="https://img.shields.io/badge/python-3.10+-informational"
       alt="Python"/>
+  </a>
+  &emsp;
+  <a href="https://www.npmjs.com/package/rulebook-eslint/">
+    <img
+      src="https://shields.io/npm/v/rulebook-eslint"
+      alt="NPM"/>
+  </a>
+  <a href="https://nodejs.org/en/blog/release/v12.0.0/">
+    <img
+      src="https://img.shields.io/badge/node-12+-informational"
+      alt="Node"/>
   </a>
 
 theme:
@@ -91,12 +102,17 @@ nav:
       - Checkstyle standard checks: https://checkstyle.org/checks.html?ext
       - CodeNarc rules: https://codenarc.org/codenarc-rule-index.html?ext
       - Ktlint standard rules: https://pinterest.github.io/ktlint/latest/rules/standard/?ext
+      - Cppcheck checks: https://sourceforge.net/p/cppcheck/wiki/ListOfChecks/?ext
       - Pylint checkers: https://pylint.pycqa.org/en/latest/user_guide/checkers/features.html?ext
+      - ESLint rules: https://eslint.org/docs/latest/rules/?ext
+      - typescript-eslint rules: https://typescript-eslint.io/rules/?ext
   - Rationales:
     - Common rationales: rationales/index.md
     - External links:
       - Kotlin coding conventions: https://kotlinlang.org/docs/coding-conventions.html?ext
+      - C++ core guidelines: https://isocpp.github.io/CppCoreGuidelines/?ext
       - PEP 8: https://peps.python.org/pep-0008/?ext
+      - Crockford code conventions: https://www.crockford.com/code.html?ext
   - Javadoc: api/javadoc
   - Pydoc: api/pydoc
   - TSDoc: api/tsdoc

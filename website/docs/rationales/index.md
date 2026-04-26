@@ -11,20 +11,6 @@ abstract class Message {
 }
 ```
 
-## Annotate test case
-
-Test classes should contain at least one test method annotated with the test
-annotation.
-
-```kotlin hl_lines="2"
-class UserServiceTest {
-    fun testCreateUser() {
-        val user = User("Alice", 30)
-        assertEquals("Alice", user.name)
-    }
-}
-```
-
 ## Avoid primitive names
 
 When declaring string and primitive variables, it is tempting to use simple

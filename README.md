@@ -1,4 +1,4 @@
-[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yml)](https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yml)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yaml)](https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yaml)
 [![Codecov](https://img.shields.io/codecov/c/gh/hanggrian/rulebook)](https://app.codecov.io/gh/hanggrian/rulebook/)
 [![Renovate](https://img.shields.io/badge/dependency-mend-blue)](https://developer.mend.io/github/hanggrian/rulebook/)\
 [![Maven Central](https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/)
@@ -6,6 +6,7 @@
 [![PyPI](https://shields.io/pypi/v/rulebook-pylint)](https://pypi.org/project/rulebook-pylint/)
 [![TestPyPI](https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org)](https://test.pypi.org/project/rulebook-pylint/)
 [![Python](https://img.shields.io/badge/python-3.10+-informational)](https://docs.python.org/3.10/)\
+[![NPM](https://shields.io/npm/v/rulebook-eslint)](https://www.npmjs.com/package/rulebook-eslint/)
 [![Node](https://img.shields.io/badge/node-12+-informational)](https://nodejs.org/en/blog/release/v12.0.0/)
 
 # Rulebook
@@ -48,8 +49,8 @@ dependencies {
 ### PyPI
 
 ```sh
-pip install rulebook-pylint pylint regex
-pip install rulebook-cppcheck cppcheck regex
+pip install rulebook-pylint
+pip install rulebook-cppcheck
 ```
 
 ### NPM

@@ -4,3 +4,4 @@ packages:
   - 'testing'
   - 'stress-test'
   - 'sample*'
+  - 'website'

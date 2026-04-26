@@ -44,7 +44,7 @@ class GenericNameRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'generic.name';
+    private static MSG: string = 'generic.name';
 }
 
 export default new GenericNameRule();

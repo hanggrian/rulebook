@@ -76,7 +76,7 @@ class CommentTrimRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'comment.trim';
+    private static MSG: string = 'comment.trim';
 }
 
 export default new CommentTrimRule();

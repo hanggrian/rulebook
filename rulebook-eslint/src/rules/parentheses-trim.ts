@@ -86,15 +86,15 @@ class ParenthesesTrimRule extends RulebookRule {
         };
     }
 
-    static PAIRS: Set<string[]> =
+    private static PAIRS: Set<string[]> =
         new Set([
             ['(', ')'],
             ['[', ']'],
             ['<', '>'],
         ]);
 
-    static MSG_FIRST: string = 'parentheses.trim.first';
-    static MSG_LAST: string = 'parentheses.trim.last';
+    private static MSG_FIRST: string = 'parentheses.trim.first';
+    private static MSG_LAST: string = 'parentheses.trim.last';
 }
 
 export default new ParenthesesTrimRule();

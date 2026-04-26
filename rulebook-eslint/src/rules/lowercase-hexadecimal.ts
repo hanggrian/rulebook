@@ -37,7 +37,7 @@ class LowercaseHexadecimalRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'lowercase.hexadecimal';
+    private static MSG: string = 'lowercase.hexadecimal';
 }
 
 export default new LowercaseHexadecimalRule();

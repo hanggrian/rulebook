@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "lint": "uv run pylint **/*.py --rcfile=../.pylintrc",
+    "lint": "uv run pylint **/*.py --rcfile=../.pylintrc && uv run stylebook *.toml && pnpm exec stylebook *.json",
     "test": "uv run pytest",
     "coverage": "uv run pytest --cov=."
   }

@@ -1,6 +1,6 @@
 from rulebook_pylint import checkers, options
 
-__all__ = [
+__all__: list[str] = [
     'checkers',
     'options',
 ]

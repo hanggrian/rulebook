@@ -6,10 +6,7 @@
   "bugs": {
     "url": "https://github.com/hanggrian/rulebook/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hanggrian/rulebook.git"
-  },
+  "repository": "hanggrian/rulebook",
   "license": "Apache-2.0",
   "author": "Hendra Anggrian <hanggrian@proton.me>",
   "type": "module",
@@ -21,14 +18,16 @@
   "scripts": {
     "prepare": "pnpm build",
     "build": "tsc -p tsconfig.build.json",
-    "lint": "eslint src/",
+    "lint": "eslint src/ && pnpm exec stylebook *.json",
     "test": "vitest --run src/__tests__/**/*.ts",
-    "coverage": "vitest run --coverage src/__tests__/**/*.ts --reporter=junit --outputFile=test-report.junit.xml"
+    "coverage": "vitest run --coverage src/__tests__/**/*.ts --reporter=junit --outputFile=test-report.junit.xml",
+    "prepublishOnly": "cp ../README.md ./",
+    "postpublish": "rm ./README.md"
   },
   "engines": {
     "node": ">=12.0.0"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@typescript-eslint/parser": "^8.58.1",
     "@typescript-eslint/utils": "^8.58.1",
     "rulebook-eslint": "workspace:*",

@@ -65,10 +65,10 @@ class NestedIfElseRule extends RulebookRule {
         };
     }
 
-    static MSG_INVERT: string = 'nested.if.else.invert';
-    static MSG_LIFT: string = 'nested.if.else.lift';
+    private static MSG_INVERT: string = 'nested.if.else.invert';
+    private static MSG_LIFT: string = 'nested.if.else.lift';
 
-    static hasMultipleLines(node: Statement): boolean {
+    private static hasMultipleLines(node: Statement): boolean {
         if (node.type !== 'BlockStatement') {
             return isMultiline(node);
         }

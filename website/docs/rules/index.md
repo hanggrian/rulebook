@@ -83,12 +83,12 @@ question mark or exclamation mark.
 
 ??? Configuration
 
-    Setting | Default value
-    --- | ---
-    :material-language-java:{ .lg .middle } `BlockTagPunctuation#tags` | @param, @return
-    :simple-apachegroovy:{ .lg .middle } `BlockTagPunctuation#tags` | @param, @return
-    :material-language-kotlin:{ .lg .middle } `rulebook_punctuate_block_tags` | @constructor, @receiver, @property, @param, @return
-    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--punctuate-block-tags` | @param, @return
+    | Setting | Default value |
+    | --- | --- |
+    | :material-language-java:{ .lg .middle } `BlockTagPunctuation#tags` | @param, @return |
+    | :simple-apachegroovy:{ .lg .middle } `BlockTagPunctuation#tags` | @param, @return |
+    | :material-language-kotlin:{ .lg .middle } `rulebook_punctuate_block_tags` | @constructor, @receiver, @property, @param, @return |
+    | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--punctuate-block-tags` | @param, @return |
 
 ### TODO comment
 
@@ -2388,15 +2388,15 @@ limit, it should be split into multiple files.
 
 ??? Configuration
 
-    Setting | Default value
-    --- | ---
-    :material-language-java:{ .lg .middle } `FileLength#max` | 1.000
-    :simple-apachegroovy:{ .lg .middle } `ClassSize#maxLines` | 1.000
-    :material-language-kotlin:{ .lg .middle } `rulebook_max_file_size` | 1.000
-    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--max-file-size` | 1.000
-    :material-language-python:{ .lg .middle } `rulebook-max-file-size` | 1.000
-    :material-language-javascript:{ .lg .middle } `max-lines` | 1.000
-    :material-language-typescript:{ .lg .middle } `max-lines` | 1.000
+    | Setting | Default value |
+    | --- | --- |
+    | :material-language-java:{ .lg .middle } `FileLength#max` | 1.000 |
+    | :simple-apachegroovy:{ .lg .middle } `ClassSize#maxLines` | 1.000 |
+    | :material-language-kotlin:{ .lg .middle } `rulebook_max_file_size` | 1.000 |
+    | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--max-file-size` | 1.000 |
+    | :material-language-python:{ .lg .middle } `rulebook-max-file-size` | 1.000 |
+    | :material-language-javascript:{ .lg .middle } `max-lines` | 1.000 |
+    | :material-language-typescript:{ .lg .middle } `max-lines` | 1.000 |
 
 ### Final newline
 
@@ -2777,15 +2777,15 @@ Length of a line should not exceed certain number of characters.
 
 ??? Configuration
 
-    Setting | Default value
-    --- | ---
-    :material-language-java:{ .lg .middle } `LineLength#max` | 100
-    :simple-apachegroovy:{ .lg .middle } `LineLength#length` | 100
-    :material-language-kotlin:{ .lg .middle } `rulebook_max_line_length` | 100
-    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--max-line-length` | 100
-    :material-language-python:{ .lg .middle } `rulebook-max-line-length` | 100
-    :material-language-javascript:{ .lg .middle } `max-len` | 100
-    :material-language-typescript:{ .lg .middle } `max-len` | 100
+    | Setting | Default value |
+    | --- | --- |
+    | :material-language-java:{ .lg .middle } `LineLength#max` | 100 |
+    | :simple-apachegroovy:{ .lg .middle } `LineLength#length` | 100 |
+    | :material-language-kotlin:{ .lg .middle } `rulebook_max_line_length` | 100 |
+    | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--max-line-length` | 100 |
+    | :material-language-python:{ .lg .middle } `rulebook-max-line-length` | 100 |
+    | :material-language-javascript:{ .lg .middle } `max-len` | 100 |
+    | :material-language-typescript:{ .lg .middle } `max-len` | 100 |
 
 ### Unnecessary trailing space
 
@@ -3537,15 +3537,15 @@ identifier should be descriptive and meaningful.
 
 ??? Configuration
 
-    Setting | Default value
-    --- | ---
-    :material-language-java:{ .lg .middle } `IllegalIdentifierName#format` | object, integer, string, objects, integers, strings
-    :simple-apachegroovy:{ .lg .middle } `IllegalVariableName#names` | object, integer, string, object, integers, strings
-    :material-language-kotlin:{ .lg .middle } `rulebook_illegal_variable_names` | any, boolean, byte, char, double, float, int, long, short, string, many, booleans, bytes, chars, doubles, floats, ints, longs, shorts
-    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--illegal-variable-names` | integer, string, integers, strings
-    :material-language-python:{ .lg .middle } `bad-names` | objs, ints, strs
-    :material-language-javascript:{ .lg .middle } `id-denylist` | error, object, number, string, objects, numbers, strings
-    :material-language-typescript:{ .lg .middle } `id-denylist` | error, object, number, string, objects, numbers, strings
+    | Setting | Default value |
+    | --- | --- |
+    | :material-language-java:{ .lg .middle } `IllegalIdentifierName#format` | object, integer, string, objects, integers, strings |
+    | :simple-apachegroovy:{ .lg .middle } `IllegalVariableName#names` | object, integer, string, object, integers, strings |
+    | :material-language-kotlin:{ .lg .middle } `rulebook_illegal_variable_names` | any, boolean, byte, char, double, float, int, long, short, string, many, booleans, bytes, chars, doubles, floats, ints, longs, shorts |
+    | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--illegal-variable-names` | integer, string, integers, strings |
+    | :material-language-python:{ .lg .middle } `bad-names` | objs, ints, strs |
+    | :material-language-javascript:{ .lg .middle } `id-denylist` | error, object, number, string, objects, numbers, strings |
+    | :material-language-typescript:{ .lg .middle } `id-denylist` | error, object, number, string, objects, numbers, strings |
 
 ### Meaningless word
 
@@ -3633,13 +3633,13 @@ class.
 
 ??? Configuration
 
-    Setting | Default value
-    --- | ---
-    :material-language-java:{ .lg .middle } `MeaninglessWord#words` | Util, Utility, Helper, Manager, Wrapper
-    :simple-apachegroovy:{ .lg .middle } `MeaninglessWord#words` | Util, Utility, Helper, Manager, Wrapper
-    :material-language-kotlin:{ .lg .middle } `rulebook_meaningless_words` | Util, Utility, Helper, Manager, Wrapper
-    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--meaningless-words` | Util, Utility, Helper, Manager, Wrapper
-    :material-language-python:{ .lg .middle } `rulebook-meaningless-words` | Util, Utility, Helper, Manager, Wrapper
+    | Setting | Default value |
+    | --- | --- |
+    | :material-language-java:{ .lg .middle } `MeaninglessWord#words` | Util, Utility, Helper, Manager, Wrapper |
+    | :simple-apachegroovy:{ .lg .middle } `MeaninglessWord#words` | Util, Utility, Helper, Manager, Wrapper |
+    | :material-language-kotlin:{ .lg .middle } `rulebook_meaningless_words` | Util, Utility, Helper, Manager, Wrapper |
+    | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--meaningless-words` | Util, Utility, Helper, Manager, Wrapper |
+    | :material-language-python:{ .lg .middle } `rulebook-meaningless-words` | Util, Utility, Helper, Manager, Wrapper |
 
 ### Package name
 
@@ -4595,15 +4595,15 @@ to the last member that uses them.
 
 ??? Configuration
 
-    Setting | Default value
-    --- | ---
-    :material-language-java:{ .lg .middle } `MemberOrder#order` | property, constructor, function, static
-    :simple-apachegroovy:{ .lg .middle } `MemberOrder#order` | property, constructor, function, static
-    :material-language-kotlin:{ .lg .middle } `rulebook_member_order` | property, initializer, constructor, function, companion
-    :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--member-order` | property, constructor, function, static
-    :material-language-python:{ .lg .middle } `rulebook-member-order` | property, constructor, function, static
-    :material-language-javascript:{ .lg .middle } `sort-class-members` | property, constructor, function, static
-    :material-language-typescript:{ .lg .middle } `sort-class-members` | property, constructor, function, static
+    | Setting | Default value |
+    | --- | --- |
+    | :material-language-java:{ .lg .middle } `MemberOrder#order` | property, constructor, function, static |
+    | :simple-apachegroovy:{ .lg .middle } `MemberOrder#order` | property, constructor, function, static |
+    | :material-language-kotlin:{ .lg .middle } `rulebook_member_order` | property, initializer, constructor, function, companion |
+    | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--member-order` | property, constructor, function, static |
+    | :material-language-python:{ .lg .middle } `rulebook-member-order` | property, constructor, function, static |
+    | :material-language-javascript:{ .lg .middle } `sort-class-members` | property, constructor, function, static |
+    | :material-language-typescript:{ .lg .middle } `sort-class-members` | property, constructor, function, static |
 
 ### Modifier order
 

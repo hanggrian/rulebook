@@ -46,7 +46,7 @@ class AssignmentWrapRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'assignment.wrap';
+    private static MSG: string = 'assignment.wrap';
 }
 
 export default new AssignmentWrapRule();

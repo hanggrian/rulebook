@@ -30,9 +30,9 @@ class FileNameRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'file.name';
+    private static MSG: string = 'file.name';
 
-    static KEBAB_CASE_REGEX: RegExp = /^[a-z0-9-.]+\.(js|jsx|ts|tsx)$/;
+    private static KEBAB_CASE_REGEX: RegExp = /^[a-z0-9-.]+\.(js|jsx|ts|tsx)$/;
 }
 
 export default new FileNameRule();

@@ -54,7 +54,7 @@ class UnnecessaryContinueRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'unnecessary.continue';
+    private static MSG: string = 'unnecessary.continue';
 }
 
 export default new UnnecessaryContinueRule();

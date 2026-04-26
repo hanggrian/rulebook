@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "pnpm build",
     "build": "../gradlew compileKotlin",
-    "lint": "../gradlew ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/",
+    "lint": "../gradlew ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/ && uv run stylebook *.toml && pnpm exec stylebook *.json",
     "test": "../gradlew test && uv run pytest && vitest --run src/__tests__/**/*.ts"
   },
   "engines": {

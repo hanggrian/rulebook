@@ -14,6 +14,7 @@ testing = { workspace = true }
 
 [dependency-groups]
 dev = [
+  "stylebook==0.1",
   "pdoc",
   # test
   "pytest",

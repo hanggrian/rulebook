@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "lint": "../gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint javascript/ typescript/ && uv run cppcheck --enable=style,performance,portability --addon=../addon.json c/*.c cpp/*.cpp"
+    "lint": "../gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint javascript/ typescript/ && uv run cppcheck --enable=style,performance,portability --addon=../addon.json c/*.c cpp/*.cpp && pnpm exec stylebook *.json"
   },
   "engines": {
     "node": ">=12.0.0"

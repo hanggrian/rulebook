@@ -4,19 +4,22 @@
   "type": "module",
   "scripts": {
     "postinstall": "uv sync",
+    "prelint": "pnpm -r lint",
+    "lint": "uv run stylebook .github/ pnpm-workspace.yaml *.toml && pnpm exec stylebook *.json *.md",
     "precoverage": "pnpm -r coverage",
     "coverage": "uv run coverage combine rulebook-cppcheck/.coverage rulebook-pylint/.coverage && uv run coverage xml",
     "predocumentation": "rm -rf build/dokka/ build/pdoc/ build/typedoc/",
     "documentation": "./gradlew dokkaGenerateHtml && uv run pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/ && typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/",
     "build-cli": "scripts/build_cli.sh",
-    "prebuild-website": "rm -rf website/site/api/",
-    "build-website": "scripts/prepare_mkdocs.sh && pnpm documentation && cd website && uv run mkdocs build && mkdir -p site/api/ && mv ../build/dokka/html/ site/api/javadoc/ && mv ../build/pdoc site/api/pydoc/ && mv ../build/typedoc site/api/tsdoc/",
+    "prepublish-website": "pnpm documentation && rm -rf website/docs/api/ && mkdir -p website/docs/api/ && mv build/dokka/html/ website/docs/api/javadoc/ && mv build/pdoc website/docs/api/pydoc/ && mv build/typedoc website/docs/api/tsdoc/",
+    "publish-website": "scripts/prepare_mkdocs.sh && cd website && uv run mkdocs gh-deploy",
+    "postpublish-website": "rm -rf website/docs/api",
     "preview-website": "scripts/prepare_mkdocs.sh && cd website && uv run mkdocs serve --livereload"
   },
   "engines": {
     "node": ">=12.0.0"
   },
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "pnpm@10.33.2",
   "dependencies": {
     "rulebook-eslint": "workspace:*",
     "rulebook-typescript-eslint": "workspace:*",
@@ -25,7 +28,10 @@
   },
   "devDependencies": {
     "@eslint/js": "9.39.4",
+    "@hanggrian/stylebook": "0.1.0",
+    "@prantlf/jsonlint": "17.0.1",
     "@stylistic/eslint-plugin": "5.10.0",
+    "@stylistic/stylelint-plugin": "5.1.0",
     "@types/sinon": "21.0.1",
     "@vitest/coverage-v8": "4.1.4",
     "eslint": "9.39.4",
@@ -34,7 +40,11 @@
     "eslint-plugin-sort-class-members": "1.22.1",
     "eslint-vitest-rule-tester": "3.1.0",
     "globals": "17.5.0",
+    "htmlhint": "1.9.2",
+    "markdownlint-cli2": "0.22.0",
     "sinon": "21.1.2",
+    "stylelint": "17.9.0",
+    "stylelint-config-recommended": "18.0.0",
     "typedoc": "0.28.19",
     "typescript": "~5.9.2",
     "typescript-eslint": "8.58.1",

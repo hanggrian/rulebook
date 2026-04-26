@@ -22,7 +22,7 @@ class EmptyFileRule extends RulebookRule {
         };
     }
 
-    static MSG: string = 'empty.file';
+    private static MSG: string = 'empty.file';
 }
 
 export default new EmptyFileRule();
