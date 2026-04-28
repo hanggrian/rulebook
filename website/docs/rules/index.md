@@ -1754,8 +1754,6 @@ Single parameter lambdas should not have parentheses.
     - Kotlin if parameter is single
     - Groovy closures, not lambdas
 
-Use single quotes for string literals, unless the string contains single quotes.
-
 ### Uppercase L
 
 Long integer literals should be suffixed with uppercase `L`.
@@ -2398,95 +2396,6 @@ limit, it should be split into multiple files.
     | :material-language-javascript:{ .lg .middle } `max-lines` | 1.000 |
     | :material-language-typescript:{ .lg .middle } `max-lines` | 1.000 |
 
-### Final newline
-
-End files with a newline character.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java
-    class AwesomeImplementation { /*...*/ }
-    ```
-=== "Groovy"
-
-    ```groovy
-    class AwesomeImplementation { /*...*/ }
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    class AwesomeImplementation { /*...*/ }
-    ```
-=== "C/C++"
-
-    ```cpp
-    class AwesomeImplementation { /*...*/ }
-    ```
-=== "Python"
-
-    ```python
-    class AwesomeImplementation:
-        pass
-    ```
-=== "JavaScript"
-
-    ```js
-    class AwesomeImplementation { /*...*/ }
-    ```
-=== "TypeScript"
-
-    ```ts
-    class AwesomeImplementation { /*...*/ }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="2"
-    class AwesomeImplementation { /*...*/ }
-    \n
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2"
-    class AwesomeImplementation { /*...*/ }
-    \n
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="2"
-    class AwesomeImplementation { /*...*/ }
-    \n
-    ```
-=== "C/C++"
-
-    ```cpp hl_lines="2"
-    class AwesomeImplementation { /*...*/ }
-    \n
-    ```
-=== "Python"
-
-    ```python hl_lines="3"
-    class AwesomeImplementation:
-        pass
-    \n
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="2"
-    class AwesomeImplementation { /*...*/ }
-    \n
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="2"
-    class AwesomeImplementation { /*...*/ }
-    \n
-    ```
-
 ### Indent style
 
 Use spaces instead of tabs for indentation.
@@ -2786,6 +2695,95 @@ Length of a line should not exceed certain number of characters.
     | :material-language-python:{ .lg .middle } `rulebook-max-line-length` | 100 |
     | :material-language-javascript:{ .lg .middle } `max-len` | 100 |
     | :material-language-typescript:{ .lg .middle } `max-len` | 100 |
+
+### Trailing newline
+
+End files with a newline character.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    class AwesomeImplementation { /*...*/ }
+    ```
+=== "Groovy"
+
+    ```groovy
+    class AwesomeImplementation { /*...*/ }
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    class AwesomeImplementation { /*...*/ }
+    ```
+=== "C/C++"
+
+    ```cpp
+    class AwesomeImplementation { /*...*/ }
+    ```
+=== "Python"
+
+    ```python
+    class AwesomeImplementation:
+        pass
+    ```
+=== "JavaScript"
+
+    ```js
+    class AwesomeImplementation { /*...*/ }
+    ```
+=== "TypeScript"
+
+    ```ts
+    class AwesomeImplementation { /*...*/ }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
+    \n
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
+    \n
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
+    \n
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
+    \n
+    ```
+=== "Python"
+
+    ```python hl_lines="3"
+    class AwesomeImplementation:
+        pass
+    \n
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
+    \n
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    class AwesomeImplementation { /*...*/ }
+    \n
+    ```
 
 ### Unnecessary trailing space
 
@@ -8925,7 +8923,7 @@ Prohibits first empty line in Python function and class definitions.
             total += value
     ```
 
-### Unnecessary initial blank line
+### Unnecessary leading blank line
 
 The first line of a file cannot be a blank line.
 

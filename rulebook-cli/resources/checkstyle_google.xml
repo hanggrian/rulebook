@@ -77,7 +77,7 @@
 
   <!-- Trimming -->
   <module name="DuplicateBlankLine"/>
-  <module name="UnnecessaryInitialBlankLine"/>
+  <module name="UnnecessaryLeadingBlankLine"/>
 
   <module name="TreeWalker">
     <module name="OuterTypeFilename"/>

@@ -7,9 +7,9 @@ repo_name: hanggrian/rulebook
 repo_url: https://github.com/hanggrian/rulebook
 
 copyright: >
-  <a href="https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yml">
+  <a href="https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yaml">
     <img
-      src="https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yml"
+      src="https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yaml"
       alt="GitHub Actions"/>
   </a>
   <a href="https://app.codecov.io/gh/hanggrian/rulebook/">

@@ -19,7 +19,6 @@ from rulebook_cppcheck.checkers import \
     DuplicateSpaceChecker, \
     FileNameChecker, \
     FileSizeChecker, \
-    FinalNewlineChecker, \
     GenericNameChecker, \
     IdentifierNameChecker, \
     IllegalCatchChecker, \
@@ -44,6 +43,7 @@ from rulebook_cppcheck.checkers import \
     RedundantElseChecker, \
     RedundantIfChecker, \
     TodoCommentChecker, \
+    TrailingNewlineChecker, \
     UnnecessaryReturnChecker, \
     UnnecessaryTrailingWhitespaceChecker, \
     UppercaseLChecker
@@ -66,9 +66,9 @@ if __name__ == '__main__':
         UppercaseLChecker(),
         # Formatting
         FileSizeChecker(),
-        FinalNewlineChecker(),
         IndentStyleChecker(),
         LineLengthChecker(),
+        TrailingNewlineChecker(),
         UnnecessaryTrailingWhitespaceChecker(),
         # Naming
         AbbreviationAsWordChecker(),

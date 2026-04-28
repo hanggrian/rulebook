@@ -1,6 +1,7 @@
 #include <boost/program_options.hpp>
 #include <filesystem>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include "cli.h"
@@ -18,12 +19,12 @@ int main(const int argc, char **argv) {
         return die("See --help.");
     }
 
-    options_description options(BOLD + BLUE + "Options" + RESET);
+    options_description options("\u2699\ufe0f  " + BOLD + BLUE + "Options" + RESET);
     options.add_options()
             ("google,G", bool_switch()->default_value(false), "Use Google style guide")
             ("help,h", "Display this message")
-            ("verbose,v", bool_switch()->default_value(false), "Enable verbose output")
-            ("version,V", "Show app version");
+            ("quiet,q", bool_switch()->default_value(false), "Disable verbose output")
+            ("version,v", "Show app version");
     options_description hidden;
     hidden.add_options()
             ("command", value<string>())
@@ -57,11 +58,11 @@ int main(const int argc, char **argv) {
         cout << "Helper for Rulebook linter extensions" << endl << endl;
         cout <<
                 BOLD <<
-                "Usage" <<
+                "\U0001f680 Usage" <<
                 RESET <<
                 ":" <<
                 endl <<
-                "  rulebook " <<
+                "   rulebook " <<
                 CYAN <<
                 "<command>" <<
                 RESET <<
@@ -78,35 +79,46 @@ int main(const int argc, char **argv) {
         cout <<
                 BOLD <<
                 CYAN <<
-                "Command" <<
+                "\u26a1 Command" <<
                 RESET <<
                 ":" <<
                 endl <<
-                "  init <linter> <dir>  Write linter configuration" <<
+                "   init <linter> <dir>   Write linter configuration" <<
                 endl <<
-                "  lint <path>          Run lint and report violations" <<
+                "   lint <path>           Run lint and report violations" <<
                 endl <<
-                "  print <file>         Print AST of a source file" <<
+                "   print <file>          Print AST of a source file" <<
                 endl <<
                 endl <<
                 BOLD <<
                 MAGENTA <<
-                "Arguments" <<
+                "\U0001f3f7  Arguments" <<
                 RESET <<
                 ":" <<
                 endl <<
-                "  file          Supports '.c', '.cpp', '.java', '.kt', '.kts'" <<
+                "   file           Supports '.c', '.cpp', '.java', '.kt', '.kts'" <<
                 endl <<
-                "  linter        One of 'checkstyle', 'cppcheck', 'codenarc', 'eslint'," <<
+                "   linter         One of 'checkstyle', 'cppcheck', 'codenarc', 'eslint'," <<
                 endl <<
-                "                'ktlint', 'pylint' or 'typescript-eslint'" <<
+                "                  'ktlint', 'pylint' or 'typescript-eslint'" <<
                 endl <<
-                "  path (=self)  Directory or regular file" <<
+                "   path (=self)   Directory or regular file" <<
                 endl <<
-                "  dir (=self)   Target project directory" <<
+                "   dir (=self)    Target project directory" <<
                 endl <<
                 endl;
-        cout << options;
+        stringstream ss;
+        ss << options;
+        string line;
+        bool header_passed = false;
+        while (getline(ss, line)) {
+            if (!header_passed) {
+                if (line.find(':') != string::npos) header_passed = true;
+                cout << line << endl;
+                continue;
+            }
+            cout << " " << line << endl;
+        }
         return 0;
     }
 
@@ -143,7 +155,7 @@ int main(const int argc, char **argv) {
         return run_lint(
             path(check_variables["path"].as<string>()),
             variables["google"].as<bool>(),
-            variables["verbose"].as<bool>()
+            variables["quiet"].as<bool>()
         );
     }
 
@@ -181,7 +193,7 @@ int main(const int argc, char **argv) {
             init_variables["linter"].as<string>(),
             dir,
             variables["google"].as<bool>(),
-            variables["verbose"].as<bool>()
+            variables["quiet"].as<bool>()
         );
     }
 
@@ -209,7 +221,7 @@ int main(const int argc, char **argv) {
 
         return print_file(
             print_variables["file"].as<string>(),
-            variables["verbose"].as<bool>()
+            variables["quiet"].as<bool>()
         );
     }
 

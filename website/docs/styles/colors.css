@@ -1,3 +1,9 @@
+/* Fenced code highlight */
+* {
+  --md-code-hl-color: rgb(2, 166, 242);
+  --md-code-hl-color--light: rgba(2, 166, 242, 0.15);
+}
+
 /* MkDocs base colors */
 #primary {
   color: var(--md-primary-fg-color);
@@ -97,10 +103,4 @@
   background-color: rgb(255, 193, 5);
   -webkit-mask-image: var(--md-admonition-icon--integration);
   mask-image: var(--md-admonition-icon--integration);
-}
-
-/* Fenced code highlight */
-[data-md-color-scheme="slate"] {
-  --md-code-hl-color: rgb(2, 166, 242);
-  --md-code-hl-color--light: rgba(2, 166, 242, 0.15);
 }

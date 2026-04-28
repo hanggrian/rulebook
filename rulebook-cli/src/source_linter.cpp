@@ -23,7 +23,7 @@ namespace {
 int run_lint(
     const path &target_path,
     const bool google_variant,
-    const bool verbose
+    const bool quiet
 ) {
     set<reference_wrapper<const Linter> > linters = {};
     if (is_regular_file(target_path)) {
@@ -37,17 +37,17 @@ int run_lint(
         return die("No supported source code found in directory.");
     }
 
-    if (verbose) {
+    if (!quiet) {
         auto names = linters | views::transform([](const Linter &l) { return l.name; });
         cout <<
-                "Linters: " <<
+                "\U0001f4e6 Linters: " <<
                 BOLD <<
                 ranges::fold_left(names, string{}, [](const string &a, const string &b) {
                     return a.empty() ? b : a + ", " + b;
                 }) <<
                 RESET <<
                 endl;
-        cout << "Path:    " << BOLD << target_path.string() << RESET << endl << endl;
+        cout << "\U0001f4c4 Path:    " << BOLD << target_path.string() << RESET << endl << endl;
     }
 
     return ranges::all_of(linters, [&](const auto &linter) {

@@ -15,7 +15,7 @@ import redundantElseRule from './rules/redundant-else.js';
 import redundantIfRule from './rules/redundant-if.js';
 import todoCommentRule from './rules/todo-comment.js';
 import unnecessaryContinueRule from './rules/unnecessary-continue.js';
-import unnecessaryInitialBlankLineRule from './rules/unnecessary-initial-blank-line.js';
+import unnecessaryLeadingBlankLineRule from './rules/unnecessary-leading-blank-line.js';
 import type { ESLint, Linter } from 'eslint';
 
 const crockfordConfig: Linter.RulesRecord = {
@@ -497,7 +497,7 @@ const plugin: ESLint.Plugin = {
         'parentheses-trim': parenthesesTrimRule,
         'todo-comment': todoCommentRule,
         'unnecessary-continue': unnecessaryContinueRule,
-        'unnecessary-initial-blank-line': unnecessaryInitialBlankLineRule,
+        'unnecessary-initial-blank-line': unnecessaryLeadingBlankLineRule,
     },
     configs: {
         crockford: {

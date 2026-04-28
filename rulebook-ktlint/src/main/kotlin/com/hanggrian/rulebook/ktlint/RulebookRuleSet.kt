@@ -51,7 +51,7 @@ import com.hanggrian.rulebook.ktlint.rules.ScriptFileNameRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryAbstractRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryContinueRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessaryInitialBlankLineRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryLeadingBlankLineRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryReturnRule
 import com.pinterest.ktlint.cli.ruleset.core.api.RuleSetProviderV3
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
@@ -101,7 +101,7 @@ public class RulebookRuleSet : RuleSetProviderV3(ID) {
             RuleProvider { BlockCommentSpacesRule() },
             RuleProvider { BlockTagIndentationRule() },
             RuleProvider { MissingBlankLineBeforeBlockTagsRule() },
-            RuleProvider { UnnecessaryInitialBlankLineRule() },
+            RuleProvider { UnnecessaryLeadingBlankLineRule() },
             // Stating
             RuleProvider { ComplicatedAssignmentRule() },
             RuleProvider { IllegalThrowRule() },
