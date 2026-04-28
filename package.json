@@ -33,7 +33,7 @@
     "@stylistic/eslint-plugin": "5.10.0",
     "@stylistic/stylelint-plugin": "5.1.0",
     "@types/sinon": "21.0.1",
-    "@vitest/coverage-v8": "4.1.4",
+    "@vitest/coverage-v8": "4.1.5",
     "eslint": "9.39.4",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jsdoc": "62.9.0",
@@ -49,7 +49,7 @@
     "typescript": "~5.9.2",
     "typescript-eslint": "8.58.1",
     "vite": "8.0.8",
-    "vitest": "4.1.4",
+    "vitest": "4.1.5",
     "vitest-dom": "0.1.1"
   }
 }
