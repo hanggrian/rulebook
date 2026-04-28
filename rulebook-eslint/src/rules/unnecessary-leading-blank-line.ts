@@ -2,12 +2,12 @@ import messages from '../messages.js';
 import RulebookRule from './rulebook-rule.js';
 import type { AST, Rule } from 'eslint';
 
-/** {@link https://hanggrian.github.io/rulebook/rules/#unnecessary-initial-blank-line|See detail} */
-class UnnecessaryInitialBlankLineRule extends RulebookRule {
+/** {@link https://hanggrian.github.io/rulebook/rules/#unnecessary-leading-blank-line|See detail} */
+class UnnecessaryLeadingBlankLineRule extends RulebookRule {
     constructor() {
-        super('unnecessary-initial-blank-line', {
-            [UnnecessaryInitialBlankLineRule.MSG]:
-                messages.get(UnnecessaryInitialBlankLineRule.MSG),
+        super('unnecessary-leading-blank-line', {
+            [UnnecessaryLeadingBlankLineRule.MSG]:
+                messages.get(UnnecessaryLeadingBlankLineRule.MSG),
         });
     }
 
@@ -22,12 +22,12 @@ class UnnecessaryInitialBlankLineRule extends RulebookRule {
                 if (line.trim().length) {
                     return;
                 }
-                context.report({ node: node, messageId: UnnecessaryInitialBlankLineRule.MSG });
+                context.report({ node: node, messageId: UnnecessaryLeadingBlankLineRule.MSG });
             },
         };
     }
 
-    private static MSG: string = 'unnecessary.initial.blank.line';
+    private static MSG: string = 'unnecessary.leading.blank.line';
 }
 
-export default new UnnecessaryInitialBlankLineRule();
+export default new UnnecessaryLeadingBlankLineRule();

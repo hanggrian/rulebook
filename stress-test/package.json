@@ -3,10 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "pnpm build",
-    "build": "../gradlew compileKotlin",
-    "lint": "../gradlew ktlintCheck && uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/ && uv run stylebook *.toml && pnpm exec stylebook *.json",
-    "test": "../gradlew test && uv run pytest && vitest --run src/__tests__/**/*.ts"
+    "lint": "uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/ && uv run stylebook *.toml && pnpm exec stylebook *.json",
+    "test": "uv run pytest && vitest --run src/__tests__/**/*.ts"
   },
   "engines": {
     "node": ">=12.0.0"

@@ -16,7 +16,7 @@ int init_config(
     const string &linter,
     const optional<string> &dir,
     const bool google_variant,
-    const bool verbose
+    const bool quiet
 ) {
     const optional<reference_wrapper<const Linter> > &optional_linter = get_linter_by_name(linter);
     if (!optional_linter.has_value()) {
@@ -29,11 +29,16 @@ int init_config(
     }
     const path &target_path = target_dir / actual_linter.config_path;
 
-    if (verbose) {
-        cout << "Linter:    " << BOLD << actual_linter.name << RESET << endl;
-        cout << "Directory: " << BOLD << target_dir.string() << RESET << endl;
-        cout << "Flavor:    " << BOLD << (google_variant ? "google" : "default") << RESET << endl;
-        cout << "Target:    " << BOLD << target_path.string() << RESET << endl << endl;
+    if (!quiet) {
+        cout << "\U0001f4e6 Linter:    " << BOLD << actual_linter.name << RESET << endl;
+        cout << "\U0001f4c1 Directory: " << BOLD << target_dir.string() << RESET << endl;
+        cout <<
+                "\U0001f36d Flavor:    " <<
+                BOLD <<
+                (google_variant ? "google" : "default") <<
+                RESET <<
+                endl;
+        cout << "\U0001f3af Target:    " << BOLD << target_path.string() << RESET << endl << endl;
     }
 
     if (is_regular_file(target_path)) {

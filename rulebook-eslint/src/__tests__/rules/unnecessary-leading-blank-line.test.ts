@@ -1,13 +1,13 @@
 import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
-import unnecessaryInitialBlankLineRule from '../../rules/unnecessary-initial-blank-line';
+import unnecessaryLeadingBlankLineRule from '../../rules/unnecessary-leading-blank-line';
 import assertProperties from '../asserts';
 
 describe('UnnecessaryInitialBlankLineTest', () => {
     const assertThat: AssertThat =
-        assertThatRule(unnecessaryInitialBlankLineRule, 'unnecessary-initial-blank-line');
+        assertThatRule(unnecessaryLeadingBlankLineRule, 'unnecessary-leading-blank-line');
 
-    it('Rule properties', () => assertProperties(unnecessaryInitialBlankLineRule));
+    it('Rule properties', () => assertProperties(unnecessaryLeadingBlankLineRule));
 
     it(
         'Trimmed file',

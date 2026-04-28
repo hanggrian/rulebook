@@ -6,7 +6,7 @@
 int run_lint(
     const std::filesystem::path &target_path,
     bool google_variant,
-    bool verbose
+    bool quiet
 );
 
 #endif

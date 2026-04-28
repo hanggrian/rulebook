@@ -11,11 +11,11 @@ if TYPE_CHECKING:
     from pylint.lint import PyLinter
 
 
-class UnnecessaryInitialBlankLineChecker(RulebookTokenChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-initial-blank-line"""
-    _MSG: str = 'unnecessary.initial.blank.line'
+class UnnecessaryLeadingBlankLineChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#unnecessary-leading-blank-line"""
+    _MSG: str = 'unnecessary.leading.blank.line'
 
-    name: str = 'unnecessary-initial-blank-line'
+    name: str = 'unnecessary-leading-blank-line'
     msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
 
     def process_tokens(self, tokens: list[TokenInfo]) -> None:
@@ -27,4 +27,4 @@ class UnnecessaryInitialBlankLineChecker(RulebookTokenChecker):
 
 
 def register(linter: PyLinter) -> None:
-    linter.register_checker(UnnecessaryInitialBlankLineChecker(linter))
+    linter.register_checker(UnnecessaryLeadingBlankLineChecker(linter))

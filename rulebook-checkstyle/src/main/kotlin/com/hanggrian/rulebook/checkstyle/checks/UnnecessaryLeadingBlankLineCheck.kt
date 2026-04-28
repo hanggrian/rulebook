@@ -4,8 +4,8 @@ import com.hanggrian.rulebook.checkstyle.Messages
 import com.puppycrawl.tools.checkstyle.api.FileText
 import java.io.File
 
-/** [See detail](https://hanggrian.github.io/rulebook/rules/#unnecessary-initial-blank-line) */
-public class UnnecessaryInitialBlankLineCheck : RulebookFileCheck() {
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#unnecessary-leading-blank-line) */
+public class UnnecessaryLeadingBlankLineCheck : RulebookFileCheck() {
     override fun processFiltered(file: File, fileText: FileText) {
         super.processFiltered(file, fileText)
 
@@ -18,6 +18,6 @@ public class UnnecessaryInitialBlankLineCheck : RulebookFileCheck() {
     }
 
     private companion object {
-        const val MSG = "unnecessary.initial.blank.line"
+        const val MSG = "unnecessary.leading.blank.line"
     }
 }

@@ -35,9 +35,7 @@ practices in coding style.
 ### Maven
 
 ```gradle
-repositories {
-    mavenCentral()
-}
+repositories.mavenCentral()
 
 dependencies {
     ktlint "com.hanggrian.rulebook:rulebook-ktlint:$version"
@@ -49,19 +47,19 @@ dependencies {
 ### PyPI
 
 ```sh
-pip install rulebook-pylint
 pip install rulebook-cppcheck
+pip install rulebook-pylint
 ```
 
 ### NPM
 
 ```sh
-npm install rulebook-eslint eslint globals \
+npm i rulebook-eslint eslint globals \
   eslint-plugin-import \
   eslint-plugin-jsdoc \
   eslint-plugin-sort-class-members \
   eslint-vitest-rule-tester --save-dev
-npm install rulebook-typescript-eslint typescript-eslint globals \
+npm i rulebook-typescript-eslint typescript-eslint globals \
   eslint-plugin-import \
   eslint-plugin-jsdoc \
   eslint-plugin-sort-class-members \

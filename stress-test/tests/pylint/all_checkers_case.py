@@ -39,7 +39,7 @@ from rulebook_pylint.checkers import \
     UnnecessaryAbstractChecker, \
     UnnecessaryBlankLineAfterColonChecker, \
     UnnecessaryContinueChecker, \
-    UnnecessaryInitialBlankLineChecker
+    UnnecessaryLeadingBlankLineChecker
 
 
 # noinspection PyPep8Naming

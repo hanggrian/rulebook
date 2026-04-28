@@ -3,11 +3,11 @@ package com.hanggrian.rulebook.ktlint.rules
 import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
 import kotlin.test.Test
 
-class UnnecessaryInitialBlankLineRuleTest : RuleTest() {
-    private val assertThatCode = assertThatRule { UnnecessaryInitialBlankLineRule() }
+class UnnecessaryLeadingBlankLineRuleTest : RuleTest() {
+    private val assertThatCode = assertThatRule { UnnecessaryLeadingBlankLineRule() }
 
     @Test
-    fun `Rule properties`() = UnnecessaryInitialBlankLineRule().assertProperties()
+    fun `Rule properties`() = UnnecessaryLeadingBlankLineRule().assertProperties()
 
     @Test
     fun `Trimmed file`() =

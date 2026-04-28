@@ -7,7 +7,7 @@ int init_config(
     const std::string &linter,
     const std::optional<std::string> &dir,
     bool google_variant,
-    bool verbose
+    bool quiet
 );
 
 #endif

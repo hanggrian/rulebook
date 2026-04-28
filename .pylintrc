@@ -75,7 +75,7 @@ load-plugins=
   rulebook_pylint.checkers.redundant_default,
   rulebook_pylint.checkers.unnecessary_blank_line_after_colon,
   rulebook_pylint.checkers.unnecessary_continue,
-  rulebook_pylint.checkers.unnecessary_initial_blank_line,
+  rulebook_pylint.checkers.unnecessary_leading_blank_line,
   # Testing
   rulebook_pylint.checkers.complicated_assertion,
   rulebook_pylint.checkers.confusing_assertion,

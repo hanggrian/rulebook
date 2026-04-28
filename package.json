@@ -4,8 +4,11 @@
   "type": "module",
   "scripts": {
     "postinstall": "uv sync",
+    "prepare": "./gradlew compileKotlin",
     "prelint": "pnpm -r lint",
-    "lint": "uv run stylebook .github/ pnpm-workspace.yaml *.toml && pnpm exec stylebook *.json *.md",
+    "lint": "./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck",
+    "pretest": "pnpm -r test",
+    "test": "./gradlew test",
     "precoverage": "pnpm -r coverage",
     "coverage": "uv run coverage combine rulebook-cppcheck/.coverage rulebook-pylint/.coverage && uv run coverage xml",
     "predocumentation": "rm -rf build/dokka/ build/pdoc/ build/typedoc/",

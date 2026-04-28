@@ -52,7 +52,7 @@ import com.hanggrian.rulebook.ktlint.rules.ScriptFileNameRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryAbstractRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryContinueRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessaryInitialBlankLineRule
+import com.hanggrian.rulebook.ktlint.rules.UnnecessaryLeadingBlankLineRule
 import com.hanggrian.rulebook.ktlint.rules.UnnecessaryReturnRule
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 import com.pinterest.ktlint.ruleset.standard.StandardRuleSetProvider
@@ -115,7 +115,7 @@ class RulebookRuleSetTest {
                 TodoCommentRule::class,
                 UnnecessaryAbstractRule::class,
                 UnnecessaryContinueRule::class,
-                UnnecessaryInitialBlankLineRule::class,
+                UnnecessaryLeadingBlankLineRule::class,
                 UnnecessaryReturnRule::class,
                 LonelyConfigurationRule::class,
             )

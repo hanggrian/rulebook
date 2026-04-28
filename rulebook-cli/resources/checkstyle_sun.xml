@@ -84,7 +84,7 @@
 
   <!-- Trimming -->
   <module name="DuplicateBlankLine"/>
-  <module name="UnnecessaryInitialBlankLine"/>
+  <module name="UnnecessaryLeadingBlankLine"/>
 
   <module name="TreeWalker">
     <!-- https://checkstyle.org/checks/javadoc/index.html -->
