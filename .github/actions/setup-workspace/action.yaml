@@ -9,7 +9,7 @@ runs:
         distribution: temurin
         java-version: 21
 
-    - uses: astral-sh/setup-uv@v7
+    - uses: astral-sh/setup-uv@v8.1.0
       with:
         python-version: '3.14'
 
