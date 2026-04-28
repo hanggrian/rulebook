@@ -33,7 +33,7 @@ import com.hanggrian.rulebook.checkstyle.checks.RedundantQualifierCheck
 import com.hanggrian.rulebook.checkstyle.checks.TagsTrimCheck
 import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryAbstractCheck
 import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryContinueCheck
-import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryInitialBlankLineCheck
+import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryLeadingBlankLineCheck
 import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryParenthesesInLambdaCheck
 import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryReturnCheck
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport
@@ -49,7 +49,7 @@ open class AllChecksTest :
             DefaultConfiguration("root").apply {
                 addProperty("charset", UTF_8.name())
                 addConfiguration<DuplicateBlankLineCheck>()
-                addConfiguration<UnnecessaryInitialBlankLineCheck>()
+                addConfiguration<UnnecessaryLeadingBlankLineCheck>()
                 addChild(
                     DefaultConfiguration(TreeWalker::class.simpleName).apply {
                         addConfiguration<AssignmentWrapCheck>()

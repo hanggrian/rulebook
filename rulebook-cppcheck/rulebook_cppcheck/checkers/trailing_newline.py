@@ -7,10 +7,10 @@ except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Token
 
 
-class FinalNewlineChecker(RulebookFileChecker):
-    """See detail: https://hanggrian.github.io/rulebook/rules/#final-newline"""
-    ID: str = 'final-newline'
-    _MSG: str = 'final.newline'
+class TrailingNewlineChecker(RulebookFileChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#trailing-newline"""
+    ID: str = 'trailing-newline'
+    _MSG: str = 'trailing.newline'
 
     def check_file(self, token: Token, content: str) -> None:
         # checks for violation

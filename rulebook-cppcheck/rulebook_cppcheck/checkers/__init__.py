@@ -18,7 +18,6 @@ from rulebook_cppcheck.checkers.duplicate_blank_line_in_comment import \
 from rulebook_cppcheck.checkers.duplicate_space import DuplicateSpaceChecker
 from rulebook_cppcheck.checkers.file_name import FileNameChecker
 from rulebook_cppcheck.checkers.file_size import FileSizeChecker
-from rulebook_cppcheck.checkers.final_newline import FinalNewlineChecker
 from rulebook_cppcheck.checkers.generic_name import GenericNameChecker
 from rulebook_cppcheck.checkers.identifier_name import IdentifierNameChecker
 from rulebook_cppcheck.checkers.illegal_catch import IllegalCatchChecker
@@ -43,6 +42,7 @@ from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
 from rulebook_cppcheck.checkers.redundant_if import RedundantIfChecker
+from rulebook_cppcheck.checkers.trailing_newline import TrailingNewlineChecker
 from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
 from rulebook_cppcheck.checkers.unnecessary_return import UnnecessaryReturnChecker
 from rulebook_cppcheck.checkers.unnecessary_trailing_whitespace import \

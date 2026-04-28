@@ -7,7 +7,7 @@
 using namespace std;
 using namespace std::filesystem;
 
-int print_file(const string &file, const bool verbose) {
+int print_file(const string &file, const bool silent) {
     const auto &target_file = path(file);
     if (!is_regular_file(target_file)) {
         return die("Not a file.");
@@ -20,9 +20,9 @@ int print_file(const string &file, const bool verbose) {
     }
     const Linter &actual_linter = *optional_linter;
 
-    if (verbose) {
-        cout << "Linter: " << BOLD << actual_linter.name << RESET << endl;
-        cout << "Target: " << BOLD << target_file.string() << RESET << endl;
+    if (!silent) {
+        cout << "\U0001f4e6 Linter: " << BOLD << actual_linter.name << RESET << endl;
+        cout << "\U0001f3af Target: " << BOLD << target_file.string() << RESET << endl << endl;
     }
 
     return actual_linter.print(target_file);

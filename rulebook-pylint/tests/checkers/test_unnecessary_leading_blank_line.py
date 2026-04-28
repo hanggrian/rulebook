@@ -2,14 +2,14 @@ from unittest import main
 
 from pylint.testutils import CheckerTestCase, _tokenize_str
 
-from rulebook_pylint.checkers import UnnecessaryInitialBlankLineChecker
+from rulebook_pylint.checkers import UnnecessaryLeadingBlankLineChecker
 from testing.messages import msg
 from ..asserts import assert_properties
 
 
 # noinspection PyTypeChecker
-class TestUnnecessaryInitialBlankLineChecker(CheckerTestCase):
-    CHECKER_CLASS = UnnecessaryInitialBlankLineChecker
+class TestUnnecessaryLeadingBlankLineChecker(CheckerTestCase):
+    CHECKER_CLASS = UnnecessaryLeadingBlankLineChecker
 
     def test_rule_properties(self):
         assert_properties(self.CHECKER_CLASS)
@@ -30,7 +30,7 @@ class TestUnnecessaryInitialBlankLineChecker(CheckerTestCase):
                 import unittest
                 ''',
             )
-        with self.assertAddsMessages(msg(UnnecessaryInitialBlankLineChecker._MSG, 1)):
+        with self.assertAddsMessages(msg(UnnecessaryLeadingBlankLineChecker._MSG, 1)):
             self.checker.process_tokens(tokens)
 
     def test_skip_comment(self):

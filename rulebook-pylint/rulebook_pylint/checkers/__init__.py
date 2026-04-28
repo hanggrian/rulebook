@@ -40,8 +40,8 @@ from rulebook_pylint.checkers.unnecessary_abstract import UnnecessaryAbstractChe
 from rulebook_pylint.checkers.unnecessary_blank_line_after_colon import \
     UnnecessaryBlankLineAfterColonChecker
 from rulebook_pylint.checkers.unnecessary_continue import UnnecessaryContinueChecker
-from rulebook_pylint.checkers.unnecessary_initial_blank_line import \
-    UnnecessaryInitialBlankLineChecker
+from rulebook_pylint.checkers.unnecessary_leading_blank_line import \
+    UnnecessaryLeadingBlankLineChecker
 
 if TYPE_CHECKING:
     from pylint.lint import PyLinter
@@ -85,6 +85,6 @@ __all__: list[str] = [
     'UnnecessaryAbstractChecker',
     'UnnecessaryBlankLineAfterColonChecker',
     'UnnecessaryContinueChecker',
-    'UnnecessaryInitialBlankLineChecker',
+    'UnnecessaryLeadingBlankLineChecker',
     'initialize',
 ]

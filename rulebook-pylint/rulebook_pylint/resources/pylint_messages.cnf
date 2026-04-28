@@ -36,7 +36,7 @@ nested.if.else.lift=Lift 'else' and add 'return' in 'if' block.
 redundant.default=Omit redundant 'case _' condition.
 unnecessary.continue=Last 'continue' is not needed.
 unnecessary.blank.line.after.colon=Remove blank line after ':'.
-unnecessary.initial.blank.line=Remove blank line at the beginning.
+unnecessary.leading.blank.line=Remove blank line at the beginning.
 # Testing
 complicated.assertion=Use assertion '%s'.
 confusing.assertion=Omit negation and replace assertion with '%s'.

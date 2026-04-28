@@ -1,20 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended"
+  ],
   "mode": "full",
   "prCreation": "not-pending",
   "internalChecksFilter": "strict",
   "ignoreDeps": [
-    // requires java-support 11+
     "org.apache.groovy:groovy",
     "org.apache.groovy:groovy-all",
     "org.junit.platform:junit-platform-launcher",
-    // Pylint locks Astroid version
     "astroid",
-    // `sourceCode` is not available in ESLint 10
     "@eslint/js",
     "eslint",
-    // typescript-eslint locks TypeScript version
     "typescript"
   ]
 }
