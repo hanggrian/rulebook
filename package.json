@@ -43,7 +43,7 @@
     "htmlhint": "1.9.2",
     "markdownlint-cli2": "0.22.0",
     "sinon": "21.1.2",
-    "stylelint": "17.9.0",
+    "stylelint": "17.9.1",
     "stylelint-config-recommended": "18.0.0",
     "typedoc": "0.28.19",
     "typescript": "~5.9.2",

@@ -35,7 +35,7 @@ importers:
         version: 5.10.0(eslint@9.39.4)
       '@stylistic/stylelint-plugin':
         specifier: 5.1.0
-        version: 5.1.0(stylelint@17.9.0(typescript@5.9.3))
+        version: 5.1.0(stylelint@17.9.1(typescript@5.9.3))
       '@types/sinon':
         specifier: 21.0.1
         version: 21.0.1
@@ -70,11 +70,11 @@ importers:
         specifier: 21.1.2
         version: 21.1.2
       stylelint:
-        specifier: 17.9.0
-        version: 17.9.0(typescript@5.9.3)
+        specifier: 17.9.1
+        version: 17.9.1(typescript@5.9.3)
       stylelint-config-recommended:
         specifier: 18.0.0
-        version: 18.0.0(stylelint@17.9.0(typescript@5.9.3))
+        version: 18.0.0(stylelint@17.9.1(typescript@5.9.3))
       typedoc:
         specifier: 0.28.19
         version: 0.28.19(typescript@5.9.3)
@@ -2495,8 +2495,8 @@ packages:
     peerDependencies:
       stylelint: ^17.0.0
 
-  stylelint@17.9.0:
-    resolution: {integrity: sha512-xO0jeY6z1/urFL5L/BZLmB1yYlbRiRMQnYH6ArZIDWJ+SZXGssOY7XoYb1JIv/L220+EBnwwJXJS4Mt/F96SvA==}
+  stylelint@17.9.1:
+    resolution: {integrity: sha512-THTmnAPJTrg/JhkTWZlSyrO+HUYMx6ELthIHeMyD2WOKqXIJUFQv2Yxn91bvUrZdbBJaW2dUuQdPST2wcQ6C3g==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -3084,10 +3084,10 @@ snapshots:
   '@hanggrian/stylebook@0.1.0(typescript@5.9.3)':
     dependencies:
       '@prantlf/jsonlint': 17.0.1(typescript@5.9.3)
-      '@stylistic/stylelint-plugin': 5.1.0(stylelint@17.9.0(typescript@5.9.3))
+      '@stylistic/stylelint-plugin': 5.1.0(stylelint@17.9.1(typescript@5.9.3))
       htmlhint: 1.9.2
       markdownlint: 0.40.0
-      stylelint: 17.9.0(typescript@5.9.3)
+      stylelint: 17.9.1(typescript@5.9.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -3256,7 +3256,7 @@ snapshots:
       estraverse: 5.3.0
       picomatch: 4.0.4
 
-  '@stylistic/stylelint-plugin@5.1.0(stylelint@17.9.0(typescript@5.9.3))':
+  '@stylistic/stylelint-plugin@5.1.0(stylelint@17.9.1(typescript@5.9.3))':
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-tokenizer': 4.0.0
@@ -3265,7 +3265,7 @@ snapshots:
       postcss-selector-parser: 7.1.1
       postcss-value-parser: 4.2.0
       style-search: 0.1.0
-      stylelint: 17.9.0(typescript@5.9.3)
+      stylelint: 17.9.1(typescript@5.9.3)
 
   '@tybys/wasm-util@0.10.1':
     dependencies:
@@ -5353,11 +5353,11 @@ snapshots:
 
   style-search@0.1.0: {}
 
-  stylelint-config-recommended@18.0.0(stylelint@17.9.0(typescript@5.9.3)):
+  stylelint-config-recommended@18.0.0(stylelint@17.9.1(typescript@5.9.3)):
     dependencies:
-      stylelint: 17.9.0(typescript@5.9.3)
+      stylelint: 17.9.1(typescript@5.9.3)
 
-  stylelint@17.9.0(typescript@5.9.3):
+  stylelint@17.9.1(typescript@5.9.3):
     dependencies:
       '@csstools/css-calc': 3.2.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
