@@ -1,0 +1,190 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Documentation</title><meta name="description" content="Documentation for Documentation"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">Documentation</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>Documentation</h1></div><div class="tsd-panel tsd-typography"><p><a href="https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yaml"><img src="https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yaml" alt="GitHub Actions"></a>
+<a href="https://app.codecov.io/gh/hanggrian/rulebook/"><img src="https://img.shields.io/codecov/c/gh/hanggrian/rulebook" alt="Codecov"></a>
+<a href="https://developer.mend.io/github/hanggrian/rulebook/"><img src="https://img.shields.io/badge/dependency-mend-blue" alt="Renovate"></a><br>
+<a href="https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/"><img src="https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint" alt="Maven Central"></a>
+<a href="https://docs.oracle.com/javase/8/"><img src="https://img.shields.io/badge/java-8+-informational" alt="Java"></a><br>
+<a href="https://pypi.org/project/rulebook-pylint/"><img src="https://shields.io/pypi/v/rulebook-pylint" alt="PyPI"></a>
+<a href="https://test.pypi.org/project/rulebook-pylint/"><img src="https://shields.io/pypi/v/rulebook-pylint?label=testpypi&amp;pypiBaseUrl=https://test.pypi.org" alt="TestPyPI"></a>
+<a href="https://docs.python.org/3.10/"><img src="https://img.shields.io/badge/python-3.10+-informational" alt="Python"></a><br>
+<a href="https://www.npmjs.com/package/rulebook-eslint/"><img src="https://shields.io/npm/v/rulebook-eslint" alt="NPM"></a>
+<a href="https://nodejs.org/en/blog/release/v12.0.0/"><img src="https://img.shields.io/badge/node-12+-informational" alt="Node"></a></p>
+<h1 id="rulebook" class="tsd-anchor-link">Rulebook<a href="#rulebook" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p><img src="https://github.com/hanggrian/rulebook/raw/assets/logo.svg" alt="The Rulebook logo."></p>
+<p>Third-party linter rules for multiple programming languages. It aims to
+standardize existing rules from various linters, providing a consistent style
+across different languages and tools. It also serves as a reference for best
+practices in coding style.</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Linter</th>
+<th>Styles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java</td>
+<td><a href="https://github.com/checkstyle/checkstyle/">Checkstyle</a></td>
+<td><a href="https://checkstyle.sourceforge.io/sun_style.html">Sun Java Style</a> or<br><a href="https://google.github.io/styleguide/javaguide.html">Google Java Style Guide</a></td>
+</tr>
+<tr>
+<td>Groovy</td>
+<td><a href="https://github.com/CodeNarc/CodeNarc/">CodeNarc</a></td>
+<td><a href="https://groovy-lang.org/style-guide.html">Groovy Style Guide</a></td>
+</tr>
+<tr>
+<td>Kotlin</td>
+<td><a href="https://github.com/pinterest/ktlint/">Ktlint</a></td>
+<td><a href="https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/">Ktlint Official Style</a></td>
+</tr>
+<tr>
+<td>C/C++</td>
+<td><a href="https://github.com/danmar/cppcheck/">Cppcheck</a></td>
+<td><a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ Core Guidelines</a> or<br><a href="https://google.github.io/styleguide/cppguide.html">Google C++ Style Guide</a></td>
+</tr>
+<tr>
+<td>Python</td>
+<td><a href="https://github.com/pylint-dev/pylint/">Pylint</a></td>
+<td><a href="https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html">Pylint Style</a> or<br><a href="https://google.github.io/styleguide/pyguide.html">Google Python Style Guide</a></td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td><a href="https://github.com/eslint/eslint/">ESLint</a></td>
+<td><a href="https://www.crockford.com/code.html">Crockford Code Conventions</a> or<br><a href="https://google.github.io/styleguide/jsguide.html">Google JavaScript Style Guide</a></td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td><a href="https://github.com/typescript-eslint/typescript-eslint/">typescript-eslint</a></td>
+<td><a href="https://www.crockford.com/code.html">Crockford Code Conventions</a> or<br><a href="https://google.github.io/styleguide/tsguide.html">Google TypeScript Style Guide</a></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://hanggrian.github.io/rulebook/rules/">View all rules</a></p>
+<h2 id="download" class="tsd-anchor-link">Download<a href="#download" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="maven" class="tsd-anchor-link">Maven<a href="#maven" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code class="gradle">repositories.mavenCentral()
+
+dependencies {
+    ktlint "com.hanggrian.rulebook:rulebook-ktlint:$version"
+    checkstyle "com.hanggrian.rulebook:rulebook-checkstyle:$version"
+    codenarc "com.hanggrian.rulebook:rulebook-codenarc:$version"
+}
+</code><button type="button">Copy</button></pre>
+
+<h3 id="pypi" class="tsd-anchor-link">PyPI<a href="#pypi" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code class="sh"><span class="hl-0">pip</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">rulebook-cppcheck</span><br/><span class="hl-0">pip</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">rulebook-pylint</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="npm" class="tsd-anchor-link">NPM<a href="#npm" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code class="sh"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">i</span><span class="hl-1"> </span><span class="hl-2">rulebook-eslint</span><span class="hl-1"> </span><span class="hl-2">eslint</span><span class="hl-1"> </span><span class="hl-2">globals</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">eslint-plugin-import</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">eslint-plugin-jsdoc</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">eslint-plugin-sort-class-members</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">eslint-vitest-rule-tester</span><span class="hl-1"> </span><span class="hl-4">--save-dev</span><br/><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">i</span><span class="hl-1"> </span><span class="hl-2">rulebook-typescript-eslint</span><span class="hl-1"> </span><span class="hl-2">typescript-eslint</span><span class="hl-1"> </span><span class="hl-2">globals</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">eslint-plugin-import</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">eslint-plugin-jsdoc</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">eslint-plugin-sort-class-members</span><span class="hl-1"> </span><span class="hl-3">\</span><br/><span class="hl-1">  </span><span class="hl-2">eslint-vitest-rule-tester</span><span class="hl-1"> </span><span class="hl-4">--save-dev</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="usage" class="tsd-anchor-link">Usage<a href="#usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="checkstyle" class="tsd-anchor-link">Checkstyle<a href="#checkstyle" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>
+<p>Apply <a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">Checkstyle Gradle Plugin</a>.</p>
+</li>
+<li>
+<p>Using configuration <code>checkstyle</code>, add this project as dependency.</p>
+</li>
+<li>
+<p>Point to local config file or put in <code>/config/checkstyle/codenarc.xml</code>.</p>
+<pre><code class="gradle">plugins {
+    checkstyle
+}
+
+checkstyle {
+    toolVersion "$checkstyleVersion"
+    configFile "path/to/rulebook_checkstyle.xml"
+}
+
+dependencies {
+    checkstyle "com.hanggrian.rulebook:rulebook-checkstyle:$libraryVersion"
+}
+</code><button type="button">Copy</button></pre>
+
+</li>
+</ul>
+<h3 id="codenarc" class="tsd-anchor-link">CodeNarc<a href="#codenarc" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>
+<p>Apply <a href="https://docs.gradle.org/current/userguide/codenarc_plugin.html">CodeNarc Gradle Plugin</a>.</p>
+</li>
+<li>
+<p>Using configuration <code>codenarc</code>, add this project as dependency.</p>
+</li>
+<li>
+<p>Point to local config file or put in <code>/config/codenarc/codenarc.xml</code>.</p>
+<pre><code class="gradle">plugins {
+    codenarc
+}
+
+codenarc {
+    toolVersion "$codenarcVersion"
+    configFile "path/to/rulebook_codenarc.xml"
+}
+
+dependencies {
+    codenarc "com.hanggrian.rulebook:rulebook-codenarc:$libraryVersion"
+}
+</code><button type="button">Copy</button></pre>
+
+</li>
+</ul>
+<h3 id="ktlint" class="tsd-anchor-link">Ktlint<a href="#ktlint" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>
+<p>Apply <a href="https://pinterest.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration">Ktlint Integration</a>
+to Gradle project.</p>
+</li>
+<li>
+<p>Using configuration <code>ktlint</code>, add this project as dependency.</p>
+<pre><code class="gradle">configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint "com.hanggrian.rulebook:rulebook-ktlint:$libraryVersion"
+}
+
+// the rest of ktlint tasks' configuration
+</code><button type="button">Copy</button></pre>
+
+</li>
+</ul>
+<h3 id="cppcheck" class="tsd-anchor-link">Cppcheck<a href="#cppcheck" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Create <code>addon.json</code> file.</p>
+<h3 id="pylint" class="tsd-anchor-link">Pylint<a href="#pylint" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Create <code>.pylintrc</code> file in the root directory.</p>
+<h3 id="eslint" class="tsd-anchor-link">ESLint<a href="#eslint" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Create <code>.eslint.config.js</code> file in the root directory.</p>
+<h2 id="ide-settings" class="tsd-anchor-link">IDE settings<a href="#ide-settings" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Presuming the IDE is <em>IntelliJ IDEA</em> or <em>PyCharm,</em> consider applying the linter
+style to it.</p>
+<ol>
+<li>
+<p>Ktlint Style</p>
+<p>Explained in <a href="https://pinterest.github.io/ktlint/0.49.1/rules/configuration-intellij-idea/">Ktlint IntelliJ IDEA Configuration</a>,
+using standard <a href="https://kotlinlang.org/docs/coding-conventions.html">Kotlin coding conventions</a>
+is enough:</p>
+<ul>
+<li>In <strong>File &gt; Settings &gt; Editor &gt; Code Style &gt; Kotlin</strong>, set from
+<strong>Kotlin style guide</strong>.
+<ul>
+<li>Append <code>kotlin.code.style=official</code> to root <code>gradle.properties</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Google Java Style</p>
+<p>Explained in <a href="https://github.com/google/google-java-format/">Google Java Format</a>:</p>
+<ul>
+<li>In <strong>File &gt; Settings &gt; Editor &gt; Code Style &gt; Java</strong>, import
+<a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml">IntelliJ Java Google Style file</a>.</li>
+</ul>
+</li>
+</ol>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#rulebook"><span>Rulebook</span></a><ul><li><a href="#download"><span>Download</span></a></li><li><ul><li><a href="#maven"><span>Maven</span></a></li><li><a href="#pypi"><span>Py<wbr/>PI</span></a></li><li><a href="#npm"><span>NPM</span></a></li></ul></li><li><a href="#usage"><span>Usage</span></a></li><li><ul><li><a href="#checkstyle"><span>Checkstyle</span></a></li><li><a href="#codenarc"><span>Code<wbr/>Narc</span></a></li><li><a href="#ktlint"><span>Ktlint</span></a></li><li><a href="#cppcheck"><span>Cppcheck</span></a></li><li><a href="#pylint"><span>Pylint</span></a></li><li><a href="#eslint"><span>ES<wbr/>Lint</span></a></li></ul></li><li><a href="#ide-settings"><span>IDE settings</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">Documentation</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

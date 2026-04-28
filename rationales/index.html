@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Extended lint rules for JVM and Python">
+        <meta name="description" content="Aggressive source code linter extensions">
       
       
         <meta name="author" content="Hendra Anggrian">
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -54,6 +54,8 @@
     
     
       <link rel="stylesheet" href="../styles/colors.css">
+    
+      <link rel="stylesheet" href="../styles/icons.css">
     
       <link rel="stylesheet" href="../styles/links.css">
     
@@ -234,18 +236,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href=".." class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
   
+  
+    
   
   Home
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -297,7 +298,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../api/dokka/" class="md-tabs__link">
+      <a href="../api/javadoc" class="md-tabs__link">
         
   
   
@@ -316,13 +317,32 @@
   
   
     <li class="md-tabs__item">
-      <a href="../api/pdoc/" class="md-tabs__link">
+      <a href="../api/pydoc" class="md-tabs__link">
         
   
   
     
   
-  Pythondoc
+  Pydoc
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/tsdoc" class="md-tabs__link">
+        
+  
+  
+    
+  
+  TSDoc
 
       </a>
     </li>
@@ -379,60 +399,6 @@
   
   
   
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Home
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         
@@ -441,7 +407,7 @@
   <span class="md-ellipsis">
     
   
-    Overview
+    Home
   
 
     
@@ -450,216 +416,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../readme/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Getting started
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../changelog/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Change log
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../contributing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Developer guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Configuration
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Configuration
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../configuration/ide-settings/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    IDE settings
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../configuration/editorconfig-file/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    EditorConfig file
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -919,6 +675,34 @@
   
   
     <li class="md-nav__item">
+      <a href="https://sourceforge.net/p/cppcheck/wiki/ListOfChecks/?ext" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cppcheck checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="https://pylint.pycqa.org/en/latest/user_guide/checkers/features.html?ext" class="md-nav__link">
         
   
@@ -927,6 +711,62 @@
     
   
     Pylint checkers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://eslint.org/docs/latest/rules/?ext" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ESLint rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://typescript-eslint.io/rules/?ext" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    typescript-eslint rules
   
 
     
@@ -1108,6 +948,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#delete-empty-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete empty file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hide-utility-class-instance" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1141,10 +992,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#remove-unused-imports" class="md-nav__link">
+  <a href="#remove-negation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Remove unused imports
+        Remove negation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sort-named-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sort named imports
       
     </span>
   </a>
@@ -1156,6 +1018,28 @@
     <span class="md-ellipsis">
       
         Trim multiline brackets, parentheses and tags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-else-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use else-if
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-named-object-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use named object directly
       
     </span>
   </a>
@@ -1263,6 +1147,34 @@
   
   
     <li class="md-nav__item">
+      <a href="https://isocpp.github.io/CppCoreGuidelines/?ext" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ core guidelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="https://peps.python.org/pep-0008/?ext" class="md-nav__link">
         
   
@@ -1271,6 +1183,34 @@
     
   
     PEP 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.crockford.com/code.html?ext" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Crockford code conventions
   
 
     
@@ -1306,7 +1246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/dokka/" class="md-nav__link">
+      <a href="../api/javadoc" class="md-nav__link">
         
   
   
@@ -1333,14 +1273,41 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/pdoc/" class="md-nav__link">
+      <a href="../api/pydoc" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Pythondoc
+    Pydoc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/tsdoc" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSDoc
   
 
     
@@ -1411,6 +1378,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#delete-empty-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete empty file
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#hide-utility-class-instance" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1444,10 +1422,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#remove-unused-imports" class="md-nav__link">
+  <a href="#remove-negation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Remove unused imports
+        Remove negation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sort-named-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sort named imports
       
     </span>
   </a>
@@ -1459,6 +1448,28 @@
     <span class="md-ellipsis">
       
         Trim multiline brackets, parentheses and tags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-else-if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use else-if
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-named-object-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use named object directly
       
     </span>
   </a>
@@ -1513,64 +1524,96 @@ purpose is.</p>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="o">:</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">]</span>
 </code></pre></div>
+<h2 id="delete-empty-file">Delete empty file<a class="headerlink" href="#delete-empty-file" title="Permanent link">&para;</a></h2>
+<p>Content of a file should not be empty or consist of only whitespace characters,
+which may be spaces, tabs or newlines.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">package</span><span class="w"> </span><span class="nn">com.example</span>
+</code></pre></div>
 <h2 id="hide-utility-class-instance">Hide utility class instance<a class="headerlink" href="#hide-utility-class-instance" title="Permanent link">&para;</a></h2>
 <p>To prevent instantiating a utility class, put a final modifier on the class
 and add a private constructor.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="hll"><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Strings</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="hll"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">Strings</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">capitalize</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">).</span><span class="na">toUpperCase</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="hll"><span class="kd">class</span> <span class="nc">Strings</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="hll"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Strings</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</span><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">capitalize</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">).</span><span class="na">toUpperCase</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="move-trailing-elvis-to-the-next-line">Move trailing elvis to the next line<a class="headerlink" href="#move-trailing-elvis-to-the-next-line" title="Permanent link">&para;</a></h2>
 <p>In a multiline statement, the elvis operator should align with chained method
 calls instead of the same column.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">bananas</span><span class="w"> </span><span class="o">=</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">fruits</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BANANA</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">takeUnless</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="k">return</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">val</span><span class="w"> </span><span class="nv">bananas</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">fruits</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BANANA</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="hll"><span class="w">        </span><span class="p">.</span><span class="na">takeUnless</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="k">return</span>
 </span></code></pre></div>
 <h2 id="no-blank-lines-at-initial-final-and-consecutive-comments">No blank lines at initial, final and consecutive comments<a class="headerlink" href="#no-blank-lines-at-initial-final-and-consecutive-comments" title="Permanent link">&para;</a></h2>
 <p>Comment and block comment bodies should not have leading or trailing blank
 lines. No consecutive blank lines are allowed in the comment body.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cm">/**</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="hll"><span class="cm"> *</span>
-</span><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="cm"> * The main function.</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="hll"><span class="cm"> *</span>
-</span><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="cm"> */</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="c1">// initialize the logger</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="c1">//</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="hll"><span class="w">    </span><span class="c1">//</span>
-</span><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="c1">// and print the starting message</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Logger</span><span class="p">()</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Starting the application&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cm">/**</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="hll"><span class="cm"> *</span>
+</span><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="cm"> * The main function.</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="hll"><span class="cm"> *</span>
+</span><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="cm"> */</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="c1">// initialize the logger</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="c1">//</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="hll"><span class="w">    </span><span class="c1">//</span>
+</span><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="c1">// and print the starting message</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Logger</span><span class="p">()</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="n">logger</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Starting the application&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="remove-unused-imports">Remove unused imports<a class="headerlink" href="#remove-unused-imports" title="Permanent link">&para;</a></h2>
-<p>Remove imports that are not used in the file.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="hll"><span class="k">import</span><span class="w"> </span><span class="nn">java.lang.String</span>
-</span><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kd">val</span><span class="w"> </span><span class="nv">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayListOf</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">()</span>
+<h2 id="remove-negation">Remove negation<a class="headerlink" href="#remove-negation" title="Permanent link">&para;</a></h2>
+<p>In functions that support both positive and negative conditions, the positive
+condition should be preferred.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">assertTrue</span><span class="p">(</span><span class="o">!</span><span class="n">user</span><span class="p">.</span><span class="na">isAuthorized</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="sort-named-imports">Sort named imports<a class="headerlink" href="#sort-named-imports" title="Permanent link">&para;</a></h2>
+<p>When importing multiple members from the same package, they should be sorted
+alphabetically.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="hll"><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
+</span><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">alpha</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">beta</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="trim-multiline-brackets-parentheses-and-tags">Trim multiline brackets, parentheses and tags<a class="headerlink" href="#trim-multiline-brackets-parentheses-and-tags" title="Permanent link">&para;</a></h2>
 <p>Method declaration, calls and collection initializers should not start or end
 with a blank line.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">def</span><span class="w"> </span><span class="nf">getColors</span><span class="o">(</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="hll">
-</span><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">red</span><span class="o">,</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">green</span><span class="o">,</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">blue</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="o">)</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">[</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="n">red</span><span class="o">,</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">        </span><span class="n">green</span><span class="o">,</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="n">blue</span><span class="o">,</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="hll">
-</span><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="o">]</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="o">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">def</span><span class="w"> </span><span class="nf">getColors</span><span class="o">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="hll">
+</span><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">red</span><span class="o">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">green</span><span class="o">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">blue</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">        </span><span class="n">red</span><span class="o">,</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">        </span><span class="n">green</span><span class="o">,</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">        </span><span class="n">blue</span><span class="o">,</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="hll">
+</span><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="o">]</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="o">}</span>
+</code></pre></div>
+<h2 id="use-else-if">Use else-if<a class="headerlink" href="#use-else-if" title="Permanent link">&para;</a></h2>
+<p>Single if statement in an else block should be converted to an else-if
+statement.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Positive&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="hll"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Negative&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Zero&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="use-named-object-directly">Use named object directly<a class="headerlink" href="#use-named-object-directly" title="Permanent link">&para;</a></h2>
+<p>Single calls in Gradle <code>NamedDomainObjectContainer</code> should not be wrapped in a
+block.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="hll"><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;org.jetbrains.kotlin:kotlin-stdlib:1.5.0&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">}</span>
 </code></pre></div>
 
 
@@ -1609,14 +1652,18 @@ with a blank line.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      <a href="https://app.circleci.com/pipelines/github/hanggrian/rulebook/">
+      <a href="https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yml">
   <img
-    src="https://img.shields.io/circleci/build/gh/hanggrian/rulebook"
-    alt="CircleCI"/>
+    src="https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yml"
+    alt="GitHub Actions"/>
 </a> <a href="https://app.codecov.io/gh/hanggrian/rulebook/">
   <img
     src="https://img.shields.io/codecov/c/gh/hanggrian/rulebook"
     alt="Codecov"/>
+</a> <a href="https://developer.mend.io/github/hanggrian/rulebook/">
+  <img
+    src="https://img.shields.io/badge/dependency-mend-blue"
+    alt="Renovate"/>
 </a> &emsp; <a href="https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/">
   <img
     src="https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint"
@@ -1637,6 +1684,14 @@ with a blank line.</p>
   <img
     src="https://img.shields.io/badge/python-3.10+-informational"
     alt="Python"/>
+</a> &emsp; <a href="https://www.npmjs.com/package/rulebook-eslint/">
+  <img
+    src="https://shields.io/npm/v/rulebook-eslint"
+    alt="NPM"/>
+</a> <a href="https://nodejs.org/en/blog/release/v12.0.0/">
+  <img
+    src="https://img.shields.io/badge/node-12+-informational"
+    alt="Node"/>
 </a>
 
     </div>
