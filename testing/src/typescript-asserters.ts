@@ -1,57 +1,60 @@
 import {
     type NormalizedTestCase,
-    type RuleModule,
     type RuleTester,
     type TestExecutionResult,
     createRuleTester,
 } from 'eslint-vitest-rule-tester';
 import typescriptEslint from 'typescript-eslint';
 import type { RuleOptions } from '@stylistic/eslint-plugin';
+import type RulebookRule from 'rulebook-typescript-eslint/dist/rules/rulebook-rule';
 
 class Asserter {
-    private readonly nativeTester: RuleTester;
+    private readonly nativeTesters: RuleTester[];
     private readonly code: string;
 
-    constructor(ruleTester: RuleTester, code: string) {
-        this.nativeTester = ruleTester;
+    constructor(code: string, ...ruleTesters: RuleTester[]) {
+        this.nativeTesters = ruleTesters;
         this.code = code;
     }
 
     hasNoError(): Promise<{
         testcase: NormalizedTestCase<RuleOptions>;
         result: TestExecutionResult;
-    }> {
-        return this.nativeTester.valid({
-            code: this.code,
-        });
+    }[]> {
+        return Promise.all(
+            this.nativeTesters.map(tester =>
+                tester.valid({
+                    code: this.code,
+                })),
+        );
     }
 
     hasErrorMessages(...messages: string[]): Promise<{
         testcase: NormalizedTestCase<RuleOptions>;
         result: TestExecutionResult;
-    }> {
-        const errors = [];
-        for (const message of messages) {
-            errors.push({
-                message: message,
-            });
-        }
-        return this.nativeTester.invalid({
-            code: this.code,
-            errors: errors,
-        });
+    }[]> {
+        const errors = messages.map(message => ({ message }));
+        return Promise.all(
+            this.nativeTesters.map(tester =>
+                tester.invalid({
+                    code: this.code,
+                    errors: errors,
+                })),
+        );
     }
 }
 
 type AssertThat = (code: string) => Asserter;
 
-function assertThatRule(rule: RuleModule, name: string): AssertThat {
+function assertThatRule(rule: RulebookRule): AssertThat {
     return (code: string) =>
         new Asserter(
+            code,
             createRuleTester({
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 rule: rule,
-                name: name,
+                // eslint-disable-next-line @stylistic/max-len
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion, @typescript-eslint/no-extra-non-null-assertion
+                name: rule.meta.docs!!.description,
                 configs: {
                     languageOptions: {
                         parser: typescriptEslint.parser,
@@ -62,8 +65,7 @@ function assertThatRule(rule: RuleModule, name: string): AssertThat {
                     },
                 },
             }),
-            code,
         );
 }
 
-export { assertThatRule, AssertThat };
+export { assertThatRule, Asserter, AssertThat };

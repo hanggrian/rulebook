@@ -4,7 +4,7 @@ import caseSeparatorRule from '../../rules/case-separator';
 import assertProperties from '../asserts';
 
 describe('CaseSeparatorRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(caseSeparatorRule, 'case-separator');
+    const assertThat: AssertThat = assertThatRule(caseSeparatorRule);
 
     it('Rule properties', () => assertProperties(caseSeparatorRule));
 

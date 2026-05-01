@@ -106,11 +106,7 @@ importers:
         specifier: 9.39.4
         version: 9.39.4
 
-  rulebook-checkstyle: {}
-
   rulebook-cli: {}
-
-  rulebook-codenarc: {}
 
   rulebook-cppcheck: {}
 
@@ -145,8 +141,6 @@ importers:
         specifier: workspace:*
         version: link:../testing
 
-  rulebook-ktlint: {}
-
   rulebook-pylint: {}
 
   rulebook-typescript-eslint:
@@ -179,7 +173,7 @@ importers:
   sample-configured: {}
 
   stress-test:
-    devDependencies:
+    dependencies:
       rulebook-eslint:
         specifier: workspace:*
         version: link:../rulebook-eslint
@@ -190,9 +184,14 @@ importers:
         specifier: workspace:*
         version: link:../testing
 
-  testing: {}
-
-  website: {}
+  testing:
+    dependencies:
+      rulebook-eslint:
+        specifier: workspace:*
+        version: link:../rulebook-eslint
+      rulebook-typescript-eslint:
+        specifier: workspace:*
+        version: link:../rulebook-typescript-eslint
 
 packages:
 

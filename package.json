@@ -3,10 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "uv sync",
+    "postinstall": "uv sync && uv pip install -r website/requirements.txt",
+    "preprepare": "scripts/prepare_clion.sh",
     "prepare": "./gradlew compileKotlin",
     "prelint": "pnpm -r lint",
-    "lint": "./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck",
+    "lint": "./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck && uv run stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml && pnpm exec stylebook *.json **/*.json *.md website/",
     "pretest": "pnpm -r test",
     "test": "./gradlew test",
     "precoverage": "pnpm -r coverage",
@@ -15,9 +16,9 @@
     "documentation": "./gradlew dokkaGenerateHtml && uv run pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/ && typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/",
     "build-cli": "scripts/build_cli.sh",
     "prepublish-website": "pnpm documentation && rm -rf website/docs/api/ && mkdir -p website/docs/api/ && mv build/dokka/html/ website/docs/api/javadoc/ && mv build/pdoc website/docs/api/pydoc/ && mv build/typedoc website/docs/api/tsdoc/",
-    "publish-website": "scripts/prepare_mkdocs.sh && cd website && uv run mkdocs gh-deploy",
+    "publish-website": "cd website && uv run mkdocs gh-deploy",
     "postpublish-website": "rm -rf website/docs/api",
-    "preview-website": "scripts/prepare_mkdocs.sh && cd website && uv run mkdocs serve --livereload"
+    "preview-website": "cd website && uv run mkdocs serve --livereload"
   },
   "engines": {
     "node": ">=12.0.0"

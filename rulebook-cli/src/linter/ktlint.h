@@ -1,7 +1,7 @@
 #ifndef KTLINT_H
 #define KTLINT_H
 
-#include "../extraction.h"
+#include "../files.h"
 #include "base.h"
 
 class KtlintLinter : public Linter {

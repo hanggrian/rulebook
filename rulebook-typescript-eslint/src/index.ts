@@ -87,7 +87,7 @@ const typescriptConfig: TSESLint.SharedConfig.RulesRecord = {
     // Wrapping
 };
 
-export default {
+const plugin: TSESLint.FlatConfig.Plugin = {
     rules: {
         ...rulebookEslint.rules,
         'generic-name': genericNameRule,
@@ -107,4 +107,6 @@ export default {
             },
         },
     },
-} as TSESLint.FlatConfig.Plugin;
+};
+
+export default plugin;

@@ -4,7 +4,7 @@ import emptyFileRule from '../../rules/empty-file';
 import assertProperties from '../asserts';
 
 describe('EmptyFileRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(emptyFileRule, 'empty-file');
+    const assertThat: AssertThat = assertThatRule(emptyFileRule);
 
     it('Rule properties', () => assertProperties(emptyFileRule));
 

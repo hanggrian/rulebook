@@ -4,8 +4,7 @@ import unnecessaryAbstractClassRule from '../../rules/unnecessary-abstract';
 import assertProperties from '../asserts';
 
 describe('UnnecessaryAbstractRuleTest', () => {
-    const assertThat: AssertThat =
-        assertThatRule(unnecessaryAbstractClassRule, 'abstract-class-definition');
+    const assertThat: AssertThat = assertThatRule(unnecessaryAbstractClassRule);
 
     it('Rule properties', () => assertProperties(unnecessaryAbstractClassRule));
 

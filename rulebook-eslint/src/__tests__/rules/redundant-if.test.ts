@@ -4,7 +4,7 @@ import redundantIfRule from '../../rules/redundant-if';
 import assertProperties from '../asserts';
 
 describe('RedundantIfRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(redundantIfRule, 'redundant-if');
+    const assertThat: AssertThat = assertThatRule(redundantIfRule);
 
     it('Rule properties', () => assertProperties(redundantIfRule));
 

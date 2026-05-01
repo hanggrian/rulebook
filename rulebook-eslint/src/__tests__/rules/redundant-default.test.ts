@@ -4,7 +4,7 @@ import redundantDefaultRule from '../../rules/redundant-default';
 import assertProperties from '../asserts';
 
 describe('RedundantDefaultRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(redundantDefaultRule, 'redundant-default');
+    const assertThat: AssertThat = assertThatRule(redundantDefaultRule);
 
     it('Rule properties', () => assertProperties(redundantDefaultRule));
 

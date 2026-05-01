@@ -2,7 +2,7 @@
 #define CHECKSTYLE_H
 
 #include "../cli.h"
-#include "../extraction.h"
+#include "../files.h"
 #include "base.h"
 
 class CheckstyleLinter : public Linter {

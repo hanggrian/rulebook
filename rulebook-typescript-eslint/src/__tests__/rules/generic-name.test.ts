@@ -4,7 +4,7 @@ import genericNameRule from '../../rules/generic-name';
 import assertProperties from '../asserts';
 
 describe('GenericNameRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(genericNameRule, 'generic-name');
+    const assertThat: AssertThat = assertThatRule(genericNameRule);
 
     it('Rule properties', () => assertProperties(genericNameRule));
 

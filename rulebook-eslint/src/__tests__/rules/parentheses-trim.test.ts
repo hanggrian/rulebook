@@ -4,7 +4,7 @@ import parenthesesTrimRule from '../../rules/parentheses-trim';
 import assertProperties from '../asserts';
 
 describe('ParenthesesTrimRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(parenthesesTrimRule, 'parentheses-trim');
+    const assertThat: AssertThat = assertThatRule(parenthesesTrimRule);
 
     it('Rule properties', () => assertProperties(parenthesesTrimRule));
 

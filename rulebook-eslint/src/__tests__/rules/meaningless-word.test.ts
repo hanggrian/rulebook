@@ -4,7 +4,7 @@ import meaninglessWordRule from '../../rules/meaningless-word';
 import assertProperties from '../asserts';
 
 describe('MeaninglessWordRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(meaninglessWordRule, 'meaningless-word');
+    const assertThat: AssertThat = assertThatRule(meaninglessWordRule);
 
     it('Rule properties', () => assertProperties(meaninglessWordRule));
 

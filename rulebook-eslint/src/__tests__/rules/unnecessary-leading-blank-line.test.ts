@@ -4,8 +4,7 @@ import unnecessaryLeadingBlankLineRule from '../../rules/unnecessary-leading-bla
 import assertProperties from '../asserts';
 
 describe('UnnecessaryInitialBlankLineTest', () => {
-    const assertThat: AssertThat =
-        assertThatRule(unnecessaryLeadingBlankLineRule, 'unnecessary-leading-blank-line');
+    const assertThat: AssertThat = assertThatRule(unnecessaryLeadingBlankLineRule);
 
     it('Rule properties', () => assertProperties(unnecessaryLeadingBlankLineRule));
 

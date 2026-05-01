@@ -8,9 +8,13 @@
   "scripts": {
     "prepare": "pnpm build",
     "build": "tsc -p tsconfig.json",
-    "lint": "uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/ && uv run stylebook *.toml && pnpm exec stylebook *.json"
+    "lint": "uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/"
   },
   "engines": {
     "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "rulebook-eslint": "workspace:*",
+    "rulebook-typescript-eslint": "workspace:*"
   }
 }

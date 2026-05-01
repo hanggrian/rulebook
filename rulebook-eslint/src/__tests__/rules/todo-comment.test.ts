@@ -4,7 +4,7 @@ import todoCommentRule from '../../rules/todo-comment';
 import assertProperties from '../asserts';
 
 describe('TodoCommentRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(todoCommentRule, 'todo-comment');
+    const assertThat: AssertThat = assertThatRule(todoCommentRule);
 
     it('Rule properties', () => assertProperties(todoCommentRule));
 

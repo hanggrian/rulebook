@@ -1,21 +1,19 @@
-import genericNameRule from 'rulebook-typescript-eslint/dist/rules/generic-name';
-import { type AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
+import { type AssertThat } from 'testing/dist/typescript-asserters';
 import { describe, it } from 'vitest';
+import assertThatAllRules from './all-rules-tests';
 
 describe('StubTest', () => {
-    const assertThat: AssertThat = assertThatRule(genericNameRule, 'generic-name');
+    const assertThat: AssertThat = assertThatAllRules();
 
     it(
         'Correct generic name in class',
         () =>
             assertThat(
-                `
-                class MyClass<T> {}
+                `class MyClass<T> {}
 
                 interface MyInterface<V> {}
 
-                type MyType<X> = { val: X };
-                `,
+                type MyType<X> = { val: X };`,
             ).hasNoError(),
     );
 });
