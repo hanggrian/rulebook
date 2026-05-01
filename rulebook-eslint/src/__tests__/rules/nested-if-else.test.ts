@@ -4,7 +4,7 @@ import nestedIfElseRule from '../../rules/nested-if-else';
 import assertProperties from '../asserts';
 
 describe('NestedIfElseRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(nestedIfElseRule, 'nested-if-else');
+    const assertThat: AssertThat = assertThatRule(nestedIfElseRule);
 
     it('Rule properties', () => assertProperties(nestedIfElseRule));
 

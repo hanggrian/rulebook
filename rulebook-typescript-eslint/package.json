@@ -16,11 +16,10 @@
     "resources"
   ],
   "scripts": {
-    "prepare": "pnpm build",
     "build": "tsc -p tsconfig.build.json",
-    "lint": "eslint src/ && pnpm exec stylebook *.json",
-    "test": "vitest --run src/__tests__/**/*.ts",
-    "coverage": "vitest run --coverage src/__tests__/**/*.ts --reporter=junit --outputFile=test-report.junit.xml",
+    "lint": "eslint src/",
+    "test": "vitest",
+    "coverage": "vitest run --coverage src/__tests__/**/*.test.ts --reporter=junit --outputFile=test-report.junit.xml",
     "prepublishOnly": "cp ../README.md ./",
     "postpublish": "rm ./README.md"
   },

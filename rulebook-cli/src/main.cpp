@@ -79,7 +79,7 @@ int main(const int argc, char **argv) {
         cout <<
                 BOLD <<
                 CYAN <<
-                "\u26a1 Command" <<
+                "\u26a1\ufe0f Command" <<
                 RESET <<
                 ":" <<
                 endl <<
@@ -92,7 +92,7 @@ int main(const int argc, char **argv) {
                 endl <<
                 BOLD <<
                 MAGENTA <<
-                "\U0001f3f7  Arguments" <<
+                "\U0001f3f7 Arguments" <<
                 RESET <<
                 ":" <<
                 endl <<

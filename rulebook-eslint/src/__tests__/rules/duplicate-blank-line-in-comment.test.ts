@@ -4,8 +4,7 @@ import duplicateBlankLineInComment from '../../rules/duplicate-blank-line-in-com
 import assertProperties from '../asserts';
 
 describe('DuplicateBlankLineInCommentRuleTest', () => {
-    const assertThat: AssertThat =
-        assertThatRule(duplicateBlankLineInComment, 'duplicate-blank-line-in-comment');
+    const assertThat: AssertThat = assertThatRule(duplicateBlankLineInComment);
 
     it('Rule properties', () => assertProperties(duplicateBlankLineInComment));
 

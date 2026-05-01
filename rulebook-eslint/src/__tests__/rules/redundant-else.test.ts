@@ -4,7 +4,7 @@ import redundantElseRule from '../../rules/redundant-else';
 import assertProperties from '../asserts';
 
 describe('RedundantElseRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(redundantElseRule, 'redundant-else');
+    const assertThat: AssertThat = assertThatRule(redundantElseRule);
 
     it('Rule properties', () => assertProperties(redundantElseRule));
 

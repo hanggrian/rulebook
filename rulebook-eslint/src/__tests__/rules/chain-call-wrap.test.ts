@@ -4,7 +4,7 @@ import chainCallWrapRule from '../../rules/chain-call-wrap';
 import assertProperties from '../asserts';
 
 describe('ChainCallWrapRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(chainCallWrapRule, 'chain-call-wrap');
+    const assertThat: AssertThat = assertThatRule(chainCallWrapRule);
 
     it('Rule properties', () => assertProperties(chainCallWrapRule));
 

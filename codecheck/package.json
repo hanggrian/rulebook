@@ -7,9 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "pnpm build",
-    "build": "tsc -p tsconfig.json",
-    "lint": "uv run stylebook *.toml && pnpm exec stylebook *.json"
+    "build": "tsc -p tsconfig.json"
   },
   "engines": {
     "node": ">=12.0.0"

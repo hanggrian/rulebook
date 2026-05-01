@@ -119,10 +119,10 @@ add_executable(
         src/cli.h
         src/config_initializer.cpp
         src/config_initializer.h
-        src/extraction.cpp
-        src/extraction.h
         src/file_printer.cpp
         src/file_printer.h
+        src/files.cpp
+        src/files.h
         src/source_linter.cpp
         src/source_linter.h
 )

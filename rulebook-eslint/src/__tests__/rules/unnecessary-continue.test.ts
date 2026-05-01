@@ -4,7 +4,7 @@ import unnecessaryContinueRule from '../../rules/unnecessary-continue';
 import assertProperties from '../asserts';
 
 describe('UnnecessaryContinueRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(unnecessaryContinueRule, 'unnecessary-continue');
+    const assertThat: AssertThat = assertThatRule(unnecessaryContinueRule);
 
     it('Rule properties', () => assertProperties(unnecessaryContinueRule));
 

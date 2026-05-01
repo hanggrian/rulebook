@@ -2,7 +2,7 @@
 #include <fstream>
 #include "checkstyle_bin.h"
 #include "cli.h"
-#include "extraction.h"
+#include "files.h"
 #include "kotlin_stdlib_bin.h"
 #include "ktlint_bin.h"
 #include "ktlint_print_bin.h"

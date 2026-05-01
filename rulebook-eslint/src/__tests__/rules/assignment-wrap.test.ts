@@ -4,7 +4,7 @@ import assignmentWrapRule from '../../rules/assignment-wrap';
 import assertProperties from '../asserts';
 
 describe('AssignmentWrapRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(assignmentWrapRule, 'assignment-wrap');
+    const assertThat: AssertThat = assertThatRule(assignmentWrapRule);
 
     it('Rule properties', () => assertProperties(assignmentWrapRule));
 

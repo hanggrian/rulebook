@@ -43,6 +43,4 @@ runs:
         restore-keys: pnpm-
 
     - shell: bash
-      run: |
-        echo 'workspace-concurrency=1' >> .npmrc
-        pnpm i
+      run: pnpm i

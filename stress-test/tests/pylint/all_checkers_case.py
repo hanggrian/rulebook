@@ -77,7 +77,7 @@ class AllCheckersTestCase:
         UnnecessaryAbstractChecker,
         UnnecessaryBlankLineAfterColonChecker,
         UnnecessaryContinueChecker,
-        UnnecessaryInitialBlankLineChecker,
+        UnnecessaryLeadingBlankLineChecker,
     )
     CONFIG = {}
 

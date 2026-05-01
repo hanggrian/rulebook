@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "scripts": {
-    "lint": "uv run stylebook **/* && pnpm exec stylebook **/*"
-  },
-  "engines": {
-    "node": ">=12.0.0"
-  }
-}

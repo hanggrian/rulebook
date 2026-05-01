@@ -1,19 +1,17 @@
-import assignmentWrapRule from 'rulebook-eslint/dist/rules/assignment-wrap';
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat } from 'testing/dist/asserters';
 import { describe, it } from 'vitest';
+import assertThatAllRules from './all-rules-tests';
 
 describe('StubTest', () => {
-    const assertThat: AssertThat = assertThatRule(assignmentWrapRule, 'assignment-wrap');
+    const assertThat: AssertThat = assertThatAllRules();
 
     it(
         'Single-type assignment',
         () =>
             assertThat(
-                `
-                function foo() {
+                `function foo() {
                     const bar = 1 + 2;
-                }
-                `,
+                }`,
             ).hasNoError(),
     );
 });

@@ -4,8 +4,7 @@ import lowercaseHexadecimalRule from '../../rules/lowercase-hexadecimal';
 import assertProperties from '../asserts';
 
 describe('LowercaseHexadecimalRuleTest', () => {
-    const assertThat: AssertThat =
-        assertThatRule(lowercaseHexadecimalRule, 'lowercase-hexadecimal');
+    const assertThat: AssertThat = assertThatRule(lowercaseHexadecimalRule);
 
     it('Rule properties', () => assertProperties(lowercaseHexadecimalRule));
 

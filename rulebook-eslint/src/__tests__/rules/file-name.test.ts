@@ -4,7 +4,7 @@ import fileNameRule from '../../rules/file-name';
 import assertProperties from '../asserts';
 
 describe('FileNameRuleTest', () => {
-    const assertThat: AssertThat = assertThatRule(fileNameRule, 'file-name');
+    const assertThat: AssertThat = assertThatRule(fileNameRule);
 
     it('Rule properties', () => assertProperties(fileNameRule));
 

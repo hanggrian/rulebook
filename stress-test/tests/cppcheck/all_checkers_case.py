@@ -23,7 +23,6 @@ from rulebook_cppcheck.checkers import \
     DuplicateSpaceChecker, \
     FileNameChecker, \
     FileSizeChecker, \
-    FinalNewlineChecker, \
     GenericNameChecker, \
     IdentifierNameChecker, \
     IllegalCatchChecker, \
@@ -49,6 +48,7 @@ from rulebook_cppcheck.checkers import \
     RedundantElseChecker, \
     RedundantIfChecker, \
     TodoCommentChecker, \
+    TrailingNewlineChecker, \
     UnnecessaryReturnChecker, \
     UnnecessaryTrailingWhitespaceChecker, \
     UppercaseLChecker
@@ -80,7 +80,7 @@ class AllCheckersTestCase(TestCase):
             DuplicateSpaceChecker(),
             FileNameChecker(),
             FileSizeChecker(),
-            FinalNewlineChecker(),
+            TrailingNewlineChecker(),
             GenericNameChecker(),
             IdentifierNameChecker(),
             IllegalCatchChecker(),
