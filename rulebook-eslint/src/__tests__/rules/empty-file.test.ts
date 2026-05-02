@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import emptyFileRule from '../../rules/empty-file';
 import assertProperties from '../asserts';
@@ -19,7 +19,7 @@ describe('EmptyFileRuleTest', () => {
         'Empty file',
         () =>
             assertThat('')
-                .hasErrorMessages('Delete the empty file.'),
+                .hasErrorMessages('1:1 Delete the empty file.'),
     );
 
     it(
@@ -29,6 +29,6 @@ describe('EmptyFileRuleTest', () => {
                 `
 
                 `,
-            ).hasErrorMessages('Delete the empty file.'),
+            ).hasErrorMessages('1:1 Delete the empty file.'),
     );
 });

@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import fileNameRule from '../../rules/file-name';
 import assertProperties from '../asserts';
@@ -18,13 +18,13 @@ describe('FileNameRuleTest', () => {
 
     it(
         'Incorrect file names',
-        async () => {
-            await assertThat('')
+        () => {
+            assertThat('')
                 .withFilename('helloWorld.js')
-                .hasErrorMessages("Rename file to 'helloworld.js'.");
-            await assertThat('')
+                .hasErrorMessages("1:1 Rename file to 'helloworld.js'.");
+            assertThat('')
                 .withFilename('HELLO_WORLD.js')
-                .hasErrorMessages("Rename file to 'hello-world.js'.");
+                .hasErrorMessages("1:1 Rename file to 'hello-world.js'.");
         },
     );
 });

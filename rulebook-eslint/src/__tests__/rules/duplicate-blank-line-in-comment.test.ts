@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import duplicateBlankLineInComment from '../../rules/duplicate-blank-line-in-comment';
 import assertProperties from '../asserts';
@@ -34,6 +34,6 @@ describe('DuplicateBlankLineInCommentRuleTest', () => {
                     // dolor sit amet.
                 }
                 `,
-            ).hasErrorMessages("Remove consecutive blank line after '//'"),
+            ).hasErrorMessages("5:21 Remove consecutive blank line after '//'"),
     );
 });

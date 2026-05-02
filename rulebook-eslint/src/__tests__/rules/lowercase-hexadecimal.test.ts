@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import lowercaseHexadecimalRule from '../../rules/lowercase-hexadecimal';
 import assertProperties from '../asserts';
@@ -34,8 +34,8 @@ describe('LowercaseHexadecimalRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Use hexadecimal '0x00bb00'.",
-                "Use hexadecimal '0xaa00cc'.",
+                "2:29 Use hexadecimal '0x00bb00'.",
+                "5:33 Use hexadecimal '0xaa00cc'.",
             ),
     );
 });

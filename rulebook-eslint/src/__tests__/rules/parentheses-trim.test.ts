@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import parenthesesTrimRule from '../../rules/parentheses-trim';
 import assertProperties from '../asserts';
@@ -42,10 +42,10 @@ describe('ParenthesesTrimRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Remove blank line after '('.",
-                "Remove blank line before ')'.",
-                "Remove blank line after '['.",
-                "Remove blank line before ']'.",
+                "2:29 Remove blank line after '('.",
+                "6:17 Remove blank line before ')'.",
+                "7:33 Remove blank line after '['.",
+                "11:21 Remove blank line before ']'.",
             ),
     );
 

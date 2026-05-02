@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/typescript-asserters';
 import { describe, it } from 'vitest';
 import genericNameRule from '../../rules/generic-name';
 import assertProperties from '../asserts';
@@ -34,9 +34,9 @@ describe('GenericNameRuleTest', () => {
                 type MyType<aX> = { val: aX };
                 `,
             ).hasErrorMessages(
-                'Use single uppercase letter.',
-                'Use single uppercase letter.',
-                'Use single uppercase letter.',
+                '2:31 Use single uppercase letter.',
+                '4:39 Use single uppercase letter.',
+                '6:29 Use single uppercase letter.',
             ),
     );
 
@@ -62,8 +62,8 @@ describe('GenericNameRuleTest', () => {
                 const execute2 = <aX>(item: aX) => item;
                 `,
             ).hasErrorMessages(
-                'Use single uppercase letter.',
-                'Use single uppercase letter.',
+                '2:34 Use single uppercase letter.',
+                '4:35 Use single uppercase letter.',
             ),
     );
 

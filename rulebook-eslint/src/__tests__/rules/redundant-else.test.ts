@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import redundantElseRule from '../../rules/redundant-else';
 import assertProperties from '../asserts';
@@ -42,8 +42,8 @@ describe('RedundantElseRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Omit redundant 'else' condition.",
-                "Omit redundant 'else' condition.",
+                "5:28 Omit redundant 'else' condition.",
+                "7:28 Omit redundant 'else' condition.",
             ),
     );
 
@@ -59,8 +59,8 @@ describe('RedundantElseRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Omit redundant 'else' condition.",
-                "Omit redundant 'else' condition.",
+                "4:26 Omit redundant 'else' condition.",
+                "5:26 Omit redundant 'else' condition.",
             ),
     );
 });

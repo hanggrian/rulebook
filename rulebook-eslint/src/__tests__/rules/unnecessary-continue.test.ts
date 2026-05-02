@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import unnecessaryContinueRule from '../../rules/unnecessary-continue';
 import assertProperties from '../asserts';
@@ -87,11 +87,11 @@ describe('UnnecessaryContinueRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
+                "5:25 Last 'continue' is not needed.",
+                "12:25 Last 'continue' is not needed.",
+                "19:25 Last 'continue' is not needed.",
+                "26:25 Last 'continue' is not needed.",
+                "33:25 Last 'continue' is not needed.",
             ),
     );
 
@@ -121,11 +121,11 @@ describe('UnnecessaryContinueRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
+                "3:50 Last 'continue' is not needed.",
+                "7:47 Last 'continue' is not needed.",
+                "11:47 Last 'continue' is not needed.",
+                "15:34 Last 'continue' is not needed.",
+                "19:24 Last 'continue' is not needed.",
             ),
     );
 
@@ -180,11 +180,11 @@ describe('UnnecessaryContinueRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
-                "Last 'continue' is not needed.",
+                "5:25 Last 'continue' is not needed.",
+                "14:25 Last 'continue' is not needed.",
+                "23:25 Last 'continue' is not needed.",
+                "32:25 Last 'continue' is not needed.",
+                "41:25 Last 'continue' is not needed.",
             ),
     );
 });

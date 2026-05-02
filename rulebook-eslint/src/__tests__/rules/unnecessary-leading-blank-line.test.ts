@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import unnecessaryLeadingBlankLineRule from '../../rules/unnecessary-leading-blank-line';
 import assertProperties from '../asserts';
@@ -20,7 +20,7 @@ describe('UnnecessaryInitialBlankLineTest', () => {
                 `
                 class MyClass {}
                 `,
-            ).hasErrorMessages('Remove blank line at the beginning.'),
+            ).hasErrorMessages('2:17 Remove blank line at the beginning.'),
     );
 
     it(

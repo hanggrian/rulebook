@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import caseSeparatorRule from '../../rules/case-separator';
 import assertProperties from '../asserts';
@@ -57,8 +57,8 @@ describe('CaseSeparatorRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                'Remove blank line after single-line branch.',
-                'Remove blank line after single-line branch.',
+                '3:34 Remove blank line after single-line branch.',
+                '5:41 Remove blank line after single-line branch.',
             ),
     );
 
@@ -78,8 +78,8 @@ describe('CaseSeparatorRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                'Add blank line after multiline branch.',
-                'Add blank line after multiline branch.',
+                '4:30 Add blank line after multiline branch.',
+                '7:30 Add blank line after multiline branch.',
             ),
     );
 
@@ -103,9 +103,9 @@ describe('CaseSeparatorRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                'Add blank line after multiline branch.',
-                'Add blank line after multiline branch.',
-                'Add blank line after multiline branch.',
+                '5:30 Add blank line after multiline branch.',
+                '8:30 Add blank line after multiline branch.',
+                '11:30 Add blank line after multiline branch.',
             ),
     );
 });

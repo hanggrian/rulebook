@@ -171,6 +171,9 @@ importers:
 
   stress-test:
     dependencies:
+      '@types/node':
+        specifier: 25.6.0
+        version: 25.6.0
       rulebook-eslint:
         specifier: workspace:*
         version: link:../rulebook-eslint
@@ -183,12 +186,12 @@ importers:
 
   testing:
     dependencies:
-      rulebook-eslint:
-        specifier: workspace:*
-        version: link:../rulebook-eslint
-      rulebook-typescript-eslint:
-        specifier: workspace:*
-        version: link:../rulebook-typescript-eslint
+      eslint:
+        specifier: ^9.39.4
+        version: 9.39.4
+      typescript-eslint:
+        specifier: ^8.58.1
+        version: 8.58.1(eslint@9.39.4)(typescript@5.9.3)
 
 packages:
 
@@ -1430,9 +1433,6 @@ packages:
 
   flat-cache@6.1.22:
     resolution: {integrity: sha512-N2dnzVJIphnNsjHcrxGW7DePckJ6haPrSFqpsBUhHYgwtKGVq4JrBGielEGD2fCVnsGm1zlBVZ8wGhkyuetgug==}
-
-  flatted@3.3.4:
-    resolution: {integrity: sha512-3+mMldrTAPdta5kjX2G2J7iX4zxtnwpdA8Tr2ZSjkyPSanvbZAcy6flmtnXbEybHrDcU9641lxrMfFuUxVz9vA==}
 
   flatted@3.4.2:
     resolution: {integrity: sha512-PjDse7RzhcPkIJwy5t7KPWQSZ9cAbzQXcafsetQoD7sOJRQlGikNbx7yZp2OotDnJyrDcbyRq3Ttb18iYOqkxA==}
@@ -4127,7 +4127,7 @@ snapshots:
 
   flat-cache@4.0.1:
     dependencies:
-      flatted: 3.3.4
+      flatted: 3.4.2
       keyv: 4.5.4
 
   flat-cache@6.1.22:
@@ -4135,8 +4135,6 @@ snapshots:
       cacheable: 2.3.4
       flatted: 3.4.2
       hookified: 1.15.1
-
-  flatted@3.3.4: {}
 
   flatted@3.4.2: {}
 

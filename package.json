@@ -4,8 +4,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "uv sync && uv pip install -r website/requirements.txt",
-    "preprepare": "scripts/prepare_clion.sh",
-    "prepare": "./gradlew compileKotlin && pnpm --filter rulebook-eslint --filter rulebook-typescript-eslint --filter codecheck build && pnpm --filter testing build",
+    "prepare": "./gradlew compileKotlin && pnpm -r build && scripts/prepare_clion.sh",
     "prelint": "pnpm -r lint",
     "lint": "./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck && uv run stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml && pnpm exec stylebook *.json **/*.json *.md website/",
     "pretest": "pnpm -r test",

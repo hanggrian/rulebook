@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import chainCallWrapRule from '../../rules/chain-call-wrap';
 import assertProperties from '../asserts';
@@ -72,8 +72,8 @@ describe('ChainCallWrapRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Omit newline before '.'.",
-                "Omit newline before '.'.",
+                "6:25 Omit newline before '.'.",
+                "15:25 Omit newline before '.'.",
             ),
     );
 
@@ -122,7 +122,7 @@ describe('ChainCallWrapRuleTest', () => {
                     }
                 }
                 `,
-            ).hasErrorMessages("Put newline before '.'."),
+            ).hasErrorMessages("4:31 Put newline before '.'."),
     );
 
     it(

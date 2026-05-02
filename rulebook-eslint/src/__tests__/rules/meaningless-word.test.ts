@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import meaninglessWordRule from '../../rules/meaningless-word';
 import assertProperties from '../asserts';
@@ -30,9 +30,9 @@ describe('MeaninglessWordRuleTest', () => {
                 class RouteManager {}
                 `,
             ).hasErrorMessages(
-                "Avoid meaningless word 'Manager'.",
-                "Avoid meaningless word 'Manager'.",
-                "Avoid meaningless word 'Manager'.",
+                "2:23 Avoid meaningless word 'Manager'.",
+                "3:23 Avoid meaningless word 'Manager'.",
+                "4:23 Avoid meaningless word 'Manager'.",
             ),
     );
 
@@ -43,14 +43,14 @@ describe('MeaninglessWordRuleTest', () => {
                 `
                 class SpaceshipUtil {}
                 `,
-            ).hasErrorMessages("Rename utility class to 'Spaceships'."),
+            ).hasErrorMessages("2:23 Rename utility class to 'Spaceships'."),
     );
 
     it(
         'Utility file found',
         () =>
             assertThat('// comment')
-                .withFilename('spaceship-util.ts')
-                .hasErrorMessages("Rename utility class to 'Spaceships'."),
+                .withFilename('spaceship-util.js')
+                .hasErrorMessages("1:1 Rename utility class to 'Spaceships'."),
     );
 });

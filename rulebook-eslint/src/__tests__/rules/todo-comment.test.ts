@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import todoCommentRule from '../../rules/todo-comment';
 import assertProperties from '../asserts';
@@ -28,8 +28,8 @@ describe('TodoCommentRuleTest', () => {
                 // fixme fix bug
                 `,
             ).hasErrorMessages(
-                "Capitalize keyword 'todo'.",
-                "Capitalize keyword 'fixme'.",
+                "2:17 Capitalize keyword 'todo'.",
+                "3:17 Capitalize keyword 'fixme'.",
             ),
     );
 
@@ -42,8 +42,8 @@ describe('TodoCommentRuleTest', () => {
                 // FIXME1 fix bug
                 `,
             ).hasErrorMessages(
-                "Omit separator ':'.",
-                "Omit separator '1'.",
+                "2:17 Omit separator ':'.",
+                "3:17 Omit separator '1'.",
             ),
     );
 
@@ -59,8 +59,8 @@ describe('TodoCommentRuleTest', () => {
                  */
                 `,
             ).hasErrorMessages(
-                "Capitalize keyword 'todo'.",
-                "Omit separator ':'.",
+                "2:17 Capitalize keyword 'todo'.",
+                "4:17 Omit separator ':'.",
             ),
     );
 
@@ -72,8 +72,8 @@ describe('TodoCommentRuleTest', () => {
                 // Untested. Todo: add tests.
                 `,
             ).hasErrorMessages(
-                "Capitalize keyword 'Todo'.",
-                "Omit separator ':'.",
+                "2:17 Capitalize keyword 'Todo'.",
+                "2:17 Omit separator ':'.",
             ),
     );
 });

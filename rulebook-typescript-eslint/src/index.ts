@@ -5,6 +5,7 @@ import type { TSESLint } from '@typescript-eslint/utils';
 
 const typescriptConfig: TSESLint.SharedConfig.RulesRecord = {
     '@typescript-eslint/consistent-return': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
 
     '@typescript-eslint/no-restricted-types': [
         'error',

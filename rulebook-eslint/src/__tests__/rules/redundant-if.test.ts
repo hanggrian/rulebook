@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import redundantIfRule from '../../rules/redundant-if';
 import assertProperties from '../asserts';
@@ -45,8 +45,8 @@ describe('RedundantIfRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Omit redundant 'if' condition.",
-                "Omit redundant 'if' condition.",
+                "3:21 Omit redundant 'if' condition.",
+                "11:21 Omit redundant 'if' condition.",
             ),
     );
 
@@ -60,7 +60,7 @@ describe('RedundantIfRuleTest', () => {
                     else return false;
                 }
                 `,
-            ).hasErrorMessages("Omit redundant 'if' condition."),
+            ).hasErrorMessages("3:21 Omit redundant 'if' condition."),
     );
 
     it(
@@ -78,6 +78,6 @@ describe('RedundantIfRuleTest', () => {
                     // Lorem ipsum.
                 }
                 `,
-            ).hasErrorMessages("Omit redundant 'if' condition."),
+            ).hasErrorMessages("3:21 Omit redundant 'if' condition."),
     );
 });

@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import redundantDefaultRule from '../../rules/redundant-default';
 import assertProperties from '../asserts';
@@ -37,7 +37,7 @@ describe('RedundantDefaultRuleTest', () => {
                     }
                 }
                 `,
-            ).hasErrorMessages("Omit redundant 'default' condition."),
+            ).hasErrorMessages("6:25 Omit redundant 'default' condition."),
     );
 
     it(

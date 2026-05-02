@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/typescript-asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/typescript-asserters';
 import { describe, it } from 'vitest';
 import unnecessaryAbstractClassRule from '../../rules/unnecessary-abstract';
 import assertProperties from '../asserts';
@@ -29,7 +29,7 @@ describe('UnnecessaryAbstractRuleTest', () => {
                     bar(): boolean;
                 }
                 `,
-            ).hasErrorMessages("Omit 'abstract' modifier."),
+            ).hasErrorMessages("2:17 Omit 'abstract' modifier."),
     );
 
     it(

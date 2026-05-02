@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import commentTrimRule from '../../rules/comment-trim';
 import assertProperties from '../asserts';
@@ -32,8 +32,8 @@ describe('CommentTrimRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Remove blank line after '//'.",
-                "Remove blank line after '//'.",
+                "3:21 Remove blank line after '//'.",
+                "5:21 Remove blank line after '//'.",
             ),
     );
 

@@ -13,7 +13,7 @@
     "node": ">=12.0.0"
   },
   "dependencies": {
-    "rulebook-eslint": "workspace:*",
-    "rulebook-typescript-eslint": "workspace:*"
+    "eslint": "^9.39.4",
+    "typescript-eslint": "^8.58.1"
   }
 }

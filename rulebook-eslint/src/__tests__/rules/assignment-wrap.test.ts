@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import assignmentWrapRule from '../../rules/assignment-wrap';
 import assertProperties from '../asserts';
@@ -44,7 +44,7 @@ describe('AssignmentWrapRuleTest', () => {
                         2;
                 }
                 `,
-            ).hasErrorMessages('Break assignment into newline.'),
+            ).hasErrorMessages('3:33 Break assignment into newline.'),
     );
 
     it(

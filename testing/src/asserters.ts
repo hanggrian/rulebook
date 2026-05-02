@@ -1,19 +1,14 @@
-import {
-    type NormalizedTestCase,
-    type RuleTester,
-    type TestExecutionResult,
-    createRuleTester,
-} from 'eslint-vitest-rule-tester';
-import type { RuleOptions } from '@stylistic/eslint-plugin';
-import type RulebookRule from 'rulebook-eslint/dist/rules/rulebook-rule';
+import { Linter } from 'eslint';
+import { expect } from 'vitest';
+import type RulebookRule from 'rulebook-eslint/src/rules/rulebook-rule';
 
 class Asserter {
-    private readonly nativeTesters: RuleTester[];
+    private readonly rules: RulebookRule[];
     private readonly code: string;
     filename: string | undefined = undefined;
 
-    constructor(code: string, ...ruleTesters: RuleTester[]) {
-        this.nativeTesters = ruleTesters;
+    constructor(rules: RulebookRule[], code: string) {
+        this.rules = rules;
         this.code = code;
     }
 
@@ -22,48 +17,48 @@ class Asserter {
         return this;
     }
 
-    hasNoError(): Promise<{
-        testcase: NormalizedTestCase<RuleOptions>;
-        result: TestExecutionResult;
-    }[]> {
-        return Promise.all(
-            this.nativeTesters.map(tester =>
-                tester.valid({
-                    code: this.code,
-                    filename: this.filename,
-                })),
+    hasNoError(): void {
+        expect(this.verify())
+            .toHaveLength(0);
+    }
+
+    hasErrorMessages(...messages: string[]): void {
+        expect(this.verify().map(m => `${m.line}:${m.column} ${m.message}`))
+            .toEqual(messages);
+    }
+
+    private verify(): Linter.LintMessage[] {
+        return new Linter({ configType: 'flat' }).verify(
+            this.code,
+            [{
+                files: ['**/*.js'],
+                plugins: {
+                    custom: {
+                        rules:
+                            Object.fromEntries(
+                                // eslint-disable-next-line
+                                this.rules.map(rule => [rule.meta!.docs!.description!, rule])
+                            ),
+                    },
+                },
+                rules:
+                    Object.fromEntries(
+                        this.rules.map(rule =>
+                            // eslint-disable-next-line
+                            [`custom/${rule.meta!.docs!.description!}`, 'error'],),
+                    ),
+            }],
+            this.filename,
         );
     }
 
-    hasErrorMessages(...messages: string[]): Promise<{
-        testcase: NormalizedTestCase<RuleOptions>;
-        result: TestExecutionResult;
-    }[]> {
-        const errors = messages.map(message => ({ message }));
-        return Promise.all(
-            this.nativeTesters.map(tester =>
-                tester.invalid({
-                    code: this.code,
-                    filename: this.filename,
-                    errors,
-                })),
-        );
-    }
+    private static ERROR_MESSAGE_REGEX: RegExp = /^(\d+):(\d+)\s+(.+)$/;
 }
 
 type AssertThat = (code: string) => Asserter;
 
-function assertThatRule(rule: RulebookRule): AssertThat {
-    return (code: string) =>
-        new Asserter(
-            code,
-            createRuleTester({
-                rule: rule,
-                // eslint-disable-next-line @stylistic/max-len
-                // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion, @typescript-eslint/no-extra-non-null-assertion
-                name: rule.meta.docs!!.description,
-            }),
-        );
+function assertThatRule(...rules: RulebookRule[]): AssertThat {
+    return (code: string) => new Asserter(rules, code);
 }
 
 export { assertThatRule, Asserter, AssertThat };

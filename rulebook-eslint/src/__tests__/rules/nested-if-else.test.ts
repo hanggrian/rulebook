@@ -1,4 +1,4 @@
-import { type AssertThat, assertThatRule } from 'testing/dist/asserters';
+import { type AssertThat, assertThatRule } from 'testing/src/asserters';
 import { describe, it } from 'vitest';
 import nestedIfElseRule from '../../rules/nested-if-else';
 import assertProperties from '../asserts';
@@ -48,8 +48,8 @@ describe('NestedIfElseRuleTest', () => {
                 }
                 `,
             ).hasErrorMessages(
-                "Invert 'if' condition.",
-                "Invert 'if' condition.",
+                "3:21 Invert 'if' condition.",
+                "10:21 Invert 'if' condition.",
             ),
     );
 
@@ -67,7 +67,7 @@ describe('NestedIfElseRuleTest', () => {
                     }
                 }
                 `,
-            ).hasErrorMessages("Lift 'else' and add 'return' in 'if' block."),
+            ).hasErrorMessages("5:28 Lift 'else' and add 'return' in 'if' block."),
     );
 
     it(
@@ -116,7 +116,7 @@ describe('NestedIfElseRuleTest', () => {
                     // Lorem ipsum.
                 }
                 `,
-            ).hasErrorMessages("Invert 'if' condition."),
+            ).hasErrorMessages("3:21 Invert 'if' condition."),
     );
 
     it(
