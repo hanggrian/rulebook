@@ -186,7 +186,7 @@ class AllCheckersTestCase(TestCase):
     def generic_name_called(tokens, s, line):
         return call(
             next(t for t in tokens if t.str == s and t.linenr == line),
-            'Use single uppercase letter.',
+            'Use pascal-case name.',
         )
 
     @staticmethod

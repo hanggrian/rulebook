@@ -9,14 +9,14 @@ class GenericNameRuleTest : RuleTest<GenericNameRule>() {
     @Test
     fun `Rule properties`() {
         rule.assertProperties()
-        assertIs<RequiredGenericsNameVisitor>(rule.astVisitor)
+        assertIs<GenericNameVisitor>(rule.astVisitor)
     }
 
     @Test
     fun `Correct generic name in class`() =
         assertNoViolations(
             """
-            class MyClass<T> {}
+            class MyClass<GenericValue> {}
 
             interface MyInterface<E> {}
             """.trimIndent(),
@@ -26,16 +26,16 @@ class GenericNameRuleTest : RuleTest<GenericNameRule>() {
     fun `Incorrect generic name in class`() =
         assertTwoViolations(
             """
-            class MyClass<XA> {}
+            class MyClass<GENERIC_VALUE> {}
 
-            interface MyInterface<Xa> {}
+            interface MyInterface<ELEMENT> {}
             """.trimIndent(),
             1,
-            "class MyClass<XA> {}",
-            "Use single uppercase letter.",
+            "class MyClass<GENERIC_VALUE> {}",
+            "Use pascal-case name.",
             3,
-            "interface MyInterface<Xa> {}",
-            "Use single uppercase letter.",
+            "interface MyInterface<ELEMENT> {}",
+            "Use pascal-case name.",
         )
 
     @Test
@@ -50,32 +50,10 @@ class GenericNameRuleTest : RuleTest<GenericNameRule>() {
     fun `Incorrect generic name in function`() =
         assertSingleViolation(
             """
-            <Xa> void execute(List<Xa> list) {}
+            <ELEMENT> void execute(List<ELEMENT> list) {}
             """.trimIndent(),
             1,
-            "<Xa> void execute(List<Xa> list) {}",
-            "Use single uppercase letter.",
-        )
-
-    @Test
-    fun `Skip multiple generics`() =
-        assertNoViolations(
-            """
-            class Foo<Xa, Ax> {}
-
-            fun <Bar, Baz> bar(list: List<Bar, Baz>) {}
-            """.trimIndent(),
-        )
-
-    @Test
-    fun `Skip inner generics`() =
-        assertNoViolations(
-            """
-            class Foo<T> {
-                class Bar<X> {}
-
-                <Y> void bar() {}
-            }
-            """.trimIndent(),
+            "<ELEMENT> void execute(List<ELEMENT> list) {}",
+            "Use pascal-case name.",
         )
 }

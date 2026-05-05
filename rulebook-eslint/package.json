@@ -18,8 +18,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src/",
-    "test": "vitest",
-    "coverage": "vitest run --coverage src/__tests__/**/*.test.ts --reporter=junit --outputFile=test-report.junit.xml",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage --reporter=junit --outputFile=test-report.junit.xml",
     "prepublishOnly": "cp ../README.md ./",
     "postpublish": "rm ./README.md"
   },

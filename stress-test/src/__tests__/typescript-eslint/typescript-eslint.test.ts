@@ -6,15 +6,15 @@ import assertThatAllRules from './all-rules-tests';
 describe('TypescriptEslintTest', () => {
     const assertThat: AssertThat = assertThatAllRules();
 
-    const configHelper: string = 'config-helper.ts';
-    const convert: string = 'convert.ts';
-    const parser: string = 'parser.ts';
+    const configHelperFile: string = 'config-helper.ts';
+    const convertFile: string = 'convert.ts';
+    const parserFile: string = 'parser.ts';
 
     it(
-        `Test ${configHelper}`,
+        `Test ${configHelperFile}`,
         () =>
-            assertThat(getCode(`typescript-eslint/${configHelper}`))
-                .withFilename(configHelper)
+            assertThat(getCode(`typescript-eslint/${configHelperFile}`))
+                .withFilename(configHelperFile)
                 .hasErrorMessages(
                     "19:1 Avoid meaningless word 'Helper'.",
                     '121:28 Break assignment into newline.',
@@ -25,10 +25,10 @@ describe('TypescriptEslintTest', () => {
     );
 
     it(
-        `Test ${convert}`,
+        `Test ${convertFile}`,
         () =>
-            assertThat(getCode(`typescript-eslint/${convert}`))
-                .withFilename(convert)
+            assertThat(getCode(`typescript-eslint/${convertFile}`))
+                .withFilename(convertFile)
                 .hasErrorMessages(
                     "2:1 Definition for rule '@typescript-eslint/no-non-null-assertion' " +
                     'was not found.',
@@ -138,10 +138,10 @@ describe('TypescriptEslintTest', () => {
     );
 
     it(
-        `Test ${parser}`,
+        `Test ${parserFile}`,
         () =>
-            assertThat(getCode(`typescript-eslint/${parser}`))
-                .withFilename(parser)
+            assertThat(getCode(`typescript-eslint/${parserFile}`))
+                .withFilename(parserFile)
                 .hasErrorMessages(
                     "51:31 Put newline before '.'.",
                     '56:27 Break assignment into newline.',

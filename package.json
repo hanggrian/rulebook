@@ -3,26 +3,26 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "postinstall": "uv sync && uv pip install -r website/requirements.txt",
-    "prepare": "./gradlew compileKotlin && pnpm -r build && scripts/prepare_clion.sh",
+    "postinstall": "uv sync",
+    "prepare": "scripts/prepare_clion.sh && pnpm -F codecheck -F rulebook-eslint -F rulebook-typescript-eslint build",
     "prelint": "pnpm -r lint",
     "lint": "./gradlew checkstyleMain codenarcMain codenarcScript ktlintCheck && uv run stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml && pnpm exec stylebook *.json **/*.json *.md website/",
     "pretest": "pnpm -r test",
     "test": "./gradlew test",
     "precoverage": "pnpm -r coverage",
-    "coverage": "uv run coverage combine rulebook-cppcheck/.coverage rulebook-pylint/.coverage && uv run coverage xml",
+    "coverage": "./gradlew koverXmlReport && uv run coverage combine rulebook-cppcheck/.coverage rulebook-pylint/.coverage && uv run coverage xml",
     "predocumentation": "rm -rf build/dokka/ build/pdoc/ build/typedoc/",
     "documentation": "./gradlew dokkaGenerateHtml && uv run pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/ && typedoc --entryPointStrategy packages --out build/typedoc/ rulebook-eslint/ rulebook-typescript-eslint/",
-    "build-cli": "scripts/build_cli.sh",
+    "prepare-website": "uv pip install -r website/requirements.txt",
     "prepublish-website": "pnpm documentation && rm -rf website/docs/api/ && mkdir -p website/docs/api/ && mv build/dokka/html/ website/docs/api/javadoc/ && mv build/pdoc website/docs/api/pydoc/ && mv build/typedoc website/docs/api/tsdoc/",
-    "publish-website": "cd website && uv run mkdocs gh-deploy",
+    "publish-website": "pnpm prepare-website && cd website && uv run mkdocs gh-deploy",
     "postpublish-website": "rm -rf website/docs/api",
-    "preview-website": "cd website && uv run mkdocs serve --livereload"
+    "preview-website": "pnpm prepare-website && cd website && uv run mkdocs serve --livereload"
   },
   "engines": {
     "node": ">=12.0.0"
   },
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@10.33.3",
   "dependencies": {
     "rulebook-eslint": "workspace:*",
     "rulebook-typescript-eslint": "workspace:*",

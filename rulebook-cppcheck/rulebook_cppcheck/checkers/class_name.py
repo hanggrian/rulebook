@@ -7,6 +7,7 @@ try:
 except ImportError:
     from cppcheck.Cppcheck.addons.cppcheckdata import Scope, Token
 
+
 # TODO find out why Enum is not caught in tests
 class ClassNameChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#class-name"""
@@ -21,13 +22,17 @@ class ClassNameChecker(RulebookChecker):
         class_name: str | None = scope.className
         if class_name is None or \
             class_name[0].isupper() and \
-            '_' not in class_name:
+            '_' not in class_name and \
+            not any(a.isupper() and b.isupper() for a, b in zip(class_name, class_name[1:])):
             return
         name_token: Token | None = prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
         self.report_error(
             name_token if name_token is not None else scope.bodyStart,
             Messages.get(
                 self._MSG,
-                ''.join(p[0].upper() + p[1:] if p else '' for p in class_name.split('_')),
+                ''.join(
+                    p[0].upper() + (p[1:].lower() if p.isupper() else p[1:]) if p else '' for p in
+                    class_name.split('_')
+                ),
             ),
         )

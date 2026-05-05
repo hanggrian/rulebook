@@ -1,8 +1,8 @@
+from rulebook_cppcheck.checkers import GenericNameChecker
 from textwrap import dedent
 from unittest import main
 from unittest.mock import call, patch
 
-from rulebook_cppcheck.checkers import GenericNameChecker
 from .checker_case import CheckerTestCase
 from ..asserts import assert_properties
 
@@ -19,8 +19,8 @@ class TestGenericNameChecker(CheckerTestCase):
             self.dump_code(
                 dedent(
                     '''
-                    template <typename T> class MyClass {}
-                    template <class V> interface MyInterface {}
+                    template <typename GenericValue> class MyClass {}
+                    template <class E> interface MyInterface {}
                     ''',
                 ),
             )
@@ -33,11 +33,9 @@ class TestGenericNameChecker(CheckerTestCase):
             self.dump_code(
                 dedent(
                     '''
-                    template <typename XA> class MyClass {}
-                    template <typename Xa> class MyClass2 {}
-                    template <typename aX> class MyClass3 {}
-                    template <typename a_x> class MyClass4 {}
-                    template <typename A_X> class MyClass5 {}
+                    template <typename TYPE> class MyClass {}
+                    template <typename generic_value> class MyClass2 {}
+                    template <typename element> class MyClass3 {}
                     ''',
                 ),
             )
@@ -45,24 +43,16 @@ class TestGenericNameChecker(CheckerTestCase):
         report_error.assert_has_calls(
             [
                 call(
-                    next(t for t in tokens if t.str == 'XA'),
-                    'Use single uppercase letter.',
+                    next(t for t in tokens if t.str == 'TYPE'),
+                    'Use pascal-case name.',
                 ),
                 call(
-                    next(t for t in tokens if t.str == 'Xa'),
-                    'Use single uppercase letter.',
+                    next(t for t in tokens if t.str == 'generic_value'),
+                    'Use pascal-case name.',
                 ),
                 call(
-                    next(t for t in tokens if t.str == 'aX'),
-                    'Use single uppercase letter.',
-                ),
-                call(
-                    next(t for t in tokens if t.str == 'a_x'),
-                    'Use single uppercase letter.',
-                ),
-                call(
-                    next(t for t in tokens if t.str == 'A_X'),
-                    'Use single uppercase letter.',
+                    next(t for t in tokens if t.str == 'element'),
+                    'Use pascal-case name.',
                 ),
             ],
         )
@@ -79,8 +69,8 @@ class TestGenericNameChecker(CheckerTestCase):
             self.dump_code(
                 dedent(
                     '''
-                    template <typename Xa> void execute() {}
-                    template <typename aX> void execute2() {}
+                    template <typename generic_value> void execute() {}
+                    template <typename element> void execute2() {}
                     ''',
                 ),
             )
@@ -88,45 +78,15 @@ class TestGenericNameChecker(CheckerTestCase):
         report_error.assert_has_calls(
             [
                 call(
-                    next(t for t in tokens if t.str == 'Xa'),
-                    'Use single uppercase letter.',
+                    next(t for t in tokens if t.str == 'generic_value'),
+                    'Use pascal-case name.',
                 ),
                 call(
-                    next(t for t in tokens if t.str == 'aX'),
-                    'Use single uppercase letter.',
+                    next(t for t in tokens if t.str == 'element'),
+                    'Use pascal-case name.',
                 ),
             ],
         )
-
-    @patch.object(GenericNameChecker, 'report_error')
-    def test_skip_multiple_generics(self, report_error):
-        tokens, _ = \
-            self.dump_code(
-                dedent(
-                    '''
-                    template <typename Xa, typename Ax> class Foo {}
-                    template <typename Bar, typename Baz> void bar() {}
-                    ''',
-                ),
-            )
-        self.checker.process_tokens(tokens)
-        report_error.assert_not_called()
-
-    @patch.object(GenericNameChecker, 'report_error')
-    def test_skip_inner_generics(self, report_error):
-        tokens, _ = \
-            self.dump_code(
-                dedent(
-                    '''
-                    template <typename T> class Foo {
-                        template <typename X> class Bar {}
-                        template <typename Y> void bar() {}
-                    };
-                    ''',
-                ),
-            )
-        self.checker.process_tokens(tokens)
-        report_error.assert_not_called()
 
 
 if __name__ == '__main__':

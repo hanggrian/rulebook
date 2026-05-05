@@ -14,7 +14,7 @@ unnecessary.abstract=Omit 'abstract' modifier.
 # Formatting
 # Naming
 abbreviation.as.word=Rename abbreviation to '%s'.
-generic.name=Use single uppercase letter.
+generic.name=Use pascal-case name.
 meaningless.word.all=Avoid meaningless word '%s'.
 meaningless.word.util=Rename utility class to '%s'.
 # Ordering

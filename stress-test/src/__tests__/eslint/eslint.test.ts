@@ -6,15 +6,15 @@ import assertThatAllRules from './all-rules-tests';
 describe('EslintTest', () => {
     const assertThat: AssertThat = assertThatAllRules();
 
-    const eslint: string = 'eslint.js';
-    const eslintHelper: string = 'eslint-helper.js';
-    const linter: string = 'linter.js';
+    const eslintFile: string = 'eslint.js';
+    const eslintHelperFile: string = 'eslint-helper.js';
+    const linterFile: string = 'linter.js';
 
     it(
-        `Test ${eslint}`,
+        `Test ${eslintFile}`,
         () =>
-            assertThat(getCode(`eslint/${eslint}`))
-                .withFilename(eslint)
+            assertThat(getCode(`eslint/${eslintFile}`))
+                .withFilename(eslintFile)
                 .hasErrorMessages(
                     "52:16 Put newline before '.'.",
                     '121:21 Break assignment into newline.',
@@ -24,10 +24,10 @@ describe('EslintTest', () => {
     );
 
     it(
-        `Test ${eslintHelper}`,
+        `Test ${eslintHelperFile}`,
         () =>
-            assertThat(getCode(`eslint/${eslintHelper}`))
-                .withFilename(eslintHelper)
+            assertThat(getCode(`eslint/${eslintHelperFile}`))
+                .withFilename(eslintHelperFile)
                 .hasErrorMessages(
                     "6:1 Avoid meaningless word 'Helper'.",
                     '68:15 Break assignment into newline.',
@@ -49,10 +49,10 @@ describe('EslintTest', () => {
     );
 
     it(
-        `Test ${linter}`,
+        `Test ${linterFile}`,
         () =>
-            assertThat(getCode(`eslint/${linter}`))
-                .withFilename(linter)
+            assertThat(getCode(`eslint/${linterFile}`))
+                .withFilename(linterFile)
                 .hasErrorMessages(
                     "68:1 Definition for rule 'jsdoc/valid-types' was not found.",
                     "73:1 Definition for rule 'jsdoc/valid-types' was not found.",

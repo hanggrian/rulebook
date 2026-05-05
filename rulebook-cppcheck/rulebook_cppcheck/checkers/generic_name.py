@@ -1,3 +1,4 @@
+from regex import Pattern, compile as regex
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import Messages
 from rulebook_cppcheck.nodes import next_sibling
@@ -14,6 +15,7 @@ class GenericNameChecker(RulebookTokenChecker):
     _MSG: str = 'generic.name'
 
     _TARGET_TOKENS: frozenset[str] = frozenset(['typename', 'class'])
+    _PASCAL_CASE_REGEX: Pattern = regex(r'^[A-Z]([a-z][a-zA-Z0-9]*)?$')
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'template']:
@@ -22,33 +24,23 @@ class GenericNameChecker(RulebookTokenChecker):
             if open_bracket is None or \
                 not open_bracket.link:
                 continue
+
+            # checks for violation
             closing: Token | None = open_bracket.link
-            params: list[Token] = []
+            keyword_token: Token | None = None
             curr_token: Token | None = open_bracket.next
-            continue_outer: bool = False
             while curr_token is not None and \
                 curr_token is not closing:
                 if not isinstance(curr_token, Token):
+                    curr_token = curr_token.next
                     continue
-                if curr_token.str == ',':
-                    continue_outer = True
-                    break
-                params.append(curr_token)
+                if curr_token.str in self._TARGET_TOKENS:
+                    keyword_token = curr_token
+                elif keyword_token is not None and \
+                    curr_token.str != ',' and \
+                    curr_token.type == 'name' and \
+                    curr_token.str != '...':
+                    if not self._PASCAL_CASE_REGEX.match(curr_token.str):
+                        self.report_error(curr_token, Messages.get(self._MSG))
+                    keyword_token = None
                 curr_token = curr_token.next
-            if continue_outer or \
-                len(params) != 2:
-                continue
-
-            # checks for violation
-            keyword_token: Token = params[0]
-            name_token: Token = params[1]
-            if keyword_token.str not in self._TARGET_TOKENS:
-                continue
-            name: str = name_token.str
-            if name_token.type != 'name' or \
-                name == '...':
-                continue
-            if len(name) == 1 and \
-                name[0].isupper():
-                continue
-            self.report_error(name_token, Messages.get(self._MSG))

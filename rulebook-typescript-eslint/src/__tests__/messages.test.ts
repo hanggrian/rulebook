@@ -4,6 +4,6 @@ import messages from '../messages';
 describe('MessagesTest', () => {
     it(
         'get',
-        () => expect(messages.get('generic.name')).toBe('Use single uppercase letter.'),
+        () => expect(messages.get('generic.name')).toBe('Use pascal-case name.'),
     );
 });
