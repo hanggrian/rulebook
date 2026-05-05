@@ -6,7 +6,6 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
     "lint": "uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/"
   },
   "engines": {

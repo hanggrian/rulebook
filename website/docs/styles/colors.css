@@ -46,6 +46,9 @@
 #ktlint {
   color: #ff4081;
 }
+#typescript {
+  color: #3178c6;
+}
 
 /* Custom admonition */
 .md-typeset .admonition.features1,

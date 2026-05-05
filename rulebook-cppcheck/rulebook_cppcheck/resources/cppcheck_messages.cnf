@@ -21,7 +21,7 @@ class.name=Rename class to '{}'.
 file.name=Rename file to '{}'.
 identifier.name=Rename identifier to '{}'.
 illegal.variable.name=Use descriptive name.
-generic.name=Use single uppercase letter.
+generic.name=Use pascal-case name.
 meaningless.word=Avoid meaningless word '{}'.
 package.name=Rename package to '{}'.
 # Ordering

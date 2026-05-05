@@ -13,11 +13,11 @@ describe('GenericNameRuleTest', () => {
         () =>
             assertThat(
                 `
-                class MyClass<T> {}
+                class MyClass<Type> {}
 
-                interface MyInterface<V> {}
+                interface MyInterface<GenericValue> {}
 
-                type MyType<X> = { val: X };
+                type MyType<E> = { val: E };
                 `,
             ).hasNoError(),
     );
@@ -27,16 +27,16 @@ describe('GenericNameRuleTest', () => {
         () =>
             assertThat(
                 `
-                class MyClass<XA> {}
+                class MyClass<TYPE> {}
 
-                interface MyInterface<Xa> {}
+                interface MyInterface<generic_value> {}
 
-                type MyType<aX> = { val: aX };
+                type MyType<element> = { val: element };
                 `,
             ).hasErrorMessages(
-                '2:31 Use single uppercase letter.',
-                '4:39 Use single uppercase letter.',
-                '6:29 Use single uppercase letter.',
+                '2:31 Use pascal-case name.',
+                '4:39 Use pascal-case name.',
+                '6:29 Use pascal-case name.',
             ),
     );
 
@@ -45,9 +45,9 @@ describe('GenericNameRuleTest', () => {
         () =>
             assertThat(
                 `
-                function execute<E>(list: E[]) {}
+                function execute<SingleElement>(list: SingleElement[]) {}
 
-                const execute2 = <T>(item: T) => item;
+                const execute2 = <Type>(item: Type) => item;
                 `,
             ).hasNoError(),
     );
@@ -57,39 +57,13 @@ describe('GenericNameRuleTest', () => {
         () =>
             assertThat(
                 `
-                function execute<Xa>(list: Xa[]) {}
+                function execute<generic_value>(list: generic_value[]) {}
 
-                const execute2 = <aX>(item: aX) => item;
+                const execute2 = <element>(item: element) => item;
                 `,
             ).hasErrorMessages(
-                '2:34 Use single uppercase letter.',
-                '4:35 Use single uppercase letter.',
+                '2:34 Use pascal-case name.',
+                '4:35 Use pascal-case name.',
             ),
-    );
-
-    it(
-        'Skip multiple generics',
-        () =>
-            assertThat(
-                `
-                class Foo<Foo1, Foo2> {}
-
-                function bar<Bar1, Bar2> () {}
-                `,
-            ).hasNoError(),
-    );
-
-    it(
-        'Skip inner generics',
-        () =>
-            assertThat(
-                `
-                class Foo<T> {
-                    static Bar = class<XX> {}
-
-                    baz<YY>() {}
-                }
-                `,
-            ).hasNoError(),
     );
 });

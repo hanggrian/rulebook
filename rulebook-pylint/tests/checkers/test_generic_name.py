@@ -19,10 +19,10 @@ class TestGenericNameChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                T = TypeVar('T')  #@
+                GenericValue = TypeVar('GenericValue')  #@
 
 
-                class MyClass(T):
+                class MyClass(GenericValue):
                     print()
                 ''',
             )
@@ -33,15 +33,15 @@ class TestGenericNameChecker(CheckerTestCase):
         node1 = \
             extract_node(
                 '''
-                XA = TypeVar('XA')  #@
+                generic_value = TypeVar('generic_value')  #@
 
 
-                class MyClass(T):
+                class MyClass(generic_value):
                     print()
                 ''',
             )
         with self.assertAddsMessages(
-            msg(GenericNameChecker._MSG, (2, 0, 2), node1.targets[0]),
+            msg(GenericNameChecker._MSG, (2, 0, 13), node1.targets[0]),
         ):
             self.checker.visit_assign(node1)
 

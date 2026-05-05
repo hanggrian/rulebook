@@ -2528,69 +2528,6 @@ Use spaces instead of tabs for indentation.
     }
     ```
 
-### Line feed
-
-Apply Unix-style line feed (LF) as a line separator.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java
-    class AwesomeImplementation { /*...*/ }\r\n
-    ```
-=== "Groovy"
-
-    ```groovy
-    class AwesomeImplementation { /*...*/ }\r\n
-    ```
-=== "Python"
-
-    ```python hl_lines="2"
-    class AwesomeImplementation:
-        pass\r\n
-    ```
-=== "JavaScript"
-
-    ```js
-    class AwesomeImplementation { /*...*/ }\r\n
-    ```
-=== "TypeScript"
-
-    ```ts
-    class AwesomeImplementation { /*...*/ }\r\n
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-=== "Groovy"
-
-    ```groovy
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-=== "Python"
-
-    ```python hl_lines="2"
-    class AwesomeImplementation:
-        pass\n
-    ```
-=== "JavaScript"
-
-    ```js
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-
-=== "TypeScript"
-
-    ```ts
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-
 ### Line length
 
 Length of a line should not exceed certain number of characters.
@@ -3214,64 +3151,63 @@ root class name.
 
 ### Generic name
 
-Generic type parameters should be named with a single uppercase letter. This
-rule is ignored when there are multiple generic type parameters in the same
-declaration.
+Like class names, generic type parameters should be written in `PascalCase`. In
+most cases, single letter names are sufficient.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
 
     ```java
-    class Box<Element> {}
+    class Box<element> {}
 
-    void <Type> rotate(Box<Type> box) {}
+    void <genericNumber> rotate(Box<genericNumber> box) {}
     ```
 === "Groovy"
 
     ```groovy
-    class Box<Element> {}
+    class Box<element> {}
 
-    void <Type> rotate(Box<Type> box) {}
+    void <genericNumber> rotate(Box<genericNumber> box) {}
     ```
 === "Kotlin"
 
     ```kotlin
-    class Box<Element>() {}
+    class Box<element>() {}
 
-    fun <Type> rotate(box: Box<Type>) {}
+    fun <genericNumber> rotate(box: Box<genericNumber>) {}
     ```
 === "C/C++"
 
     ```cpp
-    template <typename Element>
+    template <typename element>
     class Box {};
 
-    template <typename Type>
-    void rotate(Box<Type> box) {}
+    template <typename genericNumber>
+    void rotate(Box<genericNumber> box) {}
     ```
 === "Python"
 
     ```python
     from typing import TypeVar
 
-    Element = TypeVar('Element')
-    Type = TypeVar('Type')
+    element = TypeVar('element')
+    genericNumber = TypeVar('genericNumber')
 
 
-    class Box(Element):
+    class Box(element):
         pass
 
 
-    def rotate(box: Box[Type]):
+    def rotate(box: Box[genericNumber]):
         pass
     ```
 === "TypeScript"
 
     ```ts
-    class Box<Element> {}
+    class Box<element> {}
 
-    function rotate<Type>(box: Box<Type>): void {}
+    function rotate<genericNumber>(box: Box<genericNumber>): void {}
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -3281,21 +3217,21 @@ declaration.
     ```java
     class Box<E> {}
 
-    void <T> rotate(Box<T> box) {}
+    void <GenericNumber> rotate(Box<GenericNumber> box) {}
     ```
 === "Groovy"
 
     ```groovy
     class Box<E> {}
 
-    void <T> rotate(Box<T> box) {}
+    void <GenericNumber> rotate(Box<GenericNumber> box) {}
     ```
 === "Kotlin"
 
     ```kotlin
     class Box<E>() {}
 
-    fun <T> rotate(box: Box<T>) {}
+    fun <GenericNumber> rotate(box: Box<GenericNumber>) {}
     ```
 === "C/C++"
 
@@ -3303,8 +3239,8 @@ declaration.
     template <typename E>
     class Box {};
 
-    template <typename T>
-    void rotate(Box<T> box) {}
+    template <typename GenericNumber>
+    void rotate(Box<GenericNumber> box) {}
     ```
 === "Python"
 
@@ -3312,14 +3248,14 @@ declaration.
     from typing import TypeVar
 
     E = TypeVar('E')
-    T = TypeVar('T')
+    GenericNumber = TypeVar('GenericNumber')
 
 
     class Box(E):
         pass
 
 
-    def rotate(box: Box[T]):
+    def rotate(box: Box[GenericNumber]):
         pass
     ```
 === "TypeScript"
@@ -3327,7 +3263,7 @@ declaration.
     ```ts
     class Box<E> {}
 
-    function rotate<T>(box: Box<T>): void {}
+    function rotate<T>(box: Box<GenericNumber>): void {}
     ```
 
 ### Identifier name

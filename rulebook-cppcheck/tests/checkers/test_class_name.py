@@ -34,8 +34,8 @@ class TestClassNameChecker(CheckerTestCase):
             self.dump_code(
                 dedent(
                     '''
-                    class my_class {}
-                    struct data_node {}
+                    class myClass {}
+                    struct DATA_NODE {}
                     union raw_data {}
                     ''',
                 ),
@@ -44,11 +44,11 @@ class TestClassNameChecker(CheckerTestCase):
         report_error.assert_has_calls(
             [
                 call(
-                    next(t for t in tokens if t.str == 'my_class'),
+                    next(t for t in tokens if t.str == 'myClass'),
                     "Rename class to 'MyClass'.",
                 ),
                 call(
-                    next(t for t in tokens if t.str == 'data_node'),
+                    next(t for t in tokens if t.str == 'DATA_NODE'),
                     "Rename class to 'DataNode'.",
                 ),
                 call(

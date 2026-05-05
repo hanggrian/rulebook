@@ -14,9 +14,9 @@ class GenericNameRuleTest : RuleTest() {
     fun `Correct generic name in class`() =
         assertThatCode(
             """
-            class MyClass<T>
+            class MyClass<Type>
 
-            annotation class MyAnnotationClass<E>
+            annotation class MyAnnotationClass<GenericValue>
 
             data class MyDataClass<X>(val i: Int)
 
@@ -30,22 +30,22 @@ class GenericNameRuleTest : RuleTest() {
     fun `Incorrect generic name in class`() =
         assertThatCode(
             """
-            class MyClass<XA>
+            class MyClass<TYPE>
 
-            annotation class MyAnnotationClass<Xa>
+            annotation class MyAnnotationClass<generic_value>
 
-            data class MyDataClass<aX>(val i: Int)
+            data class MyDataClass<x>(val i: Int)
 
-            sealed class MySealedClass<a_x>
+            sealed class MySealedClass<k>
 
-            interface MyInterface<A_X>
+            interface MyInterface<vA>
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 15, "Use single uppercase letter."),
-            LintViolation(3, 36, "Use single uppercase letter."),
-            LintViolation(5, 24, "Use single uppercase letter."),
-            LintViolation(7, 28, "Use single uppercase letter."),
-            LintViolation(9, 23, "Use single uppercase letter."),
+            LintViolation(1, 15, "Use pascal-case name."),
+            LintViolation(3, 36, "Use pascal-case name."),
+            LintViolation(5, 24, "Use pascal-case name."),
+            LintViolation(7, 28, "Use pascal-case name."),
+            LintViolation(9, 23, "Use pascal-case name."),
         )
 
     @Test
@@ -62,34 +62,12 @@ class GenericNameRuleTest : RuleTest() {
     fun `Incorrect generic name in function`() =
         assertThatCode(
             """
-            fun <Xa> execute(list: List<Xa>) {}
+            fun <generic_value> execute(list: List<generic_value>) {}
 
-            fun <reified aX> execute2(list: List<aX>) {}
+            fun <reified element> execute2(list: List<element>) {}
             """.trimIndent(),
         ).hasLintViolationsWithoutAutoCorrect(
-            LintViolation(1, 6, "Use single uppercase letter."),
-            LintViolation(3, 14, "Use single uppercase letter."),
+            LintViolation(1, 6, "Use pascal-case name."),
+            LintViolation(3, 14, "Use pascal-case name."),
         )
-
-    @Test
-    fun `Skip multiple generics`() =
-        assertThatCode(
-            """
-            class Foo<Xa, Ax>
-
-            fun <Bar, Baz> bar(list: List<Bar, Baz>) {}
-            """.trimIndent(),
-        ).hasNoLintViolations()
-
-    @Test
-    fun `Skip inner generics`() =
-        assertThatCode(
-            """
-            class Foo<T> {
-                class Bar<X> {}
-
-                fun <Y> bar() {}
-            }
-            """.trimIndent(),
-        ).hasNoLintViolations()
 }
