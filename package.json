@@ -44,7 +44,7 @@
     "globals": "17.5.0",
     "htmlhint": "1.9.2",
     "markdownlint-cli2": "0.22.0",
-    "sinon": "21.1.2",
+    "sinon": "22.0.0",
     "stylelint": "17.9.0",
     "stylelint-config-recommended": "18.0.0",
     "typedoc": "0.28.19",
