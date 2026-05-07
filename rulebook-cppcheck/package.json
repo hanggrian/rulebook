@@ -1,8 +1,0 @@
-{
-  "private": true,
-  "scripts": {
-    "lint": "uv run pylint **/*.py --rcfile=../.pylintrc",
-    "test": "uv run pytest",
-    "coverage": "uv run pytest --cov=."
-  }
-}

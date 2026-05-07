@@ -17,6 +17,7 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 dependencies = [
+  # main
   "pylint==4.0.5",
   "astroid==4.0.4",
   "regex",

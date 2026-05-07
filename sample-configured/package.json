@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "uv run cppcheck --enable=style,performance,portability --addon=custom_addon.json c/*.c cpp/*.cpp && uv run pylint **/*.py --rcfile=custom_pylintrc && eslint javascript/"
+    "lint": "eslint javascript/"
   },
   "engines": {
     "node": ">=12.0.0"

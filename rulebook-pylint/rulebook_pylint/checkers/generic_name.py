@@ -3,6 +3,7 @@ from __future__ import annotations
 from astroid.nodes import Assign, AssignName, Call, Name
 from pylint.typing import TYPE_CHECKING
 from regex import Pattern, compile as regex
+
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import Messages
 from rulebook_pylint.nodes import get_assignname

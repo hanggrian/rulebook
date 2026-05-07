@@ -1,7 +1,0 @@
-{
-  "private": true,
-  "scripts": {
-    "build": "mkdir -p build && cd build && cmake .. -G Ninja && cmake --build .",
-    "lint": "uv run cppcheck --language=c++ --check-level=exhaustive --enable=style,performance,portability --addon=../addon.json --suppressions-list=.cppcheck_suppressions src/**/*.cpp src/**/*.h src/*.cpp src/*.h"
-  }
-}

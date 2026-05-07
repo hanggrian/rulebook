@@ -143,5 +143,6 @@ class TestMemberSeparatorChecker(CheckerTestCase):
         [self.checker.visit_scope(scope) for scope in scopes]
         report_error.assert_not_called()
 
+
 if __name__ == '__main__':
     main()

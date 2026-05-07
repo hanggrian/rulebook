@@ -12,12 +12,56 @@ rulebook-cppcheck = { workspace = true }
 rulebook-pylint = { workspace = true }
 testing = { workspace = true }
 
+[tool.poe.tasks]
+lint1 = "cppcheck --language=c++ --check-level=exhaustive --enable=style,performance,portability --addon=addon.json --suppressions-list=.cppcheck_suppressions rulebook-cli/src/**/*.cpp rulebook-cli/src/**/*.h rulebook-cli/src/*.cpp rulebook-cli/src/*.h"
+lint2 = "cppcheck --enable=style,performance,portability --addon=addon.json sample/c/*.c sample/cpp/*.cpp"
+lint3 = "cppcheck --enable=style,performance,portability --addon=sample-configured/custom_addon.json sample-configured/c/*.c sample-configured/cpp/*.cpp"
+lint4 = "pylint rulebook-cppcheck/"
+lint5 = "pylint rulebook-pylint/"
+lint6 = "pylint testing/testing/"
+lint7 = "pylint stress-test/src/"
+lint8 = "pylint sample/"
+lint9 = "pylint sample-configured/ --rcfile=sample-configured/custom_pylintrc"
+lint10 = "stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml"
+lint.parallel = [
+  "lint1",
+  "lint2",
+  "lint3",
+  "lint4",
+  "lint5",
+  "lint6",
+  "lint7",
+  "lint8",
+  "lint9",
+  "lint10",
+]
+test1 = "pytest rulebook-cppcheck/"
+test2 = "pytest rulebook-pylint/"
+test3 = "pytest stress-test/"
+test = ["test1", "test2", "test3"]
+coverage1 = "pytest rulebook-cppcheck/ --cov=rulebook-cppcheck"
+coverage2 = "pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append"
+coverage3 = "coverage xml"
+coverage = ["coverage1", "coverage2", "coverage3"]
+documentation1 = "rm -rf build/pdoc/"
+documentation2 = "pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/"
+documentation = ["documentation1", "documentation2"]
+
+[tool.poe.tasks.build-cli]
+shell = "mkdir -p rulebook-cli/build/ && cd rulebook-cli/build/ && cmake .. -G Ninja && cmake --build ."
+
+[tool.poe.tasks.publish-website]
+shell = "./gradlew dokkaGenerateHtml && pnpm documentation && poe documentation && rm -rf website/docs/api/ && mkdir -p website/docs/api/ && mv build/dokka/html/ website/docs/api/javadoc/ && mv build/pdoc/ website/docs/api/pydoc/ && mv build/typedoc/ website/docs/api/tsdoc/ && uv pip install -r website/requirements.txt && cd website/ && mkdocs gh-deploy && rm -rf website/docs/api/"
+
+[tool.poe.tasks.preview-website]
+shell = "uv pip install -r website/requirements.txt && cd website/ && mkdocs serve --livereload"
+
 [dependency-groups]
 dev = [
+  "poethepoet",
+  "pdoc",
   # lint
   "stylebook==0.1",
-  # main
-  "pdoc",
   # test
   "pytest",
   "pytest-cov",

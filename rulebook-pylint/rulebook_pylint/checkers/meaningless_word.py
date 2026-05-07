@@ -58,10 +58,10 @@ class MeaninglessWordChecker(RulebookChecker):
             self._MSG_ALL,
             node=node,
             args=word,
-                col_offset= \
-                    node.col_offset + 6 \
-                        if node.col_offset is not None \
-                        else None,
+            col_offset= \
+                node.col_offset + 6 \
+                    if node.col_offset is not None \
+                    else None,
         )
 
 

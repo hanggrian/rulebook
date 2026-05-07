@@ -6,7 +6,7 @@
     "dist"
   ],
   "scripts": {
-    "lint": "uv run pylint **/*.py --rcfile=../.pylintrc && eslint src/"
+    "lint": "eslint src/"
   },
   "engines": {
     "node": ">=12.0.0"

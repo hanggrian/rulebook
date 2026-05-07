@@ -1,5 +1,5 @@
 {
-  "script": "../rulebook-cppcheck/rulebook_cppcheck/checkset.py",
+  "script": "rulebook-cppcheck/rulebook_cppcheck/checkset.py",
   "args": [
     "--punctuate-block-tags=@see",
     "--illegal-variable-names=foo,bar",
