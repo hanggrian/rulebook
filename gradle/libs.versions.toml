@@ -7,7 +7,7 @@ dokka = "2.2.0"
 ktlint = "1.8.0"
 checkstyle = "13.4.0"
 groovy = "4.0.31"
-codenarc = "3.7.0-groovy-4.0"
+codenarc = "3.7.0"
 
 [plugins]
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
