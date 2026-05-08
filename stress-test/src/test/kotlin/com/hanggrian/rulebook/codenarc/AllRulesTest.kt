@@ -7,6 +7,7 @@ import com.hanggrian.rulebook.codenarc.rules.BlockTagIndentationRule
 import com.hanggrian.rulebook.codenarc.rules.BlockTagOrderRule
 import com.hanggrian.rulebook.codenarc.rules.BlockTagPunctuationRule
 import com.hanggrian.rulebook.codenarc.rules.BracesClipRule
+import com.hanggrian.rulebook.codenarc.rules.BracesSpacesRule
 import com.hanggrian.rulebook.codenarc.rules.BracketsClipRule
 import com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule
 import com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule
@@ -75,6 +76,7 @@ abstract class AllRulesTest :
             BlockTagOrderRule(),
             BlockTagPunctuationRule(),
             BracesClipRule(),
+            BracesSpacesRule(),
             BracketsClipRule(),
             BracketsTrimRule(),
             CaseSeparatorRule(),

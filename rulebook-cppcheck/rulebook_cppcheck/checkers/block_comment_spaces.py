@@ -1,4 +1,4 @@
-from re import DOTALL, Pattern, compile as re, finditer
+from re import DOTALL, Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import Messages
@@ -16,12 +16,13 @@ class BlockCommentSpacesChecker(RulebookFileChecker):
     _MSG_SINGLE_END: str = 'block.comment.spaces.single.end'
     _MSG_MULTI: str = 'block.comment.spaces.multi'
 
+    _BLOCK_COMMENT_REGEX: Pattern = re(r'/\*.*?\*/', DOTALL)
     _BLOCK_COMMENT_START_REGEX: Pattern = re(r'^/\*+[^/*\s]')
     _BLOCK_COMMENT_CENTER_REGEX: Pattern = re(r'^\s*\*[^\s/]')
     _BLOCK_COMMENT_END_REGEX: Pattern = re(r'[^\s\*]\*/$')
 
     def check_file(self, token: Token, content: str) -> None:
-        for match in finditer(r'/\*.*?\*/', content, DOTALL):
+        for match in self._BLOCK_COMMENT_REGEX.finditer(content):
             comment_text: str = match.group()
             start_line: int = content.count('\n', 0, match.start()) + 1
             lines: list[str] = comment_text.splitlines()

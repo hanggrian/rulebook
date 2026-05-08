@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from re import Pattern, compile as re
+
 from astroid.nodes import Assign, AssignName, Call, Name
 from pylint.typing import TYPE_CHECKING
-from regex import Pattern, compile as regex
 
 from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
 from rulebook_pylint.messages import Messages
@@ -16,7 +17,7 @@ class GenericNameChecker(RulebookChecker):
     """See detail: https://hanggrian.github.io/rulebook/rules/#generic-name"""
     _MSG: str = 'generic.name'
 
-    _PASCAL_CASE_REGEX: Pattern = regex(r'^[A-Z]([a-z][a-zA-Z0-9]*)?$')
+    _PASCAL_CASE_REGEX: Pattern = re(r'^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\d*$')
 
     name: str = 'generic-name'
     msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)

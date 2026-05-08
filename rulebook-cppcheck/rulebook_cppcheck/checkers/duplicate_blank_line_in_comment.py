@@ -1,4 +1,4 @@
-from re import Pattern, compile as re_compile
+from re import Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import Messages
@@ -14,7 +14,7 @@ class DuplicateBlankLineInCommentChecker(RulebookFileChecker):
     ID: str = 'duplicate-blank-line-in-comment'
     _MSG: str = 'duplicate.blank.line.in.comment'
 
-    _EMPTY_COMMENT_REGEX: Pattern = re_compile(r'^\s*//\s*$')
+    _EMPTY_COMMENT_REGEX: Pattern = re(r'^\s*//\s*$')
 
     def check_file(self, token: Token, content: str) -> None:
         lines: list[str] = content.splitlines()

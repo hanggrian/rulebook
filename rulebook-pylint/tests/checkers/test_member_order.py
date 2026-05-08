@@ -87,6 +87,20 @@ class TestMemberOrderChecker(CheckerTestCase):
         ):
             self.checker.visit_classdef(node1)
 
+    def test_skip_inner_class(self):
+        node1 = \
+            extract_node(
+                '''
+                class Foo:  #@
+                    bar = 0
+
+                    class Baz:
+                        pass
+                ''',
+            )
+        with self.assertNoMessages():
+            self.checker.visit_classdef(node1)
+
 
 if __name__ == '__main__':
     main()

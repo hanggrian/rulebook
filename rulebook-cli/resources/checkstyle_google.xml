@@ -66,6 +66,11 @@
   <!-- Clipping -->
   <module name="RegexpMultiline">
     <property name="fileExtensions" value="java"/>
+    <property name="format" value="\{\s+\}"/>
+    <property name="message" value="Unexpected whitespace between '{}'."/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="fileExtensions" value="java"/>
     <property name="format" value="\(\s+\)"/>
     <property name="message" value="Unexpected whitespace between '()'."/>
   </module>
@@ -590,10 +595,6 @@
     <!-- Wrapping -->
     <module name="AssignmentWrap"/>
     <module name="ChainCallWrap"/>
-    <module name="RegexpSinglelineJava">
-      <property name="format" value="\{\s+\}"/>
-      <property name="message" value="Unexpected whitespace between '{}'."/>
-    </module>
     <module name="LambdaWrap"/>
     <module name="ParameterWrap"/>
   </module>

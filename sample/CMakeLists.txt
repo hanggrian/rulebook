@@ -9,6 +9,7 @@ add_executable(
         c/main.c
         c/abbreviation_as_word.c
         c/assignment_wrap.c
+        c/braces_spaces.c
         c/block_comment_spaces.c
         c/block_comment_trim.c
         c/block_tag_indentation.c

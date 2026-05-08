@@ -13,6 +13,6 @@
   },
   "dependencies": {
     "eslint": "^9.39.4",
-    "typescript-eslint": "^8.58.1"
+    "typescript-eslint": "^8.59.2"
   }
 }

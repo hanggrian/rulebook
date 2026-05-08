@@ -26,7 +26,7 @@ describe('NodesTest', () => {
 
             const body = [] as Statement[];
             const someStub = sandbox.stub(body, 'some').returns(true);
-            expect(hasJumpStatement({ type: 'BlockStatement', body } as Statement)).toBeTruthy();
+            expect(hasJumpStatement({ type: 'BlockStatement', body })).toBeTruthy();
 
             assert.calledOnce(someStub);
         },

@@ -3,8 +3,7 @@ abstract class Abstracted {
 }
 
 class NonAbstract extends Abstracted {
-    foo(): void {
-    }
+    foo(): void {}
 }
 
 new NonAbstract().foo();

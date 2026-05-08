@@ -29,6 +29,6 @@ public class GenericNameRule : RulebookRule(ID) {
         public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:generic-name")
         private const val MSG = "generic.name"
 
-        private val PASCAL_CASE_REGEX = Regex("^[A-Z]([a-z][a-zA-Z0-9]*)?$")
+        private val PASCAL_CASE_REGEX = Regex("^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\\d*$")
     }
 }

@@ -1,4 +1,5 @@
-from regex import Pattern, compile as regex
+from re import Pattern, compile as re
+
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
 from rulebook_cppcheck.messages import Messages
 from rulebook_cppcheck.nodes import next_sibling
@@ -15,7 +16,7 @@ class GenericNameChecker(RulebookTokenChecker):
     _MSG: str = 'generic.name'
 
     _TARGET_TOKENS: frozenset[str] = frozenset(['typename', 'class'])
-    _PASCAL_CASE_REGEX: Pattern = regex(r'^[A-Z]([a-z][a-zA-Z0-9]*)?$')
+    _PASCAL_CASE_REGEX: Pattern = re(r'^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\d*$')
 
     def process_tokens(self, tokens: list[Token]) -> None:
         for token in [t for t in tokens if t.str == 'template']:

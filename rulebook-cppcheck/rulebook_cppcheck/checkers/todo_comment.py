@@ -1,4 +1,4 @@
-from regex import DOTALL, compile as regex, finditer
+from regex import DOTALL, compile as regex
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import Messages
@@ -16,11 +16,12 @@ class TodoCommentChecker(RulebookFileChecker):
     _MSG_KEYWORD: str = 'todo.comment.keyword'
     _MSG_SEPARATOR: str = 'todo.comment.separator'
 
+    _COMMENT_REGEX = regex(r'//.*|/\*(.*?)\*/', DOTALL)
     _KEYWORD_REGEX = regex(r'\b(?i:fixme|todo)(?<!FIXME|TODO)\b')
     _SEPARATOR_REGEX = regex(r'\b(?i:todo|fixme)([^ \t\n])')
 
     def check_file(self, token: Token, content: str) -> None:
-        for match in finditer(r'//.*|/\*(.*?)\*/', content, DOTALL):
+        for match in self._COMMENT_REGEX.finditer(content):
             # obtain comment content
             comment_text: str = match.group(0)
             start_line: int = content.count('\n', 0, match.start()) + 1

@@ -16,7 +16,7 @@ public class GenericNameRule : RulebookAstRule() {
     internal companion object {
         const val MSG = "generic.name"
 
-        val PASCAL_CASE_REGEX = Regex("^[A-Z]([a-z][a-zA-Z0-9]*)?$")
+        val PASCAL_CASE_REGEX = Regex("^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\\d*$")
     }
 }
 
