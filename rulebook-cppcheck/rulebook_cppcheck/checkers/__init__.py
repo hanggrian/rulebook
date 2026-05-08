@@ -4,6 +4,7 @@ from rulebook_cppcheck.checkers.block_comment_spaces import BlockCommentSpacesCh
 from rulebook_cppcheck.checkers.block_comment_trim import BlockCommentTrimChecker
 from rulebook_cppcheck.checkers.block_tag_indentation import BlockTagIndentationChecker
 from rulebook_cppcheck.checkers.block_tag_punctuation import BlockTagPunctuationChecker
+from rulebook_cppcheck.checkers.braces_spaces import BracesSpacesChecker
 from rulebook_cppcheck.checkers.case_separator import CaseSeparatorChecker
 from rulebook_cppcheck.checkers.chain_call_wrap import ChainCallWrapChecker
 from rulebook_cppcheck.checkers.class_name import ClassNameChecker
@@ -56,6 +57,7 @@ __all__: list[str] = [
     'BlockCommentTrimChecker',
     'BlockTagIndentationChecker',
     'BlockTagPunctuationChecker',
+    'BracesSpacesChecker',
     'CaseSeparatorChecker',
     'ChainCallWrapChecker',
     'ClassNameChecker',

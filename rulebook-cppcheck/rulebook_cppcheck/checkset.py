@@ -7,6 +7,7 @@ from rulebook_cppcheck.checkers import \
     BlockCommentTrimChecker, \
     BlockTagIndentationChecker, \
     BlockTagPunctuationChecker, \
+    BracesSpacesChecker, \
     CaseSeparatorChecker, \
     ChainCallWrapChecker, \
     ClassNameChecker, \
@@ -86,6 +87,7 @@ if __name__ == '__main__':
         # Spacing
         BlockCommentSpacesChecker(),
         BlockTagIndentationChecker(),
+        BracesSpacesChecker(),
         CaseSeparatorChecker(),
         CommentSpacesChecker(),
         MemberSeparatorChecker(),

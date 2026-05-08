@@ -11,6 +11,7 @@ from rulebook_cppcheck.checkers import \
     BlockCommentTrimChecker, \
     BlockTagIndentationChecker, \
     BlockTagPunctuationChecker, \
+    BracesSpacesChecker, \
     CaseSeparatorChecker, \
     ChainCallWrapChecker, \
     ClassNameChecker, \
@@ -68,6 +69,7 @@ class AllCheckersTestCase(TestCase):
             BlockCommentTrimChecker(),
             BlockTagIndentationChecker(),
             BlockTagPunctuationChecker(),
+            BracesSpacesChecker(),
             CaseSeparatorChecker(),
             ChainCallWrapChecker(),
             ClassNameChecker(),
@@ -147,6 +149,13 @@ class AllCheckersTestCase(TestCase):
         return call(
             next(t for t in tokens if t.str == s and t.linenr == line),
             'Add blank line after multiline branch.',
+        )
+
+    @staticmethod
+    def complicated_assignment_called(tokens, s, line):
+        return call(
+            next(t for t in tokens if t.str == s and t.linenr == line),
+            "Use assignment operator '+='.",
         )
 
     @staticmethod

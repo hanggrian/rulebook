@@ -1,4 +1,4 @@
-from re import DOTALL, finditer
+from re import DOTALL, Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import Messages
@@ -16,6 +16,7 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
     _MSG: str = 'block.tag.punctuation'
     ARGS: list[str] = [PUNCTUATE_BLOCK_TAGS_OPTION]
 
+    _BLOCK_TAG_REGEX: Pattern = re(r'/\*(.*?)\*/', DOTALL)
     _PUNCTUATIONS: frozenset[str] = frozenset(['.', '!', '?', ')'])
 
     def __init__(self) -> None:
@@ -30,7 +31,7 @@ class BlockTagPunctuationChecker(RulebookFileChecker):
         self._block_tags = set(args[PUNCTUATE_BLOCK_TAGS_OPTION].split(','))
 
     def check_file(self, token: Token, content: str) -> None:
-        for match in finditer(r'/\*(.*?)\*/', content, DOTALL):
+        for match in self._BLOCK_TAG_REGEX.finditer(content):
             comment_body: str = match.group(1)
             start_line: int = content.count('\n', 0, match.start())
             lines: list[str] = comment_body.splitlines()

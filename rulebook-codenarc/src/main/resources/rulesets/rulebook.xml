@@ -56,6 +56,7 @@
 
   <!-- Spacing -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagIndentationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BracesSpacesRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MemberSeparatorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MissingBlankLineBeforeBlockTagsRule"/>

@@ -44,5 +44,5 @@ runs:
 
     - shell: bash
       run: |
-        uv sync
-        pnpm i
+        uv sync --locked
+        pnpm ci

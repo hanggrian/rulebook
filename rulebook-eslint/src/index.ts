@@ -1,4 +1,5 @@
 import assignmentWrapRule from './rules/assignment-wrap.js';
+import bracesClipRule from './rules/braces-clip.js';
 import caseSeparatorRule from './rules/case-separator.js';
 import chainCallWrapRule from './rules/chain-call-wrap.js';
 import commentTrimRule from './rules/comment-trim.js';
@@ -27,8 +28,8 @@ const crockfordConfig: Linter.RulesRecord = {
     '@rulebook/todo-comment': 'error',
     '@import/no-namespace': 'error',
     // Clipping
-    '@stylistic/object-curly-spacing': ['error', 'always'],
-    '@stylistic/array-bracket-spacing': ['error', 'never'],
+    '@rulebook/braces-clip': 'error',
+    '@stylistic/array-bracket-spacing': 'error',
     '@stylistic/space-in-parens': 'error',
     '@jsdoc/multiline-blocks': [
         'error',
@@ -124,6 +125,7 @@ const crockfordConfig: Linter.RulesRecord = {
         },
     ],
     // Spacing
+    '@stylistic/object-curly-spacing': ['error', 'always'],
     '@rulebook/case-separator': 'error',
     '@stylistic/spaced-comment': 'error',
     '@jsdoc/check-indentation': 'error',
@@ -236,8 +238,8 @@ const googleConfig: Linter.RulesRecord = {
     '@rulebook/todo-comment': 'error',
     '@import/no-namespace': 'error',
     // Clipping
-    '@stylistic/object-curly-spacing': ['error', 'never'],
-    '@stylistic/array-bracket-spacing': ['error', 'never'],
+    '@rulebook/braces-clip': 'error',
+    '@stylistic/array-bracket-spacing': 'error',
     '@stylistic/space-in-parens': 'error',
     '@jsdoc/multiline-blocks': [
         'error',
@@ -348,6 +350,7 @@ const googleConfig: Linter.RulesRecord = {
         },
     ],
     // Spacing
+    '@stylistic/object-curly-spacing': ['error', 'never'],
     '@rulebook/case-separator': 'error',
     '@stylistic/spaced-comment': 'error',
     '@jsdoc/check-indentation': 'error',
@@ -481,6 +484,7 @@ const googleConfig: Linter.RulesRecord = {
 const plugin: ESLint.Plugin = {
     rules: {
         'assignment-wrap': assignmentWrapRule,
+        'braces-clip': bracesClipRule,
         'case-separator': caseSeparatorRule,
         'comment-trim': commentTrimRule,
         'chain-call-wrap': chainCallWrapRule,

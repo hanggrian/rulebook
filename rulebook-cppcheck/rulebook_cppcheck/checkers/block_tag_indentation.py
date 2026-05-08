@@ -1,4 +1,4 @@
-from re import DOTALL, Match, Pattern, compile as re_compile, finditer
+from re import DOTALL, Match, Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import Messages
@@ -14,11 +14,12 @@ class BlockTagIndentationChecker(RulebookFileChecker):
     ID: str = 'block-tag-indentation'
     _MSG: str = 'block.tag.indentation'
 
-    _BLOCK_TAG_REGEX: Pattern = re_compile(r'^\s*\*\s+@\w+')
-    _CONTINUATION_LINE_REGEX: Pattern = re_compile(r'^\s*\*(\s+)')
+    _ALL_REGEX: Pattern = re(r'/\*\*.*?\*/', DOTALL)
+    _BLOCK_TAG_REGEX: Pattern = re(r'^\s*\*\s+@\w+')
+    _CONTINUATION_LINE_REGEX: Pattern = re(r'^\s*\*(\s+)')
 
     def check_file(self, token: Token, content: str) -> None:
-        for match in finditer(r'/\*\*.*?\*/', content, DOTALL):
+        for match in self._ALL_REGEX.finditer(content):
             comment_text: str = match.group()
             start_line: int = content.count('\n', 0, match.start()) + 1
             lines: list[str] = comment_text.splitlines()

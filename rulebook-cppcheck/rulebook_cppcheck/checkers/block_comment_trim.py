@@ -1,4 +1,4 @@
-from re import DOTALL, finditer
+from re import DOTALL, Pattern, compile as re
 
 from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
 from rulebook_cppcheck.messages import Messages
@@ -15,10 +15,11 @@ class BlockCommentTrimChecker(RulebookFileChecker):
     _MSG_FIRST: str = 'block.comment.trim.first'
     _MSG_LAST: str = 'block.comment.trim.last'
 
+    _BLOCK_COMMENT_REGEX: Pattern = re(r'/\*(.*?)\*/', DOTALL)
     _EMPTY_LINES: frozenset[str] = frozenset(['*', ''])
 
     def check_file(self, token: Token, content: str) -> None:
-        for match in finditer(r'/\*(.*?)\*/', content, DOTALL):
+        for match in self._BLOCK_COMMENT_REGEX.finditer(content):
             comment_body: str = match.group(1)
             start_line: int = content.count('\n', 0, match.start()) + 1
             lines: list[str] = comment_body.splitlines()

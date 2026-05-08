@@ -4,6 +4,7 @@ from unittest.mock import patch
 from rulebook_cppcheck.checkers import \
     AssignmentWrapChecker, \
     CaseSeparatorChecker, \
+    ComplicatedAssignmentChecker, \
     DuplicateBlankLineChecker, \
     DuplicateSpaceChecker, \
     IdentifierNameChecker, \
@@ -21,6 +22,7 @@ from ..code import get_code
 class TestCppcheck(AllCheckersTestCase):
     @patch.object(AssignmentWrapChecker, 'report_error')
     @patch.object(CaseSeparatorChecker, 'report_error')
+    @patch.object(ComplicatedAssignmentChecker, 'report_error')
     @patch.object(DuplicateBlankLineChecker, 'report_error')
     @patch.object(DuplicateSpaceChecker, 'report_error')
     @patch.object(IdentifierNameChecker, 'report_error')
@@ -43,6 +45,7 @@ class TestCppcheck(AllCheckersTestCase):
         identifier_name_report_error,
         duplicate_whitespace_report_error,
         duplicate_blank_line_report_error,
+        complicated_assignment_report_error,
         case_separator_report_error,
         assignment_wrap_report_error,
     ):
@@ -65,6 +68,14 @@ class TestCppcheck(AllCheckersTestCase):
                 self.case_separator_called(tokens, 'State', 839),
                 self.case_separator_called(tokens, 'State', 845),
                 self.case_separator_called(tokens, 'State', 852),
+            ],
+            any_order=True,
+        )
+        complicated_assignment_report_error.assert_has_calls(
+            [
+                self.complicated_assignment_called(tokens, "=", 356),
+                self.complicated_assignment_called(tokens, "=", 758),
+                self.complicated_assignment_called(tokens, "=", 761),
             ],
             any_order=True,
         )

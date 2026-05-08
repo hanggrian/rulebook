@@ -26,7 +26,7 @@ class GenericNameRule extends RulebookRule {
 
     private static MSG: string = 'generic.name';
 
-    private static PASCAL_CASE_REGEX = /^[A-Z]([a-z][a-zA-Z0-9]*)?$/;
+    private static PASCAL_CASE_REGEX = /^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\d*$/;
 }
 
 export default new GenericNameRule();

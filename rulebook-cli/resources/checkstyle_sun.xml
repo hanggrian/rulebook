@@ -73,6 +73,11 @@
   <!-- Clipping -->
   <module name="RegexpMultiline">
     <property name="fileExtensions" value="java"/>
+    <property name="format" value="\{\s+\}"/>
+    <property name="message" value="Unexpected whitespace between '{}'."/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="fileExtensions" value="java"/>
     <property name="format" value="\(\s+\)"/>
     <property name="message" value="Unexpected whitespace between '()'."/>
   </module>
@@ -222,16 +227,16 @@
     </module>
     <module name="OuterTypeFilename"/>
     <module name="ClassTypeParameterName">
-      <property name="format" value="^[A-Z]([a-z][a-zA-Z0-9]*)?$"/>
+      <property name="format" value="^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\d*$"/>
     </module>
     <module name="InterfaceTypeParameterName">
-      <property name="format" value="^[A-Z]([a-z][a-zA-Z0-9]*)?$"/>
+      <property name="format" value="^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\d*$"/>
     </module>
     <module name="MethodTypeParameterName">
-      <property name="format" value="^[A-Z]([a-z][a-zA-Z0-9]*)?$"/>
+      <property name="format" value="^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\d*$"/>
     </module>
     <module name="RecordTypeParameterName">
-      <property name="format" value="^[A-Z]([a-z][a-zA-Z0-9]*)?$"/>
+      <property name="format" value="^[A-Z](?![A-Z0-9]+$)[a-zA-Z0-9]*$|^[A-Z]\d*$"/>
     </module>
     <module name="CatchParameterName"/>
     <module name="LambdaParameterName"/>
@@ -315,10 +320,6 @@
     <!-- Wrapping -->
     <module name="AssignmentWrap"/>
     <module name="ChainCallWrap"/>
-    <module name="RegexpSinglelineJava">
-      <property name="format" value="\{\s+\}"/>
-      <property name="message" value="Unexpected whitespace between '{}'."/>
-    </module>
     <module name="LambdaWrap"/>
     <module name="ParameterWrap"/>
     <module name="SingleLineJavadoc"/>
