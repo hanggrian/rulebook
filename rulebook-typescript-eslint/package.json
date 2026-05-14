@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/estree": "1.0.8",
-    "@types/node": "25.6.2",
+    "@types/node": "25.8.0",
     "@typescript-eslint/parser": "8.59.2",
     "@typescript-eslint/utils": "8.59.2",
     "rulebook-eslint": "workspace:*",
