@@ -1,17 +1,18 @@
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers import \
-    AssignmentWrapChecker, \
-    CaseSeparatorChecker, \
-    CommentSpacesChecker, \
-    DuplicateSpaceChecker, \
-    ImportOrderChecker, \
-    IndentStyleChecker, \
-    LineLengthChecker, \
-    ParameterWrapChecker, \
-    ParenthesesTrimChecker, \
-    RedundantDefaultChecker
+from rulebook_cppcheck.checkers import (
+    AssignmentWrapChecker,
+    CaseSeparatorChecker,
+    CommentSpacesChecker,
+    DuplicateSpaceChecker,
+    ImportOrderChecker,
+    IndentStyleChecker,
+    LineLengthChecker,
+    ParameterWrapChecker,
+    ParenthesesTrimChecker,
+    RedundantDefaultChecker,
+)
 from .all_checkers_case import AllCheckersTestCase
 from ..code import get_code
 

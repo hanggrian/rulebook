@@ -107,7 +107,7 @@ assertTrue(!user.isAuthorized)
 When importing multiple members from the same package, they should be sorted
 alphabetically.
 
-```python hl_lines="1"
+```py hl_lines="1"
 from math import sin, cos
 
 alpha = cos(0.5)

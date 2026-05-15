@@ -1,20 +1,21 @@
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers import \
-    AssignmentWrapChecker, \
-    CaseSeparatorChecker, \
-    ComplicatedAssignmentChecker, \
-    DuplicateBlankLineChecker, \
-    DuplicateSpaceChecker, \
-    IdentifierNameChecker, \
-    IllegalCatchChecker, \
-    ImportOrderChecker, \
-    IndentStyleChecker, \
-    LineLengthChecker, \
-    OperatorWrapChecker, \
-    ParameterWrapChecker, \
-    TodoCommentChecker
+from rulebook_cppcheck.checkers import (
+    AssignmentWrapChecker,
+    CaseSeparatorChecker,
+    ComplicatedAssignmentChecker,
+    DuplicateBlankLineChecker,
+    DuplicateSpaceChecker,
+    IdentifierNameChecker,
+    IllegalCatchChecker,
+    ImportOrderChecker,
+    IndentStyleChecker,
+    LineLengthChecker,
+    OperatorWrapChecker,
+    ParameterWrapChecker,
+    TodoCommentChecker,
+)
 from .all_checkers_case import AllCheckersTestCase
 from ..code import get_code
 
@@ -73,9 +74,9 @@ class TestCppcheck(AllCheckersTestCase):
         )
         complicated_assignment_report_error.assert_has_calls(
             [
-                self.complicated_assignment_called(tokens, "=", 356),
-                self.complicated_assignment_called(tokens, "=", 758),
-                self.complicated_assignment_called(tokens, "=", 761),
+                self.complicated_assignment_called(tokens, '=', 356),
+                self.complicated_assignment_called(tokens, '=', 758),
+                self.complicated_assignment_called(tokens, '=', 761),
             ],
             any_order=True,
         )

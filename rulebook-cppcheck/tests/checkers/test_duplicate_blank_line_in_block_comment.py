@@ -2,8 +2,7 @@ from textwrap import dedent
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers import \
-    DuplicateBlankLineInBlockCommentChecker
+from rulebook_cppcheck.checkers import DuplicateBlankLineInBlockCommentChecker
 from .checker_case import CheckerTestCase
 from ..asserts import assert_properties
 

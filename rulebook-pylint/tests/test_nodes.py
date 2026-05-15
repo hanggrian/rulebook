@@ -2,8 +2,12 @@ from unittest import TestCase, main
 
 from astroid import extract_node
 
-from rulebook_pylint.nodes import get_assignname, has_decorator, has_jump_statement, \
-    is_multiline
+from rulebook_pylint.nodes import (
+    get_assignname,
+    has_decorator,
+    has_jump_statement,
+    is_multiline,
+)
 
 
 class TestNodes(TestCase):

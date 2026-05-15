@@ -18,4 +18,4 @@ class RulebookFileChecker(BaseRawFileChecker, ABC):
 
     def process_module(self, node: Module) -> None:
         with node.stream() as stream:
-            self.lines = [s.strip() for s in stream.readlines()]
+            self.lines = stream.readlines()

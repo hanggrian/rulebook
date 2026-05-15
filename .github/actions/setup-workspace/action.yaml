@@ -20,6 +20,8 @@ runs:
         node-version: lts/*
         cache: pnpm
 
+    - uses: extractions/setup-just@v4
+
     - uses: actions/cache@v5
       with:
         path: |
@@ -43,6 +45,4 @@ runs:
         restore-keys: pnpm-
 
     - shell: bash
-      run: |
-        uv sync --locked
-        pnpm ci
+      run: just install-all true

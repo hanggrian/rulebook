@@ -6,40 +6,42 @@ from pylint.testutils import UnittestLinter
 from pylint.testutils.global_test_linter import linter
 from pylint.utils import ASTWalker
 
-from rulebook_pylint.checkers import \
-    AbbreviationAsWordChecker, \
-    BlockCommentClipChecker, \
-    BlockCommentTrimChecker, \
-    CaseSeparatorChecker, \
-    CommentSpacesChecker, \
-    CommentTrimChecker, \
-    CommonFunctionPositionChecker, \
-    ComplicatedAssignmentChecker, \
-    ConfusingAssertionChecker, \
-    DuplicateBlankLineChecker, \
-    DuplicateBlankLineInBlockCommentChecker, \
-    DuplicateBlankLineInCommentChecker, \
-    DuplicateSpaceChecker, \
-    GenericNameChecker, \
-    InnerClassPositionChecker, \
-    InternalErrorChecker, \
-    LonelyCaseChecker, \
-    LowercaseHexadecimalChecker, \
-    MeaninglessWordChecker, \
-    MemberOrderChecker, \
-    MemberSeparatorChecker, \
-    NamedImportOrderChecker, \
-    NestedIfElseChecker, \
-    ParameterWrapChecker, \
-    ParenthesesClipChecker, \
-    ParenthesesTrimChecker, \
-    RedundantDefaultChecker, \
-    TodoCommentChecker, \
-    TrailingCommaChecker, \
-    UnnecessaryAbstractChecker, \
-    UnnecessaryBlankLineAfterColonChecker, \
-    UnnecessaryContinueChecker, \
-    UnnecessaryLeadingBlankLineChecker
+from rulebook_pylint.checkers import (
+    AbbreviationAsWordChecker,
+    BlockCommentClipChecker,
+    BlockCommentTrimChecker,
+    CaseSeparatorChecker,
+    CommentSpacesChecker,
+    CommentTrimChecker,
+    CommonFunctionPositionChecker,
+    ComplicatedAssignmentChecker,
+    ConfusingAssertionChecker,
+    DuplicateBlankLineChecker,
+    DuplicateBlankLineInBlockCommentChecker,
+    DuplicateBlankLineInCommentChecker,
+    DuplicateSpaceChecker,
+    GenericNameChecker,
+    ImportStyleChecker,
+    InnerClassPositionChecker,
+    InternalErrorChecker,
+    LonelyCaseChecker,
+    LowercaseHexadecimalChecker,
+    MeaninglessWordChecker,
+    MemberOrderChecker,
+    MemberSeparatorChecker,
+    NamedImportOrderChecker,
+    NestedIfElseChecker,
+    ParameterWrapChecker,
+    ParenthesesClipChecker,
+    ParenthesesTrimChecker,
+    RedundantDefaultChecker,
+    TodoCommentChecker,
+    TrailingCommaChecker,
+    UnnecessaryAbstractChecker,
+    UnnecessaryBlankLineAfterColonChecker,
+    UnnecessaryContinueChecker,
+    UnnecessaryLeadingBlankLineChecker,
+)
 
 
 # noinspection PyPep8Naming
@@ -59,6 +61,7 @@ class AllCheckersTestCase:
         DuplicateBlankLineInCommentChecker,
         DuplicateSpaceChecker,
         GenericNameChecker,
+        ImportStyleChecker,
         InnerClassPositionChecker,
         InternalErrorChecker,
         LonelyCaseChecker,
@@ -80,13 +83,6 @@ class AllCheckersTestCase:
         UnnecessaryLeadingBlankLineChecker,
     )
     CONFIG = {}
-
-    @staticmethod
-    def get_code(directory: str, filename: str) -> str:
-        with files(f'tests.pylint.resources.{directory}') \
-            .joinpath(filename) \
-            .open('r', encoding='UTF-8') as file:
-            return file.read()
 
     # noinspection PyAttributeOutsideInit
     def setup_method(self):
@@ -140,11 +136,6 @@ class AllCheckersTestCase:
             assert expected_msg.end_line == gotten_msg.end_line, message
             assert expected_msg.end_col_offset == gotten_msg.end_col_offset, message
 
-    @staticmethod
-    def assert_tokens(checker, tokens):
-        if hasattr(checker, 'process_tokens'):
-            checker.process_tokens(tokens)
-
     def assert_all(self, checker, node):
         if hasattr(checker, 'process_module') and isinstance(node, Module):
             checker.process_module(node)
@@ -174,3 +165,15 @@ class AllCheckersTestCase:
                 continue
             checker.visit_while(n)
             self.assert_all(checker, n)
+
+    @staticmethod
+    def get_code(directory: str, filename: str) -> str:
+        with files(f'tests.pylint.resources.{directory}') \
+            .joinpath(filename) \
+            .open('r', encoding='UTF-8') as file:
+            return file.read()
+
+    @staticmethod
+    def assert_tokens(checker, tokens):
+        if hasattr(checker, 'process_tokens'):
+            checker.process_tokens(tokens)

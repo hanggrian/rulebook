@@ -21,7 +21,7 @@ class DuplicateBlankLineChecker(RulebookFileChecker):
         # checks for violation
         counter: int = 0
         with node.stream() as stream:
-            for (i, line) in enumerate(stream.readlines()):
+            for i, line in enumerate(stream.readlines()):
                 counter = counter + 1 if not line.strip() else 0
                 if counter < 3:
                     continue

@@ -4,55 +4,56 @@ from tempfile import TemporaryDirectory
 from unittest import TestCase
 from unittest.mock import call
 
-from rulebook_cppcheck.checkers import \
-    AbbreviationAsWordChecker, \
-    AssignmentWrapChecker, \
-    BlockCommentSpacesChecker, \
-    BlockCommentTrimChecker, \
-    BlockTagIndentationChecker, \
-    BlockTagPunctuationChecker, \
-    BracesSpacesChecker, \
-    CaseSeparatorChecker, \
-    ChainCallWrapChecker, \
-    ClassNameChecker, \
-    CommentSpacesChecker, \
-    CommentTrimChecker, \
-    ComplicatedAssignmentChecker, \
-    DuplicateBlankLineChecker, \
-    DuplicateBlankLineInBlockCommentChecker, \
-    DuplicateBlankLineInCommentChecker, \
-    DuplicateSpaceChecker, \
-    FileNameChecker, \
-    FileSizeChecker, \
-    GenericNameChecker, \
-    IdentifierNameChecker, \
-    IllegalCatchChecker, \
-    IllegalThrowChecker, \
-    IllegalVariableNameChecker, \
-    ImportOrderChecker, \
-    IndentStyleChecker, \
-    InnerClassPositionChecker, \
-    LineLengthChecker, \
-    LonelyCaseChecker, \
-    LonelyIfChecker, \
-    LowercaseFChecker, \
-    LowercaseHexadecimalChecker, \
-    MeaninglessWordChecker, \
-    MemberOrderChecker, \
-    MemberSeparatorChecker, \
-    OperatorWrapChecker, \
-    PackageNameChecker, \
-    ParameterWrapChecker, \
-    ParenthesesClipChecker, \
-    ParenthesesTrimChecker, \
-    RedundantDefaultChecker, \
-    RedundantElseChecker, \
-    RedundantIfChecker, \
-    TodoCommentChecker, \
-    TrailingNewlineChecker, \
-    UnnecessaryReturnChecker, \
-    UnnecessaryTrailingWhitespaceChecker, \
-    UppercaseLChecker
+from rulebook_cppcheck.checkers import (
+    AbbreviationAsWordChecker,
+    AssignmentWrapChecker,
+    BlockCommentSpacesChecker,
+    BlockCommentTrimChecker,
+    BlockTagIndentationChecker,
+    BlockTagPunctuationChecker,
+    BracesSpacesChecker,
+    CaseSeparatorChecker,
+    ChainCallWrapChecker,
+    ClassNameChecker,
+    CommentSpacesChecker,
+    CommentTrimChecker,
+    ComplicatedAssignmentChecker,
+    DuplicateBlankLineChecker,
+    DuplicateBlankLineInBlockCommentChecker,
+    DuplicateBlankLineInCommentChecker,
+    DuplicateSpaceChecker,
+    FileNameChecker,
+    FileSizeChecker,
+    GenericNameChecker,
+    IdentifierNameChecker,
+    IllegalCatchChecker,
+    IllegalThrowChecker,
+    IllegalVariableNameChecker,
+    ImportOrderChecker,
+    IndentStyleChecker,
+    InnerClassPositionChecker,
+    LineLengthChecker,
+    LonelyCaseChecker,
+    LonelyIfChecker,
+    LowercaseFChecker,
+    LowercaseHexadecimalChecker,
+    MeaninglessWordChecker,
+    MemberOrderChecker,
+    MemberSeparatorChecker,
+    OperatorWrapChecker,
+    PackageNameChecker,
+    ParameterWrapChecker,
+    ParenthesesClipChecker,
+    ParenthesesTrimChecker,
+    RedundantDefaultChecker,
+    RedundantElseChecker,
+    RedundantIfChecker,
+    TodoCommentChecker,
+    TrailingNewlineChecker,
+    UnnecessaryReturnChecker,
+    UnnecessaryTrailingWhitespaceChecker,
+    UppercaseLChecker,
+)
 
 try:
     from cppcheckdata import parsedump

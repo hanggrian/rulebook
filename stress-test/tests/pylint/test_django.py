@@ -3,9 +3,10 @@ from unittest import main
 from astroid import parse
 from pylint.testutils import _tokenize_str
 
-from rulebook_pylint.checkers import \
-    BlockCommentClipChecker, \
-    TrailingCommaChecker
+from rulebook_pylint.checkers import (
+    BlockCommentClipChecker,
+    TrailingCommaChecker,
+)
 from testing.messages import msg
 from .all_checkers_case import AllCheckersTestCase
 from ..code import get_code

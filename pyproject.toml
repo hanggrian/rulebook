@@ -19,7 +19,7 @@ lint3 = "cppcheck --enable=style,performance,portability --addon=sample-configur
 lint4 = "pylint rulebook-cppcheck/"
 lint5 = "pylint rulebook-pylint/"
 lint6 = "pylint testing/testing/"
-lint7 = "pylint stress-test/src/"
+lint7 = "pylint stress-test/tests/"
 lint8 = "pylint sample/"
 lint9 = "pylint sample-configured/ --rcfile=sample-configured/custom_pylintrc"
 lint10 = "stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml"
@@ -47,14 +47,8 @@ documentation1 = "rm -rf build/pdoc/"
 documentation2 = "pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/"
 documentation = ["documentation1", "documentation2"]
 
-[tool.poe.tasks.build-cli]
-shell = "mkdir -p rulebook-cli/build/ && cd rulebook-cli/build/ && cmake .. -G Ninja && cmake --build ."
-
-[tool.poe.tasks.publish-website]
-shell = "./gradlew dokkaGenerateHtml && pnpm documentation && poe documentation && rm -rf website/docs/api/ && mkdir -p website/docs/api/ && mv build/dokka/html/ website/docs/api/javadoc/ && mv build/pdoc/ website/docs/api/pydoc/ && mv build/typedoc/ website/docs/api/tsdoc/ && uv pip install -r website/requirements.txt && cd website/ && mkdocs gh-deploy && rm -rf website/docs/api/"
-
-[tool.poe.tasks.preview-website]
-shell = "uv pip install -r website/requirements.txt && cd website/ && mkdocs serve --livereload"
+[tool.coverage.run]
+omit = ["*/tests/*"]
 
 [dependency-groups]
 dev = [

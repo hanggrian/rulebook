@@ -90,6 +90,75 @@ question mark or exclamation mark.
     | :material-language-kotlin:{ .lg .middle } `rulebook_punctuate_block_tags` | @constructor, @receiver, @property, @param, @return |
     | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--punctuate-block-tags` | @param, @return |
 
+### Import style
+
+Group import statements from the same package. In Python, use parentheses to
+wrap long import statements.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Python"
+
+    ```py hl_lines="1-3"
+    from fruit import Apple
+    from fruit import Banana, \
+        Orange
+
+    fruits = [Apple(), Banana(), Orange()]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1-2"
+    import { Apple } from 'fruit';
+    import { Banana, Orange } from 'fruit';
+
+    const fruits = [new Apple(), new Banana(), new Orange()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1-2"
+    import { Apple } from 'fruit';
+    import { Banana, Orange } from 'fruit';
+
+    const fruits: Fruit[] = [new Apple(), new Banana(), new Orange()];
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Python"
+
+    ```py hl_lines="1-5"
+    from fruit import (
+        Apple,
+        Banana,
+        Orange,
+    )
+
+    fruits = [Apple(), Banana(), Orange()]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1-5"
+    import {
+        Apple,
+        Banana,
+        Orange,
+    } from 'fruit';
+
+    const fruits = [new Apple(), new Banana(), new Orange()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1-5"
+    import {
+        Apple,
+        Banana,
+        Orange,
+    } from 'fruit';
+
+    const fruits: Fruit[] = [new Apple(), new Banana(), new Orange()];
+    ```
+
 ### TODO comment
 
 TODO comment keywords should be uppercase and followed by exactly one space.
@@ -126,7 +195,7 @@ TODO comment keywords should be uppercase and followed by exactly one space.
     ```
 === "Python"
 
-    ```python
+    ```py
     # todo add tests
     #
     # FIXME: memory leak
@@ -178,7 +247,7 @@ TODO comment keywords should be uppercase and followed by exactly one space.
     ```
 === "Python"
 
-    ```python
+    ```py
     # TODO add tests
     #
     # FIXME memory leak
@@ -228,7 +297,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
     ```
 === "Python"
 
-    ```python hl_lines="4 7"
+    ```py hl_lines="4 7"
     items = \
         set(
             'milks',
@@ -286,7 +355,7 @@ Put a trailing comma in a multiline call site, omit when it is a single line.
     ```
 === "Python"
 
-    ```python hl_lines="4 7"
+    ```py hl_lines="4 7"
     items = \
         set(
             'milks',
@@ -346,7 +415,7 @@ this rule applies to tuples.
     ```
 === "Python"
 
-    ```python hl_lines="2-4"
+    ```py hl_lines="2-4"
     tic_tac_toe = (
         (0, 0, 0,),
         (0, 0, 0,),
@@ -394,7 +463,7 @@ this rule applies to tuples.
     ```
 === "Python"
 
-    ```python hl_lines="2-4"
+    ```py hl_lines="2-4"
     tic_tac_toe = (
         (0, 0, 0),
         (0, 0, 0),
@@ -439,7 +508,7 @@ line.
     ```
 === "Python"
 
-    ```python hl_lines="1 7"
+    ```py hl_lines="1 7"
     def update_inventory(item,):
         pass
 
@@ -485,7 +554,7 @@ line.
     ```
 === "Python"
 
-    ```python hl_lines="1 7"
+    ```py hl_lines="1 7"
     def update_inventory(item):
         pass
 
@@ -549,7 +618,7 @@ Remove unused import statements.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     from fruit import Apple, Banana
 
     apple = Apple()
@@ -594,7 +663,7 @@ Remove unused import statements.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     from fruit import Apple
 
     apple = Apple()
@@ -643,7 +712,7 @@ Import directives must be single-type instead of wildcard imports.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     from fruit import *
 
     fruits = [Apple(), Banana()]
@@ -691,7 +760,7 @@ Import directives must be single-type instead of wildcard imports.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     from fruit import Apple, Banana
 
     fruits = [Apple(), Banana()]
@@ -742,7 +811,7 @@ Short block comments should be written in a single line.
     ```
 === "Python"
 
-    ```python
+    ```py
     """
     The quick brown fox jumps over the lazy dog.
     """
@@ -781,7 +850,7 @@ Short block comments should be written in a single line.
     ```
 === "Python"
 
-    ```python
+    ```py
     """The quick brown fox jumps over the lazy dog."""
     ```
 === "JavaScript"
@@ -827,7 +896,7 @@ Empty code blocks should be joined with the preceding code.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     foo = {
     }
     ```
@@ -868,7 +937,7 @@ Empty code blocks should be joined with the preceding code.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     foo = {}
     ```
 === "JavaScript"
@@ -902,7 +971,7 @@ Empty collection initializers should be joined with the preceding code.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     numbers = [
     ]
     ```
@@ -933,7 +1002,7 @@ Empty collection initializers should be joined with the preceding code.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     numbers = []
     ```
 === "JavaScript"
@@ -991,7 +1060,7 @@ Empty method declarations and calls should be joined with the preceding code.
     ```
 === "Python"
 
-    ```python hl_lines="2 4"
+    ```py hl_lines="2 4"
     def recurse(
     ):
         recurse(
@@ -1048,7 +1117,7 @@ Empty method declarations and calls should be joined with the preceding code.
     ```
 === "Python"
 
-    ```python hl_lines="1-2"
+    ```py hl_lines="1-2"
     def recurse():
         recurse()
     ```
@@ -1136,7 +1205,7 @@ Prefer to use built-in types provided by the language.
     ```
 === "Python"
 
-    ```python hl_lines="1 3"
+    ```py hl_lines="1 3"
     from typing import Optional
 
     def get_name(person) -> Optional[str]:
@@ -1162,7 +1231,7 @@ Prefer to use built-in types provided by the language.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     def get_name(person) -> str | None:
         return person['name']
     ```
@@ -1182,7 +1251,7 @@ Use double quotes in Python docstrings.
 
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     '''
     The quick brown fox jumps over the lazy dog.
     '''
@@ -1192,7 +1261,7 @@ Use double quotes in Python docstrings.
 
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     """
     The quick brown fox jumps over the lazy dog.
     """
@@ -1222,7 +1291,7 @@ extend `Error` or `Throwable`.
     ```
 === "Python"
 
-    ```python
+    ```py
     class PurchaseException(BaseException):
         pass
     ```
@@ -1246,7 +1315,7 @@ extend `Error` or `Throwable`.
     ```
 === "Python"
 
-    ```python
+    ```py
     class PurchaseException(Exception):
         pass
     ```
@@ -1360,7 +1429,7 @@ All letters in hexadecimal literals should be lowercase.
     ```
 === "Python"
 
-    ```python
+    ```py
     color = 0xFF00FF
     ```
 === "JavaScript"
@@ -1398,7 +1467,7 @@ All letters in hexadecimal literals should be lowercase.
     ```
 === "Python"
 
-    ```python
+    ```py
     color = 0xff00ff
     ```
 === "JavaScript"
@@ -1564,7 +1633,7 @@ Wrap string in single quotes, unless there is a template or a single quote.
     ```
 === "Python"
 
-    ```python
+    ```py
     name = "John Doe"
 
     print('G\'day, ' + name)
@@ -1595,7 +1664,7 @@ Wrap string in single quotes, unless there is a template or a single quote.
     ```
 === "Python"
 
-    ```python
+    ```py
     name = 'John Doe'
 
     print("G'day, " + name)
@@ -1644,7 +1713,7 @@ Abstract classes need at least one abstract function.
     ```
 === "Python"
 
-    ```python hl_lines="3"
+    ```py hl_lines="3"
     from abc import ABC
 
     class Vehicle(ABC):
@@ -1684,7 +1753,7 @@ Abstract classes need at least one abstract function.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     class Vehicle:
         def start(self):
             pass
@@ -1819,7 +1888,7 @@ Simplify boolean expressions when applicable.
     ```
 === "Python"
 
-    ```python
+    ```py
     valid = is_ready() == True and is_running() == False
     ```
 === "TypeScript"
@@ -1847,7 +1916,7 @@ Simplify boolean expressions when applicable.
     ```
 === "Python"
 
-    ```python
+    ```py
     valid = is_ready() and not is_running()
     ```
 === "TypeScript"
@@ -1887,7 +1956,7 @@ context.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     if len(files) > 0:
         collect(files)
     ```
@@ -1931,7 +2000,7 @@ context.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     if files:
         collect(files)
     ```
@@ -1985,7 +2054,7 @@ primitive values. In Kotlin, `null` is included in the set of primitive values.
     ```
 === "Python"
 
-    ```python
+    ```py
     if len(user.addresses) is 1:
         continue
     ```
@@ -1999,7 +2068,7 @@ primitive values. In Kotlin, `null` is included in the set of primitive values.
     ```
 === "Python"
 
-    ```python
+    ```py
     if len(user.addresses) == 1:
         continue
     ```
@@ -2106,7 +2175,7 @@ is considered empty.
     ```
 === "Python"
 
-    ```python
+    ```py
 
     ```
 === "JavaScript"
@@ -2187,7 +2256,7 @@ limit, it should be split into multiple files.
     ```
 === "Python"
 
-    ```python
+    ```py
     def create_article(article):
         // ...
 
@@ -2323,19 +2392,19 @@ limit, it should be split into multiple files.
     ```
 === "Python"
 
-    ```python
+    ```py
     def create_article(article):
         // ...
     ```
-    ```python
+    ```py
     def read_article(article_id):
         // ...
     ```
-    ```python
+    ```py
     def update_article(article_id, article):
         // ...
     ```
-    ```python
+    ```py
     def delete_article(article_id):
         // ...
     ```
@@ -2440,7 +2509,7 @@ Use spaces instead of tabs for indentation.
     ```
 === "Python"
 
-    ```python hl_lines="2-3"
+    ```py hl_lines="2-3"
     class Subscriber:
     \t def subscribe(self):
     \t\t publisher.subscribe(self)
@@ -2504,7 +2573,7 @@ Use spaces instead of tabs for indentation.
     ```
 === "Python"
 
-    ```python hl_lines="2-3"
+    ```py hl_lines="2-3"
     class Subscriber:
         def subscribe(self):
             publisher.subscribe(self)
@@ -2556,7 +2625,7 @@ Length of a line should not exceed certain number of characters.
     ```
 === "Python"
 
-    ```python
+    ```py
     builder = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     ```
 === "JavaScript"
@@ -2604,7 +2673,7 @@ Length of a line should not exceed certain number of characters.
     ```
 === "Python"
 
-    ```python
+    ```py
     builder = \
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     ```
@@ -2661,7 +2730,7 @@ End files with a newline character.
     ```
 === "Python"
 
-    ```python
+    ```py
     class AwesomeImplementation:
         pass
     ```
@@ -2704,7 +2773,7 @@ End files with a newline character.
     ```
 === "Python"
 
-    ```python hl_lines="3"
+    ```py hl_lines="3"
     class AwesomeImplementation:
         pass
     \n
@@ -2750,7 +2819,7 @@ A line should not end with a whitespace character.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     class AwesomeImplementation:
         pass \n
     ```
@@ -2789,7 +2858,7 @@ A line should not end with a whitespace character.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     class AwesomeImplementation:
         pass\n
     ```
@@ -2843,7 +2912,7 @@ always capitalized.
     ```
 === "Python"
 
-    ```python
+    ```py
     class RestAPI:
         http_url = 'https://example.com'
     ```
@@ -2887,7 +2956,7 @@ always capitalized.
     ```
 === "Python"
 
-    ```python
+    ```py
     class RestApi:
         http_url = 'https://example.com'
     ```
@@ -2954,7 +3023,7 @@ Class, interface and object names are written in `PascalCase`.
     ```
 === "Python"
 
-    ```python
+    ```py
     class train_station:
         pass
     ```
@@ -2983,7 +3052,7 @@ Class, interface and object names are written in `PascalCase`.
     ```
 === "Python"
 
-    ```python
+    ```py
     class TrainStation:
         pass
     ```
@@ -3188,7 +3257,7 @@ most cases, single letter names are sufficient.
     ```
 === "Python"
 
-    ```python
+    ```py
     from typing import TypeVar
 
     element = TypeVar('element')
@@ -3244,7 +3313,7 @@ most cases, single letter names are sufficient.
     ```
 === "Python"
 
-    ```python
+    ```py
     from typing import TypeVar
 
     E = TypeVar('E')
@@ -3303,7 +3372,7 @@ Non-constant fields, functions and parameters should be written in
     ```
 === "Python"
 
-    ```python
+    ```py
     def DebugUser(User):
         AnotherUser = User
     ```
@@ -3347,7 +3416,7 @@ Non-constant fields, functions and parameters should be written in
     ```
 === "Python"
 
-    ```python
+    ```py
     def debug_user(user):
         another_user = user
     ```
@@ -3397,7 +3466,7 @@ identifier should be descriptive and meaningful.
     ```
 === "Python"
 
-    ```python
+    ```py
     string: str
 
     list: list[Person]
@@ -3449,7 +3518,7 @@ identifier should be descriptive and meaningful.
     ```
 === "Python"
 
-    ```python
+    ```py
     name: str
 
     people: list[Person]
@@ -3511,7 +3580,7 @@ class.
     ```
 === "Python"
 
-    ```python
+    ```py
     class SpaceshipWrapper():
         pass
     ```
@@ -3550,7 +3619,7 @@ class.
     ```
 === "Python"
 
-    ```python
+    ```py
     class Spaceship():
         pass
     ```
@@ -3645,7 +3714,7 @@ namespaces are considered as packages.
     ```
 === "Python"
 
-    ```python
+    ```py
     └─ user_management
        └─ user_config.py
     ```
@@ -3823,7 +3892,7 @@ at the end of the class.
     ```
 === "Python"
 
-    ```python hl_lines="6-7"
+    ```py hl_lines="6-7"
     class Notification:
         def __init__(self, message):
             self.message = message
@@ -3925,7 +3994,7 @@ at the end of the class.
     ```
 === "Python"
 
-    ```python hl_lines="9-10"
+    ```py hl_lines="9-10"
     class Notification:
         def __init__(self, message):
             self.message = message
@@ -4008,7 +4077,7 @@ Import directives should be ordered alphabetically without any blank lines.
     ```
 === "Python"
 
-    ```python
+    ```py
     import utils
 
     import user
@@ -4056,7 +4125,7 @@ Import directives should be ordered alphabetically without any blank lines.
     ```
 === "Python"
 
-    ```python
+    ```py
     import user
     import utils
     ```
@@ -4123,7 +4192,7 @@ Place inner classes at the end of the class.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     class Article:
         class Author:
             pass
@@ -4200,7 +4269,7 @@ Place inner classes at the end of the class.
     ```
 === "Python"
 
-    ```python hl_lines="5"
+    ```py hl_lines="5"
     class Article:
         def __init__(self, content, author = None):
             pass
@@ -4325,7 +4394,7 @@ to the last member that uses them.
     ```
 === "Python"
 
-    ```python
+    ```py
     class Car:
         @staticmethod
         def log(message: str):
@@ -4470,7 +4539,7 @@ to the last member that uses them.
     ```
 === "Python"
 
-    ```python
+    ```py
     class Car:
         wheels = 4
 
@@ -4605,7 +4674,7 @@ alphabetically.
 
 === "Python"
 
-    ```python
+    ```py
     from utils import validate, parse, format
     ```
 === "JavaScript"
@@ -4623,7 +4692,7 @@ alphabetically.
 
 === "Python"
 
-    ```python
+    ```py
     from utils import format, parse, validate
     ```
 === "JavaScript"
@@ -5180,6 +5249,81 @@ spaces from the leading asterisk.
     function abs(num: number): number {}
     ```
 
+### Braces spaces
+
+Single-line blocks should have a single whitespace between the opening and
+closing braces.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    boolean isOdd(int num) {return num % 2 != 0;}
+    ```
+=== "Groovy"
+
+    ```groovy
+    def isOdd(int num) {return num % 2 != 0}
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    fun isOdd(num: Int): Boolean {return num % 2 != 0}
+    ```
+=== "C/C++"
+
+    ```cpp
+    bool is_odd(int num) {return num % 2 != 0;}
+    ```
+=== "JavaScript"
+
+    ```js
+    function isOdd(num) {return num % 2 != 0;}
+    ```
+=== "TypeScript"
+
+    ```ts
+    function isOdd(num: number): boolean {return num % 2 != 0;}
+    ```
+
+**:material-star-four-points-outline:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    boolean isOdd(int num) { return num % 2 != 0; }
+    ```
+=== "Groovy"
+
+    ```groovy
+    def isOdd(int num) { return num % 2 != 0 }
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    fun isOdd(num: Int): Boolean { return num % 2 != 0 }
+    ```
+=== "C/C++"
+
+    ```cpp
+    bool is_odd(int num) { return num % 2 != 0; }
+    ```
+=== "JavaScript"
+
+    ```js
+    function isOdd(num) { return num % 2 != 0; }
+    ```
+=== "TypeScript"
+
+    ```ts
+    function isOdd(num: number): boolean { return num % 2 != 0; }
+    ```
+
+!!! tip
+
+    Array initializers are ignored.
+
 ### Case separator
 
 Multiline switch-case entries end with a blank line while short entries are
@@ -5245,7 +5389,7 @@ joined.
     ```
 === "Python"
 
-    ```python hl_lines="8"
+    ```py hl_lines="8"
     match event:
         case CANCELLED:
             return
@@ -5351,7 +5495,7 @@ joined.
     ```
 === "Python"
 
-    ```python
+    ```py
     match event:
         case CANCELLED:
             return
@@ -5425,7 +5569,7 @@ preceding code, and start with a single whitespace.
     ```
 === "Python"
 
-    ```python
+    ```py
     print('This is a code')#This is a comment
     ```
 === "JavaScript"
@@ -5463,7 +5607,7 @@ preceding code, and start with a single whitespace.
     ```
 === "Python"
 
-    ```python
+    ```py
     print('This is a code')  # This is a comment
     ```
 === "JavaScript"
@@ -5522,7 +5666,7 @@ There is an exception for a group of properties.
     ```
 === "Python"
 
-    ```python
+    ```py
     class Vehicle:
         wheels: int
         def start(self):
@@ -5585,7 +5729,7 @@ There is an exception for a group of properties.
     ```
 === "Python"
 
-    ```python hl_lines="3"
+    ```py hl_lines="3"
     class Vehicle:
         wheels: int
 
@@ -5761,7 +5905,7 @@ in the expression.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     count = 0
     count = count + 1
     ```
@@ -5806,7 +5950,7 @@ in the expression.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     count = 0
     count += 1
     ```
@@ -5859,7 +6003,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
     ```
 === "Python"
 
-    ```python hl_lines="3"
+    ```py hl_lines="3"
     try:
         unsafe_operation()
     except Exception as e:
@@ -5897,7 +6041,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
     ```
 === "Python"
 
-    ```python hl_lines="3"
+    ```py hl_lines="3"
     try:
         unsafe_operation()
     except (IOError, OSError) as e:
@@ -5932,7 +6076,7 @@ Throw a narrower exception type instead of `Exception`, `Error` or `Throwable`.
     ```
 === "Python"
 
-    ```python
+    ```py
     raise Exception()
     ```
 
@@ -5960,7 +6104,7 @@ Throw a narrower exception type instead of `Exception`, `Error` or `Throwable`.
     ```
 === "Python"
 
-    ```python
+    ```py
     raise ValueError()
     ```
 
@@ -6004,7 +6148,7 @@ statement.
     ```
 === "Python"
 
-    ```python
+    ```py
     match token:
         case Token.VALUE_TOKEN:
             callback(token)
@@ -6058,7 +6202,7 @@ statement.
     ```
 === "Python"
 
-    ```python
+    ```py
     if token == Token.VALUE_TOKEN:
         callback(token)
     ```
@@ -6138,7 +6282,7 @@ statement.
     ```
 === "Python"
 
-    ```python hl_lines="3-4"
+    ```py hl_lines="3-4"
     if validate_cart(cart):
         process_payment(credentials)
     else:
@@ -6222,7 +6366,7 @@ statement.
     ```
 === "Python"
 
-    ```python hl_lines="3"
+    ```py hl_lines="3"
     if validate_cart(cart):
         process_payment(credentials)
     elif not cart:
@@ -6406,7 +6550,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     ```
 === "Python"
 
-    ```python hl_lines="2 3"
+    ```py hl_lines="2 3"
     def login(user):
         if user.is_valid():
             if not is_logged_in(user):
@@ -6498,7 +6642,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     ```
 === "Python"
 
-    ```python hl_lines="2 4"
+    ```py hl_lines="2 4"
     def login(user):
         if not user.is_valid():
             return
@@ -6589,7 +6733,7 @@ the default branch can be lifted.
     ```
 === "Python"
 
-    ```python hl_lines="5"
+    ```py hl_lines="5"
     def park(car):
         match car:
             case Car.MOVING: raise ValueError()
@@ -6667,7 +6811,7 @@ the default branch can be lifted.
     ```
 === "Python"
 
-    ```python hl_lines="5"
+    ```py hl_lines="5"
     def park(car):
         match car:
             case Car.MOVING: raise ValueError()
@@ -6758,7 +6902,7 @@ else block can be lifted.
     ```
 === "Python"
 
-    ```python hl_lines="4 6"
+    ```py hl_lines="4 6"
     def park(car):
         if car.is_moving():
             raise ValueError()
@@ -6850,7 +6994,7 @@ else block can be lifted.
     ```
 === "Python"
 
-    ```python hl_lines="4 6"
+    ```py hl_lines="4 6"
     def park(car):
         if car.is_moving():
             raise ValueError()
@@ -6938,7 +7082,7 @@ condition.
     ```
 === "Python"
 
-    ```python hl_lines="2 4"
+    ```py hl_lines="2 4"
     def is_valid(user):
         if user.is_active():
             return True
@@ -7000,7 +7144,7 @@ condition.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     def is_valid(user):
         return user.is_active()
     ```
@@ -7038,7 +7182,7 @@ them.
     ```
 === "Python"
 
-    ```python
+    ```py
     send_email(user);
     ```
 === "JavaScript"
@@ -7066,7 +7210,7 @@ them.
     ```
 === "Python"
 
-    ```python
+    ```py
     send_email(user)
     ```
 === "JavaScript"
@@ -7133,7 +7277,7 @@ The last continue statement in a loop is useless.
     ```
 === "Python"
 
-    ```python hl_lines="4"
+    ```py hl_lines="4"
     for user in users:
         if user.is_active():
             send_email(user)
@@ -7200,7 +7344,7 @@ The last continue statement in a loop is useless.
     ```
 === "Python"
 
-    ```python
+    ```py
     for user in users:
         if user.is_active():
             send_email(user)
@@ -7280,7 +7424,7 @@ The last return statement in a function is useless.
     ```
 === "Python"
 
-    ```python hl_lines="5"
+    ```py hl_lines="5"
     def send_emails(users):
         for user in users:
             if user.is_active():
@@ -7360,7 +7504,7 @@ The last return statement in a function is useless.
     ```
 === "Python"
 
-    ```python
+    ```py
     def send_emails(users):
         for user in users:
             if user.is_active():
@@ -7415,7 +7559,7 @@ conditions.
     ```
 === "Python"
 
-    ```python
+    ```py
     self.assertTrue(username is None)
     ```
 
@@ -7438,7 +7582,7 @@ conditions.
     ```
 === "Python"
 
-    ```python
+    ```py
     self.assertIsNone(username)
     ```
 
@@ -7465,7 +7609,7 @@ Flip assertions instead of negating conditions.
     ```
 === "Python"
 
-    ```python
+    ```py
     self.assertFalse(!user.is_active())
     ```
 
@@ -7488,7 +7632,7 @@ Flip assertions instead of negating conditions.
     ```
 === "Python"
 
-    ```python
+    ```py
     self.assertTrue(user.is_active())
     ```
 
@@ -7572,7 +7716,7 @@ Do not start or end block comments with whitespaces.
     ```
 === "Python"
 
-    ```python hl_lines="2 5"
+    ```py hl_lines="2 5"
     """
 
     AUTHOR: John Doe
@@ -7637,7 +7781,7 @@ Do not start or end block comments with whitespaces.
     ```
 === "Python"
 
-    ```python
+    ```py
     """
     AUTHOR: John Doe
     LICENSE: Apache 2.0
@@ -7712,7 +7856,7 @@ Prohibits empty first and last lines in code blocks.
     ```
 === "Python"
 
-    ```python hl_lines="2 6"
+    ```py hl_lines="2 6"
     foo = {
 
         'bar',
@@ -7784,7 +7928,7 @@ Prohibits empty first and last lines in code blocks.
     ```
 === "Python"
 
-    ```python
+    ```py
     foo = {
         'bar',
         'baz',
@@ -7839,7 +7983,7 @@ Prohibits empty first and last lines in collection initializers.
     ```
 === "Python"
 
-    ```python hl_lines="2 6"
+    ```py hl_lines="2 6"
     pond = [
 
         Fish('Nemo'),
@@ -7892,7 +8036,7 @@ Prohibits empty first and last lines in collection initializers.
     ```
 === "Python"
 
-    ```python
+    ```py
     pond = [
         Fish('Nemo'),
         Fish('Dory'),
@@ -7958,7 +8102,7 @@ Prohibits empty first and last lines in EOL comments.
     ```
 === "Python"
 
-    ```python hl_lines="1 4"
+    ```py hl_lines="1 4"
     #
     # This is a
     # multiline comment
@@ -8009,7 +8153,7 @@ Prohibits empty first and last lines in EOL comments.
     ```
 === "Python"
 
-    ```python
+    ```py
     # This is a
     # multiline comment
     ```
@@ -8066,7 +8210,7 @@ Prohibits consecutive blank lines in the code.
     ```
 === "Python"
 
-    ```python hl_lines="3"
+    ```py hl_lines="3"
     message = 'Hello'
 
 
@@ -8126,7 +8270,7 @@ Prohibits consecutive blank lines in the code.
     ```
 === "Python"
 
-    ```python
+    ```py
     message = 'Hello'
 
     print(message)
@@ -8194,7 +8338,7 @@ Prohibits consecutive blank lines in block comments.
     ```
 === "Python"
 
-    ```python hl_lines="4"
+    ```py hl_lines="4"
     """
     This is a
 
@@ -8263,7 +8407,7 @@ Prohibits consecutive blank lines in block comments.
     ```
 === "Python"
 
-    ```python
+    ```py
     """
     This is a
 
@@ -8329,7 +8473,7 @@ Prohibits consecutive blank lines in comments.
     ```
 === "Python"
 
-    ```python hl_lines="3"
+    ```py hl_lines="3"
     # This is a
     #
     #
@@ -8384,7 +8528,7 @@ Prohibits consecutive blank lines in comments.
     ```
 === "Python"
 
-    ```python
+    ```py
     # This is a
     #
     # very long comment
@@ -8440,7 +8584,7 @@ Prohibits consecutive spaces in the code.
     ```
 === "Python"
 
-    ```python
+    ```py
     tax      = 0.2
     subtotal = bill     * tax
     total    = subtotal + bill
@@ -8492,7 +8636,7 @@ Prohibits consecutive spaces in the code.
     ```
 === "Python"
 
-    ```python
+    ```py
     tax = 0.2
     subtotal = bill * tax
     total = subtotal + bill
@@ -8576,7 +8720,7 @@ Prohibits empty first and last lines in method declarations and calls.
     ```
 === "Python"
 
-    ```python hl_lines="3 12 15 17"
+    ```py hl_lines="3 12 15 17"
     def swim(
 
         fish,
@@ -8668,7 +8812,7 @@ Prohibits empty first and last lines in method declarations and calls.
     ```
 === "Python"
 
-    ```python
+    ```py
     def swim(
         fish,
         pond,
@@ -8842,7 +8986,7 @@ Prohibits first empty line in Python function and class definitions.
 
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     def on_receive(value):
 
         if value is not None:
@@ -8853,7 +8997,7 @@ Prohibits first empty line in Python function and class definitions.
 
 === "Python"
 
-    ```python
+    ```py
     def on_receive(value):
         if value is not None:
             total += value
@@ -8891,7 +9035,7 @@ The first line of a file cannot be a blank line.
     ```
 === "Python"
 
-    ```python hl_lines="1"
+    ```py hl_lines="1"
     \n
     def execute():
         pass
@@ -8934,7 +9078,7 @@ The first line of a file cannot be a blank line.
     ```
 === "Python"
 
-    ```python
+    ```py
     def execute():
         pass
     ```
@@ -9447,7 +9591,7 @@ new line.
     ```
 === "Python"
 
-    ```python hl_lines="2"
+    ```py hl_lines="2"
     def create_user(
         name, email, age
     ):
@@ -9508,7 +9652,7 @@ new line.
     ```
 === "Python"
 
-    ```python
+    ```py
     def create_user(
         name,
         email,
@@ -9558,7 +9702,7 @@ Compound statements are not allowed.
     ```
 === "Python"
 
-    ```python
+    ```py
     x = 0; y = 0
     ```
 === "JavaScript"
@@ -9594,7 +9738,7 @@ Compound statements are not allowed.
     ```
 === "Python"
 
-    ```python
+    ```py
     x = 0
     y = 0
     ```

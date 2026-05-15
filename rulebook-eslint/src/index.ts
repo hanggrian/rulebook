@@ -237,6 +237,7 @@ const googleConfig: Linter.RulesRecord = {
     'no-unused-vars': ['error', { args: 'none' }],
     '@rulebook/todo-comment': 'error',
     '@import/no-namespace': 'error',
+    '@import/no-duplicates': 'error',
     // Clipping
     '@rulebook/braces-clip': 'error',
     '@stylistic/array-bracket-spacing': 'error',

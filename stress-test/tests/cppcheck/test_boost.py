@@ -1,22 +1,23 @@
 from unittest import main
 from unittest.mock import patch
 
-from rulebook_cppcheck.checkers import \
-    AssignmentWrapChecker, \
-    BlockCommentSpacesChecker, \
-    ChainCallWrapChecker, \
-    DuplicateBlankLineChecker, \
-    DuplicateSpaceChecker, \
-    GenericNameChecker, \
-    ImportOrderChecker, \
-    IndentStyleChecker, \
-    LineLengthChecker, \
-    OperatorWrapChecker, \
-    ParameterWrapChecker, \
-    ParenthesesClipChecker, \
-    ParenthesesTrimChecker, \
-    RedundantElseChecker, \
-    TodoCommentChecker
+from rulebook_cppcheck.checkers import (
+    AssignmentWrapChecker,
+    BlockCommentSpacesChecker,
+    ChainCallWrapChecker,
+    DuplicateBlankLineChecker,
+    DuplicateSpaceChecker,
+    GenericNameChecker,
+    ImportOrderChecker,
+    IndentStyleChecker,
+    LineLengthChecker,
+    OperatorWrapChecker,
+    ParameterWrapChecker,
+    ParenthesesClipChecker,
+    ParenthesesTrimChecker,
+    RedundantElseChecker,
+    TodoCommentChecker,
+)
 from .all_checkers_case import AllCheckersTestCase
 from ..code import get_code
 

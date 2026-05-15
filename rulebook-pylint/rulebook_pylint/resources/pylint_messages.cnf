@@ -1,4 +1,6 @@
 [default]
+import.style.group=Group multiple imports with from the same package
+import.style.parentheses=Use parentheses on multiline import.
 todo.comment.keyword=Capitalize keyword '%s'.
 todo.comment.separator=Omit separator '%s'.
 trailing.comma.single=Remove trailing comma.

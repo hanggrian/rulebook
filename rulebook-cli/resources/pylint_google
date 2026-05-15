@@ -21,6 +21,7 @@ persistent=no
 # usually to register additional checkers.
 load-plugins=
   pylint.extensions.typing,
+  rulebook_pylint.checkers.import_style,
   rulebook_pylint.checkers.todo_comment,
   rulebook_pylint.checkers.trailing_comma,
   # Clipping
@@ -191,6 +192,7 @@ disable=
   too-many-positional-arguments,
   too-many-branches,
   too-many-statements,
+  too-many-public-methods,
   cell-var-from-loop,
 
 

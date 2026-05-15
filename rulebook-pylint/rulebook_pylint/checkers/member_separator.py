@@ -22,7 +22,7 @@ class MemberSeparatorChecker(RulebookFileChecker):
         # collect members
         members: list[NodeNG] = [n for n in node.body if isinstance(n, (Assign, FunctionDef))]
 
-        for (i, member) in enumerate(members):
+        for i, member in enumerate(members):
             if i == 0:
                 continue
             last_member: NodeNG = members[i - 1]

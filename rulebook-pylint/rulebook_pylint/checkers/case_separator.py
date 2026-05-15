@@ -32,7 +32,7 @@ class CaseSeparatorChecker(RulebookFileChecker):
                 has_comment_above(self.lines, match_case) for
                 match_case in node.cases
             )
-        for (i, match_case) in enumerate(node.cases):
+        for i, match_case in enumerate(node.cases):
             if i == 0:
                 continue
             last_match_case: MatchCase = node.cases[i - 1]
