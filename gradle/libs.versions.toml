@@ -1,7 +1,7 @@
 [versions]
 java-compile = "21"
 java-support = "8"
-junit = "5.14.4"
+junit = "6.0.3"
 kotlin = "2.3.21"
 dokka = "2.2.0"
 ktlint = "1.8.0"
