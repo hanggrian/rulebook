@@ -6,6 +6,9 @@
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": false
+    "allowImportingTsExtensions": false,
+    "types": [
+      "node"
+    ]
   }
 }

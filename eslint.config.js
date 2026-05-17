@@ -1,6 +1,6 @@
 import eslint from '@eslint/js';
 import stylisticEslintPlugin from '@stylistic/eslint-plugin';
-import codecheck from 'codecheck';
+import codecheck from 'codecheck-js';
 import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginJsdoc from 'eslint-plugin-jsdoc';
 import eslintPluginSortClassMembers from 'eslint-plugin-sort-class-members';

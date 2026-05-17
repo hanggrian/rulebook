@@ -1,12 +1,12 @@
 [versions]
 java-compile = "21"
 java-support = "8"
-junit = "5.14.3"
+junit = "5.14.4"
 kotlin = "2.3.21"
 dokka = "2.2.0"
 ktlint = "1.8.0"
-checkstyle = "13.4.0"
-groovy = "4.0.31"
+checkstyle = "13.4.2"
+groovy = "4.0.32"
 codenarc = "3.7.0-groovy-4.0"
 
 [plugins]
@@ -33,7 +33,7 @@ truth = "com.google.truth:truth:1.4.5"
 logback = "ch.qos.logback:logback-classic:1.5.32"
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
-junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.14.3"
+junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.14.4"
 
 [bundles]
 junit5 = [

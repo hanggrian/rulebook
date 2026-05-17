@@ -11,9 +11,6 @@
     "org.apache.groovy:groovy-all",
     "org.junit.platform:junit-platform-launcher",
     "astroid",
-    "@eslint/js",
-    "eslint",
-    "@types/estree",
-    "typescript"
+    "@types/estree"
   ]
 }

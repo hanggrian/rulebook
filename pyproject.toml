@@ -2,15 +2,15 @@
 members = [
   "rulebook-cppcheck",
   "rulebook-pylint",
-  "codecheck",
-  "testing",
-  "stress-test",
+  "codecheck-py",
+  "testing-pylint",
+  "stress-test-py",
 ]
 
 [tool.uv.sources]
 rulebook-cppcheck = { workspace = true }
 rulebook-pylint = { workspace = true }
-testing = { workspace = true }
+testing-pylint = { workspace = true }
 
 [tool.poe.tasks]
 lint1 = "cppcheck --language=c++ --check-level=exhaustive --enable=style,performance,portability --addon=addon.json --suppressions-list=.cppcheck_suppressions rulebook-cli/src/**/*.cpp rulebook-cli/src/**/*.h rulebook-cli/src/*.cpp rulebook-cli/src/*.h"
@@ -18,8 +18,8 @@ lint2 = "cppcheck --enable=style,performance,portability --addon=addon.json samp
 lint3 = "cppcheck --enable=style,performance,portability --addon=sample-configured/custom_addon.json sample-configured/c/*.c sample-configured/cpp/*.cpp"
 lint4 = "pylint rulebook-cppcheck/"
 lint5 = "pylint rulebook-pylint/"
-lint6 = "pylint testing/testing/"
-lint7 = "pylint stress-test/tests/"
+lint6 = "pylint testing-pylint/testing/"
+lint7 = "pylint stress-test-py/tests/"
 lint8 = "pylint sample/"
 lint9 = "pylint sample-configured/ --rcfile=sample-configured/custom_pylintrc"
 lint10 = "stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml"
@@ -37,7 +37,7 @@ lint.parallel = [
 ]
 test1 = "pytest rulebook-cppcheck/"
 test2 = "pytest rulebook-pylint/"
-test3 = "pytest stress-test/"
+test3 = "pytest stress-test-py/"
 test = ["test1", "test2", "test3"]
 coverage1 = "pytest rulebook-cppcheck/ --cov=rulebook-cppcheck"
 coverage2 = "pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append"

@@ -2,25 +2,20 @@ val releaseArtifact: String by project
 
 plugins {
     kotlin("jvm") version libs.versions.kotlin
-    alias(libs.plugins.kotlinx.kover)
-    alias(libs.plugins.dokka)
-    alias(libs.plugins.dokka.javadoc)
-    alias(libs.plugins.maven.publish)
 }
 
-kotlin.explicitApi()
-
 dependencies {
-    ktlintRuleset(project(":codecheck-jvm"))
-
-    implementation(libs.ktlint.rule.engine.core)
-    implementation(libs.ktlint.cli.ruleset.core)
-
+    testImplementation(libs.checkstyle)
+    testImplementation(libs.codenarc)
+    testImplementation(project(":testing-checkstyle"))
+    testImplementation(project(":$releaseArtifact-checkstyle"))
+    testImplementation(project(":$releaseArtifact-codenarc"))
+    testImplementation(project(":$releaseArtifact-ktlint"))
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.bundles.junit5)
     testImplementation(libs.ktlint.test)
-    testImplementation(libs.ktlint.ruleset.standard) // for ID comparison
+    testImplementation(libs.ktlint.ruleset.standard)
 
     testRuntimeOnly(libs.junit.platform.launcher)
     testRuntimeOnly(libs.logback)

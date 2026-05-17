@@ -9,11 +9,11 @@ resolution-markers = [
 
 [manifest]
 members = [
-    "codecheck",
+    "codecheck-py",
     "rulebook-cppcheck",
     "rulebook-pylint",
-    "stress-test",
-    "testing",
+    "stress-test-py",
+    "testing-pylint",
 ]
 
 [manifest.dependency-groups]
@@ -93,9 +93,9 @@ wheels = [
 ]
 
 [[package]]
-name = "codecheck"
+name = "codecheck-py"
 version = "1"
-source = { editable = "codecheck" }
+source = { editable = "codecheck-py" }
 dependencies = [
     { name = "astroid" },
     { name = "pylint" },
@@ -819,16 +819,16 @@ wheels = [
 ]
 
 [[package]]
-name = "stress-test"
+name = "stress-test-py"
 version = "1"
-source = { editable = "stress-test" }
+source = { editable = "stress-test-py" }
 dependencies = [
     { name = "astroid" },
     { name = "cppcheck" },
     { name = "pylint" },
     { name = "regex" },
     { name = "rulebook-pylint" },
-    { name = "testing" },
+    { name = "testing-pylint" },
 ]
 
 [package.metadata]
@@ -838,7 +838,7 @@ requires-dist = [
     { name = "pylint", specifier = "==4.0.5" },
     { name = "regex" },
     { name = "rulebook-pylint", editable = "rulebook-pylint" },
-    { name = "testing", editable = "testing" },
+    { name = "testing-pylint", editable = "testing-pylint" },
 ]
 
 [[package]]
@@ -879,9 +879,9 @@ wheels = [
 ]
 
 [[package]]
-name = "testing"
+name = "testing-pylint"
 version = "1"
-source = { editable = "testing" }
+source = { editable = "testing-pylint" }
 dependencies = [
     { name = "astroid" },
     { name = "pylint" },

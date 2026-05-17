@@ -1,6 +1,3 @@
 packages:
-  - 'rulebook-*'
+  - 'packages/*'
   - 'sample*'
-  - 'codecheck'  # internal lint checks
-  - 'testing'  # test utilities
-  - 'stress-test'  # not tested in CI
