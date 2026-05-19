@@ -1,6 +1,11 @@
 #include <stdio.h>
 
-void unnecessary_return() {
+static void unnecessary_return() {
     printf("foo");
     // return;
+}
+
+int main() {
+    unnecessary_return();
+    return 0;
 }

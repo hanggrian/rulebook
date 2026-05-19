@@ -4,12 +4,19 @@
  * @param p2 Parameter description.
  * @return Return description.
  */
-void block_comment_spaces(int p1, int p2) {}
+static void block_comment_spaces(int p1, int p2) {}
 
 /** Function description */
-void block_comment_spaces2(int p1, int p2) {}
+static void block_comment_spaces2(int p1, int p2) {}
 
 /**
  * Function description
  */
-void block_comment_spaces3(int p1, int p2) {}
+static void block_comment_spaces3(int p1, int p2) {}
+
+int main() {
+    block_comment_spaces(0, 0);
+    block_comment_spaces2(0, 0);
+    block_comment_spaces3(0, 0);
+    return 0;
+}

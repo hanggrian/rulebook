@@ -1,8 +1,13 @@
-void redundant_default() {
+static void redundant_default() {
     for (int i = 0; i < 10; i++) {
         switch (i) {
             case 0: return;
             case 1: continue;
         }
     }
+}
+
+int main() {
+    redundant_default();
+    return 0;
 }

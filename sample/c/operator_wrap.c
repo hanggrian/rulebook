@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void operator_wrap() {
+static void operator_wrap() {
     constexpr int foo =
         0 +
         1;
@@ -10,4 +10,9 @@ void operator_wrap() {
         true;
 
     printf("%d %d", foo, bar);
+}
+
+int main() {
+    operator_wrap();
+    return 0;
 }

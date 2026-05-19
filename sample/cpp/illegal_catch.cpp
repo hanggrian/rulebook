@@ -1,4 +1,4 @@
-#include <system_error>
+#include <stdexcept>
 
 void illegal_catch() {
     if (true) {
@@ -15,4 +15,9 @@ void illegal_catch() {
     } catch (const std::overflow_error &e) {
     } catch (const std::runtime_error &e) {
     }
+}
+
+int main() {
+    illegal_catch();
+    return 0;
 }

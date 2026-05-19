@@ -2,12 +2,13 @@
 [![Codecov](https://shields.io/codecov/c/gh/hanggrian/rulebook)](https://app.codecov.io/gh/hanggrian/rulebook/)
 [![Renovate](https://shields.io/badge/dependency-mend-blue)](https://developer.mend.io/github/hanggrian/rulebook/)\
 [![Maven Central](https://shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/)
-[![Java](https://shields.io/badge/java-8+-informational)](https://docs.oracle.com/javase/8/)\
 [![PyPI](https://shields.io/pypi/v/rulebook-pylint)](https://pypi.org/project/rulebook-pylint/)
 [![TestPyPI](https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org)](https://test.pypi.org/project/rulebook-pylint/)
-[![Python](https://shields.io/badge/python-3.10+-informational)](https://docs.python.org/3.10/)\
-[![NPM](https://shields.io/npm/v/rulebook-eslint)](https://npmjs.com/package/rulebook-eslint/)
+[![NPM](https://shields.io/npm/v/rulebook-eslint)](https://npmjs.com/package/rulebook-eslint/)\
+[![Java](https://shields.io/badge/java-8+-informational)](https://docs.oracle.com/javase/8/)
+[![Python](https://shields.io/badge/python-3.10+-informational)](https://docs.python.org/3.10/)
 [![Node](https://shields.io/badge/node-12+-informational)](https://nodejs.org/en/blog/release/v12.0.0/)
+[![Go](https://img.shields.io/github/go-mod/go-version/hanggrian/rulebook)](https://go.dev/doc/go1.24)
 
 # Rulebook
 

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int lonely_if() {
+static int lonely_if() {
     constexpr int expression = 0;
     if (expression == 1) {
         return 0;
@@ -9,4 +9,9 @@ int lonely_if() {
         return 1;
     }
     return 2;
+}
+
+int main() {
+    lonely_if();
+    return 0;
 }

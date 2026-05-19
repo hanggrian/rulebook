@@ -1,10 +1,6 @@
 #include <stdio.h>
 
-int file_size() {
-    printf("");
-
-    printf("");
-
+static int file_size() {
     printf("");
 
     printf("");
@@ -996,4 +992,8 @@ int file_size() {
     printf("");
 
     return 0;
+}
+
+int main() {
+    return file_size();
 }

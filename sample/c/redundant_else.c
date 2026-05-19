@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void redundant_else() {
+static void redundant_else() {
     for (int i = 0; i < 10; i++) {
         if (true) {
             return;
@@ -11,4 +11,9 @@ void redundant_else() {
         int j = i;
         printf("%d", j);
     }
+}
+
+int main() {
+    redundant_else();
+    return 0;
 }

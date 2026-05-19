@@ -4,13 +4,13 @@ typedef struct Node {
     struct Node (*plus)(int x);
 } Node;
 
-Node plus(int n) {
+static Node plus(int n) {
     Node node;
     node.plus = &plus;
     return node;
 }
 
-int chain_call_wrap() {
+static int chain_call_wrap() {
     // Missing newline before second and fourth '.'
     const Node foo =
         plus(0)
@@ -37,5 +37,10 @@ int chain_call_wrap() {
     bar.plus(5);
     baz.plus(6);
 
+    return 0;
+}
+
+int main() {
+    chain_call_wrap();
     return 0;
 }

@@ -1,14 +1,8 @@
-prepare:
-    mkdir -p rulebook-cli/build/
-    cd rulebook-cli/build/ && cmake .. -G Ninja
-
-build:
-    cd rulebook-cli/build/ && cmake --build .
-
 install-all clean="false":
     {{ if clean == "false" { "just _update-gradlew" } else { "" } }}
     uv sync {{ if clean == "true" { "--locked" } else { "" } }}
     pnpm {{ if clean == "true" { "ci" } else { "i" } }}
+    go mod {{ if clean == "true" { "download" } else { "tidy" } }}
     {{ if clean == "false" { "scripts/prepare_clion.sh" } else { "" } }}
 
 lint-all:

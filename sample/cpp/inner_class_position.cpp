@@ -17,3 +17,14 @@ public:
         }
     };
 };
+
+int main() {
+    Outer outer;
+    outer.show();
+
+    Outer::Inner inner;
+    inner.bar();
+    cout << "Value of foo: " << inner.foo << endl;
+
+    return 0;
+}

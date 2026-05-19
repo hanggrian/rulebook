@@ -4,7 +4,7 @@
     "--punctuate-block-tags=@see",
     "--illegal-variable-names=foo,bar",
     "--indent-size=2",
-    "--max-file-size=20",
+    "--max-file-size=30",
     "--max-line-length=50",
     "--meaningless-words=Worker,Thread",
     "--member-order=static,function,constructor,property"

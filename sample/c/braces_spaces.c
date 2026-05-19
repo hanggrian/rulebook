@@ -1,3 +1,8 @@
 #include <stdio.h>
 
-void braces_spaces() { printf(""); }
+static void braces_spaces() { printf(""); }
+
+int main() {
+    braces_spaces();
+    return 0;
+}

@@ -7,3 +7,8 @@ namespace my_namespace {
 void package_name() {
     std::cout << my_namespace::x;
 }
+
+int main() {
+    package_name();
+    return 0;
+}

@@ -13,16 +13,15 @@ rulebook-pylint = { workspace = true }
 testing-pylint = { workspace = true }
 
 [tool.poe.tasks]
-lint1 = "cppcheck --language=c++ --check-level=exhaustive --enable=style,performance,portability --addon=addon.json --suppressions-list=.cppcheck_suppressions rulebook-cli/src/**/*.cpp rulebook-cli/src/**/*.h rulebook-cli/src/*.cpp rulebook-cli/src/*.h"
-lint2 = "cppcheck --enable=style,performance,portability --addon=addon.json sample/c/*.c sample/cpp/*.cpp"
-lint3 = "cppcheck --enable=style,performance,portability --addon=sample-configured/custom_addon.json sample-configured/c/*.c sample-configured/cpp/*.cpp"
-lint4 = "pylint rulebook-cppcheck/"
-lint5 = "pylint rulebook-pylint/"
-lint6 = "pylint testing-pylint/testing/"
-lint7 = "pylint stress-test-py/tests/"
-lint8 = "pylint sample/"
-lint9 = "pylint sample-configured/ --rcfile=sample-configured/custom_pylintrc"
-lint10 = "stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml"
+lint1 = "cppcheck --enable=all --suppress=checkersReport --suppress=missingIncludeSystem --suppress=missingInclude --addon=addon.json sample/c/*.c sample/cpp/*.cpp"
+lint2 = "cppcheck --enable=all --suppress=checkersReport --suppress=missingIncludeSystem --addon=sample-configured/custom_addon.json sample-configured/c/*.c sample-configured/cpp/*.cpp"
+lint3 = "pylint rulebook-cppcheck/"
+lint4 = "pylint rulebook-pylint/"
+lint5 = "pylint testing-pylint/testing/"
+lint6 = "pylint stress-test-py/tests/"
+lint7 = "pylint sample/"
+lint8 = "pylint sample-configured/ --rcfile=sample-configured/custom_pylintrc"
+lint9 = "stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml"
 lint.parallel = [
   "lint1",
   "lint2",
@@ -33,7 +32,6 @@ lint.parallel = [
   "lint7",
   "lint8",
   "lint9",
-  "lint10",
 ]
 test1 = "pytest rulebook-cppcheck/"
 test2 = "pytest rulebook-pylint/"

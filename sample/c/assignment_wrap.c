@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void assignment_wrap() {
+static void assignment_wrap() {
     constexpr int foo =
         0 +
         1;
@@ -13,4 +13,9 @@ void assignment_wrap() {
     for (int i = 0; i < 2; i++) {
         printf("%d\n", baz[i]);
     }
+}
+
+int main() {
+    assignment_wrap();
+    return 0;
 }

@@ -4,7 +4,7 @@
  * @param p Parameter description.
  * @return Return description.
  */
-void block_tag_punctuation(int p) {}
+static void block_tag_punctuation(int p) {}
 
 /**
  * Function description
@@ -12,4 +12,10 @@ void block_tag_punctuation(int p) {}
  * @param p Parameter description!
  * @return Return description?
  */
-void block_tag_punctuation2(int p) {}
+static void block_tag_punctuation2(int p) {}
+
+int main() {
+    block_tag_punctuation(0);
+    block_tag_punctuation2(0);
+    return 0;
+}
