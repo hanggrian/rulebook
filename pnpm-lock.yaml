@@ -31,8 +31,8 @@ importers:
         specifier: 5.10.0
         version: 5.10.0(eslint@10.4.0)
       '@stylistic/stylelint-plugin':
-        specifier: 5.1.0
-        version: 5.1.0(stylelint@17.11.1(typescript@6.0.3))
+        specifier: 5.2.0
+        version: 5.2.0(stylelint@17.11.1(typescript@6.0.3))
       '@types/sinon':
         specifier: 21.0.1
         version: 21.0.1
@@ -576,6 +576,11 @@ packages:
   '@stylistic/stylelint-plugin@5.1.0':
     resolution: {integrity: sha512-TFvKCbJUEWUYCD+rDv45qhnStO6nRtbBngaCblS2JGh8c95S3jJi3fIotfF6EDo4IVM15UPa65WP+kp6GNvXRA==}
     engines: {node: '>=20.19.0'}
+    peerDependencies:
+      stylelint: ^17.6.0
+
+  '@stylistic/stylelint-plugin@5.2.0':
+    resolution: {integrity: sha512-pfa2PMvlH87qwoOMUH4rqz7x/vuO5Kh+r/R1Pe+/5T8sukDPe/VfF6mbdUGE5gwZPlj5O1X56qw55IZrFFRF0g==}
     peerDependencies:
       stylelint: ^17.6.0
 
@@ -3003,12 +3008,12 @@ snapshots:
       style-search: 0.1.0
       stylelint: 17.11.0(typescript@6.0.3)
 
-  '@stylistic/stylelint-plugin@5.1.0(stylelint@17.11.1(typescript@6.0.3))':
+  '@stylistic/stylelint-plugin@5.2.0(stylelint@17.11.1(typescript@6.0.3))':
     dependencies:
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-tokenizer': 4.0.0
       '@csstools/media-query-list-parser': 5.0.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
-      postcss: 8.5.10
+      postcss: 8.5.14
       postcss-selector-parser: 7.1.1
       postcss-value-parser: 4.2.0
       style-search: 0.1.0
