@@ -1,19 +1,14 @@
 {
   "todo.comment.keyword": "Capitalize keyword '{{ $0 }}'.",
   "todo.comment.separator": "Omit separator '{{ $0 }}'.",
-
   "lowercase.hexadecimal": "Use hexadecimal '{{ $0 }}'.",
-
   "empty.file": "Delete the empty file.",
-
   "file.name": "Rename file to '{{ $0 }}'.",
   "meaningless.word.all": "Avoid meaningless word '{{ $0 }}'.",
   "meaningless.word.util": "Rename utility class to '{{ $0 }}'.",
-
   "braces.clip": "Convert into '{}'.",
   "case.separator.missing": "Add blank line after multiline branch.",
   "case.separator.unexpected": "Remove blank line after single-line branch.",
-
   "nested.if.else.invert": "Invert 'if' condition.",
   "nested.if.else.lift": "Lift 'else' and add 'return' in 'if' block.",
   "redundant.default": "Omit redundant 'default' condition.",
@@ -21,14 +16,12 @@
   "redundant.if": "Omit redundant 'if' condition.",
   "unnecessary.continue": "Last 'continue' is not needed.",
   "unnecessary.return": "Last 'return' is not needed.",
-
   "comment.trim": "Remove blank line after '//'.",
   "duplicate.blank.line.in.block.comment": "Remove consecutive blank line after '*'.",
-  "duplicate.blank.line.in.comment": "Remove consecutive blank line after '//'",
+  "duplicate.blank.line.in.comment": "Remove consecutive blank line after '//'.",
   "parentheses.trim.first": "Remove blank line after '{{ $0 }}'.",
   "parentheses.trim.last": "Remove blank line before '{{ $0 }}'.",
   "unnecessary.leading.blank.line": "Remove blank line at the beginning.",
-
   "assignment.wrap": "Break assignment into newline.",
   "chain.call.wrap.missing": "Put newline before '.'.",
   "chain.call.wrap.unexpected": "Omit newline before '.'."

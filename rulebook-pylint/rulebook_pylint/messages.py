@@ -6,7 +6,7 @@ class Messages:
     counter: int = 6142  # arbitrary number to distinguish from PEP
 
     with files('rulebook_pylint.resources') \
-        .joinpath('pylint_messages.cnf') \
+        .joinpath('pylint_messages.cfg') \
         .open('r', encoding='UTF-8') as file:
         parser: ConfigParser = ConfigParser(interpolation=None)
         parser.read_string(file.read())

@@ -4,7 +4,7 @@ from importlib.resources import files
 
 class Messages:
     with files('rulebook_cppcheck.resources') \
-        .joinpath('cppcheck_messages.cnf') \
+        .joinpath('cppcheck_messages.cfg') \
         .open('r', encoding='UTF-8') as file:
         parser: ConfigParser = ConfigParser(interpolation=None)
         parser.read_string(file.read())

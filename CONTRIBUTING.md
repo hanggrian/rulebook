@@ -67,7 +67,7 @@ Printing the AST tree to the console is possible with Checkstyle and Ktlint.
 
 ### Checkstyle
 
-```shell
+```sh
 checkstyle -T $file
 checkstyle -J $file # for javadoc
 ```
@@ -77,12 +77,12 @@ checkstyle -J $file # for javadoc
 > This command is no longer available in newer versions of Ktlint, use version
   [0.47.0](https://github.com/pinterest/ktlint/releases/tag/0.47.0).
 
-```shell
+```sh
 ktlint --color printAST $file
 ```
 
 ### Cppcheck
 
-```shell
+```sh
 cppcheck --dump $file
 ```

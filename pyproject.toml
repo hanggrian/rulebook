@@ -21,7 +21,7 @@ lint5 = "pylint testing-pylint/testing/"
 lint6 = "pylint stress-test-py/tests/"
 lint7 = "pylint sample/"
 lint8 = "pylint sample-configured/ --rcfile=sample-configured/custom_pylintrc"
-lint9 = "stylebook .github/ *.toml **/*.toml pnpm-workspace.yaml"
+lint9 = "stylebook ."
 lint.parallel = [
   "lint1",
   "lint2",
@@ -37,13 +37,13 @@ test1 = "pytest rulebook-cppcheck/"
 test2 = "pytest rulebook-pylint/"
 test3 = "pytest stress-test-py/"
 test = ["test1", "test2", "test3"]
-coverage1 = "pytest rulebook-cppcheck/ --cov=rulebook-cppcheck"
-coverage2 = "pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append"
-coverage3 = "coverage xml"
-coverage = ["coverage1", "coverage2", "coverage3"]
-documentation1 = "rm -rf build/pdoc/"
-documentation2 = "pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/"
-documentation = ["documentation1", "documentation2"]
+cov1 = "pytest rulebook-cppcheck/ --cov=rulebook-cppcheck"
+cov2 = "pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append"
+cov3 = "coverage xml"
+cov = ["cov1", "cov2", "cov3"]
+doc1 = "rm -rf build/pdoc/"
+doc2 = "pdoc -o build/pdoc/ rulebook-pylint/rulebook_pylint/ rulebook-cppcheck/rulebook_cppcheck/"
+doc = ["doc1", "doc2"]
 
 [tool.coverage.run]
 omit = ["*/tests/*"]
@@ -53,7 +53,7 @@ dev = [
   "poethepoet",
   "pdoc",
   # lint
-  "stylebook==0.1",
+  "stylebook",
   # test
   "pytest",
   "pytest-cov",

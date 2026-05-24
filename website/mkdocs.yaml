@@ -6,6 +6,7 @@ site_description: Aggressive source code linter extensions
 repo_name: hanggrian/rulebook
 repo_url: https://github.com/hanggrian/rulebook
 
+# yamllint disable rule:line-length
 copyright: >
   <a href="https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yaml">
     <img
@@ -23,17 +24,16 @@ copyright: >
       alt="Renovate"/>
   </a>
   &emsp;
+  <a href="https://pkg.go.dev/github.com/hanggrian/rulebook/">
+    <img
+      src="https://img.shields.io/github/release/hanggrian/rulebook"
+      alt="GitHub Release"/>
+  </a>
   <a href="https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/">
     <img
       src="https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint"
       alt="Maven Central"/>
   </a>
-  <a href="https://docs.oracle.com/javase/8/">
-    <img
-      src="https://img.shields.io/badge/java-8+-informational"
-      alt="Java"/>
-  </a>
-  &emsp;
   <a href="https://pypi.org/project/rulebook-pylint/">
     <img
       src="https://shields.io/pypi/v/rulebook-pylint"
@@ -44,22 +44,33 @@ copyright: >
       src="https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org"
       alt="Package Index Test"/>
   </a>
-  <a href="https://docs.python.org/3.10/">
-    <img
-      src="https://img.shields.io/badge/python-3.10+-informational"
-      alt="Python"/>
-  </a>
-  &emsp;
   <a href="https://www.npmjs.com/package/rulebook-eslint/">
     <img
       src="https://shields.io/npm/v/rulebook-eslint"
       alt="NPM"/>
+  </a>
+  &emsp;
+  <a href="https://go.dev/doc/go1.25/">
+    <img
+      src="https://img.shields.io/github/go-mod/go-version/hanggrian/rulebook"
+      alt="Go"/>
+  </a>
+  <a href="https://docs.oracle.com/javase/8/">
+    <img
+      src="https://img.shields.io/badge/java-8+-informational"
+      alt="Java"/>
+  </a>
+  <a href="https://docs.python.org/3.10/">
+    <img
+      src="https://img.shields.io/badge/python-3.10+-informational"
+      alt="Python"/>
   </a>
   <a href="https://nodejs.org/en/blog/release/v12.0.0/">
     <img
       src="https://img.shields.io/badge/node-12+-informational"
       alt="Node"/>
   </a>
+# yamllint enable
 
 theme:
   name: material
@@ -67,69 +78,71 @@ theme:
   favicon: images/favicon.ico
   logo: images/icon.svg
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: blue
-      accent: amber
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: light blue
-      accent: amber
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    primary: blue
+    accent: amber
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: light blue
+    accent: amber
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
   icon:
     repo: material/github
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.expand
-    - navigation.top
-    - search.suggest
-    - search.share
-    - content.code.copy
-    - content.tabs.link
+  - navigation.tabs
+  - navigation.sections
+  - navigation.expand
+  - navigation.top
+  - search.suggest
+  - search.share
+  - content.code.copy
+  - content.tabs.link
 
+# yamllint disable rule:line-length
 nav:
-  - Home: index.md
-  - Rules:
-    - All rules: rules/index.md
-    - Glossary: rules/glossary.md
-    - External links:
-      - Checkstyle standard checks: https://checkstyle.org/checks.html?ext
-      - CodeNarc rules: https://codenarc.org/codenarc-rule-index.html?ext
-      - Ktlint standard rules: https://pinterest.github.io/ktlint/latest/rules/standard/?ext
-      - Cppcheck checks: https://sourceforge.net/p/cppcheck/wiki/ListOfChecks/?ext
-      - Pylint checkers: https://pylint.pycqa.org/en/latest/user_guide/checkers/features.html?ext
-      - ESLint rules: https://eslint.org/docs/latest/rules/?ext
-      - typescript-eslint rules: https://typescript-eslint.io/rules/?ext
-  - Rationales:
-    - Common rationales: rationales/index.md
-    - External links:
-      - Kotlin coding conventions: https://kotlinlang.org/docs/coding-conventions.html?ext
-      - C++ core guidelines: https://isocpp.github.io/CppCoreGuidelines/?ext
-      - PEP 8: https://peps.python.org/pep-0008/?ext
-      - Crockford code conventions: https://www.crockford.com/code.html?ext
-  - Javadoc: api/javadoc
-  - Pydoc: api/pydoc
-  - TSDoc: api/tsdoc
+- Home: index.md
+- Rules:
+  - All rules: rules/index.md
+  - Glossary: rules/glossary.md
+  - External links:
+    - Checkstyle standard checks: https://checkstyle.org/checks.html?ext
+    - CodeNarc rules: https://codenarc.org/codenarc-rule-index.html?ext
+    - Ktlint standard rules: https://pinterest.github.io/ktlint/latest/rules/standard/?ext
+    - Cppcheck checks: https://sourceforge.net/p/cppcheck/wiki/ListOfChecks/?ext
+    - Pylint checkers: https://pylint.pycqa.org/en/latest/user_guide/checkers/features.html?ext
+    - ESLint rules: https://eslint.org/docs/latest/rules/?ext
+    - typescript-eslint rules: https://typescript-eslint.io/rules/?ext
+- Rationales:
+  - Common rationales: rationales/index.md
+  - External links:
+    - Kotlin coding conventions: https://kotlinlang.org/docs/coding-conventions.html?ext
+    - C++ core guidelines: https://isocpp.github.io/CppCoreGuidelines/?ext
+    - PEP 8: https://peps.python.org/pep-0008/?ext
+    - Crockford code conventions: https://www.crockford.com/code.html?ext
+- Javadoc: api/javadoc
+- Pydoc: api/pydoc
+- TSDoc: api/tsdoc
+# yamllint enable
 
 plugins:
-  - search
+- search
 
 extra_javascript:
-  - scripts/mermaid.min.js # hotfix for Mermaid not loading in GitHub Pages
+- scripts/mermaid.min.js  # hotfix for Mermaid not loading in GitHub Pages
 extra_css:
-  - styles/colors.css
-  - styles/icons.css
-  - styles/links.css
-  - https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined # more material icons
+- styles/colors.css
+- styles/icons.css
+- styles/links.css
+- https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined
 
 hooks:
-  - hooks/archive.py
+- hooks/archive.py
 
 validation:
   nav:
@@ -147,26 +160,26 @@ validation:
 #     property: !ENV GOOGLE_ANALYTICS_KEY
 
 markdown_extensions:
-  - toc:
-      permalink: true
-  - admonition
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - attr_list
-  - md_in_html
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - footnotes
+- toc:
+    permalink: true
+- admonition
+- pymdownx.details
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+- pymdownx.highlight:
+    anchor_linenums: true
+- pymdownx.mark
+- pymdownx.smartsymbols
+- attr_list
+- md_in_html
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+- pymdownx.tabbed:
+    alternate_style: true
+- pymdownx.tasklist:
+    custom_checkbox: true
+- footnotes

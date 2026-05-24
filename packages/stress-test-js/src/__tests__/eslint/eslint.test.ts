@@ -29,7 +29,7 @@ describe('EslintTest', () => {
             assertThat(getCode(`eslint/${eslintHelperFile}`))
                 .withFilename(eslintHelperFile)
                 .hasErrorMessages(
-                    "6:1 Avoid meaningless word 'Helper'.",
+                    "1:1 Avoid meaningless word 'Helper'.",
                     '68:15 Break assignment into newline.',
                     '285:22 Break assignment into newline.',
                     '303:18 Break assignment into newline.',

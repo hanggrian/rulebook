@@ -14,30 +14,27 @@ jobs:
   run-lint:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+    - uses: actions/checkout@v6
 
-      - uses: ./.github/actions/setup-workspace
+    - uses: ./.github/actions/setup-workspace
 
-      - run: just lint-all
+    - run: |
+        sudo apt-get install -y libxml2-utils
+        go install github.com/hanggrian/stylebook@latest
 
-  run-shellcheck:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v6
-
-      - run: find . -type f -name "*.sh" -exec shellcheck {} +
+    - run: just minimal-lint
 
   upload-coverage:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+    - uses: actions/checkout@v6
 
-      - uses: ./.github/actions/setup-workspace
+    - uses: ./.github/actions/setup-workspace
 
-      - run: just coverage-all
+    - run: just cov
 
-      - if: github.ref == 'refs/heads/main'
-        uses: codecov/codecov-action@v6
-        with:
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
+    - if: github.ref == 'refs/heads/main'
+      uses: codecov/codecov-action@v6
+      with:
+        fail_ci_if_error: true
+        token: ${{ secrets.CODECOV_TOKEN }}

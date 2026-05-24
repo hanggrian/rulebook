@@ -1,0 +1,72 @@
+{
+  "blanks-around-fences": false,
+  "blanks-around-tables": false,
+  "code-block-style": false,
+  "code-fence-style": {
+    "style": "backtick"
+  },
+  "dead-link": {
+    "ignored_hosts": [
+      "www.npmjs.com",
+      "pinterest.github.io"
+    ]
+  },
+  "duplicate-link": false,
+  "emphasis-style": {
+    "style": "asterisk"
+  },
+  "fenced-code-language": {
+    "allowed_languages": [
+      "java",
+      "gradle",
+      "groovy",
+      "kotlin",
+      "mermaid",
+      "cpp",
+      "py",
+      "js",
+      "ts",
+      "sh"
+    ]
+  },
+  "first-line-heading": false,
+  "heading-increment": false,
+  "heading-style": {
+    "style": "atx"
+  },
+  "hr-style": {
+    "style": "---"
+  },
+  "line-length": {
+    "code_blocks": false,
+    "headings": false,
+    "tables": false
+  },
+  "link-and-image-style": {
+    "url_inline": false
+  },
+  "list-marker-space": false,
+  "no-blanks-blockquote": false,
+  "no-duplicate-heading": {
+    "siblings_only": true
+  },
+  "no-emphasis-as-heading": false,
+  "no-inline-html": false,
+  "no-missing-space-closed-atx": false,
+  "no-multiple-space-closed-atx": false,
+  "ol-prefix": false,
+  "proper-names": false,
+  "required-headings": false,
+  "strong-style": {
+    "style": "asterisk"
+  },
+  "table-column-style": {
+    "style": "compact"
+  },
+  "table-pipe-style": {
+    "style": "leading_and_trailing"
+  },
+  "ul-style": {
+    "style": "dash"
+  }
+}

@@ -19,9 +19,7 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src/",
     "test": "vitest run",
-    "coverage": "vitest run --coverage --reporter=junit --outputFile=test-report.junit.xml",
-    "prepublishOnly": "cp ../../README.md ./",
-    "postpublish": "rm ./README.md"
+    "cov": "vitest run --coverage --reporter=junit --outputFile=test-report.junit.xml"
   },
   "engines": {
     "node": ">=12.0.0"

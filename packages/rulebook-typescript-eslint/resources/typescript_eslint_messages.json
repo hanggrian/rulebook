@@ -1,5 +1,4 @@
 {
   "unnecessary.abstract": "Omit 'abstract' modifier.",
-
   "generic.name": "Use pascal-case name."
 }

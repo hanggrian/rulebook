@@ -34,6 +34,6 @@ describe('DuplicateBlankLineInCommentRuleTest', () => {
                     // dolor sit amet.
                 }
                 `,
-            ).hasErrorMessages("5:21 Remove consecutive blank line after '//'"),
+            ).hasErrorMessages("5:21 Remove consecutive blank line after '//'."),
     );
 });

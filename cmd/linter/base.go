@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/hanggrian/rulebook/cmd/colors"
+	"github.com/hanggrian/rulebook/cmd/resources"
 )
 
 const Version = "0.3"
@@ -139,16 +140,7 @@ func (l Linter) Lint(target string, google bool) error {
 			return err
 		}
 		rulebookCheckstyleJar, err :=
-			copyTemporary(
-				filepath.Join(
-					"rulebook-checkstyle",
-					"build",
-					"libs",
-					fmt.Sprintf("rulebook-checkstyle-%s.jar", Version),
-				),
-				"rulebook-checkstyle.jar",
-				false,
-			)
+			copyTemporary(resources.MustPath("rulebook-checkstyle.jar"), "rulebook-checkstyle.jar", false)
 		if err != nil {
 			return err
 		}
@@ -177,7 +169,7 @@ func (l Linter) Lint(target string, google bool) error {
 				),
 				"com.puppycrawl.tools.checkstyle.Main",
 				"-c",
-				filepath.Join("cmd", "resources", l.GetConfigFile(google)),
+				resources.MustPath(l.GetConfigFile(google)),
 				target,
 			)
 		cmd.Stdout = os.Stdout
@@ -185,6 +177,10 @@ func (l Linter) Lint(target string, google bool) error {
 		return cmd.Run()
 
 	case "cppcheck":
+		addon, err := resources.CppcheckAddon(l.GetConfigFile(google))
+		if err != nil {
+			return err
+		}
 		// cppcheck --enable=all --check-level=exhaustive --addon=<addon> <target>
 		cmd :=
 			exec.Command(
@@ -192,7 +188,7 @@ func (l Linter) Lint(target string, google bool) error {
 				"-q",
 				"--enable=all",
 				"--check-level=exhaustive",
-				"--addon="+filepath.Join("cmd", "resources", l.GetConfigFile(google)),
+				"--addon="+addon,
 				"--suppress=checkersReport",
 				"--suppress=missingIncludeSystem",
 				target,
@@ -215,16 +211,7 @@ func (l Linter) Lint(target string, google bool) error {
 			return err
 		}
 		jar, err :=
-			copyTemporary(
-				filepath.Join(
-					"rulebook-ktlint",
-					"build",
-					"libs",
-					fmt.Sprintf("rulebook-ktlint-%s.jar", Version),
-				),
-				"rulebook-ktlint.jar",
-				false,
-			)
+			copyTemporary(resources.MustPath("rulebook-ktlint.jar"), "rulebook-ktlint.jar", false)
 		if err != nil {
 			return err
 		}
@@ -243,7 +230,7 @@ func (l Linter) Lint(target string, google bool) error {
 func ptr(s string) *string { return &s }
 
 func downloadTemporary(url string, filename string, binary bool) (string, error) {
-	tmpDir := filepath.Join("/tmp", "rulebook")
+	tmpDir := filepath.Join(os.TempDir(), "rulebook")
 	dest := filepath.Join(tmpDir, filename)
 
 	if fi, err := os.Stat(dest); err == nil && fi.Mode().IsRegular() {
@@ -261,7 +248,7 @@ func downloadTemporary(url string, filename string, binary bool) (string, error)
 }
 
 func copyTemporary(source string, filename string, binary bool) (string, error) {
-	tmpDir := filepath.Join("/tmp", "rulebook")
+	tmpDir := filepath.Join(os.TempDir(), "rulebook")
 	dest := filepath.Join(tmpDir, filename)
 
 	if fi, err := os.Stat(dest); err == nil && fi.Mode().IsRegular() {

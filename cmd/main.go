@@ -11,6 +11,7 @@ import (
 
 	"github.com/hanggrian/rulebook/cmd/colors"
 	"github.com/hanggrian/rulebook/cmd/linter"
+	"github.com/hanggrian/rulebook/cmd/resources"
 )
 
 const Version = "0.3"
@@ -212,7 +213,7 @@ func initializeConfig(linterName string, dir string, google bool, quiet bool) er
 	if err := os.MkdirAll(filepath.Dir(targetPath), 0o755); err != nil {
 		return err
 	}
-	content, err := os.ReadFile(filepath.Join("cmd", "resources", resourceName))
+	content, err := resources.Read(resourceName)
 	if err != nil {
 		return err
 	}
