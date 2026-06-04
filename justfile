@@ -5,92 +5,90 @@ install CLEAN="false":
     pnpm install {{ if CLEAN == "true" { "--frozen-lockfile" } else { "" } }}
     {{ if CLEAN == "false" { "scripts/prepare_clion.sh" } else { "" } }}
 
-[group: 'check']
+[group('check')]
 lint-gradle:
     just _gradle-{{ os() }} checkstyleMain codenarcMain codenarcScript ktlintCheck
 
-[group: 'check']
+[group('check')]
 lint-python:
     uv run poe lint
 
-[group: 'check']
+[group('check')]
 lint-node:
     pnpm lint
 
-[group: 'check']
+[group('check')]
 [parallel]
 lint: lint-gradle lint-python lint-node
     stylebook .
 
 # skip lint-node with network calls
-[group: 'check']
+[group('check')]
 [parallel]
-minimal-lint: lint-gradle lint-python
-    stylebook .
+offline-lint: lint-gradle lint-python
 
-[group: 'check']
+[group('check')]
 test-gradle:
     just _gradle-{{ os() }} test
 
-[group: 'check']
+[group('check')]
 test-python:
     uv run poe test
 
-[group: 'check']
+[group('check')]
 test-node:
     pnpm -r test
 
-[group: 'check']
+[group('check')]
 [parallel]
 test: test-gradle test-python test-node
 
-[group: 'check']
+[group('check')]
 cov-gradle:
     just _gradle-{{ os() }} koverXmlReport
 
-[group: 'check']
+[group('check')]
 cov-python:
     uv run poe cov
 
-[group: 'check']
+[group('check')]
 cov-node:
     pnpm -r cov
 
-[group: 'check']
+[group('check')]
 [parallel]
 cov: cov-gradle cov-python cov-node
 
 format:
     just --fmt
-    gofmt -w .
+    go fmt ./...
 
-[group: 'doc']
+[group('doc')]
 doc-gradle:
     just _gradle-{{ os() }} dokkaGenerateHtml
 
-[group: 'doc']
+[group('doc')]
 doc-python:
     uv run poe doc
 
-[group: 'doc']
+[group('doc')]
 doc-node:
     pnpm doc
 
-[group: 'doc']
+[group('doc')]
 [parallel]
 doc: doc-gradle doc-python doc-node
 
-[group: 'website']
+[group('website')]
 prepare-website:
     uv pip install -r website/requirements.txt
 
-[group: 'website']
+[group('website')]
 preview-website: prepare-website
     cd website/ && uv run mkdocs serve --livereload
 
-[group: 'website']
+[group('website')]
 publish-website: prepare-website doc
-    rm -rf website/docs/api/
     mkdir -p website/docs/api/
     mv build/dokka/html/ website/docs/api/javadoc/
     mv build/pdoc/ website/docs/api/pydoc/

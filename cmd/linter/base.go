@@ -227,8 +227,6 @@ func (l Linter) Lint(target string, google bool) error {
 	}
 }
 
-func ptr(s string) *string { return &s }
-
 func downloadTemporary(url string, filename string, binary bool) (string, error) {
 	tmpDir := filepath.Join(os.TempDir(), "rulebook")
 	dest := filepath.Join(tmpDir, filename)

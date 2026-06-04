@@ -2,18 +2,6 @@ package colors
 
 import "github.com/fatih/color"
 
-func Bold(text string) string {
-	return color.New(color.Bold).Sprint(text)
-}
-
-func Italic(text string) string {
-	return color.New(color.Italic).Sprint(text)
-}
-
-func Underline(text string) string {
-	return color.New(color.Underline).Sprint(text)
-}
-
 func Red(text string) string {
 	return color.New(color.FgRed).Sprint(text)
 }
@@ -36,4 +24,16 @@ func Cyan(text string) string {
 
 func Magenta(text string) string {
 	return color.New(color.FgMagenta).Sprint(text)
+}
+
+func B(text string) string {
+	return color.New(color.Bold).Sprint(text)
+}
+
+func D(text string) string {
+	return color.New(color.Faint).Sprint(text)
+}
+
+func U(text string) string {
+	return color.New(color.Underline).Sprint(text)
 }

@@ -1,12 +1,12 @@
 [![GitHub Actions](https://shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yaml)](https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yaml)
 [![Codecov](https://shields.io/codecov/c/gh/hanggrian/rulebook)](https://app.codecov.io/gh/hanggrian/rulebook/)
 [![Renovate](https://shields.io/badge/renovate-enabled-brightgreen)](https://developer.mend.io/github/hanggrian/rulebook/)\
-[![GitHub Release](https://img.shields.io/github/release/hanggrian/rulebook)](https://pkg.go.dev/github.com/hanggrian/rulebook/)
+[![GitHub Release](https://shields.io/github/release/hanggrian/rulebook)](https://pkg.go.dev/github.com/hanggrian/rulebook/)
 [![Maven Central](https://shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint)](https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/)
 [![PyPI](https://shields.io/pypi/v/rulebook-pylint)](https://pypi.org/project/rulebook-pylint/)
 [![TestPyPI](https://shields.io/pypi/v/rulebook-pylint?label=testpypi&pypiBaseUrl=https://test.pypi.org)](https://test.pypi.org/project/rulebook-pylint/)
 [![NPM](https://shields.io/npm/v/rulebook-eslint)](https://npmjs.com/package/rulebook-eslint/)\
-[![Go](https://img.shields.io/github/go-mod/go-version/hanggrian/rulebook)](https://go.dev/doc/go1.25/)
+[![Go](https://shields.io/github/go-mod/go-version/hanggrian/rulebook)](https://go.dev/doc/go1.25/)
 [![Java](https://shields.io/badge/java-8+-informational)](https://docs.oracle.com/javase/8/)
 [![Python](https://shields.io/badge/python-3.10+-informational)](https://docs.python.org/3.10/)
 [![Node](https://shields.io/badge/node-12+-informational)](https://nodejs.org/en/blog/release/v12.0.0/)
@@ -30,7 +30,7 @@ practices in coding style.
 | JavaScript | [ESLint](https://github.com/eslint/eslint/) | [Crockford Code Conventions](https://www.crockford.com/code.html) or<br>[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html) |
 | TypeScript | [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/) | [Crockford Code Conventions](https://www.crockford.com/code.html) or<br>[Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html) |
 
-[View all rules](https://hanggrian.github.io/rulebook/rules/)
+[View rules](https://hanggrian.github.io/rulebook/rules/)
 
 ## Download
 

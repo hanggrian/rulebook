@@ -10,28 +10,28 @@ repo_url: https://github.com/hanggrian/rulebook
 copyright: >
   <a href="https://github.com/hanggrian/rulebook/actions/workflows/code-analysis.yaml">
     <img
-      src="https://img.shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yaml"
+      src="https://shields.io/github/actions/workflow/status/hanggrian/rulebook/code-analysis.yaml"
       alt="GitHub Actions"/>
   </a>
   <a href="https://app.codecov.io/gh/hanggrian/rulebook/">
     <img
-      src="https://img.shields.io/codecov/c/gh/hanggrian/rulebook"
+      src="https://shields.io/codecov/c/gh/hanggrian/rulebook"
       alt="Codecov"/>
   </a>
   <a href="https://developer.mend.io/github/hanggrian/rulebook/">
     <img
-      src="https://img.shields.io/badge/dependency-mend-blue"
+      src="https://shields.io/badge/dependency-mend-blue"
       alt="Renovate"/>
   </a>
   &emsp;
   <a href="https://pkg.go.dev/github.com/hanggrian/rulebook/">
     <img
-      src="https://img.shields.io/github/release/hanggrian/rulebook"
+      src="https://shields.io/github/release/hanggrian/rulebook"
       alt="GitHub Release"/>
   </a>
   <a href="https://repo1.maven.org/maven2/com/hanggrian/rulebook/rulebook-ktlint/">
     <img
-      src="https://img.shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint"
+      src="https://shields.io/maven-central/v/com.hanggrian.rulebook/rulebook-ktlint"
       alt="Maven Central"/>
   </a>
   <a href="https://pypi.org/project/rulebook-pylint/">
@@ -52,22 +52,22 @@ copyright: >
   &emsp;
   <a href="https://go.dev/doc/go1.25/">
     <img
-      src="https://img.shields.io/github/go-mod/go-version/hanggrian/rulebook"
+      src="https://shields.io/github/go-mod/go-version/hanggrian/rulebook"
       alt="Go"/>
   </a>
   <a href="https://docs.oracle.com/javase/8/">
     <img
-      src="https://img.shields.io/badge/java-8+-informational"
+      src="https://shields.io/badge/java-8+-informational"
       alt="Java"/>
   </a>
   <a href="https://docs.python.org/3.10/">
     <img
-      src="https://img.shields.io/badge/python-3.10+-informational"
+      src="https://shields.io/badge/python-3.10+-informational"
       alt="Python"/>
   </a>
   <a href="https://nodejs.org/en/blog/release/v12.0.0/">
     <img
-      src="https://img.shields.io/badge/node-12+-informational"
+      src="https://shields.io/badge/node-12+-informational"
       alt="Node"/>
   </a>
 # yamllint enable

@@ -27,6 +27,7 @@ coverage.xml
 dist/
 wheels/
 *.egg-info
+site/
 
 # WebStorm
 node_modules/

@@ -71,60 +71,98 @@ func Execute() error {
 	}
 
 	if version {
-		fmt.Printf("rulebook %s\n", colors.Bold(Version))
+		fmt.Printf("rulebook %s\n", colors.B(Version))
 		return nil
 	}
 
 	if help || len(args) == 0 {
 		fmt.Printf("Helper for Rulebook linter extensions\n\n")
-		fmt.Printf("\U0001f680 %s\n", colors.Bold("Usage:"))
+		fmt.Printf("\U0001f680 %s\n", colors.B(colors.Green("Usage:")))
 		fmt.Printf(
-			"   rulebook %s %s %s\n\n",
-			colors.Cyan("<command>"),
-			colors.Magenta("<arguments>"),
-			colors.Blue("[options]"),
+			"   %s %s %s %s\n\n",
+			colors.Green("rulebook"),
+			colors.Cyan("<COMMAND>"),
+			colors.Magenta("[ARGUMENTS]"),
+			colors.Blue("[OPTIONS]"),
 		)
-		fmt.Printf("\u26a1\ufe0f %s\n", colors.Bold(colors.Cyan("Command:")))
-		fmt.Printf("   init <linter> <dir>   Write linter configuration\n")
-		fmt.Printf("   lint <path>           Run lint and report violations\n")
-		fmt.Printf("   print <file>          Print AST of a source file\n\n")
-		fmt.Printf("\U0001f3f7  %s\n", colors.Bold(colors.Magenta("Arguments:")))
+		fmt.Printf("\u26a1\ufe0f %s\n", colors.B(colors.Cyan("Command:")))
 		fmt.Printf(
-			"   file           Supports %s, %s, %s, %s, %s\n",
-			colors.Italic(".c"),
-			colors.Italic(".cpp"),
-			colors.Italic(".java"),
-			colors.Italic(".kt"),
-			colors.Italic(".kts"),
+			"   %s %s %s   Write linter configuration\n",
+			colors.Cyan("init"),
+			colors.Cyan(colors.D("<LINTER>")),
+			colors.Cyan(colors.D("<DIR>")),
 		)
 		fmt.Printf(
-			"                  %s, %s, %s, %s, %s\n",
-			colors.Italic(".py"),
-			colors.Italic(".js"),
-			colors.Italic(".jsx"),
-			colors.Italic(".ts"),
-			colors.Italic(".tsx"),
+			"   %s %s           Run lint and report violations\n",
+			colors.Cyan("lint"),
+			colors.Cyan(colors.D("<PATH>")),
 		)
 		fmt.Printf(
-			"   linter         One of %s, %s, %s, %s,\n",
-			colors.Italic("checkstyle"),
-			colors.Italic("cppcheck"),
-			colors.Italic("codenarc"),
-			colors.Italic("eslint"),
+			"   %s %s          Print AST of a source file\n\n",
+			colors.Cyan("print"),
+			colors.Cyan(colors.D("<FILE>")),
+		)
+		fmt.Printf("\U0001f3f7  %s\n", colors.B(colors.Magenta("Arguments:")))
+		fmt.Printf("   %s           Supports files with extensions:\n", colors.Magenta("file"))
+		fmt.Printf(
+			"                  \u2022 .c     " +
+				"\u2022 .cpp   " +
+				"\u2022 .java   " +
+				"\u2022 .kt\n",
 		)
 		fmt.Printf(
-			"                  %s, %s or %s\n",
-			colors.Italic("ktlint"),
-			colors.Italic("pylint"),
-			colors.Italic("typescript-eslint"),
+			"                  \u2022 .kts   " +
+				"\u2022 .py    " +
+				"\u2022 .js     " +
+				"\u2022 .jsx\n",
 		)
-		fmt.Printf("   path (=self)   Directory or regular file\n")
-		fmt.Printf("   dir (=self)    Target project directory\n\n")
-		fmt.Printf("\u2699\ufe0f  %s\n", colors.Bold(colors.Blue("Options:")))
-		fmt.Printf("   -g, --google    Use Google style variant if available\n")
-		fmt.Printf("   -q, --quiet     Suppress verbose output\n")
-		fmt.Printf("   -h, --help      Show this help message and exit\n")
-		fmt.Printf("   -v, --version   Show version information and exit\n")
+		fmt.Printf(
+			"                  \u2022 .ts    " +
+				"\u2022 .tsx\n",
+		)
+		fmt.Printf("   %s         Supports linters:\n", colors.Magenta("linter"))
+		fmt.Printf(
+			"                  \u2022 %s   "+
+				"\u2022 %s   "+
+				"\u2022 %s            "+
+				"\u2022 %s\n",
+			linter.Checkstyle.Name,
+			linter.Cppcheck.Name,
+			linter.CodeNarc.Name,
+			linter.ESLint.Name,
+		)
+		fmt.Printf(
+			"                  \u2022 %s       "+
+				"\u2022 %s     "+
+				"\u2022 %s\n",
+			linter.Ktlint.Name,
+			linter.Pylint.Name,
+			linter.TypeScriptESLint.Name,
+		)
+		self := colors.D(colors.Magenta("(=self)"))
+		fmt.Printf("   %s %s   Directory or regular file\n", colors.Magenta("path"), self)
+		fmt.Printf("   %s %s    Target project directory\n\n", colors.Magenta("dir"), self)
+		fmt.Printf("\u2699\ufe0f  %s\n", colors.B(colors.Blue("Options:")))
+		fmt.Printf(
+			"   %s, %s    Use Google style variant if available\n",
+			colors.Blue("-g"),
+			colors.Blue("--google"),
+		)
+		fmt.Printf(
+			"   %s, %s      Show this help message and exit\n",
+			colors.Blue("-h"),
+			colors.Blue("--help"),
+		)
+		fmt.Printf(
+			"   %s, %s     Suppress verbose output\n",
+			colors.Blue("-q"),
+			colors.Blue("--quiet"),
+		)
+		fmt.Printf(
+			"   %s, %s   Show version information and exit\n",
+			colors.Blue("-v"),
+			colors.Blue("--version"),
+		)
 		if len(args) == 0 && !help && !version {
 			return errors.New("See --help.")
 		}
@@ -155,7 +193,7 @@ func Execute() error {
 		target := args[1]
 		return printFile(target, google, quiet)
 	default:
-		return fmt.Errorf(colors.Red("Unknown command %s."), colors.Bold(args[0]))
+		return fmt.Errorf(colors.Red("Unknown command %s."), colors.B(args[0]))
 	}
 }
 
@@ -181,10 +219,10 @@ func initializeConfig(linterName string, dir string, google bool, quiet bool) er
 		if google {
 			flavor = "google"
 		}
-		fmt.Printf("\U0001f4e6 Linter:    %s\n", colors.Bold(selected.Name))
-		fmt.Printf("\U0001f4c1 Directory: %s\n", colors.Bold(targetDir))
-		fmt.Printf("\U0001f36d Flavor:    %s\n", colors.Bold(flavor))
-		fmt.Printf("\U0001f3af Target:    %s\n\n", colors.Bold(targetPath))
+		fmt.Printf("\U0001f4e6 Linter:    %s\n", colors.B(selected.Name))
+		fmt.Printf("\U0001f4c1 Directory: %s\n", colors.B(targetDir))
+		fmt.Printf("\U0001f36d Flavor:    %s\n", colors.B(flavor))
+		fmt.Printf("\U0001f3af Target:    %s\n\n", colors.B(targetPath))
 	}
 
 	// check existing file
@@ -194,9 +232,9 @@ func initializeConfig(linterName string, dir string, google bool, quiet bool) er
 		for {
 			fmt.Printf(
 				colors.Yellow("Overwrite (%s%s/%so)? "),
-				colors.Underline(colors.Bold("y")),
-				colors.Bold("es"),
-				colors.Underline("n"),
+				colors.U(colors.B("y")),
+				colors.B("es"),
+				colors.U("n"),
 			)
 			input, _ := reader.ReadString('\n')
 			input = strings.TrimSpace(strings.ToLower(input))
@@ -272,8 +310,8 @@ func lintSource(targetPath string, google bool, quiet bool) error {
 	sort.Strings(names)
 
 	if !quiet {
-		fmt.Printf("\U0001f4e6 Linters: %s\n", colors.Bold(strings.Join(names, ", ")))
-		fmt.Printf("\U0001f4c4 Path:    %s\n\n", colors.Bold(targetPath))
+		fmt.Printf("\U0001f4e6 Linters: %s\n", colors.B(strings.Join(names, ", ")))
+		fmt.Printf("\U0001f4c4 Path:    %s\n\n", colors.B(targetPath))
 	}
 
 	for _, name := range names {
@@ -295,13 +333,13 @@ func printFile(targetPath string, google bool, quiet bool) error {
 	ext := strings.TrimPrefix(filepath.Ext(targetPath), ".")
 	selected, ok := linter.ByExtension(ext)
 	if !ok {
-		return fmt.Errorf(colors.Red("Unsupported extension %s."), colors.Bold(ext))
+		return fmt.Errorf(colors.Red("Unsupported extension %s."), colors.B(ext))
 	}
 
 	// print verbose
 	if !quiet {
-		fmt.Printf("\U0001f4e6 Linter: %s\n", colors.Bold(selected.Name))
-		fmt.Printf("\U0001f3af Target: %s\n\n", colors.Bold(targetPath))
+		fmt.Printf("\U0001f4e6 Linter: %s\n", colors.B(selected.Name))
+		fmt.Printf("\U0001f3af Target: %s\n\n", colors.B(targetPath))
 	}
 
 	// print AST

@@ -22,7 +22,7 @@ jobs:
         sudo apt-get install -y libxml2-utils
         go install github.com/hanggrian/stylebook@latest
 
-    - run: just minimal-lint
+    - run: just offline-lint
 
   upload-coverage:
     runs-on: ubuntu-24.04
