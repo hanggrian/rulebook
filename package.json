@@ -26,7 +26,7 @@
     "@vitest/coverage-v8": "4.1.6",
     "eslint": "10.4.0",
     "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsdoc": "62.9.0",
+    "eslint-plugin-jsdoc": "63.3.3",
     "eslint-plugin-sort-class-members": "1.22.1",
     "eslint-vitest-rule-tester": "3.1.0",
     "globals": "17.6.0",
