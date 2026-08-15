@@ -1,4 +1,73 @@
-### Block tag punctuation
+### Import style
+
+Group import statements from the same package. In Python, use parentheses to
+wrap long import statements.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Python"
+
+    ```py hl_lines="1-3"
+    from fruit import Apple
+    from fruit import Banana, \
+        Orange
+
+    fruits = [Apple(), Banana(), Orange()]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1-2"
+    import { Apple } from 'fruit';
+    import { Banana, Orange } from 'fruit';
+
+    const fruits = [new Apple(), new Banana(), new Orange()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1-2"
+    import { Apple } from 'fruit';
+    import { Banana, Orange } from 'fruit';
+
+    const fruits: Fruit[] = [new Apple(), new Banana(), new Orange()];
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Python"
+
+    ```py hl_lines="1-5"
+    from fruit import (
+        Apple,
+        Banana,
+        Orange,
+    )
+
+    fruits = [Apple(), Banana(), Orange()]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1-5"
+    import {
+        Apple,
+        Banana,
+        Orange,
+    } from 'fruit';
+
+    const fruits = [new Apple(), new Banana(), new Orange()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1-5"
+    import {
+        Apple,
+        Banana,
+        Orange,
+    } from 'fruit';
+
+    const fruits: Fruit[] = [new Apple(), new Banana(), new Orange()];
+    ```
+
+### Missing block tag punctuation
 
 Description of certain block tags, if present, should end with a period,
 question mark or exclamation mark.
@@ -89,75 +158,6 @@ question mark or exclamation mark.
     | :simple-apachegroovy:{ .lg .middle } `BlockTagPunctuation#tags` | @param, @return |
     | :material-language-kotlin:{ .lg .middle } `rulebook_punctuate_block_tags` | @constructor, @receiver, @property, @param, @return |
     | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--punctuate-block-tags` | @param, @return |
-
-### Import style
-
-Group import statements from the same package. In Python, use parentheses to
-wrap long import statements.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Python"
-
-    ```py hl_lines="1-3"
-    from fruit import Apple
-    from fruit import Banana, \
-        Orange
-
-    fruits = [Apple(), Banana(), Orange()]
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1-2"
-    import { Apple } from 'fruit';
-    import { Banana, Orange } from 'fruit';
-
-    const fruits = [new Apple(), new Banana(), new Orange()];
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1-2"
-    import { Apple } from 'fruit';
-    import { Banana, Orange } from 'fruit';
-
-    const fruits: Fruit[] = [new Apple(), new Banana(), new Orange()];
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Python"
-
-    ```py hl_lines="1-5"
-    from fruit import (
-        Apple,
-        Banana,
-        Orange,
-    )
-
-    fruits = [Apple(), Banana(), Orange()]
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1-5"
-    import {
-        Apple,
-        Banana,
-        Orange,
-    } from 'fruit';
-
-    const fruits = [new Apple(), new Banana(), new Orange()];
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1-5"
-    import {
-        Apple,
-        Banana,
-        Orange,
-    } from 'fruit';
-
-    const fruits: Fruit[] = [new Apple(), new Banana(), new Orange()];
-    ```
 
 ### TODO comment
 
@@ -585,6 +585,10 @@ line.
         quantity: number,
     ): void {}
     ```
+
+### Unnecessary block tag alignment
+
+
 
 ### Unused import
 

@@ -1,83 +1,82 @@
 install CLEAN="false":
-    go mod {{ if CLEAN == "true" { "download" } else { "tidy" } }}
+    make install CLEAN={{ CLEAN }}
     {{ if CLEAN == "false" { "just _update-gradlew" } else { "" } }}
     uv sync {{ if CLEAN == "true" { "--locked" } else { "" } }}
     pnpm install {{ if CLEAN == "true" { "--frozen-lockfile" } else { "" } }}
     {{ if CLEAN == "false" { "scripts/prepare_clion.sh" } else { "" } }}
 
-[group('check')]
-lint-gradle:
+[private]
+lint1:
     just _gradle-{{ os() }} checkstyleMain codenarcMain codenarcScript ktlintCheck
 
-[group('check')]
-lint-python:
+[private]
+lint2:
     uv run poe lint
 
-[group('check')]
-lint-node:
+[private]
+lint3:
     pnpm lint
 
 [group('check')]
 [parallel]
-lint: lint-gradle lint-python lint-node
+lint: lint1 lint2 lint3
     stylebook .
 
 # skip lint-node with network calls
 [group('check')]
 [parallel]
-offline-lint: lint-gradle lint-python
+offline-lint: lint1 lint2
 
-[group('check')]
-test-gradle:
+[private]
+test1:
     just _gradle-{{ os() }} test
 
-[group('check')]
-test-python:
+[private]
+test2:
     uv run poe test
 
-[group('check')]
-test-node:
+[private]
+test3:
     pnpm -r test
 
 [group('check')]
 [parallel]
-test: test-gradle test-python test-node
+test: test1 test2 test3
 
-[group('check')]
-cov-gradle:
+[private]
+cov1:
     just _gradle-{{ os() }} koverXmlReport
 
-[group('check')]
-cov-python:
+[private]
+cov2:
     uv run poe cov
 
-[group('check')]
-cov-node:
+[private]
+cov3:
     pnpm -r cov
 
 [group('check')]
 [parallel]
-cov: cov-gradle cov-python cov-node
+cov: cov1 cov2 cov3
 
 format:
     just --fmt
-    go fmt ./...
+    make format
 
-[group('doc')]
-doc-gradle:
+[private]
+doc1:
     just _gradle-{{ os() }} dokkaGenerateHtml
 
-[group('doc')]
-doc-python:
+[private]
+doc2:
     uv run poe doc
 
-[group('doc')]
-doc-node:
+[private]
+doc3:
     pnpm doc
 
-[group('doc')]
 [parallel]
-doc: doc-gradle doc-python doc-node
+doc: doc1 doc2 doc3
 
 [group('website')]
 prepare-website:

@@ -21,6 +21,7 @@ import type { ESLint, Linter } from 'eslint';
 
 const crockfordConfig: Linter.RulesRecord = {
     'consistent-return': 'error',
+    'no-case-declarations': 'off',
     'no-undef': 'error',
 
     '@stylistic/comma-dangle': ['error', 'always-multiline'],
@@ -231,6 +232,7 @@ const crockfordConfig: Linter.RulesRecord = {
 
 const googleConfig: Linter.RulesRecord = {
     'consistent-return': 'error',
+    'no-case-declarations': 'off',
     'no-undef': 'error',
 
     '@stylistic/comma-dangle': ['error', 'always-multiline'],
