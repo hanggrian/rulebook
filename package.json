@@ -24,7 +24,7 @@
     "@stylistic/stylelint-plugin": "5.2.0",
     "@types/sinon": "21.0.1",
     "@vitest/coverage-v8": "4.1.6",
-    "eslint": "10.4.0",
+    "eslint": "10.10.0",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jsdoc": "62.9.0",
     "eslint-plugin-sort-class-members": "1.22.1",
