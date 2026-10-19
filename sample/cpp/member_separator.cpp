@@ -8,7 +8,7 @@ public:
     int bar = 0;
 
     void baz() {
-        cout << "This is the Outer class" << endl;
+        cout << "This is the Outer class: " << foo << endl;
     }
 };
 

@@ -1,0 +1,34 @@
+from re import DOTALL, Pattern, compile as re
+
+from rulebook_cppcheck.checkers.rulebook_checkers import RulebookFileChecker
+from rulebook_cppcheck.messages import Messages
+
+try:
+    from cppcheckdata import Token
+except ImportError:
+    from cppcheck.Cppcheck.addons.cppcheckdata import Token
+
+
+class NoDuplicateBlankLineInBlockCommentChecker(RulebookFileChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#no-duplicate-blank-line-in-block-comment"""
+    ID: str = 'no-duplicate-blank-line-in-block-comment'
+    _MSG: str = 'no.duplicate.blank.line.in.block.comment'
+
+    _BLOCK_COMMENT_REGEX: Pattern = re(r'/\*(.*?)\*/', DOTALL)
+
+    def check_file(self, token: Token, content: str) -> None:
+        for match in self._BLOCK_COMMENT_REGEX.finditer(content):
+            # checks for violation
+            comment_body: str = match.group(1)
+            start_line: int = content.count('\n', 0, match.start()) + 1
+            lines: list[str] = comment_body.splitlines()
+            for i in range(len(lines) - 1):
+                curr_token: str = lines[i].strip()
+                next_token: str = lines[i + 1].strip()
+                if curr_token != '*' or \
+                    next_token != '*':
+                    continue
+                if i == 0 or \
+                    i + 1 == len(lines) - 1:
+                    continue
+                self.report_error(token, Messages.get(self._MSG), start_line + i + 1)

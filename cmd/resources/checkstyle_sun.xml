@@ -88,8 +88,8 @@
   </module>
 
   <!-- Trimming -->
-  <module name="DuplicateBlankLine"/>
-  <module name="UnnecessaryLeadingBlankLine"/>
+  <module name="NoDuplicateBlankLine"/>
+  <module name="NoLeadingBlankLine"/>
 
   <module name="TreeWalker">
     <!-- https://checkstyle.org/checks/javadoc/index.html -->
@@ -251,7 +251,7 @@
         value="ANNOTATION_FIELD_DEF, PARAMETER_DEF, VARIABLE_DEF, PATTERN_VARIABLE_DEF,
           RECORD_COMPONENT_DEF"/>
     </module>
-    <module name="MeaninglessWord"/>
+    <module name="NoMeaninglessWord"/>
 
     <!-- Ordering -->
     <module name="AtclauseOrder">
@@ -275,13 +275,12 @@
     <module name="JavadocTagContinuationIndentation"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
     <module name="CaseSeparator"/>
-    <module name="CommentSpaces"/>
+    <module name="CommentSpacing"/>
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
 
     <!-- Statement -->
-    <module name="ComplicatedAssignment"/>
     <module name="IllegalCatch">
       <property
         name="illegalClassNames"
@@ -295,33 +294,34 @@
         value="Error, Exception, Throwable, java.lang.Error, java.lang.Exception,
           java.lang.Throwable"/>
     </module>
-    <module name="LonelyCase"/>
-    <module name="LonelyIf"/>
-    <module name="NestedIfElse"/>
-    <module name="RedundantDefault"/>
-    <module name="RedundantElse"/>
-    <module name="UnnecessaryContinue"/>
-    <module name="UnnecessaryReturn"/>
+    <module name="NoLonelyCase"/>
+    <module name="NoLonelyIf"/>
+    <module name="NoNestedIfElse"/>
+    <module name="NoRedundantDefault"/>
+    <module name="NoRedundantElse"/>
+    <module name="NoUselessContinue"/>
+    <module name="NoUselessReturn"/>
+    <module name="ShorthandAssignment"/>
 
     <!-- Testing -->
-    <module name="ComplicatedAssertion"/>
-    <module name="ConfusingAssertion"/>
+    <module name="NoConfusingAssertion"/>
+    <module name="SpecificAssertion"/>
 
     <!-- Trimming -->
-    <module name="BlockCommentTrim"/>
-    <module name="BracesTrim"/>
-    <module name="CommentTrim"/>
-    <module name="DuplicateBlankLineInBlockComment"/>
-    <module name="DuplicateBlankLineInComment"/>
+    <module name="BlockCommentTrimming"/>
+    <module name="BracesTrimming"/>
+    <module name="CommentTrimming"/>
+    <module name="NoDuplicateBlankLineInBlockComment"/>
+    <module name="NoDuplicateBlankLineInComment"/>
     <module name="SingleSpaceSeparator"/>
-    <module name="ParenthesesTrim"/>
-    <module name="TagsTrim"/>
+    <module name="ParenthesesTrimming"/>
+    <module name="TagsTrimming"/>
 
     <!-- Wrapping -->
-    <module name="AssignmentWrap"/>
-    <module name="ChainCallWrap"/>
-    <module name="LambdaWrap"/>
-    <module name="ParameterWrap"/>
+    <module name="AssignmentWrapping"/>
+    <module name="ChainCallWrapping"/>
+    <module name="LambdaWrapping"/>
+    <module name="ParameterWrapping"/>
     <module name="SingleLineJavadoc"/>
     <module name="OneStatementPerLine"/>
   </module>

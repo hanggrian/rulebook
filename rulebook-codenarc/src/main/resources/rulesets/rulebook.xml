@@ -29,13 +29,13 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.SimpleSizeComparisonRule"/>
 
   <!-- Formatting -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoEmptyFileRule"/>
 
   <!-- Naming -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.AbbreviationAsWordRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.GenericNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.MeaninglessWordRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoMeaninglessWordRule"/>
 
   <!-- Ordering -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagOrderRule"/>
@@ -47,44 +47,44 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.OverloadFunctionPositionRule"/>
 
   <!-- Scripting -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.DecentralizedDependencyRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.EagerApiRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyConfigurationRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.CentralizedDependencyRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LazyApiRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoLonelyConfigurationRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.RootProjectNameRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.ScriptFileNameRule"/>
 
   <!-- Spacing -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagIndentationRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.BracesSpacesRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BracesSpacingRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MemberSeparatorRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.MissingBlankLineBeforeBlockTagsRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BlankLineBeforeBlockTagsRule"/>
 
   <!-- Statement -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ComplicatedAssignmentRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyCaseRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyIfRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantDefaultRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantElseRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryContinueRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryReturnRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoLonelyCaseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoLonelyIfRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoNestedIfElseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoRedundantDefaultRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoRedundantElseRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoUselessContinueRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoUselessReturnRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ShorthandAssignmentRule"/>
 
   <!-- Testing -->
 
   <!-- Trimming -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.CommentTrimRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.DuplicateBlankLineInCommentRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.DuplicateSpaceRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ParenthesesTrimRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.TagsTrimRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsTrimmingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.CommentTrimmingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoDuplicateBlankLineInCommentRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoDuplicateSpaceRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ParenthesesTrimmingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.TagsTrimmingRule"/>
 
   <!-- Wrapping -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.AssignmentWrapRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.LambdaWrapRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.OperatorWrapRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ParameterWrapRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.StatementWrapRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.AssignmentWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ChainCallWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LambdaWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.OperatorWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.ParameterWrappingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.StatementWrappingRule"/>
 </ruleset>

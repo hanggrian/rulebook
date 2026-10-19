@@ -153,7 +153,7 @@
       <property name="tags" value="@throws"/>
     </rule-config>
 
-    <rule-config name="MeaninglessWord">
+    <rule-config name="NoMeaninglessWord">
       <property name="words" value="Hello, World"/>
     </rule-config>
 

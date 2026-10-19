@@ -2,49 +2,50 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers import (
-    AssignmentWrapChecker,
+    AssignmentWrappingChecker,
     CaseSeparatorChecker,
-    CommentSpacesChecker,
-    DuplicateSpaceChecker,
+    CommentSpacingChecker,
     ImportOrderChecker,
     IndentStyleChecker,
-    LineLengthChecker,
-    ParameterWrapChecker,
-    ParenthesesTrimChecker,
-    RedundantDefaultChecker,
+    MaxLineLengthChecker,
+    NoDuplicateSpaceChecker,
+    NoRedundantDefaultChecker,
+    ParameterWrappingChecker,
+    ParenthesesTrimmingChecker,
 )
 from .all_checkers_case import AllCheckersTestCase
 from ..code import get_code
 
 
+# noinspection unresolved-references
 class TestOpenRazer(AllCheckersTestCase):
-    @patch.object(AssignmentWrapChecker, 'report_error')
+    @patch.object(AssignmentWrappingChecker, 'report_error')
     @patch.object(CaseSeparatorChecker, 'report_error')
-    @patch.object(CommentSpacesChecker, 'report_error')
-    @patch.object(DuplicateSpaceChecker, 'report_error')
+    @patch.object(CommentSpacingChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(IndentStyleChecker, 'report_error')
-    @patch.object(LineLengthChecker, 'report_error')
-    @patch.object(ParameterWrapChecker, 'report_error')
-    @patch.object(ParenthesesTrimChecker, 'report_error')
-    @patch.object(RedundantDefaultChecker, 'report_error')
+    @patch.object(MaxLineLengthChecker, 'report_error')
+    @patch.object(NoRedundantDefaultChecker, 'report_error')
+    @patch.object(NoDuplicateSpaceChecker, 'report_error')
+    @patch.object(ParameterWrappingChecker, 'report_error')
+    @patch.object(ParenthesesTrimmingChecker, 'report_error')
     def test_openrazer_razerkraken_driver(
         self,
-        redundant_default_report_error,
-        parentheses_trim_report_error,
-        parameter_wrap_report_error,
-        line_length_report_error,
+        parentheses_trimming_report_error,
+        parameter_wrapping_report_error,
+        no_duplicate_whitespace_report_error,
+        no_redundant_default_report_error,
+        max_line_length_report_error,
         indent_style_report_error,
         import_order_report_error,
-        duplicate_whitespace_report_error,
-        comment_space_report_error,
+        comment_spacing_report_error,
         case_separator_report_error,
-        assignment_wrap_report_error,
+        assignment_wrapping_report_error,
     ):
         config = self.dump_configs(get_code('cppcheck', 'openrazer', 'razerkraken_driver.c'))[0]
         [checker.run_check(config) for checker in self.checkers]
         tokens = config.tokenlist
-        assignment_wrap_report_error.assert_has_calls(
+        assignment_wrapping_report_error.assert_has_calls(
             [self.assignment_wrap_called(tokens, 62)],
         )
         case_separator_report_error.assert_has_calls(
@@ -56,14 +57,14 @@ class TestOpenRazer(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        comment_space_report_error.assert_has_calls(
+        comment_spacing_report_error.assert_has_calls(
             [
                 self.comment_space_called(tokens, 168, 9),
                 self.comment_space_called(tokens, 847, 5),
             ],
             any_order=True,
         )
-        duplicate_whitespace_report_error.assert_has_calls(
+        no_duplicate_whitespace_report_error.assert_has_calls(
             [
                 self.duplicate_whitespace_called(tokens, ';', 885, 39, 63, 35),
                 self.duplicate_whitespace_called(tokens, ';', 885, 39, 64, 55),
@@ -174,7 +175,7 @@ class TestOpenRazer(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        line_length_report_error.assert_has_calls(
+        max_line_length_report_error.assert_has_calls(
             [
                 self.line_length_called(tokens, 47),
                 self.line_length_called(tokens, 91),
@@ -247,10 +248,10 @@ class TestOpenRazer(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        parameter_wrap_report_error.assert_has_calls(
+        parameter_wrapping_report_error.assert_has_calls(
             [self.parameter_wrap_called(tokens, 'usb_sndctrlpipe', 62, 36)],
         )
-        parentheses_trim_report_error.assert_has_calls(
+        parentheses_trimming_report_error.assert_has_calls(
             [
                 self.parentheses_trim_called(tokens, '}', 475, 5, 474),
                 self.parentheses_trim_called(tokens, '}', 507, 5, 506),
@@ -261,7 +262,7 @@ class TestOpenRazer(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        redundant_default_report_error.assert_has_calls(
+        no_redundant_default_report_error.assert_has_calls(
             [self.redundant_default_called(tokens, 545)],
         )
 

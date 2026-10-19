@@ -3,57 +3,57 @@ package com.hanggrian.rulebook.ktlint
 import com.google.common.truth.Truth.assertThat
 import com.hanggrian.rulebook.ktlint.rules.AbbreviationAsWordRule
 import com.hanggrian.rulebook.ktlint.rules.AbstractFunctionInAbstractClassRule
+import com.hanggrian.rulebook.ktlint.rules.BlankLineBeforeBlockTagsRule
 import com.hanggrian.rulebook.ktlint.rules.BlockCommentClippingRule
-import com.hanggrian.rulebook.ktlint.rules.BlockCommentSpacesRule
-import com.hanggrian.rulebook.ktlint.rules.BlockCommentTrimRule
+import com.hanggrian.rulebook.ktlint.rules.BlockCommentSpacingRule
+import com.hanggrian.rulebook.ktlint.rules.BlockCommentTrimmingRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagIndentationRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagOrderRule
 import com.hanggrian.rulebook.ktlint.rules.BlockTagPunctuationRule
 import com.hanggrian.rulebook.ktlint.rules.BooleanPropertyInteroperabilityRule
 import com.hanggrian.rulebook.ktlint.rules.BracesClippingRule
-import com.hanggrian.rulebook.ktlint.rules.CommentTrimRule
+import com.hanggrian.rulebook.ktlint.rules.CentralizedDependencyRule
+import com.hanggrian.rulebook.ktlint.rules.CommentTrimmingRule
 import com.hanggrian.rulebook.ktlint.rules.CommonFunctionPositionRule
-import com.hanggrian.rulebook.ktlint.rules.ComplicatedAssertionRule
-import com.hanggrian.rulebook.ktlint.rules.ComplicatedAssignmentRule
-import com.hanggrian.rulebook.ktlint.rules.ConfusingAssertionRule
-import com.hanggrian.rulebook.ktlint.rules.DecentralizedDependencyRule
-import com.hanggrian.rulebook.ktlint.rules.DeprecatedAnnotationRule
-import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInBlockCommentRule
-import com.hanggrian.rulebook.ktlint.rules.DuplicateBlankLineInCommentRule
-import com.hanggrian.rulebook.ktlint.rules.EagerApiRule
-import com.hanggrian.rulebook.ktlint.rules.ElvisWrapRule
+import com.hanggrian.rulebook.ktlint.rules.ElvisWrappingRule
 import com.hanggrian.rulebook.ktlint.rules.ExceptionInheritanceRule
-import com.hanggrian.rulebook.ktlint.rules.FileSizeRule
 import com.hanggrian.rulebook.ktlint.rules.GenericNameRule
-import com.hanggrian.rulebook.ktlint.rules.IllegalThrowRule
 import com.hanggrian.rulebook.ktlint.rules.IllegalVariableNameRule
-import com.hanggrian.rulebook.ktlint.rules.InfixCallWrapRule
+import com.hanggrian.rulebook.ktlint.rules.InfixCallWrappingRule
 import com.hanggrian.rulebook.ktlint.rules.InlinedContractFunctionRule
 import com.hanggrian.rulebook.ktlint.rules.InnerClassPositionRule
+import com.hanggrian.rulebook.ktlint.rules.LazyApiRule
 import com.hanggrian.rulebook.ktlint.rules.LiteralComparisonRule
-import com.hanggrian.rulebook.ktlint.rules.LonelyCaseRule
-import com.hanggrian.rulebook.ktlint.rules.LonelyConfigurationRule
-import com.hanggrian.rulebook.ktlint.rules.LonelyIfRule
 import com.hanggrian.rulebook.ktlint.rules.LowercaseFRule
 import com.hanggrian.rulebook.ktlint.rules.LowercaseHexRule
-import com.hanggrian.rulebook.ktlint.rules.MeaninglessWordRule
+import com.hanggrian.rulebook.ktlint.rules.MaxFileSizeRule
 import com.hanggrian.rulebook.ktlint.rules.MemberOrderRule
-import com.hanggrian.rulebook.ktlint.rules.MissingBlankLineBeforeBlockTagsRule
-import com.hanggrian.rulebook.ktlint.rules.NestedIfElseRule
+import com.hanggrian.rulebook.ktlint.rules.NoBroadThrowRule
+import com.hanggrian.rulebook.ktlint.rules.NoConfusingAssertionRule
 import com.hanggrian.rulebook.ktlint.rules.NoConfusingPredicateRule
+import com.hanggrian.rulebook.ktlint.rules.NoDeprecatedAnnotationRule
 import com.hanggrian.rulebook.ktlint.rules.NoDeprecatedTypeRule
+import com.hanggrian.rulebook.ktlint.rules.NoDuplicateBlankLineInBlockCommentRule
+import com.hanggrian.rulebook.ktlint.rules.NoDuplicateBlankLineInCommentRule
+import com.hanggrian.rulebook.ktlint.rules.NoLeadingBlankLineRule
+import com.hanggrian.rulebook.ktlint.rules.NoLonelyCaseRule
+import com.hanggrian.rulebook.ktlint.rules.NoLonelyConfigurationRule
+import com.hanggrian.rulebook.ktlint.rules.NoLonelyIfRule
+import com.hanggrian.rulebook.ktlint.rules.NoMeaninglessWordRule
+import com.hanggrian.rulebook.ktlint.rules.NoNestedIfElseRule
+import com.hanggrian.rulebook.ktlint.rules.NoRedundantDefaultRule
+import com.hanggrian.rulebook.ktlint.rules.NoRedundantElseRule
+import com.hanggrian.rulebook.ktlint.rules.NoRedundantIfRule
+import com.hanggrian.rulebook.ktlint.rules.NoUselessContinueRule
+import com.hanggrian.rulebook.ktlint.rules.NoUselessReturnRule
 import com.hanggrian.rulebook.ktlint.rules.OverloadFunctionPositionRule
-import com.hanggrian.rulebook.ktlint.rules.RedundantDefaultRule
-import com.hanggrian.rulebook.ktlint.rules.RedundantElseRule
-import com.hanggrian.rulebook.ktlint.rules.RedundantIfRule
 import com.hanggrian.rulebook.ktlint.rules.RootProjectNameRule
 import com.hanggrian.rulebook.ktlint.rules.ScriptFileNameRule
+import com.hanggrian.rulebook.ktlint.rules.ShorthandAssignmentRule
 import com.hanggrian.rulebook.ktlint.rules.SimpleBooleanExpressionRule
 import com.hanggrian.rulebook.ktlint.rules.SimpleSizeComparisonRule
+import com.hanggrian.rulebook.ktlint.rules.SpecificAssertionRule
 import com.hanggrian.rulebook.ktlint.rules.TodoCommentStyleRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessaryContinueRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessaryLeadingBlankLineRule
-import com.hanggrian.rulebook.ktlint.rules.UnnecessaryReturnRule
 import com.pinterest.ktlint.rule.engine.core.api.RuleProvider
 import com.pinterest.ktlint.ruleset.standard.StandardRuleSetProvider
 import kotlin.test.Test
@@ -68,56 +68,56 @@ class RulebookRuleSetTest {
                 AbbreviationAsWordRule::class,
                 AbstractFunctionInAbstractClassRule::class,
                 BlockCommentClippingRule::class,
-                BlockCommentSpacesRule::class,
-                BlockCommentTrimRule::class,
+                BlockCommentSpacingRule::class,
+                BlockCommentTrimmingRule::class,
                 BlockTagIndentationRule::class,
                 BlockTagOrderRule::class,
                 BlockTagPunctuationRule::class,
                 BooleanPropertyInteroperabilityRule::class,
                 BracesClippingRule::class,
+                CentralizedDependencyRule::class,
                 CommonFunctionPositionRule::class,
-                CommentTrimRule::class,
-                ComplicatedAssertionRule::class,
-                ComplicatedAssignmentRule::class,
-                ConfusingAssertionRule::class,
-                DecentralizedDependencyRule::class,
-                DeprecatedAnnotationRule::class,
-                DuplicateBlankLineInBlockCommentRule::class,
-                DuplicateBlankLineInCommentRule::class,
-                EagerApiRule::class,
-                ElvisWrapRule::class,
+                CommentTrimmingRule::class,
+                ElvisWrappingRule::class,
                 ExceptionInheritanceRule::class,
-                FileSizeRule::class,
                 GenericNameRule::class,
-                IllegalThrowRule::class,
+                NoBroadThrowRule::class,
                 IllegalVariableNameRule::class,
-                InfixCallWrapRule::class,
+                InfixCallWrappingRule::class,
                 InlinedContractFunctionRule::class,
                 InnerClassPositionRule::class,
+                LazyApiRule::class,
                 LiteralComparisonRule::class,
-                LonelyCaseRule::class,
-                LonelyIfRule::class,
                 LowercaseFRule::class,
                 LowercaseHexRule::class,
-                MeaninglessWordRule::class,
+                MaxFileSizeRule::class,
                 MemberOrderRule::class,
-                MissingBlankLineBeforeBlockTagsRule::class,
-                NestedIfElseRule::class,
+                NoMeaninglessWordRule::class,
+                BlankLineBeforeBlockTagsRule::class,
+                NoNestedIfElseRule::class,
+                NoConfusingAssertionRule::class,
                 NoConfusingPredicateRule::class,
+                NoDeprecatedAnnotationRule::class,
                 NoDeprecatedTypeRule::class,
+                NoDuplicateBlankLineInBlockCommentRule::class,
+                NoDuplicateBlankLineInCommentRule::class,
+                NoLeadingBlankLineRule::class,
+                NoLonelyCaseRule::class,
+                NoLonelyConfigurationRule::class,
+                NoLonelyIfRule::class,
+                NoUselessContinueRule::class,
+                NoUselessReturnRule::class,
+                NoRedundantDefaultRule::class,
+                NoRedundantElseRule::class,
+                NoRedundantIfRule::class,
                 OverloadFunctionPositionRule::class,
-                RedundantDefaultRule::class,
-                RedundantElseRule::class,
-                RedundantIfRule::class,
                 RootProjectNameRule::class,
+                ShorthandAssignmentRule::class,
                 SimpleBooleanExpressionRule::class,
                 SimpleSizeComparisonRule::class,
+                SpecificAssertionRule::class,
                 ScriptFileNameRule::class,
                 TodoCommentStyleRule::class,
-                UnnecessaryContinueRule::class,
-                UnnecessaryLeadingBlankLineRule::class,
-                UnnecessaryReturnRule::class,
-                LonelyConfigurationRule::class,
             )
     }
 

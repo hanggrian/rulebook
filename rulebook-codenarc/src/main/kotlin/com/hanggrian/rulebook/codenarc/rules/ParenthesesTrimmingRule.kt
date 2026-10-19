@@ -1,0 +1,71 @@
+package com.hanggrian.rulebook.codenarc.rules
+
+import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.createViolation
+import com.hanggrian.rulebook.codenarc.rules.ParenthesesTrimmingRule.Companion.MSG_FIRST
+import com.hanggrian.rulebook.codenarc.rules.ParenthesesTrimmingRule.Companion.MSG_LAST
+import org.codehaus.groovy.ast.ASTNode
+import org.codehaus.groovy.ast.MethodNode
+import org.codehaus.groovy.ast.expr.ArgumentListExpression
+import org.codehaus.groovy.ast.expr.ClosureExpression
+import org.codehaus.groovy.ast.expr.Expression
+import org.codehaus.groovy.ast.expr.MethodCall
+
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#parentheses-trimming) */
+public class ParenthesesTrimmingRule : RulebookAstRule() {
+    override fun getName(): String = "ParenthesesTrimming"
+
+    override fun getAstVisitorClass(): Class<*> = ParenthesesTrimVisitor::class.java
+
+    internal companion object {
+        const val MSG_FIRST = "parentheses.trimming.first"
+        const val MSG_LAST = "parentheses.trimming.last"
+    }
+}
+
+public class ParenthesesTrimVisitor : RulebookAnyCallVisitor() {
+    override fun visitConstructorOrMethod(node: MethodNode, isConstructor: Boolean) {
+        if (!isFirstVisit(node)) {
+            return
+        }
+        process(node.parameters.asList(), node.lineNumber, node.code.lineNumber)
+        super.visitConstructorOrMethod(node, isConstructor)
+    }
+
+    override fun <T> visitAnyCallExpression(node: T) where T : Expression, T : MethodCall {
+        if (!isFirstVisit(node)) {
+            return
+        }
+        process(
+            (node.arguments as? ArgumentListExpression)?.expressions ?: return,
+            node.lineNumber,
+            node.lastLineNumber,
+        )
+    }
+
+    private fun process(parameters: List<ASTNode>, start: Int, end: Int) {
+        val (firstParameter, lastParameter) =
+            parameters
+                .takeUnless { it.isEmpty() }
+                ?.run { first() to last() }
+                ?.takeIf {
+                    it.first.lineNumber > -1 &&
+                        it.second.lineNumber > -1 &&
+                        it.second !is ClosureExpression
+                } ?: return
+        var lineNumber = firstParameter.lineNumber
+        var lastLineNumber = lastParameter.lastLineNumber
+        while (lineNumber > start) {
+            lineNumber
+                .takeIf { sourceCode.line(it - 1).isBlank() }
+                ?.let { violations += rule.createViolation(it, "", Messages[MSG_FIRST]) }
+            lineNumber--
+        }
+        while (lastLineNumber < end) {
+            lastLineNumber
+                .takeIf { sourceCode.line(it - 1).isBlank() }
+                ?.let { violations += rule.createViolation(it, "", Messages[MSG_LAST]) }
+            lastLineNumber++
+        }
+    }
+}

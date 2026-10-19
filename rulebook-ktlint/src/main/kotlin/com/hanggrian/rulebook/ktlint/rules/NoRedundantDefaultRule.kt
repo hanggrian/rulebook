@@ -1,0 +1,50 @@
+package com.hanggrian.rulebook.ktlint.rules
+
+import com.hanggrian.rulebook.ktlint.Messages
+import com.hanggrian.rulebook.ktlint.RulebookRuleSet
+import com.hanggrian.rulebook.ktlint.contains
+import com.hanggrian.rulebook.ktlint.hasJumpStatement
+import com.hanggrian.rulebook.ktlint.isChildOfProperty
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.ELSE_KEYWORD
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.WHEN_ENTRY
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.children20
+import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
+
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#no-redundant-default) */
+public class NoRedundantDefaultRule : RulebookRule(ID) {
+    override val tokens: TokenSet = create(WHEN)
+
+    override fun visit(node: ASTNode, emit: Emit) {
+        // skip property assignment
+        val whenEntries =
+            node
+                .takeUnless { it.isChildOfProperty() }
+                ?.children20
+                ?.filter { it.elementType === WHEN_ENTRY }
+                ?: return
+
+        // find default
+        val `else` =
+            whenEntries
+                .lastOrNull()
+                ?.takeIf { ELSE_KEYWORD in it }
+                ?: return
+
+        // checks for violation
+        whenEntries
+            .toList()
+            .dropLast(1)
+            .takeIf { cases2 -> cases2.all { it.hasJumpStatement() } }
+            ?: return
+        emit(`else`.startOffset, Messages[MSG], false)
+    }
+
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:no-redundant-default")
+        private const val MSG = "no.redundant.default"
+    }
+}

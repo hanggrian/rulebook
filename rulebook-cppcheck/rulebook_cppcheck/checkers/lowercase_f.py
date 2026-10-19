@@ -14,7 +14,7 @@ class LowercaseFChecker(RulebookTokenChecker):
 
     def process_tokens(self, tokens: list[Token]) -> None:
         # checks for violation
-        for token in [t for t in tokens if t.isNumber or t.isName]:
+        for token in [t for t in tokens if t.isNumber or t.isName or t.str.endswith(('f', 'F'))]:
             if 'F' not in token.str:
                 continue
             if not token.str.replace('.', '').replace('F', '').replace('f', '').isnumeric():

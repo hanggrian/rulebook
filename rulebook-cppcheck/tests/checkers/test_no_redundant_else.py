@@ -1,0 +1,100 @@
+from textwrap import dedent
+from unittest import main
+from unittest.mock import call, patch
+
+from rulebook_cppcheck.checkers import NoRedundantElseChecker
+from .checker_case import CheckerTestCase
+from ..asserts import assert_properties
+
+
+# noinspection PyUnresolvedReferences
+class TestNoRedundantElseChecker(CheckerTestCase):
+    CHECKER_CLASS = NoRedundantElseChecker
+
+    def test_rule_properties(self):
+        assert_properties(self.CHECKER_CLASS)
+
+    @patch.object(NoRedundantElseChecker, 'report_error')
+    def test_no_throw_or_return_in_if(self, report_error):
+        tokens, _ = \
+            self.dump_code(
+                dedent(
+                    '''
+                    void foo() {
+                        if (true) {
+                            baz();
+                        } else if (false) {
+                            baz();
+                        } else {
+                            baz();
+                        }
+                    }
+                    ''',
+                ),
+            )
+        self.checker.process_tokens(tokens)
+        report_error.assert_not_called()
+
+    @patch.object(NoRedundantElseChecker, 'report_error')
+    def test_lift_else_when_if_has_return(self, report_error):
+        tokens, _ = \
+            self.dump_code(
+                dedent(
+                    '''
+                    void foo() {
+                        if (true) {
+                            throw std::exception();
+                        } else if (false) {
+                            return;
+                        } else {
+                            baz();
+                        }
+                    }
+                    ''',
+                ),
+            )
+        self.checker.process_tokens(tokens)
+        report_error.assert_has_calls(
+            [
+                call(
+                    next(t for t in tokens if t.str == 'else' and t.linenr == 5),
+                    "Omit redundant 'else' condition.",
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'else' and t.linenr == 7),
+                    "Omit redundant 'else' condition.",
+                ),
+            ],
+        )
+
+    @patch.object(NoRedundantElseChecker, 'report_error')
+    def test_consider_if_else_without_blocks(self, report_error):
+        tokens, _ = \
+            self.dump_code(
+                dedent(
+                    '''
+                    void foo() {
+                        if (true) throw std::exception();
+                        else if (false) return;
+                        else baz();
+                    }
+                    ''',
+                ),
+            )
+        self.checker.process_tokens(tokens)
+        report_error.assert_has_calls(
+            [
+                call(
+                    next(t for t in tokens if t.str == 'else' and t.linenr == 4),
+                    "Omit redundant 'else' condition.",
+                ),
+                call(
+                    next(t for t in tokens if t.str == 'else' and t.linenr == 5),
+                    "Omit redundant 'else' condition.",
+                ),
+            ],
+        )
+
+
+if __name__ == '__main__':
+    main()

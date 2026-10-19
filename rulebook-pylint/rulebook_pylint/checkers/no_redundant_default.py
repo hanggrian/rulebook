@@ -1,0 +1,37 @@
+from __future__ import annotations
+
+from astroid.nodes import Match, MatchAs, MatchCase
+from pylint.typing import TYPE_CHECKING
+
+from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
+from rulebook_pylint.messages import Messages
+from rulebook_pylint.nodes import has_jump_statement
+
+if TYPE_CHECKING:
+    from pylint.lint import PyLinter
+
+
+class NoRedundantDefaultChecker(RulebookChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#no-redundant-default"""
+    _MSG: str = 'no.redundant.default'
+
+    name: str = 'no-redundant-default'
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
+
+    def visit_match(self, node: Match) -> None:
+        # skip no default
+        if not node.cases:
+            return
+        default: MatchCase = node.cases[-1]
+        if not isinstance(default.pattern, MatchAs) or \
+            default.pattern.name:
+            return
+
+        # checks for violation
+        if not all(has_jump_statement(node) for node in node.cases[:-1]):
+            return
+        self.add_message(self._MSG, node=default)
+
+
+def register(linter: PyLinter) -> None:
+    linter.register_checker(NoRedundantDefaultChecker(linter))

@@ -1,56 +1,56 @@
 package com.hanggrian.rulebook.codenarc
 
 import com.hanggrian.rulebook.JvmBasedTest
-import com.hanggrian.rulebook.codenarc.rules.AssignmentWrapRule
+import com.hanggrian.rulebook.codenarc.rules.AssignmentWrappingRule
+import com.hanggrian.rulebook.codenarc.rules.BlankLineBeforeBlockTagsRule
 import com.hanggrian.rulebook.codenarc.rules.BlockCommentClippingRule
 import com.hanggrian.rulebook.codenarc.rules.BlockTagIndentationRule
 import com.hanggrian.rulebook.codenarc.rules.BlockTagOrderRule
 import com.hanggrian.rulebook.codenarc.rules.BlockTagPunctuationRule
 import com.hanggrian.rulebook.codenarc.rules.BracesClippingRule
-import com.hanggrian.rulebook.codenarc.rules.BracesSpacesRule
+import com.hanggrian.rulebook.codenarc.rules.BracesSpacingRule
 import com.hanggrian.rulebook.codenarc.rules.BracketsClippingRule
-import com.hanggrian.rulebook.codenarc.rules.BracketsTrimRule
+import com.hanggrian.rulebook.codenarc.rules.BracketsTrimmingRule
 import com.hanggrian.rulebook.codenarc.rules.CaseSeparatorRule
-import com.hanggrian.rulebook.codenarc.rules.ChainCallWrapRule
-import com.hanggrian.rulebook.codenarc.rules.CommentTrimRule
+import com.hanggrian.rulebook.codenarc.rules.ChainCallWrappingRule
+import com.hanggrian.rulebook.codenarc.rules.CommentTrimmingRule
 import com.hanggrian.rulebook.codenarc.rules.CommonFunctionPositionRule
-import com.hanggrian.rulebook.codenarc.rules.ComplicatedAssignmentRule
-import com.hanggrian.rulebook.codenarc.rules.DuplicateBlankLineInCommentRule
-import com.hanggrian.rulebook.codenarc.rules.DuplicateSpaceRule
-import com.hanggrian.rulebook.codenarc.rules.EmptyFileRule
 import com.hanggrian.rulebook.codenarc.rules.GenericNameRule
 import com.hanggrian.rulebook.codenarc.rules.IllegalVariableNameRule
 import com.hanggrian.rulebook.codenarc.rules.ImportOrderRule
 import com.hanggrian.rulebook.codenarc.rules.InnerClassPositionRule
-import com.hanggrian.rulebook.codenarc.rules.LambdaWrapRule
-import com.hanggrian.rulebook.codenarc.rules.LonelyCaseRule
-import com.hanggrian.rulebook.codenarc.rules.LonelyIfRule
+import com.hanggrian.rulebook.codenarc.rules.LambdaWrappingRule
 import com.hanggrian.rulebook.codenarc.rules.LowercaseDRule
 import com.hanggrian.rulebook.codenarc.rules.LowercaseFRule
 import com.hanggrian.rulebook.codenarc.rules.LowercaseHexRule
 import com.hanggrian.rulebook.codenarc.rules.LowercaseIRule
-import com.hanggrian.rulebook.codenarc.rules.MeaninglessWordRule
 import com.hanggrian.rulebook.codenarc.rules.MemberOrderRule
 import com.hanggrian.rulebook.codenarc.rules.MemberSeparatorRule
-import com.hanggrian.rulebook.codenarc.rules.MissingBlankLineBeforeBlockTagsRule
 import com.hanggrian.rulebook.codenarc.rules.ModifierOrderRule
-import com.hanggrian.rulebook.codenarc.rules.NestedIfElseRule
+import com.hanggrian.rulebook.codenarc.rules.NoDuplicateBlankLineInCommentRule
+import com.hanggrian.rulebook.codenarc.rules.NoDuplicateSpaceRule
+import com.hanggrian.rulebook.codenarc.rules.NoEmptyFileRule
+import com.hanggrian.rulebook.codenarc.rules.NoLonelyCaseRule
+import com.hanggrian.rulebook.codenarc.rules.NoLonelyIfRule
+import com.hanggrian.rulebook.codenarc.rules.NoMeaninglessWordRule
+import com.hanggrian.rulebook.codenarc.rules.NoNestedIfElseRule
 import com.hanggrian.rulebook.codenarc.rules.NoParenthesesInLambdaRule
 import com.hanggrian.rulebook.codenarc.rules.NoPublicConstructorInUtilityClassRule
-import com.hanggrian.rulebook.codenarc.rules.OperatorWrapRule
+import com.hanggrian.rulebook.codenarc.rules.NoRedundantDefaultRule
+import com.hanggrian.rulebook.codenarc.rules.NoRedundantElseRule
+import com.hanggrian.rulebook.codenarc.rules.NoUselessContinueRule
+import com.hanggrian.rulebook.codenarc.rules.NoUselessReturnRule
+import com.hanggrian.rulebook.codenarc.rules.OperatorWrappingRule
 import com.hanggrian.rulebook.codenarc.rules.OverloadFunctionPositionRule
-import com.hanggrian.rulebook.codenarc.rules.ParameterWrapRule
-import com.hanggrian.rulebook.codenarc.rules.ParenthesesTrimRule
-import com.hanggrian.rulebook.codenarc.rules.RedundantDefaultRule
-import com.hanggrian.rulebook.codenarc.rules.RedundantElseRule
+import com.hanggrian.rulebook.codenarc.rules.ParameterWrappingRule
+import com.hanggrian.rulebook.codenarc.rules.ParenthesesTrimmingRule
+import com.hanggrian.rulebook.codenarc.rules.ShorthandAssignmentRule
 import com.hanggrian.rulebook.codenarc.rules.SimpleSizeComparisonRule
-import com.hanggrian.rulebook.codenarc.rules.StatementWrapRule
+import com.hanggrian.rulebook.codenarc.rules.StatementWrappingRule
 import com.hanggrian.rulebook.codenarc.rules.TagsClippingRule
-import com.hanggrian.rulebook.codenarc.rules.TagsTrimRule
+import com.hanggrian.rulebook.codenarc.rules.TagsTrimmingRule
 import com.hanggrian.rulebook.codenarc.rules.TodoCommentStyleRule
 import com.hanggrian.rulebook.codenarc.rules.TrailingCommaInCallRule
-import com.hanggrian.rulebook.codenarc.rules.UnnecessaryContinueRule
-import com.hanggrian.rulebook.codenarc.rules.UnnecessaryReturnRule
 import org.codenarc.analyzer.SuppressionAnalyzer
 import org.codenarc.rule.Rule
 import org.codenarc.rule.Violation
@@ -69,56 +69,56 @@ abstract class AllRulesTest :
     JvmBasedTest {
     protected val rules by lazy {
         setOf<Rule>(
-            AssignmentWrapRule(),
+            AssignmentWrappingRule(),
+            BlankLineBeforeBlockTagsRule(),
             BlockCommentClippingRule(),
             BlockTagIndentationRule(),
             BlockTagOrderRule(),
             BlockTagPunctuationRule(),
             BracesClippingRule(),
-            BracesSpacesRule(),
+            BracesSpacingRule(),
             BracketsClippingRule(),
-            BracketsTrimRule(),
+            BracketsTrimmingRule(),
             CaseSeparatorRule(),
-            ChainCallWrapRule(),
-            CommentTrimRule(),
+            ChainCallWrappingRule(),
+            CommentTrimmingRule(),
             CommonFunctionPositionRule(),
-            ComplicatedAssignmentRule(),
-            DuplicateBlankLineInCommentRule(),
-            DuplicateSpaceRule(),
-            EmptyFileRule(),
             GenericNameRule(),
             IllegalVariableNameRule(),
             ImportOrderRule(),
             InnerClassPositionRule(),
-            LambdaWrapRule(),
-            LonelyCaseRule(),
-            LonelyIfRule(),
+            LambdaWrappingRule(),
             LowercaseDRule(),
             LowercaseFRule(),
             LowercaseHexRule(),
             LowercaseIRule(),
-            MeaninglessWordRule(),
             MemberOrderRule(),
             MemberSeparatorRule(),
-            MissingBlankLineBeforeBlockTagsRule(),
             ModifierOrderRule(),
-            NestedIfElseRule(),
+            NoDuplicateBlankLineInCommentRule(),
+            NoDuplicateSpaceRule(),
+            NoEmptyFileRule(),
+            NoLonelyCaseRule(),
+            NoLonelyIfRule(),
+            NoMeaninglessWordRule(),
+            NoNestedIfElseRule(),
             NoParenthesesInLambdaRule(),
             NoPublicConstructorInUtilityClassRule(),
-            OperatorWrapRule(),
+            NoRedundantDefaultRule(),
+            NoRedundantElseRule(),
+            NoUselessContinueRule(),
+            NoUselessReturnRule(),
+            OperatorWrappingRule(),
             OverloadFunctionPositionRule(),
-            ParameterWrapRule(),
-            ParenthesesTrimRule(),
-            RedundantDefaultRule(),
-            RedundantElseRule(),
+            ParameterWrappingRule(),
+            ParenthesesTrimmingRule(),
+            ShorthandAssignmentRule(),
             SimpleSizeComparisonRule(),
-            StatementWrapRule(),
+            StatementWrappingRule(),
             TagsClippingRule(),
-            TagsTrimRule(),
+            TagsTrimmingRule(),
             TodoCommentStyleRule(),
             TrailingCommaInCallRule(),
-            UnnecessaryContinueRule(),
-            UnnecessaryReturnRule(),
         )
     }
     protected val sourceCodeName by lazy { "AllRules.groovy" }

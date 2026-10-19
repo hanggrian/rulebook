@@ -95,13 +95,3 @@ Change the position of a component.
 ### Remove
 
 Take out the whole component from the codebase.
-
-## Equals
-
-### Equality
-
-Structural, or value-based comparison.
-
-### Identity
-
-Reference-based comparison.

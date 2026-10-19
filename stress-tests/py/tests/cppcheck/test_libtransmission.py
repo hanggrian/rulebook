@@ -2,34 +2,35 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers import (
-    AssignmentWrapChecker,
+    AssignmentWrappingChecker,
     CaseSeparatorChecker,
     ImportOrderChecker,
-    LineLengthChecker,
-    OperatorWrapChecker,
+    MaxLineLengthChecker,
+    OperatorWrappingChecker,
 )
 from .all_checkers_case import AllCheckersTestCase
 from ..code import get_code
 
 
+# noinspection unresolved-references
 class TestLibtransmission(AllCheckersTestCase):
-    @patch.object(AssignmentWrapChecker, 'report_error')
+    @patch.object(AssignmentWrappingChecker, 'report_error')
     @patch.object(CaseSeparatorChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
-    @patch.object(LineLengthChecker, 'report_error')
-    @patch.object(OperatorWrapChecker, 'report_error')
+    @patch.object(MaxLineLengthChecker, 'report_error')
+    @patch.object(OperatorWrappingChecker, 'report_error')
     def test_libtransmission_handshake(
         self,
-        operator_wrap_report_error,
-        line_length_report_error,
+        operator_wrapping_report_error,
+        max_line_length_report_error,
         import_order_report_error,
         case_separator_report_error,
-        assignment_wrap_report_error,
+        assignment_wrapping_report_error,
     ):
         config = self.dump_configs(get_code('cppcheck', 'libtransmission', 'handshake.cc'))[0]
         [checker.run_check(config) for checker in self.checkers]
         tokens = config.tokenlist
-        assignment_wrap_report_error.assert_has_calls(
+        assignment_wrapping_report_error.assert_has_calls(
             [self.assignment_wrap_called(tokens, 435)],
         )
         case_separator_report_error.assert_has_calls(
@@ -76,7 +77,7 @@ class TestLibtransmission(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        line_length_report_error.assert_has_calls(
+        max_line_length_report_error.assert_has_calls(
             [
                 self.line_length_called(tokens, 64),
                 self.line_length_called(tokens, 87),
@@ -104,7 +105,7 @@ class TestLibtransmission(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        operator_wrap_report_error.assert_has_calls(
+        operator_wrapping_report_error.assert_has_calls(
             [
                 self.operator_wrap_called(tokens, '+', 88, 28, True),
                 self.operator_wrap_called(tokens, '+', 88, 46, True),

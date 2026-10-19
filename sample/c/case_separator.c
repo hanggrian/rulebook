@@ -1,5 +1,4 @@
-static int case_separator() {
-    constexpr int foo = 1;
+static int case_separator(int foo) {
     switch (foo) {
         case 0: return 0;
         case 1: return 1;
@@ -8,6 +7,6 @@ static int case_separator() {
 }
 
 int main() {
-    case_separator();
+    case_separator(1);
     return 0;
 }

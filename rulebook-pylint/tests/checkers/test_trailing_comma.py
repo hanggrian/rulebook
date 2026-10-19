@@ -1,5 +1,6 @@
 from unittest import main
 
+# noinspection protected-member
 from pylint.testutils import CheckerTestCase, _tokenize_str
 
 from rulebook_pylint.checkers import TrailingCommaChecker

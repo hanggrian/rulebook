@@ -51,12 +51,12 @@ class TowerTest : AllRulesTest() {
             violationOf(
                 175,
                 "* @return The new HttpClient instance",
-                "End '@return' with a period.",
+                "Add blank line before block tag group.",
             ),
             violationOf(
                 175,
                 "* @return The new HttpClient instance",
-                "Add blank line before block tag group.",
+                "End '@return' with a period.",
             ),
             violationOf(
                 178,

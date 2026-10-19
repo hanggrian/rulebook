@@ -2,70 +2,72 @@ from unittest import main
 from unittest.mock import patch
 
 from rulebook_cppcheck.checkers import (
-    AssignmentWrapChecker,
-    BlockCommentSpacesChecker,
-    ChainCallWrapChecker,
-    DuplicateBlankLineChecker,
-    DuplicateSpaceChecker,
+    AssignmentWrappingChecker,
+    BlockCommentSpacingChecker,
+    ChainCallWrappingChecker,
     GenericNameChecker,
     ImportOrderChecker,
     IndentStyleChecker,
-    LineLengthChecker,
-    OperatorWrapChecker,
-    ParameterWrapChecker,
-    ParenthesesClipChecker,
-    ParenthesesTrimChecker,
-    RedundantElseChecker,
+    MaxLineLengthChecker,
+    NoDuplicateBlankLineChecker,
+    NoDuplicateSpaceChecker,
+    NoRedundantElseChecker,
+    OperatorWrappingChecker,
+    ParameterWrappingChecker,
+    ParenthesesClippingChecker,
+    ParenthesesTrimmingChecker,
     TodoCommentStyleChecker,
 )
+
 from .all_checkers_case import AllCheckersTestCase
 from ..code import get_code
 
 
+# noinspection unresolved-references
 class TestBoost(AllCheckersTestCase):
-    @patch.object(AssignmentWrapChecker, 'report_error')
-    @patch.object(BlockCommentSpacesChecker, 'report_error')
-    @patch.object(ChainCallWrapChecker, 'report_error')
-    @patch.object(DuplicateBlankLineChecker, 'report_error')
-    @patch.object(DuplicateSpaceChecker, 'report_error')
+    @patch.object(AssignmentWrappingChecker, 'report_error')
+    @patch.object(BlockCommentSpacingChecker, 'report_error')
+    @patch.object(ChainCallWrappingChecker, 'report_error')
     @patch.object(GenericNameChecker, 'report_error')
     @patch.object(ImportOrderChecker, 'report_error')
     @patch.object(IndentStyleChecker, 'report_error')
-    @patch.object(LineLengthChecker, 'report_error')
-    @patch.object(OperatorWrapChecker, 'report_error')
-    @patch.object(ParameterWrapChecker, 'report_error')
-    @patch.object(ParenthesesClipChecker, 'report_error')
-    @patch.object(ParenthesesTrimChecker, 'report_error')
-    @patch.object(RedundantElseChecker, 'report_error')
+    @patch.object(MaxLineLengthChecker, 'report_error')
+    @patch.object(NoDuplicateBlankLineChecker, 'report_error')
+    @patch.object(NoDuplicateSpaceChecker, 'report_error')
+    @patch.object(NoRedundantElseChecker, 'report_error')
+    @patch.object(OperatorWrappingChecker, 'report_error')
+    @patch.object(ParameterWrappingChecker, 'report_error')
+    @patch.object(ParenthesesClippingChecker, 'report_error')
+    @patch.object(ParenthesesTrimmingChecker, 'report_error')
     @patch.object(TodoCommentStyleChecker, 'report_error')
     def test_boost_options_description(
         self,
         todo_comment_report_error,
-        redundant_else_report_error,
-        parentheses_trim_report_error,
-        parentheses_clip_report_error,
-        parameter_wrap_report_error,
-        operator_wrap_report_error,
-        line_length_report_error,
+        parentheses_trimming_report_error,
+        parentheses_clipping_report_error,
+        parameter_wrapping_report_error,
+        operator_wrapping_report_error,
+        no_redundant_else_report_error,
+        no_duplicate_space_report_error,
+        no_duplicate_blank_line_report_error,
+        max_line_length_report_error,
         indent_style_report_error,
         import_order_report_error,
         generic_name_report_error,
-        duplicate_whitespace_report_error,
-        duplicate_blank_line_report_error,
-        chain_call_wrap_report_error,
-        block_comment_spaces_report_error,
-        assignment_wrap_report_error,
+        chain_call_wrapping_report_error,
+        block_comment_spacing_report_error,
+        assignment_wrapping_report_error,
     ):
         config = self.dump_configs(get_code('cppcheck', 'boost', 'options_description.cpp'))[0]
         [checker.run_check(config) for checker in self.checkers]
         tokens = config.tokenlist
-        assignment_wrap_report_error.assert_has_calls(
+        assignment_wrapping_report_error.assert_has_calls(
             [self.assignment_wrap_called(tokens, 353)],
         )
-        block_comment_spaces_report_error.assert_has_calls(
+        block_comment_spacing_report_error.assert_has_calls(
             [self.block_comment_spaces_called(tokens, 700, 2, 657)],
         )
-        chain_call_wrap_report_error.assert_has_calls(
+        chain_call_wrapping_report_error.assert_has_calls(
             [
                 self.chain_call_wrap_called(tokens, 241, 39),
                 self.chain_call_wrap_called(tokens, 241, 55),
@@ -73,7 +75,7 @@ class TestBoost(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        duplicate_blank_line_report_error.assert_has_calls(
+        no_duplicate_blank_line_report_error.assert_has_calls(
             [
                 self.duplicate_blank_line_called(tokens, '}', 700, 2, 16),
                 self.duplicate_blank_line_called(tokens, '}', 700, 2, 47),
@@ -83,7 +85,7 @@ class TestBoost(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        duplicate_whitespace_report_error.assert_has_calls(
+        no_duplicate_space_report_error.assert_has_calls(
             [
                 self.duplicate_whitespace_called(tokens, '}', 700, 2, 35, 34),
                 self.duplicate_whitespace_called(tokens, '}', 700, 2, 45, 6),
@@ -215,7 +217,7 @@ class TestBoost(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        line_length_report_error.assert_has_calls(
+        max_line_length_report_error.assert_has_calls(
             [
                 self.line_length_called(tokens, 83),
                 self.line_length_called(tokens, 542),
@@ -223,10 +225,10 @@ class TestBoost(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        operator_wrap_report_error.assert_has_calls(
+        operator_wrapping_report_error.assert_has_calls(
             [self.operator_wrap_called(tokens, '==', 95, 25, False)],
         )
-        parameter_wrap_report_error.assert_has_calls(
+        parameter_wrapping_report_error.assert_has_calls(
             [
                 self.parameter_wrap_called(tokens, 'approx', 353, 58),
                 self.parameter_wrap_called(tokens, 'short_ignore_case', 354, 58),
@@ -239,14 +241,14 @@ class TestBoost(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        parentheses_clip_report_error.assert_has_calls(
+        parentheses_clipping_report_error.assert_has_calls(
             [
                 self.parentheses_clip_called(tokens, 49, 5),
                 self.parentheses_clip_called(tokens, 71, 5),
             ],
             any_order=True,
         )
-        parentheses_trim_report_error.assert_has_calls(
+        parentheses_trimming_report_error.assert_has_calls(
             [
                 self.parentheses_trim_called(tokens, '{', 30, 45, 31),
                 self.parentheses_trim_called(tokens, '{', 32, 14, 33),
@@ -257,7 +259,7 @@ class TestBoost(AllCheckersTestCase):
             ],
             any_order=True,
         )
-        redundant_else_report_error.assert_has_calls(
+        no_redundant_else_report_error.assert_has_calls(
             [
                 self.redundant_else_called(tokens, 104),
                 self.redundant_else_called(tokens, 142),

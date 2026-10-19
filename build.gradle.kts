@@ -62,7 +62,7 @@ subprojects {
             compilerOptions.jvmTarget.set(JvmTarget.fromTarget(javaSupportVersion.toString()))
         }
     }
-    @Suppress("ktlint:rulebook:eager-api")
+    @Suppress("ktlint:rulebook:lazy-api")
     plugins.withType<MavenPublishBasePlugin> {
         configure<MavenPublishBaseExtension> {
             configure(KotlinJvm(JavadocJar.Dokka("dokkaGeneratePublicationJavadoc")))

@@ -1,0 +1,30 @@
+.git/
+.idea/
+dist/
+build/
+coverage/
+
+# Gradle
+.gradle/
+gradlew.bat
+
+# CPP
+cmake-build-debug/
+
+# Python
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+__pycache__/
+venv/
+uv.lock
+coverage.xml
+
+# Node
+node_modules/
+pnpm-lock.yaml
+test-report.junit.xml
+
+# Ruby
+_site/
+Gemfile.lock

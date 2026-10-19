@@ -1,0 +1,49 @@
+import messages from '../messages.js';
+import RulebookRule from './rulebook-rule.js';
+import type { Rule } from 'eslint';
+import type { Comment, SourceLocation } from 'estree';
+
+/**
+ * {@link https://hanggrian.github.io/rulebook/rules/#no-duplicate-blank-line-in-comment|See detail}
+ */
+class NoDuplicateBlankLineInCommentRule extends RulebookRule {
+    constructor() {
+        super('no-duplicate-blank-line-in-comment', {
+            [NoDuplicateBlankLineInCommentRule.MSG]:
+                messages.get(NoDuplicateBlankLineInCommentRule.MSG),
+        });
+    }
+
+    override create(context: Rule.RuleContext): Rule.RuleListener {
+        return {
+            'Program:exit'() {
+                // checks for violation
+                const comments: Comment[] =
+                    context.sourceCode.getAllComments().filter(c => c.type === 'Line');
+                for (let i = 0; i < comments.length - 1; i++) {
+                    const current: Comment = comments[i];
+                    const next: Comment = comments[i + 1];
+                    const current_loc: SourceLocation | null | undefined = current.loc;
+                    const next_loc: SourceLocation | null | undefined = next.loc;
+                    if (!current_loc ||
+                        !next_loc ||
+                        current.value.trim() !== '' ||
+                        next.value.trim() !== '') {
+                        continue;
+                    }
+                    if (next_loc.start.line !== current_loc.end.line + 1) {
+                        continue;
+                    }
+                    context.report({
+                        node: next,
+                        messageId: NoDuplicateBlankLineInCommentRule.MSG,
+                    });
+                }
+            },
+        };
+    }
+
+    private static MSG: string = 'no.duplicate.blank.line.in.comment';
+}
+
+export default new NoDuplicateBlankLineInCommentRule();

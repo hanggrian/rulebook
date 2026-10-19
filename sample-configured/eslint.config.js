@@ -32,7 +32,7 @@ export default typescriptEslint.config(
             },
         },
         rules: {
-            '@rulebook/meaningless-word': [
+            '@rulebook/no-meaningless-word': [
                 'error',
                 {
                     words: ['Hello', 'World'],

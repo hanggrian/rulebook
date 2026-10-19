@@ -41,6 +41,24 @@ question mark or exclamation mark.
      */
     virtual int add(int num) = 0;
     ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    /**
+     * @param num
+     * @return the new size of the group
+     */
+    function add(num) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    /**
+     * @param num
+     * @return the new size of the group
+     */
+    function add(num: number): number {}
+    ```
 
 **:material-star-four-points:{ #accent } After**
 
@@ -80,6 +98,24 @@ question mark or exclamation mark.
     */
     virtual int add(int num) = 0;
     ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    /**
+    * @param num
+    * @return the new size of the group.
+    */
+    function add(num) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    /**
+    * @param num
+    * @return the new size of the group.
+    */
+    function add(num: number): number {}
+    ```
 
 ??? Configuration
 
@@ -90,37 +126,123 @@ question mark or exclamation mark.
     | :material-language-kotlin:{ .lg .middle } `rulebook_punctuate_block_tags` | @constructor, @receiver, @property, @param, @return |
     | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--punctuate-block-tags` | @param, @return |
 
-### Import grouping
+### No block tag alignment
 
-Multiline import statements should be grouped with parentheses.
+Description of block tags should not be aligned with each other.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
-=== "Python"
+=== "Java"
 
-    ```py hl_lines="1-2"
-    from fruit import Apple, \
-        Banana
+    ```java hl_lines="2-3"
+    /**
+     * @param date     the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    abstract void shipItem(Date date, int quantity);
+    ```
+=== "Groovy"
 
-    eat(Apple())
-    eat(Banana())
+    ```groovy hl_lines="2-3"
+    /**
+     * @param date     the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    abstract void shipItem(Date date, int quantity)
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2-3"
+    /**
+     * @param date     the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    abstract fun shipItem(date: Date, quantity: Int)
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2-3"
+    /**
+     * @param date     the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    virtual void shipItem(Date date, int quantity) = 0;
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2-3"
+    /**
+     * @param date     the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    function shipItem(date, quantity) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-3"
+    /**
+     * @param date     the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    function shipItem(date: Date, quantity: number): void {}
     ```
 
 **:material-star-four-points:{ #accent } After**
 
-=== "Python"
+=== "Java"
 
-    ```py hl_lines="1-4"
-    from fruit import (
-        Apple,
-        Banana,
-    )
-
-    eat(Apple())
-    eat(Banana())
+    ```java hl_lines="2-3"
+    /**
+     * @param date the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    abstract void shipItem(Date date, int quantity);
     ```
+=== "Groovy"
 
-### No block tag alignment
+    ```groovy hl_lines="2-3"
+    /**
+     * @param date the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    abstract void shipItem(Date date, int quantity)
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2-3"
+    /**
+     * @param date the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    abstract fun shipItem(date: Date, quantity: Int)
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2-3"
+    /**
+     * @param date the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    virtual void shipItem(Date date, int quantity) = 0;
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2-3"
+    /**
+     * @param date the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    function shipItem(date, quantity) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-3"
+    /**
+     * @param date the date of shipment
+     * @param quantity the quantity of items to ship
+     */
+    function shipItem(date: Date, quantity: number): void {}
+    ```
 
 ### No duplicate import
 
@@ -379,6 +501,36 @@ Import directives must be single-type instead of wildcard imports.
     import { Apple, Banana, Fruit } from 'fruit';
 
     const fruits: Fruit[] = [new Apple(), new Banana()];
+    ```
+
+### Parentheses in import
+
+Multiline import statements should be grouped with parentheses.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Python"
+
+    ```py hl_lines="1-2"
+    from fruit import Apple, \
+        Banana
+
+    eat(Apple())
+    eat(Banana())
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Python"
+
+    ```py hl_lines="1-4"
+    from fruit import (
+        Apple,
+        Banana,
+    )
+
+    eat(Apple())
+    eat(Banana())
     ```
 
 ### TODO comment style
@@ -808,7 +960,7 @@ line.
     ): void {}
     ```
 
-## Clipping
+## Clipping group
 
 ### Block comment clipping
 
@@ -1215,7 +1367,7 @@ Empty generic types should be joined with the preceding code.
     }
     ```
 
-## Declaration
+## Declaration group
 
 ### Abstract function in abstract class
 
@@ -1891,7 +2043,7 @@ Long integer literals should be suffixed with uppercase `L`.
     long ten_million = 10'000'000L;
     ```
 
-## Expression
+## Expression group
 
 ### Literal comparison
 
@@ -2179,47 +2331,141 @@ Compare objects with strict equality operators `===` or `!==`.
     }
     ```
 
-## Formatting
+## Formatting group
 
-### Empty file
+### Indent style
 
-Empty files should be removed. JVM source files with only package declaration
-is considered empty.
+Use spaces instead of tabs for indentation.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
 
-    ```java
-    package awesome.company;
+    ```java hl_lines="2-4"
+    class Subscriber {
+    \t void subscribe() {
+    \t\t publisher.subscribe(this);
+    \t }
+    }
     ```
 === "Groovy"
 
-    ```groovy
-    package awesome.company
+    ```groovy hl_lines="2-4"
+    class Subscriber {
+    \t def subscribe() {
+    \t\t publisher.subscribe(this)
+    \t }
+    }
     ```
 === "Kotlin"
 
-    ```kotlin
-    package awesome.company
+    ```kotlin hl_lines="2-4"
+    class Subscriber {
+    \t fun subscribe() {
+    \t\t publisher.subscribe(this)
+    \t }
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2-4"
+    class Subscriber {
+    \t void subscribe() {
+    \t\t publisher.subscribe(this);
+    \t }
+    }
     ```
 === "Python"
 
-    ```py
-
+    ```py hl_lines="2-3"
+    class Subscriber:
+    \t def subscribe(self):
+    \t\t publisher.subscribe(self)
     ```
 === "JavaScript"
 
-    ```js
-
+    ```js hl_lines="2-4"
+    class Subscriber {
+    \t subscribe() {
+    \t\t publisher.subscribe(this);
+    \t }
+    }
     ```
 === "TypeScript"
 
-    ```ts
-
+    ```ts hl_lines="2-4"
+    class Subscriber {
+    \t subscribe(): void {
+    \t\t publisher.subscribe(this);
+    \t }
+    }
     ```
 
-### File size
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="2-4"
+    class Subscriber {
+        void subscribe() {
+            publisher.subscribe(this);
+        }
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2-4"
+    class Subscriber {
+        def subscribe() {
+            publisher.subscribe(this)
+        }
+    }
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2-4"
+    class Subscriber {
+        fun subscribe() {
+            publisher.subscribe(this)
+        }
+    }
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2-4"
+    class Subscriber {
+        void subscribe() {
+            publisher.subscribe(this);
+        }
+    }
+    ```
+=== "Python"
+
+    ```py hl_lines="2-3"
+    class Subscriber:
+        def subscribe(self):
+            publisher.subscribe(self)
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2-4"
+    class Subscriber {
+        subscribe() {
+            publisher.subscribe(this);
+        }
+    }
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2-4"
+    class Subscriber {
+        subscribe(): void {
+            publisher.subscribe(this);
+        }
+    }
+    ```
+
+### Max file size
 
 File length should not be longer than 1.000 lines of code. If a file exceeds the
 limit, it should be split into multiple files.
@@ -2495,139 +2741,7 @@ limit, it should be split into multiple files.
     | :material-language-javascript:{ .lg .middle } `max-lines` | 1.000 |
     | :material-language-typescript:{ .lg .middle } `max-lines` | 1.000 |
 
-### Indent style
-
-Use spaces instead of tabs for indentation.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="2-4"
-    class Subscriber {
-    \t void subscribe() {
-    \t\t publisher.subscribe(this);
-    \t }
-    }
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2-4"
-    class Subscriber {
-    \t def subscribe() {
-    \t\t publisher.subscribe(this)
-    \t }
-    }
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="2-4"
-    class Subscriber {
-    \t fun subscribe() {
-    \t\t publisher.subscribe(this)
-    \t }
-    }
-    ```
-=== "C/C++"
-
-    ```cpp hl_lines="2-4"
-    class Subscriber {
-    \t void subscribe() {
-    \t\t publisher.subscribe(this);
-    \t }
-    }
-    ```
-=== "Python"
-
-    ```py hl_lines="2-3"
-    class Subscriber:
-    \t def subscribe(self):
-    \t\t publisher.subscribe(self)
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="2-4"
-    class Subscriber {
-    \t subscribe() {
-    \t\t publisher.subscribe(this);
-    \t }
-    }
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="2-4"
-    class Subscriber {
-    \t subscribe(): void {
-    \t\t publisher.subscribe(this);
-    \t }
-    }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="2-4"
-    class Subscriber {
-        void subscribe() {
-            publisher.subscribe(this);
-        }
-    }
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2-4"
-    class Subscriber {
-        def subscribe() {
-            publisher.subscribe(this)
-        }
-    }
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="2-4"
-    class Subscriber {
-        fun subscribe() {
-            publisher.subscribe(this)
-        }
-    }
-    ```
-=== "C/C++"
-
-    ```cpp hl_lines="2-4"
-    class Subscriber {
-        void subscribe() {
-            publisher.subscribe(this);
-        }
-    }
-    ```
-=== "Python"
-
-    ```py hl_lines="2-3"
-    class Subscriber:
-        def subscribe(self):
-            publisher.subscribe(self)
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="2-4"
-    class Subscriber {
-        subscribe() {
-            publisher.subscribe(this);
-        }
-    }
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="2-4"
-    class Subscriber {
-        subscribe(): void {
-            publisher.subscribe(this);
-        }
-    }
-    ```
-
-### Line length
+### Max line length
 
 Length of a line should not exceed certain number of characters.
 
@@ -2732,6 +2846,126 @@ Length of a line should not exceed certain number of characters.
     | :material-language-javascript:{ .lg .middle } `max-len` | 100 |
     | :material-language-typescript:{ .lg .middle } `max-len` | 100 |
 
+### No empty file
+
+Empty files should be removed. JVM source files with only package declaration
+is considered empty.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    package awesome.company;
+    ```
+=== "Groovy"
+
+    ```groovy
+    package awesome.company
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    package awesome.company
+    ```
+=== "Python"
+
+    ```py
+
+    ```
+=== "JavaScript"
+
+    ```js
+
+    ```
+=== "TypeScript"
+
+    ```ts
+
+    ```
+
+### No trailing space
+
+A line should not end with a whitespace character.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    class AwesomeImplementation { /*...*/ } \n
+    ```
+=== "Groovy"
+
+    ```groovy
+    class AwesomeImplementation { /*...*/ } \n
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    class AwesomeImplementation { /*...*/ } \n
+    ```
+=== "C/C++"
+
+    ```cpp
+    class AwesomeImplementation { /*...*/ } \n
+    ```
+=== "Python"
+
+    ```py hl_lines="2"
+    class AwesomeImplementation:
+        pass \n
+    ```
+=== "JavaScript"
+
+    ```js
+    class AwesomeImplementation { /*...*/ } \n
+    ```
+=== "TypeScript"
+
+    ```ts
+    class AwesomeImplementation { /*...*/ } \n
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "Groovy"
+
+    ```groovy
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "C/C++"
+
+    ```cpp
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "Python"
+
+    ```py hl_lines="2"
+    class AwesomeImplementation:
+        pass\n
+    ```
+=== "JavaScript"
+
+    ```js
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+=== "TypeScript"
+
+    ```ts
+    class AwesomeImplementation { /*...*/ }\n
+    ```
+
 ### Trailing newline
 
 End files with a newline character.
@@ -2821,89 +3055,7 @@ End files with a newline character.
     \n
     ```
 
-### Unnecessary trailing space
-
-A line should not end with a whitespace character.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java
-    class AwesomeImplementation { /*...*/ } \n
-    ```
-=== "Groovy"
-
-    ```groovy
-    class AwesomeImplementation { /*...*/ } \n
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    class AwesomeImplementation { /*...*/ } \n
-    ```
-=== "C/C++"
-
-    ```cpp
-    class AwesomeImplementation { /*...*/ } \n
-    ```
-=== "Python"
-
-    ```py hl_lines="2"
-    class AwesomeImplementation:
-        pass \n
-    ```
-=== "JavaScript"
-
-    ```js
-    class AwesomeImplementation { /*...*/ } \n
-    ```
-=== "TypeScript"
-
-    ```ts
-    class AwesomeImplementation { /*...*/ } \n
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-=== "Groovy"
-
-    ```groovy
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-=== "C/C++"
-
-    ```cpp
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-=== "Python"
-
-    ```py hl_lines="2"
-    class AwesomeImplementation:
-        pass\n
-    ```
-=== "JavaScript"
-
-    ```js
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-=== "TypeScript"
-
-    ```ts
-    class AwesomeImplementation { /*...*/ }\n
-    ```
-
-## Naming
+## Naming group
 
 ### Abbreviation as word
 
@@ -3580,7 +3732,7 @@ identifier should be descriptive and meaningful.
     | :material-language-javascript:{ .lg .middle } `id-denylist` | error, object, number, string, objects, numbers, strings |
     | :material-language-typescript:{ .lg .middle } `id-denylist` | error, object, number, string, objects, numbers, strings |
 
-### Meaningless word
+### No meaningless word
 
 Prohibits meaningless source names in class, interface, object and files. The
 name of utility classes (or files) should be the plural form of the extended
@@ -3749,7 +3901,7 @@ namespaces are considered as packages.
        └─ user_config.py
     ```
 
-## Ordering
+## Ordering group
 
 ### Block tag order
 
@@ -4923,9 +5075,9 @@ by a blank line.
     import java.util.List
     ```
 
-## Scripting
+## Scripting group
 
-### Decentralized dependency
+### Centralized dependency
 
 Declare dependencies in a centralizeed version catalog file and refer to them by
 their alias in the build script.
@@ -4956,9 +5108,9 @@ their alias in the build script.
     dependencies.implementation(libs.commons.lang3)
     ```
 
-### Eager API
+### Lazy API
 
-Prefer eager calls over lazy ones.
+Prefer lazy calls over eager ones.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -4994,7 +5146,7 @@ Prefer eager calls over lazy ones.
     }
     ```
 
-### Lonely configuration
+### No lonely configuration
 
 Avoid opening a scope for a single configuration.
 
@@ -5075,9 +5227,124 @@ Script file names are in lowercase with words separated by hyphens.
     └─ publish-site.gradle.kts
     ```
 
-## Spacing
+## Spacing group
 
-### Block comment spaces
+### Blank line before block tags
+
+Separate block tag group from the summary with a blank line.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    void abs(int number) {}
+    ```
+=== "Groovy"
+
+    ```groovy
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    def abs(int number) {}
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    fun abs(number: Int): Int
+    ```
+=== "JavaScript"
+
+    ```js
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    function abs(number) {}
+    ```
+=== "TypeScript"
+
+    ```ts
+    /**
+     * Returns the absolute value of the given number.
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    function abs(number: number): number {}
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    void abs(int number) {}
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    def abs(int number) {}
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    fun abs(number: Int): Int
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    function abs(number) {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="3"
+    /**
+     * Returns the absolute value of the given number.
+     *
+     * @param number The number to return the absolute value for.
+     * @return The absolute value.
+     */
+    function abs(number: number): number {}
+    ```
+
+### Block comment spacing
 
 Ensures that block comments starts and ends with a whitespace. In multiline
 comments, each line after the asterisk should be indented by a whitespace.
@@ -5279,7 +5546,7 @@ spaces from the leading asterisk.
     function abs(num: number): number {}
     ```
 
-### Braces spaces
+### Braces spacing
 
 Single-line blocks should have a single whitespace between the opening and
 closing braces.
@@ -5570,7 +5837,7 @@ joined.
     }
     ```
 
-### Comment spaces
+### Comment spacing
 
 End-of-file comments should be separated by a single whitespace from the
 preceding code, and start with a single whitespace.
@@ -5785,219 +6052,105 @@ There is an exception for a group of properties.
     }
     ```
 
-### Missing blank line before block tags
+## Statement group
 
-Separate block tag group from the summary with a blank line.
+### Control flow bracing
+
+Enforces the use of braces for multiline `if`, `else`, `for`, `while` and `do`
+statements.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Java"
 
-    ```java
-    /**
-     * Returns the absolute value of the given number.
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    void abs(int number) {}
+    ```java hl_lines="1 3"
+    if (validateCart(cart))
+        processPayment(credentials);
+    else
+        showError();
     ```
 === "Groovy"
 
-    ```groovy
-    /**
-     * Returns the absolute value of the given number.
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    def abs(int number) {}
+    ```groovy hl_lines="1 3"
+    if (validateCart(cart))
+        processPayment(credentials)
+    else
+        showError()
     ```
 === "Kotlin"
 
-    ```kotlin
-    /**
-     * Returns the absolute value of the given number.
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    fun abs(number: Int): Int
+    ```kotlin hl_lines="1 3"
+    if (validateCart(cart))
+        processPayment(credentials)
+    else
+        showError()
     ```
 === "JavaScript"
 
-    ```js
-    /**
-     * Returns the absolute value of the given number.
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    function abs(number) {}
+    ```js hl_lines="1 3"
+    if (validateCart(cart))
+        processPayment(credentials);
+    else
+        showError();
     ```
 === "TypeScript"
 
-    ```ts
-    /**
-     * Returns the absolute value of the given number.
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    function abs(number: number): number {}
+    ```ts hl_lines="1 3"
+    if (validateCart(cart))
+        processPayment(credentials);
+    else
+        showError();
     ```
 
 **:material-star-four-points:{ #accent } After**
 
 === "Java"
 
-    ```java hl_lines="3"
-    /**
-     * Returns the absolute value of the given number.
-     *
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    void abs(int number) {}
+    ```java hl_lines="1 3 5"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else {
+        showError();
+    }
     ```
 === "Groovy"
 
-    ```groovy hl_lines="3"
-    /**
-     * Returns the absolute value of the given number.
-     *
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    def abs(int number) {}
+    ```groovy hl_lines="1 3 5"
+    if (validateCart(cart)) {
+        processPayment(credentials)
+    } else {
+        showError()
+    }
     ```
 === "Kotlin"
 
-    ```kotlin hl_lines="3"
-    /**
-     * Returns the absolute value of the given number.
-     *
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    fun abs(number: Int): Int
+    ```kotlin hl_lines="1 3 5"
+    if (validateCart(cart)) {
+        processPayment(credentials)
+    } else {
+        showError()
+    }
     ```
 === "JavaScript"
 
-    ```js hl_lines="3"
-    /**
-     * Returns the absolute value of the given number.
-     *
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    function abs(number) {}
+    ```js hl_lines="1 3 5"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else {
+        showError();
+    }
     ```
 === "TypeScript"
 
-    ```ts hl_lines="3"
-    /**
-     * Returns the absolute value of the given number.
-     *
-     * @param number The number to return the absolute value for.
-     * @return The absolute value.
-     */
-    function abs(number: number): number {}
+    ```ts hl_lines="1 3 5"
+    if (validateCart(cart)) {
+        processPayment(credentials);
+    } else {
+        showError();
+    }
     ```
 
-## Statement
-
-### Complicated assignment
-
-Use shorthand assignment operators when the variable being assigned is also used
-in the expression.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="2"
-    int count = 0;
-    count = count + 1;
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2"
-    var count = 0
-    count = count + 1
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="2"
-    var count = 0
-    count = count + 1
-    ```
-=== "C/C++"
-
-    ```cpp hl_lines="2"
-    int count = 0;
-    count = count + 1;
-    ```
-=== "Python"
-
-    ```py hl_lines="2"
-    count = 0
-    count = count + 1
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="2"
-    let count = 0;
-    count = count + 1;
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="2"
-    let count: number = 0;
-    count = count + 1;
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="2"
-    int count = 0;
-    count += 1;
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2"
-    var count = 0
-    count += 1
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="2"
-    var count = 0
-    count += 1
-    ```
-=== "C/C++"
-
-    ```cpp hl_lines="2"
-    int count = 0;
-    count += 1;
-    ```
-=== "Python"
-
-    ```py hl_lines="2"
-    count = 0
-    count += 1
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="2"
-    let count = 0;
-    count += 1;
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="2"
-    let count: number = 0;
-    count += 1;
-    ```
-
-### Illegal catch
+### No broad catch
 
 Catch specific exception subclass instead of the generic `Throwable`,
 `Exception` or `Error`.
@@ -6078,7 +6231,7 @@ Catch specific exception subclass instead of the generic `Throwable`,
         print(e)
     ```
 
-### Illegal throw
+### No broad throw
 
 Throw a narrower exception type instead of `Exception`, `Error` or `Throwable`.
 
@@ -6138,7 +6291,7 @@ Throw a narrower exception type instead of `Exception`, `Error` or `Throwable`.
     raise ValueError()
     ```
 
-### Lonely case
+### No lonely case
 
 If a switch statement has single branch, it should be replaced with an if
 statement.
@@ -6251,7 +6404,7 @@ statement.
     }
     ```
 
-### Lonely if
+### No lonely if
 
 A single if statement in an else block should be merged with the parent if
 statement.
@@ -6427,103 +6580,7 @@ statement.
     }
     ```
 
-### Missing braces
-
-Enforces the use of braces for multiline `if`, `else`, `for`, `while` and `do`
-statements.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="1 3"
-    if (validateCart(cart))
-        processPayment(credentials);
-    else
-        showError();
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1 3"
-    if (validateCart(cart))
-        processPayment(credentials)
-    else
-        showError()
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1 3"
-    if (validateCart(cart))
-        processPayment(credentials)
-    else
-        showError()
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1 3"
-    if (validateCart(cart))
-        processPayment(credentials);
-    else
-        showError();
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1 3"
-    if (validateCart(cart))
-        processPayment(credentials);
-    else
-        showError();
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="1 3 5"
-    if (validateCart(cart)) {
-        processPayment(credentials);
-    } else {
-        showError();
-    }
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1 3 5"
-    if (validateCart(cart)) {
-        processPayment(credentials)
-    } else {
-        showError()
-    }
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1 3 5"
-    if (validateCart(cart)) {
-        processPayment(credentials)
-    } else {
-        showError()
-    }
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1 3 5"
-    if (validateCart(cart)) {
-        processPayment(credentials);
-    } else {
-        showError();
-    }
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1 3 5"
-    if (validateCart(cart)) {
-        processPayment(credentials);
-    } else {
-        showError();
-    }
-    ```
-
-### Nested if-else
+### No nested if-else
 
 If a block ends with an if statement without else and the body is at least 2
 lines, it should be inverted to avoid nesting and unnecessary indentation.
@@ -6710,7 +6767,7 @@ lines, it should be inverted to avoid nesting and unnecessary indentation.
     }
     ```
 
-### Redundant default
+### No redundant default
 
 If every branch of a switch statement has a continue, return or throw statement,
 the default branch can be lifted.
@@ -6871,7 +6928,7 @@ the default branch can be lifted.
     }
     ```
 
-### Redundant else
+### No redundant else
 
 When every if and else-if block has a continue, return or throw statement, the
 else block can be lifted.
@@ -7059,7 +7116,7 @@ else block can be lifted.
     }
     ```
 
-### Redundant if
+### No redundant if
 
 If-else statement that returns boolean can be simplified by returning the
 condition.
@@ -7193,7 +7250,7 @@ condition.
     }
     ```
 
-### Semicolon
+### No semicolon
 
 Do not use semicolons at the end of statements in languages that do not require
 them.
@@ -7203,27 +7260,17 @@ them.
 === "Groovy"
 
     ```groovy
-    sendEmail(user);
+    resetCounter();
     ```
 === "Kotlin"
 
     ```kotlin
-    sendEmail(user);
+    resetCounter();
     ```
 === "Python"
 
     ```py
-    send_email(user);
-    ```
-=== "JavaScript"
-
-    ```js
-    sendEmail(user)
-    ```
-=== "TypeScript"
-
-    ```ts
-    sendEmail(user)
+    reset_counter();
     ```
 
 **:material-star-four-points:{ #accent } After**
@@ -7231,35 +7278,20 @@ them.
 === "Groovy"
 
     ```groovy
-    sendEmail(user)
+    resetCounter()
     ```
 === "Kotlin"
 
     ```kotlin
-    sendEmail(user)
+    resetCounter()
     ```
 === "Python"
 
     ```py
-    send_email(user)
-    ```
-=== "JavaScript"
-
-    ```js
-    sendEmail(user);
-    ```
-=== "TypeScript"
-
-    ```ts
-    sendEmail(user);
+    reset_counter()
     ```
 
-!!! warning
-
-    Semicolons are enforced in JavaScript and TypeScript to prevent issues with
-    automatic semicolon insertion.
-
-### Unnecessary continue
+### No useless continue
 
 The last continue statement in a loop is useless.
 
@@ -7398,7 +7430,7 @@ The last continue statement in a loop is useless.
     }
     ```
 
-### Unnecessary return
+### No useless return
 
 The last return statement in a function is useless.
 
@@ -7563,9 +7595,220 @@ The last return statement in a function is useless.
     }
     ```
 
-## Testing
+### Semicolon
 
-### Complicated assertion
+JavaScript and TypeScript require semicolons at the end of statements to prevent
+issues with automatic semicolon insertion.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "JavaScript"
+
+    ```js
+    sendEmail(user)
+    ```
+=== "TypeScript"
+
+    ```ts
+    sendEmail(user)
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "JavaScript"
+
+    ```js
+    sendEmail(user);
+    ```
+=== "TypeScript"
+
+    ```ts
+    sendEmail(user);
+    ```
+
+!!! warning
+
+    Semicolons are enforced in JavaScript and TypeScript to prevent issues with
+    automatic semicolon insertion.
+
+### Shorthand assignment
+
+Use shorthand assignment operators when the variable being assigned is also used
+in the expression.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="2"
+    int count = 0;
+    count = count + 1;
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    var count = 0
+    count = count + 1
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2"
+    var count = 0
+    count = count + 1
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    int count = 0;
+    count = count + 1;
+    ```
+=== "Python"
+
+    ```py hl_lines="2"
+    count = 0
+    count = count + 1
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    let count = 0;
+    count = count + 1;
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    let count: number = 0;
+    count = count + 1;
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="2"
+    int count = 0;
+    count += 1;
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    var count = 0
+    count += 1
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2"
+    var count = 0
+    count += 1
+    ```
+=== "C/C++"
+
+    ```cpp hl_lines="2"
+    int count = 0;
+    count += 1;
+    ```
+=== "Python"
+
+    ```py hl_lines="2"
+    count = 0
+    count += 1
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="2"
+    let count = 0;
+    count += 1;
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="2"
+    let count: number = 0;
+    count += 1;
+    ```
+
+## Testing group
+
+### No confusing assertion
+
+Flip assertions instead of negating conditions.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    assertFalse(!user.isActive());
+    ```
+=== "Groovy"
+
+    ```groovy
+    assertFalse(!user.isActive())
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    assertFalse(!user.isActive())
+    ```
+=== "Python"
+
+    ```py
+    self.assertFalse(!user.is_active())
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    assertTrue(user.isActive());
+    ```
+=== "Groovy"
+
+    ```groovy
+    assertTrue(user.isActive())
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    assertTrue(user.isActive())
+    ```
+=== "Python"
+
+    ```py
+    self.assertTrue(user.is_active())
+    ```
+
+### No deprecated annotation
+
+Prefer Kotlin test annotations over JUnit ones.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    import org.junit.Test
+
+    class UserTest {
+        @Test
+        fun testUser() {}
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    import kotlin.test.Test
+
+    class UserTest {
+        @Test
+        fun testUser() {}
+    }
+    ```
+
+### Specific assertion
 
 Use targeted assertion methods instead of general ones with complicated
 conditions.
@@ -7616,89 +7859,9 @@ conditions.
     self.assertIsNone(username)
     ```
 
-### Confusing assertion
+## Trimming group
 
-Flip assertions instead of negating conditions.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java
-    assertFalse(!user.isActive());
-    ```
-=== "Groovy"
-
-    ```groovy
-    assertFalse(!user.isActive())
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    assertFalse(!user.isActive())
-    ```
-=== "Python"
-
-    ```py
-    self.assertFalse(!user.is_active())
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    assertTrue(user.isActive());
-    ```
-=== "Groovy"
-
-    ```groovy
-    assertTrue(user.isActive())
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    assertTrue(user.isActive())
-    ```
-=== "Python"
-
-    ```py
-    self.assertTrue(user.is_active())
-    ```
-
-### Deprecated annotation
-
-Prefer Kotlin test annotations over JUnit ones.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-
-    ```kotlin hl_lines="1"
-    import org.junit.Test
-
-    class UserTest {
-        @Test
-        fun testUser() {}
-    }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-
-    ```kotlin hl_lines="1"
-    import kotlin.test.Test
-
-    class UserTest {
-        @Test
-        fun testUser() {}
-    }
-    ```
-
-## Trimming
-
-### Block comment trim
+### Block comment trimming
 
 Do not start or end block comments with whitespaces.
 
@@ -7834,7 +7997,7 @@ Do not start or end block comments with whitespaces.
      */
     ```
 
-### Braces trim
+### Braces trimming
 
 Prohibits empty first and last lines in code blocks.
 
@@ -7984,7 +8147,7 @@ Prohibits empty first and last lines in code blocks.
     }
     ```
 
-### Brackets trim
+### Brackets trimming
 
 Prohibits empty first and last lines in collection initializers.
 
@@ -8092,7 +8255,7 @@ Prohibits empty first and last lines in collection initializers.
     ]
     ```
 
-### Comment trim
+### Comment trimming
 
 Prohibits empty first and last lines in EOL comments.
 
@@ -8200,7 +8363,32 @@ Prohibits empty first and last lines in EOL comments.
     // multiline comment
     ```
 
-### Duplicate blank line
+### No blank line after colon
+
+Prohibits first empty line in Python function and class definitions.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Python"
+
+    ```py hl_lines="2"
+    def on_receive(value):
+
+        if value is not None:
+            total += value
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Python"
+
+    ```py
+    def on_receive(value):
+        if value is not None:
+            total += value
+    ```
+
+### No duplicate blank line
 
 Prohibits consecutive blank lines in the code.
 
@@ -8320,7 +8508,7 @@ Prohibits consecutive blank lines in the code.
     console.log(message);
     ```
 
-### Duplicate blank line in block comment
+### No duplicate blank line in block comment
 
 Prohibits consecutive blank lines in block comments.
 
@@ -8463,7 +8651,7 @@ Prohibits consecutive blank lines in block comments.
      */
     ```
 
-### Duplicate blank line in comment
+### No duplicate blank line in comment
 
 Prohibits consecutive blank lines in comments.
 
@@ -8578,7 +8766,7 @@ Prohibits consecutive blank lines in comments.
     // very long comment
     ```
 
-### Duplicate space
+### No duplicate space
 
 Prohibits consecutive spaces in the code.
 
@@ -8686,7 +8874,97 @@ Prohibits consecutive spaces in the code.
     const total: number = subtotal + bill;
     ```
 
-### Parentheses trim
+### No leading blank line
+
+The first line of a file cannot be a blank line.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="1"
+    \n
+    package com.example;
+
+    void execute() {}
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    \n
+    package com.example
+
+    def execute() {}
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    \n
+    package com.example
+
+    fun execute() {}
+    ```
+=== "Python"
+
+    ```py hl_lines="1"
+    \n
+    def execute():
+        pass
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    \n
+    function execute() {}
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    \n
+    function execute(): void {}
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    package com.example;
+
+    void execute() {}
+    ```
+=== "Groovy"
+
+    ```groovy
+    package com.example
+
+    def execute() {}
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    package com.example
+
+    fun execute() {}
+    ```
+=== "Python"
+
+    ```py
+    def execute():
+        pass
+    ```
+=== "JavaScript"
+
+    ```js
+    function execute() {}
+    ```
+=== "TypeScript"
+
+    ```ts
+    function execute(): void {}
+    ```
+
+### Parentheses trimming
 
 Prohibits empty first and last lines in method declarations and calls.
 
@@ -8876,7 +9154,7 @@ Prohibits empty first and last lines in method declarations and calls.
     }
     ```
 
-### Tags trim
+### Tags trimming
 
 Prohibits empty first and last lines in generic type parameters.
 
@@ -9008,124 +9286,9 @@ Prohibits empty first and last lines in generic type parameters.
     };
     ```
 
-### Unnecessary blank line after colon
+## Wrapping group
 
-Prohibits first empty line in Python function and class definitions.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Python"
-
-    ```py hl_lines="2"
-    def on_receive(value):
-
-        if value is not None:
-            total += value
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Python"
-
-    ```py
-    def on_receive(value):
-        if value is not None:
-            total += value
-    ```
-
-### Unnecessary leading blank line
-
-The first line of a file cannot be a blank line.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="1"
-    \n
-    package com.example;
-
-    void execute() {}
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    \n
-    package com.example
-
-    def execute() {}
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1"
-    \n
-    package com.example
-
-    fun execute() {}
-    ```
-=== "Python"
-
-    ```py hl_lines="1"
-    \n
-    def execute():
-        pass
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1"
-    \n
-    function execute() {}
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1"
-    \n
-    function execute(): void {}
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    package com.example;
-
-    void execute() {}
-    ```
-=== "Groovy"
-
-    ```groovy
-    package com.example
-
-    def execute() {}
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    package com.example
-
-    fun execute() {}
-    ```
-=== "Python"
-
-    ```py
-    def execute():
-        pass
-    ```
-=== "JavaScript"
-
-    ```js
-    function execute() {}
-    ```
-=== "TypeScript"
-
-    ```ts
-    function execute(): void {}
-    ```
-
-## Wrapping
-
-### Assignment wrap
+### Assignment wrapping
 
 Assignee and the value of assignment spanning multiple lines should be separated
 by a newline.
@@ -9230,7 +9393,7 @@ by a newline.
             .concat(' World')
     ```
 
-### Chain call wrap
+### Chain call wrapping
 
 Each method call in a chain should be aligned with the dot operator.
 
@@ -9330,7 +9493,7 @@ Each method call in a chain should be aligned with the dot operator.
             .getId();
     ```
 
-### Elvis wrap
+### Elvis wrapping
 
 In a multiline statement, the elvis operator should be separated into a new line
 instead of trailing the statement.
@@ -9354,7 +9517,7 @@ instead of trailing the statement.
         ?: "Unknown"
     ```
 
-### Infix call wrap
+### Infix call wrapping
 
 When breaking an infix function call, the operator should be placed at the end
 of the line.
@@ -9387,7 +9550,7 @@ of the line.
         )
     ```
 
-### Lambda wrap
+### Lambda wrapping
 
 When breaking a multiline lambda expression, the body should be placed on a new
 line.
@@ -9478,7 +9641,7 @@ line.
             ).reduce((a, b) => a + b, 0);
     ```
 
-### Operator wrap
+### Operator wrapping
 
 A line break should be placed after the operator in a binary expression.
 
@@ -9584,7 +9747,7 @@ A line break should be placed after the operator in a binary expression.
         discount;
     ```
 
-### Parameter wrap
+### Parameter wrapping
 
 When breaking a multiline parameter list, each parameter should be placed on a
 new line.
@@ -9709,7 +9872,7 @@ new line.
     ): void {}
     ```
 
-### Statement wrap
+### Statement wrapping
 
 Compound statements are not allowed.
 

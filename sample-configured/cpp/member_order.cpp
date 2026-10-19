@@ -4,13 +4,13 @@ using namespace std;
 
 class Outer {
 public:
-  void show() {
+  static void show() {
     cout << "outer" << endl;
   }
 
   class Inner {
   public:
-    void my_function() {
+    static void my_function() {
         cout << "inner" << endl;
     }
 
@@ -19,11 +19,10 @@ public:
 };
 
 int main() {
-  Outer outer;
-  outer.show();
+  Outer::show();
 
   Outer::Inner inner;
-  inner.my_function();
+  Outer::Inner::my_function();
   cout << inner.my_variable << endl;
 
   return 0;

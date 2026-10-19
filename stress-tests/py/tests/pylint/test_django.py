@@ -4,7 +4,7 @@ from astroid import parse
 from pylint.testutils import _tokenize_str
 
 from rulebook_pylint.checkers import (
-    BlockCommentClipChecker,
+    BlockCommentClippingChecker,
     TrailingCommaChecker,
 )
 from testing.messages import msg
@@ -19,7 +19,7 @@ class TestDjango(AllCheckersTestCase):
         tokens = _tokenize_str(code)
         with self.assertAddsMessages(
             msg(
-                BlockCommentClipChecker._MSG,
+                BlockCommentClippingChecker._MSG,
                 (73, 8, 75, 11),
                 node_all.body[14].body[3].doc_node,
             ),

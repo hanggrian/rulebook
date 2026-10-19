@@ -1,6 +1,6 @@
 import rulebookEslint, { crockfordConfig, googleConfig } from 'rulebook-eslint';
+import abstractFunctionInAbstractClassRule from './rules/abstract-function-in-abstract-class.js';
 import genericNameRule from './rules/generic-name.js';
-import unnecessaryAbstractRule from './rules/unnecessary-abstract.js';
 import type { TSESLint } from '@typescript-eslint/utils';
 
 const typescriptConfig: TSESLint.SharedConfig.RulesRecord = {
@@ -32,7 +32,7 @@ const typescriptConfig: TSESLint.SharedConfig.RulesRecord = {
     ],
     // Clipping
     // Declaration
-    '@rulebook/unnecessary-abstract': 'error',
+    '@rulebook/abstract-function-in-abstract-class': 'error',
     // Expression
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
     // Formatting
@@ -91,8 +91,8 @@ const typescriptConfig: TSESLint.SharedConfig.RulesRecord = {
 const plugin: TSESLint.FlatConfig.Plugin = {
     rules: {
         ...rulebookEslint.rules,
+        'abstract-function-in-abstract-class': abstractFunctionInAbstractClassRule,
         'generic-name': genericNameRule,
-        'unnecessary-abstract': unnecessaryAbstractRule,
     },
     configs: {
         crockford: {

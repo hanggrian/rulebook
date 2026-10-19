@@ -1,0 +1,102 @@
+package com.hanggrian.rulebook.ktlint.rules
+
+import com.pinterest.ktlint.test.KtLintAssertThat.Companion.assertThatRule
+import com.pinterest.ktlint.test.LintViolation
+import kotlin.test.Test
+
+class NoRedundantElseRuleTest : RuleTest() {
+    private val assertThatCode = assertThatRule { NoRedundantElseRule() }
+
+    @Test
+    fun `Rule properties`() = NoRedundantElseRule().assertProperties()
+
+    @Test
+    fun `No throw or return in if`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) {
+                    baz()
+                } else if (false) {
+                    baz()
+                } else {
+                    baz()
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Lift else when if has return`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) {
+                    throw Exception()
+                } else if (false) {
+                    return
+                } else {
+                    baz()
+                }
+            }
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(4, 7, "Omit redundant 'else' condition."),
+            LintViolation(6, 7, "Omit redundant 'else' condition."),
+        )
+
+    @Test
+    fun `Consider if-else without blocks`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) throw Exception()
+                else if (false) return
+                else baz()
+            }
+            """.trimIndent(),
+        ).hasLintViolationsWithoutAutoCorrect(
+            LintViolation(3, 5, "Omit redundant 'else' condition."),
+            LintViolation(4, 5, "Omit redundant 'else' condition."),
+        )
+
+    @Test
+    fun `Skip jump statement with elvis`() =
+        assertThatCode(
+            """
+            fun foo() {
+                if (true) {
+                    baz() ?: throw Exception()
+                } else if (false) {
+                    baz() ?: return
+                } else {
+                    baz()
+                }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+
+    @Test
+    fun `Skip property assignment`() =
+        assertThatCode(
+            """
+            fun foo() {
+                val foo =
+                    if (true) {
+                        return
+                    } else {
+                        baz()
+                    }
+            }
+
+            fun bar() {
+                val (bar1, bar2) =
+                    if (true) {
+                        return
+                    } else {
+                        baz()
+                    }
+            }
+            """.trimIndent(),
+        ).hasNoLintViolations()
+}

@@ -2,40 +2,40 @@ package com.hanggrian.rulebook.checkstyle
 
 import com.hanggrian.rulebook.JvmBasedTest
 import com.hanggrian.rulebook.checkstyle.checks.AbstractFunctionInAbstractClassCheck
-import com.hanggrian.rulebook.checkstyle.checks.AssignmentWrapCheck
-import com.hanggrian.rulebook.checkstyle.checks.BlockCommentTrimCheck
+import com.hanggrian.rulebook.checkstyle.checks.AssignmentWrappingCheck
+import com.hanggrian.rulebook.checkstyle.checks.BlockCommentTrimmingCheck
 import com.hanggrian.rulebook.checkstyle.checks.BlockTagPunctuationCheck
-import com.hanggrian.rulebook.checkstyle.checks.BracesTrimCheck
+import com.hanggrian.rulebook.checkstyle.checks.BracesTrimmingCheck
 import com.hanggrian.rulebook.checkstyle.checks.CaseSeparatorCheck
-import com.hanggrian.rulebook.checkstyle.checks.ChainCallWrapCheck
-import com.hanggrian.rulebook.checkstyle.checks.CommentSpacesCheck
-import com.hanggrian.rulebook.checkstyle.checks.CommentTrimCheck
+import com.hanggrian.rulebook.checkstyle.checks.ChainCallWrappingCheck
+import com.hanggrian.rulebook.checkstyle.checks.CommentSpacingCheck
+import com.hanggrian.rulebook.checkstyle.checks.CommentTrimmingCheck
 import com.hanggrian.rulebook.checkstyle.checks.CommonFunctionPositionCheck
-import com.hanggrian.rulebook.checkstyle.checks.ComplicatedAssignmentCheck
-import com.hanggrian.rulebook.checkstyle.checks.DuplicateBlankLineCheck
-import com.hanggrian.rulebook.checkstyle.checks.DuplicateBlankLineInBlockCommentCheck
-import com.hanggrian.rulebook.checkstyle.checks.DuplicateBlankLineInCommentCheck
 import com.hanggrian.rulebook.checkstyle.checks.ExceptionInheritanceCheck
-import com.hanggrian.rulebook.checkstyle.checks.LambdaWrapCheck
-import com.hanggrian.rulebook.checkstyle.checks.LonelyCaseCheck
-import com.hanggrian.rulebook.checkstyle.checks.LonelyIfCheck
+import com.hanggrian.rulebook.checkstyle.checks.LambdaWrappingCheck
 import com.hanggrian.rulebook.checkstyle.checks.LowercaseDCheck
 import com.hanggrian.rulebook.checkstyle.checks.LowercaseFCheck
 import com.hanggrian.rulebook.checkstyle.checks.LowercaseHexCheck
-import com.hanggrian.rulebook.checkstyle.checks.MeaninglessWordCheck
 import com.hanggrian.rulebook.checkstyle.checks.MemberOrderCheck
-import com.hanggrian.rulebook.checkstyle.checks.NestedIfElseCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoDuplicateBlankLineCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoDuplicateBlankLineInBlockCommentCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoDuplicateBlankLineInCommentCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoLeadingBlankLineCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoLonelyCaseCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoLonelyIfCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoMeaninglessWordCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoNestedIfElseCheck
 import com.hanggrian.rulebook.checkstyle.checks.NoParenthesesInLambdaCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoRedundantDefaultCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoRedundantElseCheck
 import com.hanggrian.rulebook.checkstyle.checks.NoRedundantQualifierCheck
-import com.hanggrian.rulebook.checkstyle.checks.ParameterWrapCheck
-import com.hanggrian.rulebook.checkstyle.checks.ParenthesesTrimCheck
-import com.hanggrian.rulebook.checkstyle.checks.RedundantDefaultCheck
-import com.hanggrian.rulebook.checkstyle.checks.RedundantElseCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoUselessContinueCheck
+import com.hanggrian.rulebook.checkstyle.checks.NoUselessReturnCheck
+import com.hanggrian.rulebook.checkstyle.checks.ParameterWrappingCheck
+import com.hanggrian.rulebook.checkstyle.checks.ParenthesesTrimmingCheck
+import com.hanggrian.rulebook.checkstyle.checks.ShorthandAssignmentCheck
 import com.hanggrian.rulebook.checkstyle.checks.SimpleSizeComparisonCheck
-import com.hanggrian.rulebook.checkstyle.checks.TagsTrimCheck
-import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryContinueCheck
-import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryLeadingBlankLineCheck
-import com.hanggrian.rulebook.checkstyle.checks.UnnecessaryReturnCheck
+import com.hanggrian.rulebook.checkstyle.checks.TagsTrimmingCheck
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration
 import com.puppycrawl.tools.checkstyle.TreeWalker
@@ -48,43 +48,43 @@ open class AllChecksTest :
         createChecker(
             DefaultConfiguration("root").apply {
                 addProperty("charset", UTF_8.name())
-                addConfiguration<DuplicateBlankLineCheck>()
-                addConfiguration<UnnecessaryLeadingBlankLineCheck>()
+                addConfiguration<NoDuplicateBlankLineCheck>()
+                addConfiguration<NoLeadingBlankLineCheck>()
                 addChild(
                     DefaultConfiguration(TreeWalker::class.simpleName).apply {
                         addConfiguration<AbstractFunctionInAbstractClassCheck>()
-                        addConfiguration<AssignmentWrapCheck>()
-                        addConfiguration<BlockCommentTrimCheck>()
+                        addConfiguration<AssignmentWrappingCheck>()
+                        addConfiguration<BlockCommentTrimmingCheck>()
                         addConfiguration<BlockTagPunctuationCheck>()
-                        addConfiguration<BracesTrimCheck>()
+                        addConfiguration<BracesTrimmingCheck>()
                         addConfiguration<CaseSeparatorCheck>()
-                        addConfiguration<ChainCallWrapCheck>()
-                        addConfiguration<CommentSpacesCheck>()
-                        addConfiguration<CommentTrimCheck>()
+                        addConfiguration<ChainCallWrappingCheck>()
+                        addConfiguration<CommentSpacingCheck>()
+                        addConfiguration<CommentTrimmingCheck>()
                         addConfiguration<CommonFunctionPositionCheck>()
-                        addConfiguration<ComplicatedAssignmentCheck>()
-                        addConfiguration<DuplicateBlankLineInBlockCommentCheck>()
-                        addConfiguration<DuplicateBlankLineInCommentCheck>()
                         addConfiguration<ExceptionInheritanceCheck>()
-                        addConfiguration<LambdaWrapCheck>()
-                        addConfiguration<LonelyCaseCheck>()
-                        addConfiguration<LonelyIfCheck>()
+                        addConfiguration<LambdaWrappingCheck>()
                         addConfiguration<LowercaseDCheck>()
                         addConfiguration<LowercaseFCheck>()
                         addConfiguration<LowercaseHexCheck>()
-                        addConfiguration<MeaninglessWordCheck>()
                         addConfiguration<MemberOrderCheck>()
-                        addConfiguration<NestedIfElseCheck>()
+                        addConfiguration<NoDuplicateBlankLineInBlockCommentCheck>()
+                        addConfiguration<NoDuplicateBlankLineInCommentCheck>()
+                        addConfiguration<NoLonelyCaseCheck>()
+                        addConfiguration<NoLonelyIfCheck>()
+                        addConfiguration<NoMeaninglessWordCheck>()
+                        addConfiguration<NoNestedIfElseCheck>()
                         addConfiguration<NoParenthesesInLambdaCheck>()
+                        addConfiguration<NoRedundantDefaultCheck>()
+                        addConfiguration<NoRedundantElseCheck>()
                         addConfiguration<NoRedundantQualifierCheck>()
-                        addConfiguration<ParameterWrapCheck>()
-                        addConfiguration<ParenthesesTrimCheck>()
-                        addConfiguration<RedundantDefaultCheck>()
-                        addConfiguration<RedundantElseCheck>()
+                        addConfiguration<NoUselessContinueCheck>()
+                        addConfiguration<NoUselessReturnCheck>()
+                        addConfiguration<ParameterWrappingCheck>()
+                        addConfiguration<ParenthesesTrimmingCheck>()
+                        addConfiguration<ShorthandAssignmentCheck>()
                         addConfiguration<SimpleSizeComparisonCheck>()
-                        addConfiguration<TagsTrimCheck>()
-                        addConfiguration<UnnecessaryContinueCheck>()
-                        addConfiguration<UnnecessaryReturnCheck>()
+                        addConfiguration<TagsTrimmingCheck>()
                     },
                 )
             },

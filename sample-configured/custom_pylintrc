@@ -41,7 +41,7 @@ load-plugins=
   pylint.extensions.broad_try_clause,
   pylint.extensions.dict_init_mutate,
   pylint.extensions.consider_refactoring_into_while_condition,
-  rulebook_pylint.checkers.meaningless_word,
+  rulebook_pylint.checkers.no_meaningless_word,
   rulebook_pylint.checkers.member_order,
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the

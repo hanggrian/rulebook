@@ -171,7 +171,7 @@
       <property name="tags" value="@throws"/>
     </module>
 
-    <module name="MeaninglessWord">
+    <module name="NoMeaninglessWord">
       <property name="words" value="Hello, World"/>
     </module>
 

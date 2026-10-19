@@ -10,7 +10,7 @@ class TestMessages(TestCase):
             'Move inner class to the bottom.',
         )
         self.assertEqual(
-            Messages.get('file.size', 99),
+            Messages.get('max.file.size', 99),
             "Reduce file size to '99'.",
         )
 

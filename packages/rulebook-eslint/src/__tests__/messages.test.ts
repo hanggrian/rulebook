@@ -4,6 +4,6 @@ import messages from '../messages';
 describe('MessagesTest', () => {
     it(
         'get',
-        () => expect(messages.get('empty.file')).toBe('Delete the empty file.'),
+        () => expect(messages.get('no.empty.file')).toBe('Delete the empty file.'),
     );
 });

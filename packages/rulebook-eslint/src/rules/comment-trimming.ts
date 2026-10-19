@@ -1,0 +1,82 @@
+import messages from '../messages.js';
+import RulebookRule from './rulebook-rule.js';
+import type { Rule, SourceCode } from 'eslint';
+import type { Comment, Node, SourceLocation } from 'estree';
+
+/** {@link https://hanggrian.github.io/rulebook/rules/#comment-trimming|See detail} */
+class CommentTrimmingRule extends RulebookRule {
+    constructor() {
+        super('comment-trimming', {
+            [CommentTrimmingRule.MSG]: messages.get(CommentTrimmingRule.MSG),
+        });
+    }
+
+    override create(context: Rule.RuleContext): Rule.RuleListener {
+        return {
+            'Program:exit'() {
+                const sourceCode: SourceCode = context.sourceCode;
+                const comments: Comment[] =
+                    sourceCode
+                        .getAllComments()
+                        .filter(c => c.type === 'Line');
+                const reported: Set<number> = new Set();
+                for (let i = 0; i < comments.length; i++) {
+                    const node: Comment = comments[i];
+                    if (!node.loc || reported.has(node.loc.start.line)) {
+                        continue;
+                    }
+
+                    // find the bounds of the comment block
+                    let current: Comment = node;
+                    const block: Comment[] = [node];
+                    while (i + 1 < comments.length) {
+                        const next: Comment = comments[i + 1];
+                        const next_loc: SourceLocation | null | undefined = next.loc;
+                        if (!next_loc || !next.range || !current.loc) {
+                            continue;
+                        }
+                        const isStandalone =
+                            sourceCode.getText(next as unknown as Node).trim() ===
+                            sourceCode.text.slice(next.range[0], next.range[1]).trim() &&
+                            sourceCode
+                                .getTokensBefore(next)
+                                .every(t => t.loc.end.line !== next_loc.start.line);
+                        if (next_loc.start.line === current.loc.end.line + 1 && isStandalone) {
+                            block.push(next);
+                            current = next;
+                            i++;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    // skip single-line comments
+                    if (block.length <= 1) {
+                        continue;
+                    }
+
+                    // checks for violation
+                    const first: Comment = block[0];
+                    const last: Comment = block[block.length - 1];
+                    if (first.loc && first.value.trim() === '') {
+                        context.report({
+                            node: first,
+                            messageId: CommentTrimmingRule.MSG,
+                        });
+                        reported.add(first.loc.start.line);
+                    }
+                    if (!(last.loc &&
+                        last.value.trim() === '' && !reported.has(last.loc.start.line))) {
+                        continue;
+                    }
+                    context.report({ node: last, messageId: CommentTrimmingRule.MSG });
+                    reported.add(last.loc.start.line);
+                }
+            },
+        };
+    }
+
+    private static MSG: string = 'comment.trimming';
+}
+
+export default new CommentTrimmingRule();

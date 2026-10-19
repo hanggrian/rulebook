@@ -34,7 +34,7 @@ public class BlockCommentClippingRule :
         setOf(INDENT_SIZE_PROPERTY, INDENT_STYLE_PROPERTY, MAX_LINE_LENGTH_PROPERTY),
         setOf(
             RunAfterRule(
-                BlockCommentSpacesRule.ID,
+                BlockCommentSpacingRule.ID,
                 REGARDLESS_WHETHER_RUN_AFTER_RULE_IS_LOADED_OR_DISABLED,
             ),
         ),

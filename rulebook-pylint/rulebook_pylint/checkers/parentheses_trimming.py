@@ -1,0 +1,65 @@
+from __future__ import annotations
+
+from tokenize import NL, OP, TokenInfo
+
+from pylint.typing import TYPE_CHECKING
+
+from rulebook_pylint.checkers.rulebook_checkers import RulebookTokenChecker
+from rulebook_pylint.messages import Messages
+
+if TYPE_CHECKING:
+    from pylint.lint import PyLinter
+
+
+class ParenthesesTrimmingChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#parentheses-trimming"""
+    _MSG_FIRST: str = 'parentheses.trimming.first'
+    _MSG_LAST: str = 'parentheses.trimming.last'
+
+    _OPENING_PARENTHESES: frozenset[str] = frozenset(['(', '[', '{'])
+    _CLOSING_PARENTHESES: frozenset[str] = frozenset([')', ']', '}'])
+
+    name: str = 'parentheses-trimming'
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG_FIRST, _MSG_LAST)
+
+    def process_tokens(self, tokens: list[TokenInfo]) -> None:
+        for i, token in enumerate(tokens):
+            # find opening and closing parentheses
+            if token.type != OP:
+                continue
+            if token.string in self._OPENING_PARENTHESES:
+                # checks for violation
+                if i + 2 >= len(tokens):
+                    continue
+                next_token: TokenInfo = tokens[i + 1]
+                next_token2: TokenInfo = tokens[i + 2]
+                if next_token.type != NL or \
+                    next_token2.type != NL:
+                    continue
+                self.add_message(
+                    self._MSG_FIRST,
+                    line=next_token2.start[0],
+                    col_offset=next_token2.start[1],
+                    args=token.string,
+                )
+
+            # checks for violation
+            if token.string not in self._CLOSING_PARENTHESES:
+                continue
+            if i - 2 < 0:
+                continue
+            prev_token: TokenInfo = tokens[i - 1]
+            prev_token2: TokenInfo = tokens[i - 2]
+            if prev_token.type != NL or \
+                prev_token2.type != NL:
+                continue
+            self.add_message(
+                self._MSG_LAST,
+                line=prev_token.start[0],
+                col_offset=prev_token.start[1],
+                args=token.string,
+            )
+
+
+def register(linter: PyLinter) -> None:
+    linter.register_checker(ParenthesesTrimmingChecker(linter))

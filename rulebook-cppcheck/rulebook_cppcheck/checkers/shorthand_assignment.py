@@ -1,0 +1,41 @@
+from rulebook_cppcheck.checkers.rulebook_checkers import RulebookTokenChecker
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import next_sibling
+
+try:
+    from cppcheckdata import Token
+except ImportError:
+    from cppcheck.Cppcheck.addons.cppcheckdata import Token
+
+
+class ShorthandAssignmentChecker(RulebookTokenChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#shorthand-assignment"""
+    ID: str = 'shorthand-assignment'
+    _MSG: str = 'shorthand.assignment'
+
+    _SHORTHAND_OPERATIONS: frozenset[str] = frozenset(['+', '-', '*', '/', '%'])
+
+    def process_tokens(self, tokens: list[Token]) -> None:
+        for token in tokens:
+            # skip shorthand operator
+            if token.str != '=':
+                continue
+
+            # checks for violation
+            lhs: Token | None = token.previous
+            if lhs is None or not lhs.isName:
+                continue
+            match = \
+                next_sibling(
+                    token.next,
+                    lambda t: \
+                        t.str == ';' or \
+                        t.isName and \
+                        isinstance(lhs, Token) and \
+                        t.str == lhs.str and \
+                        t.next is not None and \
+                        t.next.str in self._SHORTHAND_OPERATIONS,
+                )
+            if match is None or match.str == ';':
+                continue
+            self.report_error(token, Messages.get(self._MSG, f'{match.next.str}='))

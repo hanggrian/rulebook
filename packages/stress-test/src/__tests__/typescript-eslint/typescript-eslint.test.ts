@@ -16,7 +16,7 @@ describe('TypescriptEslintTest', () => {
             assertThat(getCode(`typescript-eslint/${configHelperFile}`))
                 .withFilename(configHelperFile)
                 .hasErrorMessages(
-                    "19:1 Avoid meaningless word 'Helper'.",
+                    "1:1 Avoid meaningless word 'Helper'.",
                     '121:28 Break assignment into newline.',
                     '135:26 Break assignment into newline.',
                     '199:35 Break assignment into newline.',

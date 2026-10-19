@@ -8,10 +8,10 @@ add_executable(
         sample
         c/main.c
         c/block_tag_punctuation.c
-        c/file_size.c
         c/illegal_variable_name.c
         c/indent_style.c
-        c/line_length.c
-        c/meaningless_word.c
+        c/max_file_size.c
+        c/max_line_length.c
+        c/no_meaningless_word.c
         cpp/member_order.cpp
 )

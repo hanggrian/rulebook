@@ -1,0 +1,51 @@
+from re import Pattern, compile as re
+
+from rulebook_cppcheck.checkers.rulebook_checkers import RulebookChecker
+from rulebook_cppcheck.messages import Messages
+from rulebook_cppcheck.nodes import prev_sibling
+from rulebook_cppcheck.options import MEANINGLESS_WORDS_OPTION
+
+try:
+    from cppcheckdata import Scope, Token
+except ImportError:
+    from cppcheck.Cppcheck.addons.cppcheckdata import Scope, Token
+
+
+class NoMeaninglessWordChecker(RulebookChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#no-meaningless-word"""
+    ID: str = 'no-meaningless-word'
+    _MSG: str = 'no.meaningless.word'
+    ARGS: list[str] = [MEANINGLESS_WORDS_OPTION]
+
+    _TITLE_CASE_REGEX: Pattern = \
+        re(
+            r'((^[a-z]+)|([0-9]+)|([A-Z]{1}[a-z]+)|'
+            r'([A-Z]+(?=([A-Z][a-z])|($)|([0-9]))))',
+        )
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._words: set[str] = \
+            {'Util', 'Utility', 'Helper', 'Manager', 'Wrapper'}
+
+    def before_run(self, args: dict[str, str]) -> None:
+        self._words = \
+            set(args[MEANINGLESS_WORDS_OPTION].split(','))
+
+    def get_scopeset(self) -> set[str]:
+        return {'Class', 'Struct', 'Union', 'Enum'}
+
+    def visit_scope(self, scope: Scope) -> None:
+        # checks for violation
+        class_name: str | None = scope.className
+        if class_name is None:
+            return
+        words: list[str] = [match[0] for match in self._TITLE_CASE_REGEX.findall(class_name)]
+        if not words or \
+            words[-1] not in self._words:
+            return
+        name_token: Token | None = prev_sibling(scope.bodyStart, lambda t: t.str == class_name)
+        self.report_error(
+            name_token if name_token is not None else scope.bodyStart,
+            Messages.get(self._MSG, words[-1]),
+        )

@@ -1,0 +1,77 @@
+package com.hanggrian.rulebook.codenarc.rules
+
+import com.hanggrian.rulebook.codenarc.Messages
+import com.hanggrian.rulebook.codenarc.createViolation
+import com.hanggrian.rulebook.codenarc.rules.BracketsTrimmingRule.Companion.MSG_FIRST
+import com.hanggrian.rulebook.codenarc.rules.BracketsTrimmingRule.Companion.MSG_LAST
+import org.codehaus.groovy.ast.ASTNode
+import org.codehaus.groovy.ast.expr.Expression
+import org.codehaus.groovy.ast.expr.ListExpression
+import org.codehaus.groovy.ast.expr.MapExpression
+
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#brackets-trimming) */
+public class BracketsTrimmingRule : RulebookAstRule() {
+    override fun getName(): String = "BracketsTrimming"
+
+    override fun getAstVisitorClass(): Class<*> = BracketsTrimmingVisitor::class.java
+
+    internal companion object {
+        const val MSG_FIRST = "brackets.trimming.first"
+        const val MSG_LAST = "brackets.trimming.last"
+    }
+}
+
+public class BracketsTrimmingVisitor : RulebookVisitor() {
+    override fun visitListExpression(node: ListExpression) {
+        if (!isFirstVisit(node)) {
+            return
+        }
+        process(node.expressions, node)
+        super.visitListExpression(node)
+    }
+
+    override fun visitMapExpression(node: MapExpression) {
+        if (!isFirstVisit(node)) {
+            return
+        }
+        process(node.mapEntryExpressions, node)
+        super.visitMapExpression(node)
+    }
+
+    private fun process(parameters: List<Expression>, node: ASTNode) {
+        val (firstElement, lastElement) =
+            parameters
+                .takeUnless { it.isEmpty() }
+                ?.run { first() to last() }
+                ?.takeIf { it.first.lineNumber > -1 && it.second.lineNumber > -1 }
+                ?: return
+        var lineNumber = firstElement.lineNumber
+        var lastLineNumber = lastElement.lastLineNumber
+        while (lineNumber > node.lineNumber) {
+            lineNumber
+                .takeIf { sourceCode.line(it - 1).isBlank() }
+                ?.let {
+                    violations +=
+                        rule.createViolation(
+                            lineNumber,
+                            "",
+                            Messages[MSG_FIRST],
+                        )
+                }
+            lineNumber--
+        }
+        while (lastLineNumber < node.lastLineNumber) {
+            lastLineNumber
+                .takeIf { sourceCode.line(it - 1).isBlank() }
+                ?.let {
+                    violations +=
+                        rule.createViolation(
+                            lastLineNumber,
+                            "",
+                            Messages[MSG_LAST],
+                        )
+                }
+            lastLineNumber++
+        }
+    }
+}

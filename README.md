@@ -20,6 +20,8 @@ standardize existing rules from various linters, providing a consistent style
 across different languages and tools. It also serves as a reference for best
 practices in coding style.
 
+<!-- markdownlint-disable dead-link -->
+
 | Language | Linter | Styles |
 | --- | --- | --- |
 | Java | [Checkstyle](https://github.com/checkstyle/checkstyle/) | [Sun Java Style](https://checkstyle.sourceforge.io/sun_style.html) or<br>[Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) |
@@ -29,6 +31,8 @@ practices in coding style.
 | Python | [Pylint](https://github.com/pylint-dev/pylint/) | [Pylint Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or<br>[Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) |
 | JavaScript | [ESLint](https://github.com/eslint/eslint/) | [Crockford Code Conventions](https://www.crockford.com/code.html) or<br>[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html) |
 | TypeScript | [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint/) | [Crockford Code Conventions](https://www.crockford.com/code.html) or<br>[Google TypeScript Style Guide](https://google.github.io/styleguide/tsguide.html) |
+
+<!-- markdownlint-enable dead-link -->
 
 [View rules](https://hanggrian.github.io/rulebook/rules/)
 

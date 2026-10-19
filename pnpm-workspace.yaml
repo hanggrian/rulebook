@@ -3,3 +3,7 @@ minimumReleaseAge: 0
 packages:
 - "packages/*"
 - "sample*"
+
+overrides:
+  "@csstools/css-parser-algorithms": "4.0.2"
+  "@csstools/css-tokenizer": "4.0.2"

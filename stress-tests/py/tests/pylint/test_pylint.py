@@ -4,7 +4,7 @@ from astroid import parse
 from pylint.testutils import _tokenize_str
 
 from rulebook_pylint.checkers import (
-    NestedIfElseChecker,
+    NoNestedIfElseChecker,
     TrailingCommaChecker,
 )
 from testing.messages import msg
@@ -18,9 +18,9 @@ class TestPylint(AllCheckersTestCase):
         node_all = parse(code)
         tokens = _tokenize_str(code)
         with self.assertAddsMessages(
-            msg(NestedIfElseChecker._MSG_INVERT, (172, 4, 180, 75), node_all.body[33].body[-1]),
+            msg(NoNestedIfElseChecker._MSG_INVERT, (172, 4, 180, 75), node_all.body[33].body[-1]),
             msg(
-                NestedIfElseChecker._MSG_INVERT,
+                NoNestedIfElseChecker._MSG_INVERT,
                 (266, 8, 276, 21),
                 node_all.body[38].body[-2].body[-1],
             ),

@@ -1,0 +1,53 @@
+package com.hanggrian.rulebook.codenarc.rules
+
+import com.hanggrian.rulebook.codenarc.Messages
+import org.codenarc.rule.Violation
+import org.codenarc.source.SourceCode
+
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#comment-trimming) */
+public class CommentTrimmingRule : RulebookFileRule() {
+    override fun getName(): String = "CommentTrimming"
+
+    override fun applyTo(code: SourceCode, violations: MutableList<Violation>): Unit =
+        code
+            .lines
+            .withIndex()
+            .filter { it.index != 0 && "//" in it.value }
+            .forEach { (start, line) ->
+                // continue if this comment is first line
+                code
+                    .line(start - 1)
+                    .takeUnless { "//" in it }
+                    ?: return
+
+                // iterate to find last
+                var end = start
+                while ("//" in code.lines.getOrNull(end + 1).orEmpty()) {
+                    end++
+                }
+
+                // skip blank comment
+                start
+                    .takeUnless { it == end }
+                    ?: return
+
+                // checks for violation
+                line
+                    .takeIf { it.isEolCommentEmpty() }
+                    ?.let { violations += createViolation(start + 1, it, Messages[MSG]) }
+                val endLine =
+                    code
+                        .line(end)
+                        .takeIf { it.isEolCommentEmpty() }
+                        ?: return
+                violations += createViolation(end + 1, endLine, Messages[MSG])
+            }
+
+    internal companion object {
+        const val MSG = "comment.trimming"
+
+        fun String.isEolCommentEmpty() =
+            substringBefore("//").isBlank() &&
+                substringAfter("//").isBlank()
+    }
+}
