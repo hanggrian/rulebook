@@ -1,0 +1,72 @@
+package com.hanggrian.rulebook.codenarc.rules
+
+import kotlin.test.Test
+import kotlin.test.assertIs
+
+class SimpleSizeComparisonRuleTest : RuleTest<SimpleSizeComparisonRule>() {
+    override fun createRule() = SimpleSizeComparisonRule()
+
+    @Test
+    fun `Rule properties`() {
+        rule.assertProperties()
+        assertIs<SimpleSizeComparisonVisitor>(rule.astVisitor)
+    }
+
+    @Test
+    fun `Size check without operator`() =
+        assertNoViolations(
+            """
+            def foo(List<Int> foo) {
+                if (foo) {
+                } else if (!foo) {
+                }
+            }
+            """.trimIndent(),
+        )
+
+    @Test
+    fun `Size check with operator`() =
+        assertTwoViolations(
+            """
+            def foo(List<Int> foo) {
+                if (foo.size() == 0) {
+                } else if (foo.size() > 0) {
+                }
+            }
+            """.trimIndent(),
+            2,
+            "if (foo.size() == 0) {",
+            "Replace comparison with truthy.",
+            3,
+            "} else if (foo.size() > 0) {",
+            "Replace comparison with truthy.",
+        )
+
+    @Test
+    fun `Target last dot`() =
+        assertSingleViolation(
+            """
+            def foo(Foo foo) {
+                if (foo.bar.isEmpty()) {
+                }
+            }
+            """.trimIndent(),
+            2,
+            "if (foo.bar.isEmpty()) {",
+            "Replace comparison with truthy.",
+        )
+
+    @Test
+    fun `Also target isEmpty`() =
+        assertSingleViolation(
+            """
+            def foo(List<Int> foo) {
+                if (foo.isEmpty()) {
+                }
+            }
+            """.trimIndent(),
+            2,
+            "if (foo.isEmpty()) {",
+            "Replace comparison with truthy.",
+        )
+}

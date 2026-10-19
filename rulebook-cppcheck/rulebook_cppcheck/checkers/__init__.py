@@ -33,20 +33,20 @@ from rulebook_cppcheck.checkers.line_length import LineLengthChecker
 from rulebook_cppcheck.checkers.lonely_case import LonelyCaseChecker
 from rulebook_cppcheck.checkers.lonely_if import LonelyIfChecker
 from rulebook_cppcheck.checkers.lowercase_f import LowercaseFChecker
-from rulebook_cppcheck.checkers.lowercase_hexadecimal import LowercaseHexadecimalChecker
+from rulebook_cppcheck.checkers.lowercase_hex import LowercaseHexChecker
 from rulebook_cppcheck.checkers.meaningless_word import MeaninglessWordChecker
 from rulebook_cppcheck.checkers.member_order import MemberOrderChecker
 from rulebook_cppcheck.checkers.member_separator import MemberSeparatorChecker
 from rulebook_cppcheck.checkers.operator_wrap import OperatorWrapChecker
 from rulebook_cppcheck.checkers.package_name import PackageNameChecker
 from rulebook_cppcheck.checkers.parameter_wrap import ParameterWrapChecker
-from rulebook_cppcheck.checkers.parentheses_clip import ParenthesesClipChecker
+from rulebook_cppcheck.checkers.parentheses_clipping import ParenthesesClippingChecker
 from rulebook_cppcheck.checkers.parentheses_trim import ParenthesesTrimChecker
 from rulebook_cppcheck.checkers.redundant_default import RedundantDefaultChecker
 from rulebook_cppcheck.checkers.redundant_else import RedundantElseChecker
 from rulebook_cppcheck.checkers.redundant_if import RedundantIfChecker
 from rulebook_cppcheck.checkers.trailing_newline import TrailingNewlineChecker
-from rulebook_cppcheck.checkers.todo_comment import TodoCommentChecker
+from rulebook_cppcheck.checkers.todo_comment_style import TodoCommentStyleChecker
 from rulebook_cppcheck.checkers.unnecessary_return import UnnecessaryReturnChecker
 from rulebook_cppcheck.checkers.unnecessary_trailing_whitespace import (
     UnnecessaryTrailingWhitespaceChecker,
@@ -85,19 +85,19 @@ __all__: list[str] = [
     'LonelyCaseChecker',
     'LonelyIfChecker',
     'LowercaseFChecker',
-    'LowercaseHexadecimalChecker',
+    'LowercaseHexChecker',
     'MeaninglessWordChecker',
     'MemberOrderChecker',
     'MemberSeparatorChecker',
     'OperatorWrapChecker',
     'PackageNameChecker',
     'ParameterWrapChecker',
-    'ParenthesesClipChecker',
+    'ParenthesesClippingChecker',
     'ParenthesesTrimChecker',
     'RedundantDefaultChecker',
     'RedundantElseChecker',
     'RedundantIfChecker',
-    'TodoCommentChecker',
+    'TodoCommentStyleChecker',
     'TrailingNewlineChecker',
     'UnnecessaryReturnChecker',
     'UnnecessaryTrailingWhitespaceChecker',

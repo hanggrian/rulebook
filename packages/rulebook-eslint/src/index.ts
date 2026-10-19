@@ -7,14 +7,14 @@ import duplicateBlankLineInBlockCommentRule from './rules/duplicate-blank-line-i
 import duplicateBlankLineInCommentRule from './rules/duplicate-blank-line-in-comment.js';
 import emptyFileRule from './rules/empty-file.js';
 import fileNameRule from './rules/file-name.js';
-import lowercaseHexadecimalRule from './rules/lowercase-hexadecimal.js';
+import lowercaseHexRule from './rules/lowercase-hex.js';
 import meaninglessWordRule from './rules/meaningless-word.js';
 import nestedIfElseRule from './rules/nested-if-else.js';
 import parenthesesTrimRule from './rules/parentheses-trim.js';
 import redundantDefaultRule from './rules/redundant-default.js';
 import redundantElseRule from './rules/redundant-else.js';
 import redundantIfRule from './rules/redundant-if.js';
-import todoCommentRule from './rules/todo-comment.js';
+import todoCommentStyleRule from './rules/todo-comment-style.js';
 import unnecessaryContinueRule from './rules/unnecessary-continue.js';
 import unnecessaryLeadingBlankLineRule from './rules/unnecessary-leading-blank-line.js';
 import type { ESLint, Linter } from 'eslint';
@@ -24,10 +24,11 @@ const crockfordConfig: Linter.RulesRecord = {
     'no-case-declarations': 'off',
     'no-undef': 'error',
 
-    '@stylistic/comma-dangle': ['error', 'always-multiline'],
-    'no-unused-vars': 'error',
-    '@rulebook/todo-comment': 'error',
+    '@import/no-duplicates': 'error',
+    'no-unused-vars': ['error', { args: 'none' }],
     '@import/no-namespace': 'error',
+    '@rulebook/todo-comment-style': 'error',
+    '@stylistic/comma-dangle': ['error', 'always-multiline'],
     // Clipping
     '@rulebook/braces-clip': 'error',
     '@stylistic/array-bracket-spacing': 'error',
@@ -39,8 +40,8 @@ const crockfordConfig: Linter.RulesRecord = {
             minimumLengthForMultiline: 100,
         },
     ],
-    // Declaring
-    '@rulebook/lowercase-hexadecimal': 'error',
+    // Declaration
+    '@rulebook/lowercase-hex': 'error',
     '@stylistic/quotes': [
         'error',
         'single',
@@ -50,6 +51,7 @@ const crockfordConfig: Linter.RulesRecord = {
         },
     ],
     '@stylistic/arrow-parens': ['error', 'as-needed'],
+    // Expression
     // Formatting
     '@rulebook/empty-file': 'error',
     'max-lines': ['error', 1000],
@@ -154,7 +156,7 @@ const crockfordConfig: Linter.RulesRecord = {
             startLines: 1,
         },
     ],
-    // Stating
+    // Statement
     'operator-assignment': 'error',
     'no-lonely-if': 'error',
     'no-restricted-syntax': [
@@ -235,11 +237,11 @@ const googleConfig: Linter.RulesRecord = {
     'no-case-declarations': 'off',
     'no-undef': 'error',
 
-    '@stylistic/comma-dangle': ['error', 'always-multiline'],
-    'no-unused-vars': ['error', { args: 'none' }],
-    '@rulebook/todo-comment': 'error',
-    '@import/no-namespace': 'error',
     '@import/no-duplicates': 'error',
+    'no-unused-vars': ['error', { args: 'none' }],
+    '@import/no-namespace': 'error',
+    '@rulebook/todo-comment-style': 'error',
+    '@stylistic/comma-dangle': ['error', 'always-multiline'],
     // Clipping
     '@rulebook/braces-clip': 'error',
     '@stylistic/array-bracket-spacing': 'error',
@@ -251,10 +253,11 @@ const googleConfig: Linter.RulesRecord = {
             minimumLengthForMultiline: 100,
         },
     ],
-    // Declaring
-    '@rulebook/lowercase-hexadecimal': 'error',
+    // Declaration
+    '@rulebook/lowercase-hex': 'error',
     '@stylistic/quotes': ['error', 'single', { allowTemplateLiterals: true }],
     '@stylistic/arrow-parens': ['error', 'always'],
+    // Expression
     // Formatting
     '@rulebook/empty-file': 'error',
     'max-lines': ['error', 1000],
@@ -381,14 +384,46 @@ const googleConfig: Linter.RulesRecord = {
             startLines: 1,
         },
     ],
-    // Stating
+    // Statement
     'operator-assignment': 'error',
     'no-lonely-if': 'error',
     'no-restricted-syntax': [
         'error',
         {
             selector: 'SwitchStatement[cases.length<2]',
-            message: 'Switch statements must have at least 2 cases.',
+            message: "Replace 'when' with 'if' condition.",
+        },
+        {
+            selector:
+                'BinaryExpression[operator=/^(==|<|>)$/]' +
+                '[left.property.name=/^(size|length)$/]' +
+                '[right.value=0]',
+            message: 'Replace comparison with truthy.',
+        },
+        {
+            selector:
+                'BinaryExpression[operator=/^(==|<|>)$/]' +
+                '[left.value=0]' +
+                '[right.property.name=/^(size|length)$/]',
+            message: 'Replace comparison with truthy.',
+        },
+        {
+            selector: "CallExpression[arguments.length=0][callee.property.name='isEmpty']",
+            message: 'Replace comparison with truthy.',
+        },
+        {
+            selector:
+                'BinaryExpression[operator=/^(==|!=)$/] > ' +
+                'Literal[value!=null]:not([value=/^.*$/])',
+            message: "Replace equality with '==='.",
+        },
+        {
+            selector: "BinaryExpression[operator=/^(==|!=)$/] > Identifier[name='undefined']",
+            message: "Replace equality with '==='.",
+        },
+        {
+            selector: 'BinaryExpression[operator=/^(==|!=)$/] > Literal[value=null]',
+            message: "Replace equality with '==='.",
         },
     ],
     'curly': ['error', 'multi-line'],
@@ -495,14 +530,14 @@ const plugin: ESLint.Plugin = {
         'duplicate-blank-line-in-comment': duplicateBlankLineInCommentRule,
         'empty-file': emptyFileRule,
         'file-name': fileNameRule,
-        'lowercase-hexadecimal': lowercaseHexadecimalRule,
+        'lowercase-hex': lowercaseHexRule,
         'meaningless-word': meaninglessWordRule,
         'nested-if-else': nestedIfElseRule,
         'redundant-default': redundantDefaultRule,
         'redundant-else': redundantElseRule,
         'redundant-if': redundantIfRule,
         'parentheses-trim': parenthesesTrimRule,
-        'todo-comment': todoCommentRule,
+        'todo-comment-style': todoCommentStyleRule,
         'unnecessary-continue': unnecessaryContinueRule,
         'unnecessary-initial-blank-line': unnecessaryLeadingBlankLineRule,
     },

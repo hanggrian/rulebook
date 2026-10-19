@@ -1,0 +1,57 @@
+from __future__ import annotations
+
+from astroid.nodes import ClassDef, Const, FunctionDef, Module
+from pylint.typing import Options, TYPE_CHECKING
+
+from rulebook_pylint.checkers.rulebook_checkers import RulebookChecker
+from rulebook_pylint.messages import Messages
+from rulebook_pylint.options import MAX_LINE_LENGTH_OPTION
+
+if TYPE_CHECKING:
+    from pylint.lint import PyLinter
+
+
+class BlockCommentClippingChecker(RulebookChecker):
+    """See detail: https://hanggrian.github.io/rulebook/rules/#block-comment-clipping"""
+    _MSG: str = 'block.comment.clipping'
+
+    _SINGLELINE_TEMPLATE = 6  # """"""
+
+    name: str = 'block-comment-clipping'
+    msgs: dict[str, tuple[str, str, str]] = Messages.of(_MSG)
+    options: Options = (
+        MAX_LINE_LENGTH_OPTION,
+    )
+
+    _max_line_length: int = 100
+
+    def open(self) -> None:
+        self._max_line_length = self.linter.config.rulebook_max_line_length
+
+    def visit_module(self, node: Module) -> None:
+        self._process(node.doc_node)
+
+    def visit_classdef(self, node: ClassDef) -> None:
+        self._process(node.doc_node)
+
+    def visit_functiondef(self, node: FunctionDef) -> None:
+        self._process(node.doc_node)
+
+    def _process(self, docstring: Const | None) -> None:
+        # checks for violation
+        if docstring is None:
+            return
+        if '\n' not in docstring.value:
+            return
+        line: str = docstring.value.strip()
+        if '\n' in line:
+            return
+        if docstring.col_offset is None:
+            return
+        text_length: int = docstring.col_offset + len(line)
+        if text_length + self._SINGLELINE_TEMPLATE <= self._max_line_length:
+            self.add_message(self._MSG, node=docstring)
+
+
+def register(linter: PyLinter) -> None:
+    linter.register_checker(BlockCommentClippingChecker(linter))

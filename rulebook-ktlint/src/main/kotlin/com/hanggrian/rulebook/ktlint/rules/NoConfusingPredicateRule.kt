@@ -1,0 +1,101 @@
+package com.hanggrian.rulebook.ktlint.rules
+
+import com.hanggrian.rulebook.ktlint.Messages
+import com.hanggrian.rulebook.ktlint.RulebookRuleSet
+import com.hanggrian.rulebook.ktlint.contains
+import com.hanggrian.rulebook.ktlint.twoWayMapOf
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.BINARY_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.BLOCK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.CALL_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.DOT_QUALIFIED_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.EXCL
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.EXCLEQ
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.FUNCTION_LITERAL
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.IDENTIFIER
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.IS_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.LAMBDA_ARGUMENT
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.LAMBDA_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.NOT_IN
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.NOT_IS
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.OPERATION_REFERENCE
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.PREFIX_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.REFERENCE_EXPRESSION
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
+
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#no-confusing-predicate) */
+public class NoConfusingPredicateRule : RulebookRule(ID) {
+    override val tokens: TokenSet = create(CALL_EXPRESSION)
+
+    override fun visit(node: ASTNode, emit: Emit) {
+        // skip non-predicate call
+        val block =
+            node
+                .findChildByType(LAMBDA_ARGUMENT)
+                ?.findChildByType(LAMBDA_EXPRESSION)
+                ?.findChildByType(FUNCTION_LITERAL)
+                ?.findChildByType(BLOCK)
+                ?: return
+
+        // find inverted predicate function
+        val functionReplacement =
+            node
+                .findChildByType(REFERENCE_EXPRESSION)
+                ?.findChildByType(IDENTIFIER)
+                ?.run { PREDICATE_CALLS[text] }
+                ?: return
+
+        // checks for violation
+        val expression =
+            block.findChildByType(DOT_QUALIFIED_EXPRESSION)
+                ?: block.findChildByType(BINARY_EXPRESSION)
+                ?: block.findChildByType(PREFIX_EXPRESSION)
+                ?: block.findChildByType(IS_EXPRESSION)
+                ?: return
+        val msg =
+            when {
+                BINARY_EXPRESSION in expression ||
+                    PREFIX_EXPRESSION in expression -> return
+
+                expression.elementType === DOT_QUALIFIED_EXPRESSION -> {
+                    expression
+                        .findChildByType(CALL_EXPRESSION)
+                        ?.findChildByType(REFERENCE_EXPRESSION)
+                        ?.findChildByType(IDENTIFIER)
+                        ?.takeIf { it.text == "isNotEmpty" }
+                        ?: return
+                    MSG_EMPTY
+                }
+
+                else -> {
+                    val operation = expression.findChildByType(OPERATION_REFERENCE) ?: return
+                    when {
+                        EXCLEQ in operation -> MSG_EQUALS
+
+                        EXCL in operation || NOT_IS in operation || NOT_IN in operation ->
+                            MSG_NEGATES
+
+                        else -> return
+                    }
+                }
+            }
+        emit(node.startOffset, Messages[msg, functionReplacement], false)
+    }
+
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:no-confusing-predicate")
+        private const val MSG_EMPTY = "no.confusing.predicate.empty"
+        private const val MSG_EQUALS = "no.confusing.predicate.equals"
+        private const val MSG_NEGATES = "no.confusing.predicate.negates"
+
+        private val PREDICATE_CALLS =
+            twoWayMapOf(
+                "filter" to "filterNot",
+                "filterTo" to "filterNotTo",
+                "memoryOptimizedFilter" to "memoryOptimizedFilterNot",
+                "takeIf" to "takeUnless",
+            )
+    }
+}

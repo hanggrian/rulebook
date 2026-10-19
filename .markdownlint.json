@@ -1,34 +1,15 @@
 {
+  "duplicate-link": false,
   "blanks-around-fences": false,
   "blanks-around-tables": false,
   "code-block-style": false,
   "code-fence-style": {
     "style": "backtick"
   },
-  "dead-link": {
-    "ignored_hosts": [
-      "www.npmjs.com",
-      "pinterest.github.io"
-    ]
-  },
-  "duplicate-link": false,
   "emphasis-style": {
     "style": "asterisk"
   },
-  "fenced-code-language": {
-    "allowed_languages": [
-      "java",
-      "gradle",
-      "groovy",
-      "kotlin",
-      "mermaid",
-      "cpp",
-      "py",
-      "js",
-      "ts",
-      "sh"
-    ]
-  },
+  "fenced-code-language": false,
   "first-line-heading": false,
   "heading-increment": false,
   "heading-style": {

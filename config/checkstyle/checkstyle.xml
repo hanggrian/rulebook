@@ -209,17 +209,17 @@
     <module name="BlockTagPunctuation"/>
     <module name="ArrayTrailingComma"/>
 
-    <!-- Declaring -->
-    <module name="InternalError"/>
+    <!-- Declaration -->
+    <module name="AbstractFunctionInAbstractClass"/>
+    <module name="ExceptionInheritance"/>
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
-    <module name="LowercaseHexadecimal"/>
-    <module name="RedundantQualifier"/>
-    <module name="UnnecessaryAbstract"/>
-    <module name="UnnecessaryParenthesesInLambda"/>
+    <module name="LowercaseHex"/>
+    <module name="NoParenthesesInLambda"/>
+    <module name="NoRedundantQualifier"/>
 
-    <!-- Expressing -->
-    <module name="ComplicatedSizeEquality"/>
+    <!-- Expression -->
+    <module name="SimpleSizeComparison"/>
 
     <!-- Naming -->
     <module name="AbbreviationAsWordInName">
@@ -280,7 +280,7 @@
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
 
-    <!-- Stating -->
+    <!-- Statement -->
     <module name="ComplicatedAssignment"/>
     <module name="IllegalCatch">
       <property

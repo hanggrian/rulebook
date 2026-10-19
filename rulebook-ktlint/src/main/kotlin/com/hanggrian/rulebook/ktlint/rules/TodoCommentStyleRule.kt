@@ -1,0 +1,76 @@
+package com.hanggrian.rulebook.ktlint.rules
+
+import com.hanggrian.rulebook.ktlint.Messages
+import com.hanggrian.rulebook.ktlint.RulebookRuleSet
+import com.hanggrian.rulebook.ktlint.contains
+import com.hanggrian.rulebook.ktlint.nextSiblingsUntil
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.EOL_COMMENT
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_LEADING_ASTERISK
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_SECTION
+import com.pinterest.ktlint.rule.engine.core.api.ElementType.KDOC_TEXT
+import com.pinterest.ktlint.rule.engine.core.api.RuleId
+import com.pinterest.ktlint.rule.engine.core.api.isWhiteSpace20
+import org.jetbrains.kotlin.com.intellij.lang.ASTNode
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet
+import org.jetbrains.kotlin.com.intellij.psi.tree.TokenSet.create
+import kotlin.text.RegexOption.IGNORE_CASE
+
+/** [See detail](https://hanggrian.github.io/rulebook/rules/#todo-comment-style) */
+public class TodoCommentStyleRule : RulebookRule(ID) {
+    override val tokens: TokenSet =
+        create(
+            EOL_COMMENT,
+            KDOC_SECTION,
+            KDOC_LEADING_ASTERISK,
+        )
+
+    override fun visit(node: ASTNode, emit: Emit) {
+        // obtain comment content
+        val text =
+            when (node.elementType) {
+                EOL_COMMENT -> node.text
+
+                KDOC_SECTION ->
+                    node
+                        .takeUnless { KDOC_LEADING_ASTERISK in it }
+                        ?.findChildByType(KDOC_TEXT)
+                        ?.text
+                        ?: return
+
+                else ->
+                    node
+                        .nextSiblingsUntil(KDOC_LEADING_ASTERISK)
+                        .takeUnless { nodes -> nodes.all { it.isWhiteSpace20 } }
+                        ?.joinToString("") { it.text }
+                        ?: return
+            }
+
+        // checks for violation
+        text
+            .takeIf { KEYWORD_REGEX.containsMatchIn(it) }
+            ?.let {
+                emit(
+                    node.startOffset,
+                    Messages[MSG_KEYWORD, KEYWORD_REGEX.find(it)!!.value],
+                    false,
+                )
+            }
+        text
+            .takeIf { SEPARATOR_REGEX.containsMatchIn(it) }
+            ?: return
+        emit(
+            node.startOffset,
+            Messages[MSG_SEPARATOR, SEPARATOR_REGEX.find(text)!!.value.last()],
+            false,
+        )
+    }
+
+    public companion object {
+        public val ID: RuleId = RuleId("${RulebookRuleSet.ID.value}:todo-comment-style")
+        private const val MSG_KEYWORD = "todo.comment.style.keyword"
+        private const val MSG_SEPARATOR = "todo.comment.style.separator"
+
+        private val KEYWORD_REGEX = Regex("""\b(?i:fixme|todo)(?<!FIXME|TODO)\b""")
+        private val SEPARATOR_REGEX = Regex("""\b(todo|fixme)\S""", IGNORE_CASE)
+    }
+}

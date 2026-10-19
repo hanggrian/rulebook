@@ -31,19 +31,19 @@ from rulebook_cppcheck.checkers import (
     LineLengthChecker,
     LonelyCaseChecker,
     LowercaseFChecker,
-    LowercaseHexadecimalChecker,
+    LowercaseHexChecker,
     MeaninglessWordChecker,
     MemberOrderChecker,
     MemberSeparatorChecker,
     OperatorWrapChecker,
     PackageNameChecker,
     ParameterWrapChecker,
-    ParenthesesClipChecker,
+    ParenthesesClippingChecker,
     ParenthesesTrimChecker,
     RedundantDefaultChecker,
     RedundantElseChecker,
     RedundantIfChecker,
-    TodoCommentChecker,
+    TodoCommentStyleChecker,
     TrailingNewlineChecker,
     UnnecessaryReturnChecker,
     UnnecessaryTrailingWhitespaceChecker,
@@ -59,13 +59,14 @@ except ImportError:
 if __name__ == '__main__':
     checkers: list[BaseChecker] = [
         BlockTagPunctuationChecker(),
-        TodoCommentChecker(),
+        TodoCommentStyleChecker(),
         # Clipping
-        ParenthesesClipChecker(),
-        # Declaring
+        ParenthesesClippingChecker(),
+        # Declaration
         LowercaseFChecker(),
-        LowercaseHexadecimalChecker(),
+        LowercaseHexChecker(),
         UppercaseLChecker(),
+        # Expression
         # Formatting
         FileSizeChecker(),
         IndentStyleChecker(),
@@ -92,7 +93,7 @@ if __name__ == '__main__':
         CaseSeparatorChecker(),
         CommentSpacesChecker(),
         MemberSeparatorChecker(),
-        # Stating
+        # Statement
         ComplicatedAssignmentChecker(),
         IllegalCatchChecker(),
         IllegalThrowChecker(),

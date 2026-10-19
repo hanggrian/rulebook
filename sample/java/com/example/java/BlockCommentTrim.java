@@ -15,7 +15,7 @@ public class BlockCommentTrim {
     /**
      * @return a number.
      */
-    public int  bar() {
+    public int bar() {
         return 0;
     }
 

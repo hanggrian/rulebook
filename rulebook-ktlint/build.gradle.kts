@@ -11,7 +11,7 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
-    ktlintRuleset(project(":codecheck-jvm"))
+    ktlintRuleset(project(":codechecks:jvm"))
 
     implementation(libs.ktlint.rule.engine.core)
     implementation(libs.ktlint.cli.ruleset.core)

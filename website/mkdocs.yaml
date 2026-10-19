@@ -113,7 +113,7 @@ nav:
   - External links:
     - Checkstyle standard checks: https://checkstyle.org/checks.html?ext
     - CodeNarc rules: https://codenarc.org/codenarc-rule-index.html?ext
-    - Ktlint standard rules: https://pinterest.github.io/ktlint/latest/rules/standard/?ext
+    - Ktlint standard rules: https://ktlint.github.io/ktlint/latest/rules/standard/?ext
     - Cppcheck checks: https://sourceforge.net/p/cppcheck/wiki/ListOfChecks/?ext
     - Pylint checkers: https://pylint.pycqa.org/en/latest/user_guide/checkers/features.html?ext
     - ESLint rules: https://eslint.org/docs/latest/rules/?ext

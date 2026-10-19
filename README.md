@@ -24,7 +24,7 @@ practices in coding style.
 | --- | --- | --- |
 | Java | [Checkstyle](https://github.com/checkstyle/checkstyle/) | [Sun Java Style](https://checkstyle.sourceforge.io/sun_style.html) or<br>[Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) |
 | Groovy | [CodeNarc](https://github.com/CodeNarc/CodeNarc/) | [Groovy Style Guide](https://groovy-lang.org/style-guide.html) |
-| Kotlin | [Ktlint](https://github.com/pinterest/ktlint/) | [Ktlint Official Style](https://pinterest.github.io/ktlint/1.0.1/rules/code-styles/) |
+| Kotlin | [Ktlint](https://github.com/pinterest/ktlint/) | [Ktlint Official Style](https://ktlint.github.io/ktlint/1.0.1/rules/code-styles/) |
 | C/C++ | [Cppcheck](https://github.com/danmar/cppcheck/) | [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) or<br>[Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) |
 | Python | [Pylint](https://github.com/pylint-dev/pylint/) | [Pylint Style](https://pylint.pycqa.org/en/latest/user_guide/configuration/all-options.html) or<br>[Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) |
 | JavaScript | [ESLint](https://github.com/eslint/eslint/) | [Crockford Code Conventions](https://www.crockford.com/code.html) or<br>[Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html) |
@@ -114,7 +114,7 @@ npm i rulebook-typescript-eslint typescript-eslint globals \
 
 ### Ktlint
 
-- Apply [Ktlint Integration](https://pinterest.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration)
+- Apply [Ktlint Integration](https://ktlint.github.io/ktlint/0.49.1/install/integrations/#custom-gradle-integration)
   to Gradle project.
 - Using configuration `ktlint`, add this project as dependency.
 
@@ -149,7 +149,7 @@ style to it.
 
 1.  Ktlint Style
 
-    Explained in [Ktlint IntelliJ IDEA Configuration](https://pinterest.github.io/ktlint/0.49.1/rules/configuration-intellij-idea/),
+    Explained in [Ktlint IntelliJ IDEA Configuration](https://ktlint.github.io/ktlint/0.49.1/rules/configuration-intellij-idea/),
     using standard [Kotlin coding conventions](https://kotlinlang.org/docs/coding-conventions.html)
     is enough:
 
@@ -161,4 +161,4 @@ style to it.
     Explained in [Google Java Format](https://github.com/google/google-java-format/):
 
     - In **File > Settings > Editor > Code Style > Java**, import
-      [IntelliJ Java Google Style file](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml).
+      [IntelliJ Java Google Style file](https://android.googlesource.com/platform/external/google-styleguide/+/b72dc1cc671e70b5cba6a5e72283a7705b90dee4/intellij-java-google-style.xml).

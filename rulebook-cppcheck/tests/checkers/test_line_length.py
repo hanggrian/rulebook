@@ -6,6 +6,7 @@ from .checker_case import CheckerTestCase
 from ..asserts import assert_properties
 
 
+# noinspection PyUnresolvedReferences
 class TestLineLengthChecker(CheckerTestCase):
     CHECKER_CLASS = LineLengthChecker
 

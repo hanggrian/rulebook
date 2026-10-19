@@ -12,7 +12,7 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
-    ktlintRuleset(project(":codecheck-jvm"))
+    ktlintRuleset(project(":codechecks:jvm"))
 
     api(libs.groovy)
 

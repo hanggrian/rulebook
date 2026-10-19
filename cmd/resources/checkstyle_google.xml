@@ -517,18 +517,18 @@
     <module name="ArrayTrailingComma"/>
     <module name="UnusedImports"/>
 
-    <!-- Declaring -->
-    <module name="InternalError"/>
+    <!-- Declaration -->
+    <module name="AbstractFunctionInAbstractClass"/>
+    <module name="ExceptionInheritance"/>
     <module name="HideUtilityClassConstructor"/>
     <module name="LowercaseD"/>
     <module name="LowercaseF"/>
-    <module name="LowercaseHexadecimal"/>
-    <module name="RedundantQualifier"/>
-    <module name="UnnecessaryAbstract"/>
-    <module name="UnnecessaryParenthesesInLambda"/>
+    <module name="LowercaseHex"/>
+    <module name="NoParenthesesInLambda"/>
+    <module name="NoRedundantQualifier"/>
 
-    <!-- Expressing -->
-    <module name="ComplicatedSizeComparison"/>
+    <!-- Expression -->
+    <module name="SimpleSizeComparison"/>
 
     <!-- Naming -->
     <module name="ConstantName"/>
@@ -555,7 +555,7 @@
     <module name="CaseSeparator"/>
     <module name="CommentSpaces"/>
 
-    <!-- Stating -->
+    <!-- Statement -->
     <module name="ComplicatedAssignment"/>
     <module name="IllegalCatch">
       <property

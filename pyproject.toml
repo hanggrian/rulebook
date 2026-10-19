@@ -2,9 +2,9 @@
 members = [
   "rulebook-cppcheck",
   "rulebook-pylint",
-  "codecheck-py",
-  "testing-pylint",
-  "stress-test-py",
+  "codechecks/py",
+  "testings/pylint",
+  "stress-tests/py",
 ]
 
 [tool.uv.sources]
@@ -17,8 +17,8 @@ lint1 = "cppcheck --enable=all --suppress=checkersReport --suppress=missingInclu
 lint2 = "cppcheck --enable=all --suppress=checkersReport --suppress=missingIncludeSystem --addon=sample-configured/custom_addon.json sample-configured/c/*.c sample-configured/cpp/*.cpp"
 lint3 = "pylint rulebook-cppcheck/"
 lint4 = "pylint rulebook-pylint/"
-lint5 = "pylint testing-pylint/testing/"
-lint6 = "pylint stress-test-py/tests/"
+lint5 = "pylint testings/pylint/testing/"
+lint6 = "pylint stress-tests/py/tests/"
 lint7 = "pylint sample/"
 lint8 = "pylint sample-configured/ --rcfile=sample-configured/custom_pylintrc"
 lint9 = "stylebook ."
@@ -35,7 +35,7 @@ lint.parallel = [
 ]
 test1 = "pytest rulebook-cppcheck/"
 test2 = "pytest rulebook-pylint/"
-test3 = "pytest stress-test-py/"
+test3 = "pytest stress-tests/py/"
 test = ["test1", "test2", "test3"]
 cov1 = "pytest rulebook-cppcheck/ --cov=rulebook-cppcheck"
 cov2 = "pytest rulebook-pylint/ --cov=rulebook-pylint --cov-append"

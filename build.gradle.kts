@@ -116,11 +116,14 @@ subprojects {
     }
     tasks {
         afterEvaluate {
-            val compileTestJava by getting(JavaCompile::class)
-            compileTestJava.options.release.set(11)
-
-            val compileTestKotlin by getting(KotlinCompile::class)
-            compileTestKotlin.compilerOptions.jvmTarget.set(JvmTarget.JVM_11)
+            (findByName(JavaPlugin.COMPILE_TEST_JAVA_TASK_NAME) as? JavaCompile)
+                ?.options
+                ?.release
+                ?.set(11)
+            (findByName("compileTestKotlin") as? KotlinCompile)
+                ?.compilerOptions
+                ?.jvmTarget
+                ?.set(JvmTarget.JVM_11)
         }
         withType<Test>().configureEach {
             useJUnitPlatform()

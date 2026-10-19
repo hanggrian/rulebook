@@ -11,11 +11,11 @@ plugins {
 kotlin.explicitApi()
 
 dependencies {
-    ktlintRuleset(project(":codecheck-jvm"))
+    ktlintRuleset(project(":codechecks:jvm"))
 
     implementation(libs.checkstyle)
 
-    testImplementation(project(":testing-checkstyle"))
+    testImplementation(project(":testings:checkstyle"))
     testImplementation(kotlin("test-junit5", libs.versions.kotlin.get()))
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.bundles.junit5)

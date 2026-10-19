@@ -5,10 +5,10 @@ import com.pinterest.ktlint.test.LintViolation
 import kotlin.test.Test
 
 class ComplicatedSizeEqualityRuleTest : RuleTest() {
-    private val assertThatCode = assertThatRule { ComplicatedSizeEqualityRule() }
+    private val assertThatCode = assertThatRule { SimpleSizeComparisonRule() }
 
     @Test
-    fun `Rule properties`() = ComplicatedSizeEqualityRule().assertProperties()
+    fun `Rule properties`() = SimpleSizeComparisonRule().assertProperties()
 
     @Test
     fun `Size check without operator`() =

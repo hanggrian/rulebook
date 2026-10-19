@@ -7,6 +7,7 @@ from .checker_case import CheckerTestCase
 from ..asserts import assert_properties
 
 
+# noinspection PyUnresolvedReferences
 class TestClassNameChecker(CheckerTestCase):
     CHECKER_CLASS = ClassNameChecker
 

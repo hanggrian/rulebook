@@ -43,18 +43,20 @@ load-plugins=
   pylint.extensions.dict_init_mutate,
   # Extra
   pylint.extensions.typing,
-  rulebook_pylint.checkers.import_style,
-  rulebook_pylint.checkers.todo_comment,
+  rulebook_pylint.checkers.import_grouping,
+  rulebook_pylint.checkers.no_duplicate_import,
+  rulebook_pylint.checkers.todo_comment_style,
   rulebook_pylint.checkers.trailing_comma,
   # Clipping
-  rulebook_pylint.checkers.block_comment_clip,
-  rulebook_pylint.checkers.parentheses_clip,
-  # Declaring
+  rulebook_pylint.checkers.block_comment_clipping,
+  rulebook_pylint.checkers.parentheses_clipping,
+  # Declaration
+  rulebook_pylint.checkers.abstract_function_in_abstract_class,
   pylint.extensions.docstyle,
-  rulebook_pylint.checkers.internal_error,
-  rulebook_pylint.checkers.lowercase_hexadecimal,
+  rulebook_pylint.checkers.exception_inheritance,
+  rulebook_pylint.checkers.lowercase_hex,
   pylint.checkers.strings,
-  rulebook_pylint.checkers.unnecessary_abstract,
+  # Expression
   # Formatting
   # Naming
   rulebook_pylint.checkers.abbreviation_as_word,
@@ -69,7 +71,7 @@ load-plugins=
   rulebook_pylint.checkers.case_separator,
   rulebook_pylint.checkers.comment_spaces,
   rulebook_pylint.checkers.member_separator,
-  # Stating
+  # Statement
   rulebook_pylint.checkers.complicated_assignment,
   rulebook_pylint.checkers.lonely_case,
   rulebook_pylint.checkers.nested_if_else,

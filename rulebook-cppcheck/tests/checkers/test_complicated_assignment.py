@@ -6,6 +6,7 @@ from .checker_case import CheckerTestCase
 from ..asserts import assert_properties
 
 
+# noinspection PyUnresolvedReferences
 class TestComplicatedAssignmentChecker(CheckerTestCase):
     CHECKER_CLASS = ComplicatedAssignmentChecker
 

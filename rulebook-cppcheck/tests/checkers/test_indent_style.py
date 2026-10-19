@@ -7,6 +7,7 @@ from .checker_case import CheckerTestCase
 from ..asserts import assert_properties
 
 
+# noinspection PyUnresolvedReferences
 class TestIndentStyleChecker(CheckerTestCase):
     CHECKER_CLASS = IndentStyleChecker
 

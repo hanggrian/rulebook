@@ -10,11 +10,11 @@ include(
     "rulebook-checkstyle",
     "rulebook-ktlint",
     "rulebook-codenarc",
-    "codecheck-jvm",
+    "codechecks:jvm",
 )
 include(
-    "testing-checkstyle",
-    "stress-test-jvm",
+    "testings:checkstyle",
+    "stress-tests:jvm",
 )
 include(
     "sample",

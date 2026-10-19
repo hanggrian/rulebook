@@ -7,7 +7,8 @@ name = "rulebook-cppcheck"
 version = "0.3"
 license = { text = "Apache-2.0" }
 description = "Aggressive source code linter extensions"
-readme = "../README.md"
+# TODO when publishing, put README.md in this directory and uncomment this line
+# readme = "README.md"
 authors = [{ name = "Hendra Anggrian", email = "hanggrian@proton.me" }]
 keywords = ["lint rules", "lint checkers"]
 requires-python = ">=3.10"

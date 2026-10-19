@@ -6,6 +6,7 @@ from .checker_case import CheckerTestCase
 from ..asserts import assert_properties
 
 
+# noinspection PyUnresolvedReferences
 class TestFileNameChecker(CheckerTestCase):
     CHECKER_CLASS = FileNameChecker
 

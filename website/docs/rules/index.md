@@ -1,73 +1,4 @@
-### Import style
-
-Group import statements from the same package. In Python, use parentheses to
-wrap long import statements.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Python"
-
-    ```py hl_lines="1-3"
-    from fruit import Apple
-    from fruit import Banana, \
-        Orange
-
-    fruits = [Apple(), Banana(), Orange()]
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1-2"
-    import { Apple } from 'fruit';
-    import { Banana, Orange } from 'fruit';
-
-    const fruits = [new Apple(), new Banana(), new Orange()];
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1-2"
-    import { Apple } from 'fruit';
-    import { Banana, Orange } from 'fruit';
-
-    const fruits: Fruit[] = [new Apple(), new Banana(), new Orange()];
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Python"
-
-    ```py hl_lines="1-5"
-    from fruit import (
-        Apple,
-        Banana,
-        Orange,
-    )
-
-    fruits = [Apple(), Banana(), Orange()]
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1-5"
-    import {
-        Apple,
-        Banana,
-        Orange,
-    } from 'fruit';
-
-    const fruits = [new Apple(), new Banana(), new Orange()];
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1-5"
-    import {
-        Apple,
-        Banana,
-        Orange,
-    } from 'fruit';
-
-    const fruits: Fruit[] = [new Apple(), new Banana(), new Orange()];
-    ```
-
-### Missing block tag punctuation
+### Block tag punctuation
 
 Description of certain block tags, if present, should end with a period,
 question mark or exclamation mark.
@@ -159,7 +90,298 @@ question mark or exclamation mark.
     | :material-language-kotlin:{ .lg .middle } `rulebook_punctuate_block_tags` | @constructor, @receiver, @property, @param, @return |
     | :material-language-c:{ .lg .middle }:material-language-cpp:{ .lg .middle } `--punctuate-block-tags` | @param, @return |
 
-### TODO comment
+### Import grouping
+
+Multiline import statements should be grouped with parentheses.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Python"
+
+    ```py hl_lines="1-2"
+    from fruit import Apple, \
+        Banana
+
+    eat(Apple())
+    eat(Banana())
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Python"
+
+    ```py hl_lines="1-4"
+    from fruit import (
+        Apple,
+        Banana,
+    )
+
+    eat(Apple())
+    eat(Banana())
+    ```
+
+### No block tag alignment
+
+### No duplicate import
+
+Group import statements from the same package. In Python, use parentheses to
+wrap long import statements.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Python"
+
+    ```py hl_lines="1-2"
+    from shape import Circle
+    from shape import Square
+
+    shapes = [Circle(), Square()]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1-2"
+    import { Circle } from 'shape';
+    import { Square } from 'shape';
+
+    const shapes = [new Circle(), new Square()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1-2"
+    import { Circle } from 'shape';
+    import { Square } from 'shape';
+
+    const shapes: Shape[] = [new Circle(), new Square()];
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Python"
+
+    ```py hl_lines="1-4"
+    from shape import (
+        Circle,
+        Square,
+    )
+
+    shapes = [Circle(), Square()]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1-4"
+    import {
+        Circle,
+        Square,
+    } from 'shape';
+
+    const shapes = [new Circle(), new Square()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1-4"
+    import {
+        Circle,
+        Square,
+    } from 'shape';
+
+    const shapes: Shape[] = [new Circle(), new Square()];
+    ```
+
+### No unused import
+
+Remove unused import statements.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="2"
+    import com.example.fruit.Apple;
+    import com.example.fruit.Banana;
+
+    Apple apple = new Apple();
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="2"
+    import com.example.fruit.Apple
+    import com.example.fruit.Banana
+
+    var apple = new Apple()
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="2"
+    import com.example.fruit.Apple
+    import com.example.fruit.Banana
+
+    val apple = Apple()
+    ```
+=== "Python"
+
+    ```py hl_lines="1"
+    from fruit import Apple, Banana
+
+    apple = Apple()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    import { Apple, Banana } from 'fruit';
+
+    const apple = new Apple();
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    import { Apple, Banana } from 'fruit';
+
+    const apple: Apple = new Apple();
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    import com.example.fruit.Apple;
+
+    Apple apple = new Apple();
+    ```
+=== "Groovy"
+
+    ```groovy
+    import com.example.fruit.Apple
+
+    var apple = new Apple()
+    ```
+=== "Kotlin"
+
+    ```kotlin
+    import com.example.fruit.Apple
+
+    val apple = Apple()
+    ```
+=== "Python"
+
+    ```py hl_lines="1"
+    from fruit import Apple
+
+    apple = Apple()
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    import { Apple } from 'fruit';
+
+    const apple = new Apple();
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    import { Apple } from 'fruit';
+
+    const apple: Apple = new Apple();
+    ```
+
+### No wildcard import
+
+Import directives must be single-type instead of wildcard imports.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java hl_lines="1"
+    import com.example.fruit.*;
+
+    List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    import com.example.fruit.*
+
+    var fruits = [new Apple(), new Banana()]
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    import com.example.fruit.*
+
+    val fruits = listOf(Apple(), Banana())
+    ```
+=== "Python"
+
+    ```py hl_lines="1"
+    from fruit import *
+
+    fruits = [Apple(), Banana()]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    import * as fruit from 'fruit';
+
+    const fruits = [new fruit.Apple(), new fruit.Banana()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    import * as fruit from 'fruit';
+
+    const fruits: Fruit[] = [new fruit.Apple(), new fruit.Banana()];
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java hl_lines="1-2"
+    import com.example.fruit.Apple;
+    import com.example.fruit.Banana;
+
+    List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1-2"
+    import com.example.fruit.Apple
+    import com.example.fruit.Banana
+
+    var fruits = [new Apple(), new Banana()]
+    ```
+=== "Kotlin"
+
+    ```kotlin hl_lines="1-2"
+    import com.example.fruit.Apple
+    import com.example.fruit.Banana
+
+    val fruits = listOf(Apple(), Banana())
+    ```
+=== "Python"
+
+    ```py hl_lines="1"
+    from fruit import Apple, Banana
+
+    fruits = [Apple(), Banana()]
+    ```
+=== "JavaScript"
+
+    ```js hl_lines="1"
+    import { Apple, Banana } from 'fruit';
+
+    const fruits = [new Apple(), new Banana()];
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    import { Apple, Banana, Fruit } from 'fruit';
+
+    const fruits: Fruit[] = [new Apple(), new Banana()];
+    ```
+
+### TODO comment style
 
 TODO comment keywords should be uppercase and followed by exactly one space.
 
@@ -586,207 +808,9 @@ line.
     ): void {}
     ```
 
-### Unnecessary block tag alignment
-
-
-
-### Unused import
-
-Remove unused import statements.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="2"
-    import com.example.fruit.Apple;
-    import com.example.fruit.Banana;
-
-    Apple apple = new Apple();
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="2"
-    import com.example.fruit.Apple
-    import com.example.fruit.Banana
-
-    var apple = new Apple()
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="2"
-    import com.example.fruit.Apple
-    import com.example.fruit.Banana
-
-    val apple = Apple()
-    ```
-=== "Python"
-
-    ```py hl_lines="1"
-    from fruit import Apple, Banana
-
-    apple = Apple()
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1"
-    import { Apple, Banana } from 'fruit';
-
-    const apple = new Apple();
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1"
-    import { Apple, Banana } from 'fruit';
-
-    const apple: Apple = new Apple();
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    import com.example.fruit.Apple;
-
-    Apple apple = new Apple();
-    ```
-=== "Groovy"
-
-    ```groovy
-    import com.example.fruit.Apple
-
-    var apple = new Apple()
-    ```
-=== "Kotlin"
-
-    ```kotlin
-    import com.example.fruit.Apple
-
-    val apple = Apple()
-    ```
-=== "Python"
-
-    ```py hl_lines="1"
-    from fruit import Apple
-
-    apple = Apple()
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1"
-    import { Apple } from 'fruit';
-
-    const apple = new Apple();
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1"
-    import { Apple } from 'fruit';
-
-    const apple: Apple = new Apple();
-    ```
-
-### Wildcard import
-
-Import directives must be single-type instead of wildcard imports.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="1"
-    import com.example.fruit.*;
-
-    List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    import com.example.fruit.*
-
-    var fruits = [new Apple(), new Banana()]
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1"
-    import com.example.fruit.*
-
-    val fruits = listOf(Apple(), Banana())
-    ```
-=== "Python"
-
-    ```py hl_lines="1"
-    from fruit import *
-
-    fruits = [Apple(), Banana()]
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1"
-    import * as fruit from 'fruit';
-
-    const fruits = [new fruit.Apple(), new fruit.Banana()];
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1"
-    import * as fruit from 'fruit';
-
-    const fruits: Fruit[] = [new fruit.Apple(), new fruit.Banana()];
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="1-2"
-    import com.example.fruit.Apple;
-    import com.example.fruit.Banana;
-
-    List<Fruit> fruits = Arrays.asList(new Apple(), new Banana());
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1-2"
-    import com.example.fruit.Apple
-    import com.example.fruit.Banana
-
-    var fruits = [new Apple(), new Banana()]
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1-2"
-    import com.example.fruit.Apple
-    import com.example.fruit.Banana
-
-    val fruits = listOf(Apple(), Banana())
-    ```
-=== "Python"
-
-    ```py hl_lines="1"
-    from fruit import Apple, Banana
-
-    fruits = [Apple(), Banana()]
-    ```
-=== "JavaScript"
-
-    ```js hl_lines="1"
-    import { Apple, Banana } from 'fruit';
-
-    const fruits = [new Apple(), new Banana()];
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1"
-    import { Apple, Banana, Fruit } from 'fruit';
-
-    const fruits: Fruit[] = [new Apple(), new Banana()];
-    ```
-
 ## Clipping
 
-### Block comment clip
+### Block comment clipping
 
 Short block comments should be written in a single line.
 
@@ -868,7 +892,7 @@ Short block comments should be written in a single line.
     /** The quick brown fox jumps over the lazy dog. */
     ```
 
-### Braces clip
+### Braces clipping
 
 Empty code blocks should be joined with the preceding code.
 
@@ -955,7 +979,7 @@ Empty code blocks should be joined with the preceding code.
     function main(): void {}
     ```
 
-### Brackets clip
+### Brackets clipping
 
 Empty collection initializers should be joined with the preceding code.
 
@@ -1020,7 +1044,7 @@ Empty collection initializers should be joined with the preceding code.
     const numbers: number[] = [];
     ```
 
-### Parentheses clip
+### Parentheses clipping
 
 Empty method declarations and calls should be joined with the preceding code.
 
@@ -1140,7 +1164,7 @@ Empty method declarations and calls should be joined with the preceding code.
     }
     ```
 
-### Tags clip
+### Tags clipping
 
 Empty generic types should be joined with the preceding code.
 
@@ -1191,63 +1215,91 @@ Empty generic types should be joined with the preceding code.
     }
     ```
 
-## Declaring
+## Declaration
 
-### Deprecated type
+### Abstract function in abstract class
 
-Prefer to use built-in types provided by the language.
+Abstract classes need at least one abstract function.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
+=== "Java"
+
+    ```java hl_lines="1"
+    abstract class Vehicle {
+        void start() {}
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    abstract class Vehicle {
+        def start() {}
+    }
+    ```
 === "Kotlin"
 
-    ```kotlin hl_lines="1 4"
-    import java.util.ArrayList
-
-    val names = arrayListOf<String>()
-    val people = java.util.ArrayList<Person>()
+    ```kotlin hl_lines="1"
+    abstract class Vehicle {
+        fun start() {}
+    }
     ```
 === "Python"
 
-    ```py hl_lines="1 3"
-    from typing import Optional
+    ```py hl_lines="3"
+    from abc import ABC
 
-    def get_name(person) -> Optional[str]:
-        return person['name']
+    class Vehicle(ABC):
+        def start(self):
+            pass
     ```
 === "TypeScript"
 
-    ```ts hl_lines="1 3"
-    type Nullable<T> = T | null;
-
-    function getName(person: any): Nullable<string> {
-        return person.name;
+    ```ts hl_lines="1"
+    abstract class Vehicle {
+        start() {}
     }
     ```
 
 **:material-star-four-points:{ #accent } After**
 
+=== "Java"
+
+    ```java hl_lines="1"
+    class Vehicle {
+        void start() {}
+    }
+    ```
+=== "Groovy"
+
+    ```groovy hl_lines="1"
+    class Vehicle {
+        def start() {}
+    }
+    ```
 === "Kotlin"
 
-    ```kotlin hl_lines="2"
-    val names = arrayListOf<String>()
-    val people = ArrayList<Person>()
+    ```kotlin hl_lines="1"
+    class Vehicle {
+        fun start() {}
+    }
     ```
 === "Python"
 
     ```py hl_lines="1"
-    def get_name(person) -> str | None:
-        return person['name']
+    class Vehicle:
+        def start(self):
+            pass
     ```
 === "TypeScript"
 
     ```ts hl_lines="1"
-    function getName(person: any): string | null {
-        return person.name;
+    class Vehicle {
+        start() {}
     }
     ```
 
-### Double quotes in block comment
+### Double-quoted block comment
 
 Use double quotes in Python docstrings.
 
@@ -1271,7 +1323,7 @@ Use double quotes in Python docstrings.
     """
     ```
 
-### Internal error
+### Exception inheritance
 
 Use `Exception` as superclass of custom exceptions. Most applications should not
 extend `Error` or `Throwable`.
@@ -1322,6 +1374,34 @@ extend `Error` or `Throwable`.
     ```py
     class PurchaseException(Exception):
         pass
+    ```
+
+### Inlined contract function
+
+Kotlin contract functions that carry a runnable parameter should have `inline`
+modifier. Without the modifier, user cannot assign a global variable within the
+code block.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    fun action(block: () -> Unit) {
+        contract { callsInPlace(block, EXACTLY_ONCE) }
+        block()
+    }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+
+    ```kotlin hl_lines="1"
+    inline fun action(block: () -> Unit) {
+        contract { callsInPlace(block, EXACTLY_ONCE) }
+        block()
+    }
     ```
 
 ### Lowercase d
@@ -1405,7 +1485,7 @@ Floating point literals should be suffixed with lowercase `f`.
     float half = 0.5f;
     ```
 
-### Lowercase Hexadecimal
+### Lowercase hex
 
 All letters in hexadecimal literals should be lowercase.
 
@@ -1505,20 +1585,35 @@ Integer literals should be suffixed with lowercase `i`.
     var ten = 10i
     ```
 
-### Missing inline in contract
+### No deprecated type
 
-Kotlin contract functions that carry a runnable parameter should have `inline`
-modifier. Without the modifier, user cannot assign a global variable within the
-code block.
+Prefer to use built-in types provided by the language.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
 === "Kotlin"
 
-    ```kotlin hl_lines="1"
-    fun action(block: () -> Unit) {
-        contract { callsInPlace(block, EXACTLY_ONCE) }
-        block()
+    ```kotlin hl_lines="1 4"
+    import java.util.ArrayList
+
+    val names = arrayListOf<String>()
+    val people = java.util.ArrayList<Person>()
+    ```
+=== "Python"
+
+    ```py hl_lines="1 3"
+    from typing import Optional
+
+    def get_name(person) -> Optional[str]:
+        return person['name']
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1 3"
+    type Nullable<T> = T | null;
+
+    function getName(person: any): Nullable<string> {
+        return person.name;
     }
     ```
 
@@ -1526,17 +1621,85 @@ code block.
 
 === "Kotlin"
 
-    ```kotlin hl_lines="1"
-    inline fun action(block: () -> Unit) {
-        contract { callsInPlace(block, EXACTLY_ONCE) }
-        block()
+    ```kotlin hl_lines="2"
+    val names = arrayListOf<String>()
+    val people = ArrayList<Person>()
+    ```
+=== "Python"
+
+    ```py hl_lines="1"
+    def get_name(person) -> str | None:
+        return person['name']
+    ```
+=== "TypeScript"
+
+    ```ts hl_lines="1"
+    function getName(person: any): string | null {
+        return person.name;
     }
     ```
 
-### Missing private constructor
+### No parentheses in lambda
 
-Utility classes should have a final modifier and a private constructor to
-prevent instantiation.
+Single parameter lambdas should not have parentheses.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Java"
+
+    ```java
+    files.forEach((file) -> System.out.println(file));
+    ```
+=== "Groovy"
+
+    ```groovy
+    files.forEach((file) -> System.out.println(file))
+    ```
+=== "JavaScript"
+
+    ```js
+    files.forEach((file) => console.log(file));
+    ```
+=== "TypeScript"
+
+    ```ts
+    files.forEach((file: string) => console.log(file));
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Java"
+
+    ```java
+    files.forEach(file -> System.out.println(file));
+    ```
+=== "Groovy"
+
+    ```groovy
+    files.forEach(file -> System.out.println(file))
+    ```
+=== "JavaScript"
+
+    ```js
+    files.forEach(file => console.log(file));
+    ```
+=== "TypeScript"
+
+    ```ts
+    files.forEach((file: string) => console.log(file));
+    ```
+
+!!! tip
+
+    Parentheses on lambda parameters is a syntax error in:
+
+    - Kotlin if parameter is single
+    - Groovy closures, not lambdas
+
+### No public constructor in utility class
+
+Utility classes should have a private or protected constructor to prevent
+instantiation. Default constructors are considered public.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
@@ -1564,7 +1727,7 @@ prevent instantiation.
 === "Java"
 
     ```java hl_lines="1-2"
-    final class Lists {
+    class Lists {
         private Lists() {}
 
         static List<String> of(String... elements) {
@@ -1575,7 +1738,7 @@ prevent instantiation.
 === "Groovy"
 
     ```groovy hl_lines="1-2"
-    final class Lists {
+    class Lists {
         private Lists() {}
 
         static List<String> of(String... elements) {
@@ -1584,7 +1747,7 @@ prevent instantiation.
     }
     ```
 
-### Redundant qualifier
+### No redundant qualifier
 
 Strip fully qualified names when they are already imported.
 
@@ -1622,7 +1785,7 @@ Strip fully qualified names when they are already imported.
     def read(FileInputStream stream) {}
     ```
 
-### Single quotes in literal
+### Single-quoted literal
 
 Wrap string in single quotes, unless there is a template or a single quote.
 
@@ -1688,145 +1851,6 @@ Wrap string in single quotes, unless there is a template or a single quote.
     console.log(`G'day, ${name}`);
     ```
 
-### Unnecessary abstract
-
-Abstract classes need at least one abstract function.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java hl_lines="1"
-    abstract class Vehicle {
-        void start() {}
-    }
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    abstract class Vehicle {
-        def start() {}
-    }
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1"
-    abstract class Vehicle {
-        fun start() {}
-    }
-    ```
-=== "Python"
-
-    ```py hl_lines="3"
-    from abc import ABC
-
-    class Vehicle(ABC):
-        def start(self):
-            pass
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1"
-    abstract class Vehicle {
-        start() {}
-    }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java hl_lines="1"
-    class Vehicle {
-        void start() {}
-    }
-    ```
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    class Vehicle {
-        def start() {}
-    }
-    ```
-=== "Kotlin"
-
-    ```kotlin hl_lines="1"
-    class Vehicle {
-        fun start() {}
-    }
-    ```
-=== "Python"
-
-    ```py hl_lines="1"
-    class Vehicle:
-        def start(self):
-            pass
-    ```
-=== "TypeScript"
-
-    ```ts hl_lines="1"
-    class Vehicle {
-        start() {}
-    }
-    ```
-
-### Unnecessary parentheses in lambda
-
-Single parameter lambdas should not have parentheses.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Java"
-
-    ```java
-    files.forEach((file) -> System.out.println(file));
-    ```
-=== "Groovy"
-
-    ```groovy
-    files.forEach((file) -> System.out.println(file))
-    ```
-=== "JavaScript"
-
-    ```js
-    files.forEach((file) => console.log(file));
-    ```
-=== "TypeScript"
-
-    ```ts
-    files.forEach((file: string) => console.log(file));
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Java"
-
-    ```java
-    files.forEach(file -> System.out.println(file));
-    ```
-=== "Groovy"
-
-    ```groovy
-    files.forEach(file -> System.out.println(file))
-    ```
-=== "JavaScript"
-
-    ```js
-    files.forEach(file => console.log(file));
-    ```
-=== "TypeScript"
-
-    ```ts
-    files.forEach((file: string) => console.log(file));
-    ```
-
-!!! tip
-
-    Parentheses on lambda parameters is a syntax error in:
-
-    - Kotlin if parameter is single
-    - Groovy closures, not lambdas
-
 ### Uppercase L
 
 Long integer literals should be suffixed with uppercase `L`.
@@ -1867,9 +1891,103 @@ Long integer literals should be suffixed with uppercase `L`.
     long ten_million = 10'000'000L;
     ```
 
-## Expressing
+## Expression
 
-### Complicated boolean equality
+### Literal comparison
+
+Use structural equality instead of referential equality when comparing with
+primitive values. In Kotlin, `null` is included in the set of primitive values.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+
+    ```kotlin
+    user.takeUnless { it.name === null }
+    ```
+=== "Python"
+
+    ```py
+    if len(user.addresses) is 1:
+        continue
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+
+    ```kotlin
+    user.takeUnless { it.name == null }
+    ```
+=== "Python"
+
+    ```py
+    if len(user.addresses) == 1:
+        continue
+    ```
+
+### No confusing predicate
+
+Use the positive form in a predicate call when it is a single expression and the
+calling function can be inverted.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Kotlin"
+
+    ```kotlin
+    person.takeUnless { it.name != null }
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Kotlin"
+
+    ```kotlin
+    person.takeIf { it.name == null }
+    ```
+
+### No equals
+
+Use explicit operators `==` or `!=` instead of equality function in Groovy.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy
+    var isEqual = user1.name.equals(user2.name)
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy
+    var isEqual = user1.name == user2.name
+    ```
+
+### No is
+
+Use explicit operators `===` or `!==` instead of identity function in Groovy.
+
+**:material-star-four-points-outline:{ #accent } Before**
+
+=== "Groovy"
+
+    ```groovy
+    assert cat.is(copyCat)
+    ```
+
+**:material-star-four-points:{ #accent } After**
+
+=== "Groovy"
+
+    ```groovy
+    assert cat === copyCat
+    ```
+
+### Simple boolean expression
 
 Simplify boolean expressions when applicable.
 
@@ -1929,7 +2047,7 @@ Simplify boolean expressions when applicable.
     const valid: boolean = isReady() && !isRunning();
     ```
 
-### Complicated size equality
+### Simple size comparison
 
 Use `isEmpty()` or `isNotEmpty()` instead of comparing collection size with
 zero. In languages with truthy values, use the collection itself in a boolean
@@ -2023,73 +2141,12 @@ context.
     }
     ```
 
-### Confusing predicate
+### Strict equality
 
-Use the positive form in a predicate call when it is a single expression and the
-calling function can be inverted.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Kotlin"
-
-    ```kotlin
-    person.takeUnless { it.name != null }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-
-    ```kotlin
-    person.takeIf { it.name == null }
-    ```
-
-### Deprecated identity
-
-Use structural equality instead of referential equality when comparing with
-primitive values. In Kotlin, `null` is included in the set of primitive values.
+Compare objects with strict equality operators `===` or `!==`.
 
 **:material-star-four-points-outline:{ #accent } Before**
 
-=== "Kotlin"
-
-    ```kotlin
-    user.takeUnless { it.name === null }
-    ```
-=== "Python"
-
-    ```py
-    if len(user.addresses) is 1:
-        continue
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Kotlin"
-
-    ```kotlin
-    user.takeUnless { it.name == null }
-    ```
-=== "Python"
-
-    ```py
-    if len(user.addresses) == 1:
-        continue
-    ```
-
-### Redundant equality
-
-Compare primitives with identity operator `===`.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    if (total == 0) {
-        return
-    }
-    ```
 === "JavaScript"
 
     ```js hl_lines="1"
@@ -2107,13 +2164,6 @@ Compare primitives with identity operator `===`.
 
 **:material-star-four-points:{ #accent } After**
 
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    if (total === 0) {
-        return
-    }
-    ```
 === "JavaScript"
 
     ```js hl_lines="1"
@@ -2126,30 +2176,6 @@ Compare primitives with identity operator `===`.
     ```ts hl_lines="1"
     if (total === 0) {
         return;
-    }
-    ```
-
-### Redundant equals
-
-Use explicit operator instead of named function in Groovy.
-
-**:material-star-four-points-outline:{ #accent } Before**
-
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    if (total.equals(0)) {
-        return
-    }
-    ```
-
-**:material-star-four-points:{ #accent } After**
-
-=== "Groovy"
-
-    ```groovy hl_lines="1"
-    if (total == 0) {
-        return
     }
     ```
 
@@ -5874,7 +5900,7 @@ Separate block tag group from the summary with a blank line.
     function abs(number: number): number {}
     ```
 
-## Stating
+## Statement
 
 ### Complicated assignment
 

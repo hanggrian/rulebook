@@ -8,26 +8,25 @@
   <description>All Rulebook rules.</description>
 
   <rule class="com.hanggrian.rulebook.codenarc.rules.BlockTagPunctuationRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.TodoCommentRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.TodoCommentStyleRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.TrailingCommaInCallRule"/>
 
   <!-- Clipping -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.BlockCommentClipRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.BracesClipRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsClipRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.TagsClipRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BlockCommentClippingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BracesClippingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.BracketsClippingRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.TagsClippingRule"/>
 
-  <!-- Declaring -->
+  <!-- Declaration -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseDRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseFRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseHexadecimalRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseHexRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LowercaseIRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.MissingPrivateConstructorRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.UnnecessaryParenthesesInLambdaRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoPublicConstructorInUtilityClassRule"/>
+  <rule class="com.hanggrian.rulebook.codenarc.rules.NoParenthesesInLambdaRule"/>
 
-  <!-- Expressing -->
-  <rule class="com.hanggrian.rulebook.codenarc.rules.ComplicatedSizeEqualityRule"/>
-  <rule class="com.hanggrian.rulebook.codenarc.rules.RedundantEqualityRule"/>
+  <!-- Expression -->
+  <rule class="com.hanggrian.rulebook.codenarc.rules.SimpleSizeComparisonRule"/>
 
   <!-- Formatting -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.EmptyFileRule"/>
@@ -61,7 +60,7 @@
   <rule class="com.hanggrian.rulebook.codenarc.rules.MemberSeparatorRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.MissingBlankLineBeforeBlockTagsRule"/>
 
-  <!-- Stating -->
+  <!-- Statement -->
   <rule class="com.hanggrian.rulebook.codenarc.rules.ComplicatedAssignmentRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyCaseRule"/>
   <rule class="com.hanggrian.rulebook.codenarc.rules.LonelyIfRule"/>

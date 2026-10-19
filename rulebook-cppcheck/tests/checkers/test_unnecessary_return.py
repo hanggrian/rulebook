@@ -7,6 +7,7 @@ from .checker_case import CheckerTestCase
 from ..asserts import assert_properties
 
 
+# noinspection PyUnresolvedReferences
 class TestUnnecessaryReturnChecker(CheckerTestCase):
     CHECKER_CLASS = UnnecessaryReturnChecker
 
