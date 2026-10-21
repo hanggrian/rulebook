@@ -15,6 +15,6 @@
   "devDependencies": {
     "@types/estree": "1.0.8",
     "@types/node": "25.9.9",
-    "eslint": "9.39.5"
+    "eslint": "10.13.0"
   }
 }
